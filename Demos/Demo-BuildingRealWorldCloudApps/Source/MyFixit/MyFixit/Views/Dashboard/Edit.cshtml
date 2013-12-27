@@ -1,0 +1,49 @@
+@model MyFixIt.Persistence.FixItTask
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>Update FixIt Task</legend>
+
+        @Html.HiddenFor(model => model.FixItTaskId)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.Title)
+				@Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Notes, new { @class = "control-label" })
+			<div class="controls">
+				@Html.TextAreaFor(model => model.Notes)
+				@Html.ValidationMessageFor(model => model.Notes, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            <label class="control-label" for="IsDone">Fixed</label>
+			<div class="controls">
+				@Html.EditorFor(model => model.IsDone)
+				@Html.ValidationMessageFor(model => model.IsDone, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Save" class="btn" />
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

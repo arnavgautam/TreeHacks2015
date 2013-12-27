@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedHelloWorld", "AutomatedHelloWorld\AutomatedHelloWorld.csproj", "{43D1B5DA-AAAF-47A9-9C87-F0F8888DBDA9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D61EFB8E-8128-41A1-8241-C933CAB6C277}"
+	ProjectSection(SolutionItems) = preProject
+		Automation\create-azure-sql.ps1 = Automation\create-azure-sql.ps1
+		Automation\create-azure-storage.ps1 = Automation\create-azure-storage.ps1
+		Automation\create-azure-website-env.ps1 = Automation\create-azure-website-env.ps1
+		Automation\deploy-azure-website-devbox.ps1 = Automation\deploy-azure-website-devbox.ps1
+		Automation\pubxml.template = Automation\pubxml.template
+		Automation\website-environment.template = Automation\website-environment.template
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A0C95F05-3F8B-4CD7-982C-50C62C9A92D5}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43D1B5DA-AAAF-47A9-9C87-F0F8888DBDA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43D1B5DA-AAAF-47A9-9C87-F0F8888DBDA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43D1B5DA-AAAF-47A9-9C87-F0F8888DBDA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43D1B5DA-AAAF-47A9-9C87-F0F8888DBDA9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

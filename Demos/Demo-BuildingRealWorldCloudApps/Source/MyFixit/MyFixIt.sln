@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFixIt", "MyFixIt\MyFixIt.csproj", "{E8A62D85-92B2-4C48-8219-81DA664EF3AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFitIt.Logging", "MyFitIt.Logging\MyFitIt.Logging.csproj", "{F10CF046-6A19-4A9D-AECD-6DB96D081747}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B3D4ACB1-E817-4D4D-BE1F-83D3442557EF}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFixIt.Persistence", "MyFixIt.Persistence\MyFixIt.Persistence.csproj", "{371585AF-0AD7-4740-9376-37ED491A2B13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFixIt.Tests", "MyFixIt.Tests\MyFixIt.Tests.csproj", "{87D102FC-A8DB-4BC5-9145-D284280AEE2A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Automation", "Automation", "{FA939671-80C6-4CCE-B27E-D73F0953811E}"
+	ProjectSection(SolutionItems) = preProject
+		Automation\create-azure-sql.ps1 = Automation\create-azure-sql.ps1
+		Automation\create-azure-storage.ps1 = Automation\create-azure-storage.ps1
+		Automation\create-azure-website-env.ps1 = Automation\create-azure-website-env.ps1
+		Automation\deploy-azure-website-devbox.ps1 = Automation\deploy-azure-website-devbox.ps1
+		Automation\pubxml.template = Automation\pubxml.template
+		Automation\website-environment.template = Automation\website-environment.template
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8A62D85-92B2-4C48-8219-81DA664EF3AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8A62D85-92B2-4C48-8219-81DA664EF3AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8A62D85-92B2-4C48-8219-81DA664EF3AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8A62D85-92B2-4C48-8219-81DA664EF3AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F10CF046-6A19-4A9D-AECD-6DB96D081747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F10CF046-6A19-4A9D-AECD-6DB96D081747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F10CF046-6A19-4A9D-AECD-6DB96D081747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F10CF046-6A19-4A9D-AECD-6DB96D081747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{371585AF-0AD7-4740-9376-37ED491A2B13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{371585AF-0AD7-4740-9376-37ED491A2B13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{371585AF-0AD7-4740-9376-37ED491A2B13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{371585AF-0AD7-4740-9376-37ED491A2B13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87D102FC-A8DB-4BC5-9145-D284280AEE2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87D102FC-A8DB-4BC5-9145-D284280AEE2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87D102FC-A8DB-4BC5-9145-D284280AEE2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87D102FC-A8DB-4BC5-9145-D284280AEE2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
