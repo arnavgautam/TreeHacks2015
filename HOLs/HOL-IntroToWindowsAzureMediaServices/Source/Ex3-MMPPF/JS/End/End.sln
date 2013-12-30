@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows 8
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "SampleMediaPlayer", "SampleMediaPlayer\SampleMediaPlayer.jsproj", "{641B1A81-870E-45B2-9724-7B4F74F16A4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C4002922-72EC-4E73-AF0D-7DC599606D24}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Debug|Any CPU.Build.0 = Debug|x64
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Debug|Any CPU.Deploy.0 = Debug|x64
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Debug|ARM.ActiveCfg = Debug|ARM
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Debug|ARM.Build.0 = Debug|ARM
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Debug|ARM.Deploy.0 = Debug|ARM
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Debug|x64.ActiveCfg = Debug|x64
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Debug|x64.Build.0 = Debug|x64
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Debug|x64.Deploy.0 = Debug|x64
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Debug|x86.ActiveCfg = Debug|x86
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Debug|x86.Build.0 = Debug|x86
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Debug|x86.Deploy.0 = Debug|x86
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Release|ARM.ActiveCfg = Release|ARM
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Release|ARM.Build.0 = Release|ARM
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Release|ARM.Deploy.0 = Release|ARM
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Release|x64.ActiveCfg = Release|x64
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Release|x64.Build.0 = Release|x64
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Release|x64.Deploy.0 = Release|x64
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Release|x86.ActiveCfg = Release|x86
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Release|x86.Build.0 = Release|x86
+		{641B1A81-870E-45B2-9724-7B4F74F16A4A}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

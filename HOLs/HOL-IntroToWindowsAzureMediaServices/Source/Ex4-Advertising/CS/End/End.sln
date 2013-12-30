@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMediaPlayer", "SampleMediaPlayer\SampleMediaPlayer.csproj", "{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BAACB7E4-58D5-4E78-BD6E-0D803A46A63A}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Debug|Any CPU.Build.0 = Debug|x64
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Debug|Any CPU.Deploy.0 = Debug|x64
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Debug|ARM.ActiveCfg = Debug|ARM
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Debug|ARM.Build.0 = Debug|ARM
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Debug|ARM.Deploy.0 = Debug|ARM
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Debug|x64.ActiveCfg = Debug|x64
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Debug|x64.Build.0 = Debug|x64
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Debug|x64.Deploy.0 = Debug|x64
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Debug|x86.ActiveCfg = Debug|x86
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Debug|x86.Build.0 = Debug|x86
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Debug|x86.Deploy.0 = Debug|x86
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Release|ARM.ActiveCfg = Release|ARM
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Release|ARM.Build.0 = Release|ARM
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Release|ARM.Deploy.0 = Release|ARM
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Release|x64.ActiveCfg = Release|x64
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Release|x64.Build.0 = Release|x64
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Release|x64.Deploy.0 = Release|x64
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Release|x86.ActiveCfg = Release|x86
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Release|x86.Build.0 = Release|x86
+		{FF81FB8F-D98C-4ABA-B3E9-AD4D2DC72DED}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

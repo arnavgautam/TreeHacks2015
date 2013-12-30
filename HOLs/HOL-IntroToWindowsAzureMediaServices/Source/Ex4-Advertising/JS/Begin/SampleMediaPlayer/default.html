@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SampleMediaPlayer</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <!-- SampleMediaPlayer references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+    
+    <!-- PlayerFramework references -->
+    <link href="/Microsoft.PlayerFramework.Js/css/PlayerFramework-dark.css" rel="stylesheet">
+    <script src="/Microsoft.PlayerFramework.Js/js/PlayerFramework.js"></script>
+
+    <!-- PlayerFramework.Adaptive references -->
+    <script src="/Microsoft.PlayerFramework.Js.Adaptive/js/PlayerFramework.Adaptive.js"></script>
+</head>
+<body>
+    <div data-win-control="PlayerFramework.MediaPlayer" 
+         data-win-options="{                                 
+                                width: 1000,
+                                height: 600,
+                                autoplay: true,
+                                src: '[YOUR-MEDIA-SERVICE-VIDEO-URL]',
+                          }">
+    </div>
+</body>
+</html>
