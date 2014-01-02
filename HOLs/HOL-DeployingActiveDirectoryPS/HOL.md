@@ -32,7 +32,15 @@ The following is required to complete this hands-on lab:
 	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
 	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
 	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
-- Complete the _Provisioning a Windows Azure Virtual Machine (PowerShell)_ HOL
+- A Windows Server 2012 virtual machine
+	- Follow the [Quickly create a virtual machine](http://msdn.microsoft.com/en-us/library/windowsazure/jj835085.aspx#bk_Quick) section of the [Create or Delete Virtual Machines Using Windows Azure Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj835085.aspx) how to guide to create a Windows Server virtual machine (make sure to pick a Windows Server 2012 image from the images list).
+
+		> **Note:**  You can use the following command to retrieve the name of the latest Windows Server 2012 image available.
+
+		> ```PowerShell
+		$imageName = @($images | Where {$_.ImageName -match "106__Windows-Server-2012"})[-1].ImageName
+		```
+
 
 >**Note:** In order to run through the complete hands-on lab, you must have network connectivity. 
 
@@ -46,14 +54,12 @@ In order to complete this lab, you will need your subscription’s secure creden
 
 > **Note:** If you have done these steps in a previous lab on the same computer you can move on to Exercise 1.
 
-
 In this task, you will log on to the Windows Azure Portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription that you will use in your development environment. Therefore, you will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
 
 1. Search for **Windows Azure PowerShell** in the Start screen and choose **Run as Administrator**.
 
 1.	Change the PowerShell execution policy to **RemoteSigned**. When asked to confirm press **Y** and then **Enter**.
 	
-	<!-- mark:1 -->
 	````PowerShell
 	Set-ExecutionPolicy RemoteSigned
 	````
@@ -67,14 +73,11 @@ In this task, you will log on to the Windows Azure Portal and download the Publi
 	>
 	> For more information about Execution Policies refer to this TechNet article: <http://technet.microsoft.com/en-us/library/ee176961.aspx>
 
-1.	Execute the following command that will open a web page on the Windows Azure Management Portal, from which you can download the subscription information.
+1.	Execute the following command to download the subscription information. This command will open a web page on the Windows Azure Management Portal.
 
-	<!-- mark:1 -->
 	````PowerShell
 	Get-AzurePublishSettingsFile
 	````
-
-	> **Note:** We recommend that you delete the publishing profile that you downloaded using _Get-AzurePublishSettingsFile_ after you import those settings. Because the management certificate includes security credentials, it should not be accessed by unauthorized users. If you need information about your subscriptions, you can get it from the Windows Azure Management Portal or the Microsoft Online Services Customer Portal.
 
 1.	Sign in using the **Microsoft Account** associated with your **Windows Azure** account.
 
@@ -86,37 +89,35 @@ In this task, you will log on to the Windows Azure Portal and download the Publi
 
 1.	The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Windows Azure Subscription. Replace the placeholder with the path to your Publish Setting file and execute the script.
 
-	<!-- mark:1 -->
 	````PowerShell
 	Import-AzurePublishSettingsFile '[YOUR-PUBLISH-SETTINGS-PATH]'   
 	````
 
-1. Execute the following commands and take note of the Subscription name and the storage account name you will use for the exercise.
+	> **Note:** It is recommend that you delete the publishing profile that you downloaded using _Get-AzurePublishSettingsFile_ after you import those settings. Because the management certificate includes security credentials, it should not be accessed by unauthorized users. If you need information about your subscriptions, you can get it from the Windows Azure Management Portal or the Microsoft Online Services Customer Portal.
 
-	<!-- mark:1-3 -->
+1. Execute the following command and take note of the subscription name you will use for this exercise.
+ 
 	````PowerShell
 	Get-AzureSubscription | select SubscriptionName
-	Get-AzureStorageAccount | select StorageAccountName 
 	````
+1. Execute the following command and take note of the storage account name you will use for the exercise.
 
-1. If the preceding command do NOT return a storage account, you should create one first.
-  
-	1. Run the following command to determine the data center to create your storage account in. Ensure you pick a data center that shows support for PersistentVMRole. 
-
-		````PowerShell
-		Get-AzureLocation  
-		````
-
-	1. Create your storage account: 
-
-
-		````PowerShell
-		New-AzureStorageAccount -StorageAccountName '[YOUR-STORAGE-ACCOUNT]' -Location '[DC-LOCATION]'
-		````
-
+	````PowerShell
+	Get-AzureStorageAccount | Where { $_.Location -eq '[DC-LOCATION]' } | select StorageAccountName
+	````
+ 
+	> **Note:** For the _[DC-LOCATION]_ placeholder above, please replace it with the deployment location of your virtual machine.
+ 
+1. If the preceding command do NOT return a storage account, you should create one first. To do this, execute the following command:
+               
+	````PowerShell
+	New-AzureStorageAccount -StorageAccountName '[YOUR-STORAGE-ACCOUNT]' -Location '[DC-LOCATION]'
+	````
+ 
+	> **Note:** For the _[DC-LOCATION]_ placeholder above, please replace it with the deployment location of your virtual machine.
+ 
 1. Execute the following command to set your current storage account for your subscription.
 
-	<!-- mark:1 -->
 	````PowerShell
 	Set-AzureSubscription -SubscriptionName '[YOUR-SUBSCRIPTION-NAME]' -CurrentStorageAccount '[YOUR-STORAGE-ACCOUNT]'
 	````
@@ -132,26 +133,26 @@ This hands-on lab includes the following exercises:
 <a name="Exercise1" /></a>
 ### Exercise 1: Adding a new data disk to the virtual machine ###
 
-You will now modify the virtual machine you already created from the "Provisioning a Windows Azure Virtual Machine (PowerShell)" lab. We will call this VM DC01. We will create and provision a data disk to this existing VM which will be used in exercise 2 to place the AD database files.
+You will now modify the virtual machine you already created. We will create and provision a data disk to this existing VM which will be used in exercise 2 to place the AD database files.
 
 Exercise 1 contains 2 tasks:
 
-1. Attaching a data disk to DC01
-1. Configuring a new data disk on DC01
+1. Attaching a data disk to your VM
+1. Configuring a new data disk on your VM
 
 <a name="Ex1Task1" /></a>
-#### Task 1 - Attaching a data disk to DC01####
+#### Task 1 - Attaching a data disk to your VM####
 
 1. Start **Windows Azure PowerShell**.
 
-1. Run the following command to add a data disk to the existing virtual machine. Make sure you replace the placeholder accordingly, using the service name you provided when creating the virtual machine.
+1. Run the following command to add a data disk to the existing virtual machine. Make sure you replace the placeholder accordingly, using the service name and the virtual machine name you provided when creating the virtual machine for this lab.
 
 	````PowerShell
 	$cloudSvcName = '[YOUR-SERVICE-NAME]'
-	$vmname = 'DC01'
+	$vmname = '[YOUR-VM-NAME]'
 
 	Get-AzureVM -Name $vmname -ServiceName $cloudSvcName |
-		Add-AzureDataDisk -CreateNew -DiskSizeInGB 10 -DiskLabel 'DC01-data' -HostCaching 'None' -LUN 0 |
+		Add-AzureDataDisk -CreateNew -DiskSizeInGB 10 -DiskLabel 'AD-data' -HostCaching 'None' -LUN 0 |
 		Update-AzureVM 
 	````
 
@@ -162,17 +163,30 @@ Exercise 1 contains 2 tasks:
 	_Adding data disk_
 
 <a name="Ex1Task2" /></a>
-#### Task 2 - Configuring a new data disk on DC01####
+#### Task 2 - Configuring a new data disk on your VM####
 
-1. Go to the **Virtual Machines** page within the Windows Azure Management portal and select the Virtual Machine you created by following the _Provisioning a Windows Azure Virtual Machine (PowerShell)_ HOL.
+1. Go to the **Virtual Machines** page within the Windows Azure Management portal and select the Virtual Machine you created for this lab.
 
 1. Click on the Virtual Machine name to open its page and click on **Dashboard**. Locate and take note of the DNS.
+
+	<!-- Update to use
+	````PowerShell
+	$dnsName = (Get-AzureVM $cloudSvcName).DNSName
+	````
+	-->
 
 	![Virtual Machine DNS](Images/virtual-machine-dns.png?raw=true)
 
 	_Virtual Machine DNS_
 
 1.  Now click on **Endpoints** and take note of the public port in the remote PowerShell endpoint that was created when you provisioned the virtual machine.
+
+	<!-- Update to use
+	````PowerShell
+	$winRmHTTpsEndpoint = Get-AzureVM $cloudSvcName | Get-AzureEndpoint -Name "WinRmHTTPs"
+	````
+	and then: $winRmHTTpsEndpoint.Port
+	-->
 
 	![Virtual Machine Endpoints](Images/virtual-machine-endpoints.png?raw=true)
 
@@ -183,6 +197,7 @@ Exercise 1 contains 2 tasks:
 	````PowerShell
 	Enter-PSSession -ComputerName '[YOUR-VM-DNS]' -Port [YOUR-ENDPOINT-PORT] -Authentication Negotiate -Credential '[YOUR-VM-USERNAME]' -UseSSL -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
 	````
+
 	>**Note:** When prompted, login with the administrator password.
 
 1. You should now be at a prompt with the host name to the left.
