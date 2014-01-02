@@ -19,31 +19,22 @@ In this hands-on lab, you will learn how to:
 - Provision a data disk to a Virtual Machine
 - Deploy a Domain Controller in Windows Azure
 
-<a name="Prerequisites"></a> 
+<a name="Prerequisites" />
 ### Prerequisites ###
-
+ 
 The following is required to complete this hands-on lab:
-
-- [Windows PowerShell 3.0] (http://microsoft.com/powershell/)
-- [Windows Azure PowerShell Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj156055)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+ 
+- [Windows PowerShell 3.0]( http://microsoft.com/powershell/) (or higher)
+- Windows Azure PowerShell Cmdlets v0.7.1 (or higher)
+	- Follow the [Install Windows Azure PowerShell](http://www.windowsazure.com/en-us/manage/install-and-configure-windows-powershell/#Install) how to guide to install the cmdlets
+- A Windows Azure subscription
+	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 - Complete the _Provisioning a Windows Azure Virtual Machine (PowerShell)_ HOL
 
 >**Note:** In order to run through the complete hands-on lab, you must have network connectivity. 
-
-<a name="Setup" />
-### Setup ###
-
-In order to execute the exercises in this hands-on lab you need to set up your environment.
-
-1. Open Windows Explorer and browse to the lab's **Source** folder.
-
-1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment.
-
-1. If the User Account Control dialog is shown, confirm the action to proceed.
-
-> **Note:** Make sure you have checked all the dependencies for this lab before running the setup. 
-
 
 <a name="gettingstarted" /></a>
 ### Getting Started: Obtaining Subscription's Credentials ###
@@ -57,18 +48,6 @@ In order to complete this lab, you will need your subscription’s secure creden
 
 
 In this task, you will log on to the Windows Azure Portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription that you will use in your development environment. Therefore, you will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
-
-1.	Open Internet Explorer and browse to <https://windows.azure.com/download/publishprofile.aspx>.
-
-1.	Sign in using the **Microsoft Account** associated with your **Windows Azure** account.
-
-1.	**Save** the Publish Settings file to your local file system.
-
-	![Downloading publish-settings file](Images/downloading-publish-settings-file.png?raw=true 'Downloading publish-settings file')
-
-	_Downloading Publish Settings file_
-
-	> **Note:** The download page shows you how to import the Publish Settings file using the Visual Studio Publish box. This lab will show you how to import it using the Windows Azure PowerShell Cmdlets instead.
 
 1. Search for **Windows Azure PowerShell** in the Start screen and choose **Run as Administrator**.
 
@@ -88,6 +67,22 @@ In this task, you will log on to the Windows Azure Portal and download the Publi
 	>
 	> For more information about Execution Policies refer to this TechNet article: <http://technet.microsoft.com/en-us/library/ee176961.aspx>
 
+1.	Execute the following command that will open a web page on the Windows Azure Management Portal, from which you can download the subscription information.
+
+	<!-- mark:1 -->
+	````PowerShell
+	Get-AzurePublishSettingsFile
+	````
+
+	> **Note:** We recommend that you delete the publishing profile that you downloaded using _Get-AzurePublishSettingsFile_ after you import those settings. Because the management certificate includes security credentials, it should not be accessed by unauthorized users. If you need information about your subscriptions, you can get it from the Windows Azure Management Portal or the Microsoft Online Services Customer Portal.
+
+1.	Sign in using the **Microsoft Account** associated with your **Windows Azure** account.
+
+1.	**Save** the Publish Settings file to your local file system.
+
+	![Downloading publish-settings file](Images/downloading-publish-settings-file.png?raw=true 'Downloading publish-settings file')
+
+	_Downloading Publish Settings file_
 
 1.	The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Windows Azure Subscription. Replace the placeholder with the path to your Publish Setting file and execute the script.
 
