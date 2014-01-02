@@ -21,23 +21,17 @@ In this hands-on lab, you will learn how to:
 
 The following is required to complete this hands-on lab:
 
-- [Windows PowerShell 3.0] (http://microsoft.com/powershell/)
-- [Windows Azure PowerShell Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj156055)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
-- Complete the _Provisioning a Windows Azure Virtual Machine (PowerShell)_ HOL.
+- [Windows PowerShell 3.0]( http://microsoft.com/powershell/) (or higher)
+- Windows Azure PowerShell Cmdlets v0.7.1 (or higher)
+ - Follow the [Install Windows Azure PowerShell](http://www.windowsazure.com/en-us/manage/install-and-configure-windows-powershell/#Install) how to guide to install the cmdlets 
+- A Windows Azure subscription
+ - Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
+ - If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
+ - [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+ - Members of the [Microsoft Partner Network](<http://aka.ms/watk-mpn>) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
+- A Windows Server 2012 virtual machine
+ - Follow the [Quickly create a virtual machine](http://msdn.microsoft.com/en-us/library/windowsazure/jj835085.aspx#bk_Quick) section of the [Create or Delete Virtual Machines Using Windows Azure Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj835085.aspx) how to guide to create a Windows virtual machine (make sure to pick a Windows Server 2012 image from the images list).
 
-<a name="Setup" />
-### Setup ###
-
-In order to execute the exercises in this hands-on lab you need to set up your environment.
-
-1. Open Windows Explorer and browse to the lab's **Source** folder.
-
-1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment.
-
-1. If the User Account Control dialog is shown, confirm the action to proceed.
-
-> **Note:** Make sure you have checked all the dependencies for this lab before running the setup. 
 
 ---
 
@@ -54,22 +48,14 @@ Estimated time to complete this lab: **60 minutes**.
 <a name="gettingstarted" />
 ### Getting Started: Obtaining Subscription's Credentials ###
 
-In order to complete this lab, you will need your subscription’s secure credentials. In the following task, you will download the Publish Settings file with all the information required to manage your account in your development environment.
+In order to complete this lab, you will need your subscription’s secure credentials. Windows Azure lets you download a Publish Settings file with all the information required to manage your account in your development environment.
 
 <a name="GSTask1" />
 #### Task 1 - Downloading and Importing a Publish Settings File ####
 
+> **Note:** If you have already done these steps on the same computer, you can move on to Exercise 1.
+
 In this task, you will log on to the Windows Azure portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription to use in your development environment. Then, you will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
-
-1.	Open Internet Explorer and go to <https://windows.azure.com/download/publishprofile.aspx> and sign in using your Microsoft Account credentials.
-
-1.	**Save** the Publish Settings file to your local machine.
-
-	![Downloading publish-settings file](Images/downloading-publish-settings-file.png?raw=true "Downloading publish-settings file")
-
-	_Downloading Publish Settings file_
-
-	> **Note:** The download page shows you how to import the Publish Settings file using Visual Studio Publish box. This lab will show you how to import it using the Windows Azure PowerShell Cmdlets instead.
 
 1. Start **Windows Azure PowerShell** with administrator privileges by selecting **Run as Administrator**.
 
@@ -88,44 +74,50 @@ In this task, you will log on to the Windows Azure portal and download the Publi
 	>
 	> For more information about Execution Policies refer to this TechNet article: <http://technet.microsoft.com/en-us/library/ee176961.aspx>
 
+1. Execute the following command to download the subscription information. This command will open a web page on the Windows Azure Management Portal.
+
+	````PowerShell
+	Get-AzurePublishSettingsFile
+	````
+
+1. Sign in using the **Microsoft Account** associated with your **Windows Azure** account.
+
+1.	**Save** the Publish Settings file to your local machine.
+
+	![Downloading publish-settings file](Images/downloading-publish-settings-file.png?raw=true "Downloading publish-settings file")
+
+	_Downloading Publish Settings file_
+
 1.	The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Windows Azure subscription. Replace the placeholder with your publish-setting file's path and execute the script.
 
 	````PowerShell
 	Import-AzurePublishSettingsFile '[YOUR-PUBLISH-SETTINGS-PATH]'
 	````
 
-1. Execute the following commands and take note of the subscription name and a storage account name you will use for the exercise. Also make note of the location of the storage account.
+	> **Note:** It is recommended that you delete the publishing profile that you downloaded using _Get-AzurePublishSettingsFile_ after you import those settings. Because the management certificate includes security credentials, it should not be accessed by unauthorized users. If you need information about your subscriptions, you can get it from the Windows Azure Management Portal or the Microsoft Online Services Customer Portal.
+
+1. Execute the following command and take note of the subscription name you will use for this exercise.
 
 	````PowerShell
 	Get-AzureSubscription | select SubscriptionName
-	Get-AzureStorageAccount | select StorageAccountName, Location 
+	````
+1. Execute the following command and take note of the storage account name you will use for the exercise.
+
+	````PowerShell
+	Get-AzureStorageAccount | Where { $_.Location -eq '[DC-LOCATION]' } | select StorageAccountName 
 	````
 
-1. If you do **not** have a storage account already created you can use for this exercise you should create one first by following these steps.  
+	> **Note:** For the _[DC-LOCATION]_ placeholder above, please replace it with the deployment location of your virtual machine.
 
-	1. Run the following to determine the data center to create your storage account in. Ensure you pick a data center that shows support for **PersistentVMRole**. 
+1. If the preceding command do NOT return a storage account, you should create one first. To do this, execute the following command:
 	
-		````PowerShell
-		Get-AzureLocation  
-		````
-	
-	1. Create your storage account.
-	
-		````PowerShell
-		New-AzureStorageAccount -StorageAccountName '[YOUR-STORAGE-ACCOUNT]' -Location '[DC-LOCATION]'
-		````
+	````PowerShell
+	New-AzureStorageAccount -StorageAccountName '[YOUR-STORAGE-ACCOUNT]' -Location '[DC-LOCATION]'
+	````
 
-		> **Note:** For the _[DC-LOCATION]_ placeholder above, please replace it with the exact text below (minus the number) from the datacenter you chose in the previous step:
-
-		> 1. West US
-		> 2. East US
-		> 3. East Asia
-		> 4. Southeast Asia
-		> 5. North Europe
-		> 6. West Europe
+	> **Note:** For the _[DC-LOCATION]_ placeholder above, please replace it with the deployment location of your virtual machine.
 
 1. Execute the following command to set your current storage account for your subscription.
-
 
 	````PowerShell
 	Set-AzureSubscription -SubscriptionName '[YOUR-SUBSCRIPTION-NAME]' -CurrentStorageAccount '[YOUR-STORAGE-ACCOUNT]'
@@ -136,12 +128,12 @@ In this task, you will log on to the Windows Azure portal and download the Publi
 <a name="Exercise1" />
 ###Exercise 1: Customizing and Generalizing the Virtual Machine###
 
-In this exercise we are going to customize the Virtual Machine by enabling the Web Server role in Windows Server 2012. 
+In this exercise we are going to customize the virtual machine by enabling the Web Server role in Windows Server 2012. 
 
 <a name="Ex1Task1" />
 #### Task 1 - Enabling Web Server role ####
 
-1. Go to the **Virtual Machines** page within the Windows Azure Management portal and select the Virtual Machine you created by following the _Provisioning a Windows Azure Virtual Machine (PowerShell)_ HOL.
+1. Go to the **Virtual Machines** page within the Windows Azure Management portal and select your Windows Server 2012 virtual machine.
 
 1. Click on the Virtual Machine name to open its page and click on **Dashboard**. Locate and take note of the DNS.
 
