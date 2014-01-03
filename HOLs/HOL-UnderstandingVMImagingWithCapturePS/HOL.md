@@ -142,7 +142,7 @@ In this exercise you will customize the virtual machine by enabling the Web Serv
 	````
 	>**Note:** You should see in the list the service name corresponding to the virtual machine.
 
-1. In **Windows Azure PowerShell**, run the following command to obtain the DNS name of the virtual machine. Make sure you replace the placeholders accordingly, using the virtual machine name and the service name from the list obtained previously.
+1. Run the following command to obtain the DNS name of the virtual machine. Make sure you replace the placeholders accordingly, using the virtual machine name and the service name from the list obtained previously.
 
 	````PowerShell
 	$cloudSvcName = '[YOUR-SERVICE-NAME]'
