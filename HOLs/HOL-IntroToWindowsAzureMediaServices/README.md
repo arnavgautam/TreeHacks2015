@@ -6,7 +6,7 @@
 
 Hands-On Labs are sets of step-by-step guides that are designed to help you learn how to use key Windows Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
 
-In this hands-on lab you will learn how you can use Visual Studio 2012 and Windows Azure Media Services to upload, encode, deliver and stream media content, as well as performing these operations from the portal. Additionally, you will learn how to add a media player to your Windows Store applications and how to monetize your application using advertisements in the media player.
+In this hands-on lab you will learn how you can use Visual Studio 2013 and Windows Azure Media Services to upload, encode, deliver and stream media content, as well as performing these operations from the portal. Additionally, you will learn how to add a media player to your Windows Store applications and how to monetize your application using advertisements in the media player.
 
 > **Note:** You can download the latest build of the Windows Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
 

@@ -4,26 +4,26 @@
 ---
 <a name="Overview" />
 ## Overview ##
-Windows Azure Media Services allows you to build a media distribution solution that can stream audio and video to Windows, iOS, Android, and other devices and platforms. It offers the flexibility, scalability and reliability of a cloud platform to handle high quality media experiences for a global audience. Media Services includes cloud-based versions of many existing technologies from the Microsoft Media Platform and media partners, including ingest, encoding, format conversion, content protection and both on-demand and live streaming capabilities.
+Windows Azure Media Services allows you to build a media distribution solution that can stream audio and video to Windows, iOS, Android, and other devices and platforms. It offers the flexibility, scalability and reliability of a cloud platform to handle high quality media experiences for a global audience. Media Services includes cloud-based versions of many existing technologies from the Microsoft Media Platform and media partners including ingest, encoding, format conversion, content protection and both on-demand and live streaming capabilities.
 
 ![Media Services Overview](Images/media-services-overview.png?raw=true "Media Services Overview")
 
-In this hands-on lab you will learn how you can use Visual Studio 2012 and Windows Azure Media Services to upload, encode, deliver and stream media content, as well as performing these operations from the portal. Additionally, you will learn how to add a media player to your Windows Store applications and how to monetize your application using advertisements in the media player.
+In this hands-on lab you will learn how you can use Visual Studio 2013 and Windows Azure Media Services to upload, encode, deliver and stream media content, as well as perform these operations from the portal. Additionally, you will learn how to add a media player to your Windows Store applications and how to monetize your application using advertisements in the media player.
 
 <a name="Objectives" />
 ### Objectives ###
-- Create a Windows Azure Media Service.
+- Create a Windows Azure Media Service
 - Manage media content: upload, encode and stream media.
 - Programmatically upload, encode and stream content 
-- Use the Microsoft Media Platform Player Framework in a Windows 8 application
-- Add Advertisements support to your Windows 8 video application
+- Use the Microsoft Media Platform Player Framework in a Windows 8.1 application
+- Add Advertisements support to your Windows 8.1 video application
 
 <a name="prerequisites" />
 ### Prerequisites ###
 
 - Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
-- [Visual Studio Express 2012 for Desktop](http://www.microsoft.com/visualstudio) or higher
-- [Visual Studio Express 2012 for Windows 8](http://www.microsoft.com/en-us/download/details.aspx?id=30664) or higher
+- [Visual Studio Express 2013 for Desktop](http://www.microsoft.com/visualstudio) or higher
+- [Visual Studio Express 2013 for Windows](http://www.microsoft.com/en-us/download/details.aspx?id=30664) or higher
 
 <a name="Exercises" />
 ## Exercises ##
@@ -31,7 +31,7 @@ In this hands-on lab you will learn how you can use Visual Studio 2012 and Windo
 This hands-on lab includes the following exercises:
 
 1. [Uploading a Job from the Portal for HTML5 playback](#Exercise1)
-1. [Building A Console app using the Media Services SDK that uploads, encodes, and streams a video programmatically](#Exercise2)
+1. [Building a Console app using the Media Services SDK that uploads, encodes, and streams a video programmatically](#Exercise2)
 1. [Microsoft Media Platform Player Framework for the client](#Exercise3)
 1. [Monetization](#Exercise4)
 
@@ -47,19 +47,19 @@ The Windows Azure Management Portal provides a way to quickly create a Windows A
 
 This task explains how to use the Quick Create method to create a new Media Services account and then associate it with a storage account.
 
-1. Log into the [Windows Azure Management Portal](https://manage.windowsazure.com).
+1. Log in to the [Windows Azure Management Portal](https://manage.windowsazure.com).
 
 1. Click **New** | **App Services** | **Media Service**, and then click **Quick Create**.
 
-	![Creating a new Media Service](Images/creating-a-media-service.png?raw=true "Creating a new Media Service")
+	![Creating a new Media Service](Images/creating-a-new-media-service.png?raw=true "Creating a new Media Service")
 
 	_Creating a new Media Service_
 
-1. In **NAME**, enter the name of the new account. A Media Services account name should be all lower-case numbers and/or letters with no spaces, and is 3 - 24 characters in length.
+1. In **NAME**, enter the name of the new account. A Media Services account name should be all lower-case numbers and/or letters with no spaces, and 3 - 24 characters in length.
 
-1. In **REGION**, select the geographic region that will be used to store the metadata records for your Media Services account. Only the available Media Services regions appear in the dropdown.
+1. In **REGION**, select the geographic region that will be used to store the metadata records for your Media Services account. Only the available Media Services regions appear in the dropdown menu.
  
-1. In **STORAGE ACCOUNT**, select a storage account to provide blob storage of the media content from your Media Services account. You can select an existing storage account in the same geographic region as your Media Services account, or you can create a new storage account. A new storage account is created in the same region.
+1. In **STORAGE ACCOUNT**, select a storage account to provide blob storage of the media content from your Media Services account. You can select an existing storage account in the same geographic region as your Media Services account, or you can create a new storage account. A new storage account has been created in the same region.
  
 1. If you created a new storage account, in **NEW STORAGE ACCOUNT NAME**, enter a name for the storage account. The rules for storage account names are the same as for Media Services accounts.
 
@@ -77,7 +77,7 @@ The **media services** page opens with the new account displayed. When the statu
 
 In this task you will upload content to the media service already created using the Windows Azure Management Portal.
 
-1. In the [Management Portal](http://go.microsoft.com/fwlink/?linkid=256666&clcid=0x409), click **Media Services** and then click the name of the media service created in the previous task.
+1. In the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?linkid=256666&clcid=0x409), click **Media Services** and then click the name of the media service created in the previous task.
 
 1. Click the **Content** view at the top of the page and then click **Upload** in the bottom toolbar. Your view should look similar to the following screenshot.
 
@@ -85,15 +85,15 @@ In this task you will upload content to the media service already created using 
 
 	_Uploading Content_
 
-1. In the **Upload Content** dialog, click **Browse Your Computer** and browse to the desired asset file. Click the file and then click **Open** or press **Enter**.
+1. In the **Upload Content** dialog box, click **Browse Your Computer** and browse to the desired asset file. Click the file and then click **Open** or press **Enter**.
 
 	>**Note:** You can use the following short video to try uploading content to Media Services: [Azure_Intro.mp4](http://dpeshare.blob.core.windows.net/mediaserviceslabassets/Azure_Intro.mp4)
  
-1. In the **Upload Content** dialog, click the check button to submit the file and content name.
+1. In the **Upload Content** dialog box, click the check button to submit the file and content name.
 
-	![Upload Content dialog](Images/upload-content-dialog.png?raw=true "Upload Content dialog")
+	![Upload Content dialog box](Images/upload-content-dialog.png?raw=true "Upload Content dialog box")
 
-	_Upload Content dialog_
+	_Upload Content dialog box_
 
 1. The upload will start and you can track its progress in the bottom toolbar of the portal. 
  
@@ -145,13 +145,15 @@ In this task you will encode a video previously uploaded in the Windows Azure Ma
 <a name="publishing-and-playing-content" />
 ### Task 4 - Publishing and Playing content in Media Services ###
 
-In this task, you will publish the already encoded video and play it directly in the Windows Azure Management Portal.
+In this task, you will publish the previously encoded video and play it directly in the Windows Azure Management Portal.
 
-1. Click an asset that is not published, in this case, the video that was just encoded. Then click the **Publish** button in the bottom toolbar to publish the encoded video to a public URL. Once the content is published to a URL, the URL can be opened by a client player capable of rendering the encoded content.
+1. Click an asset that is not published - in this case, the video that was just encoded. Then click the **Publish** button in the bottom toolbar to publish the encoded video to a public URL. If prompt if you are sure that you want to publish the content, click **Yes**. Once the content is published to a URL, the URL can be opened by a client player capable of rendering the encoded content.
 
 	![Publishing media in Windows Azure](Images/publish-button.png?raw=true "Publishing media in Windows Azure")
 
 	_Publishing media in Windows Azure_
+
+	>**Note**: It may take some minutes for the encoded video to be available for publishing.
 
 1. Once the publishing process finishes, select the video and click the **Play** button in the bottom toolbar. Only content that has been published is playable from the portal. Also, the encoding must be supported by your browser.
 
@@ -162,14 +164,14 @@ In this task, you will publish the already encoded video and play it directly in
 ---
 
 <a name="Exercise2" />
-## Exercise 2: Building A Console app using the Media Services SDK that uploads, encodes, and streams a video programmatically ##
+## Exercise 2: Building a Console app using the Media Services SDK that uploads, encodes, and streams a video programmatically ##
 
 In this exercise, you will create a new console application that allows you to perform the different tasks (uploading, encoding, and publishing) on your Azure Media Services subscription. This application uses the Media Services SDK to accomplish these operations.
 
 <a name="programmatically-uploading-a-mp4-video" />
 ### Task 1 - Programmatically Uploading an Mp4 video ###
 
-1. Open **Microsoft Visual Studio 2012 Express for Desktop** (or higher) in elevated administrator mode. If the **User Account Control** dialog box appears, click **Yes**.
+1. Open **Microsoft Visual Studio 2013 Express for Desktop** (or higher) in elevated administrator mode. If the **User Account Control** dialog box appears, click **Yes**.
 
 1. In the **File** menu, choose **New project** and select the **Templates | C#** node from the left pane, and then select the **Console Application** template.
 
@@ -177,7 +179,9 @@ In this exercise, you will create a new console application that allows you to p
 
 1. Open the **Package Manager Console** by clicking **View | Other Windows | Package Manager Console**.
 
-1. In the console, type _Install-Package windowsazure.mediaservices_ to download and install the **Windows Azure Media Services** NuGet package and its dependencies.
+1. In the console, type _Install-Package windowsazure.mediaservices -Version 3.0.0.0_ to download and install the **Windows Azure Media Services** NuGet package and its dependencies.
+
+	![Package Manager Console](Images/package-manager-console.png?raw=true "Package Manager Console")
 
 1. In the _Program.cs_ file add the following using statements.
 
@@ -250,7 +254,7 @@ In this exercise, you will create a new console application that allows you to p
 
 1.	In the dialog box, copy the **Primary Media Service Access Key**.
 
-	![Copying Primary Media Service Key](Images/copying-primary-media-service-key.png?raw=true)
+	![Copying Primary Media Service Key](Images/copying-primary-media-service-key.png?raw=true "Copying Primary Media Service Key")
 
 	_Copying Media Service Primary Key_
 
@@ -384,7 +388,7 @@ In this exercise, you will create a new console application that allows you to p
 <a name="Exercise3" />
 ## Exercise 3: Microsoft Media Platform Player Framework for the Client  ##
 
-Microsoft Media Platform is a complete set of technologies for digital media encoding, delivery, and playback for virtually any network-connected device. The Player Framework is an open source video player available for Silverlight, HTML5, and Xbox, as well as Windows 8 and Windows Phone apps. It allows you to play both progressive download videos and Smooth Streaming videos.
+Microsoft Media Platform is a complete set of technologies for digital media encoding, delivery, and playback for virtually any network-connected device. The Player Framework is an open source video player available for Silverlight, HTML5, and Xbox, as well as Windows 8.1 and Windows Phone apps. It allows you to play both progressive download videos and Smooth Streaming videos.
 In this exercise you will first download and install the Microsoft Media Platform Player Framework and then build a simple Store app that will consume a video previously uploaded to Windows Azure Media Services and play it in a video player control.
 
 <a name="installing-MMPPF" />
@@ -409,13 +413,13 @@ In this task you will download and install the latest version of the Microsoft M
     _Microsoft Media Platform Player Framework Installation Complete_
 
 <a name="adding-a-video-player-control-to-a-windows8-app" />
-### Task 2 - Adding a video player control to a Windows 8 app ###
+### Task 2 - Adding a video player control to a Windows 8.1 app ###
 
 In this task you will create a new store app from scratch and add video control linked to a smooth streaming video uploaded to Windows Azure Media Services.
 
-1. Download and install the [Visual Studio Extension SDK for the Smooth Streaming Client] (http://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6).
+1. Download and install the [Visual Studio Extension SDK for the Smooth Streaming Client for Windows 8.1] (http://visualstudiogallery.msdn.microsoft.com/0170c67c-c183-4fee-8dd4-c2b44d710d40).
 
-1. Open **Visual Studio Express 2012 for Windows 8** and select **New Project...** from the Start Page to start a new solution.
+1. Open **Visual Studio Express 2013 for Windows** and select **New Project...** from the Start Page to start a new solution.
 
 	![Creating a New Project](Images/creating-new-project.png?raw=true "Creating a New Project")
 
@@ -431,7 +435,7 @@ In this task you will create a new store app from scratch and add video control 
 
     _New JavaScript Store App_
 
-1. Add **Microsoft Player Framework**, **Microsoft Player Framework Adaptive Streaming Plugin**, **Microsoft Smooth Streaming Client SDK for Windows 8**, and **Microsoft Visual C++ Runtime Package** to your project references. To do this, right-click the project and click **Add Reference**. In the **Reference Manager**, select the aforementioned references that are located under **Windows | Extensions** and click **OK**.
+1. Add **Microsoft Player Framework**, **Microsoft Player Framework Adaptive Streaming Plugin**, **Microsoft Smooth Streaming Client SDK for Windows 8.1**, and **Microsoft Visual C++ Runtime Package** to your project references. To do this, right-click the project and click **Add Reference**. In the **Reference Manager**, select the aforementioned references that are located under **Windows | Extensions** and click **OK**.
 
 	![Smooth Streaming C# References](Images/smooth-streaming-cs-references.png?raw=true "Smooth Streaming C# References")
 
@@ -447,37 +451,80 @@ In this task you will create a new store app from scratch and add video control 
 
 	C#
 
+	(Code Snippet - _Intro to Media Services - Ex3 - XAML using statements_)
+
+	<!-- mark:8-9 -->
 	````XAML
-	xmlns:PlayerFramework="using:Microsoft.PlayerFramework"
-	xmlns:adaptive="using:Microsoft.PlayerFramework.Adaptive"
+	<Page
+		 x:Class="SampleMediaPlayer.MainPage"
+		 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		 xmlns:local="using:SampleMediaPlayer"
+		 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		 xmlns:PlayerFramework="using:Microsoft.PlayerFramework"
+		 xmlns:adaptive="using:Microsoft.PlayerFramework.Adaptive"
+		 mc:Ignorable="d">
 	````
 
 	JavaScript
 
-	````HTML
-	<!-- PlayerFramework references -->
-	<link href="/Microsoft.PlayerFramework.Js/css/PlayerFramework-dark.css" rel="stylesheet">
-	<script src="/Microsoft.PlayerFramework.Js/js/PlayerFramework.js"></script>
+	(Code Snippet - _Intro to Media Services - Ex3 - PlayerFramework references_)
 
-	<!-- PlayerFramework.Adaptive references -->
-	<script src="/Microsoft.PlayerFramework.Js.Adaptive/js/PlayerFramework.Adaptive.js"></script>
+	<!-- mark:14-19 -->
+	````HTML
+	<head>
+		 <meta charset="utf-8" />
+		 <title>SampleMediaPlayer</title>
+
+		 <!-- WinJS references -->
+		 <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+		 <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+		 <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+
+		 <!-- SampleMediaPlayer references -->
+		 <link href="/css/default.css" rel="stylesheet" />
+		 <script src="/js/default.js"></script>
+
+		 <!-- PlayerFramework references -->
+		 <link href="/Microsoft.PlayerFramework.Js/css/PlayerFramework-dark.css" rel="stylesheet">
+		 <script src="/Microsoft.PlayerFramework.Js/js/PlayerFramework.js"></script>
+
+		 <!-- PlayerFramework.Adaptive references -->
+		 <script src="/Microsoft.PlayerFramework.Js.Adaptive/js/PlayerFramework.Adaptive.js"></script>
+	</head>
 	````
 
 1. Now you will add a video player control in the **MainPage.xaml** (for the C# project) or in the **default.html** (for the JavaScript project). 
 
 	For C#, open the toolbox in the upper-left corner of the screen and extend the **Common XAML Controls** section. Drag and drop the **MediaPlayer** control into the designer. Notice the markup code generated in the xaml file for this control.
 
-	> **Note:** You may adjust the height and width of the control to the values of your choice.
-
 	![Media Player control](Images/media-player-control-cs.png?raw=true "Media Player control")
 
     _Media Player Control C#_
 
-	For JavaScript, replace the content of the body section with the following highlighted code.
+	Update the styling of the **MediaPlayer** element by adding the following properties to the XAML element
+
+	(Code Snippet - _Intro to Media Services - Ex3 - Media player properties_)
+
+	<!-- mark:2-4 -->
+	````XAML
+	<PlayerFramework:MediaPlayer 
+			  HorizontalAlignment="Left"
+			  Height="600" Margin="200,96,0,0"
+			  VerticalAlignment="Top" Width="1000" 
+	/>
+	````
+
+	> **Note:** You may adjust the height and width of the control to the values of your choice.
+
+	For JavaScript, replace the body section with the following highlighted code.
 	
-	<!-- mark:2-8 -->
+	(Code Snippet - _Intro to Media Services - Ex3 - Media Player win-control_)
+
+	<!-- mark:1-9 -->
 	````HTML
-	<body>
+	<body style="text-align:center">
 		<div data-win-control="PlayerFramework.MediaPlayer" 
 			data-win-options="{                                 
 							  width: 1000,
@@ -517,6 +564,8 @@ In this task you will create a new store app from scratch and add video control 
 	````
 
 1. In the **MainPage.xaml** file of the C# version, modify the MediaPlayer control Xaml to add the Adaptive plugin to the plugins collection on the player framework as shown in the following code.
+
+	(Code Snippet - _Intro to Media Services - Ex3 - Media Player adaptive plugin_)
 
 	<!--mark:7-11-->
 	````XAML
@@ -559,11 +608,11 @@ Scheduling is the first step to playing ads in the player framework. This allows
 One of the scheduling options is the **VMAP** (Digital Video Multiple Ad Playlist). VMAP is an xml schema that defines when ads should play for a given piece of content. The player framework includes a VMAP scheduler plugin that will download, parse and consume to control the timing of ads for you.
 
 <a name="adding-advertisements-using-a-vmap-file-to-a-windows8-video-app" />
-### Task 1 - Adding advertisements using a VMAP file to a Windows 8 video app ###
+### Task 1 - Adding advertisements using a VMAP file to a Windows 8.1 video app ###
 
 In this task, you will add advertising support to the media player control of the app using the vmap scheduler plugin.
 
-1. If not already open, start **Visual Studio Express 2012 for Windows 8** and select **Open Project...** from the Start Page. In the **Open Project** dialog box, browse to **Ex4-Advertising** in the **Source** folder of the lab, select **Begin\Begin.sln** in the folder for the language of your preference (C# or JavaScript) and click **Open**. Alternatively, you may continue with the solution that you obtained after completing the previous exercise.
+1. If not already open, start **Visual Studio Express 2013 for Windows** and select **Open Project...** from the Start Page. In the **Open Project** dialog box, browse to **Ex4-Advertising** in the **Source** folder of the lab, select **Begin\Begin.sln** in the folder for the language of your preference (C# or JavaScript) and click **Open**. Alternatively, you may continue with the solution that you obtained after completing the previous exercise.
 
 1. Add a reference to the _Microsoft Player Framework Advertising Plugin_. To do this, right-click the **References** folder and select **Add Reference**. Under **Windows | Extensions**, check **Microsoft Player Framework Advertising Plugin** and click **OK**.
 
@@ -579,16 +628,53 @@ In this task, you will add advertising support to the media player control of th
 
 	C#
 
+	(Code Snippet - _Intro to Media Services - Ex4 - XAML using statements_)
+
+	<!-- mark:10 -->
 	````XAML
-	xmlns:ads="using:Microsoft.PlayerFramework.Advertising"
+	<Page
+		 x:Class="SampleMediaPlayer.MainPage"
+		 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		 xmlns:local="using:SampleMediaPlayer"
+		 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		 xmlns:PlayerFramework="using:Microsoft.PlayerFramework"
+		 xmlns:adaptive="using:Microsoft.PlayerFramework.Adaptive"
+		 xmlns:ads="using:Microsoft.PlayerFramework.Advertising"
+		 mc:Ignorable="d">
 	````
 
 	JavaScript
 
+	(Code Snippet - _Intro to Media Services - Ex4 - Advertising references_)
+
+	<!-- mark:21-23 -->
 	````HTML
-	<!-- PlayerFramework Advertising references -->
-	<link href="/Microsoft.PlayerFramework.Js.Advertising/css/PlayerFramework.Advertising.css" rel="stylesheet">
-	<script src="/Microsoft.PlayerFramework.Js.Advertising/js/PlayerFramework.Advertising.js"></script>
+	<head>
+		 <meta charset="utf-8" />
+		 <title>SampleMediaPlayer</title>
+
+		 <!-- WinJS references -->
+		 <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+		 <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+		 <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+
+		 <!-- SampleMediaPlayer references -->
+		 <link href="/css/default.css" rel="stylesheet" />
+		 <script src="/js/default.js"></script>
+
+		 <!-- PlayerFramework references -->
+		 <link href="/Microsoft.PlayerFramework.Js/css/PlayerFramework-dark.css" rel="stylesheet">
+		 <script src="/Microsoft.PlayerFramework.Js/js/PlayerFramework.js"></script>
+
+		 <!-- PlayerFramework.Adaptive references -->
+		 <script src="/Microsoft.PlayerFramework.Js.Adaptive/js/PlayerFramework.Adaptive.js"></script>
+
+		 <!-- PlayerFramework Advertising references -->
+		 <link href="/Microsoft.PlayerFramework.Js.Advertising/css/PlayerFramework.Advertising.css" rel="stylesheet">
+		 <script src="/Microsoft.PlayerFramework.Js.Advertising/js/PlayerFramework.Advertising.js"></script>
+	</head>
 	````
 
 1. In the media player control, change the **Source** property (for the C# version) or the **src** property (for the JavaScript version) to point to the URL of the video encoded in smooth streaming at the end of Exercise 2.
@@ -627,6 +713,8 @@ In this task, you will add advertising support to the media player control of th
 
 	C#
 
+	(Code Snippet - _Intro to Media Services - Ex4 - XAML VMap Scheduler plugin_)
+
 	<!-- mark:9-10 -->
 	````XAML
 	<PlayerFramework:MediaPlayer HorizontalAlignment="Left"
@@ -644,6 +732,8 @@ In this task, you will add advertising support to the media player control of th
 	````
 
 	JavaScript
+
+	(Code Snippet - _Intro to Media Services - Ex4 - HTML VMap Scheduler plugin_)
 
 	<!-- mark:7-9 -->
 	````HTML
