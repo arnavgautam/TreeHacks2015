@@ -108,7 +108,7 @@ In this task, you will log on to the Windows Azure Portal and download the Publi
  
 	> **Note:** For the _[DC-LOCATION]_ placeholder above, please replace it with the deployment location of your virtual machine.
  
-1. If the preceding command do NOT return a storage account, you should create one first. To do this, execute the following command:
+1. If the preceding command does NOT return a storage account, you should create one first. To do this, execute the following command:
                
 	````PowerShell
 	New-AzureStorageAccount -StorageAccountName '[YOUR-STORAGE-ACCOUNT]' -Location '[DC-LOCATION]'
@@ -165,37 +165,22 @@ Exercise 1 contains 2 tasks:
 <a name="Ex1Task2" /></a>
 #### Task 2 - Configuring a new data disk on your VM####
 
-1. Go to the **Virtual Machines** page within the Windows Azure Management portal and select the Virtual Machine you created for this lab.
+1. In **Windows Azure PowerShell**, run the following command to save the DNS in a variable.
 
-1. Click on the Virtual Machine name to open its page and click on **Dashboard**. Locate and take note of the DNS.
-
-	<!-- Update to use
 	````PowerShell
-	$dnsName = (Get-AzureVM $cloudSvcName).DNSName
+	$dnsName = (Get-AzureVM $cloudSvcName).DNSName.split('/')[2]
 	````
-	-->
 
-	![Virtual Machine DNS](Images/virtual-machine-dns.png?raw=true)
+1. Now execute the following command to save to a variable the remote PowerShell endpoint that was created when you provisioned the virtual machine.
 
-	_Virtual Machine DNS_
-
-1.  Now click on **Endpoints** and take note of the public port in the remote PowerShell endpoint that was created when you provisioned the virtual machine.
-
-	<!-- Update to use
 	````PowerShell
 	$winRmHTTpsEndpoint = Get-AzureVM $cloudSvcName | Get-AzureEndpoint -Name "WinRmHTTPs"
 	````
-	and then: $winRmHTTpsEndpoint.Port
-	-->
 
-	![Virtual Machine Endpoints](Images/virtual-machine-endpoints.png?raw=true)
-
-	_Virtual Machine Endpoints_
-
-1. In Windows Azure PowerShell, type the following command to access remotely to the virtual machine. Replace [YOUR-VM-DNS] and [YOUR-ENDPOINT-PORT] placeholders with the values obtained in the previous steps. Replace [YOUR-VM-USERNAME] with the administrator username provided when you created the virtual machine.
+1. In Windows Azure PowerShell, type the following command to access remotely to the virtual machine. Note that this command use the _$dnsName_ and _$winRmHTTpsEndpoint_ variables obtained in the previous steps. Replace [YOUR-VM-USERNAME] with the administrator username provided when you created the virtual machine.
 
 	````PowerShell
-	Enter-PSSession -ComputerName '[YOUR-VM-DNS]' -Port [YOUR-ENDPOINT-PORT] -Authentication Negotiate -Credential '[YOUR-VM-USERNAME]' -UseSSL -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
+	Enter-PSSession -ComputerName $dnsName -Port $winRmHTTpsEndpoint.Port -Authentication Negotiate -Credential '[YOUR-VM-USERNAME]' -UseSSL -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
 	````
 
 	>**Note:** When prompted, login with the administrator password.
