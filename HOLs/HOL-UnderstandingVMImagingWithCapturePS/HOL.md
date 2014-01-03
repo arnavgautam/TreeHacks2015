@@ -109,7 +109,7 @@ In this task, you will log on to the Windows Azure portal and download the Publi
 
 	> **Note:** For the _[DC-LOCATION]_ placeholder above, please replace it with the deployment location of your virtual machine.
 
-1. If the preceding command do NOT return a storage account, you should create one first. To do this, execute the following command:
+1. If the preceding command does NOT return a storage account, you should create one first. To do this, execute the following command:
 	
 	````PowerShell
 	New-AzureStorageAccount -StorageAccountName '[YOUR-STORAGE-ACCOUNT]' -Location '[DC-LOCATION]'
@@ -128,29 +128,38 @@ In this task, you will log on to the Windows Azure portal and download the Publi
 <a name="Exercise1" />
 ###Exercise 1: Customizing and Generalizing the Virtual Machine###
 
-In this exercise we are going to customize the virtual machine by enabling the Web Server role in Windows Server 2012. 
+In this exercise you will customize the virtual machine by enabling the Web Server role in Windows Server 2012. 
 
 <a name="Ex1Task1" />
 #### Task 1 - Enabling Web Server role ####
 
-1. Go to the **Virtual Machines** page within the Windows Azure Management portal and select your Windows Server 2012 virtual machine.
+1. Start **Windows Azure PowerShell**.
 
-1. Click on the Virtual Machine name to open its page and click on **Dashboard**. Locate and take note of the DNS.
-
-	![Virtual Machine DNS](Images/virtual-machine-dns.png?raw=true)
-
-	_Virtual Machine DNS_
-
-1.  Now click on **Endpoints** and take note of the public port in the remote PowerShell endpoint that was created when you provisioned the virtual machine.
-
-	![Virtual Machine Endpoints](Images/virtual-machine-endpoints.png?raw=true)
-
-	_Virtual Machine Endpoints_
-
-1. In Windows Azure PowerShell, type the following command to access remotely to the virtual machine. Replace [YOUR-VM-DNS] and [YOUR-ENDPOINT-PORT] placeholders with the values obtained in the previous steps. Replace [YOUR-VM-USERNAME] with the administrator username provided when you created the virtual machine.
+1. Run the following command to list all the service names of your subscription.
 
 	````PowerShell
-	Enter-PSSession -ComputerName '[YOUR-VM-DNS]' -Port [YOUR-ENDPOINT-PORT] -Authentication Negotiate -Credential '[YOUR-VM-USERNAME]' -UseSSL -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
+	Get-AzureService | Select ServiceName
+	````
+	>**Note:** You should see in the list the service name corresponding to the virtual machine.
+
+1. Run the following command to obtain the DNS name of the virtual machine. Make sure you replace the placeholders accordingly, using the virtual machine name and the service name from the list obtained previously.
+
+	````PowerShell
+	$cloudSvcName = '[YOUR-SERVICE-NAME]'
+	$vmname = '[YOUR-VM-NAME]'
+	$dnsName = (Get-AzureVM -ServiceName $cloudSvcName -Name $vmname).DNSName.split('/')[2]
+	````
+
+1. Now execute the following command to obtain the public port of the remote PowerShell endpoint that was created the virtual machine was provisioned.
+
+	````PowerShell
+	$winRmHTTPsPort = (Get-AzureVM -ServiceName $cloudSvcName -Name $vmname | Get-AzureEndpoint -Name "WinRmHTTPs").Port
+	````
+
+1. Type the following command to access remotely to the virtual machine. Replace [YOUR-VM-USERNAME] with the administrator username provided when you created the virtual machine.
+
+	````PowerShell
+	Enter-PSSession -ComputerName $dnsName -Port $winRmHTTPsPort -Authentication Negotiate -Credential '[YOUR-VM-USERNAME]' -UseSSL -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
 	````
 	>**Note:** When prompted, login with the administrator password.
 
@@ -175,7 +184,7 @@ In this exercise we are going to customize the virtual machine by enabling the W
 <a name="Ex1Task2" />
 #### Task 2 - Generalizing the Machine with SysPrep ####
 
-In this step we will run the System Preparation (Sysprep) tool to generalize the image which will allow multiple virtual machines to be created off it, all having the same customized settings, including Web Server role enabled.
+In this step you will run the System Preparation (Sysprep) tool to generalize the image which will allow multiple virtual machines to be created off it, all having the same customized settings, including Web Server role enabled.
 
 The System Preparation (Sysprep) tool is used to change Windows images from a specialized to a generalized state, and back. A generalized image can be deployed on any computer. A specialized image is targeted to a specific computer. For example, when you use the Sysprep tool to generalize an image, Sysprep removes all system-specific information and resets the computer. You must generalize a Windows image before you capture and deploy the image. 
 
@@ -195,28 +204,17 @@ The System Preparation (Sysprep) tool is used to change Windows images from a sp
 <a name="Exercise2" />
 ### Exercise 2: Saving an Image in the Image Library ###
 
-In this exercise you are going to use the capture feature for virtual machines to create a new image based off of an existing virtual machine (the one previously created). The example below uses the Windows Azure PowerShell cmdlets but this is also possible in the Windows Azure Management Portal.
+In this exercise you will use the capture feature for virtual machines to create a new image based off of an existing virtual machine (the one generalized in the previous exercise). The example below uses the Windows Azure PowerShell cmdlets but this is also possible in the Windows Azure Management Portal.
 
 >**Note:** Before proceeding ensure the virtual machine you sysprepped is Off (its status should be _Stopped_).
 
 <a name="Ex2Task1" />
 #### Task 1 - Saving an Image in the Image Library ####
 
-1. Start **Windows Azure PowerShell**.
-
-1. Run the following command to list all the service names of your subscription.
+1. In the **Windows Azure PowerShell** window used in the previous exercise, run the following command to return the current status of the virtual machine. Do not proceed past this point until the status is set to **StoppedVM**.
 
 	````PowerShell
-	Get-AzureService | Select ServiceName
-	````
-	>**Note:** You should see in the list the service name you specified when creating the virtual machine.
-
-1. Run the following command to return the current status of the virtual machine. Do not proceed past this point until the status is set to **StoppedVM**. Make sure you replace the plaholders accordingly, using the virtual machine name and service name from the list obtained previously.
-
-	````PowerShell
-	$cloudSvcName = '[YOUR-SERVICE-NAME]'
-	$vmname = '[YOUR-VM-NAME]'
-	Get-AzureVM -ServiceName $cloudSvcName -Name $vmname  | Select InstanceStatus 
+	Get-AzureVM -ServiceName $cloudSvcName -Name $vmname | Select InstanceStatus 
 	````
 
 1. Using the **Save-AzureVMImage** cmdlet you can take the sysprepped virtual machine and capture it as a new re-usable image.
@@ -281,6 +279,9 @@ In this exercise you are going to create a new virtual machine using the image y
 	_Get-AzureVM Cmdlet Output_
 
 1. Open a web browser and navigate to the DNS address obtained in the previous step.
+
+
+
 
 	![IIS default web page](Images/ie-iis.png?raw=true)
 

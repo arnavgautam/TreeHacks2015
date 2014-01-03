@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MediaServices.Client;
 using System.IO;
+using System.Threading;
 
 namespace MyMediaServicesManager
 {
@@ -14,8 +14,12 @@ namespace MyMediaServicesManager
         static void Main(string[] args)
         {
             Console.WriteLine("Uploading Video");
-
-            var uploadFilePath = @"[YOUR FILE PATH]";
+            
+            // Create a .NET console app
+            // Set the project properties to use the full .NET Framework (not Client Profile)
+            // With NuGet Package Manager, install windowsazure.mediaservices
+            // add: using Microsoft.WindowsAzure.MediaServices.Client;
+            var uploadFilePath = = @"[YOUR FILE PATH]";
             var context = new CloudMediaContext("[YOUR MEDIA SERVICE ACCOUNT NAME]", "[YOUR MEDIA SERVICE ACCOUNT KEY]");
             var uploadAsset = context.Assets.Create(Path.GetFileNameWithoutExtension(uploadFilePath), AssetCreationOptions.None);
             var assetFile = uploadAsset.AssetFiles.Create(Path.GetFileName(uploadFilePath));
@@ -48,7 +52,6 @@ namespace MyMediaServicesManager
             job.GetExecutionProgressTask(CancellationToken.None).Wait();
 
             var preparedAsset = job.OutputMediaAssets.FirstOrDefault();
-
 
             Console.WriteLine("Encoding Completed");
             Console.WriteLine("Publishing Video");
