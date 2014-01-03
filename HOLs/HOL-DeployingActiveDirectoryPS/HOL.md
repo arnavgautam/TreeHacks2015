@@ -228,7 +228,7 @@ Exercise 1 contains 2 tasks:
 
 <a name="Exercise2" /></a>
 ### Exercise 2: Deploying a new domain controller in Windows Server 2012 ###
-You have just created a base virtual machine called DC01, attached the necessary data disk, and provisioned the disk. Now you are going to install and configure active directory and then verify the install was successful.
+You have just created a base virtual machine, attached the necessary data disk, and provisioned the disk. Now you are going to install and configure active directory and then verify the install was successful.
 
 Exercise 2 contains 3 tasks:
 
