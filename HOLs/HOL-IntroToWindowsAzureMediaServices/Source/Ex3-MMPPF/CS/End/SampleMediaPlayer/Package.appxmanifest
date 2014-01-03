@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
 
-  <Identity Name="1ddd6b46-027e-405f-b9a2-23829c0ee8c4"
-            Publisher="CN=giglesias"
+  <Identity Name="bb36a092-8185-4e00-a514-c5c49852087e"
+            Publisher="CN=Marcos"
             Version="1.0.0.0" />
 
   <Properties>
     <DisplayName>SampleMediaPlayer</DisplayName>
-    <PublisherDisplayName>giglesias</PublisherDisplayName>
+    <PublisherDisplayName>Marcos</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
   <Prerequisites>
-    <OSMinVersion>6.2.1</OSMinVersion>
-    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
   </Prerequisites>
 
   <Resources>
@@ -24,16 +24,15 @@
     <Application Id="App"
         Executable="$targetnametoken$.exe"
         EntryPoint="SampleMediaPlayer.App">
-        <VisualElements
+        <m2:VisualElements
             DisplayName="SampleMediaPlayer"
-            Logo="Assets\Logo.png"
-            SmallLogo="Assets\SmallLogo.png"
+            Square150x150Logo="Assets\Logo.png"
+            Square30x30Logo="Assets\SmallLogo.png"
             Description="SampleMediaPlayer"
             ForegroundText="light"
             BackgroundColor="#464646">
-            <DefaultTile ShowName="allLogos" />
-            <SplashScreen Image="Assets\SplashScreen.png" />
-        </VisualElements>
+            <m2:SplashScreen Image="Assets\SplashScreen.png" />
+        </m2:VisualElements>
     </Application>
   </Applications>
   <Capabilities>
