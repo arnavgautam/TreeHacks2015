@@ -224,7 +224,7 @@ The first step to create a virtual machine in Windows Azure is to define the vir
 <a name='Exercise2'/>
 ### Exercise 2: Using PowerShell CmdLets for Advanced Provisioning ###
 
-In addition to just creating a single uncustomized virtual machine. You can also configure data disks, disk cache settings, networking endpoints and automatically configure domain join settings at provisioning time in addition to batch creating virtual machines using the *New-AzureVMConfig/New-AzureVM* cmdlet combination.
+In addition to just creating a single uncustomized virtual machine, you can also configure data disks, disk cache settings, networking endpoints and automatically configure domain join settings at provisioning time. In this task, you will take advantage of the Windows PowerShell pipeline and make use of the *New-AzureVMConfig/New-AzureVM* cmdlet combination to create and customize your virtual machine.
 
 <a name='Ex2Task1' />
 #### Task 1 - Performing Custom Provisioning ####
