@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabrikamInsurance", "FabrikamInsurance\FabrikamInsurance.csproj", "{5945F42C-1C8C-40DF-B44F-01B3AD61932B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsurancePolicy", "InsurancePolicy\InsurancePolicy.csproj", "{0DE9AE81-2E8A-4138-96FD-3A362817F1FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0CF814AF-C090-401F-AB53-48DF68EE5418}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "FabrikamInsuranceService", "FabrikamInsuranceService\FabrikamInsuranceService.ccproj", "{B5BF4ECF-4455-4A34-9665-3C4EF82605CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureDiagnostics", "AzureDiagnostics\AzureDiagnostics.csproj", "{ADB45F49-7E41-4945-A927-485B2429286C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogViewer", "LogViewer\LogViewer.csproj", "{A09AECCF-61B1-48B9-9F10-85A60BE891A0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5945F42C-1C8C-40DF-B44F-01B3AD61932B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5945F42C-1C8C-40DF-B44F-01B3AD61932B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5945F42C-1C8C-40DF-B44F-01B3AD61932B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5945F42C-1C8C-40DF-B44F-01B3AD61932B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DE9AE81-2E8A-4138-96FD-3A362817F1FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DE9AE81-2E8A-4138-96FD-3A362817F1FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DE9AE81-2E8A-4138-96FD-3A362817F1FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DE9AE81-2E8A-4138-96FD-3A362817F1FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5BF4ECF-4455-4A34-9665-3C4EF82605CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5BF4ECF-4455-4A34-9665-3C4EF82605CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5BF4ECF-4455-4A34-9665-3C4EF82605CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5BF4ECF-4455-4A34-9665-3C4EF82605CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADB45F49-7E41-4945-A927-485B2429286C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADB45F49-7E41-4945-A927-485B2429286C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADB45F49-7E41-4945-A927-485B2429286C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADB45F49-7E41-4945-A927-485B2429286C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A09AECCF-61B1-48B9-9F10-85A60BE891A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A09AECCF-61B1-48B9-9F10-85A60BE891A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A09AECCF-61B1-48B9-9F10-85A60BE891A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A09AECCF-61B1-48B9-9F10-85A60BE891A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
