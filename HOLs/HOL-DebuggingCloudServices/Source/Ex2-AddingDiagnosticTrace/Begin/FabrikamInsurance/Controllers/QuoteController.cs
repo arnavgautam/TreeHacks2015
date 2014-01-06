@@ -1,12 +1,13 @@
 ﻿namespace FabrikamInsurance.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
     using FabrikamInsurance.Models;
     using InsurancePolicy;
-    using System;
-    using System.Linq;
-    using System.Web.Mvc;
 
-    [HandleError]
     public class QuoteController : Controller
     {
         private IAutomobileDataRepository repository;
