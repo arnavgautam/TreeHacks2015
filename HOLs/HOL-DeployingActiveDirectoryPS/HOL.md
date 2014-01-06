@@ -267,11 +267,11 @@ Exercise 2 contains 3 tasks:
 
 1. Wait for the command to finish.
 
-	![Promoting the domain controller with powershell ](./Images/promoting-the-domain-controller-with-powershell.png?raw=true "Promoting the domain controller with powershell")
+	![Promoting the domain controller with PowerShell ](./Images/promoting-the-domain-controller-with-powershell.png?raw=true "Promoting the domain controller with PowerShell")
 
-	_Promoting the domain controller with powershell_
+	_Promoting the domain controller with PowerShell_
 
-1. Once the command finishes and the computer is promoted to domain controller, the DC01 Virtual Machine will restart. You will lose connection to the remote session.
+1. Once the command finishes and the computer is promoted to domain controller, the Virtual Machine will restart. You will lose connection to the remote session and it will attempt to reconnect.
 
 	![Domain controller configured ](./Images/domain-controller-configured.png?raw=true "Domain controller configured")
 
@@ -280,15 +280,15 @@ Exercise 2 contains 3 tasks:
 <a name="Ex2Task3" /></a>
 #### Task 3 - Verifying the Domain Controller Installed Successfully ####
 
-1. Wait two to three minutes for the DC01 Virtual Machine to restart.
-In Windows Azure PowerShell, type the following command to remotely connect to the virtual machine. Replace [YOUR-VM-DNS] and [YOUR-ENDPOINT-PORT] placeholders with the values obtained when configuring the new data disk in Exercise 1. Replace [YOUR-VM-USERNAME] with the administrator username provided when you created the virtual machine.
+1. If you lose the remote connection, wait two to three minutes for the Virtual Machine to restart and type the following command in Windows Azure PowerShell in order to connect again. Note that this command use the _$dnsName_ and _$winRmHTTpsEndpoint_ variables obtained in Exercise 1. Replace [YOUR-VM-USERNAME] with the administrator username provided when you created the virtual machine.
 
 	````PowerShell
-	Enter-PSSession -ComputerName '[YOUR-VM-DNS]' -Port [YOUR-ENDPOINT-PORT] -Authentication Negotiate -Credential '[YOUR-VM-USERNAME]' -UseSSL -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
+	Enter-PSSession -ComputerName $dnsName -Port $winRmHTTpsEndpoint.Port -Authentication Negotiate -Credential '[YOUR-VM-USERNAME]' -UseSSL -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
 	````
+
 	>**Note:** When prompted, login with the administrator password.
 
-1. To verify that DC01 is working properly, run the following command:
+1. To verify that the virtual machine is working properly, run the following command:
 
 	````PowerShell
 	dcdiag.exe
@@ -298,7 +298,7 @@ In Windows Azure PowerShell, type the following command to remotely connect to t
 
 	_Dcdiag command output_
 
-	>**Note:** The output of the command confirms that DC01 was successfully promoted to domain controller
+	>**Note:** The output of the command confirms that the virtual machine was successfully promoted to domain controller
 
 <a name="Summary"/>
 ## Summary ##
