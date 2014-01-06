@@ -88,7 +88,7 @@ In this task, you build and run the Fabrikam Insurance application in the Web De
 
 1. Open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Express 2013 for Web** shortcut and choosing **Run as administrator**.
 
-1. In the **File** menu, choose **Open Project**, browse to **Ex1-LoggingToAzureStorage** in the **Source** folder of the lab, select **Begin.sln** in the **Begin** folder and then click **Open**.
+1. In the **File** menu, choose **Open Project**, browse to **Ex1-DebuggingACloudServiceLocally** in the **Source** folder of the lab, select **Begin.sln** in the **Begin** folder and then click **Open**.
 
 1. Set the start action of the project. To do this, in **Solution Explorer**, right-click the **FabrikamInsurance** project and then select **Properties**. In the properties window, switch to the **Web** tab and then, under **Start Action**, select the **Specific Page** option. Leave the page value blank.
 
@@ -96,7 +96,7 @@ In this task, you build and run the Fabrikam Insurance application in the Web De
 
 	_Configuring the start action of the project_
 
-1. Press **F5** to build and run the solution. The application should launch in the Web Development Server and open its **Auto Insurance Quotes** page in your browser.
+1. You are now ready to test the Windows Azure Project application. To launch the application in the compute emulator, set the **FabrikamInsurance.Azure** cloud project as the Startup project and press **F5**. Wait until the deployment completes and the browser opens the **Auto Insurance Quotes** page.
 
 1. To explore its operation, complete the form by choosing any combination of values from the **Vehicle Details** drop down lists and then click **Calculate** to obtain a quote for the insurance premium. Notice that after you submit the form, the page refreshes and shows the calculated amount.
 
@@ -104,50 +104,22 @@ In this task, you build and run the Fabrikam Insurance application in the Web De
   
 	_Exploring the Fabrikam Insurance application_
 
-1. Go back to Visual Studio and press **SHIFT + F5** to stop debugging and shut down the application.
-
-<a name="Ex1Task2"></a>
-#### Task 2 - Running the Application as a Windows Azure Project ####
-
-In this task, you create a new Windows Azure Project to prepare the application for deployment to Windows Azure.
-
-  1. Add a new Windows Azure Project to the solution. To do this, in the **File** menu, point to **Add** and then select **New Project**. In the **Add** **New Project** dialog, expand **Visual C#** in the **Installed Templates** list and then select **Cloud**. Select the **Windows Azure Cloud Service** template. Set the **Name** of the project to **FabrikamInsuranceService** and accept the proposed location in the folder of the solution. Click **OK** to create the project.
-
-	![creating-a-new-windows-azure-project-c](Images/creating-a-new-windows-azure-project-c.png?raw=true)
-
-	_Creating a new Windows Azure Project_
-
-  1. In the **New Windows Azure Project** dialog, click **OK** without adding any new roles to the solution.
-
-  1. Now, in **Solution Explorer**, right-click the **Roles** node in the new **FabrikamInsuranceService** project, point to **Add**, and then select **Web Role Project in solution**. Then, in the **Associate with Role Project** dialog, select the **FabrikamInsurance** project, and click **OK**.
-
-	![Associating the MVC application with the Windows Azure Project](Images/associating-the-mvc-application-with-the-azure-project.png?raw=true "Associating the MVC application with the Windows Azure Project")
-
-	_Associating the MVC application with the Windows Azure Project_
-
-  1. Now, add a role entry point to the MVC application. To do this, in **Solution Explorer**, right-click the **FabrikamInsurance** project, point to **Add**, and then select **Existing Item**. In the **Add Existing Item** dialog, browse to **Assets** in the **Source** folder of the lab. Inside this folder, select **WebRole.cs**, and then click **Add**.
-
-	>**Note:** The **WebRole** class is a **RoleEntryPoint** derived class that contains methods that Windows Azure calls when it starts, runs, or stops the role. The provided code is the same that Visual Studio generates when you create a new Windows Azure Project.
-
-  1. You are now ready to test the Windows Azure Project application. To launch the application in the compute emulator, set the **FabrikamInsuranceService** cloud project as the Startup project and press **F5**. Wait until the deployment completes and the browser opens to show its main page.
-
-  1. Again, complete the entry form by choosing a combination of values from the drop down lists and then click **Calculate**. Ensure that you receive a valid response with the calculated premium as a result.
-
-  1. Once you have verified that everything works in the compute emulator just as it did when hosted by the Web Development Server, you will now cause an exception by making the application process bad data that it does not handle correctly. To do this, change the values used for the calculation by setting the **Make** to "_PORSCHE"_ and the **Model** to "_BOXSTER (BAD DATA)"_.
+1. Once you have verified that everything works in the compute emulator, you will now cause an exception by making the application process bad data that it does not handle correctly. To do this, change the values used for the calculation by setting the **Make** to "_PORSCHE"_ and the **Model** to "_BOXSTER (BAD DATA)"_.
 
   	![Choosing make and model for the insurance premium calculation](Images/choosing-make-and-model-for-the-insurance-premium-calculation.png?raw=true "Choosing make and model for the insurance premium calculation")
-  
+
 	_Choosing make and model for the insurance premium calculation_
 
-  1. Click **Calculate** to re-submit the form with new values. Notice that an unhandled exception occurs and execution halts in the Visual Studio debugger at the line that caused the error. 
+
+1. Click **Calculate** to re-submit the form with new values. Notice that an unhandled exception occurs and execution halts in the Visual Studio debugger at the line that caused the error. 
 
  	![Unhandled exception in the application caused by bad data](Images/unhandled-exception-in-the-application-caused-by-bad-data.png?raw=true "Unhandled exception in the application caused by bad data")
-  
+
 	_Unhandled exception in the application caused by bad data_
 
 	>**Note:** Within the Visual Studio debugger, you are able to step through code, set breakpoints, and examine the value of program variables. Debugging applications hosted in the compute emulator provides the same experience that you typically have when debugging other programs to which you can attach the Visual Studio debugger. Using the debugger under these conditions is covered extensively and will not be explored here. For more information, see [Debugging in Visual Studio](http://msdn.microsoft.com/en-us/library/sc65sadd.aspx).
 
-  1. Press **F5** to continue execution and let ASP.NET handle the exception. Notice that the unhandled exception handler provides details about the exception, including the line in the source code that raised the exception. 
+1. Press **F5** to continue execution and let ASP.NET handle the exception. Notice that the unhandled exception handler provides details about the exception, including the line in the source code that raised the exception. 
 
  	![ASP.NET default unhandled exception handler ](Images/aspnet-default-unhandled-exception-handler.png?raw=true "ASP.NET default unhandled exception handler ")
   
@@ -159,7 +131,7 @@ In this task, you create a new Windows Azure Project to prepare the application 
 
 	>In this case, the unhandled exception error page includes full details for the error because the default mode for the **customErrors** element is _remoteOnly_ and you are accessing the page locally. When you deploy the application to the cloud and access it remotely, the page shows a generic error message instead.
 
-  1. Go back to Visual Studio and press **SHIFT + F5** to stop debugging and shut down the application.
+1. Go back to Visual Studio and press **SHIFT + F5** to stop debugging and shut down the application.
 
 <a name="Exercise2"></a>
 ### Exercise 2: Adding diagnostic trace ###
