@@ -28,13 +28,9 @@ In this hands-on lab, you will:
 
 The following is required to complete this hands-on lab:
 
-- IIS (with ASP.NET, WCF HTTP Activation)
-
 - [Visual Studio Express 2013 for Web][1] or greater.
 
 - [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)][2]
-
-- [SQL Server 2012 Express Edition (or later)][3]
 
 - A Windows Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
@@ -45,7 +41,6 @@ The following is required to complete this hands-on lab:
 
 [1]: http://www.microsoft.com/visualstudio/
 [2]: http://www.microsoft.com/windowsazure/sdk/
-[3]: http://www.microsoft.com/express/sql/download/
 
 >**Note:** This lab was designed for Windows 8
 
