@@ -150,13 +150,13 @@ In this exercise you will customize the virtual machine by enabling the Web Serv
 	$dnsName = (Get-AzureVM -ServiceName $cloudSvcName -Name $vmname).DNSName.split('/')[2]
 	````
 
-1. Now execute the following command to obtain the public port of the remote PowerShell endpoint that was created the virtual machine was provisioned.
+1. Now execute the following command to obtain the public port of the remote PowerShell endpoint created when the virtual machine was provisioned.
 
 	````PowerShell
 	$winRmHTTPsPort = (Get-AzureVM -ServiceName $cloudSvcName -Name $vmname | Get-AzureEndpoint -Name "WinRmHTTPs").Port
 	````
 
-1. Type the following command to access remotely to the virtual machine. Replace [YOUR-VM-USERNAME] with the administrator username provided when you created the virtual machine.
+1. Type the following command to access remotely to the virtual machine. Replace [YOUR-VM-USERNAME] with the administrator username provided when the virtual machine was created.
 
 	````PowerShell
 	Enter-PSSession -ComputerName $dnsName -Port $winRmHTTPsPort -Authentication Negotiate -Credential '[YOUR-VM-USERNAME]' -UseSSL -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)

@@ -267,11 +267,11 @@ Exercise 2 contains 3 tasks:
 
 1. Wait for the command to finish.
 
-	![Promoting the domain controller with powershell ](./Images/promoting-the-domain-controller-with-powershell.png?raw=true "Promoting the domain controller with powershell")
+	![Promoting the domain controller with PowerShell ](./Images/promoting-the-domain-controller-with-powershell.png?raw=true "Promoting the domain controller with PowerShell")
 
-	_Promoting the domain controller with powershell_
+	_Promoting the domain controller with PowerShell_
 
-1. Once the command finishes and the computer is promoted to domain controller, the Virtual Machine will restart. You will lose connection to the remote session and it will attemp to reconnect.
+1. Once the command finishes and the computer is promoted to domain controller, the Virtual Machine will restart. You will lose connection to the remote session and it will attempt to reconnect.
 
 	![Domain controller configured ](./Images/domain-controller-configured.png?raw=true "Domain controller configured")
 
