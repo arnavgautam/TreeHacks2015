@@ -19,7 +19,7 @@ namespace MyMediaServicesManager
             // Set the project properties to use the full .NET Framework (not Client Profile)
             // With NuGet Package Manager, install windowsazure.mediaservices
             // add: using Microsoft.WindowsAzure.MediaServices.Client;
-            var uploadFilePath = = @"[YOUR FILE PATH]";
+            var uploadFilePath = @"[YOUR FILE PATH]";
             var context = new CloudMediaContext("[YOUR MEDIA SERVICE ACCOUNT NAME]", "[YOUR MEDIA SERVICE ACCOUNT KEY]");
             var uploadAsset = context.Assets.Create(Path.GetFileNameWithoutExtension(uploadFilePath), AssetCreationOptions.None);
             var assetFile = uploadAsset.AssetFiles.Create(Path.GetFileName(uploadFilePath));
@@ -59,8 +59,7 @@ namespace MyMediaServicesManager
             var streamingAssetId = preparedAsset.Id; // "YOUR ASSET ID";
             var daysForWhichStreamingUrlIsActive = 365;
             var streamingAsset = context.Assets.Where(a => a.Id == streamingAssetId).FirstOrDefault();
-            var accessPolicy = context.AccessPolicies.Create(streamingAsset.Name, TimeSpan.FromDays(daysForWhichStreamingUrlIsActive),
-                                                        AccessPermissions.Read | AccessPermissions.List);
+            var accessPolicy = context.AccessPolicies.Create(streamingAsset.Name, TimeSpan.FromDays(daysForWhichStreamingUrlIsActive), AccessPermissions.Read | AccessPermissions.List);
             string streamingUrl = string.Empty;
             var assetFiles = streamingAsset.AssetFiles.ToList();
             var streamingAssetFile = assetFiles.Where(f => f.Name.ToLower().EndsWith("m3u8-aapl.ism")).FirstOrDefault();
@@ -70,6 +69,7 @@ namespace MyMediaServicesManager
                 Uri hlsUri = new Uri(locator.Path + streamingAssetFile.Name + "/manifest(format=m3u8-aapl)");
                 streamingUrl = hlsUri.ToString();
             }
+
             streamingAssetFile = assetFiles.Where(f => f.Name.ToLower().EndsWith(".ism")).FirstOrDefault();
             if (string.IsNullOrEmpty(streamingUrl) && streamingAssetFile != null)
             {
@@ -77,6 +77,7 @@ namespace MyMediaServicesManager
                 Uri smoothUri = new Uri(locator.Path + streamingAssetFile.Name + "/manifest");
                 streamingUrl = smoothUri.ToString();
             }
+
             streamingAssetFile = assetFiles.Where(f => f.Name.ToLower().EndsWith(".mp4")).FirstOrDefault();
             if (string.IsNullOrEmpty(streamingUrl) && streamingAssetFile != null)
             {
@@ -85,6 +86,7 @@ namespace MyMediaServicesManager
                 mp4Uri.Path += "/" + streamingAssetFile.Name;
                 streamingUrl = mp4Uri.ToString();
             }
+
             Console.WriteLine("Streaming Url: " + streamingUrl);
 
             Console.WriteLine("Publishing Completed");

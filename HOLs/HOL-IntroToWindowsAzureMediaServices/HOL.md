@@ -320,15 +320,14 @@ In this exercise, you will create a new console application that allows you to p
 
 	(Code Snippet - _Intro to Media Services - Ex2 - Streaming MP4 Video_)
 
-	<!-- mark:3-32 -->
+	<!-- mark:3-34 -->
 	````C#
     Console.WriteLine("Publishing Video");
 
     var streamingAssetId = preparedAsset.Id; // "YOUR ASSET ID";
     var daysForWhichStreamingUrlIsActive = 365;
     var streamingAsset = context.Assets.Where(a => a.Id == streamingAssetId).FirstOrDefault();
-    var accessPolicy = context.AccessPolicies.Create(streamingAsset.Name, TimeSpan.FromDays(daysForWhichStreamingUrlIsActive),
-                                                AccessPermissions.Read | AccessPermissions.List);
+    var accessPolicy = context.AccessPolicies.Create(streamingAsset.Name, TimeSpan.FromDays(daysForWhichStreamingUrlIsActive), AccessPermissions.Read | AccessPermissions.List);
     string streamingUrl = string.Empty;
     var assetFiles = streamingAsset.AssetFiles.ToList();
     var streamingAssetFile = assetFiles.Where(f => f.Name.ToLower().EndsWith("m3u8-aapl.ism")).FirstOrDefault();
@@ -338,6 +337,7 @@ In this exercise, you will create a new console application that allows you to p
         Uri hlsUri = new Uri(locator.Path + streamingAssetFile.Name + "/manifest(format=m3u8-aapl)");
         streamingUrl = hlsUri.ToString();
     }
+
     streamingAssetFile = assetFiles.Where(f => f.Name.ToLower().EndsWith(".ism")).FirstOrDefault();
     if (string.IsNullOrEmpty(streamingUrl) && streamingAssetFile != null)
     {
@@ -345,6 +345,7 @@ In this exercise, you will create a new console application that allows you to p
         Uri smoothUri = new Uri(locator.Path + streamingAssetFile.Name + "/manifest");
         streamingUrl = smoothUri.ToString();
     }
+
     streamingAssetFile = assetFiles.Where(f => f.Name.ToLower().EndsWith(".mp4")).FirstOrDefault();
     if (string.IsNullOrEmpty(streamingUrl) && streamingAssetFile != null)
     {
@@ -353,6 +354,7 @@ In this exercise, you will create a new console application that allows you to p
         mp4Uri.Path += "/" + streamingAssetFile.Name;
         streamingUrl = mp4Uri.ToString();
     }
+
     Console.WriteLine("Streaming Url: " + streamingUrl);
 
     Console.WriteLine("Publishing Completed");
