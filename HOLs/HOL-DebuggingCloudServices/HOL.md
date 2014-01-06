@@ -6,11 +6,11 @@
 
 Using Visual Studio, you can debug applications in your local machine by stepping through code, setting breakpoints, and examining the value of program variables. For Windows Azure applications, the compute emulator allows you to run the code locally and debug it using these same features and techniques, making this process relatively straightforward.
 
-Ideally, you should take advantage of the compute emulator and use Visual Studio to identify and fix most bugs in your code, as this provides the most productive environment for debugging. Nevertheless, some bugs might remain undetected and will only manifest themselves once you deploy the application to the cloud. These are often the result of missing dependencies or caused by differences in the execution environment. For addition information on environment issues, see [Differences between the Compute Emulator and Windows Azure](http://msdn.microsoft.com/en-us/library/windowsazure/gg432960.aspx).
+Ideally, you should take advantage of the compute emulator and use Visual Studio to identify and fix most bugs in your code, as this provides the most productive environment for debugging. Nevertheless, some bugs might remain undetected and will only manifest themselves once you deploy the application to the cloud. These are often the result of missing dependencies or caused by differences in the execution environment.
 
 Once you deploy an application to the cloud, you are no longer able to attach a debugger and instead, need to rely on debugging information written to logs in order to diagnose and troubleshoot application failures. Windows Azure provides comprehensive diagnostic facilities that allow capturing information from different sources, including Windows Azure application logs, IIS logs, failed request traces, Windows event logs, custom error logs, and crash dumps. The availability of this diagnostic information relies on the Windows Azure Diagnostics Monitor to collect data from individual role instances and transfer this information to Windows Azure storage for aggregation. Once the information is in storage, you can retrieve it and analyze it.
 
-Sometimes an application may crash before it is able to produce logs that can help you determine the cause of the failure. With IntelliTrace debugging, a feature available in the Visual Studio 2012 Ultimate edition, you can log extensive debugging information for a role instance while it is running in Windows Azure. The lab discusses how to enable IntelliTrace for an Azure deployment to debug role start up failures.
+Sometimes an application may crash before it is able to produce logs that can help you determine the cause of the failure. With IntelliTrace debugging, a feature available in the Visual Studio 2013 Ultimate edition, you can log extensive debugging information for a role instance while it is running in Windows Azure. The lab discusses how to enable IntelliTrace for an Azure deployment to debug role start up failures.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -30,13 +30,18 @@ The following is required to complete this hands-on lab:
 
 - IIS (with ASP.NET, WCF HTTP Activation)
 
-- [Visual Studio Express 2012 for Web][1] or greater.
+- [Visual Studio Express 2013 for Web][1] or greater.
 
-- [Windows Azure Tools for Microsoft Visual Studio 1.8][2]
+- [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)][2]
 
 - [SQL Server 2012 Express Edition (or later)][3]
 
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Windows Azure subscription
+	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
+
 
 [1]: http://www.microsoft.com/visualstudio/
 [2]: http://www.microsoft.com/windowsazure/sdk/
@@ -46,11 +51,12 @@ The following is required to complete this hands-on lab:
 
 <a name="Setup"/>
 ### Setup ###
+
 In order to execute the exercises in this hands-on lab you need to set up your environment.
 
 1. Open a Windows Explorer window and browse to the lab's **Source** folder.
 
-1. Right-click the **Setup.cmd** file and click **Run as administrator**. This will launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.
+1. Right-click the **Setup.cmd** file and click **Run as administrator**. This will launch the setup process that will install the Visual Studio code snippets for this lab.
 
 1. If the User Account Control dialog is shown, confirm the action to proceed.
  
@@ -59,7 +65,7 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 <a name="UsingCodeSnippets"/>
 ### Using the Code Snippets ###
 
-Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of that code is provided as Visual Studio Code Snippets, which you can use from within Visual Studio 2012 to avoid having to add it manually.
+Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of that code is provided as Visual Studio Code Snippets, which you can use from within Visual Studio 2013 to avoid having to add it manually.
 
 ---
 <a name="Exercises"/>
@@ -71,7 +77,7 @@ This hands-on lab includes the following exercises:
 
 - [Adding Diagnostic Trace](#Exercise2)
 
-- [Using IntelliTrace to Diagnose Role Start-Up Failures](#Exercise3) (Optional for Visual Studio 2012 Ultimate edition)
+- [Using IntelliTrace to Diagnose Role Start-Up Failures](#Exercise3) (Optional for Visual Studio 2013 Ultimate edition)
 
 Estimated time to complete this lab: **40 minutes**.
 
@@ -85,7 +91,7 @@ Because Windows Azure Diagnostics is oriented towards operational monitoring and
 
 In this task, you build and run the Fabrikam Insurance application in the Web Development Server to become familiar with its operation.
 
-1. Open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Express 2012 for Web** shortcut and choosing **Run as administrator**.
+1. Open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Express 2013 for Web** shortcut and choosing **Run as administrator**.
 
 1. In the **File** menu, choose **Open Project**, browse to **Ex1-LoggingToAzureStorage** in the **Source** folder of the lab, select **Begin.sln** in the **Begin** folder and then click **Open**.
 
