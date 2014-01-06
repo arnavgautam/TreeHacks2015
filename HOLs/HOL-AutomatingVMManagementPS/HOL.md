@@ -17,26 +17,19 @@ In this hands-on lab, you will learn how to:
 - Export and Import virtual machines
 - Enable or disable virtual machine endpoints
 
-<a name='Prerequisites' />
+<a name="Prerequisites" />
 ### Prerequisites ###
 
 The following is required to complete this hands-on lab:
 
-- [Windows Azure PowerShell Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj156055)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
-
-<a name="Setup"/>
-### Setup ###
-
-In order to execute the exercises in this hands-on lab you need to set up your environment.
-
-1. Open a Windows Explorer window and browse to the lab’s **source** folder.
-
-1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment.
-
-1. If the User Account Control dialog is shown, confirm the action to proceed.
-
-	>**Note:** Make sure you have checked all the dependencies for this lab before running the setup.
+- [Windows PowerShell 3.0]( <http://microsoft.com/powershell/>) (or higher)
+- Windows Azure PowerShell Cmdlets v0.7.1 (or higher)
+	- Follow the [Install Windows Azure PowerShell](<http://www.windowsazure.com/en-us/manage/install-and-configure-windows-powershell/#Install>) how to guide to install the cmdlets 
+- A Windows Azure subscription
+	- Sign up for a [Free Trial](<http://aka.ms/watk-freetrial>).
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](<http://aka.ms/watk-msdn>) now to start development and test on Windows Azure.
+	- [BizSpark](<http://aka.ms/watk-bizspark>) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](<http://aka.ms/watk-mpn>) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 
 ---
 
@@ -48,34 +41,22 @@ This hands-on lab includes the following exercises:
 1. [Provisioning a Virtual Machine using PowerShell CmdLets](#Exercise1)
 1. [Using PowerShell CmdLets for Advanced Provisioning](#Exercise2)
 
-<a name='gettingstarted' />
+<a name="gettingstarted" /></a>
 ### Getting Started: Obtaining Subscription's Credentials ###
 
 In order to complete this lab, you will need your subscription’s secure credentials. Windows Azure lets you download a Publish Settings file with all the information required to manage your account in your development environment.
 
-<a name='gettingstartedTask1' />
-#### Task 1 - Downloading and Importing a Publish-settings File ####
+<a name="GSTask1" /></a>
+#### Task 1 - Downloading and Importing a Publish Settings file ####
 
 > **Note:** If you have done these steps in a previous lab on the same computer you can move on to Exercise 1.
 
-In this task, you will log on to the Windows Azure Portal and download the publish-settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription to use in your development environment. Then, you will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
+In this task, you will log on to the Windows Azure Portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription that you will use in your development environment. Therefore, you will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
 
-1.	Open an Internet Explorer browser and go to <https://windows.azure.com/download/publishprofile.aspx>.
+1. Search for **Windows Azure PowerShell** in the Start screen and choose **Run as Administrator**.
 
-1.	Sign in using the credentials associated with your Windows Azure account.
-
-1.	**Save** the publish-settings file to your local machine.
-
-	![Downloading publish-settings file](Images/downloading-publish-settings-file.png?raw=true 'Downloading publish-settings file')
-
-	_Downloading publish-settings file_
-
-	> **Note:** The download page shows you how to import the publish-settings file using Visual Studio Publish box. This lab will show you how to import it using the Windows Azure PowerShell Cmdlets instead.
-
-1. Start **Windows Azure PowerShell** with administrator privileges by selecting **Run as Administrator**.
-
-1.	Change the PowerShell execution policy to **RemoteSigned**. When asked to confirm press **Y** and then **Enter**.
-	
+1. Change the PowerShell execution policy to **RemoteSigned**. When asked to confirm press **Y** and then **Enter**.
+            
 	````PowerShell
 	Set-ExecutionPolicy RemoteSigned
 	````
@@ -87,42 +68,56 @@ In this task, you will log on to the Windows Azure Portal and download the publi
 	> - _RemoteSigned_ - Downloaded scripts must be signed by a trusted publisher before they can be run.
 	> - _Unrestricted_ - No restrictions; all Windows PowerShell scripts can be run.
 	>
-	> For more information about Execution Policies refer to this TechNet article: <http://technet.microsoft.com/en-us/library/ee176961.aspx>
+	> For more information about Execution Policies refer to this TechNet article: <<http://technet.microsoft.com/en-us/library/ee176961.aspx>>
 
-	
-1.	The following script imports your publish-settings file and generates an XML file with your account information. You will use these values during the lab to manage your Windows Azure Subscription. Replace the placeholder with your publish-setting file’s path and execute the script.
+1. Execute the following command to download the subscription information. This command will open a web page on the Windows Azure Management Portal.
+
+	````PowerShell
+	Get-AzurePublishSettingsFile
+	````
+
+1. Sign in using the **Microsoft Account** associated with your **Windows Azure** account.
+
+1. **Save** the Publish Settings file to your local file system.
+
+	![Downloading publish-settings file](Images/downloading-publish-settings-file.png?raw=true 'Downloading publish-settings file')
+
+	_Downloading Publish Settings file_
+
+1. The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Windows Azure Subscription. Replace the placeholder with the path to your Publish Setting file and execute the script.
 
 	````PowerShell
 	Import-AzurePublishSettingsFile '[YOUR-PUBLISH-SETTINGS-PATH]'   
 	````
 
-1. Execute the following commands and take note of the subscription name and a storage account name you will use for the exercise. Also make note of the location of the storage account.
+	> **Note:** It is recommend that you delete the publishing profile that you downloaded using _Get-AzurePublishSettingsFile_ after you import those settings. Because the management certificate includes security credentials, it should not be accessed by unauthorized users. If you need information about your subscriptions, you can get it from the Windows Azure Management Portal or the Microsoft Online Services Customer Portal.
+
+1. Execute the following commands and take note of the Subscription name and the storage account name you will use for the exercise.
 
 	````PowerShell
 	Get-AzureSubscription | select SubscriptionName
-	Get-AzureStorageAccount | select StorageAccountName, Location 
+	Get-AzureStorageAccount | select StorageAccountName 
 	````
 
-	> **Note:** If you do **not** have a storage account already created you can use for this exercise you should create one first by following these steps.  
+1. If the preceding command does NOT return a storage account, you should create one first.
+  
+	1. Run the following command to determine the data center to create your storage account in. Ensure you pick a data center that shows support for PersistentVMRole. 
 
-	> 1. Run the following to determine the data center to create your storage account in. Ensure you pick a data center that shows support for **PersistentVMRole**. 
-	>
-	>	````PowerShell
-	>	Get-AzureLocation  
-	>	````
-	>
-	> 2. Create your storage account.
-	>
-	>	````PowerShell
-	>	New-AzureStorageAccount -StorageAccountName '[YOUR-STORAGE-NAME]' -Location '[DC-LOCATION]'
-	>	````
+		````PowerShell
+		Get-AzureLocation  
+		````
 
-1. Execute the following command to set your current storage account for your subscription.
+	1. Create your storage account: 
 
+		````PowerShell
+		New-AzureStorageAccount -StorageAccountName '[YOUR-STORAGE-ACCOUNT]' -Location '[DC-LOCATION]'
+		````
 
-	````PowerShell
-	Set-AzureSubscription -SubscriptionName '[YOUR-SUBSCRIPTION-NAME]' -CurrentStorageAccount '[YOUR-STORAGE-ACCOUNT]'
-	````
+	1. Execute the following command to set your current storage account for your subscription.
+
+		````PowerShell
+		Set-AzureSubscription -SubscriptionName '[YOUR-SUBSCRIPTION-NAME]' -CurrentStorageAccount '[YOUR-STORAGE-ACCOUNT]'
+		````
 
 ---
 
@@ -165,6 +160,8 @@ The first step to create a virtual machine in Windows Azure is to define the vir
 	````PowerShell
 	$image = '[YOUR-SELECTED-IMAGE-NAME]'
 	````
+
+	> **Note:** You can choose either Windows or Linux as there are detailed steps for each OS.
 
 1. Next, choose the virtual machine creation script below based on whether you selected Windows or Linux.
 
@@ -230,7 +227,7 @@ The first step to create a virtual machine in Windows Azure is to define the vir
 In addition to just creating a single uncustomized virtual machine. You can also configure data disks, disk cache settings, networking endpoints and automatically configure domain join settings at provisioning time in addition to batch creating virtual machines using the *New-AzureVMConfig/New-AzureVM* cmdlet combination.
 
 <a name='Ex2Task1' />
-### Task 1 - Performing Custom Provisioning ###
+#### Task 1 - Performing Custom Provisioning ####
 
 1. Run the cmdlets below to create two new virtual machines with a 50 GB data disk already attached and a load balanced endpoint open on port 80 for HTTP traffic.
 
@@ -279,6 +276,12 @@ In addition to just creating a single uncustomized virtual machine. You can also
 
 	>**Note:** You will still need to log into the machine and configure/format the data disk via disk manager. In the next task you will find a walk through for these steps.
 
+1. Verify the virtual machines were created by running the following script.
+
+	````PowerShell
+	Get-AzureVM -ServiceName $cloudSvcName
+	````
+
 <a name='Ex2Task2'></a>
 #### Task 2 - Post Provisioning Configuration ####
 
@@ -286,7 +289,7 @@ Modifying an existing virtual machine requires retrieving the current settings b
 
 You can hot add and remove data disks and networking endpoints. Changing disk cache settings requires a reboot as does changing the virtual machine's instance size. 
 
-In the following task uses the **Get-AzureVM** cmdlet to retrieve the virtual machine object and send it to the PowerShell Pipeline.
+In this task you will use the **Get-AzureVM** cmdlet to retrieve the virtual machine object and send it to the PowerShell Pipeline.
 
 **Add-AzureDataDisk** with the **CreateNew** parameter allows you to dynamically add storage to the virtual machine. In this case we are calling it twice to attach to unformatted blank VHDs to the server each 50 gigs of storage each. The -LUN parameter tells the order of the device being attached and optionally uses the -MediaLocation to specify the location in Storage to keep the newly created VHDs.
 
@@ -342,7 +345,7 @@ The task also adds a new endpoint for TCP port 1433 internally that is listening
 
 
 	````PowerShell
-	Get-AzureVM -Name $vmName -ServiceName $cloudSvcName  |
+	Get-AzureVM -Name $vmname -ServiceName $cloudSvcName  |
 		   Set-AzureDataDisk -HostCaching ReadWrite -LUN 0 |
 		   Set-AzureDataDisk -HostCaching ReadWrite -LUN 1 |
 		   Update-AzureVM
@@ -359,10 +362,10 @@ The task also adds a new endpoint for TCP port 1433 internally that is listening
 
 Some changes require the virtual machine to be **restarted** when applied. Making changes to the underlying hardware by changing the instance size using **Set-AzureRoleSize**, modifying the OS Disk cache settings with **Set-AzureOSDisk** or moving the virtual machine between subnets using **Set-Subnet** all will result in an automatic restart of the virtual machine.
 
-1. Run the following script to disable the write disk cache, changing the write cache setting of the OS disk from _write cache enabled_ to _write cache disabled_. Once executed the virtual machine will restart with the new settings. 
+1. Run the following script to disable the write disk cache, changing the write cache setting of the OS disk from _write cache enabled_ to _write cache disabled_.
 
 	````PowerShell
-	Get-AzureVM -ServiceName $cloudSvcName -Name $vmName |
+	Get-AzureVM -ServiceName $cloudSvcName -Name $vmname |
 		Set-AzureDataDisk -HostCaching ReadOnly -LUN 0|
 		Set-AzureDataDisk -HostCaching ReadOnly -LUN 1|
 		Update-AzureVM 
@@ -370,14 +373,17 @@ Some changes require the virtual machine to be **restarted** when applied. Makin
 
 1. Run the following script to change the instance size of a Virtual Machine.
 
-	>**Note:** The snippet below sets the instance size of the specified virtual machine. This does require a reboot as the new hardware is provisioned. 
+	>**Note:** The snippet below sets the instance size of the specified virtual machine. Once executed the virtual machine will reboot as the new hardware is provisioned.
 	
 	````PowerShell
-	Get-AzureVM -ServiceName $cloudSvcName -Name $vmName |
+	Get-AzureVM -ServiceName $cloudSvcName -Name $vmname |
 		Set-AzureVMSize -InstanceSize Medium |
 		Update-AzureVM
 	````
 
+	![Changing VM instance size](Images/changing-vm-instancesize.png?raw=true)
+
+	_Changing VM instance size_
 
 <a name='Ex2Task4'></a>
 #### Task 4 - Managing Disk Images ####
@@ -404,14 +410,18 @@ Running the **Get-AzureDisk** command will enumerate all of the data disks in yo
 
 1. Currently, when a virtual machine is removed the underlying VHDs are not removed as well. PowerShell allows you to clean up the underlying storage when removing a virtual machine.
 
-	The following script removes a specific Virtual Machine as well as its disks.
+	The following script removes a specific Virtual Machine, but first it saves its attached disks so you can later delete them.
 
 	````PowerShell
 	$vmname = 'mytestvm2'
 	$vmDisks = Get-AzureDisk | Where { $_.AttachedTo.RoleName -eq $vmname }
 
-	Remove-AzureVM -ServiceName $cloudSvcName -Name $vmname 
+	Remove-AzureVM -ServiceName $cloudSvcName -Name $vmname
+	````
 
+1. The following script removes the orphan disks.
+
+	````PowerShell
 	$vmDisks | foreach {
 		Remove-AzureDisk -DiskName $_.DiskName -DeleteVHD
 	}
@@ -454,6 +464,8 @@ Windows Azure IaaS provides the capability to customize a virtual machine, gener
 
 	1. Connect to the Virtual Machine using either RDP or SSH. You can use the **Get-AzureRemoteDesktopFile** cmdlet as shown in Task 2.
 
+		>**Note:** Make sure your virtual machine finished provisioning before connecting.
+
 	1. For Windows, sysprep from within Windows. To do this, open the **Run** dialog and type **sysprep**. In the opened Windows Explorer, double-click the sysprep executable. Then select **Entire System Out-of-Box Experience (OOBE)**, check **Generalize** and select **Shutdown**.
 
 		![sysprep](Images/sysprep.png?raw=true)
@@ -462,7 +474,7 @@ Windows Azure IaaS provides the capability to customize a virtual machine, gener
 
 	1. For Linux virtual machines, run the following script.
 
-		````PowerShell
+		````Bash
 		sudo /usr/sbin/waagent -deprovision+user
 		````
 
@@ -499,9 +511,9 @@ This is useful in scenarios where you need to completely remove the virtual mach
 
 	>**Note:** This code saves the configuration of the mytestvm1 virtual machine and then removes it by removing the virtual machine.
 	>
-	>Make sure you create a Temp folder within C: drive before executing the command or change the path.
+	>Make sure you create a Temp folder within _C:_ drive before executing the command or change the path.
 
-1. Once the deployment has been removed you can then recreate the virtual machine from the saved state. Run the following script to import the virtual machine Configuration into a New Deployment.
+1. Once the deployment has been removed (it could take a couple of minutes) you can then recreate the virtual machine from the saved state. Run the following script to import the virtual machine Configuration into a New Deployment.
 
 	````PowerShell
 	Import-AzureVM -Path 'C:\Temp\mytestvm1-config.xml' | New-AzureVM -ServiceName $cloudSvcName 
@@ -528,7 +540,7 @@ To discover the ports for these endpoints you can use the **Get-AzureEndpoint** 
 	Get-AzureVM -ServiceName $cloudSvcName -Name  $vmname | Remove-AzureEndpoint –Name "RemoteDesktop" | Update-AzureVM
 	````
 
-1. Use the following script to verify that the endpoint was removed.
+1. Re-run the script to verify that the endpoint was removed.
 
 	````PowerShell
 	Get-AzureVM -ServiceName $cloudSvcName -Name $vmname | Get-AzureEndpoint 
@@ -543,6 +555,6 @@ To discover the ports for these endpoints you can use the **Get-AzureEndpoint** 
 <a name='Summary' />
 ## Summary ##
 
-In this hands-on lab you were shown how to configure your subscription id and certificate to manage Windows Azure Virtual Machines. You were also shown the basics of how to provision virtual machines and modify them with hot add capabilities and changes that require reboots such as changing the instance size. 
+In this hands-on lab you learned how to configure your subscription id and certificate to manage Windows Azure Virtual Machines. You were also shown the basics of how to provision virtual machines and modify them with hot add capabilities and changes that require rebooting such as changing the instance size. 
 
-In addition you were shown how you can use the Windows Azure PowerShell cmdlets to manage your disk and image libraries along with the capability of exporting and import virtual machine configurations.
+In addition you were shown how you can use the Windows Azure PowerShell cmdlets to manage your disk and image libraries along with exporting and importing virtual machine configurations.
