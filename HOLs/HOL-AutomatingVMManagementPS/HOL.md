@@ -560,6 +560,8 @@ To learn more about configuring Windows virtual machines on Windows Azure, pleas
 
 This is a list of articles that expands the information on the technologies explained on this lab:
 
+- You can continue reading the Hands-on labs **Understanding Virtual Machine Imaging with Capture (PowerShell)** and **Deploy Active Directory in Windows Azure using PowerShell**.
+
 - [Windows Azure Management Cmdlets Reference](http://msdn.microsoft.com/en-us/library/jj152841.aspx): This topic provides reference information on the cmdlet sets that are included in the Windows Azure PowerShell module.
 
 - [How to use PowerShell to set up a SQL Server virtual machine in Windows Azure](http://msdn.microsoft.com/en-us/library/windowsazure/dn133144.aspx): In this tutorial, you can learn how to create multiple SQL Server virtual machines in the same Cloud Service by using the PowerShell cmdlets.
