@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "FabrikamInsurance.Azure", "FabrikamInsurance.Azure\FabrikamInsurance.Azure.ccproj", "{91789DC9-1A8F-48E9-BBBF-C8F5BAC2E3E8}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabrikamInsurance", "FabrikamInsurance\FabrikamInsurance.csproj", "{DA6C7ACE-09BB-4D6D-8773-3C4B6E9E7EF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsurancePolicy", "InsurancePolicy\InsurancePolicy.csproj", "{6988985B-229C-49E7-96E9-94489A42E77C}"
@@ -13,8 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{20F8B4
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
-EndProject
-Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "FabrikamInsurance.Azure", "FabrikamInsurance.Azure\FabrikamInsurance.Azure.ccproj", "{91789DC9-1A8F-48E9-BBBF-C8F5BAC2E3E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
