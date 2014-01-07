@@ -291,6 +291,40 @@ In this exercise you are going to create a new virtual machine using the image y
 
 ---
 
+## Next Steps ##
+
+To learn more about configuring Windows virtual machines on Windows Azure, please refer to the following articles:
+
+**Technical Reference**
+
+This is a list of articles that expands the information on the technologies explained on this lab:
+
+- You can continue reading the Hands-on lab **Deploy Active Directory in Windows Azure using PowerShell**.
+
+- [Windows Azure Management Cmdlets Reference](http://msdn.microsoft.com/en-us/library/jj152841.aspx): This topic provides reference information on the cmdlet sets that are included in the Windows Azure PowerShell module.
+
+- [How to Capture an Image of a Virtual Machine Running Linux](http://www.windowsazure.com/en-us/manage/linux/how-to-guides/capture-an-image/): If you want to create multiple virtual machines that are set up the same way, you can capture an image of a configured virtual machine and use that image as a template. This article shows you how to capture a virtual machine running Linux.
+
+- [How to use PowerShell to set up a SQL Server virtual machine in Windows Azure](http://msdn.microsoft.com/en-us/library/windowsazure/dn133144.aspx): In this tutorial, you can learn how to create multiple SQL Server virtual machines in the same Cloud Service by using the PowerShell cmdlets.
+
+- [Add a Virtual Machine to a Virtual Network](http://www.windowsazure.com/en-us/manage/services/networking/add-a-vm-to-a-virtual-network/): This tutorial walks you through the steps to create a Windows Azure storage account and virtual machine (VM) to add to a virtual network.
+
+- [Windows Azure Virtual Networks](http://msdn.microsoft.com/library/windowsazure/jj156007.aspx): Windows Azure Virtual Network provides you with the capability to extend your network into Windows Azure and treat deployments in Windows as a natural extension of your on-premises network.
+
+**Development**
+
+This is a list of useful sample scripts from [Script Center](http://technet.microsoft.com/en-us/scriptcenter/bb410849.aspx) to manage Windows Azure Virtual Machines:
+
+- [Create a New Windows Azure VM Image Based on a Stock Image and a WebPI App](http://gallery.technet.microsoft.com/scriptcenter/Create-a-New-Windows-Azure-5369a432): Creates a new Virtual Machine image based on a given stock image. Installs an application from the Web Platform Installer, then the image is saved to the user's subscription to be used for provisioning future Virtual Machines.
+
+- [Deploy Windows Azure VMs to an Availability Set and Load Balanced on an Endpoint](http://gallery.technet.microsoft.com/scriptcenter/Create-Windows-Azure-VMs-244bd3cb): Deploy a specified number of Virtual Machines based on a given image name. The Virtual Machines are placed in the same availability set and load balanced on a given endpoint name.
+
+- [Deploy a SQL Server VM with Striped Disks in Windows Azure](http://gallery.technet.microsoft.com/scriptcenter/Create-a-SQL-Server-VM-in-0b8c6eed): Creates a virtual machine based on SQL Server 2012 on Windows Server 2012 gallery image. Adds four disks to the VM and stripes them into two pools. Formats them for use, creates a database, putting the data files on one volume and the log files on the other.
+
+- [Deploy Multiple Windows Azure VMs in the Same Windows Azure Virtual Network](http://gallery.technet.microsoft.com/scriptcenter/Create-Multiple-Windows-df9e95b7): Creates four Windows Server 2012 Virtual Machines across two separate cloud services and adds them to the same virtual network. If the virtual network indicated does not exist, it is then created.
+
+---
+
 <a name="Summary" />
 ## Summary ##
 By completing this hands-on lab you have learned how to:

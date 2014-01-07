@@ -554,32 +554,33 @@ To discover the ports for these endpoints you can use the **Get-AzureEndpoint** 
 
 ## Next Steps ##
 
-To learn more about configuring Windows virtual machines on Windows Azure, see the following articles:
+To learn more about configuring Windows virtual machines on Windows Azure, please refer to the following articles:
 
 **Technical Reference**
 
 This is a list of articles that expands the information on the technologies explained on this lab:
 
-- [Windows Azure Management Cmdlets Reference](http://msdn.microsoft.com/en-us/library/jj152841.aspx): This topic provides reference information of the cmdlet sets that are included in the Windows Azure PowerShell module.
+- You can continue reading the Hands-on labs **Understanding Virtual Machine Imaging with Capture (PowerShell)** and **Deploy Active Directory in Windows Azure using PowerShell**.
 
-- [How to use PowerShell to set up a SQL Server virtual machine in Windows Azure](http://msdn.microsoft.com/en-us/library/windowsazure/dn133144.aspx): In this tutorial, you learn how to create multiple SQL Server virtual machines in the same Cloud Service by using the PowerShell cmdlets. This tutorial assumes the following:
+- [Windows Azure Management Cmdlets Reference](http://msdn.microsoft.com/en-us/library/jj152841.aspx): This topic provides reference information on the cmdlet sets that are included in the Windows Azure PowerShell module.
 
-- [Add a Virtual Machine to a Virtual Network](http://www.windowsazure.com/en-us/manage/services/networking/add-a-vm-to-a-virtual-network/): This tutorial walks you through the steps to create a Windows Azure storage account and virtual machine (VM) that you add to a virtual network.
+- [How to use PowerShell to set up a SQL Server virtual machine in Windows Azure](http://msdn.microsoft.com/en-us/library/windowsazure/dn133144.aspx): In this tutorial, you can learn how to create multiple SQL Server virtual machines in the same Cloud Service by using the PowerShell cmdlets.
 
-- [Windows Azure Virtual Networks](http://msdn.microsoft.com/library/windowsazure/jj156007.aspx): Windows Azure Virtual Network provides you with the capability to extend your network into Windows Azure and treat deployments in Windows as a natural extension to your on-premises network.
+- [Add a Virtual Machine to a Virtual Network](http://www.windowsazure.com/en-us/manage/services/networking/add-a-vm-to-a-virtual-network/): This tutorial walks you through the steps to create a Windows Azure storage account and virtual machine (VM) to add to a virtual network.
+
+- [Windows Azure Virtual Networks](http://msdn.microsoft.com/library/windowsazure/jj156007.aspx): Windows Azure Virtual Network provides you with the capability to extend your network into Windows Azure and treat deployments in Windows as a natural extension of your on-premises network.
 
 **Development**
 
 This is a list of useful sample scripts from [Script Center](http://technet.microsoft.com/en-us/scriptcenter/bb410849.aspx) to manage Windows Azure Virtual Machines:
 
-- [Start Windows Azure Virtual Machines on a Schedule](http://gallery.technet.microsoft.com/scriptcenter/Start-Windows-Azure-b6c179b6): Demonstrates starting a single Virtual Machine or set of Virtual Machines (using a wildcard pattern) within a Cloud Service. It does this by creating scheduled tasks to start the Virtual Machine(s) on a schedule at the time specified.
+- [Start Windows Azure Virtual Machines on a Schedule](http://gallery.technet.microsoft.com/scriptcenter/Start-Windows-Azure-b6c179b6): Demonstrates starting a single Virtual Machine or set of Virtual Machines (using a wildcard pattern) within a Cloud Service. This is done by creating scheduled tasks to start the Virtual Machine(s) on a schedule at a specified time.
 
-- [Stop Windows Azure Virtual Machines on a Schedule](http://gallery.technet.microsoft.com/scriptcenter/Stop-Windows-Azure-Virtual-821896a8): Demonstrates stopping a single Virtual Machine or set of Virtual Machines (using a wildcard pattern) within a Cloud Service. It does this by creating scheduled tasks to stop the Virtual Machine(s) on a schedule at the time specified.
+- [Stop Windows Azure Virtual Machines on a Schedule](http://gallery.technet.microsoft.com/scriptcenter/Stop-Windows-Azure-Virtual-821896a8): Demonstrates stopping a single Virtual Machine or set of Virtual Machines (using a wildcard pattern) within a Cloud Service. This is done by creating scheduled tasks to stop the Virtual Machine(s) on a schedule at a specified time.
 
 - [Deploy Windows Azure VMs to an Availability Set and Load Balanced on an Endpoint](http://gallery.technet.microsoft.com/scriptcenter/Create-Windows-Azure-VMs-244bd3cb): Deploy a specified number of Virtual Machines based on a given image name. The Virtual Machines are placed in the same availability set and load balanced on a given endpoint name.
 
-- [Deploy Multiple Windows Azure VMs in the Same Windows Azure Virtual Network](http://gallery.technet.microsoft.com/scriptcenter/Create-Multiple-Windows-df9e95b7): Creates four Windows Server 2012 Virtual Machines across two separate cloud services and adds them to the same virtual network. If the virtual network indicated does not exist then it is created.
-
+- [Deploy Multiple Windows Azure VMs in the Same Windows Azure Virtual Network](http://gallery.technet.microsoft.com/scriptcenter/Create-Multiple-Windows-df9e95b7): Creates four Windows Server 2012 Virtual Machines across two separate cloud services and adds them to the same virtual network. If the virtual network indicated does not exist, it is then created.
 
 <a name='Summary' />
 ## Summary ##
