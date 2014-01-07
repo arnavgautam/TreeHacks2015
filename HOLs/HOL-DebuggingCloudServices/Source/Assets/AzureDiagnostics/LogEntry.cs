@@ -1,8 +1,8 @@
 ﻿namespace AzureDiagnostics
 {
-    using Microsoft.WindowsAzure.StorageClient;
+    using Microsoft.WindowsAzure.Storage.Table;
 
-    public class LogEntry : TableServiceEntity
+    public class LogEntry : TableEntity
     {
         public long EventTickCount { get; set; }
 

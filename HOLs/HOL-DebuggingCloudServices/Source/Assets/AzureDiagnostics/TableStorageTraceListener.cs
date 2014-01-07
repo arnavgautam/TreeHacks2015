@@ -1,18 +1,19 @@
 ﻿namespace AzureDiagnostics
 {
-    using Microsoft.WindowsAzure;
-    using Microsoft.WindowsAzure.StorageClient;
     using System;
     using System.Collections.Generic;
-    using System.Data.Services.Client;
     using System.Diagnostics;
     using System.Text;
+    using Microsoft.WindowsAzure;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Table;
+    using Microsoft.WindowsAzure.Storage.Table.DataServices;
 
     public class TableStorageTraceListener : TraceListener
     {
-        private const string DEFAULT_DIAGNOSTICS_CONNECTION_STRING = "Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString";
+        public static readonly string DiagnosticsTable = "DevLogsTable";
 
-        public static readonly string DIAGNOSTICS_TABLE = "DevLogsTable";
+        private const string DefaultDiagnosticsConnectionString = "Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString";
 
         [ThreadStatic]
         private static StringBuilder messageBuffer;
@@ -27,7 +28,7 @@
         private string connectionString;
 
         public TableStorageTraceListener()
-            : this(DEFAULT_DIAGNOSTICS_CONNECTION_STRING)
+            : this(DefaultDiagnosticsConnectionString)
         {
         }
 
@@ -72,69 +73,71 @@
                 {
                     if (!this.isInitialized)
                     {
-                        Initialize();
+                        this.Initialize();
                     }
                 }
             }
 
-            TableServiceContext context = tableStorage.GetDataServiceContext();
-            context.MergeOption = MergeOption.AppendOnly;
+            var table = this.tableStorage.GetTableReference(DiagnosticsTable);
+
+            TableServiceContext context = this.tableStorage.GetTableServiceContext();
+            TableBatchOperation batchOperation = new TableBatchOperation();
+
             lock (this.traceLogAccess)
             {
-                this.traceLog.ForEach(entry => context.AddObject(DIAGNOSTICS_TABLE, entry));
+                this.traceLog.ForEach(entry => batchOperation.Insert(entry));
                 this.traceLog.Clear();
             }
 
-            if (context.Entities.Count > 0)
+            if (batchOperation.Count > 0)
             {
-                context.BeginSaveChangesWithRetries(SaveChangesOptions.None, (ar) =>
-                {
-                    context.EndSaveChangesWithRetries(ar);
-                }, null);
+                table.ExecuteBatch(batchOperation);
             }
         }
 
         public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, object data)
         {
             base.TraceData(eventCache, source, eventType, id, data);
-            AppendEntry(id, eventType, eventCache);
+            this.AppendEntry(id, eventType, eventCache);
         }
 
         public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, params object[] data)
         {
             base.TraceData(eventCache, source, eventType, id, data);
-            AppendEntry(id, eventType, eventCache);
+            this.AppendEntry(id, eventType, eventCache);
         }
 
         public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id)
         {
             base.TraceEvent(eventCache, source, eventType, id);
-            AppendEntry(id, eventType, eventCache);
+            this.AppendEntry(id, eventType, eventCache);
         }
 
         public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string format, params object[] args)
         {
             base.TraceEvent(eventCache, source, eventType, id, format, args);
-            AppendEntry(id, eventType, eventCache);
+            this.AppendEntry(id, eventType, eventCache);
         }
 
         public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string message)
         {
             base.TraceEvent(eventCache, source, eventType, id, message);
-            AppendEntry(id, eventType, eventCache);
+            this.AppendEntry(id, eventType, eventCache);
         }
 
         public override void TraceTransfer(TraceEventCache eventCache, string source, int id, string message, Guid relatedActivityId)
         {
             base.TraceTransfer(eventCache, source, id, message, relatedActivityId);
-            AppendEntry(id, TraceEventType.Transfer, eventCache);
+            this.AppendEntry(id, TraceEventType.Transfer, eventCache);
         }
 
         private void Initialize()
         {
-            CloudStorageAccount account = CloudStorageAccount.FromConfigurationSetting(this.connectionString);
-            this.tableStorage = account.CreateCloudTableClient();
-            this.tableStorage.CreateTableIfNotExist(DIAGNOSTICS_TABLE);
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting(this.connectionString));
+            this.tableStorage = storageAccount.CreateCloudTableClient();
+            CloudTable table = this.tableStorage.GetTableReference(DiagnosticsTable);
+            table.CreateIfNotExists();
+
             this.isInitialized = true;
         }
 
