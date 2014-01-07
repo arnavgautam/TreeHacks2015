@@ -61,7 +61,6 @@
         {
             return this.Json(this.repository.GetModels(id));
         }
-
         protected override void OnException(ExceptionContext filterContext)
         {
             System.Diagnostics.Trace.TraceError(filterContext.Exception.Message);

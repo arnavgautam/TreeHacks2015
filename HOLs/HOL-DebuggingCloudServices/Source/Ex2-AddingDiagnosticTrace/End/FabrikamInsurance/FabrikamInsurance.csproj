@@ -160,11 +160,16 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -180,10 +185,6 @@
     <Content Include="Views\Quote\Calculator.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Assets\AzureDiagnostics\AzureDiagnostics.csproj">
-      <Project>{25562b6b-074f-4ca2-8675-745f445b34ab}</Project>
-      <Name>AzureDiagnostics</Name>
-    </ProjectReference>
     <ProjectReference Include="..\InsurancePolicy\InsurancePolicy.csproj">
       <Project>{6988985b-229c-49e7-96e9-94489a42e77c}</Project>
       <Name>InsurancePolicy</Name>
