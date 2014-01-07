@@ -5,83 +5,81 @@
     ViewBag.Title = "Fabrikam Insurance";
 }
 
-<style type="text/css">
-    #quotetitle { font-size:x-large; }
-    #monthlypremium { font-size:xx-large; color: #648f3f; margin-left: 1em; }
-    #yearlypremium { font-size:xx-large; color: #b6cba3; margin-left: 1em; }
-</style>
-
 <h2>Auto Insurance Quotes</h2>
 
-@using (Html.BeginForm())
+
+@using (Html.BeginForm()) 
 {
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Vehicle Details</legend>
-        <h3>Vehicle Details</h3>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.MakeId)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.MakeId, Model.Makes.AsSelectList(), "-- Select Make --", new { id = "MakeId" })
-            @Html.ValidationMessageFor(model => model.MakeId, "*")
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ModelId)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.ModelId, Model.Models.AsSelectList(), "-- Select Model --", new { id = "ModelId" })
-            @Html.ValidationMessageFor(model => model.ModelId, "*")
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ManufacturedYear)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.ManufacturedYear, Model.YearList.AsSelectList(), "-- Select Year --", new { id = "ManufacturedYear" })
-            @Html.ValidationMessageFor(model => model.ManufacturedYear, "*")
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.BodyStyleId)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.BodyStyleId, Model.BodyStyles.AsSelectList(), "-- Select Body Style --", new { id = "BodyStyleId" })
-            @Html.ValidationMessageFor(model => model.BodyStyleId, "*")
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.BrakeTypeId)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.BrakeTypeId, Model.BrakeTypes.AsSelectList(), "-- Select Brake Type --", new { id = "BrakeTypeId" })
-            @Html.ValidationMessageFor(model => model.BrakeTypeId, "*")
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.SafetyEquipmentId)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.SafetyEquipmentId, Model.SafetyEquipment.AsSelectList(), "-- Select Safety Equipment --", new { id = "SafetyEquipmentId" })
-            @Html.ValidationMessageFor(model => model.SafetyEquipmentId, "*")
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AntiTheftDeviceId)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.AntiTheftDeviceId, Model.AntiTheftDevices.AsSelectList(), "-- Select Anti-Theft Device --", new { id = "AntiTheftDeviceId" })
-            @Html.ValidationMessageFor(model => model.AntiTheftDeviceId, "*")
-        </div>
-
-        <p>
-            <input id="calculate" type="submit" value="Calculate" />
-        </p>
-    </fieldset>
+    @Html.AntiForgeryToken()
     
+    <div class="form-horizontal">
+        <h4>Vehicle Details</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.MakeId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.MakeId, Model.Makes.AsSelectList(), "-- Select Make --", new { id = "MakeId" })
+                @Html.ValidationMessageFor(model => model.MakeId, "*")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ModelId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ModelId, Model.Models.AsSelectList(), "-- Select Model --", new { id = "ModelId" })
+                @Html.ValidationMessageFor(model => model.ModelId, "*")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ManufacturedYear, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ManufacturedYear, Model.YearList.AsSelectList(), "-- Select Year --", new { id = "ManufacturedYear" })
+                @Html.ValidationMessageFor(model => model.ManufacturedYear, "*")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BodyStyleId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.BodyStyleId, Model.BodyStyles.AsSelectList(), "-- Select Body Style --", new { id = "BodyStyleId" })
+                @Html.ValidationMessageFor(model => model.BodyStyleId, "*")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BrakeTypeId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.BrakeTypeId, Model.BrakeTypes.AsSelectList(), "-- Select Brake Type --", new { id = "BrakeTypeId" })
+                @Html.ValidationMessageFor(model => model.BrakeTypeId, "*")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SafetyEquipmentId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SafetyEquipmentId, Model.SafetyEquipment.AsSelectList(), "-- Select Safety Equipment --", new { id = "SafetyEquipmentId" })
+                @Html.ValidationMessageFor(model => model.SafetyEquipmentId, "*")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AntiTheftDeviceId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.AntiTheftDeviceId, Model.AntiTheftDevices.AsSelectList(), "-- Select Anti-Theft Device --", new { id = "AntiTheftDeviceId" })
+                @Html.ValidationMessageFor(model => model.AntiTheftDeviceId, "*")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="calculate" type="submit" value="Calculate" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+        
     if (Model.MonthlyPremium > 0)
     {
     <div id="status">
@@ -94,7 +92,6 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
     <script type="text/javascript">
         $(document).ready(function () {
             $('select#MakeId').change(function () {

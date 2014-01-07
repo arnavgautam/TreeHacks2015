@@ -1,21 +1,57 @@
 ﻿namespace FabrikamInsurance
 {
-    using Microsoft.WindowsAzure;
-    using Microsoft.WindowsAzure.ServiceRuntime;
     using System.Linq;
-    using System.Web.Http;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
+    using Microsoft.WindowsAzure;
+    using Microsoft.WindowsAzure.ServiceRuntime;
+    using Microsoft.WindowsAzure.Storage;
 
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
     public class MvcApplication : System.Web.HttpApplication
     {
+        protected void Application_Start()
+        {
+            ConfigureTraceListener();
+
+            RoleEnvironment.Changed += this.RoleEnvironmentChanged;
+            RoleEnvironment.Changing += this.RoleEnvironmentChanging;
+
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected void RoleEnvironmentChanging(object sender, RoleEnvironmentChangingEventArgs e)
+        {
+            // for any configuration setting change except EnableTableStorageTraceListener
+            if (e.Changes.OfType<RoleEnvironmentConfigurationSettingChange>().Any(change => change.ConfigurationSettingName != "EnableTableStorageTraceListener"))
+            {
+                // Set e.Cancel to true to restart this role instance
+                e.Cancel = true;
+            }
+        }
+
+        protected void RoleEnvironmentChanged(object sender, RoleEnvironmentChangedEventArgs e)
+        {
+            // configure trace listener for any changes to EnableTableStorageTraceListener 
+            if (e.Changes.OfType<RoleEnvironmentConfigurationSettingChange>().Any(change => change.ConfigurationSettingName == "EnableTableStorageTraceListener"))
+            {
+                ConfigureTraceListener();
+            }
+        }
+
+        protected void Application_Error()
+        {
+            var lastError = Server.GetLastError();
+            System.Diagnostics.Trace.TraceError(lastError.Message);
+        }
+
         private static void ConfigureTraceListener()
         {
             bool enableTraceListener = false;
-            string enableTraceListenerSetting = RoleEnvironment.GetConfigurationSettingValue("EnableTableStorageTraceListener");
+            string enableTraceListenerSetting = CloudConfigurationManager.GetSetting("EnableTableStorageTraceListener");
             if (bool.TryParse(enableTraceListenerSetting, out enableTraceListener))
             {
                 if (enableTraceListener)
@@ -34,40 +70,6 @@
                     System.Diagnostics.Trace.Listeners.Remove("TableStorageTraceListener");
                 }
             }
-        }
-
-        private void RoleEnvironmentChanged(object sender, RoleEnvironmentChangedEventArgs e)
-        {
-            // configure trace listener for any changes to EnableTableStorageTraceListener 
-            if (e.Changes.OfType<RoleEnvironmentConfigurationSettingChange>().Any(change => change.ConfigurationSettingName == "EnableTableStorageTraceListener"))
-            {
-                ConfigureTraceListener();
-            }
-        }
-
-        protected void Application_Start()
-        {
-            CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
-            {
-                configSetter(RoleEnvironment.GetConfigurationSettingValue(configName));
-            });
-
-            ConfigureTraceListener();
-
-            RoleEnvironment.Changed += this.RoleEnvironmentChanged;
-
-            AreaRegistration.RegisterAllAreas();
-
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-        }
-
-        protected void Application_Error()
-        {
-            var lastError = Server.GetLastError();
-            System.Diagnostics.Trace.TraceError(lastError.Message);
         }
     }
 }

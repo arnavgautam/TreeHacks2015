@@ -1,12 +1,13 @@
 ﻿namespace FabrikamInsurance.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
     using FabrikamInsurance.Models;
     using InsurancePolicy;
-    using System;
-    using System.Linq;
-    using System.Web.Mvc;
 
-    [HandleError]
     public class QuoteController : Controller
     {
         private IAutomobileDataRepository repository;
@@ -61,6 +62,11 @@
             return this.Json(this.repository.GetModels(id));
         }
 
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            System.Diagnostics.Trace.TraceError(filterContext.Exception.Message);
+        }
+
         private void PopulateViewModel(QuoteViewModel model, string makeId)
         {
             model.Makes = this.repository.GetMakes();
@@ -70,11 +76,6 @@
             model.SafetyEquipment = this.repository.GetSafetyEquipment();
             model.AntiTheftDevices = this.repository.GetAntiTheftDevices();
             model.YearList = Enumerable.Range(DateTime.Today.Year - AutoInsurance.MaximumVehicleAge + 1, AutoInsurance.MaximumVehicleAge);
-        }
-
-        protected override void OnException(ExceptionContext filterContext)
-        {
-            System.Diagnostics.Trace.TraceError(filterContext.Exception.Message);
         }
     }
 }
