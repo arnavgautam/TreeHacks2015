@@ -217,7 +217,7 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 	_Unhandled exception thrown by the remote process_
 
-	> **Note:** After the debugger attaches to a role or an instance, you can debug as usual. However, avoid long stops at breakpoints when remote debugging. Windows Azure treats a process that's stopped for longer than a few minutes as unresponsive and stops sending traffic to that instance. If you stop too much time, the Remote Debugging Monitor (_msvsmon_._exe_) shuts down and terminates your debugging session.
+	> **Note:** After the debugger attaches to a role or an instance, you can debug as usual. However, you should avoid long stops at breakpoints when remote debugging because Windows Azure treats a process that is stopped for longer than a few minutes as unresponsive and stops sending traffic to that instance. If you stop too much time, the Remote Debugging Monitor (_msvsmon_._exe_) shuts down and terminates your debugging session.
 
 1. Press **F5** to continue execution and let ASP.NET handle the exception. Notice that this time the application shows a generic error page instead of the exception details that you saw earlier when running the application locally. This is because the default mode for the **customErrors** element is _remoteOnly_, and  the application been now deployed to Windows Azure.
 
