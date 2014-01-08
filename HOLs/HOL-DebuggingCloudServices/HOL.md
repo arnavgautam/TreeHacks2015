@@ -4,6 +4,7 @@
 <a name="Overview"></a>
 ## Overview ##
 
+(TODO: REVIEW OVERVIEW)
 Using Visual Studio, you can debug applications in your local machine by stepping through code, setting breakpoints, and examining the value of program variables. For Windows Azure applications, the compute emulator allows you to run the code locally and debug it using these same features and techniques, making this process relatively straightforward.
 
 Ideally, you should take advantage of the compute emulator and use Visual Studio to identify and fix most bugs in your code, as this provides the most productive environment for debugging. Nevertheless, some bugs might remain undetected and will only manifest themselves once you deploy the application to the cloud. These are often the result of missing dependencies or caused by differences in the execution environment.
@@ -77,18 +78,19 @@ This hands-on lab includes the following exercises:
 Estimated time to complete this lab: **40 minutes**.
 
 <a name="Exercise1"></a>
-### Exercise 1: Learn What Features and Techniques are Available in Visual Studio and Windows Azure ###
+### Exercise 1: Debugging a Cloud Service in Visual Studio ###
 
+(TODO: REVIEW INTRO)
 Because Windows Azure Diagnostics is oriented towards operational monitoring and has to cater for gathering information from multiple role instances, it requires that diagnostic data first be transferred from local storage in each role to Windows Azure storage, where it is aggregated. This requires programming scheduled transfers with the diagnostic monitor to copy logging data to Windows Azure storage at regular intervals, or else requesting a transfer of the logs on-demand. Moreover, information obtained in this manner provides a snapshot of the diagnostics data available at the time of the transfer. To retrieve updated data, a new transfer is necessary. When debugging a single role, and especially during the development phase, these actions add unnecessary friction to the process. To simplify the retrieval of diagnostics data from a deployed role, it is simpler to read information directly from Windows Azure storage, without requiring additional steps.
 
 <a name="Ex1Task1"></a>
-#### Task 1 - Exploring the Fabrikam Insurance Application ####
+#### Task 1 - Debugging the Fabrikam Insurance Application on the Local Computer ####
 
-In this task, you build and run the Fabrikam Insurance application in the Web Development Server to become familiar with its operation.
+In this task, you build and run the Fabrikam Insurance application in the Windows Azure compute emulator so you can test and debug the cloud service before you deploy it.
 
 1. Open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Express 2013 for Web** shortcut and choosing **Run as administrator**.
 
-1. In the **File** menu, choose **Open Project**, browse to **Ex1-DebuggingACloudServiceLocally** in the **Source** folder of the lab, select **Begin.sln** in the **Begin** folder and then click **Open**.
+1. In the **File** menu, choose **Open Project**, browse to **Ex1-DebuggingInVisualStudio** in the **Source** folder of the lab, select **Begin.sln** in the **Begin** folder and then click **Open**.
 
 1. Set the start action of the project. To do this, in **Solution Explorer**, right-click the **FabrikamInsurance** project and then select **Properties**. In the properties window, switch to the **Web** tab and then, under **Start Action**, select the **Specific Page** option. Leave the page value blank.
 
@@ -132,6 +134,98 @@ In this task, you build and run the Fabrikam Insurance application in the Web De
 	>In this case, the unhandled exception error page includes full details for the error because the default mode for the **customErrors** element is _remoteOnly_ and you are accessing the page locally. When you deploy the application to the cloud and access it remotely, the page shows a generic error message instead.
 
 1. Go back to Visual Studio and press **SHIFT + F5** to stop debugging and shut down the application.
+
+<a name="Ex1Task2"></a>
+#### Task 2 - Debugging the Fabrikam Insurance Application in Windows Azure ####
+
+In this task, you wil deploy the Fabrikam insurance application to Windows Azure and enable remote debugging when publishing the service. This will allow you to attach the Visual Studio debugger to the running cloud service in Windows Azure.
+
+1. In **Solution Explorer**, right-click the **FabrikamInsurance.Azure** cloud project and select **Publish**.
+In the **Publish Windows Azure Application** dialog, click **Sign In** and sign in using the Microsoft account associated with your Windows Azure account. 
+
+	![Sign in to see your subscriptions](Images/sign-in-to-see-your-subscriptions.png?raw=true)
+
+	_Sign in to see your subscriptions_
+
+1. The subscription drop down list will be populated with your subscriptions. Select a subscription and click **Next**.
+
+1. In the **Common Settings** tab, click the drop down list labeled **Cloud Service** and select **\<Create New...\>**. Enter the name for your cloud service (e.g. _fabrikaminsuranceservice_), select the location of the service and click **OK**.
+
+	![Create the cloud service](Images/create-the-cloud-service.png?raw=true)
+
+	_Create the cloud service_
+
+1. Make sure the cloud service you just created is selected. Then, click the drop down list labeled **Build configuration** and select **Debug**.
+
+	![Deployment common settings](Images/deployment-common-settings-debugging.png?raw=true)
+
+	_Deployment common settings_
+
+1. Click the **Advanced Settings** tab. In the list labeled **Storage account** select **\<Create New...\>**. Enter the name for your storage service (e.g. _fabrikaminsurancestorage_), select the location you selected for the cloud service and click **OK**.
+
+	![Create the storage account](Images/create-the-storage-account.png?raw=true)
+
+1. Make sure the storage service you just created is selected. Then, check the check box labeled **Enable Remote Debugger for all roles** and click **Next**.
+
+	![Deployment advanced settings](Images/deployment-advanced-settings-debugging.png?raw=true)
+
+1. Review the Summary information. If everything is OK, click **Publish** to start the deployment process.
+
+	![Starting deployment](Images/starting-deployment-debugging.png?raw=true)
+
+	_Starting deployment_
+
+1. After you start a deployment, you can examine the Windows Azure activity log window to determine the status of the operation. If this window is not visible, in the **View** menu, point to **Other Windows**, and then select **Windows Azure Activity Log**.
+
+	![Windows Azure Activity Log](Images/windows-azure-activity-log-debugging.png?raw=true)
+
+	_Windows Azure Activity Log_
+
+1. You can examine the **History** panel on the right of the **Windows Azure Activity Log** window to determine the status of the deployment. Wait for the deployment to complete (you should see a **Complete** message).
+
+	![Deployment completed](Images/deployment-completed-debugging.png?raw=true)
+
+	_Deployment completed_
+
+1. In the **Windows Azure Activity Log** window, click **Open in Server Explorer** under the deployment entry of your cloud service.
+
+	![Viewing the cloud service in Server Explorer](Images/viewing-the-cloud-service-in-server-explorer.png?raw=true)
+
+	_Viewing the cloud service in Server Explorer_
+
+1. In the **Windows Azure Compute** node in **Server Explorer**, right-click the node labeled as **FabrikamInsurance**, and then select **Attach Debugger**. 
+
+	![Attach the debugger to the role](Images/attach-the-debugger-to-the-role.png?raw=true)
+
+	_Attach the debugger to the role_
+
+	> **Note:** When you select a role, the Visual Studio debugger attaches to each instance of that role. The debugger will break on a breakpoint for the first role instance that runs that line of code and meets any conditions of that breakpoint. If you select an instance, the debugger attaches to only that instance and breaks on a breakpoint only when that specific instance runs that line of code and meets the breakpoint's conditions.
+
+1. The debugger automatically attaches to the appropriate host process for your role. Depending on what the role is, the debugger attaches to w3wp.exe, WaWorkerHost.exe, or WaIISHost.exe. To verify the process to which the debugger is attached, expand the instance node in **Server Explorer**.
+
+	![Procesess the debugger is attached to](Images/process-the-debugger-is-attached-to.png?raw=true)
+
+	_Process the debugger is attached to_
+
+	> **Note:** To identify the processes to which the debugger is attached, open the **Processes** dialog box by selecting then **Debug** menu option, then pointing to **Windows** and then **Processes**.
+
+1. Open a browser window, and navigate to **http://[your-cloud-service-name].cloudapp.net/**. Complete the form making sure that you choose "_PORSCHE"_ for the **Make** of the vehicle and "_BOXSTER (BAD DATA)_" for the **Model**.
+
+1. Just like in the local scenario, an unhandled exception occurs and execution halts in the Visual Studio debugger at the line that caused the error. But this time, Visual Studio is debugging the code running in the remote process.
+
+ 	![Unhandled exception thrown in the remote service](Images/unhandled-exception-in-the-application-caused-by-bad-data.png?raw=true)
+
+	_Unhandled exception thrown by the remote process_
+
+	> **Note:** After the debugger attaches to a role or an instance, you can debug as usual. However, avoid long stops at breakpoints when remote debugging. Windows Azure treats a process that's stopped for longer than a few minutes as unresponsive and stops sending traffic to that instance. If you stop too much time, the Remote Debugging Monitor (_msvsmon_._exe_) shuts down and terminates your debugging session.
+
+1. Press **F5** to continue execution and let ASP.NET handle the exception. Notice that this time the application shows a generic error page instead of the exception details that you saw earlier when running the application locally. This is because the default mode for the **customErrors** element is _remoteOnly_, and  the application been now deployed to Windows Azure.
+
+	![Generic error page](Images/generic-error-page.png?raw=true)
+
+	_Generic error page_
+
+1. To detach the debugger from all processes in your instance or role, press **SHIFT+F5** or righ-click the the role or instance node that you're debugging in **Server Explorer**, and then select **Detach Debugger**.
 
 <a name="Exercise2"></a>
 ### Exercise 2: Adding diagnostic trace ###

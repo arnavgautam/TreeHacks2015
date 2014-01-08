@@ -8,6 +8,7 @@
     using FabrikamInsurance.Models;
     using InsurancePolicy;
 
+    [HandleError]
     public class QuoteController : Controller
     {
         private IAutomobileDataRepository repository;
