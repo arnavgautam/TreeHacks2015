@@ -136,184 +136,49 @@ In this task, you build and run the Fabrikam Insurance application in the Web De
 <a name="Exercise2"></a>
 ### Exercise 2: Adding diagnostic trace ###
 
-In this exercise, you debug a simple application by configuring a special trace listener that can write its output directly into a table in Windows Azure storage emulator.  To produce diagnostic data, you instrument the application to write its trace information using standard methods in the System.Diagnostics namespace. Finally, you create a simple log viewer application that can retrieve and display the contents of the diagnostics table.
+In this exercise, you debug a simple application by configuring Windows Azure Diagnostics. Windows Azure Diagnostics captures system data and logging data on the virtual machine instances that run your cloud service and brings that data to your storage account. To produce diagnostic data, you instrument the application to write its trace information using standard methods in the System.Diagnostics namespace. Finally, you use the tools in Visual Studio to retrieve and display the contents of the diagnostics table.
 
 The application that you will use for this exercise simulates an online auto insurance policy calculator. It has a single form where users can enter details about their vehicle and then submit the form to obtain an estimate on their insurance premium. Behind the scenes, the controller action that processes the form uses a separate assembly to calculate premiums based on the input from the user. The assembly contains a bug that causes it to raise an exception for input values that fall outside the expected range.
 
 <a name="Ex2Task1"></a>
 #### Task 1 - Adding Tracing Support to the Application ####
 
+<!-- TODO update this comment -->
 In the previous exercise, you briefly saw how to debug your application with Visual Studio when it executes locally in the compute emulator. To debug the application once you deploy it to the cloud, you need to write debugging information to the logs in order to diagnose an application failure.
 
-In this task, you add a TraceListener to the project capable of logging diagnostics data directly into table storage, where you can easily retrieve it with a simple query. The source code for this project is already provided for you in the **Assets** folder of the lab. More information on the Trace Listener can be found here: [http://msdn.microsoft.com/en-us/library/system.diagnostics.tracelistener.aspx](http://msdn.microsoft.com/en-us/library/system.diagnostics.tracelistener.aspx)
+In this task, you configure Windows Azure Diagnostics to log diagnostics data into table storage, where you can easily retrieve it with a simple query. More information on the Trace Listener can be found here: [http://msdn.microsoft.com/en-us/library/system.diagnostics.tracelistener.aspx](http://msdn.microsoft.com/en-us/library/system.diagnostics.tracelistener.aspx)
 
-1. If not already open, open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Express 2012 for Web** shortcut and choosing **Run as administrator**.
+1. If not already open, open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Express 2013 for Web** shortcut and choosing **Run as administrator**.
 
 1. In the **File** menu, choose **Open Project**, browse to **Ex2-AddingDiagnosticTrace** in the **Source** folder of the lab, select **Begin.sln** in the **Begin** folder and then click **Open**.
 
 	> **Note:** Alternatively you can continue working with the solution obtained after completing the previous exercise.
 
-1. In **Solution Explorer**, right-click the **Begin** solution, point to **Add** and then select **Existing Project**. In the **Add Existing Project** dialog, browse to **Assets** in the **Source** folder of the lab, then navigate to **AzureDiagnostics** inside this folder, select the **AzureDiagnostics** project file and click **Open**.
+1. In **Solution Explorer**, right-click the **FabrikamInsurance** role located in the **FabrikamInsurance.Azure** project and select **Properties**. Choose the **Configuration** tab.
 
-1. Add a reference to the **AzureDiagnostics** library in the web role project. To do this, in **Solution Explorer**, right-click the **FabrikamInsurance** project and select **Add Reference**. In the **Add Reference** dialog, switch to the **Projects** tab located under the **Solution** panel, select **AzureDiagnostics** in the list of projects, and then click **OK**.
+	![Opening properties for the role](Images/opening-properties-for-the-role.png?raw=true "Opening properties for the role")
 
-1. Open **Global.asax.cs** in the **FabrikamInsurance** project and insert the following namespace directives.
+	_Opening properties for the role_
 
-	````C#
-	using Microsoft.WindowsAzure;
-	using Microsoft.WindowsAzure.ServiceRuntime;
-	````
+1. In the **Diagnostics** section, make sure that the **Enable Diagnostics** check box is selected.
 
-1. Add the following (highlighted) method inside the **MvcApplication** class.
+	![Making sure that diagnostics are enabled](Images/making-sure-that-diagnostics-are-enabled.png?raw=true "Making sure that diagnostics are enabled")
 
-	(Code Snippet - WindowsAzureDebugging-Ex2-ConfigureTraceListener-CS)
-	<!-- mark:3-25 -->
-	````C#
-	public class MvcApplication : System.Web.HttpApplication
-	{
-	  private static void ConfigureTraceListener()
-	  {
-	    bool enableTraceListener = false;
-	    string enableTraceListenerSetting = RoleEnvironment.GetConfigurationSettingValue("EnableTableStorageTraceListener");
-	    if (bool.TryParse(enableTraceListenerSetting, out enableTraceListener))
-	    {
-	      if (enableTraceListener)
-	      {
-	        AzureDiagnostics.TableStorageTraceListener listener =
-	          new AzureDiagnostics.TableStorageTraceListener("Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString")
-	          {
-	            Name = "TableStorageTraceListener"
-	          };
-	
-	        System.Diagnostics.Trace.Listeners.Add(listener);
-	        System.Diagnostics.Trace.AutoFlush = true;
-	      }
-	      else
-	      {
-	        System.Diagnostics.Trace.Listeners.Remove("TableStorageTraceListener");
-	      }
-	    }
-	  }
-	
-	  ...
-	}
-	````
+	_Making sure that diagnostics are enabled_
 
-	>**Note:** The **ConfigureTraceListener** method retrieves the _EnableTableStorageTraceListener_ configuration setting and, if its value is _true_, it creates a new instance of the **TableStorageTraceListener** class, defined in the project that you added to the solution earlier, and then adds it to the collection of available trace listeners. Note that the method also enables the **AutoFlush** property of the **Trace** object to ensure that trace messages are written immediately to table storage, allowing you to retrieve them as they occur.
+1. To customize the settings, choose the Custom plan option button, and then choose the Edit button.
 
-1. Now, insert the following (highlighted) code in the **Application_Start** method to set up the Windows Azure storage configuration settings publisher and to enable the **TableStorageTraceListener**. 
+	> **Note:** Of the available options (Errors only, All information, and Custom plan), Errors only is the default option and requires the least amount of storage because it doesn’t transfer warnings or tracing messages. All information transfers the most information and is, therefore, the most expensive option.
 
-	(Code Snippet - WindowsAzureDebugging-Ex2- Application_Start-CS)
-	<!-- mark:7-12 -->
-	````C#
-	public class MvcApplication : System.Web.HttpApplication
-	{
-	  ...
-	
-	  protected void Application_Start()
-	  {
-	    CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
-	      {
-	        configSetter(RoleEnvironment.GetConfigurationSettingValue(configName));
-	      });
-	
-	    ConfigureTraceListener();
-	
-	    AreaRegistration.RegisterAllAreas();
-	
-	    WebApiConfig.Register(GlobalConfiguration.Configuration);
-	    FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-	    RouteConfig.RegisterRoutes(RouteTable.Routes);
-	    BundleConfig.RegisterBundles(BundleTable.Bundles);
-	  }
-	}
-	````
+	![Selecting the custom plan](Images/selecting-the-custom-plan.png?raw=true "Selecting the custom plan")
 
-	>**Note:** TraceListeners can be added by configuring them in the **system.diagnostics** section of the configuration file. However, in this case, the role creates the listener programmatically allowing you to enable the listener only when you need it and while the service is running.
+	_Selecting the custom plan_
 
- 	>![Enabling the TableStorageTraceListener in the configuration file](Images/enabling-the-tablestoragetracelistener-in-the-configuration-file.png?raw=true "Enabling the TableStorageTraceListener in the configuration file")
+1. In the **Application logs** tab of the **Diagnostics configuration** dialog select **All** as **Log level** in to log all log levels (not only the application errors). Click **OK** to close the dialog.
 
-1. Next, define a configuration setting to control the diagnostics logging with the **TableStorageTraceListener**. To create the setting, expand the Roles node in the **FabrikamInsuranceService** project and then double-click the **FabrikamInsurance** role. In the role properties window, switch to the **Settings** page, click **Add Setting**, and then set the name of the new setting to _EnableTableStorageTraceListener_, the type as _String_, and the value as _false_.
+	![Selecting the All log level for Application logs](Images/selecting-the-all-log-level-for-application-l.png?raw=true "Selecting the All log level for Application logs")
 
- 	![Creating a configuration setting to enable the trace listener](Images/creating-a-configuration-setting-to-enable-the-trace-listener.png?raw=true "Creating a configuration setting to enable the trace listener")
-
-	_Creating a configuration setting to enable the trace listener_
-
-1. Locate the **RoleEnvironmentChanging** event handler inside the **WebRole** class and replace its body with the following (highlighted) code.
-
-	(Code Snippet - WindowsAzureDebugging-Ex2-WebRole RoleEnvironmentChanging-CS)
-	<!-- mark:7-12 -->
-	````C#
-	public class WebRole : RoleEntryPoint
-	{
-	  ...
-	
-	  private void RoleEnvironmentChanging(object sender, RoleEnvironmentChangingEventArgs e)
-	  {
-	    // for any configuration setting change except EnableTableStorageTraceListener
-	    if (e.Changes.OfType<RoleEnvironmentConfigurationSettingChange>().Any(change => change.ConfigurationSettingName != "EnableTableStorageTraceListener"))
-	    {
-	      // Set e.Cancel to true to restart this role instance
-	      e.Cancel = true;
-	    }
-	  }
-	}
-	````
-
-	>**Note:** The **RoleEnvironmentChanging** event occurs before a change to the service configuration is applied to the running instances of the role. The updated handler scans the collection of changes and restarts the role instance for any configuration setting change, unless the change only involves the value of the _EnableTableStorageTraceListener_ setting.  If this particular setting changes, the role instance is allowed to apply the change without restarting it.
-
-1. Now, add the following (highlighted) code to define a handler for the **RoleEnvironmentChanged** event into the **Global.asax.cs**.
-
-	(Code Snippet - WindowsAzureDebugging-Ex2-Global RoleEnvironmentChanged event handler-CS)
-	<!-- mark:5-12 -->
-	````C#
-	public class MvcApplication : System.Web.HttpApplication
-	{
-	  ...
-	
-	  private void RoleEnvironmentChanged(object sender, RoleEnvironmentChangedEventArgs e)
-	  {
-	    // configure trace listener for any changes to EnableTableStorageTraceListener 
-	    if (e.Changes.OfType<RoleEnvironmentConfigurationSettingChange>().Any(change => change.ConfigurationSettingName == "EnableTableStorageTraceListener"))
-	    {
-	      ConfigureTraceListener();
-	    }
-	  }
-	
-	  ...
-	}
-	````
-
-	>**Note:** The **RoleEnvironmentChanged** event handler occurs after a change to the service configuration has been applied to the running instances of the role. If this change involves the _EnableTableStorageTraceListener_ configuration setting, the handler calls the **ConfigureTraceListener** method to enable or disable the trace listener.
-
-1. Finally, insert the following (highlighted) line into the **Application_Start** method, immediately after to the call to the **ConfigureTraceListener** method, to subscribe to the **Changed** event of the **RoleEnvironment**.
-
-	<!-- mark:14 -->
-	````C#
-	public class MvcApplication : System.Web.HttpApplication
-	{
-	  ...
-	
-	  protected void Application_Start()
-	  {
-	    CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
-	      {
-	        configSetter(RoleEnvironment.GetConfigurationSettingValue(configName));
-	      });
-	
-	    ConfigureTraceListener();			
-	
-	    RoleEnvironment.Changed += this.RoleEnvironmentChanged;
-	
-	    AreaRegistration.RegisterAllAreas();
-	
-	    WebApiConfig.Register(GlobalConfiguration.Configuration);
-	    FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-	    RouteConfig.RegisterRoutes(RouteTable.Routes);
-	    BundleConfig.RegisterBundles(BundleTable.Bundles);
-	  }
-	}
-	````
+	_Selecting the All log level for Application logs_
 
 1. To instrument the application and write diagnostics information to the error log, add a global error handler to the application. To do this, insert the following method into the **MVCApplication** class.
 
@@ -334,9 +199,7 @@ In this task, you add a TraceListener to the project capable of logging diagnost
 
 	> **Note:** The **Application_Error** event is raised to catch any unhandled ASP.NET errors while processing a request. The event handler shown above retrieves a reference to the unhandled exception object using **Server.GetLastError** and then uses the **TraceError** method of the **System.Diagnostics.Trace** class to log the error message. 
 
-	>Note that the **Trace** object outputs the message to each listener in its **Listeners** collection, including the **TableStorageTraceListener**, provided you enable it in the configuration settings. Typically, the collection also contains instances of the **DefaultTraceListener** class and, when executing the solution in the compute emulator, the **DevelopmentFabricTraceListener**.  The latter writes its output to a log that you can view from the Compute Emulator UI. 
-
-	>To write to the Windows Azure diagnostics log, a **DiagnosticMonitorTraceListener** can also be added to the **Web.config** or **App.config** file of the role. When using this type of trace listener, the logs are gathered locally in each role. To retrieve them, you first need to instruct the diagnostic monitor to copy the information to storage services. The role project templates included with the Windows Azure Tools for Microsoft Visual Studio already include the settings required to use the **DiagnosticMonitorTraceListener** in the configuration files it generates.
+	>Note that the **Trace** object outputs the message to each listener in its **Listeners** collection. Typically, the collection also contains instances of the **DefaultTraceListener** class and, when executing the solution in the compute emulator, the **DevelopmentFabricTraceListener**.  The latter writes its output to a log that you can view from the Compute Emulator UI. 
 
 1. Open the **QuoteController.cs** file in the **Controllers** folder of the **FabrikamInsurance** project and add the following method. 
 
@@ -397,159 +260,14 @@ In this task, you add a TraceListener to the project capable of logging diagnost
 	}
 	````
 
-<a name="Ex2Task2"></a>
-#### Task 2 - Creating a Log Viewer Tool ####
-
-At this point, the application is ready for tracing and can send all its diagnostics output to a table in storage services. To view the trace logs, you now create a simple log viewer application that will periodically query the table and retrieve all entries added since it was last queried.
-
-1. Add the LogViewer console application project to the solution. To do this, in **Solution Explorer**, right-click the **Begin** solution, point to **Add** and then select **Existing Project**. In the **Add Existing Project** dialog, browse to **Assets** in the **Source** folder of the lab, then navigate to **LogViewer** inside this folder, select the **LogViewer** project file and click **Open**.
-
-1. Add references to the assemblies required by this project. To do this, in **Solution Explorer**, right-click the **LogViewer** project and select **Add Reference**. In the **Add Reference** dialog, switch to the **Framework** tab under the **Assemblies** panel and select **System.Configuration**, and **System.Data.Services.Client**. Next, switch to the **Extensions** tab and select **Microsoft.WindowsAzure.StorageClient**. Finally, click **OK**.
-
-1. Next, add a reference to the diagnostics project in the solution. Repeat the previous step to open the **Add Reference** dialog, only this time select the **Solution** | **Projects** tab, select the **AzureDiagnostics** project and click **OK**.
-
-1. Add a class to display a simple progress indicator in the console window to the project. To do this, in **Solution Explorer**, right-click **LogViewer**, point to **Add**, and select **Existing Item**. In the **Add Existing Item** dialog, browse to **Assets** in the **Source** folder of the lab, select the **ProgressIndicator.cs** file, and then click **Add**.
-
-1. In **Solution Explorer**, double-click **Program.cs** to open this file and replace its namespace declarations with the following ones.
-
-	(Code Snippet - WindowsAzureDebugging-Ex2-LogViewer namespaces-CS)
-	<!-- mark:1-8 -->
-	````C#
-    using System;
-    using System.Configuration;
-    using System.Data.Services.Client;
-    using System.Linq;
-    using System.Threading;
-    using AzureDiagnostics;
-    using Microsoft.WindowsAzure;
-    using Microsoft.WindowsAzure.StorageClient;
-	````
-
-1. Define the following (highlighted) members in the **Program** class.
-
-	(Code Snippet - _WindowsAzureDebugging-Ex2-LogViewer static members-CS_)
-	<!-- mark:3-4 -->
-	````C#
-	public class Program
-	{
-	  private static string lastPartitionKey = string.Empty;
-	  private static string lastRowKey = string.Empty;
-	
-	  static void Main(string[] args)
-	  {
-	  }
-	}
-	````
-
-1. Next, insert the **QueryLogTable** method into the class.
-
-	(Code Snippet - WindowsAzureDebugging-Ex2-QueryLogTable method-CS)
-	<!-- mark:4-19 -->
-	````C#
-	class Program
-	{
-	  ...
-	
-	  private static void QueryLogTable(CloudTableClient tableStorage)
-	  {
-	    TableServiceContext context = tableStorage.GetDataServiceContext();
-	    DataServiceQuery query = context.CreateQuery<LogEntry>(TableStorageTraceListener.DIAGNOSTICS_TABLE)
-	        .Where(entry => entry.PartitionKey.CompareTo(lastPartitionKey) > 0
-	        || (entry.PartitionKey == lastPartitionKey && entry.RowKey.CompareTo(lastRowKey) > 0))
-	        as DataServiceQuery;
-	
-	    foreach (AzureDiagnostics.LogEntry entry in query.Execute())
-	    {
-	      Console.WriteLine("{0} - {1}", entry.Timestamp, entry.Message);
-	      lastPartitionKey = entry.PartitionKey;
-	      lastRowKey = entry.RowKey;
-	    }
-	  }
-	
-	  ...
-	}
-	````
-
-	>**Note:** The rows in the diagnostic log table are stored with a primary key composed by the partition and row key properties, where both are based on the event tick count of the corresponding log entry and are thus ordered chronologically. The **QueryLogTable** method queries the table to retrieve all rows whose primary key value is greater than the last value obtained during the previous invocation of this method. This ensures that each time it is called, the method only retrieves new entries added to the log.
-
-1. Finally, to complete the changes, insert the following (highlighted) code into the body of method **Main**.
-
-	(Code Snippet - WindowsAzureDebugging-Ex2-LogViewer Main method-CS)
-	<!-- mark:7-25 -->
-	````C#
-	class Program
-	{
-	  ...
-	
-	  static void Main(string[] args)
-	  {
-	    string connectionString = (args.Length == 0) ? "Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" : args[0];
-
-	    CloudStorageAccount account = CloudStorageAccount.Parse(ConfigurationManager.AppSettings[connectionString]);
-	    CloudTableClient tableStorage = account.CreateCloudTableClient();
-	    tableStorage.CreateTableIfNotExist(TableStorageTraceListener.DIAGNOSTICS_TABLE);
-
-	    Utils.ProgressIndicator progress = new Utils.ProgressIndicator();
-	    Timer timer = new Timer(
-	      (state) =>
-	      {
-	        progress.Disable();
-	        QueryLogTable(tableStorage);
-	        progress.Enable();
-	      },
-	      null,
-	      0,
-	      10000);
-	
-	    Console.ReadLine();
-	  }
-	
-	  ...
-	}
-	````
-
-	>**Note:** The inserted code initializes the Windows Azure storage account information, creates the diagnostics table if necessary, and then starts a timer that periodically calls the **QueryLogMethod** defined in the previous step to display new entries in the diagnostics log.
-
-1. To complete the viewer application, open the **App.config** file in the **LogViewer** project and insert the following (highlighted) **appSettings** section to define the _DiagnosticsConnectionString_ setting required to initialize the storage account information.
-
-	<!-- mark:2-4 -->
-	````XML
-	<configuration>
-	  <appSettings>
-	    <add key="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true"/>
-	  </appSettings>
-	  <startup>
-	  ...
-	````
-
 <a name="Ex2Verification"></a>
 #### Verification ####
 
-You are now ready to execute the solution in the compute emulator. To enable the Table Storage trace listener dynamically without stopping the running service, you initially deploy the service with the _EnableTraceStorageTraceListener_ setting disabled and then, you change the setting in the configuration file to enable the listener and then upload it to re-configure the running service. Using the log viewer application, you examine the trace messages produced by the application.
+You are now ready to execute the solution in Windows Azure. At this point, the application is ready for tracing and can send all its diagnostics output to a table in storage services. To view the trace logs, you now 
+<!-- TODO: Add short description-->
 
-1. Open the **Web.config** file of the **FabrikamInsurance** project and insert the following (highlighted) **customErrors** section as a direct child of the **system.web** element. 
 
-	<!-- mark:5 -->
-	````XML
-	<configuration>
-	  ...
-	  <system.web>
-	    ...
-	    <customErrors mode="On" />
-	  </system.web>
-	  ...
-	<configuration>
-	````
-
-	>**Note:** When you set the **customErrors** mode to _On_, ASP.NET displays generic error messages for both local and remote clients. With **customErrors** set to its default setting of _RemoteOnly_, once the application is deployed to Windows Azure and you access it remotely, you will also see the generic errors, so this step is not strictly necessary. However, it allows you to reproduce locally the behavior that you would observe once you deploy the application to the cloud.
-
-1. To test the solution, you need to configure the Windows Azure Project and the log viewer application so that they both start simultaneously. To define the startup projects, right-click the solution node in **Solution Explorer** and select **Set StartUp Projects**. In the **Solution 'Begin' Property Pages** window, make sure to select **Startup Project** under **Common Properties**, and then select the option labeled **Multiple startup projects**. Next, set the **Action** for both the **LogViewer** and **FabrikamInsuranceService** projects to _Start_, leaving the remaining projects as _None_. Click **OK** to save the changes to the start-up configuration.
-
- 	![Configuring the start-up projects for the solution](Images/configuring-the-start-up-projects-for-the-solution.png?raw=true "Configuring the start-up projects for the solution")
-
-	_Configuring the start-up projects for the solution_
-
-1. Press **CTRL + F5** to launch the application without attaching a debugger. Again, this reproduces the conditions that you would have once you deploy the application to the cloud. Wait until the deployment completes and the browser opens to show its main page.
+1. Deploy the app again. Wait until the deployment completes and the browser opens to show its main page.
 
 1. In the browser window, complete the form making sure that you choose "_PORSCHE"_ for the **Make** of the vehicle and "_BOXSTER (BAD DATA)_" for the **Model**. Notice that this time, because you enabled the **customErrors** setting in the **Web.config** file, the application shows a generic error page instead of the exception details that you saw earlier. This is what you would also see had the application been deployed to Windows Azure. 
 
@@ -557,51 +275,20 @@ You are now ready to execute the solution in the compute emulator. To enable the
 
 	_Application error with customErrors enabled_
 
-1. Examine the output from the log viewer application. Notice that, despite the error, the console window is still empty because the table storage trace listener is currently disabled.
+1.  and, in **Server Explorer**, expand the **Cloud Services** node of the **Windows Azure** node, and then right-click the deployed **FabrikamInsurance** role to open its properties window. Click **View Diagnostic Data**.
 
-1. Switch back to Visual Studio and, in **Solution Explorer**, expand the **Roles** node of the **FabrikamInsuranceService** project, and then double-click the **FabrikamInsurance** role to open its properties window. Select the **Settings** page, and then change the value of the _EnableTableStorageTraceListener_ setting to _true_. 
+You can view the diagnostics data in either a report that Visual Studio generates or tables in your storage account. To view the data in a report, switch back to Visual Studio, open **Server Explorer**, and 
+open the shortcut menu of the node for the role that interests you, and then choose View Diagnostic Data.
+Click **View Diagnostic Data**.
 
-1. Press **CTRL + S** to save the changes to the configuration.
+1. The **Diagnostics Summary** report should appears, showing the available data, including an entry with the error message for the unhandled exception. If the most recent data doesn't appear, you might have to wait for the transfer period to elapse. Click the **Refresh** button to update the data in real time.
 
-1. Open the compute emulator console by right-clicking its icon located in the system tray and selecting **Show Compute Emulator UI**. Record the ID for the current deployment. This is the numeric value shown enclosed in parenthesis, next to the deployment label.
+1. To view the output from other informational trace messages, return to the browser window and click **About** followed by **Quotes** to execute both actions in the controller. Recall that you inserted trace messages at the start of each method.
 
- 	![Compute Emulator UI showing the current deployment ID](Images/compute-emulator-ui-showing-the-current-deployment-id.png?raw=true "Compute Emulator UI showing the current deployment ID")
-
-	_Compute Emulator UI showing the current deployment ID_
-
-1. Now, open a **Windows Azure Command Prompt** as an administrator. To launch the command prompt as an administrator, right-click its shortcut and choose **Run as administrator**.
-
-1. Change the current directory to the location of the **FabrikamInsuranceService** cloud project inside the current solution's folder. This folder contains the service configuration files, select ServiceConfiguration.Local.cscfg.
-
-1. At the command prompt, execute the following command to update the configuration of the running deployment. Replace the [DEPLOYMENTID] placeholder with the value that you recorded earlier.
-
-	````WindowsAzureCommandPrompt
-	csrun /update:[DEPLOYMENTID];ServiceConfiguration.Local.cscfg
-	````
-
- 	![Updating the configuration of the running service](Images/updating-the-configuration-of-the-running-service.png?raw=true "Updating the configuration of the running service")
-
-	_Updating the configuration of the running service_
-
-	>**Note:** For applications deployed to the cloud, you would normally update the configuration of your running application through the Windows Azure Developer Portal or by using the Windows Azure Management API to upload a new configuration file.
-
-1. Once you have updated the configuration and enabled the trace listener, return to the browser window, browse to the **Quotes** page, and re-enter the same parameters that caused the error previously (make _"PORSCHE"_, model _"BOXSTER (BAD DATA)"_). Then, click **Calculate** to submit the form again. The response should still show the error page.
-
-1. Switch to the log viewer window and wait a few seconds until it refreshes.  Notice that the console now shows an entry with the error message for the unhandled exception, showing that the trace output generated by the running application is written directly to table storage.
-
- 	![Viewer showing the error logged to table storage](Images/viewer-showing-the-error-logged-to-table-storage.png?raw=true "Viewer showing the error logged to table storage")
-
-	_Viewer showing the error logged to table storage_
-
-1. To view the output from other informational trace messages, return to the browser window and click **About** followed by **Quotes** to execute both actions in the controller. Recall that you inserted trace messages at the start of each method. Notice that the viewer console now displays a message for each of these actions.
-
-	![Viewer showing informational trace messages for the controller actions](Images/viewer-showing-informational-trace-messages-for-the-controller-actions.png?raw=true)
+1. Go bach to the **Diagnostics Summary** report and click the **Refresh** button to update the data in real time. You should see and entry for each of these actions.
 
 	_Viewer showing informational trace messages for the controller actions_
 
-1. In the log viewer window, press **Enter** key twice to exit the program.
-
-1. Finally, delete the running deployment in the compute emulator. To do this, right-click the deployment in the **Service Deployments** tree view and select **Remove**.
 
 <a name="Exercise3"></a>
 ### Exercise 3: Using IntelliTrace to Diagnose Role Start-Up Failures ###
