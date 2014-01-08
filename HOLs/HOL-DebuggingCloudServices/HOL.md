@@ -263,31 +263,37 @@ In this task, you configure Windows Azure Diagnostics to log diagnostics data in
 <a name="Ex2Verification"></a>
 #### Verification ####
 
-You are now ready to execute the solution in Windows Azure. At this point, the application is ready for tracing and can send all its diagnostics output to a table in storage services. To view the trace logs, you now 
-<!-- TODO: Add short description-->
+You are now ready to execute the solution in Windows Azure. At this point, the application is ready for tracing and can send all its diagnostics output to a table in storage services. You can view the diagnostics data in either a report that Visual Studio generates or tables in your storage account.
 
+1. Deploy the application again. Wait until the deployment completes and navigate to the deployed cloud service.
 
-1. Deploy the app again. Wait until the deployment completes and the browser opens to show its main page.
+1. In the browser window, complete the form making sure that you choose "_PORSCHE"_ for the **Make** of the vehicle and "_BOXSTER (BAD DATA)_" for the **Model**. 
 
-1. In the browser window, complete the form making sure that you choose "_PORSCHE"_ for the **Make** of the vehicle and "_BOXSTER (BAD DATA)_" for the **Model**. Notice that this time, because you enabled the **customErrors** setting in the **Web.config** file, the application shows a generic error page instead of the exception details that you saw earlier. This is what you would also see had the application been deployed to Windows Azure. 
+1. Switch back to Visual Studio, open **Server Explorer** and Right-Click the **FabrikamInsurance** role instance under the **Cloud Services** node. Click **View Diagnostic Data**.
 
- 	![Application error with customErrors enabled](Images/application-error-with-customerrors-enabled.png?raw=true "Application error with customErrors enabled")
+	![Clicking View Diagnostics Data](Images/clicking-view-diagnostics-data.png?raw=true "Clicking View Diagnostics Data")
+	
+	_Clicking View Diagnostics Data_
 
-	_Application error with customErrors enabled_
+1. The **Diagnostics Summary** report should appears, showing the available data, including an entry with the error message for the unhandled exception under the **Windows Azure application logs** section which you will need to expand in order to see the list of messages. If the most recent data doesn't appear, you might have to wait for the transfer period to elapse. Click the **Refresh** button to update the data.
+	
+	![Showing the exception message in the diagnostics summary](Images/showing-the-exception-message.png?raw=true "Showing the exception message in the diagnostics summary")
 
-1.  and, in **Server Explorer**, expand the **Cloud Services** node of the **Windows Azure** node, and then right-click the deployed **FabrikamInsurance** role to open its properties window. Click **View Diagnostic Data**.
-
-You can view the diagnostics data in either a report that Visual Studio generates or tables in your storage account. To view the data in a report, switch back to Visual Studio, open **Server Explorer**, and 
-open the shortcut menu of the node for the role that interests you, and then choose View Diagnostic Data.
-Click **View Diagnostic Data**.
-
-1. The **Diagnostics Summary** report should appears, showing the available data, including an entry with the error message for the unhandled exception. If the most recent data doesn't appear, you might have to wait for the transfer period to elapse. Click the **Refresh** button to update the data in real time.
+	_Showing the exception message in the diagnostics summary_
 
 1. To view the output from other informational trace messages, return to the browser window and click **About** followed by **Quotes** to execute both actions in the controller. Recall that you inserted trace messages at the start of each method.
 
-1. Go bach to the **Diagnostics Summary** report and click the **Refresh** button to update the data in real time. You should see and entry for each of these actions.
+1. Go bach to the **Diagnostics Summary** report and click the **Refresh** button to update the data. Note that you will not see any new entry as only errors are displayed in the summary. In order to see the informational trace messages you need to click **View all data** below the **Windows Azure application log** table.
 
-	_Viewer showing informational trace messages for the controller actions_
+	![Clicking View all data](Images/clicking-view-all-data.png?raw=true "Clicking View all data")
+
+	_Clicking View all data_
+
+1. The **WADLogsTable** explorer should open showing at least four entries. Search for the **Message** column and locate the ones with the information trace messages for the controller actions.
+
+	![Showing the information trace messages for the controller actions](Images/showing-the-information-trace-messages.png?raw=true "Showing the information trace messages for the controller actions")
+
+	_Showing the information trace messages for the controller actions_
 
 
 <a name="Exercise3"></a>
