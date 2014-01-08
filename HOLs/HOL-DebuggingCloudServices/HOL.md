@@ -237,7 +237,8 @@ The application that you will use for this exercise simulates an online auto ins
 <a name="Ex2Task1"></a>
 #### Task 1 - Adding Tracing Support to the Application ####
 
-<!-- TODO update this comment -->
+(TODO: REVIEW INTRO)
+
 In the previous exercise, you briefly saw how to debug your application with Visual Studio when it executes locally in the compute emulator. To debug the application once you deploy it to the cloud, you need to write debugging information to the logs in order to diagnose an application failure.
 
 In this task, you configure Windows Azure Diagnostics to log diagnostics data into table storage, where you can easily retrieve it with a simple query. More information on the Trace Listener can be found here: [http://msdn.microsoft.com/en-us/library/system.diagnostics.tracelistener.aspx](http://msdn.microsoft.com/en-us/library/system.diagnostics.tracelistener.aspx)
