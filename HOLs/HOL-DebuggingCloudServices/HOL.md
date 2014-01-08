@@ -4,6 +4,7 @@
 <a name="Overview"></a>
 ## Overview ##
 
+(TODO: REVIEW OVERVIEW)
 Using Visual Studio, you can debug applications in your local machine by stepping through code, setting breakpoints, and examining the value of program variables. For Windows Azure applications, the compute emulator allows you to run the code locally and debug it using these same features and techniques, making this process relatively straightforward.
 
 Ideally, you should take advantage of the compute emulator and use Visual Studio to identify and fix most bugs in your code, as this provides the most productive environment for debugging. Nevertheless, some bugs might remain undetected and will only manifest themselves once you deploy the application to the cloud. These are often the result of missing dependencies or caused by differences in the execution environment.
@@ -85,7 +86,7 @@ Because Windows Azure Diagnostics is oriented towards operational monitoring and
 <a name="Ex1Task1"></a>
 #### Task 1 - Debugging the Fabrikam Insurance Application on the Local Computer ####
 
-In this task, you build and run the Fabrikam Insurance application in the Web Development Server so you can test and debug the cloud service before you deploy it.
+In this task, you build and run the Fabrikam Insurance application in the Windows Azure compute emulator so you can test and debug the cloud service before you deploy it.
 
 1. Open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Express 2013 for Web** shortcut and choosing **Run as administrator**.
 

@@ -41,6 +41,10 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+.error {
+    color: #e80c4d;
+}
+
 /* Styles for calculator */
 #quotetitle {
     font-size: x-large;
