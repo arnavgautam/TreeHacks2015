@@ -269,7 +269,7 @@ In this task, you configure Windows Azure Diagnostics to log diagnostics data in
 
 	_Selecting the custom plan_
 
-1. In the **Application logs** tab of the **Diagnostics configuration** dialog select **All** as **Log level** in to log all log levels (not only the application errors). Click **OK** to close the dialog.
+1. In the **Application logs** tab of the **Diagnostics configuration** dialog select **All** as **Log level** in order to log all trace messages (not only the application errors). Click **OK** to close the dialog.
 
 	![Selecting the All log level for Application logs](Images/selecting-the-all-log-level-for-application-l.png?raw=true "Selecting the All log level for Application logs")
 
