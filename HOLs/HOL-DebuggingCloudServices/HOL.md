@@ -394,7 +394,7 @@ You are now ready to execute the solution in Windows Azure. At this point, the a
 <a name="Exercise3"></a>
 ### Exercise 3: Using IntelliTrace to Diagnose Role Start-Up Failures ###
 
-> **Note:** This exercise is optional, since IntelliTrace is only available for **Visual Studio 2012 Ultimate Edition**. For more information on specific Visual Studio 2012 features, compare versions [here](http://www.microsoft.com/visualstudio/eng/products/compare).
+> **Note:** This exercise is optional, since IntelliTrace is only available for **Visual Studio 2013 Ultimate Edition**. For more information on specific Visual Studio 2013 features, compare versions [here](http://www.microsoft.com/visualstudio/eng/products/compare).
 
 IntelliTrace provides the ability to collect data about an application while it is executing. When you enable IntelliTrace, it records key code execution and environment data and then allows you to replay this data from within Visual Studio, stepping through the same code that executes in the cloud.
 
@@ -408,106 +408,17 @@ In this exercise, you explore the use of IntelliTrace to diagnose a role start-u
 
 > **Important:** IntelliTrace debugging is intended for debug scenarios only, and should not be used for a production deployment. 
 
-<a name="Ex3Task1" />
-#### Task 1 - Creating a Storage Account and a Cloud Service ####
+<a name="Ex3Task1"></a>
+#### Task 1 - Deploying the Application with IntelliTrace Enabled ####
 
-The application you deploy in this exercise requires a Cloud Service and a Storage Account. In this task, you create a new storage account to allow the application to persist its data. In addition, you define a Cloud Service to host your web application.
+In this task, you will publish to Windows Azure the FabrikamInsurance application directly from Visual Studio, with the IntelliTrace feature enabled.
 
-1. Navigate to [http://manage.windowsazure.com](http://manage.windowsazure.com) using a Web browser and sign in using the Microsoft Account associated with your Windows Azure account.
-
-	![Signing in to the Windows Azure Management portal](Images/signing-in-to-the-windows-azure-platform-mana.png?raw=true)
-
-	_Signing in to the Windows Azure Management portal_
-
-1. Create the **Storage Account** that the application will use to store its data. In the Windows Azure Management Portal, click **New** | **Data Services** | **Storage** | **Quick Create**.
-
-1. Set a unique **URL**  (e.g. _fabrikaminsurancestorage_), select a region or an affinity group and click **Create Storage Account** to continue.
-
-	![Creating a new storage account](Images/creating-a-new-storage-account.png?raw=true)
-
-	_Creating a new storage account_
-
-1. Wait until the Storage Account is created. Click your storage account name to go to its **Dashboard**.
-
-	![Storage Accounts page](Images/storage-accounts-page.png?raw=true "Storage Accounts page")
-
-	_Storage Accounts page_
-
-1. Click **Manage Keys** at the bottom of the page in order to show the storage account's access keys.
-
-	![Manage Storage Account Keys](Images/manage-storage-account-keys.png?raw=true "Manage Storage Account Keys")
-
-	_Manage Storage Account Keys_
-
-1. Copy the **Storage account name**, and the **Primary access key** values. You will use these values later on to configure the application.
-
-	![Retrieving the storage access keys](Images/retrieving-the-storage-access-keys.png?raw=true)
-
-	_Retrieving the storage access keys_
-
-1. Next, create the **Cloud Service** that executes the application code. Click **New** | **Cloud Service** | **Quick Create**.
-
-1. Select a **URL** for your Cloud Service (e.g. _fabrikaminsuranceservice_), the region or affinity group you selected for the storage and click **Create Cloud Service** to continue.
-
-	![Creating a new Cloud Service](Images/creating-a-new-cloud-service.png?raw=true "Creating a new Cloud Service")
-
-	_Creating a new Cloud Service_
-
-1. Wait until your Cloud Service is created to continue. Do not close the browser window, you will use the portal for the next task.
-
-	![Cloud Service Created](Images/cloud-service-created.png?raw=true "Cloud Service Created")
-
-	_Cloud Service Created_
-
-<a name="Ex3Task2"></a>
-#### Task 2 - Preparing the Application for Deployment to the Cloud ####
-
-When you publish your service using Visual Studio, the Windows Azure Tools upload the service package and then automatically start it. You will not have a chance to update the configuration settings before the service starts. Therefore, you must configure all the necessary settings before you publish the service.
-
-In this task, you update the storage connection strings to point to your Storage Account.
 
 1. If it is not already open, launch **Microsoft Visual Studio Ultimate 2012** as Administrator.
 
 1. In the **File** menu, choose **Open Project** and browse to **Ex3-DebuggingWithIntelliTrace\Begin** in the **Source** folder of the lab. Select **Begin.sln** and click Open.
 
-1. Configure the storage account connection strings. To do this, expand the **Roles** node in the **FabrikamInsuranceService** cloud project, double-click the **FabrikamInsurance** web role and switch to the **Settings** tab.
-
-1. Now select the _DataConnectionString_ setting, ensure that the **Type** is set to Connection String and replace the placeholders with your storage **Account Name** and **Account Key** values saved during the task 1 of this exercise.
-
-	![Configuring the storage account name and account key](Images/defining-connection-settings.png?raw=true "Configuring the storage account name and account key")
-
-	_Configuring the storage account name and account key_
-
-1. Repeat the previous step to configure the _Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString_ setting using the same account information.
-
-1. Press **CTRL + S** to save your changes. 
-
-<a name="Ex3Task3" />
-#### Task 3 - Deploying the Application with IntelliTrace Enabled ####
-
-In this task, you will log on to the Windows Azure Portal and download the publish-settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription to use in your development environment.
-
-Then, you will use these credentials to publish the FabrikamInsurance application directly from Visual Studio, with the IntelliTrace feature enabled.
-
-1. Open an Internet Explorer browser and go to <https://windows.azure.com/download/publishprofile.aspx>.
-
-1. Sign in using the Microsoft account associated with your Windows Azure account.
-
-1. **Save** the publish-settings file to your local machine.
-
-	![Downloading publish-settings file](Images/downloading-publish-settings-file.png?raw=true 'Downloading publish-settings file')
-
-	_Downloading publish-settings file_
-
-1. Switch to Visual Studio and in the **Solution Explorer**, right-click the **FabrikamInsuranceService** cloud project and select **Publish**.
-
-1. In the **Publish Windows Azure Application** dialog, click **Import**, browse to the PublishSettings file you dowloaded, select it and click **Open**.
-
-1. Back in the **Publish Windows Azure Application** dialog, select the subscription created from the _PublishSettings_ file and click **Next**.
- 
-	![Signing In](Images/waz-sign-in.png?raw=true "Signing In")
-
-	_Signing In_
+1. In the **Solution Explorer**, right-click the **FabrikamInsuranceService** cloud project and select **Publish**.
 
 1. In the **Common Settings** tab, notice that the dialog populates the drop down list labeled **Cloud Service** with the information for all the services configured in your Windows Azure account. Select the cloud service that you created during the task 1 of this exercise.
  
@@ -539,8 +450,8 @@ Then, you will use these credentials to publish the FabrikamInsurance applicatio
 
 	_Viewing detailed information about a deployment operation_
 
-<a name="Ex3Task4" />
-#### Task 4 - Examining the IntelliTrace Logs to Determine the Cause of a Failure ####
+<a name="Ex3Task2" />
+#### Task 2 - Examining the IntelliTrace Logs to Determine the Cause of a Failure ####
 
 In the previous task, the role failed to start due to an unknown reason. In this task, you will use IntelliTrace to determine what caused the failure.
 
@@ -630,8 +541,8 @@ In the previous task, the role failed to start due to an unknown reason. In this
 
 	_Cancel the failing deployment_
 
-<a name="Ex3Task5" />
-#### Task 5 - Fixing the Application and Re-Deploying (Optional) ####
+<a name="Ex3Task3" />
+#### Task 3 - Fixing the Application and Re-Deploying (Optional) ####
 
 Now that you identified the cause of the role start up failure as a missing assembly, you can correct the problem and re-deploy the application.
 
