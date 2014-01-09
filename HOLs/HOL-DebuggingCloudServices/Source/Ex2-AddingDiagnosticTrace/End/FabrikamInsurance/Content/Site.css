@@ -13,7 +13,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    width: 280px;
 }
 
 /* styles for validation helpers */
@@ -41,11 +41,14 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
-.error {
-    color: #e80c4d;
+/* Styles for vertical spacing */
+
+.voffset {
+    margin-top: 20px;
 }
 
 /* Styles for calculator */
+
 #quotetitle {
     font-size: x-large;
 }
