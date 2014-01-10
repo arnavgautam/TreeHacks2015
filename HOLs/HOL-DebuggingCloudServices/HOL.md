@@ -4,12 +4,11 @@
 <a name="Overview"></a>
 ## Overview ##
 
-(TODO: REVIEW OVERVIEW)
 Using Visual Studio, you can debug applications in your local machine by stepping through code, setting breakpoints, and examining the value of program variables. For Windows Azure applications, the compute emulator allows you to run the code locally and debug it using these same features and techniques, making this process relatively straightforward.
 
-Ideally, you should take advantage of the compute emulator and use Visual Studio to identify and fix most bugs in your code, as this provides the most productive environment for debugging. Nevertheless, some bugs might remain undetected and will only manifest themselves once you deploy the application to the cloud. These are often the result of missing dependencies or caused by differences in the execution environment.
+Ideally, you should take advantage of the compute emulator and use Visual Studio to identify and fix most bugs in your code, as this provides the most productive environment for debugging. Nevertheless, some bugs might remain undetected and will only manifest themselves once you deploy the application to the cloud. These are often the result of missing dependencies or caused by differences in the execution environment. The Visual Studio tools can help you debug these errors if you enable remote debugging when you publish your service and then attach the debugger to a role instance.
 
-Once you deploy an application to the cloud, you are no longer able to attach a debugger and instead, need to rely on debugging information written to logs in order to diagnose and troubleshoot application failures. Windows Azure provides comprehensive diagnostic facilities that allow capturing information from different sources, including Windows Azure application logs, IIS logs, failed request traces, Windows event logs, custom error logs, and crash dumps. The availability of this diagnostic information relies on the Windows Azure Diagnostics Monitor to collect data from individual role instances and transfer this information to Windows Azure storage for aggregation. Once the information is in storage, you can retrieve it and analyze it.
+However, there are some scenarios for which you should not use remote debugging. An example is when you deploy an application to a production environment, because clients using the production service might be adversely affected. Instead, you need to rely on debugging information written to logs in order to diagnose and troubleshoot application failures. Windows Azure provides comprehensive diagnostic facilities that allow capturing information from different sources, including Windows Azure application logs, IIS logs, failed request traces, Windows event logs, custom error logs, and crash dumps. The availability of this diagnostic information relies on the Windows Azure Diagnostics Monitor to collect data from individual role instances and transfer this information to Windows Azure storage for aggregation. Once the information is in storage, you can retrieve it and analyze it.
 
 Sometimes an application may crash before it is able to produce logs that can help you determine the cause of the failure. With IntelliTrace debugging, a feature available in the Visual Studio 2013 Ultimate edition, you can log extensive debugging information for a role instance while it is running in Windows Azure. The lab discusses how to enable IntelliTrace for an Azure deployment to debug role start up failures.
 
@@ -18,7 +17,7 @@ Sometimes an application may crash before it is able to produce logs that can he
 
 In this hands-on lab, you will:
 
-- Learn what features and techniques are available in Visual Studio and Windows Azure to debug applications once deployed to Windows Azure.
+- Learn what features are available in Visual Studio to debug cloud services.
 
 - Use a simple **TraceListener** to log directly to table storage and a viewer to retrieve these logs.
 
@@ -80,13 +79,14 @@ Estimated time to complete this lab: **40 minutes**.
 <a name="Exercise1"></a>
 ### Exercise 1: Debugging a Cloud Service in Visual Studio ###
 
-(TODO: REVIEW INTRO)
-Because Windows Azure Diagnostics is oriented towards operational monitoring and has to cater for gathering information from multiple role instances, it requires that diagnostic data first be transferred from local storage in each role to Windows Azure storage, where it is aggregated. This requires programming scheduled transfers with the diagnostic monitor to copy logging data to Windows Azure storage at regular intervals, or else requesting a transfer of the logs on-demand. Moreover, information obtained in this manner provides a snapshot of the diagnostics data available at the time of the transfer. To retrieve updated data, a new transfer is necessary. When debugging a single role, and especially during the development phase, these actions add unnecessary friction to the process. To simplify the retrieval of diagnostics data from a deployed role, it is simpler to read information directly from Windows Azure storage, without requiring additional steps.
+In this exercise, you will debug a simple cloud service application locally from Visual Studio by using the Windows Azure compute emulator. Then, you will learn how to use the Visual Studio tools to attach the debuger to the application when it is running in Windows Azure.
+
+The cloud service application that you will use for this exercise simulates an online auto insurance policy calculator. It has a single form where users can enter details about their vehicle and then submit the form to obtain an estimate on their insurance premium. Behind the scenes, the controller action that processes the form uses a separate assembly to calculate premiums based on the input from the user. The assembly contains a bug that causes it to raise an exception for input values that fall outside the expected range.
 
 <a name="Ex1Task1"></a>
 #### Task 1 - Debugging the Fabrikam Insurance Application on the Local Computer ####
 
-In this task, you build and run the Fabrikam Insurance application in the Windows Azure compute emulator so you can test and debug the cloud service before you deploy it.
+In this task, you will build and run the Fabrikam Insurance application in the Windows Azure compute emulator so you can test and debug the cloud service before you deploy it.
 
 1. Open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Express 2013 for Web** shortcut and choosing **Run as administrator**.
 
@@ -138,7 +138,7 @@ In this task, you build and run the Fabrikam Insurance application in the Window
 <a name="Ex1Task2"></a>
 #### Task 2 - Debugging the Fabrikam Insurance Application in Windows Azure ####
 
-In this task, you wil deploy the Fabrikam insurance application to Windows Azure and enable remote debugging when publishing the service. This will allow you to attach the Visual Studio debugger to the running cloud service in Windows Azure.
+In this task, you wil deploy the Fabrikam insurance application to Windows Azure and enable remote debugging when publishing the service. This will allow you to attach the Visual Studio debugger to the deployed cloud service.
 
 1. In **Solution Explorer**, right-click the **FabrikamInsurance.Azure** cloud project and select **Publish**.
 In the **Publish Windows Azure Application** dialog, click **Sign In** and sign in using the Microsoft account associated with your Windows Azure account. 
@@ -203,9 +203,9 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 1. The debugger automatically attaches to the appropriate host process for your role. Depending on what the role is, the debugger attaches to w3wp.exe, WaWorkerHost.exe, or WaIISHost.exe. To verify the process to which the debugger is attached, expand the instance node in **Server Explorer**.
 
-	![Procesess the debugger is attached to](Images/process-the-debugger-is-attached-to.png?raw=true)
+	![Processes to which the debugger is attached](Images/process-the-debugger-is-attached-to.png?raw=true)
 
-	_Process the debugger is attached to_
+	_Processes to which the debugger is attached_
 
 	> **Note:** To identify the processes to which the debugger is attached, open the **Processes** dialog box by selecting then **Debug** menu option, then pointing to **Windows** and then **Processes**.
 
@@ -213,13 +213,13 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 1. Just like in the local scenario, an unhandled exception occurs and execution halts in the Visual Studio debugger at the line that caused the error. But this time, Visual Studio is debugging the code running in the remote process.
 
- 	![Unhandled exception thrown in the remote service](Images/unhandled-exception-in-the-application-caused-by-bad-data.png?raw=true)
+ 	![Unhandled exception in the deployed application](Images/unhandled-exception-in-the-application-caused-by-bad-data.png?raw=true)
 
-	_Unhandled exception thrown by the remote process_
+	_Unhandled exception in the deployed application_
 
-	> **Note:** After the debugger attaches to a role or an instance, you can debug as usual. However, you should avoid long stops at breakpoints when remote debugging because Windows Azure treats a process that is stopped for longer than a few minutes as unresponsive and stops sending traffic to that instance. If you stop too much time, the Remote Debugging Monitor (_msvsmon_._exe_) shuts down and terminates your debugging session.
+	> **Note:** After the debugger attaches to a role or an instance, you can debug as usual. However, you should avoid long stops at breakpoints when remote debugging because Windows Azure treats a process that is stopped for longer than a few minutes as unresponsive and stops sending traffic to that instance. If you stop too much time, the Remote Debugging Monitor (_msvsmon_._exe_) that runs on on your role instance shuts down and terminates your debugging session.
 
-1. Press **F5** to continue execution and let ASP.NET handle the exception. Notice that this time the application shows a generic error page instead of the exception details that you saw earlier when running the application locally. This is because the default mode for the **customErrors** element is _remoteOnly_, and  the application been now deployed to Windows Azure.
+1. Press **F5** to continue execution and let ASP.NET handle the exception. Notice that this time the application shows a generic error page instead of the exception details that you saw earlier when running the application locally. This is because the default mode for the **customErrors** element is _remoteOnly_, and the application is now running in Windows Azure.
 
 	![Generic error page](Images/generic-error-page.png?raw=true)
 
@@ -230,18 +230,16 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 <a name="Exercise2"></a>
 ### Exercise 2: Adding diagnostic trace ###
 
-In this exercise, you debug a simple application by configuring Windows Azure Diagnostics. Windows Azure Diagnostics captures system data and logging data on the virtual machine instances that run your cloud service and brings that data to your storage account. To produce diagnostic data, you instrument the application to write its trace information using standard methods in the System.Diagnostics namespace. Finally, you use the tools in Visual Studio to retrieve and display the contents of the diagnostics table.
+Because Windows Azure Diagnostics is oriented towards operational monitoring and has to cater for gathering information from multiple role instances, it requires that diagnostic data first be transferred from local storage in each role to Windows Azure storage, where it is aggregated. The diagnostic monitor then performs scheduled transfers to copy logging data to Windows Azure storage at regular (and configured) intervals.
 
-The application that you will use for this exercise simulates an online auto insurance policy calculator. It has a single form where users can enter details about their vehicle and then submit the form to obtain an estimate on their insurance premium. Behind the scenes, the controller action that processes the form uses a separate assembly to calculate premiums based on the input from the user. The assembly contains a bug that causes it to raise an exception for input values that fall outside the expected range.
+In this exercise, you will debug the Fabrikam insurance application by configuring Windows Azure Diagnostics. To produce diagnostic data, you will instrument the application to write its trace information using standard methods in the System.Diagnostics namespace. Finally, you will take advantage of the the tools provided by Visual Studio to retrieve and display the contents of the diagnostics table.
 
 <a name="Ex2Task1"></a>
 #### Task 1 - Adding Tracing Support to the Application ####
 
-(TODO: REVIEW INTRO)
+To debug the application once you deploy it to a production environment, you should write debugging information to the logs in order to diagnose an application failure.
 
-In the previous exercise, you briefly saw how to debug your application with Visual Studio when it executes locally in the compute emulator. To debug the application once you deploy it to the cloud, you need to write debugging information to the logs in order to diagnose an application failure.
-
-In this task, you configure Windows Azure Diagnostics to log diagnostics data into table storage, where you can easily retrieve it with a simple query. More information on the Trace Listener can be found here: [http://msdn.microsoft.com/en-us/library/system.diagnostics.tracelistener.aspx](http://msdn.microsoft.com/en-us/library/system.diagnostics.tracelistener.aspx)
+In this task, you will configure Windows Azure Diagnostics in the Fabrikam Insurance application and instrument the application to trace diagnostics data.
 
 1. If not already open, open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Express 2013 for Web** shortcut and choosing **Run as administrator**.
 
@@ -358,7 +356,7 @@ In this task, you configure Windows Azure Diagnostics to log diagnostics data in
 <a name="Ex2Verification"></a>
 #### Verification ####
 
-You are now ready to execute the solution in Windows Azure. At this point, the application is ready for tracing and can send all its diagnostics output to a table in storage services. You can view the diagnostics data in either a report that Visual Studio generates or tables in your storage account.
+You are now ready to re-deploy and run the solution in Windows Azure. At this point, the application is ready for tracing and configured to collect and transfer all its diagnostics output to a table in storage services. You will use the Visual Studio tools to examine the diagnostics data generated by the application.
 
 1. Deploy the application again. Wait until the deployment completes and navigate to the deployed cloud service.
 
