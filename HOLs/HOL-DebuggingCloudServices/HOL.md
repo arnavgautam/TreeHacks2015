@@ -8,7 +8,7 @@ Using Visual Studio, you can debug applications in your local machine by steppin
 
 Ideally, you should take advantage of the compute emulator and use Visual Studio to identify and fix most bugs in your code, as this provides the most productive environment for debugging. Nevertheless, some bugs might remain undetected and will only manifest themselves once you deploy the application to the cloud. These are often the result of missing dependencies or caused by differences in the execution environment. The Visual Studio tools can help you debug these errors if you enable remote debugging when you publish your service and then attach the debugger to a role instance.
 
-However, there are some scenarios for which you should not use remote debugging. An example is when you deploy an application to a production environment, because clients using the production service might be adversely affected. Instead, you need to rely on debugging information written to logs in order to diagnose and troubleshoot application failures. Windows Azure provides comprehensive diagnostic facilities that allow capturing information from different sources, including Windows Azure application logs, IIS logs, failed request traces, Windows event logs, custom error logs, and crash dumps. The availability of this diagnostic information relies on the Windows Azure Diagnostics Monitor to collect data from individual role instances and transfer this information to Windows Azure storage for aggregation. Once the information is in storage, you can retrieve it and analyze it.
+However, there are some scenarios for which you should not use remote debugging. For example, if you start a remote debugging session with a cloud service hosted in a production environment, clients using the production service might be adversely affected. Instead, you need to rely on debugging information written to logs in order to diagnose and troubleshoot application failures. Windows Azure provides comprehensive diagnostic facilities that allow capturing information from different sources, including Windows Azure application logs, IIS logs, failed request traces, Windows event logs, custom error logs, and crash dumps. The availability of this diagnostic information relies on the Windows Azure Diagnostics Monitor to collect data from individual role instances and transfer this information to Windows Azure storage for aggregation. Once the information is in storage, you can retrieve it and analyze it.
 
 Sometimes an application may crash before it is able to produce logs that can help you determine the cause of the failure. With IntelliTrace debugging, a feature available in the Visual Studio 2013 Ultimate edition, you can log extensive debugging information for a role instance while it is running in Windows Azure. The lab discusses how to enable IntelliTrace for an Azure deployment to debug role start up failures.
 
@@ -68,7 +68,7 @@ Throughout the lab document, you will be instructed to insert code blocks. For y
 
 This hands-on lab includes the following exercises:
 
-- [Learn What Features and Techniques are Available in Visual Studio and Windows Azure](#Exercise1)
+- [Debugging a Cloud Service in Visual Studio](#Exercise1)
 
 - [Adding Diagnostic Trace](#Exercise2)
 
@@ -79,7 +79,7 @@ Estimated time to complete this lab: **40 minutes**.
 <a name="Exercise1"></a>
 ### Exercise 1: Debugging a Cloud Service in Visual Studio ###
 
-In this exercise, you will debug a simple cloud service application locally from Visual Studio by using the Windows Azure compute emulator. Then, you will learn how to use the Visual Studio tools to attach the debuger to the application when it is running in Windows Azure.
+In this exercise, you will debug a simple cloud service application locally from Visual Studio by using the Windows Azure compute emulator. Then, you will learn how to use the Visual Studio tools to attach the debugger to the application when it is running in Windows Azure.
 
 The cloud service application that you will use for this exercise simulates an online auto insurance policy calculator. It has a single form where users can enter details about their vehicle and then submit the form to obtain an estimate on their insurance premium. Behind the scenes, the controller action that processes the form uses a separate assembly to calculate premiums based on the input from the user. The assembly contains a bug that causes it to raise an exception for input values that fall outside the expected range.
 
@@ -157,6 +157,8 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 1. Make sure the cloud service you just created is selected. Then, click the drop down list labeled **Build configuration** and select **Debug**.
 
+	> **Note:** For simplicity, you will debug the  cloud service deployed to the **Production** environment. In a real-world scenario, you should work in the **Staging** environment when performing remote debugging.
+
 	![Deployment common settings](Images/deployment-common-settings-debugging.png?raw=true)
 
 	_Deployment common settings_
@@ -217,7 +219,7 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 	_Unhandled exception in the deployed application_
 
-	> **Note:** After the debugger attaches to a role or an instance, you can debug as usual. However, you should avoid long stops at breakpoints when remote debugging because Windows Azure treats a process that is stopped for longer than a few minutes as unresponsive and stops sending traffic to that instance. If you stop too much time, the Remote Debugging Monitor (_msvsmon_._exe_) that runs on on your role instance shuts down and terminates your debugging session.
+	> **Note:** After the debugger attaches to a role or an instance, you can debug as usual. However, you should avoid long stops at breakpoints when remote debugging because Windows Azure treats a process that is stopped for longer than a few minutes as unresponsive and stops sending traffic to that instance. If you stop too much time, the Remote Debugging Monitor (_msvsmon_._exe_) that runs on your role instance shuts down and terminates your debugging session.
 
 1. Press **F5** to continue execution and let ASP.NET handle the exception. Notice that this time the application shows a generic error page instead of the exception details that you saw earlier when running the application locally. This is because the default mode for the **customErrors** element is _remoteOnly_, and the application is now running in Windows Azure.
 
@@ -230,7 +232,7 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 <a name="Exercise2"></a>
 ### Exercise 2: Adding diagnostic trace ###
 
-Because Windows Azure Diagnostics is oriented towards operational monitoring and has to cater for gathering information from multiple role instances, it requires that diagnostic data first be transferred from local storage in each role to Windows Azure storage, where it is aggregated. The diagnostic monitor then performs scheduled transfers to copy logging data to Windows Azure storage at regular (and configured) intervals.
+Because Windows Azure Diagnostics is oriented towards operational monitoring and has to cater for gathering information from multiple role instances, it requires that diagnostic data first be transferred from local storage in each role to Windows Azure storage, where it is aggregated. The Diagnostics Monitor -a process running on your role instances- then performs scheduled transfers to copy logging data to Windows Azure storage at regular intervals.
 
 In this exercise, you will debug the Fabrikam insurance application by configuring Windows Azure Diagnostics. To produce diagnostic data, you will instrument the application to write its trace information using standard methods in the System.Diagnostics namespace. Finally, you will take advantage of the the tools provided by Visual Studio to retrieve and display the contents of the diagnostics table.
 
@@ -259,21 +261,27 @@ In this task, you will configure Windows Azure Diagnostics in the Fabrikam Insur
 
 	_Making sure that diagnostics are enabled_
 
-1. To customize the settings, choose the Custom plan option button, and then choose the Edit button.
+1. To customize the settings, select the **Custom plan** option, and then click the **Edit** button.
 
-	> **Note:** Of the available options (Errors only, All information, and Custom plan), Errors only is the default option and requires the least amount of storage because it doesn’t transfer warnings or tracing messages. All information transfers the most information and is, therefore, the most expensive option.
+	> **Note:** Among the available options (**Errors only**, **All information**, and **Custom plan**), **Errors only** is the default option and requires the least amount of storage because it doesn’t transfer warnings or tracing messages. All information transfers the most information and is, therefore, the most expensive option.
 
 	![Selecting the custom plan](Images/selecting-the-custom-plan.png?raw=true "Selecting the custom plan")
 
 	_Selecting the custom plan_
 
-1. In the **Application logs** tab of the **Diagnostics configuration** dialog select **All** as **Log level** in order to log all trace messages (not only the application errors). Click **OK** to close the dialog.
+1. In the **Application logs** tab of the **Diagnostics configuration** dialog select **All** as **Log level** in order to log all trace messages (not only the application errors).
 
 	![Selecting the All log level for Application logs](Images/selecting-the-all-log-level-for-application-l.png?raw=true "Selecting the All log level for Application logs")
 
 	_Selecting the All log level for Application logs_
 
-1. To instrument the application and write diagnostics information to the error log, add a global error handler to the application. To do this, insert the following method into the **MVCApplication** class.
+1.  Make sure that the **Transfer period** is set to **1 minute**. The Diagnostic Monitor will transfer the application logs from the role instances to Windows Azure storage in this time interval.
+
+	![Application logs transfer period](Images/application-logs-transfer-period.png?raw=true)
+
+1. Click **OK** to close the dialog.
+
+1. To instrument the application and write diagnostics information to the error log, add a global error handler to the application. To do this, open the **Global.asax.cs** file located in the **FabrikamInsurance** project and insert the following method into the **MVCApplication** class.
 
 	(Code Snippet - WindowsAzureDebugging-Ex2-Application_Error-CS)
 	<!-- mark:5-9 -->
@@ -292,7 +300,7 @@ In this task, you will configure Windows Azure Diagnostics in the Fabrikam Insur
 
 	> **Note:** The **Application_Error** event is raised to catch any unhandled ASP.NET errors while processing a request. The event handler shown above retrieves a reference to the unhandled exception object using **Server.GetLastError** and then uses the **TraceError** method of the **System.Diagnostics.Trace** class to log the error message. 
 
-	>Note that the **Trace** object outputs the message to each listener in its **Listeners** collection. Typically, the collection also contains instances of the **DefaultTraceListener** class and, when executing the solution in the compute emulator, the **DevelopmentFabricTraceListener**.  The latter writes its output to a log that you can view from the Compute Emulator UI. 
+	>Note that the **Trace** object outputs the message to each listener in its **Listeners** collection, which by default contains an instance of the **DefaultTraceListener** class. The role project templates provided by the Windows Azure Tools for Microsoft Visual Studio already include the settings required in the **Web.config** or **App.config** file  of the role to use the **DiagnosticMonitorTraceListener** to write to the Windows Azure diagnostics log. When using this type of trace listener, the logs are gathered locally in each role. The Diagnostic Monitor then copies the information to the storage service account configured in the _ServiceConfiguration.cscfg_  file (transferred trace data is located in the _WADLogsTable_ of the storage account).
 
 1. Open the **QuoteController.cs** file in the **Controllers** folder of the **FabrikamInsurance** project and add the following method. 
 
@@ -358,35 +366,35 @@ In this task, you will configure Windows Azure Diagnostics in the Fabrikam Insur
 
 You are now ready to re-deploy and run the solution in Windows Azure. At this point, the application is ready for tracing and configured to collect and transfer all its diagnostics output to a table in storage services. You will use the Visual Studio tools to examine the diagnostics data generated by the application.
 
-1. Deploy the application again. Wait until the deployment completes and navigate to the deployed cloud service.
+1. Deploy the application again, making sure to select the cloud service and the storage account created in Exercise 1.
 
-1. In the browser window, complete the form making sure that you choose "_PORSCHE"_ for the **Make** of the vehicle and "_BOXSTER (BAD DATA)_" for the **Model**. 
+1. Wait until the deployment completes and navigate to the deployed cloud service. In the browser window, complete the form making sure that you choose "_PORSCHE"_ for the **Make** of the vehicle and "_BOXSTER (BAD DATA)_" for the **Model** (the generic error page should be diplayed).
 
-1. Switch back to Visual Studio, open **Server Explorer** and Right-Click the **FabrikamInsurance** role instance under the **Cloud Services** node. Click **View Diagnostic Data**.
+1. Switch back to Visual Studio, open **Server Explorer** and right-click the **FabrikamInsurance** role instance under the **Cloud Services** node. Then select **View Diagnostic Data**.
 
 	![Clicking View Diagnostics Data](Images/clicking-view-diagnostics-data.png?raw=true "Clicking View Diagnostics Data")
 	
 	_Clicking View Diagnostics Data_
 
-1. The **Diagnostics Summary** report should appears, showing the available data, including an entry with the error message for the unhandled exception under the **Windows Azure application logs** section which you will need to expand in order to see the list of messages. If the most recent data doesn't appear, you might have to wait for the transfer period to elapse. Click the **Refresh** button to update the data.
+1. In the **Diagnostics summary** window, expand the **Windows Azure application logs** section in order to see the list of messages. A log entry corresponding to the error message for the unhandled exception should appear. If the error message is not displayed yet, you might have to wait for the transfer period to elapse and then click the **Refresh** button to update the log list.
 	
-	![Showing the exception message in the diagnostics summary](Images/showing-the-exception-message.png?raw=true "Showing the exception message in the diagnostics summary")
+	![Showing the error trace message in the Diagnostics summary](Images/showing-the-error-trace-message.png?raw=true "Showing the error trace message in the Diagnostics summary")
 
-	_Showing the exception message in the diagnostics summary_
+	_Showing the exception message in the Diagnostics summary_
 
 1. To view the output from other informational trace messages, return to the browser window and click **About** followed by **Quotes** to execute both actions in the controller. Recall that you inserted trace messages at the start of each method.
 
-1. Go bach to the **Diagnostics Summary** report and click the **Refresh** button to update the data. Note that you will not see any new entry as only errors are displayed in the summary. In order to see the informational trace messages you need to click **View all data** below the **Windows Azure application log** table.
+1. Go bach to the **Diagnostics Summary** report. Note that you will not see new entries as only errors are displayed in the summary. In order to see the informational trace messages you need to click **View all data** below the **Windows Azure application log** table.
 
 	![Clicking View all data](Images/clicking-view-all-data.png?raw=true "Clicking View all data")
 
 	_Clicking View all data_
 
-1. The **WADLogsTable** explorer should open showing at least four entries. Search for the **Message** column and locate the ones with the information trace messages for the controller actions.
+1. the Windows Azure Storage Table viewer should open, loading the content of the **WADLogsTable** table. Locate the log entries with the information trace messages. If the infromation messages are not displayed yet, you might have to wait for the transfer period to elapse and then click the **Refresh** icon from the toolbar reload the table contents.
 
-	![Showing the information trace messages for the controller actions](Images/showing-the-information-trace-messages.png?raw=true "Showing the information trace messages for the controller actions")
+	![Showing informational trace messages for the controller actions](Images/showing-informational-trace-messages.png?raw=true)
 
-	_Showing the information trace messages for the controller actions_
+	_Showing informational trace messages for the controller actions_
 
 
 <a name="Exercise3"></a>
