@@ -1,0 +1,32 @@
+﻿@model PhotoUploader_WebRole.Models.PhotoViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <div>
+        <label>Title</label>
+        @Html.TextBoxFor(x => x.Title)
+    </div>
+    <div>
+        <label>Description</label>
+        @Html.TextBoxFor(x => x.Description)
+    </div>
+    <div>
+        <label>Image</label>
+        <input type="file" name="file" id="file" />
+    </div>
+    if (this.User.Identity.IsAuthenticated){
+        <div>
+            @Html.CheckBox("Public", false)  Public
+        </div>
+    } else {
+        <div>
+            @Html.CheckBox("Public", true, new { disabled = "disabled" })  Public
+        </div>
+    }
+    <input type="submit" value="Create" />
+}
