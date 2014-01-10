@@ -4,6 +4,14 @@
     <Instances count="1" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="FabrikamStorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=[your-account-name];AccountKey=[your-account-key]" />
+    </ConfigurationSettings>
+  </Role>
+  <Role name="FabrikamWorker">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="FabrikamStorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=[your-account-name];AccountKey=[your-account-key]" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>
