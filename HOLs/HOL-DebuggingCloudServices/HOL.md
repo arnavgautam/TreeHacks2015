@@ -579,9 +579,37 @@ In the **Publish Windows Azure Application** dialog, leave the IntelliTrace opti
 
 1. You may download the IntelliTrace log for the running application and compare it with the log that you obtained earlier, when the application failed to start. This will increase your ability to recognize which exceptions are normal.
 
+## Next Steps ##
+
+To learn more about debugging applications in Windows Azure, please refer to the following articles:
+
+**Technical Reference**
+
+This is a list of articles that expands the information on the technologies explained on this lab:
+
+- [Debugging in Visual Studio](http://msdn.microsoft.com/en-us/library/sc65sadd.aspx>): This article extensively covers the debugging functions integrated with Visual Studio.
+
+- [Debugging a Cloud Service with Emulator Express](http://msdn.microsoft.com/en-us/library/windowsazure/dn339018.aspx): By using Emulator Express, you can test and debug a cloud service without running Visual Studio as an administrator.
+
+- [Initialize or Change Windows Azure Diagnostics Configuration](http://msdn.microsoft.com/en-us/library/windowsazure/hh411537.aspx): This article describes the different aspects of the Diagnostic configuration, like the Diagnostics data sources, the Diagnostics Monitor settings and the storage of the Diagnostics data.
+
+- [Create and Use Performance Counters in a Windows Azure Application](http://msdn.microsoft.com/en-us/library/windowsazure/hh411542.aspx): You can use performance counters to measure the health of your Windows Azure application. You can collect data from existing performance counters or you can create custom performance counters to collect additional data.
+
+- [How to: Configure Trace Switches](http://msdn.microsoft.com/en-us/library/t06xyy08.aspx): By placing **Trace Switches** in your code, you can control whether tracing occurs and how extensive it is. This lets you monitor the status of your application in a production environment.
+
+- [Debug Your App by Recording Code Execution with IntelliTrace](http://msdn.microsoft.com/en-us/library/dd264915.aspx): Explains how to you use IntelliTrace to record and trace your code's execution history.
+
+**Development**
+
+- [Remotely Change the Diagnostic Monitor Configuration](http://msdn.microsoft.com/en-us/library/windowsazure/gg432992.aspx): After you have deployed a cloud service you can remotely change the configuration of the diagnostic monitor from code running in an application outside of Windows Azure using the [DeploymentDiagnosticManager](http://msdn.microsoft.com/en-us/library/windowsazure/microsoft.windowsazure.diagnostics.management.deploymentdiagnosticmanager.aspx) class.
+
+- [Trace the Flow of Your Windows Azure Application](http://msdn.microsoft.com/en-us/library/windowsazure/hh411529.aspx): You can add tracing and debugging instrumentation to your Windows Azure application when you develop it, and you can use that instrumentation both while you are developing the application and after you have deployed it.
+
+- [API Reference for IntelliTrace Extensibility](http://msdn.microsoft.com/en-us/library/ee661590.aspx): Provides information to use IntelliTrace extensibility APIs to read and decode .itrace files in your application.
+
 <a name="Summary"></a>
 ## Summary ##
 
-By completing this hands-on lab, you learnt how to apply simple debugging techniques to troubleshoot your Windows Azure application once you deploy it to the cloud. You saw how to use standard .NET diagnostics to write diagnostics output directly into table storage with a custom trace listener.
+By completing this hands-on lab, you learnt how to apply simple debugging techniques to troubleshoot your Windows Azure application locally and once you deploy it to the cloud. You saw how to use the Windows Azure Tools for Visual Studio to configure Windows Azure Diagnostics.
 
 Using IntelliTrace, you quickly diagnosed a role that failed to start due to a missing dependency; an error that would otherwise have been very difficult to diagnose in the cloud.
