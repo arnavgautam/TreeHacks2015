@@ -45,12 +45,25 @@
       <RoleName>FabrikamInsurance</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
+    <ProjectReference Include="..\FabrikamWorker\FabrikamWorker.csproj">
+      <Name>FabrikamWorker</Name>
+      <Project>{2342ef30-4deb-4208-9d69-851ebb57d415}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>FabrikamWorker</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FabrikamInsuranceContent\" />
+    <Folder Include="FabrikamWorkerContent\" />
+    <Folder Include="Profiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FabrikamInsuranceContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="FabrikamWorkerContent\diagnostics.wadcfg">
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>
