@@ -414,11 +414,11 @@ In this exercise, you explore the use of IntelliTrace to diagnose a role start-u
 In this task, you will publish to Windows Azure the FabrikamInsurance application directly from Visual Studio, with the IntelliTrace feature enabled.
 
 
-1. If it is not already open, launch **Microsoft Visual Studio Ultimate 2012** as Administrator.
+1. If it is not already open, launch **Microsoft Visual Studio Ultimate 2013** as Administrator.
 
 1. In the **File** menu, choose **Open Project** and browse to **Ex3-DebuggingWithIntelliTrace\Begin** in the **Source** folder of the lab. Select **Begin.sln** and click Open.
 
-1. In the **Solution Explorer**, right-click the **FabrikamInsuranceService** cloud project and select **Publish**.
+1. In the **Solution Explorer**, right-click the **FabrikamInsurance.Azure** cloud project and select **Publish**.
 
 1. In the **Common Settings** tab, notice that the dialog populates the drop down list labeled **Cloud Service** with the information for all the services configured in your Windows Azure account. Select the cloud service that you created during the task 1 of this exercise.
  
@@ -554,7 +554,7 @@ In this task, you add the missing assembly to the service package and re-deploy 
 
 	_Including an assembly in the service package deployed to Windows Azure_
 
-1. In **Solution Explorer**, right-click the **FabrikamInsuranceService** cloud project and select **Publish**.
+1. In **Solution Explorer**, right-click the **FabrikamInsurance.Azure** cloud project and select **Publish**.
 In the **Publish Windows Azure Application** dialog, leave the IntelliTrace option enabled and then click **Publish** to start the deployment process one more time. You may wish to change the **Deployment label** to identify the deployment as the one that contains the bug fix.
 
 	![Deploying the updated application](Images/deploying-updated-application.png?raw=true "Deploying the updated application")
