@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "PhotoUploader", "PhotoUploader\PhotoUploader.ccproj", "{6B39D584-6261-4A64-B5D3-730FF1A3725F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoUploader_WebRole", "PhotoUploader_WebRole\PhotoUploader_WebRole.csproj", "{56798216-60A7-43CA-A763-B13556FD64BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueProcessor_WorkerRole", "QueueProcessor_WorkerRole\QueueProcessor_WorkerRole.csproj", "{87BBF9A5-C6CE-424C-A299-5BA1470FBE96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E401A768-7722-479B-907C-7CAE956EA456}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B39D584-6261-4A64-B5D3-730FF1A3725F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B39D584-6261-4A64-B5D3-730FF1A3725F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B39D584-6261-4A64-B5D3-730FF1A3725F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B39D584-6261-4A64-B5D3-730FF1A3725F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56798216-60A7-43CA-A763-B13556FD64BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56798216-60A7-43CA-A763-B13556FD64BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56798216-60A7-43CA-A763-B13556FD64BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56798216-60A7-43CA-A763-B13556FD64BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87BBF9A5-C6CE-424C-A299-5BA1470FBE96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87BBF9A5-C6CE-424C-A299-5BA1470FBE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87BBF9A5-C6CE-424C-A299-5BA1470FBE96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87BBF9A5-C6CE-424C-A299-5BA1470FBE96}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

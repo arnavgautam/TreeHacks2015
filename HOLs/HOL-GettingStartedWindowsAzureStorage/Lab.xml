@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+	<Id>GettingStartedWindowsAzureStorage</Id>
+	<Technologies>
+	    <Technology>Windows Azure</Technology>
+	</Technologies>
+	<Author>
+		<Name></Name>
+	</Author>
+	<Description>In this lab, you will learn the basics of Windows Azure Storage, how to create and configure storage accounts and how you can programmatically can access the different types of storage service. Blobs, Tables, and Queues are all available as part of the Windows Azure Storage account, and provide durable storage on the Windows Azure platform.</Description>  
+	<Document ConversionType="Html">.\HOL.md</Document>
+	<Title>Getting Started With Windows Azure Storage</Title>
+	<Version>2.0.1</Version>
+	<Source>.\Source</Source>
+	<DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+	<CustomProperties>
+		<Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-GettingStartedWindowsAzureStorage" />
+		<Property Name="ContentType" Value="VS2013" />
+	</CustomProperties>   
+</Lab>

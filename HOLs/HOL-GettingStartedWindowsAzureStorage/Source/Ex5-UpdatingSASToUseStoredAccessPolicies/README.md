@@ -1,0 +1,1 @@
+﻿In order to execute this solution against Windows Azure Storage you must first update Web Role and Worker Role properties with the **AccountName** and **AccountKey**. Then you must update the uris properties in **BaseController.cs** file in WebRole Project and in **WorkerRole.cs** file in WorkerRole Project
