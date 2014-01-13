@@ -420,13 +420,17 @@ In this exercise, you explore the use of IntelliTrace to diagnose a role start-u
 In this task, you will publish to Windows Azure the FabrikamInsurance application directly from Visual Studio, with the IntelliTrace feature enabled.
 
 
-1. If it is not already open, launch **Microsoft Visual Studio Ultimate 2013** as Administrator.
+1. If it is not already open, launch **Microsoft Visual Studio Ultimate 2013**.
 
 1. In the **File** menu, choose **Open Project** and browse to **Ex3-DebuggingWithIntelliTrace\Begin** in the **Source** folder of the lab. Select **Begin.sln** and click Open.
 
+1. In the **Solution Explorer**, expand the **FabrikamInsurance.Azure** cloud project and open the file named **ServiceConfiguration.Cloud.cscfg** in order to update the **FabrikamStorageConnectionString** for the FabrikamInsurance and FabrikamWorker roles.
+
+1. Update the value of both **FabrikamStorageConnectionString** entries replacing the **[your-account-name]** and **[your-account-key]** placeholders with your storage account name and key and save the changes. 
+
 1. In the **Solution Explorer**, right-click the **FabrikamInsurance.Azure** cloud project and select **Publish**.
 
-1. In the **Common Settings** tab, notice that the dialog populates the drop down list labeled **Cloud Service** with the information for all the services configured in your Windows Azure account. Select the cloud service that you created during the task 1 of this exercise.
+1. In the **Common Settings** tab, select the cloud service that you created during the first exercise of this lab.
  
 	![Deployment Common Settings](Images/deployment-common-settings.png?raw=true "Deployment Common Settings")
 	

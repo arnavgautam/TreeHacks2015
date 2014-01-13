@@ -852,25 +852,26 @@ To learn more about configuring Windows Azure Media Services, please refer to th
 
 This is a list of articles that expands the information on the technologies explained on this lab:
 
-- [Developing Windows Azure Media Services Client Applications](http://msdn.microsoft.com/en-us/library/dn223283.aspx): SDKs contain libraries and APIs that allow you to create client applications. Player Frameworks are built on top of the SDKs and contain user controls for common applications scenarios and out-of-the-box sample player applications and documentation. Both SDKs and Player Frameworks are available for multiple platforms.
+- [Developing Windows Azure Media Services Client Applications](http://aka.ms/S0u1ly): SDKs contain libraries and APIs that allow you to create client applications. Player Frameworks are built on top of the SDKs and contain user controls for common applications scenarios and out-of-the-box sample player applications and documentation. Both SDKs and Player Frameworks are available for multiple platforms.
 
-- [Smooth Streaming Technical Overview ](http://www.iis.net/learn/media/on-demand-smooth-streaming/smooth-streaming-technical-overview): The **Smooth Streaming Technical Overview** provides a comprehensive history, context, introduction, and technical description of Smooth Streaming.
+- [Smooth Streaming Technical Overview ](http://aka.ms/Soeygn): The **Smooth Streaming Technical Overview** provides a comprehensive history, context, introduction, and technical description of Smooth Streaming.
 
-- [Ingesting Assets in Bulk with the Media Services SDK for .NET](http://msdn.microsoft.com/en-us/library/windowsazure/jj853022.aspx): Uploading large asset files can be a bottleneck during asset creation. Ingesting Assets in Bulk or “Bulk Ingesting”, involves decoupling asset creation from the upload process.
+- [Ingesting Assets in Bulk with the Media Services SDK for .NET](http://aka.ms/Fe4bp3): Uploading large asset files can be a bottleneck during asset creation. Ingesting Assets in Bulk or “Bulk Ingesting”, involves decoupling asset creation from the upload process.
 
-- [Inserting Ads into your Media](http://msdn.microsoft.com/en-us/library/windowsazure/dn387403.aspx): Windows Azure Media Services provides support for ad insertion through the Windows Media Platform: Player Frameworks. Player frameworks with ad support are available for Windows 8, Silverlight, Windows Phone 8, and iOS devices.
+- [Inserting Ads into your Media](http://aka.ms/Q3t667): Windows Azure Media Services provides support for ad insertion through the Windows Media Platform: Player Frameworks. Player frameworks with ad support are available for Windows 8, Silverlight, Windows Phone 8, and iOS devices.
 
 **Development**
 
 This is a list of developer-oriented articles related to Windows Azure Media Services:
 
-- [How to: Deliver an Asset by Download](http://www.windowsazure.com/en-us/documentation/articles/media-services-deliver-asset-download/): This topic discusses options for delivering media assets uploaded to Media Services. You can deliver Media Services content in numerous application scenarios. You can download media assets, or access them by using a locator. You can send media content to another application or to another content provider.
 
-- [How to: Deliver streaming content](http://www.windowsazure.com/en-us/documentation/articles/media-services-deliver-streaming-content/): In addition to downloading media content from Media Services, you can use adaptive bitrate streaming to deliver content. For example, you can create a direct URL, called a locator, to streaming content on a Media Services origin server. Client applications such as Microsoft Silverlight can play the streaming content directly from the locator.
+- [How to: Deliver an Asset by Download](http://aka.ms/Rtzki2): This topic discusses options for delivering media assets uploaded to Media Services. You can deliver Media Services content in numerous application scenarios. You can download media assets, or access them by using a locator. You can send media content to another application or to another content provider.
 
-- [How to: Deliver Apple HLS streaming content](http://www.windowsazure.com/en-us/documentation/articles/media-services-deliver-http-live-streaming-content/): This topic shows how to create a locator to Apple HTTP Live Streaming (HLS) content on a Media Services origin server. Using this approach, you can build a URL to Apple HLS content, and provide it to Apple iOS devices for playback.
+- [How to: Deliver streaming content](http://aka.ms/Ndbfmn): In addition to downloading media content from Media Services, you can use adaptive bitrate streaming to deliver content. For example, you can create a direct URL, called a locator, to streaming content on a Media Services origin server. Client applications such as Microsoft Silverlight can play the streaming content directly from the locator.
 
-- [Copying an Existing Blob into a Media Services Asset](http://msdn.microsoft.com/en-us/library/windowsazure/jj933290.aspx): This topic shows how to copy blobs from a storage account into a new Windows Azure Media Services asset.
+- [How to: Deliver Apple HLS streaming content](http://aka.ms/G6w163): This topic shows how to create a locator to Apple HTTP Live Streaming (HLS) content on a Media Services origin server. Using this approach, you can build a URL to Apple HLS content, and provide it to Apple iOS devices for playback.
+
+- [Copying an Existing Blob into a Media Services Asset](http://aka.ms/X9koyj): This topic shows how to copy blobs from a storage account into a new Windows Azure Media Services asset.
 
 ---
 
