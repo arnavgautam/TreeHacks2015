@@ -1,15 +1,13 @@
 ﻿namespace FabrikamInsurance.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
     using FabrikamInsurance.Models;
     using InsurancePolicy;
+    using Microsoft.WindowsAzure;
     using Microsoft.WindowsAzure.Storage;
     using Microsoft.WindowsAzure.Storage.Queue;
-    using Microsoft.WindowsAzure;
 
     [HandleError]
     public class QuoteController : Controller
@@ -56,10 +54,32 @@
                 model.MonthlyPremium = premium / 12;
                 model.YearlyPremium = premium;
 
-                SavePremiumValue(premium, model);
+                this.SavePremiumValue(premium, model);
             }
 
             return this.View(model);
+        }
+
+        [HttpPost]
+        public ActionResult GetModels(string id)
+        {
+            return this.Json(this.repository.GetModels(id));
+        }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            System.Diagnostics.Trace.TraceError(filterContext.Exception.Message);
+        }
+
+        private void PopulateViewModel(QuoteViewModel model, string makeId)
+        {
+            model.Makes = this.repository.GetMakes();
+            model.Models = this.repository.GetModels(makeId);
+            model.BodyStyles = this.repository.GetBodyStyles();
+            model.BrakeTypes = this.repository.GetBrakeTypes();
+            model.SafetyEquipment = this.repository.GetSafetyEquipment();
+            model.AntiTheftDevices = this.repository.GetAntiTheftDevices();
+            model.YearList = Enumerable.Range(DateTime.Today.Year - AutoInsurance.MaximumVehicleAge + 1, AutoInsurance.MaximumVehicleAge);
         }
 
         private void SavePremiumValue(decimal premium, QuoteViewModel model)
@@ -75,27 +95,6 @@
             var calculatorLog = string.Format("{0},{1},{2},{3},{4},{5}", premium, model.ModelId, model.BodyStyleId, model.BrakeTypeId, model.SafetyEquipmentId, model.AntiTheftDeviceId);
             CloudQueueMessage message = new CloudQueueMessage(calculatorLog);
             queue.AddMessage(message);
-        }
-
-        [HttpPost]
-        public ActionResult GetModels(string id)
-        {
-            return this.Json(this.repository.GetModels(id));
-        }
-        protected override void OnException(ExceptionContext filterContext)
-        {
-            System.Diagnostics.Trace.TraceError(filterContext.Exception.Message);
-        }
-
-        private void PopulateViewModel(QuoteViewModel model, string makeId)
-        {
-            model.Makes = this.repository.GetMakes();
-            model.Models = this.repository.GetModels(makeId);
-            model.BodyStyles = this.repository.GetBodyStyles();
-            model.BrakeTypes = this.repository.GetBrakeTypes();
-            model.SafetyEquipment = this.repository.GetSafetyEquipment();
-            model.AntiTheftDevices = this.repository.GetAntiTheftDevices();
-            model.YearList = Enumerable.Range(DateTime.Today.Year - AutoInsurance.MaximumVehicleAge + 1, AutoInsurance.MaximumVehicleAge);
         }
     }
 }
