@@ -862,6 +862,8 @@ This is a list of articles that expands the information on the technologies expl
 
 **Development**
 
+This is a list of developer-oriented articles related to Windows Azure Media Services:
+
 - [How to: Deliver an Asset by Download](http://www.windowsazure.com/en-us/documentation/articles/media-services-deliver-asset-download/): This topic discusses options for delivering media assets uploaded to Media Services. You can deliver Media Services content in numerous application scenarios. You can download media assets, or access them by using a locator. You can send media content to another application or to another content provider.
 
 - [How to: Deliver streaming content](http://www.windowsazure.com/en-us/documentation/articles/media-services-deliver-streaming-content/): In addition to downloading media content from Media Services, you can use adaptive bitrate streaming to deliver content. For example, you can create a direct URL, called a locator, to streaming content on a Media Services origin server. Client applications such as Microsoft Silverlight can play the streaming content directly from the locator.

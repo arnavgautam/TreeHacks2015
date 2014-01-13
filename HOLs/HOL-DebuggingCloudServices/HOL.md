@@ -601,6 +601,8 @@ This is a list of articles that expands the information on the technologies expl
 
 **Development**
 
+This is a list of developer-oriented articles related to debugging applications in Windows Azure:
+
 - [Remotely Change the Diagnostic Monitor Configuration](http://msdn.microsoft.com/en-us/library/windowsazure/gg432992.aspx): After you have deployed a cloud service you can remotely change the configuration of the diagnostic monitor from code running in an application outside of Windows Azure using the [DeploymentDiagnosticManager](http://msdn.microsoft.com/en-us/library/windowsazure/microsoft.windowsazure.diagnostics.management.deploymentdiagnosticmanager.aspx) class.
 
 - [Trace the Flow of Your Windows Azure Application](http://msdn.microsoft.com/en-us/library/windowsazure/hh411529.aspx): You can add tracing and debugging instrumentation to your Windows Azure application when you develop it, and you can use that instrumentation both while you are developing the application and after you have deployed it.
