@@ -7,39 +7,37 @@
 
 Web site publication and deployment has never been easier in Windows Azure. Using familiar tools such as Web Deploy or Git, and virtually no changes to the development workflow, Windows Azure Web Sites is the next step in the Microsoft Azure platform for web developers. 
 
-In this hands-on lab, you will explore the basic elements of the **Windows Azure Web Sites** service by creating a simple [ASP.NET MVC 4](http://www.asp.net/mvc/mvc4) application, which uses scaffolding to automatically generate the baseline of your application's CRUD (Create, Read, Update and Delete). Then, you will deploy it using Web Deploy from Microsoft Visual Studio and finally, you will enable source control and use Git to publish directly from your local computer.
+In this hands-on lab, you will explore the basic elements of the **Windows Azure Web Sites** service by creating a simple **ASP.NET MVC 5** application, which uses scaffolding to automatically generate the baseline of your application's CRUD (Create, Read, Update and Delete). Then, you will deploy it using Web Deploy from Microsoft Visual Studio and finally, you will enable source control and use Git to publish directly from your local computer.
 
-Starting from a simple model class and without writing a single line of code, you will create a controller that will contain all the CRUD operations, as well as all the necessary views. After publishing and running the solution, you will have the application database generated in your SQL Database server, together with the MVC logic and views for data manipulation.
+Starting from a simple model class and without writing a single line of code, you will create a controller that will contain all the CRUD operations, as well as all the necessary views. After publishing and running the solution, you will have the model generated in your SQL Database, together with the MVC logic and views for data manipulation.
 
 <a name="Objectives"></a>
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-- Create a Web Site from the Windows Azure Management Portal
-- Use Microsoft Visual Studio 2012 to build a new ASP.NET MVC 4 application
-- Deploy the application using Web Deploy from Visual Studio
-- Create a new Web Site with Git Repository enabled to publish the ASP.NET MVC 4 application using Git
+- Create a Windows Azure Web Site with Microsoft Visual Studio 2013
+- Use Microsoft Visual Studio 2013 to build a new ASP.NET MVC 5 application
+- Deploy an ASP.NET application to Windows Azure Web Sites using Web Deploy from Visual Studio
+- Configure a Windows Azure Web Site with Git Repository enabled to publish an ASP.NET MVC 5 application using Git
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
 
 The following is required to complete this hands-on lab:
 
-- [Microsoft Visual Studio 2012](http://msdn.microsoft.com/vstudio/products/)
-- [GIT Version Control System](http://git-scm.com/download)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Visual Studio Express 2013 for Web][1] or greater
 
-<a name="Setup"></a>
-### Setup ###
+- [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)][2]
 
-In order to execute the exercises in this hands-on lab you need to set up your environment.
+- A Windows Azure subscription
+	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 
-1. Open a Windows Explorer window and browse to the lab's **Source** folder. 
-
-1. Right-click the **Setup.cmd** file and click **Run as administrator**. This will launch the setup process that will configure your environment and check the dependencies.
-
->**Note:** Make sure you have checked all the dependencies for this lab before running the setup. 
+[1]: http://www.microsoft.com/visualstudio/
+[2]: http://www.microsoft.com/windowsazure/sdk/
 
 ---
 <a name="Exercises"></a>
@@ -47,14 +45,74 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 
 This hands-on lab includes the following exercises:
 
-- [Getting Started: Creating an MVC 4 Application using Entity Framework Code First](#GettingStarted)
-- [Exercise 1: Publishing an MVC 4 Application using Web Deploy](#Exercise1)
-- [Exercise 2: Publishing an MVC 4 Application using Git](#Exercise2)
+- [Exercise 1: Creating a Windows Azure Web Site with Visual Studio](#Exercise1)
+- [Exercise 2: Creating an MVC 5 Application using Entity Framework Code First](#Exercise2)
+- [Exercise 3 Publishing an MVC 5 Application using Web Deploy](#Exercise3)
+- [Exercise 4: Publishing an MVC 5 Application using Git](#Exercise4)
 
-<a name="GettingStarted"></a>
-### Getting Started: Creating an MVC 4 Application using Entity Framework Code First ###
+<a name="Exercise1"></a>
+### Exercise 1: Creating a Windows Azure Web Site with Visual Studio ###
 
-In this section, you will create a simple ASP.NET MVC 4 web application, using MVC 4 scaffolding with Entity Framework code first to create the CRUD methods.
+In this exercise, you will take advantage of the Windows Azure tools for Visual Studio to create a Windows Azure web site. Through **Server Explorer**, you will connect to Windows Azure by signing in with your Microsoft Account, and then create a Windows Azure web site and its associated SQL database.
+
+#### Task 1 – Adding a New Windows Azure Web Site from Server Explorer ####
+
+1. Open **Microsoft Visual Studio 2013** and then open **Server Explorer** by selecting **View | Server Explorer**.
+
+1. In **Server Explorer**, right-click the **Windows Azure** node and select **Connect to Windows Azure...**. Sign in using the Microsoft account associated with your Windows Azure account.
+
+	![Connect to Windows Azure](Images/connect-to-windows-azure.png?raw=true)
+
+	_Connect to Windows Azure_
+
+1. After sign in, the **Windows Azure** node is populated with the resources in your Windows Azure subscription.
+
+1. Expand the **Windows Azure** node, right-click the **Web Sites** node and select **Add New Site**.
+
+	![Add new site](Images/add-new-website.png?raw=true)
+
+	_Add new site_
+
+1. In the **Create site in Windows Azure** dialog box, provide the following information:
+	- In the **Site name** box, enter an available name for the web site.
+	- In the **Location** drop-down list, select the region for the web site. This setting specifies which data center your web site will run in.
+	- In the **Database server** drop-down list, select **Create new server**. Alternatively, you can select an existing SQL Server.
+	- In the **Database username** and **Database password** boxes, enter the administrator username and password for the SQL Server. If you selected a SQL Server you have created previously, you will be prompted for the password of the previous SQL Server account you created.
+
+1. Click **Create** to create the web site.
+
+	![Create site on Windows Azure](Images/create-site-on-windows-azure.png?raw=true)
+
+	_Create site on Windows Azure_
+
+1. Wait for the new web site to be created.
+
+	> **Note:** By default, Windows Azure provides domains at _azurewebsites.net_, but also gives you the possibility to set custom domains using the Windows Azure Management Portal (right-click your web site from Server Explorer and select **Open Management Portal**). However, you can only manage custom domains if you are using certain Web Site modes.
+	
+	> Windows Azure offers 3 modes for users to run their web sites - Free, Shared, and Standard. In Free and Shared mode, all web sites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are Free (strict quotas) vs. Shared (more relaxed quotas). The maximum number of free sites may vary with your plan. In Standard mode, you choose which sites run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Web Sites Mode configuration in the **Scale** menu of your Web Site.
+
+	> ![Web Site Modes](Images/web-site-modes.png?raw=true "Web Site Modes")
+
+	> If you are using **Shared** or **Standard** mode, you will be able to manage custom domains for your Web Site. To do so, go to the **Configure** menu of your Web Site and under _domain names_ click **Manage Domains**.
+
+	> ![Manage Domains](Images/manage-domains.png?raw=true "Manage Domains")
+
+	> ![Manage Custom Domains](Images/manage-custom-domains.png?raw=true "Manage Custom Domains")
+
+1. Once the web site is created, it will be displayed in Server Explorer under the **Web Sites** node. Right-click the new web site and select **Open in Browser** to check that the web site is running.
+
+	![Browsing to the new web site](Images/browsing-to-the-new-web-site.png?raw=true)
+
+	_Browsing to the new web site_
+
+	![Web site running](Images/website-working.png?raw=true "Web site running")
+
+	_Web site running_
+
+<a name="Exercise2"></a>
+### Exercise 2: Creating an MVC 5 Application using Entity Framework Code First ###
+
+In this exercise, you will create a simple ASP.NET MVC 5 web application, using MVC 4 scaffolding with Entity Framework code first to create the CRUD methods.
 
 <a name="GettingStartedTask1"></a>
 #### Task 1 – Creating an ASP.NET MVC 4 Application in Visual Studio ####
@@ -171,102 +229,13 @@ In this section, you will create a simple ASP.NET MVC 4 web application, using M
 
 ---
 
-<a name="Exercise1"></a>
-### Exercise 1: Publishing an MVC 4 Application using Web Deploy ###
+<a name="Exercise3"></a>
+### Exercise 3: Publishing an MVC 4 Application using Web Deploy ###
 
-In this exercise, you will create a new web site in the Windows Azure Management Portal and publish the application you obtained in the Getting Started section, taking advantage of the Web Deploy publishing feature provided by Windows Azure.
-
-<a name="Ex1Task1"></a>
-#### Task 1 – Creating a New Web Site from the Windows Azure Portal ####
-
-1. Go to the [Windows Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
-
-	![Log on to Windows Azure portal](Images/login.png?raw=true "Log on to the Windows Azure portal")
-
-	_Log on to the Windows Azure Management Portal_
-
-1. Click **New** on the command bar.
-
-	![Creating a new Web Site](Images/new-website.png?raw=true "Creating a new Web Site")
-
-	_Creating a new Web Site_
-
-1. Click **Compute**, **Web Site** and then **Quick Create**. Provide an available URL for the new web site and click **Create Web Site**.
-
-	> **Note:** A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
-
-	![Creating a new Web Site using Quick Create](Images/quick-create.png?raw=true "Creating a new Web Site using Quick Create")
-
-	_Creating a new Web Site using Quick Create_
-
-1. Wait until the new **Web Site** is created.
-	
-	> **Note:** By default, Windows Azure provides domains at _azurewebsites.net_, but also gives you the possibility to set custom domains using the Windows Azure Management Portal. However, you can only manage custom domains if you are using certain Web Site modes.
-	
-	> Windows Azure offers 3 modes for users to run their web sites - Free, Shared, and Reserved. In Free and Shared mode, all web sites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are Free (strict quotas) vs. Shared (more relaxed quotas). The maximum number of free sites may vary with your plan. The Reserved mode applies to ALL of your sites and makes them run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Web Sites Mode configuration in the **Scale** menu of your Web Site.
-
-	> ![Web Site Modes](Images/web-site-modes.png?raw=true "Web Site Modes")
-
-	> If you are using **Shared** or **Reserved** mode, you will be able to manage custom domains for your Web Site. To do so, go to the **Configure** menu of your Web Site and under _domain names_ click **Manage Domains**.
-
-	> ![Manage Domains](Images/manage-domains.png?raw=true "Manage Domains")
-
-	> ![Manage Custom Domains](Images/manage-custom-domains.png?raw=true "Manage Custom Domains")
-
-1. Once the Web Site is created, click the link under the **URL** column. Check that the new Web Site is working.
-
-	![Browsing to the new web site](Images/navigate-website.png?raw=true "Browsing to the new web site")
-
-	_Browsing to the new web site_
-
-	![Web site running](Images/website-working.png?raw=true "Web site running")
-
-	_Web site running_
-
-1. Go back to the portal and click the name of the web site under the **Name** column to display the management pages.
-
-	![Opening the web site management pages](Images/go-to-the-dashboard.png?raw=true "Opening the web site management pages")
-	
-	_Opening the Web Site management pages_
-
-1. In the **Dashboard** page, under the **quick glance** section, click the **Download the publish profile** link.
-
-	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Web Developer** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites. 
-
-	![Downloading the web site publish profile](Images/download-publish-profile.png?raw=true "Downloading the web site publish profile")
-	
-	_Downloading the Web Site publish profile_
-
-1. Download the publish profile file to a known location. Further in this exercise you will see how to use this file to publish a web application to a Windows Azure Web Sites from Visual Studio.
-
-	![Saving the publish profile file](Images/save-link.png?raw=true "Saving the publish profile")
-	
-	_Saving the publish profile file_
-
-<a name="Ex1Task2"></a>
-#### Task 2 – Configuring the Database Server ####
-
-1. You will need a SQL Database server for storing the application database. You can view the SQL Database servers from your subscription in the portal at **Sql Databases** | **Servers**. If you do not have a server created, you can create one using the **Add** button at the bottom of the page. Make note of the server **NAME**, **MANAGE URL**, and **ADMINISTRATOR LOGIN**, and obtain the server's password, which is not shown in the portal. You will use this information next.
-Do not create the database yet, as it will be created by Entity Framework when running the application.
-
-	![SQL Database Server Dashboard](Images/sql-database-server-dashboard.png?raw=true "SQL Database Server Dashboard")
-
-	_SQL Database Server Dashboard_
-
-1. In the next task, you will test the database connection from Visual Studio. For that reason, you need to include your local IP address in the server's list of **Allowed IP Addresses**. To do that, click **Configure**, and then click the ![add-client-ip-address-ok-button](Images/add-client-ip-address-ok-button.png?raw=true) button next to the IP address labeled **CURRENT CLIENT IP ADDRESS**.
-
-	![Adding Client IP Address](Images/add-client-ip-address.png?raw=true)
-
-	_Adding Client IP Address_
-
-1. Once the **Client IP Address** is added to the allowed IP addresses list, click **Save** to confirm the changes.
-
-	![Confirm Changes](Images/add-client-ip-address-confirm.png?raw=true)
-
-	_Confirm Changes_
+In this exercise, you will publish the application you obtained in Exercise 2, taking advantage of the Web Deploy publishing feature provided by  Visual Studio.
 
 <a name="Ex1Task3"></a>
-#### Task 3 – Publishing an ASP.NET MVC 4 Application using Web Deploy ####
+#### Task 1 – Publishing an ASP.NET MVC 5 Application using Web Deploy ####
 
 1. Go back to the MVC 4 solution. In the **Solution Explorer**,  right-click the web site project and select **Publish**.
 
@@ -331,7 +300,7 @@ Do not create the database yet, as it will be created by Entity Framework when r
 ---
 
 <a name="Exercise2"></a>
-### Exercise 2: Publishing an MVC 4 Application using Git ###
+### Exercise 4: Publishing an MVC 5 Application using Git ###
 
 In this exercise you will publish again the web application you created in exercise 1, but this time using Git.
 
