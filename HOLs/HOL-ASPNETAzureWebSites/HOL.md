@@ -46,7 +46,7 @@ The following is required to complete this hands-on lab:
 This hands-on lab includes the following exercises:
 
 - [Exercise 1: Creating a Windows Azure Web Site with Visual Studio](#Exercise1)
-- [Exercise 2: Creating an MVC 5 Application using Entity Framework Code First](#Exercise2)
+- [Exercise 2: Creating an MVC 5 Application with Entity Framework](#Exercise2)
 - [Exercise 3 Publishing an MVC 5 Application using Web Deploy](#Exercise3)
 - [Exercise 4: Publishing an MVC 5 Application using Git](#Exercise4)
 
@@ -110,30 +110,31 @@ In this exercise, you will take advantage of the Windows Azure tools for Visual 
 	_Web site running_
 
 <a name="Exercise2"></a>
-### Exercise 2: Creating an MVC 5 Application using Entity Framework Code First ###
+### Exercise 2: Creating an MVC 5 Application using Entity Framework ###
 
-In this exercise, you will create a simple ASP.NET MVC 5 web application, using MVC 4 scaffolding with Entity Framework code first to create the CRUD methods.
+In this exercise, you will create a simple ASP.NET MVC 5 web application, using ASP.NET scaffolding with Entity Framework to create the CRUD methods.
 
 <a name="GettingStartedTask1"></a>
-#### Task 1 – Creating an ASP.NET MVC 4 Application in Visual Studio ####
+#### Task 1 – Creating an ASP.NET MVC 5 Application in Visual Studio ####
 
-1. Open **Microsoft Visual Studio 2012** and click the **New Project** link in the start page. Otherwise use  **File** | **New** | **Project**.
+1. In **Microsoft Visual Studio 2013**, click the **New Project** link in the start page. Otherwise use  **File** | **New** | **Project**.
 
-	![Creating a new project](Images/new-website-vs2012.png?raw=true "Crating a new project")
+	![Creating a new project](Images/creating-a-new-project.png?raw=true)
 
 	_Creating a new project_
 
-1. Create a new **ASP.NET MVC 4 Web Application** using **.NET Framework 4.5**, **C#** and name it **MVC4Sample.Web**.
+1. Create a new **ASP.NET Web Application** using **.NET Framework 4.5**, **C#** and name it **MVCSample.Web**. Click **OK** to continue.
 
-	![Creating a new ASP.NET MVC 4 Web Application](Images/mvc4-sample.png?raw=true "Creating a new ASP.NET MVC 4 Web Application")
+	![Creating a new ASP.NET Web Application](Images/creating-a-new-aspnet-web-application.png?raw=true)
 
-	_Creating a new ASP.NET MVC 4 Web Application_
+	_Creating a new ASP.NET Web Application_
 
-1. Select **Internet Application** and click **OK**.
+1. Select the **MVC** template and make sure that **Authentication** is set to **Individual User Accounts**. Click **OK** to continue.
+	
 
-	![Choosing Internet Application](Images/internet-application.png?raw=true "Choosing Internet Application")
+	![Choosing MVC project template](Images/choosing-mvc-project-template.png?raw=true)
 
-	_Choosing Internet Application_
+	_Choosing MVC project template_
 
 1. In the Solution Explorer, right-click **Models** and select **Add | Class** to create a customer class (POCO). Name it _Customer.cs_ and click **Add**.
 
