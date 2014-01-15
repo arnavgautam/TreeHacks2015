@@ -57,7 +57,7 @@ In this exercise, you will take advantage of the Windows Azure tools for Visual 
 
 #### Task 1 – Adding a New Windows Azure Web Site from Server Explorer ####
 
-1. Open **Microsoft Visual Studio 2013** and then open **Server Explorer** by selecting **View | Server Explorer**.
+1. Open **Microsoft Visual Studio Express 2013 For Web** and then open **Server Explorer** by selecting **View | Server Explorer**.
 
 1. In **Server Explorer**, right-click the **Windows Azure** node and select **Connect to Windows Azure...**. Sign in using the Microsoft account associated with your Windows Azure account.
 
@@ -110,14 +110,14 @@ In this exercise, you will take advantage of the Windows Azure tools for Visual 
 	_Web site running_
 
 <a name="Exercise2"></a>
-### Exercise 2: Creating an MVC 5 Application using Entity Framework ###
+### Exercise 2: Creating an MVC 5 Application with Entity Framework ###
 
 In this exercise, you will create a simple ASP.NET MVC 5 web application, using ASP.NET scaffolding with Entity Framework to create the CRUD methods.
 
 <a name="GettingStartedTask1"></a>
 #### Task 1 – Creating an ASP.NET MVC 5 Application in Visual Studio ####
 
-1. In **Microsoft Visual Studio 2013**, click the **New Project** link in the start page. Otherwise use  **File** | **New** | **Project**.
+1. In **Microsoft Visual Studio 2013**, click the **New Project** link in the start page. Otherwise use  **File** | **New Project**.
 
 	![Creating a new project](Images/creating-a-new-project.png?raw=true)
 
@@ -135,7 +135,7 @@ In this exercise, you will create a simple ASP.NET MVC 5 web application, using 
 	![Choosing MVC project template](Images/choosing-mvc-project-template.png?raw=true)
 
 	_Choosing MVC project template_
-
+	
 1. In the Solution Explorer, right-click **Models** and select **Add | Class** to create a customer class (POCO). Name it _Customer.cs_ and click **Add**.
 
 1. Open the **Customer** class and insert the following properties.
@@ -147,7 +147,7 @@ In this exercise, you will create a simple ASP.NET MVC 5 web application, using 
 	using System.Linq;
 	using System.Web;
 
-	namespace MVC4Sample.Web.Models
+	namespace MVCSample.Web.Models
 	{
 		public class Customer
 		{
@@ -170,75 +170,89 @@ In this exercise, you will create a simple ASP.NET MVC 5 web application, using 
 	}
 	````
 
-1. **Build MVC4Sample.Web** by using the **Ctrl + Shift + B** keyboard shortcut which will save the changes and build the project.
+1. **Build MVCSample.Web** by using the **Ctrl + Shift + B** keyboard shortcut which will save the changes and build the project.
 
-1. In the Solution Explorer, right-click the **Controllers** folder and select **Add | Controller**. 
+1. In **Solution Explorer**, right-click the **Controllers** folder and select **Add | Controller**. 
 
-1. Name the controller _CustomerController_ and complete the **Scaffolding options** with the following values.	
-	- In the **Template** drop-down list, select the **MVC Controller with read/write actions and views, using Entity Framework** option.
+1. In the **Add Scaffold** dialog box, select the **MVC 5 Controller with views, using Entity Framework** scaffolding type and click **Add**.
+
+	![Choosing scaffolding option](Images/scaffolding-options.png?raw=true)
+
+	_Choosing scaffolding option_
+
+1. Complete the scaffolding options in the **Add Controller** dialog box with the following values.
+	- In the **Controller name** box, type _CustomerController_.
+	- Check the **Use async controller actions** checkbox.
 	- In the **Model class** drop-down list, select the **Customer** class.
-	- In the **Data Context class** list, select **\<New data context...\>**. In the dialog box displayed, replace the data context class type with **MVC4Sample.Web.Models.CustomerContext** and click **OK**.
-	- In the **Views** drop-down list, make sure that **Razor (CSHTML)** is selected.
+	- In the **Data Context class** field, click **\<New data context...\>**. In the dialog box displayed, replace the data context class type with **MVCSample.Web.Models.CustomerContext** and click **OK**.
+	- In the **Views** section, make sure that all checkboxes are checked.
 
-	![Adding the Customer controller with scaffolding](Images/add-customer-controller.png?raw=true "Adding the Customer controller with scaffolding")
+	![Adding the Customer controller with scaffolding](Images/add-customer-controller.png?raw=true)
 
 	_Adding the Customer controller with scaffolding_
 	
-1. Click **Add** to create the new controller for **Customer** with scaffolding. You have generated the controller actions as well as the views. 
+1. Click **Add** to create the new controller for **Customer** with scaffolding. Visual Studio will then generate the controller actions, the Customer data context and the views. 
 		
-	![After creating the Customer controller with scaffolding ](Images/customer-scaffolding.png?raw=true "After creating the Customer controller with scaffolding")
+	![After creating the Customer controller with scaffolding](Images/customer-scaffolding.png?raw=true)
 
 	_After creating the Customer controller with scaffolding_
 
 1. Open the **CustomerController.cs** file in the **Controllers** folder. Notice that the CRUD action methods have been generated automatically. 
 
-	````C#
-	//
-	// POST: /Customer/Create
+	> **Note:** By checking the **Use async controller actions** checkbox from the scaffolding options in the previous steps, Visual Studio generates asynchronous action methods for all actions that involve access to the Customer data context. It is recommended to use asynchronous action methods for long-running, non-CPU bound requests to avoid blocking the Web server from performing work while the request is being processed.
 
+	````C#
+	...
+
+	// POST: /Customer/Create
+	// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+	// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 	[HttpPost]
 	[ValidateAntiForgeryToken]
-	public ActionResult Create(Customer customer)
+	public async Task<ActionResult> Create([Bind(Include="CustomerId,Name,Phone,Address,Company,Title,Email,Image")] Customer customer)
 	{
 		if (ModelState.IsValid)
 		{
 			 db.Customers.Add(customer);
-			 db.SaveChanges();
+			 await db.SaveChangesAsync();
 			 return RedirectToAction("Index");
 		}
 
 		return View(customer);
 	}
 
-	//
 	// GET: /Customer/Edit/5
-
-	public ActionResult Edit(int id = 0)
+	public async Task<ActionResult> Edit(int? id)
 	{
-		Customer customer = db.Customers.Find(id);
+		if (id == null)
+		{
+			 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+		}
+		Customer customer = await db.Customers.FindAsync(id);
 		if (customer == null)
 		{
 			 return HttpNotFound();
 		}
 		return View(customer);
 	}
+
+	...
 	````
 
-	_Inside the Customer controller_
+	_Generated code for the Customer controller_
 
 1. Do not close Visual Studio.
 
 ---
 
 <a name="Exercise3"></a>
-### Exercise 3: Publishing an MVC 4 Application using Web Deploy ###
+### Exercise 3: Publishing an MVC 5 Application using Web Deploy ###
 
-In this exercise, you will publish the application you obtained in Exercise 2, taking advantage of the Web Deploy publishing feature provided by  Visual Studio.
+In this exercise, you will publish to Windows Azure Web Sites the application you obtained in [Exercise 2](#Exercise2) by making use of the Web Deploy publishing feature provided by Visual Studio.
 
-<a name="Ex1Task3"></a>
 #### Task 1 – Publishing an ASP.NET MVC 5 Application using Web Deploy ####
 
-1. Go back to the MVC 4 solution. In the **Solution Explorer**,  right-click the web site project and select **Publish**.
+1. In **Solution Explorer**, right-click the web site project and select **Publish**.
 
 	![Publishing the Application](Images/publishing-the-application.png?raw=true "Publishing the Application")
 
