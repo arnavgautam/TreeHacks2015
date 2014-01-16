@@ -21,9 +21,15 @@ In this hands-on lab you will learn how you can use Visual Studio 2013 and Windo
 <a name="prerequisites" />
 ### Prerequisites ###
 
-- Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+The following is required to complete this hands-on lab:
+
 - [Visual Studio Express 2013 for Desktop](http://www.microsoft.com/visualstudio) or higher
 - [Visual Studio Express 2013 for Windows](http://www.microsoft.com/en-us/download/details.aspx?id=30664) or higher
+- A Windows Azure subscription
+	- Sign up for a [Free Trial](<http://aka.ms/watk-freetrial>).
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](<http://aka.ms/watk-msdn>) now to start development and test on Windows Azure.
+	- [BizSpark](<http://aka.ms/watk-bizspark>) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](<http://aka.ms/watk-mpn>) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 
 <a name="Exercises" />
 ## Exercises ##
@@ -173,13 +179,17 @@ In this exercise, you will create a new console application that allows you to p
 
 1. Open **Microsoft Visual Studio 2013 Express for Desktop** (or higher) in elevated administrator mode. If the **User Account Control** dialog box appears, click **Yes**.
 
-1. In the **File** menu, choose **New project** and select the **Templates | C#** node from the left pane, and then select the **Console Application** template.
+1. In the **File** menu, choose **New project...**, select the **Templates | Visual C# | Windows** node from the left pane, and then select the **Console Application** template.
 
 1. Enter _MyMediaServicesManager_ as the project **Name**, choose a desired **Location**, and click **Ok**.
 
 1. Open the **Package Manager Console** by clicking **View | Other Windows | Package Manager Console**.
 
-1. In the console, type _Install-Package windowsazure.mediaservices -Version 3.0.0.0_ to download and install the **Windows Azure Media Services** NuGet package and its dependencies.
+1. In the console, type the following command to download and install the **Windows Azure Media Services** NuGet package and its dependencies.
+
+	````NuGet Management Console
+	Install-Package windowsazure.mediaservices -Version 3.0.0.0
+	````
 
 	![Package Manager Console](Images/package-manager-console.png?raw=true "Package Manager Console")
 
@@ -242,30 +252,13 @@ In this exercise, you will create a new console application that allows you to p
 		}
 	}
 	````
+
 	The preceding code uses the **CloudMediaContext** class to create an _asset file_ using the provided file path. Once the asset file is created, the **Upload** method is called to start the uploading operation.
 
 1. Update the code you just pasted to point to the video that you want to upload, by replacing the _YOUR FILE PATH_ string. If you use the same video from the previous exercise, it is recommended that you rename the video to differentiate it from the one uploaded in the first exercise.
 
-1. Go to your Media Service dashboard in the Management Portal and click **Manage Keys** button in the bottom toolbar.
-
-	![Manage Media Service Keys](Images/manage-media-service-keys.png?raw=true)
-
-	_Managing Media Service Keys_
-
-1.	In the dialog box, copy the **Primary Media Service Access Key**.
-
-	![Copying Primary Media Service Key](Images/copying-primary-media-service-key.png?raw=true "Copying Primary Media Service Key")
-
-	_Copying Media Service Primary Key_
-
-1.	Replace the key you copied in the previous step in the second parameter when instantiating a **CloudMediaContext** class.
-
-	````C#
-	var context = new CloudMediaContext("[YOUR-MEDIA-SERVICE-ACCOUNT-NAME]", "[YOUR-MEDIA-SERVICE-ACCOUNT-KEY]"); 
-	````
-
-<a name="programmatically-encoding-a-mp4-video" />
-### Task 2 - Programmatically Encoding a Mp4 video using Smooth Streaming ###
+<a name="programmatically-encoding-an-mp4-video" />
+### Task 2 - Programmatically encoding an MP4 video using Smooth Streaming ###
 
 1. Add the following using statement at the top of the _Program.cs_ file.
 
@@ -310,13 +303,12 @@ In this exercise, you will create a new console application that allows you to p
     Console.WriteLine("Encoding Completed"); 
 	````
 
-	The preceding code uses the **CloudMediaContext** instance to create an encoding job with an encoding task to the specified preset. In this case a smooth streaming encoding (H264 Smooth Streaming 720p) is used.
-	Then the job is submitted. Notice that an event handler is attached to the **StateChanged** event of the job which means that every time the state of the job changes, it will be prompted to the console.
+	The preceding code uses the **CloudMediaContext** instance to create an encoding job with an encoding task to the specified preset. In this case a smooth streaming encoding (H264 Smooth Streaming 720p) is used. Then the job is submitted. Notice that an event handler is attached to the **StateChanged** event of the job, which means that every time the state of the job changes, it will be prompted to the console.
 
-<a name="programmatically-delivering-and-streaming-a-mp4-video" />
-### Task 3 - Programmatically Delivering and Streaming an Mp4 video ###
+<a name="programmatically-delivering-and-streaming-an-mp4-video" />
+### Task 3 - Programmatically Delivering and Streaming an MP4 video ###
 
-1. Add the following code between the WriteLine blocks which notifies the user of the initiation and termination of the publishing operation.
+1. Add the following code between the WriteLine blocks which will notify the user of the initiation and termination of the publishing operation.
 
 	(Code Snippet - _Intro to Media Services - Ex2 - Streaming MP4 Video_)
 
@@ -371,7 +363,7 @@ In this exercise, you will create a new console application that allows you to p
 
 1. Press any key to close the console application when it shows that the publishing is completed.
 
-1. Go to the portal and then to the **Content** section of your Media Services subscription.
+1. Go to the Windows Azure Management Portal and then to the **Content** section of your Media Services subscription.
 
 	![The portal showing the assets processed by the console app](Images/portal-showing-the-assets-processed-by-the-console-app.png?raw=true "The portal showing the assets processed by the console app")
 
@@ -383,15 +375,16 @@ In this exercise, you will create a new console application that allows you to p
 
 	_The smooth streaming video being played_
 
-	>**Note:** You may notice that this video plays faster than the one uploaded in Exercise 1. This is due to smooth streaming as it encodes the video in several qualities and sends you the best video for your bandwidth.
+	>**Note:** You may notice that this video plays faster than the one uploaded in _Exercise 1_. This is due to smooth streaming as it encodes the video in several qualities and sends you the best video depending on your bandwidth.
 
 ---
 
 <a name="Exercise3" />
 ## Exercise 3: Microsoft Media Platform Player Framework for the Client  ##
 
-Microsoft Media Platform is a complete set of technologies for digital media encoding, delivery, and playback for virtually any network-connected device. The Player Framework is an open source video player available for Silverlight, HTML5, and Xbox, as well as Windows 8.1 and Windows Phone apps. It allows you to play both progressive download videos and Smooth Streaming videos.
-In this exercise you will first download and install the Microsoft Media Platform Player Framework and then build a simple Store app that will consume a video previously uploaded to Windows Azure Media Services and play it in a video player control.
+Microsoft Media Platform is a complete set of technologies for digital media encoding, delivery and playback, for virtually any network-connected device. The Player Framework is an open source video player available for Silverlight, HTML5 and Xbox, as well as Windows 8.1 and Windows Phone apps. It allows you to play both progressive download videos and Smooth Streaming videos.
+
+In this exercise you will first download and install the Microsoft Media Platform Player Framework and then build a simple Store app. Within the app you will consume a video previously uploaded to Windows Azure Media Services and play it in a video player control.
 
 <a name="installing-MMPPF" />
 ### Task 1 - Installing Microsoft Media Platform Player Framework ###
@@ -419,7 +412,7 @@ In this task you will download and install the latest version of the Microsoft M
 
 In this task you will create a new store app from scratch and add video control linked to a smooth streaming video uploaded to Windows Azure Media Services.
 
-1. Download and install the [Visual Studio Extension SDK for the Smooth Streaming Client for Windows 8.1] (http://visualstudiogallery.msdn.microsoft.com/0170c67c-c183-4fee-8dd4-c2b44d710d40).
+1. Download and install the [Microsoft Smooth Streaming Client SDK for Windows 8.1] (http://visualstudiogallery.msdn.microsoft.com/0170c67c-c183-4fee-8dd4-c2b44d710d40).
 
 1. Open **Visual Studio Express 2013 for Windows** and select **New Project...** from the Start Page to start a new solution.
 
@@ -437,7 +430,12 @@ In this task you will create a new store app from scratch and add video control 
 
     _New JavaScript Store App_
 
-1. Add **Microsoft Player Framework**, **Microsoft Player Framework Adaptive Streaming Plugin**, **Microsoft Smooth Streaming Client SDK for Windows 8.1**, and **Microsoft Visual C++ Runtime Package** to your project references. To do this, right-click the project and click **Add Reference**. In the **Reference Manager**, select the aforementioned references that are located under **Windows | Extensions** and click **OK**.
+1. Right-click the project and click **Add | Reference...**. In the **Reference Manager**, select the following references that are located under **Windows | Extensions** and click **OK**.
+
+	- Microsoft Player Framework
+	- Microsoft Player Framework Adaptive Streaming Plugin
+	- Microsoft Smooth Streaming Client SDK for Windows 8.1
+	- Microsoft Visual C++ 2013 Runtime Package for Windows
 
 	![Smooth Streaming C# References](Images/smooth-streaming-cs-references.png?raw=true "Smooth Streaming C# References")
 
@@ -584,7 +582,7 @@ In this task you will create a new store app from scratch and add video control 
 	</PlayerFramework:MediaPlayer>
 	````
 
-1. Before compiling the app, target your app to x86, x64, or ARM. Because the IIS Smooth Streaming Client is written in unmanaged code, **AnyCPU** will not work and instead you must target and build your app for each platform you wish to support. To do this, go to the **Debug** combobox in the toolbar, expand its options and click **Configuration Manager**. In the row of your current project, expand the options of the **Platform** combobox and select **x64**. Alternatively, you can choose **x86** or **ARM** if your processor supports them.
+1. Before compiling the app, target your app to x86, x64, or ARM. Because the IIS Smooth Streaming Client is written in unmanaged code, **Any CPU** will not work and instead you must target and build your app for each platform you wish to support. To do this, go to the **Debug** combobox in the toolbar, expand its options and click **Configuration Manager...**. In the row of your current project, expand the options of the **Platform** combobox and select **x64**. Alternatively, you can choose **x86** or **ARM** if your processor supports them.
 
 	![Targeting the app to build to x64](Images/targeting-app-build-x64-1.png?raw=true "Targeting the app to build to x64")
 
@@ -603,7 +601,7 @@ In this task you will create a new store app from scratch and add video control 
 <a name="Exercise4" />
 ## Exercise 4: Monetization ##
 
-In this exercise you will add advertisements support to  monetize your application, by using a VMAP file that defines which ads will be played and when.
+In this exercise you will add support for in-video advertisements to monetize your application by using a VMAP file that defines which ads will be played and when.
 
 Scheduling is the first step to playing ads in the player framework. This allows your app to tell the player framework when to play each ad. Ad scheduling is separate from the ad handling (playing the ad) and is independent of the type of ad you want to play.
 
@@ -616,7 +614,7 @@ In this task, you will add advertising support to the media player control of th
 
 1. If not already open, start **Visual Studio Express 2013 for Windows** and select **Open Project...** from the Start Page. In the **Open Project** dialog box, browse to **Ex4-Advertising** in the **Source** folder of the lab, select **Begin\Begin.sln** in the folder for the language of your preference (C# or JavaScript) and click **Open**. Alternatively, you may continue with the solution that you obtained after completing the previous exercise.
 
-1. Add a reference to the _Microsoft Player Framework Advertising Plugin_. To do this, right-click the **References** folder and select **Add Reference**. Under **Windows | Extensions**, check **Microsoft Player Framework Advertising Plugin** and click **OK**.
+1. Right-click the **References** folder and select **Add Reference...**. Under **Windows | Extensions**, check **Microsoft Player Framework Advertising Plugin** and click **OK**.
 
 	![Adding reference to the Advertising Plugin C#](Images/adding-reference-to-advertising-plugin-cs.png?raw=true "Adding reference to the Advertising Plugin C#")
 
@@ -690,7 +688,7 @@ In this task, you will add advertising support to the media player control of th
 								Margin="200,96,0,0"
 								VerticalAlignment="Top"
 								Width="1000"
-								Source="[YOUR-MEDIA-SERVICE-VIDEO-URL]">
+								Source="[YOUR-MEDIA-SERVICE-ENCODED-VIDEO-URL]">
         <PlayerFramework:MediaPlayer.Plugins>
             <adaptive:AdaptivePlugin />
         </PlayerFramework:MediaPlayer.Plugins>
@@ -706,7 +704,7 @@ In this task, you will add advertising support to the media player control of th
 						  width: 1000,
 						  height: 600,
 						  autoplay: true,
-						  src: '[YOUR-MEDIA-SERVICE-VIDEO-URL]',
+						  src: '[YOUR-MEDIA-SERVICE-ENCODED-VIDEO-URL]',
 				  }">
 	</div>
 	````
