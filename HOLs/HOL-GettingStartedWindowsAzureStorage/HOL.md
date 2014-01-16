@@ -5,22 +5,23 @@
 <a name="Overview" />
 ## Overview ##
 
-In this lab, you will learn the basics of **Windows Azure Storage**, how to create and configure storage accounts and how you can programmatically access the different types of storage service. **Blobs**, **Tables**, and **Queues** are all available as part of the **Windows Azure Storage** account, and provide durable storage on the Windows Azure platform. These services are accessible from both inside and outside the Windows Azure platform by using the [Windows Azure Storage Client SDK](http://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storageclient.aspx), or via URI using [REST APIs]  (http://msdn.microsoft.com/en-us/library/dd179355.aspx).
+In this lab, you will learn the basics of **Windows Azure Storage**, how to create and configure storage accounts and how you can programmatically access the different types of storage services. **Blobs**, **Tables**, and **Queues** are all available as part of the **Windows Azure Storage** account and provide durable storage on the Windows Azure platform. These services are accessible from both inside and outside the Windows Azure platform by using the [Windows Azure Storage Client SDK](http://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storageclient.aspx), or via URI using [REST APIs]  (http://msdn.microsoft.com/en-us/library/dd179355.aspx).
 
-You will learn how the following services work:
+You will learn how the following services work.
 
 ![storage-diagram](Images/storage-diagram.png?raw=true)
 
 **Table Storage**
 
-Table storage is a collection of row like entities, each of which can contain up to 255 properties. There is no schema that enforces a certain set of values on all the rows within a table, unlike tables in a database. It does not provide any way to represent relationships between data. Windows Azure Storage tables are more like rows within a spreadsheet application such as Excel than rows within a database such as SQL Database, in that each row can contain a different number of columns, and different data types, than the other rows in the same table.
+Table Storage is a collection of row-like entities, each of which can contain up to 255 properties. There is no schema that enforces a certain set of values in all the rows within a table, unlike tables in a database; it does not provide a way to represent relationships between data. Windows Azure Storage tables are more like rows within a spreadsheet application such as Excel rather than rows within a database such as SQL Database, in that each row can contain a different number of columns with data types different from other rows in the same table.
 
 **Blob Storage**
 
 Blobs provide a way to store large amounts of unstructured, binary data, such as video, audio, images, etc.  One of the features of blobs is streaming content such as video or audio.
 
 **Queue Storage**
-Queues provide storage for passing messages between applications. Messages stored to the queue are limited to a maximum of 8KB in size, and are generally stored and retrieved on a first in, first out (FIFO) basis (however FIFO is not guaranteed). Processing messages from a queue is a two stage process, which involves getting the message, and then deleting the message after it has been processed.  This pattern allows you to implement guaranteed message delivery by leaving the message in the queue until it has been fully processed.
+
+Queues provide storage for passing messages between applications. Messages stored in the queue are limited to a maximum of 8KB in size and are generally stored and retrieved on a first in, first out (FIFO) basis (although FIFO is not guaranteed). Processing messages from a queue is a two-stage process which involves getting the message, and then deleting it after it has been processed.  This pattern allows you to implement guaranteed message delivery by leaving the message in the queue until it has been fully processed.
 
 
 <a name="Objectives" />
@@ -28,38 +29,38 @@ Queues provide storage for passing messages between applications. Messages store
 
 In this hands-on lab, you will learn how to:
 
-* Create an Storage Account.
+* Create a Storage Account.
 * Learn the different configuration options for Geo-Replication, Monitoring and Logging.
-* Access to Tables, Blobs and Queues using **Windows Azure SDK 2.0** in a MVC Web Application.
+* Access Tables, Blobs and Queues using **Windows Azure SDK 2.0** in a MVC Web Application.
 
 <a name="Prerequisites" />
 ### Prerequisites ###
 
 The following is required to complete this hands-on lab:
 
-- [Microsoft Visual Studio Express 2012 for Web] [1]
-- [Windows Azure Tools for Microsoft Visual Studio 2.0] [2]
-- A Windows Azure subscription - [sign up for a free trial][3]
+- [Microsoft Visual Studio Express 2013 for Web] [1]
+- [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)] [2]
+- A Windows Azure subscription - [sign up for a free trial] [3]
 
-[1]: http://msdn.microsoft.com/vstudio/products/
+[1]: http://www.visualstudio.com/en-us/downloads/
 [2]: http://www.microsoft.com/windowsazure/sdk/
 [3]: http://aka.ms/WATK-FreeTrial
 
 <a name="Setup" />
 ### Setup ###
-In order to execute the exercises in this hands-on lab you need to set up your environment.
+In order to execute the exercises in this hands-on lab, you will need to set up your environment.
 
-1. Open a Windows Explorer window and browse to the  **Source** folder of this lab.
+1. Open a Windows Explorer window and browse to the **Source** folder of this lab.
 
-1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process. This process will configure your environment and install the Visual Studio code snippets for this lab.
-1. If the User Account Control dialog is shown, confirm the action to proceed.
+1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process, which will configure your environment and install the Visual Studio code snippets for this lab.
+1. If the User Account Control dialog box is shown, confirm the action to proceed.
 
 > **Note:** Make sure you have checked all the dependencies for this lab before running the setup.
 
 <a name="UsingCodeSnippets" />
 ### Using the Code Snippets ###
 
-Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of this code is provided as Visual Studio Code Snippets, which you can use from within Visual Studio 2012 to avoid having to add it manually. 
+Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of this code is provided as Visual Studio Code Snippets, which you can access from within Visual Studio to avoid having to add it manually. 
 
 ---
 <a name="Exercises" />
@@ -74,7 +75,7 @@ This hands-on lab includes the following exercises:
 1.	[Exercise 5 - Updating SAS to use Stored Access Policies](#Exercise5)
 
 > **Note:** Each exercise is accompanied by a starting solution. These solutions are missing some code sections that are to be completed throughout each exercise and therefore will not necessarily work if you run them directly.
-Inside each exercise you will also find an end folder with the solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
+Inside each exercise you will also find an **End** folder with the solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
 
 Estimated time to complete this lab: **60** minutes.
 
@@ -88,20 +89,20 @@ This exercise describes how to create a storage account in the Windows Azure Man
 > **Note:** A storage account can contain up to 100 TB of blob, table, and queue data. You can create up to five storage accounts for each Windows Azure subscription.
 
 <a name="Ex1Task1" />
-#### Task 1 - Creating a Storage Account from Management Portal ####
+#### Task 1 - Creating a Storage Account from Windows Azure Management Portal ####
 
-In this task you will learn how to create a new Storage Account using the Management Portal.
+In this task you will learn how to create a new Storage Account using the Windows Azure Management Portal.
 
-1. Navigate to http://manage.windowsazure.com using a Web browser and sign in using the Microsoft Account associated with your Windows Azure account.
+1. Navigate to http://manage.windowsazure.com and sign in using the Microsoft Account associated with your Windows Azure account.
 
 	![logging-azure-portal](Images/logging-azure-portal.png?raw=true)
 
-	_Logging to the Management Portal_
+	_Logging in to the Management Portal_
 
-1. In the menu located at the bottom, select **New | Data Services | Storage | Quick Create** to start creating a new Storage Account. Enter a unique name for the account and select a **Region** from the list. Click **OK** to continue.
+1. In the menu located at the bottom, select **New | Data Services | Storage | Quick Create** to start creating a new Storage Account. Enter a unique name for the account and select a **Location** from the list. Click **Create Storage Account** to continue.
 	![create-storage-account-menu](Images/create-storage-account-menu.png?raw=true)
 
-	_Creating a new storage account_
+	_Creating a new Storage Account_
 
 1.  In the **Storage** section, you will see the Storage Account you created with a _Creating_ status. Wait until it changes to _Online_ in order to continue with the following step.
 
@@ -109,23 +110,21 @@ In this task you will learn how to create a new Storage Account using the Manage
 
 	_Storage Account created_
 
-1. Click on the storage account name you created. You will enter the **Dashboard** page which provides you with information about the status of the account and the service endpoints that can be used within your applications.
+1. Click on the Storage Account name you created. You will enter the **Dashboard** page, which provides you with information about the status of the account and the service endpoints that can be used within your applications.
 
 	![storage-account-dashboard](Images/storage-account-dashboard.png?raw=true)
 
 	_Displaying the Storage Account Dashboard_
 
-	In the next exercise, you will configure the storage account to enable Geo-Replication, Monitoring and Logging and manage the Access Keys.
-
 <a name="Exercise2" />
 ### Exercise 2: Managing a Windows Azure Storage Account ###
 
-In this exercise, you will configure the common settings for your storage account. You will manage your **Access Keys**, enabling **Geo-Replication** and configuring **Monitoring and Logging**.
+In this exercise, you will configure the common settings for your Storage Account. You will manage your **Access Keys**, enabling **Geo-Replication** and configuring **Monitoring and Logging**.
 
 <a name="Ex2Task1" />
 #### Task 1 - Enabling Geo-Replication ####
 
-Geo-replication replicates the stored content to a secondary location to enable failover to that location in case of a major disaster in the primary location. The secondary location is in the same region, but is hundreds of miles from the primary location. This is the highest level of storage durability, known as geo redundant storage (GRS). Geo-replication is turned on by default.
+Geo-replication replicates the stored content to a secondary location to enable failover to that location in case of a major disaster in the primary location. The secondary location is in the same region but is hundreds of miles from the primary location. This is the highest level of storage durability, known as geo redundant storage (GRS). Geo-replication is turned on by default.
 
 1.	In the Storage Account page, click the **Configure** tab in the top menu.
 
@@ -139,7 +138,7 @@ Geo-replication replicates the stored content to a secondary location to enable 
 
 	_Enabling Geo-Replication_
 
-	> **Note:** If you turn off geo-replication, you have locally redundant storage (LRS). For locally redundant storage, account data is replicated three times within the same data center. LRS is offered at discounted rates. Be aware that if you turn off geo-replication, and you later change your mind, you will incur a one-time data cost to replicate your existing data to the secondary location.
+	> **Note:** If you turn off geo-replication, you have locally redundant storage (LRS). For locally redundant storage, account data is replicated three times within the same data center. LRS is offered at discounted rates. Be aware that if you turn off geo-replication and later change your mind, you will incur a one-time data cost to replicate your existing data to the secondary location.
 
 <a name="Ex2Task2" />
 #### Task 2 - Configuring Monitoring ####
@@ -156,21 +155,21 @@ From the **Monitoring** section, you can monitor your storage accounts in the Wi
 
 	**Minimal** - Collects metrics such as ingress/egress, availability, latency, and success percentages, which are aggregated for the Blob, Table, and Queue services.
 
-	**Verbose** - In addition to the minimal metrics, this settings collects the same set of metrics for each storage operation in the Windows Azure Storage Service API. Verbose metrics enable closer analysis of issues that occur during application operations.
+	**Verbose** - In addition to the minimal metrics, this setting collects the same set of metrics for each storage operation in the Windows Azure Storage Service API. Verbose metrics enable closer analysis of issues that occur during application operations.
 
 	**Off** - Turns off monitoring. Existing monitoring data is persisted through the end of the retention period.
 
-	> **Note:** There are costs considerations when you select monitoring. For more information, see [Storage Analytics and Billing](http://msdn.microsoft.com/en-us/library/windowsazure/hh360997.aspx).
+	> **Note:** There are cost considerations when selecting monitoring. For more information, see [Storage Analytics and Billing](http://msdn.microsoft.com/en-us/library/windowsazure/hh360997.aspx).
 
 1. To set the data retention policy, in **Retention** (in days), type the number of days that data should be retained from 1-365 days. If there is no retention policy (by entering zero value), it is up to you to delete the monitoring data. 
 
 	> **Note:** It is recommended to set a retention policy based on how long you want to retain storage analytics data for your account so that old and unused analytics data can be deleted by the system at no cost.
 
-1. Once Monitoring is enabled, you can customize the **Dashboard** to choose up to six metrics to plot on the metrics chart. There are nine available metrics for each service. To do so, go to the **Dashboard** page.
+1. Once Monitoring is enabled, you can customize the **Dashboard** to choose up to six metrics to plot on the metrics chart. There are nine available metrics for each service. To configure this, go to the **Dashboard** page.
 
 	![storage-dashboard-menu](Images/storage-dashboard-menu.png?raw=true)
 
-1.	In the **Dashboard** page, you will see the default metrics displayed on the chart. To add a different metric, click on the **More** button to display the available metrics. Select one from the list.
+1.	In the **Dashboard** page, you will see the default metrics displayed on the chart. To add a different metric, click the **More** button to display the available metrics. Select one from the list.
 
 	![adding-metrics-dashboard](Images/adding-metrics-dashboard.png?raw=true)
 	
@@ -200,7 +199,7 @@ From the **Monitoring** section, you can monitor your storage accounts in the Wi
 
 	_Adding Metrics_
 
-1.	In the dialog box, you can choose from a list of different types of metrics for each service. You can select the metrics you want to display in the **Monitor** table.Click **OK** to continue.
+1.	In the dialog box, you can choose from a list of different types of metrics for each service. You can select the metrics you want to display in the **Monitor** table. Click **OK** to continue.
 
 	![Select Metrics to Monitor dialog](Images/select-metrics-to-monitor-dialog.png?raw=true "Select Metrics to Monitor dialog")
 
@@ -229,7 +228,7 @@ You can save diagnostic logs for Read Requests, Write Requests, and/or Delete Re
 
 	_Configuring Logging Options_
 
-	> **Note:** The diagnostics logs are saved in a blob container named **$logs** in your storage account. For information about accessing the $logs container, see [About Storage Analytics Logging](http://msdn.microsoft.com/en-us/library/windowsazure/hh343262.aspx).
+	> **Note:** The diagnostic logs are saved in a blob container named **$logs** in your storage account. For information about accessing the $logs container, see [About Storage Analytics Logging](http://msdn.microsoft.com/en-us/library/windowsazure/hh343262.aspx).
 
 
 <a name="Ex2Task4" />
@@ -243,7 +242,7 @@ When you create a storage account, Windows Azure generates two 512-bit storage a
 
 	_Managing Access Keys_
 
-1. You can use **Manage Keys** to copy a storage access key to use in a connection string. The connection string requires the storage account name and a key to use in authentication. Take note of the Primary access key and the storage account name as they will be used in the following exercise.
+1. You can use **Manage Keys** to copy a storage access key to use in a connection string. The connection string requires the storage account name and a key to use in authentication. Take note of the Primary access key and the storage account name which will be used in the following exercise.
 
 	![managing-access-keys](Images/managing-access-keys.png?raw=true)
 
@@ -258,7 +257,7 @@ When you create a storage account, Windows Azure generates two 512-bit storage a
 <a name="Exercise3"></a>
 ###Exercise 3: Understanding the Windows Azure Storage Abstractions ###
 
-This sample application is comprised of five Views, one for each CRUD operation (Create, Read, Update, Delete) and one to list all the entities from the Table Storage. In this exercise, you will update the MVC application actions to perform operations against each storage service (Table, Blob and Queue) using **Windows Azure SDK v2.2**. You will also learn how to use the new **async** methods built-into the SDK.
+This sample application is comprised of five Views, one for each CRUD operation (Create, Read, Update, Delete) and one to list all the entities from the Table Storage. In this exercise, you will update the MVC application actions to perform operations against each storage service (Table, Blob and Queue) using **Windows Azure SDK v2.2**. You will also learn how to use the new **async** methods built into the SDK.
 
 <a name="Ex3Task1" />
 #### Task 1 - Configuring Storage Account in the Cloud Project ####
@@ -267,7 +266,7 @@ In this task you will configure the _StorageConnectionString_ of the application
 
 1. Open **Visual Studio Express 2013 for Web** as Administrator.
 
-1. In the Start Page click on **Open Project...**, then browse the **Source\Ex3-UnderstandingStorageAbstractions\Begin\** folder of this lab and open the **Begin.sln** solution. Make sure to set the **PhotoUploader** cloud project as the default project.
+1. In the Start Page, click **Open Project...**, then browse to the **Source\Ex3-UnderstandingStorageAbstractions\Begin\** folder of this lab and open the **Begin.sln** solution. Make sure to set the **PhotoUploader** cloud project as the default project.
 
 1. Go to the **PhotoUploader_WebRole** located in the **Roles** folder of the **PhotoUploader** solution. Right-click it and select **Properties**.
 
@@ -294,7 +293,7 @@ In this task you will configure the _StorageConnectionString_ of the application
 <a name="Ex3Task2" />
 #### Task 2 - Working with Table Storage ####
 
-In this task you will update the MVC application actions to perform operations against the Table Storage. You are going to use Table Storage to save information of the uploaded photo such as its title and description.
+In this task you will update the MVC application actions to perform operations against the Table Storage. You are going to use Table Storage to save information about the uploaded photo such as its title and description.
 
 1. Open **PhotoEntity.cs** file in the **Models** folder and add the following directives.
 
@@ -302,7 +301,7 @@ In this task you will update the MVC application actions to perform operations a
 	using Microsoft.WindowsAzure.Storage.Table;
 	````
 
-1. Update the **PhotoEntity** class to inherit from **TableEntity**. TableEntity has **PartitionKey** and **RowKey** properties that need to be set when adding a new row to Table Storage. To do so, add the following _constructors_ and inherit the class from **TableEntity**.
+1. Update the **PhotoEntity** class to inherit from **TableEntity**. TableEntity has **PartitionKey** and **RowKey** properties that need to be set when adding a new row to Table Storage. To do this, add the following _constructors_ and inherit the class from **TableEntity**.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-InheritingTableEntity_)
 	<!-- mark:1-11 -->
@@ -394,9 +393,9 @@ In this task you will update the MVC application actions to perform operations a
 	}
 	````
 
-	>**Note**: To prepare the insert operation, a **TableOperation** is created to insert the photo entity into the table. The operation is then executed asynchronously by calling the **CloudTable.ExecuteAsync** method.
+	>**Note**: To prepare the insert operation, a **TableOperation** is created to insert the photo entity. The operation is then executed asynchronously by calling the **CloudTable.ExecuteAsync** method.
 
-1. **Update** operations are similar to insert, but first we need to retrieve the entity and then use a **Replace** table operation. We will receive the retrieved entity in the _entityToUpdate_ parameter. Add the following code:
+1. **Update** operations are similar to insert operations, but first we need to retrieve the entity and then use a **Replace** table operation. We will receive the retrieved entity in the _entityToUpdate_ parameter. Add the following code:
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-DataContextUpdatePhotoAsync_)
 
@@ -445,7 +444,7 @@ In this task you will update the MVC application actions to perform operations a
 	}
 	````
 
-1.	In order to display the entities in the View, you will convert them to a **ViewModel** class. You are going to add two helper methods to convert from a **ViewModel** to a **Model** and from a **Model** to a **ViewModel**. Add the following methods at the end of the class declaration.
+1.	In order to display the entities in the View, you will convert them to a **ViewModel** class. You are going to add two helper methods to convert from a **ViewModel** to a **Model** and viceversa. Add the following methods at the end of the class declaration.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-ViewModelHelpers_)
 
@@ -471,7 +470,7 @@ In this task you will update the MVC application actions to perform operations a
 	}
 	````
 
-1.	You will be using a **PhotoDataServiceContext** to interact with Table Storage, so add a new **GetPhotoContext** private method at the bottom of the class for creating the context.
+1.	You will be using a **PhotoDataServiceContext** to interact with Table Storage, so add a new **GetPhotoContext** private method at the bottom of the class to create the context.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-TableStorageGetPhotoContext_)
 
@@ -500,7 +499,7 @@ In this task you will update the MVC application actions to perform operations a
 
 	>**Note**: You use **Select** and the **ToViewModel** methods to convert every photo **Model** to a new **ViewModel**.
 
-1.	The **Details** view will show specific information of a particular photo. Replace the **Details** action with the following code to display the information of a single entity using the **PhotoDataServiceContext**.
+1.	The **Details** view will show specific information about a particular photo. Replace the **Details** action with the following code to display the information of a single entity using the **PhotoDataServiceContext**.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-TableStorageDetails_)
 
@@ -671,15 +670,15 @@ In this task you will update the MVC application actions to perform operations a
 
 	_Index Home Page_
 
-1. You will be presented with a login page. You will have to click on **"Register"** to create a user first.
+1. You will be presented with a login page. You will first have to click **"Register"** to create a user.
 
 	![Register a new user](Images/register-a-new-user.png?raw=true "Register a new user")
 
 	_Register a new user_
 
-1. Create a new entity. To do so, click the **Create** link.
+1. Click the **Create** link to create a new entity.
 
-1. Complete the **Title** and **Description** fields and click on **Create** to submit the form.
+1. Complete the **Title** and **Description** fields and click **Create** to submit the form.
 
 	![Create Image Form](Images/create-image-form.png?raw=true "Create Image Form")
 
@@ -857,7 +856,7 @@ In this task you will configure the MVC application to upload images to Blob Sto
 
 	_Upload image_
 
-	> **Note:** You can use one of the images that are included in this lab in the **Assets** folder.
+	> **Note:** You can use one of the images included in this lab in the **Assets** folder.
 
 1. Go to the **Details** page to check that the image uploaded successfully and then close the browser.
 
@@ -885,7 +884,7 @@ In this task, you will use queues to simulate a notification service, where a me
 	}
 	````
 
-1.	To notify that a new photo has been uploaded, you must insert a message to the **Queue** with the specific text to be displayed. Add the following highlighted code in the **Create** _POST_ action method.
+1.	To send notification that a new photo has been uploaded, you must insert a message to the **Queue** with the specific text to be displayed. Add the following highlighted code in the **Create** _POST_ action method.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-QueueSendMessageCreate_)
 
@@ -906,7 +905,7 @@ In this task, you will use queues to simulate a notification service, where a me
 	}	
 	````
 
-1.	To notify that a photo was deleted, you must insert a message to the **Queue** with the specific text to be displayed. Add the following highlighted code to the **DeleteConfirmed** action method.
+1.	To send notification that a photo was deleted, you must insert a message to the **Queue** with the specific text to be displayed. Add the following highlighted code to the **DeleteConfirmed** action method.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-QueueSendMessageDelete_)
 
@@ -1008,7 +1007,7 @@ In this task, you will use queues to simulate a notification service, where a me
 
 	> **Note:** The worker process will try to get a message from the queue every 10 seconds using the **GetMessage** method. If there are messages in the queue, they will be shown them in the Compute Emulator log.
 
-1. Press **F5** to run the application, and log in if you are not. Once the browser has opened, upload a new image.
+1. Press **F5** to run the application, and log in if you have not already. Once the browser has opened, upload a new image.
 
 1. Open the **Compute Emulator**. To do so, right-click the Windows Azure icon tray and select **Show Compute Emulator UI**.
 
@@ -1039,7 +1038,7 @@ In this task, you will use Visual Studio to inspect the Windows Azure Storage Ac
 
 1. Enter your **Live ID credentials** associated with the Storage Account you are using and sign in to Windows Azure.
 
-1. Expand the **Storage** dropdown and in there your account name. Notice that there is an entry for Tables, Blobs and Queues.
+1. Expand the **Storage** drop-down and within it your account name. Notice that there is an entry for Tables, Blobs and Queues.
 
 1. Expand the **Tables** container. You will see the **Photos** table under it.
 
@@ -1053,7 +1052,7 @@ In this task, you will use Visual Studio to inspect the Windows Azure Storage Ac
 
 	_Photos Table_
 
-	> **Note**: Here you can see the data you have created in the previous task. Notice the blob reference column. This column stores the name of the image saved in the Blob Storage.
+	> **Note**: Here you can see the data you created in the previous task. Notice the blob reference column. This column stores the name of the image saved in the Blob Storage.
 
 1. Expand the **Blobs** container. Double-click the **gallery** blob or right-click it and select **View Blob Container**. 
 
@@ -1802,7 +1801,7 @@ In this task you will update table security to use Stored Access Policy.
 	}
 	````
 
-1. Scroll down to the **GetProcessSasForQueues** method. Replace the enitre method with the following code.
+1. Scroll down to the **GetProcessSasForQueues** method. Replace the entire method with the following code.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-QueueSharedAccessSignatureWithStoredAccessPolicyInWorkerRole_)
 
