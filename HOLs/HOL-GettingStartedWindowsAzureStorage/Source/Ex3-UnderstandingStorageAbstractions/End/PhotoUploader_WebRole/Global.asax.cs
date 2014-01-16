@@ -8,6 +8,7 @@ using System.Web.Routing;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace PhotoUploader_WebRole
 {
@@ -21,9 +22,19 @@ namespace PhotoUploader_WebRole
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
             var cloudTableClient = storageAccount.CreateCloudTableClient();
             var table = cloudTableClient.GetTableReference("Photos");
             table.CreateIfNotExists();
+            var cloudBlobClient = storageAccount.CreateCloudBlobClient();
+            var container = cloudBlobClient.GetContainerReference(CloudConfigurationManager.GetSetting("ContainerName"));
+            if (container.CreateIfNotExists())
+            {
+                container.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+            }
+            var cloudQueueClient = storageAccount.CreateCloudQueueClient();
+            var queue = cloudQueueClient.GetQueueReference("messagequeue");
+            queue.CreateIfNotExists();
         }
     }
 }

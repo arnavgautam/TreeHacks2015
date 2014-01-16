@@ -11,7 +11,6 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.Auth;
 
-
 namespace QueueProcessor_WorkerRole
 {
     public class WorkerRole : RoleEntryPoint
@@ -21,31 +20,39 @@ namespace QueueProcessor_WorkerRole
 
         public override void Run()
         {
+            // This is a sample worker implementation. Replace with your logic.
             Trace.TraceInformation("QueueProcessor_WorkerRole entry point called", "Information");
-            var queueClient = new CloudQueueClient(this.uri, new StorageCredentials(this.GetQueueSas()));
 
+            // Initialize the account information
+            var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
+            // retrieve a reference to the messages queue
+            var queueClient = new CloudQueueClient(this.uri, new StorageCredentials(this.GetProcessSasForQueues()));
             var queue = queueClient.GetQueueReference("messagequeue");
 
             while (true)
             {
                 Thread.Sleep(10000);
                 Trace.TraceInformation("Working", "Information");
-             
-                if (DateTime.UtcNow.AddMinutes(1) >= this.serviceQueueSasExpiryTime)
+                if (queue.Exists())
                 {
-                    queueClient = new CloudQueueClient(this.uri, new StorageCredentials(this.GetQueueSas()));
-                    queue = queueClient.GetQueueReference("messagequeue");
-                }
+                    if (DateTime.UtcNow.AddMinutes(1) >= this.serviceQueueSasExpiryTime)
+                    {
+                        queueClient = new CloudQueueClient(this.uri, new StorageCredentials(this.GetProcessSasForQueues()));
+                        queue = queueClient.GetQueueReference("messagequeue");
+                    }
 
-                var msg = queue.GetMessage();
+                    var msg = queue.GetMessage();
 
-                if (msg != null)
-                {
-                    Trace.TraceInformation(string.Format("Message '{0}' processed.", msg.AsString));
-                    queue.DeleteMessage(msg);
+                    if (msg != null)
+                    {
+                        Trace.TraceInformation(string.Format("Message '{0}' processed.", msg.AsString));
+                        queue.DeleteMessage(msg);
+                    }
                 }
             }
         }
+
 
         public override bool OnStart()
         {
@@ -58,18 +65,13 @@ namespace QueueProcessor_WorkerRole
             return base.OnStart();
         }
 
-        private string GetQueueSas()
+        public string GetProcessSasForQueues()
         {
             var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
-            var client = storageAccount.CreateCloudQueueClient();
-            var queue = client.GetQueueReference("messagequeue");
+            var queue = storageAccount.CreateCloudQueueClient().GetQueueReference("messagequeue");
             queue.CreateIfNotExists();
-            var token = queue.GetSharedAccessSignature(
-                       new SharedAccessQueuePolicy() { Permissions = SharedAccessQueuePermissions.ProcessMessages | SharedAccessQueuePermissions.Read | SharedAccessQueuePermissions.Add | SharedAccessQueuePermissions.Update, SharedAccessExpiryTime = DateTime.UtcNow.AddMinutes(15) },
-                       null);
-
             this.serviceQueueSasExpiryTime = DateTime.UtcNow.AddMinutes(15);
-            return token;
+            return queue.GetSharedAccessSignature(new SharedAccessQueuePolicy() { Permissions = SharedAccessQueuePermissions.ProcessMessages | SharedAccessQueuePermissions.Read | SharedAccessQueuePermissions.Add | SharedAccessQueuePermissions.Update, SharedAccessExpiryTime = DateTime.UtcNow.AddMinutes(15) }, null);
         }
     }
 }

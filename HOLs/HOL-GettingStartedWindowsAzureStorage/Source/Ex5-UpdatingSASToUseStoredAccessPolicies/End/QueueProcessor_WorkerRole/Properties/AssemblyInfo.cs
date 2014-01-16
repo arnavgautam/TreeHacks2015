@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("QueueProcessor_WorkerRole")]
+[assembly: AssemblyTitle("PhotoUploader_WorkerRole")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("QueueProcessor_WorkerRole")]
+[assembly: AssemblyProduct("PhotoUploader_WorkerRole")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e8768838-9f9a-4fa8-97fb-0fd107e6176d")]
+[assembly: Guid("ac70ceef-b70e-4ef4-942a-767d82f18951")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -16,7 +16,7 @@ namespace QueueProcessor_WorkerRole
         public override void Run()
         {
             // This is a sample worker implementation. Replace with your logic.
-            Trace.TraceInformation("QueueProcessor_WorkerRole entry point called", "Information");
+            Trace.TraceInformation("PhotoUploader_WorkerRole entry point called", "Information");
 
             // Initialize the account information
             var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));

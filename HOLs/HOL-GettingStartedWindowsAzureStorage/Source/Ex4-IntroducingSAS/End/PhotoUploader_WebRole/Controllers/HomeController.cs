@@ -10,8 +10,8 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.WindowsAzure.Storage.Queue;
-using PhotoUploader_WebRole.Services;
 using Microsoft.WindowsAzure.Storage.Auth;
+using PhotoUploader_WebRole.Services;
 
 namespace PhotoUploader_WebRole.Controllers
 {
@@ -22,44 +22,13 @@ namespace PhotoUploader_WebRole.Controllers
         private Uri uriBlob = new Uri("http://127.0.0.1:10000/devstoreaccount1");
         private Uri uriQueue = new Uri("http://127.0.0.1:10001/devstoreaccount1");
 
-        [HttpGet]
-        public async Task<ActionResult> Share(string partitionKey, string rowKey)
-        {
-            var photoContext = this.GetPhotoContext();
-
-            var photo = await photoContext.GetByIdAsync(partitionKey, rowKey);
-            if (photo == null)
-            {
-                return this.HttpNotFound();
-            }
-
-            var sas = string.Empty;
-            if (!string.IsNullOrEmpty(photo.BlobReference))
-            {
-                var blobBlockReference = this.GetBlobContainer().GetBlockBlobReference(photo.BlobReference);
-                sas = SasService.GetReadonlyUriWithSasForBlob(blobBlockReference);
-            }
-
-            if (!string.IsNullOrEmpty(sas))
-            {
-                return View("Share", null, sas);
-            }
-
-            return RedirectToAction("Index");
-        }
-
-        //
-        // GET: /
-
         public ActionResult Index()
         {
             var photoContext = this.GetPhotoContext();
             var photos = photoContext.GetPhotos();
-            return this.View(photos.Select(this.ToViewModel).ToList());
+            var photosViewModels = photos.Select(this.ToViewModel).ToList();
+            return this.View(photosViewModels);
         }
-
-        //
-        // GET: /Home/Details/5
 
         public async Task<ActionResult> Details(string partitionKey, string rowKey)
         {
@@ -80,16 +49,10 @@ namespace PhotoUploader_WebRole.Controllers
             return this.View(viewModel);
         }
 
-        //
-        // GET: /Home/Create
-
         public ActionResult Create()
         {
             return View();
         }
-
-        //
-        // POST: /Home/Create
 
         [HttpPost]
         public async Task<ActionResult> Create(PhotoViewModel photoViewModel, HttpPostedFileBase file, FormCollection collection)
@@ -119,22 +82,12 @@ namespace PhotoUploader_WebRole.Controllers
             var photoContext = this.GetPhotoContext();
             await photoContext.AddPhotoAsync(photo);
 
-            //Send create notification
-            try
-            {
-                var msg = new CloudQueueMessage("Photo Uploaded");
-                await this.GetCloudQueue().AddMessageAsync(msg);
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Trace.TraceInformation("Error", "Couldn't send notification");
-            }
+            // Send create notification
+            var msg = new CloudQueueMessage("Photo Uploaded");
+            await this.GetCloudQueue().AddMessageAsync(msg);
 
             return this.RedirectToAction("Index");
         }
-
-        //
-        // GET: /Home/Edit/5
 
         public async Task<ActionResult> Edit(string partitionKey, string rowKey)
         {
@@ -155,9 +108,6 @@ namespace PhotoUploader_WebRole.Controllers
             return this.View(viewModel);
         }
 
-        //
-        // POST: /Home/Edit/5
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(PhotoViewModel photoViewModel, FormCollection collection)
@@ -167,17 +117,21 @@ namespace PhotoUploader_WebRole.Controllers
                 return this.View();
             }
 
-            var photo = this.FromViewModel(photoViewModel);
-
-            //Update information in Table Storage
             var photoContext = this.GetPhotoContext();
-            await photoContext.UpdatePhotoAsync(photo);
+            var entityToUpdate = await photoContext.GetByIdAsync(photoViewModel.PartitionKey, photoViewModel.RowKey);
+
+            if (entityToUpdate == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            // Update entity information from ViewModel
+            entityToUpdate.Title = photoViewModel.Title;
+            entityToUpdate.Description = photoViewModel.Description;
+            await photoContext.UpdatePhotoAsync(entityToUpdate);
 
             return this.RedirectToAction("Index");
         }
-
-        //
-        // GET: /Home/Delete/5
 
         public async Task<ActionResult> Delete(string partitionKey, string rowKey)
         {
@@ -198,15 +152,18 @@ namespace PhotoUploader_WebRole.Controllers
             return this.View(viewModel);
         }
 
-        //
-        // POST: /Home/Delete/5
-
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string partitionKey, string rowKey)
         {
             var photoContext = this.GetPhotoContext();
             var photo = await photoContext.GetByIdAsync(partitionKey, rowKey);
+
+            if (photo == null)
+            {
+                return this.HttpNotFound();
+            }
+
             await photoContext.DeletePhotoAsync(photo);
 
             //Deletes the Image from Blob Storage
@@ -216,18 +173,36 @@ namespace PhotoUploader_WebRole.Controllers
                 await blob.DeleteIfExistsAsync();
             }
 
-            //Send delete notification
-            try
-            {
-                var msg = new CloudQueueMessage("Photo Deleted");
-                await this.GetCloudQueue().AddMessageAsync(msg);
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Trace.TraceInformation("Error", "Couldn't send notification");
-            }
+            // Send delete notification
+            var msg = new CloudQueueMessage("Photo Deleted");
+            await this.GetCloudQueue().AddMessageAsync(msg);
 
             return this.RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> Share(string partitionKey, string rowKey)
+        {
+            var photoContext = this.GetPhotoContext();
+
+            var photo = await photoContext.GetByIdAsync(partitionKey, rowKey);
+            if (photo == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            var sas = string.Empty;
+            if (!string.IsNullOrEmpty(photo.BlobReference))
+            {
+                var blobBlockReference = this.GetBlobContainer().GetBlockBlobReference(photo.BlobReference);
+                sas = SasService.GetReadonlyUriWithSasForBlob(blobBlockReference.Name);
+            }
+
+            if (!string.IsNullOrEmpty(sas))
+            {
+                return View("Share", null, sas);
+            }
+
+            return RedirectToAction("Index");
         }
 
         private PhotoViewModel ToViewModel(PhotoEntity photo)
@@ -260,7 +235,7 @@ namespace PhotoUploader_WebRole.Controllers
 
         private CloudBlobContainer GetBlobContainer()
         {
-            var sasToken = SasService.GetSasForBlob();
+            var sasToken = SasService.GetSasForBlobContainer();
             var client = new CloudBlobClient(this.uriBlob, new StorageCredentials(sasToken));
             return client.GetContainerReference(CloudConfigurationManager.GetSetting("ContainerName"));
         }
@@ -270,7 +245,6 @@ namespace PhotoUploader_WebRole.Controllers
             var sasToken = SasService.GetAddSasForQueues();
             var queueClient = new CloudQueueClient(this.uriQueue, new StorageCredentials(sasToken));
             var queue = queueClient.GetQueueReference("messagequeue");
-            queue.CreateIfNotExists();
             return queue;
         }
     }

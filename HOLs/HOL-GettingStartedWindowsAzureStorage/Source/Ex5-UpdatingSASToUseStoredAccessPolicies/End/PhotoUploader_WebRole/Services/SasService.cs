@@ -1,14 +1,13 @@
-﻿using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Auth;
-using Microsoft.WindowsAzure.Storage.Blob;
-using Microsoft.WindowsAzure.Storage.Queue;
-using Microsoft.WindowsAzure.Storage.Table;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Globalization;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.Queue;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace PhotoUploader_WebRole.Services
 {
@@ -36,8 +35,10 @@ namespace PhotoUploader_WebRole.Services
             return sasToken;
         }
 
-        public static string GetReadonlyUriWithSasForBlob(CloudBlockBlob blob, string policyId)
+        public static string GetReadonlyUriWithSasForBlob(string blobName, string policyId)
         {
+            var cloudBlobClient = StorageAccount.CreateCloudBlobClient();
+            var blob = cloudBlobClient.GetContainerReference(CloudConfigurationManager.GetSetting("ContainerName")).GetBlockBlobReference(blobName);
             var sas = blob.GetSharedAccessSignature(new SharedAccessBlobPolicy()
             {
                 Permissions = SharedAccessBlobPermissions.Read,
@@ -48,7 +49,7 @@ namespace PhotoUploader_WebRole.Services
             return string.Format(CultureInfo.InvariantCulture, "{0}{1}", blob.Uri, sas);
         }
 
-        public static string GetSasForBlob()
+        public static string GetSasForBlobContainer()
         {
             var cloudBlobClient = StorageAccount.CreateCloudBlobClient();
             var container = cloudBlobClient.GetContainerReference(CloudConfigurationManager.GetSetting("ContainerName"));
@@ -70,12 +71,12 @@ namespace PhotoUploader_WebRole.Services
         public static string GetAddSasForQueues()
         {
             var cloudQueueClient = StorageAccount.CreateCloudQueueClient();
-            var policy = new SharedAccessQueuePolicy() 
-            { 
-                Permissions = SharedAccessQueuePermissions.Add | SharedAccessQueuePermissions.Read, 
-                SharedAccessExpiryTime = DateTime.UtcNow.AddMinutes(15) 
+            var policy = new SharedAccessQueuePolicy()
+            {
+                Permissions = SharedAccessQueuePermissions.Add | SharedAccessQueuePermissions.Read,
+                SharedAccessExpiryTime = DateTime.UtcNow.AddMinutes(15)
             };
-            
+
             var sasToken = cloudQueueClient.GetQueueReference("messagequeue").GetSharedAccessSignature(policy, "add");
             return sasToken;
         }

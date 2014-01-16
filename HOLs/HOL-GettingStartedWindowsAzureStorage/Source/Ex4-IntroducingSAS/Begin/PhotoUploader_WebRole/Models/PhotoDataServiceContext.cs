@@ -36,22 +36,11 @@ namespace PhotoUploader_WebRole.Models
             await table.ExecuteAsync(operation);
         }
 
-        public async Task UpdatePhotoAsync(PhotoEntity photo)
+        public async Task UpdatePhotoAsync(PhotoEntity entityToUpdate)
         {
             var table = this.ServiceClient.GetTableReference("Photos");
-            var retrieveOperation = TableOperation.Retrieve<PhotoEntity>(photo.PartitionKey, photo.RowKey);
-
-            var retrievedResult = await table.ExecuteAsync(retrieveOperation);
-            var updateEntity = (PhotoEntity)retrievedResult.Result;
-
-            if (updateEntity != null)
-            {
-                updateEntity.Description = photo.Description;
-                updateEntity.Title = photo.Title;
-
-                var replaceOperation = TableOperation.Replace(updateEntity);
-                await table.ExecuteAsync(replaceOperation);
-            }
+            var operation = TableOperation.Replace(entityToUpdate);
+            await table.ExecuteAsync(operation);
         }
 
         public async Task DeletePhotoAsync(PhotoEntity entityToDelete)

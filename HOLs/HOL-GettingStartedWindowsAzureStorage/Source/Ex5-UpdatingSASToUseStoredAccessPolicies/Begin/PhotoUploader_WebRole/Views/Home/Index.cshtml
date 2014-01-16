@@ -5,17 +5,14 @@
 }
 
 <h2>Index</h2>
-<p>
-    @Html.ActionLink("Create", "Create")
-</p>
 
 @if (this.Model.Count() > 0)
 {
-    <table>
+    <table class="table">
         <tr>
             <th> Owner</th>
-            <th> @Html.DisplayNameFor(model => model.Title)</th>
-            <th> @Html.DisplayNameFor(model => model.Description)</th>
+            <th> Title</th>
+            <th> Description</th>
             <th></th>
         </tr>
         @foreach (var photo in this.Model)
@@ -24,26 +21,17 @@
                 <td>@photo.PartitionKey</td>
                 <td>@photo.Title</td>
                 <td>@photo.Description</td>
-                <td>@Html.ActionLink("Edit", "Edit", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey })</td>
-                <td>@Html.ActionLink("Details", "Details", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey })</td>
-                <td>@Html.ActionLink("Delete", "Delete", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey })</td>
-                
-                @if (photo.PartitionKey == "Public")
-                {
-                    if (this.User.Identity.IsAuthenticated)
-                    {
-                        <td>@Html.ActionLink("To Private", "ToPrivate", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey })</td>
-                    }
-                }
-                else
-                {
-                    <td>@Html.ActionLink("To Public", "ToPublic", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey })</td>
-                    <td>@Html.ActionLink("Share", "Share", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey })</td>
-                }
-                
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey }) |
+                    @Html.ActionLink("Details", "Details", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey }) |
+                    @Html.ActionLink("Delete", "Delete", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey }) |
+                    @Html.ActionLink("Share", "Share", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey })
+                </td>
             </tr>
         }
     </table>
-} else{
+}
+else
+{
     <p>No images uploaded yet</p>
 }

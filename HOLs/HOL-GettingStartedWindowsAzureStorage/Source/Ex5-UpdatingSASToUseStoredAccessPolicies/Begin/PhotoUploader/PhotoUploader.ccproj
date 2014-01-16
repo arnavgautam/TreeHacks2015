@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>2.0</ProductVersion>
-    <ProjectGuid>95f446ef-838e-414b-be25-1c50acac612d</ProjectGuid>
+    <ProductVersion>2.2</ProductVersion>
+    <ProjectGuid>a3cfa34e-64f9-4438-acb9-0fe9366576e1</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PhotoUploader</RootNamespace>
@@ -39,7 +39,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PhotoUploader_WebRole\PhotoUploader_WebRole.csproj">
       <Name>PhotoUploader_WebRole</Name>
-      <Project>{523b5e1e-b7e3-41b2-99d0-1abf028696d1}</Project>
+      <Project>{69362175-7d89-4863-8ddc-ea8582991620}</Project>
       <Private>True</Private>
       <RoleType>Web</RoleType>
       <RoleName>PhotoUploader_WebRole</RoleName>
@@ -47,7 +47,7 @@
     </ProjectReference>
     <ProjectReference Include="..\QueueProcessor_WorkerRole\QueueProcessor_WorkerRole.csproj">
       <Name>QueueProcessor_WorkerRole</Name>
-      <Project>{a78d52a8-ffc3-49ea-9b4f-0da9d90a2967}</Project>
+      <Project>{053aec09-44d6-4fa4-a393-3453b73410f3}</Project>
       <Private>True</Private>
       <RoleType>Worker</RoleType>
       <RoleName>QueueProcessor_WorkerRole</RoleName>
@@ -68,7 +68,7 @@
   <!-- Import the target files for this project template -->
   <PropertyGroup>
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
-    <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\2.0\</CloudExtensionsDir>
+    <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\2.2\</CloudExtensionsDir>
   </PropertyGroup>
   <Import Project="$(CloudExtensionsDir)Microsoft.WindowsAzure.targets" />
 </Project>

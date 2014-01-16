@@ -24,9 +24,19 @@ namespace PhotoUploader_WebRole
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
             var cloudTableClient = storageAccount.CreateCloudTableClient();
             var table = cloudTableClient.GetTableReference("Photos");
             table.CreateIfNotExists();
+            var cloudBlobClient = storageAccount.CreateCloudBlobClient();
+            var container = cloudBlobClient.GetContainerReference(CloudConfigurationManager.GetSetting("ContainerName"));
+            if (container.CreateIfNotExists())
+            {
+                container.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+            }
+            var cloudQueueClient = storageAccount.CreateCloudQueueClient();
+            var queue = cloudQueueClient.GetQueueReference("messagequeue");
+            queue.CreateIfNotExists();
 
             TablePermissions tp = new TablePermissions();
             tp.SharedAccessPolicies.Add("readonly", new SharedAccessTablePolicy { Permissions = SharedAccessTablePermissions.Query, SharedAccessExpiryTime = System.DateTime.UtcNow.AddMinutes(15) });
@@ -35,19 +45,14 @@ namespace PhotoUploader_WebRole
             tp.SharedAccessPolicies.Add("none", new SharedAccessTablePolicy { Permissions = SharedAccessTablePermissions.None, SharedAccessExpiryTime = System.DateTime.UtcNow.AddMinutes(15) });
             table.SetPermissions(tp);
 
-            CloudBlobContainer blob = storageAccount.CreateCloudBlobClient().GetContainerReference(CloudConfigurationManager.GetSetting("ContainerName"));
             BlobContainerPermissions bp = new BlobContainerPermissions();
-
             bp.SharedAccessPolicies.Add("read", new SharedAccessBlobPolicy { Permissions = SharedAccessBlobPermissions.Read, SharedAccessExpiryTime = System.DateTime.UtcNow.AddMinutes(60) });
-            blob.SetPermissions(bp);
+            container.SetPermissions(bp);
 
-            CloudQueue queue = storageAccount.CreateCloudQueueClient().GetQueueReference("messagequeue");
-            queue.CreateIfNotExists();
             QueuePermissions qp = new QueuePermissions();
             qp.SharedAccessPolicies.Add("add", new SharedAccessQueuePolicy { Permissions = SharedAccessQueuePermissions.Add | SharedAccessQueuePermissions.Read, SharedAccessExpiryTime = System.DateTime.UtcNow.AddMinutes(15) });
             qp.SharedAccessPolicies.Add("process", new SharedAccessQueuePolicy { Permissions = SharedAccessQueuePermissions.ProcessMessages | SharedAccessQueuePermissions.Read, SharedAccessExpiryTime = System.DateTime.UtcNow.AddMinutes(15) });
             queue.SetPermissions(qp);
-
             queue.Metadata.Add("Resize", "true");
             queue.SetMetadata();
         }
