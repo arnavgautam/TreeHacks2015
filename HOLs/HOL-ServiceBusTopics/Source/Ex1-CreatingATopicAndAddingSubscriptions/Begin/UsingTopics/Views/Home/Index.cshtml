@@ -36,7 +36,7 @@
                 <label><input id="urgentCheck" type="checkbox" /> Urgent </label>
             </div>
             <div class="form-inline">
-                <label class="right"><input id="followUpCheck" type="checkbox" /> Follow Up</label>
+                <label class="right"><input id="importantCheck" type="checkbox" /> Mark as Important</label>
             </div>
             <div class="form-inline">
                 <button id="sendMessageButton" type="button" class="btn btn-default" disabled="disabled">Send</button>
@@ -53,6 +53,7 @@
         </div>
         <div class="form-inline">
             <button id="retrieveMessage" type="submit" class="btn btn-default" disabled="disabled">Receive</button>
+            <button id="viewSubscriptionFilters" type="button" class="btn btn-default">Filters</button>
         </div>
     </div>
 </div>
@@ -85,6 +86,23 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="filtersModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Subscription Filters</h4>
+            </div>
+            <div class="modal-body">
+                <ul id="filtersList"></ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 @section scripts{
     <script type="text/javascript">
@@ -173,10 +191,10 @@
                 topicName: $("#topicList a.active").html(),
                 messageBody: $("#messageBody").val(),
                 isUrgent: $("#urgentCheck").is(":checked"),
-                isFollowUp: $("#followUpCheck").is(":checked")
+                isImportant: $("#importantCheck").is(":checked")
             };
 
-            logMessage("Sending Message to " + message.topicName + " {isUrgent: " + message.isUrgent + "; isFollowUp: " + message.isFollowUp + "}");
+            logMessage("Sending Message to " + message.topicName + " {isUrgent: " + message.isUrgent + "; isImportant: " + message.isImportant + "}");
             $.post('/Home/SendMessage/', message, function (data) {
                 logMessage("Done!");
                 sendMessageSuccessHandler(message.topicName);
@@ -234,6 +252,7 @@
             });
             $("#sendMessageButton").click(sendMessage);
             $("#retrieveMessage").click(retrieveMessage);
+            $("#viewSubscriptionFilters").click(viewSubscriptionFilters);
         }
 
         $(document).ready(function () {
@@ -281,20 +300,24 @@
             return message;
         }
 
-        function viewSubscriptionFilters(topicName, subscriptionName) {
-            $(".loading").show();
+        function viewSubscriptionFilters() {
+            var topicName = $("#topicList a.active").html();
+            var subscriptionName = $("#messageSubscriptions a.active span").data("value");
+            logMessage("Retrieving filters for subscription '" + subscriptionName + " (topic: '" + topicName + ")'...");
             $.get("/Home/Filters", { topicName: topicName, subscriptionName: subscriptionName })
             .success(function (response) {
-                var ul = $(".viewSubscriptionFilters > ul");
+                var ul = $("#filtersList");
                 ul.children().remove();
                 for (var i = 0; i < response.length; i++) {
                     var item = response[i];
                     ul.append('<li>Filter Expression: "' + item.Filter + '"</li>');
                     if (item.FilterAction) ul.append('<li>Filter Action: "' + item.Action + '"</li>');
                 }
-
-                $(".viewSubscriptionFilters").dialog('open');
-                $(".loading").hide();
+                logMessage("Done!");;
+                $("#filtersModal").modal();
+            })
+            .error(function () {
+                logMessage('ERROR: Unable to retrieve subscription filters.');
             });
         }
 
