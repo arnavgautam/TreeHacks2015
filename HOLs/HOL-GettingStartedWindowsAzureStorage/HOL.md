@@ -110,7 +110,7 @@ In this task you will learn how to create a new Storage Account using the Window
 
 	_Storage Account created_
 
-1. Click on the Storage Account name you created. You will enter the **Dashboard** page, which provides you with information about the status of the account and the service endpoints that can be used within your applications.
+1. Click on the Storage Account name you created and then on **Dashboard** to the **Dashboard** page, which provides you with information about the status of the account and the service endpoints that can be used within your applications.
 
 	![storage-account-dashboard](Images/storage-account-dashboard.png?raw=true)
 
