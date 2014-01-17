@@ -71,13 +71,7 @@ namespace PhotoUploader_WebRole.Services
         public static string GetAddSasForQueues()
         {
             var cloudQueueClient = StorageAccount.CreateCloudQueueClient();
-            var policy = new SharedAccessQueuePolicy()
-            {
-                Permissions = SharedAccessQueuePermissions.Add | SharedAccessQueuePermissions.Read,
-                SharedAccessExpiryTime = DateTime.UtcNow.AddMinutes(15)
-            };
-
-            var sasToken = cloudQueueClient.GetQueueReference("messagequeue").GetSharedAccessSignature(policy, "add");
+            var sasToken = cloudQueueClient.GetQueueReference("messagequeue").GetSharedAccessSignature(new SharedAccessQueuePolicy(), "add");
             return sasToken;
         }
     }

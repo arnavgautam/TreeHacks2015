@@ -1293,7 +1293,7 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-ShareAction_)
 
-	<!-- mark:1-26 -->
+	<!-- mark:1-24 -->
 	````C#
 	public async Task<ActionResult> Share(string partitionKey, string rowKey)
 	{
@@ -1522,7 +1522,13 @@ In this task you will update table security to use Stored Access Policy.
 
 1. Continue working with the end solution of the previous exercise, or open the solution located at _/Source/Ex5-UpdatingSASToUseStoredAccessPolicies/Begin_. Remember to run Visual Studio **as administrator** to be able to use the Windows Azure storage emulator.
 
-1. Update **Global.asax.cs** to set the Stored Access Policies for Table Storage.
+1. Open **Global.asax.cs** and add the following using directive.
+
+	````C#
+	using Microsoft.WindowsAzure.Storage.Table;
+	````
+
+1. Update the following code at the end of the **Application_Start** method to set the Stored Access Policies for Table Storage.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-TableStorageStoredAccessPoliciesTables_)
 
@@ -1544,14 +1550,10 @@ In this task you will update table security to use Stored Access Policy.
 
 1. Open the **SasService.cs** class located in the **Services** folder and replace the **GetSasForTable** method with the following code.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetSasForTableImplementation_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetSasForTable_)
 
-	<!-- mark:5-23 -->
+	<!-- mark:1-20 -->
 	````C#
-	public class SasService
-	{
-		...
-
 		public static string GetSasForTable(string username, string policyName)
 		{
 			var cloudTableClient = StorageAccount.CreateCloudTableClient();
@@ -1574,10 +1576,10 @@ In this task you will update table security to use Stored Access Policy.
 	}
 	````
 
-1. Scroll down to the **GetPhotoContext** method and update the **sasToken** creation with the following code.  
+1. Open the **HomeController.cs** class located in the _Controllers_ folder.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetPhotoContext_)
-	
+1. Locate the **GetPhotoContext** method and update the line where you get the **sasToken** with the following code.  
+
 	<!-- mark:3 -->
 	````C#
 	private PhotoDataServiceContext GetPhotoContext()
@@ -1610,7 +1612,7 @@ In this task you will update table security to use Stored Access Policy.
 
 	>**Note**: Replace the _<http://127.0.0.1:10002/devstoreaccount1>_ with your storage account table URI in order to work against Windows Azure if not already replaced.
 
-1. Open the **SasService.cs** class and replace the _GetReadonlyUriWithSasForBlob_ method with the following implementation. Notice you only added a new **policyId** parameter and passed it to _GetSharedAccessSignature_.
+1. Open the **SasService.cs** class and replace the _GetReadonlyUriWithSasForBlob_ method with the following code. Notice you added a new **policyId** parameter which you are using when getting the shared access signature for given blob.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetSasForBlobWithStoredAccessPolicy_)
 	
@@ -1630,7 +1632,7 @@ In this task you will update table security to use Stored Access Policy.
 	}
 	````
 
-1. Open the **HomeController.cs** class and scroll down to the _Share_ method. Replace the _GetSasForBlob_ method call with the new implementation.
+1. Open the **HomeController.cs** class and locate the _Share_ action. Replace the line where you invoke _GetSasForBlob_ with the following code.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-ShareActionWithStoredAccessPolicy_)
 
@@ -1671,7 +1673,7 @@ In this task you will update table security to use Stored Access Policy.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-QueueStorageWithStoredAccessPolicy_)
 
-	<!-- mark:5-13 -->
+	<!-- mark:5-12 -->
 	````C#
 	protected void Application_Start()
 	{
@@ -1687,32 +1689,25 @@ In this task you will update table security to use Stored Access Policy.
 	}
 	````
 
-1. Open the **SasService.cs** file located in the **Service** folder and locate the _GetAddSasForQueues_ method. Replace the _GetSharedAccessSignature_ method call with the following code.
+1. Open the **SasService.cs** file in the _Services_ folder and replace the _GetAddSasForQueues_ method with the following code.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetAddSasForQueuesWithStoredAccessPolicy_)
-
-	<!-- mark:10 -->
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetAddSasForQueues_)
+	<!-- mark:1-6 -->
 	````C#
 	public static string GetAddSasForQueues()
 	{
 		var cloudQueueClient = StorageAccount.CreateCloudQueueClient();
-		var policy = new SharedAccessQueuePolicy() 
-		{ 
-			Permissions = SharedAccessQueuePermissions.Add | SharedAccessQueuePermissions.Read, 
-			SharedAccessExpiryTime = DateTime.UtcNow.AddMinutes(15) 
-		};
-
-		var sasToken = cloudQueueClient.GetQueueReference("messagequeue").GetSharedAccessSignature(policy, "add");
+		var sasToken = cloudQueueClient.GetQueueReference("messagequeue").GetSharedAccessSignature(new SharedAccessQueuePolicy(), "add");
 		return sasToken;
 	}
 	````
 
 1. Open the **HomeController.cs** file located in the _Controllers_ folder and locate the **Create** _POST_ method.
 
-1. Update the code inside the **if** block with the following in order to **add metadata** to the blob reference before uploading it.
+1. Update the code inside the second **if** block with the following in order to **add metadata** to the blob reference before uploading it.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-BlobMetadata_)
-	<!-- mark:11-16 -->
+	<!-- mark:12-17 -->
 	````C#
 	[HttpPost]
 	public async Task<ActionResult> Create(PhotoViewModel photoViewModel, HttpPostedFileBase file, FormCollection collection)
@@ -1724,6 +1719,7 @@ In this task you will update table security to use Stored Access Policy.
 			// Save file stream to Blob Storage
 			var blob = this.GetBlobContainer().GetBlockBlobReference(file.FileName);
 			blob.Properties.ContentType = file.ContentType;
+
 			var image = new System.Drawing.Bitmap(file.InputStream);
 			if (image != null)
 			{
@@ -1746,6 +1742,15 @@ In this task you will update table security to use Stored Access Policy.
 
 	>**Note:** The **Bitmap** class allows you to easily read the _Width_ and _Height_ properties of the uploaded image.
 
+1. Additionally, in the same method, update the line where you create the **CloudQueueMessage** with the following:
+
+	<!--mark:2-->
+	````C#
+	// Send create notification
+	var msg = new CloudQueueMessage(string.Format("Photo Uploaded,{0}", photo.BlobReference));
+	await this.GetCloudQueue().AddMessageAsync(msg);
+	````
+
 1. On the **QueueProcessor_WorkerRole** project, open the **WorkerRole.cs** file.
 
 1. Add the following using statements.
@@ -1763,7 +1768,7 @@ In this task you will update table security to use Stored Access Policy.
 
 1. Create a new method called **CreateCloudBlobClient** in order to create the container and also set the _container_ variable by inserting the following code.
 	
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-CreateCloudBlobClientImplementation_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-CreateCloudBlobClient_)
 
 	````C#
 	private void CreateCloudBlobClient()
@@ -1775,10 +1780,8 @@ In this task you will update table security to use Stored Access Policy.
 	}
 	````
 
-1. In the **OnStart** method, call the **CreateCloudBlobClient** method you have just created.
+1. In the **OnStart** method, add the following line to invoke the **CreateCloudBlobClient** method you have just created.
 	
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-CreateCloudBlobClientCall_)
-
 	<!-- mark:5 -->
 	````C#
 	public override bool OnStart()
@@ -1793,7 +1796,7 @@ In this task you will update table security to use Stored Access Policy.
 
 1. Scroll down to the **GetProcessSasForQueues** method. Replace the entire method with the following code.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-QueueSharedAccessSignatureWithStoredAccessPolicyInWorkerRole_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetProcessSasForQueuesWithStoredAccessPolicy_)
 
 	````C#
 	public string GetProcessSasForQueues()
@@ -1815,9 +1818,9 @@ In this task you will update table security to use Stored Access Policy.
 	}
 	````
 
-1. Add the following code to the **Run** method in the **WorkerRole** class in order to display the properties and metadata saved in the WebRole. Replace the  **if (msg != null) { ... }** block with the following code.
+1. Update the **Run** method with the following code in order to display the properties and metadata saved in the WebRole. Replace the  last **if** block with the following code.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-RunMethodUpdate_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-TraceResizeInformation_)
 
 	<!-- mark:11-36 -->
 	````C#

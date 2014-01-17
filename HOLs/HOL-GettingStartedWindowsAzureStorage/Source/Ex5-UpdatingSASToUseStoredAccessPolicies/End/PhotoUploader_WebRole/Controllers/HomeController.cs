@@ -7,10 +7,10 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.WindowsAzure.Storage.Queue;
-using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Table;
 using PhotoUploader_WebRole.Services;
 
 namespace PhotoUploader_WebRole.Controllers
@@ -41,6 +41,7 @@ namespace PhotoUploader_WebRole.Controllers
             }
 
             var viewModel = this.ToViewModel(photo);
+
             if (!string.IsNullOrEmpty(photo.BlobReference))
             {
                 viewModel.Uri = this.GetBlobContainer().GetBlockBlobReference(photo.BlobReference).Uri.ToString();
@@ -69,6 +70,7 @@ namespace PhotoUploader_WebRole.Controllers
                 // Save file stream to Blob Storage
                 var blob = this.GetBlobContainer().GetBlockBlobReference(file.FileName);
                 blob.Properties.ContentType = file.ContentType;
+                
                 var image = new System.Drawing.Bitmap(file.InputStream);
                 if (image != null)
                 {
@@ -90,7 +92,7 @@ namespace PhotoUploader_WebRole.Controllers
             await photoContext.AddPhotoAsync(photo);
 
             // Send create notification
-            var msg = new CloudQueueMessage("Photo Uploaded");
+            var msg = new CloudQueueMessage(string.Format("Photo Uploaded,{0}", photo.BlobReference));
             await this.GetCloudQueue().AddMessageAsync(msg);
 
             return this.RedirectToAction("Index");
@@ -107,6 +109,7 @@ namespace PhotoUploader_WebRole.Controllers
             }
 
             var viewModel = this.ToViewModel(photo);
+
             if (!string.IsNullOrEmpty(photo.BlobReference))
             {
                 viewModel.Uri = this.GetBlobContainer().GetBlockBlobReference(photo.BlobReference).Uri.ToString();
@@ -151,6 +154,7 @@ namespace PhotoUploader_WebRole.Controllers
             }
 
             var viewModel = this.ToViewModel(photo);
+
             if (!string.IsNullOrEmpty(photo.BlobReference))
             {
                 viewModel.Uri = this.GetBlobContainer().GetBlockBlobReference(photo.BlobReference).Uri.ToString();
