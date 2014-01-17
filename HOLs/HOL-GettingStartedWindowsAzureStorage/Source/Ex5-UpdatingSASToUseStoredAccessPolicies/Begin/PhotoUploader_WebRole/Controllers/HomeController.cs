@@ -7,10 +7,10 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.WindowsAzure.Storage.Queue;
-using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Table;
 using PhotoUploader_WebRole.Services;
 
 namespace PhotoUploader_WebRole.Controllers
@@ -41,6 +41,7 @@ namespace PhotoUploader_WebRole.Controllers
             }
 
             var viewModel = this.ToViewModel(photo);
+
             if (!string.IsNullOrEmpty(photo.BlobReference))
             {
                 viewModel.Uri = this.GetBlobContainer().GetBlockBlobReference(photo.BlobReference).Uri.ToString();
@@ -100,6 +101,7 @@ namespace PhotoUploader_WebRole.Controllers
             }
 
             var viewModel = this.ToViewModel(photo);
+
             if (!string.IsNullOrEmpty(photo.BlobReference))
             {
                 viewModel.Uri = this.GetBlobContainer().GetBlockBlobReference(photo.BlobReference).Uri.ToString();
@@ -144,6 +146,7 @@ namespace PhotoUploader_WebRole.Controllers
             }
 
             var viewModel = this.ToViewModel(photo);
+
             if (!string.IsNullOrEmpty(photo.BlobReference))
             {
                 viewModel.Uri = this.GetBlobContainer().GetBlockBlobReference(photo.BlobReference).Uri.ToString();

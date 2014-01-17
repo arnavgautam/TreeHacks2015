@@ -31,20 +31,20 @@ In this hands-on lab, you will learn how to:
 
 * Create a Storage Account.
 * Learn the different configuration options for Geo-Replication, Monitoring and Logging.
-* Access Tables, Blobs and Queues using **Windows Azure SDK 2.0** in a MVC Web Application.
+* Access Tables, Blobs and Queues using **Windows Azure SDK 2.2** in an MVC Web Application.
 
 <a name="Prerequisites" />
 ### Prerequisites ###
 
 The following is required to complete this hands-on lab:
 
-- [Microsoft Visual Studio Express 2013 for Web] [1]
-- [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)] [2]
-- A Windows Azure subscription - [sign up for a free trial] [3]
-
-[1]: http://www.visualstudio.com/en-us/downloads/
-[2]: http://www.microsoft.com/windowsazure/sdk/
-[3]: http://aka.ms/WATK-FreeTrial
+- [Microsoft Visual Studio Express 2013 for Web] (http://www.visualstudio.com/en-us/downloads/)
+- [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)] (http://www.microsoft.com/windowsazure/sdk/)
+- A Windows Azure subscription
+	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial).
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 
 <a name="Setup" />
 ### Setup ###
@@ -110,7 +110,7 @@ In this task you will learn how to create a new Storage Account using the Window
 
 	_Storage Account created_
 
-1. Click on the Storage Account name you created. You will enter the **Dashboard** page, which provides you with information about the status of the account and the service endpoints that can be used within your applications.
+1. Click on the Storage Account name you created and then on **Dashboard** to the **Dashboard** page, which provides you with information about the status of the account and the service endpoints that can be used within your applications.
 
 	![storage-account-dashboard](Images/storage-account-dashboard.png?raw=true)
 
@@ -119,7 +119,7 @@ In this task you will learn how to create a new Storage Account using the Window
 <a name="Exercise2" />
 ### Exercise 2: Managing a Windows Azure Storage Account ###
 
-In this exercise, you will configure the common settings for your Storage Account. You will manage your **Access Keys**, enabling **Geo-Replication** and configuring **Monitoring and Logging**.
+In this exercise, you will configure the common settings for your Storage Account. You will manage your **Access Keys**, enable **Geo-Replication**, and configure **Monitoring** and **Logging**.
 
 <a name="Ex2Task1" />
 #### Task 1 - Enabling Geo-Replication ####
@@ -145,7 +145,7 @@ Geo-replication replicates the stored content to a secondary location to enable 
 
 From the **Monitoring** section, you can monitor your storage accounts in the Windows Azure Management Portal. For each storage service associated with the storage account (Blob, Queue, and Table), you can choose the level of monitoring - minimal or verbose - and specify the appropriate data retention policy.
 
-1. In the **Configure** page, go to the **Monitoring** section.
+1. In the **Configure** page, scroll to the **Monitoring** section.
 
 	![configuring-storage-monitoring](Images/configuring-storage-monitoring.png?raw=true)
 
@@ -161,7 +161,7 @@ From the **Monitoring** section, you can monitor your storage accounts in the Wi
 
 	> **Note:** There are cost considerations when selecting monitoring. For more information, see [Storage Analytics and Billing](http://msdn.microsoft.com/en-us/library/windowsazure/hh360997.aspx).
 
-1. To set the data retention policy, in **Retention** (in days), type the number of days that data should be retained from 1-365 days. If there is no retention policy (by entering zero value), it is up to you to delete the monitoring data. 
+1. To set the data retention policy, in **Retention (in days)**, type the number of days that data should be retained from 1-365 days. If there is no retention policy (by entering zero value), it is up to you to delete the monitoring data. 
 
 	> **Note:** It is recommended to set a retention policy based on how long you want to retain storage analytics data for your account so that old and unused analytics data can be deleted by the system at no cost.
 
@@ -220,7 +220,7 @@ From the **Monitoring** section, you can monitor your storage accounts in the Wi
 
 You can save diagnostic logs for Read Requests, Write Requests, and/or Delete Requests and can set the data retention policy for each of the services. In this task you will configure logging for your storage account.
 
-1. In the **Configure** page, go to the **Logging** section.
+1. In the **Configure** page, scroll to the **Logging** section.
 
 1.	For each service (Blob, Table or Queue), you can configure the types of request to log: Read Requests, Write Requests, and Delete Requests. You can also configure the number of days to retain the logged data. Enter zero if you do not want to set a retention policy. If you do not set a retention policy, it is up to you to delete the logs.
 
@@ -248,7 +248,7 @@ When you create a storage account, Windows Azure generates two 512-bit storage a
 
 	_Copying Access Keys_
 
-1.	By clicking the **Regenerate** button, a new Access Key is created. You should change the access keys to your storage account periodically to help keep your storage connections more secure. Two access keys are assigned to enable you to maintain connections to the storage account using one access key while you regenerate the other access key. 
+1.	By clicking the **Regenerate** button, a new Access Key is created. You should change the access keys to your storage account periodically to help keep your storage connections more secure. Two access keys are assigned to enable you to maintain connections to the storage account using one access key while you regenerate the other one. 
 
 	> **Note:** Regenerating your access keys affects virtual machines, media services, and any applications that are dependent on the storage account.
 
@@ -266,7 +266,9 @@ In this task you will configure the _StorageConnectionString_ of the application
 
 1. Open **Visual Studio Express 2013 for Web** as Administrator.
 
-1. In the Start Page, click **Open Project...**, then browse to the **Source\Ex3-UnderstandingStorageAbstractions\Begin\** folder of this lab and open the **Begin.sln** solution. Make sure to set the **PhotoUploader** cloud project as the default project.
+1. In the Start Page, click **Open Project...**, then browse to the **Source\Ex3-UnderstandingStorageAbstractions\Begin\** folder of this lab and open the **PhotoUploader.sln** solution. Make sure to set the **PhotoUploader** cloud project as the default project.
+
+1. Press **Ctrl + Shift + B** to build the solution.
 
 1. Go to the **PhotoUploader_WebRole** located in the **Roles** folder of the **PhotoUploader** solution. Right-click it and select **Properties**.
 
@@ -427,12 +429,9 @@ In this task you will update the MVC application actions to perform operations a
 	using System.Threading.Tasks;
 	using Microsoft.WindowsAzure;
 	using Microsoft.WindowsAzure.Storage;
-	using Microsoft.WindowsAzure.Storage.Table;
 	````
 
 1. Add a private field to create a _StorageAccount_ object. This object will be used to perform operations for each storage service.
-
-	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-StorageAccountVariable_)
 
 	<!-- mark:3 -->
 	````C#
@@ -444,7 +443,7 @@ In this task you will update the MVC application actions to perform operations a
 	}
 	````
 
-1.	In order to display the entities in the View, you will convert them to a **ViewModel** class. You are going to add two helper methods to convert from a **ViewModel** to a **Model** and viceversa. Add the following methods at the end of the class declaration.
+1.	In order to display the entities in the View, you will convert them to a **ViewModel** class. You are going to add two helper methods to convert from a **ViewModel** to a **Model** and vice versa. Add the following methods at the end of the **HomeController** class declaration.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-ViewModelHelpers_)
 
@@ -470,7 +469,7 @@ In this task you will update the MVC application actions to perform operations a
 	}
 	````
 
-1.	You will be using a **PhotoDataServiceContext** to interact with Table Storage, so add a new **GetPhotoContext** private method at the bottom of the class to create the context.
+1.	You will be using a **PhotoDataServiceContext** to interact with Table Storage, so add a new **GetPhotoContext** private method below the code you have just added to create the context.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-TableStorageGetPhotoContext_)
 
@@ -515,6 +514,7 @@ In this task you will update the MVC application actions to perform operations a
 		}
 
 		var viewModel = this.ToViewModel(photo);
+
 		return this.View(viewModel);
 	}
 	````
@@ -533,6 +533,7 @@ In this task you will update the MVC application actions to perform operations a
 		}
 
 		var photo = this.FromViewModel(photoViewModel);
+
 		// Save information to Table Storage
 		var photoContext = this.GetPhotoContext();
 		await photoContext.AddPhotoAsync(photo);
@@ -557,6 +558,7 @@ In this task you will update the MVC application actions to perform operations a
 		}
 
 		var viewModel = this.ToViewModel(photo);
+
 		return this.View(viewModel);
 	}
 	````
@@ -610,6 +612,7 @@ In this task you will update the MVC application actions to perform operations a
 		}
 
 		var viewModel = this.ToViewModel(photo);
+
 		return this.View(viewModel);
 	}
 	````
@@ -632,6 +635,7 @@ In this task you will update the MVC application actions to perform operations a
 		}
 
 		await photoContext.DeletePhotoAsync(photo);
+
 		return this.RedirectToAction("Index");
 	}
 	````
@@ -641,7 +645,6 @@ In this task you will update the MVC application actions to perform operations a
 	````C#
 	using Microsoft.WindowsAzure;
 	using Microsoft.WindowsAzure.Storage;
-	using Microsoft.WindowsAzure.Storage.Table;
 	````
 
 1. Add the following code at the end of the **Application_Start** method to ensure that whenever you start the application, the _Photos_ table is created.
@@ -925,13 +928,7 @@ In this task, you will use queues to simulate a notification service, where a me
 	}
 	````
 
-1. As you did with **Table** and **Blob**, you need to create the Queue at application start if it doesn't exist. Open **Global.asax.cs** and add the following using directive.
-
-	````C#
-	using Microsoft.WindowsAzure.Storage.Blob;
-	````
-
-1. Add the following code at the end of the **Application_Start** method to ensure the queue is created.
+1. Open **Global.asax.cs** and add the following code at the end of the **Application_Start** method to ensure the queue is created.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-QueueAppStart_)
 
@@ -1038,7 +1035,7 @@ In this task, you will use Visual Studio to inspect the Windows Azure Storage Ac
 
 1. Enter your **Live ID credentials** associated with the Storage Account you are using and sign in to Windows Azure.
 
-1. Expand the **Storage** drop-down and within it your account name. Notice that there is an entry for Tables, Blobs and Queues.
+1. Expand the **Storage** drop-down menu and within it your account name. Notice that there is an entry for Tables, Blobs and Queues.
 
 1. Expand the **Tables** container. You will see the **Photos** table under it.
 
@@ -1064,18 +1061,18 @@ In this task, you will use Visual Studio to inspect the Windows Azure Storage Ac
 <a name="Exercise4" />
 ### Exercise 4: Introducing SAS (Shared Access Signature) ###
 
-Shared Access Signatures allows granular access to tables, queues, blob containers, and blobs. A SAS token can be configured to allow executing only specific operations on a given storage, and for a certain amount of time or without any limit. Allowed operations could be many of: read, write, delete or list. And the storage could be a specific table, key range within a table, queue, blob or blob container. The SAS token appears as part of the resource's URI as a series of query parameters.
+Shared Access Signature allows granular access to tables, queues, blob containers, and blobs. A SAS token can be configured to allow the execution of specific operations in a given storage location, either for a certain amount of time or without any limit. Possible operations include read, write, delete or list. The storage location could be a specific table, key range within a table, queue, blob or blob container. The SAS token appears as part of the resource's URI as a series of query parameters.
 
 In this exercise you will learn how to use Shared Access Signatures with the three storage abstractions: Tables, Blobs, and Queues.
 
->**Note:** This sample application does not follow all best practices for using Shared Access Signature for simplicity's sake. In a production environment you will typically have a service that generates the SAS for your application.
+>**Note:** For simplicity's sake, this sample application does not follow all best practices for using Shared Access Signature. In a production environment you will typically have a service that generates the SAS for your application.
 
 <a name="Ex4Task1" />
 #### Task 1 - Adding SAS at Table level  ####
 
-In this task you will learn how to create SAS for Windows Azure Tables. You as the account owner can create SAS when you want to grant access to your storage without sharing your account key, and also restricting the operations in several ways.
+In this task you will learn how to create SAS for Windows Azure Tables. As the account owner, you can create SAS when you want to grant access to your storage without sharing your account key and also restrict the operations in several ways.
 
-You can grant access to an entire table, to a table range (for example, to all the rows under a particular partition key), or to some specific rows. Additionally, you can grant execution rights only to specific methods such as _Query_, _Add_, _Update_, _Delete_. Finally, you can specify the SAS token start and expiry time.
+You can grant access to an entire table, a table range (for example, to all the rows under a particular partition key), or specific rows. Additionally, you can grant execution rights to specific methods such as _Query_, _Add_, _Update_, _Delete_. Finally, you can specify the SAS token start and expiration time.
 
 1. Continue working with the end solution of the previous exercise or open the solution located at _Source/Ex04-IntroducingSAS/Begin_. Remember to run Visual Studio **as administrator** to be able to use the Windows Azure Storage Emulator.
 
@@ -1087,7 +1084,7 @@ You can grant access to an entire table, to a table range (for example, to all t
 
 1. In the next steps you will use **Shared Access Signature** to restrict the information your users will be able to see.
 
-1. First, create a folder named **Services** in the root of your project. Right-click **PhotoUploader_WebRole** project, and under **Add** click **New Folder**. Type **Services** and click _Enter_.
+1. First, create a folder named **Services** in the root of your project. Right-click **PhotoUploader_WebRole** project, and under **Add** click **New Folder**. Type **Services** and hit _Enter_.
 
 1. Right-click the **Services** folder and select **Add** | **Class**.
 
@@ -1104,8 +1101,6 @@ You can grant access to an entire table, to a table range (for example, to all t
 	````
 
 1. Add the **StorageAccount** field to the class and initialize it with your **StorageConnectionString**.
-
-	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex4-SasServiceStorageAccount_)
 
 	<!-- mark:3 -->
 	````C#
@@ -1149,9 +1144,7 @@ You can grant access to an entire table, to a table range (for example, to all t
 
 	> **Note**: This method takes the **username** passed as argument and creates a SAS for the _Photos_ table. This SAS will grant the specified permissions only to the rows with a partition equal to "**username**". Finally, it returns the SAS in string format.
 
-1. Open the **HomeController.cs** file under the _Controllers_ folder, and add the following field.
-
-	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex4-HomeControllerUriTable_)
+1. Open the **HomeController.cs** file under the _Controllers_ folder and add the uriTable field.
 
 	<!-- mark:4 -->
 	````C#
@@ -1171,12 +1164,13 @@ You can grant access to an entire table, to a table range (for example, to all t
 
 	````C#
 	using Microsoft.WindowsAzure.Storage.Auth;
+    using Microsoft.WindowsAzure.Storage.Table;
 	using PhotoUploader_WebRole.Services;
 	````
 
-1. Scroll down to the **GetPhotoContext** method and update the **cloudTableClient** creation with the following code. 
+1. Scroll down to the **GetPhotoContext** method and replace line where you create the **CloudTableClient** with the following code. 
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-NewCloudTableClientCall_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-NewCloudTableClientWithSas_)
 
 	<!-- mark:3-4 -->
 	````C#
@@ -1189,7 +1183,7 @@ You can grant access to an entire table, to a table range (for example, to all t
 	}
 	````
 
-1. Run the solution by pressing **F5**.
+1. Press **F5** to run the solution.
 
 1. Log in with the new user you created at the beginning of this task, and you will notice that you no longer see the other user's photos.
 
@@ -1199,7 +1193,7 @@ You can grant access to an entire table, to a table range (for example, to all t
 
 1. Add a **new entry** to check that everything is working as expected.
 
-1. You can also log in with **the other user** to see that your photos are still there, but not the newest entry.
+1. You can also log in with **the other user** to verify that your photos are still there, but you will not see the newest entry.
 
 <a name="Ex4Task2" />
 #### Task 2 - Adding SAS at Blob level  ####
@@ -1215,7 +1209,7 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 1. Create a new method called **GetReadonlyUriWithSasForBlob** with the following code.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-GetReadonlyUriWithSasForBlobMethod_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-GetReadonlyUriWithSasForBlob_)
 
 	````C#
 	public static string GetReadonlyUriWithSasForBlob(string blobName)
@@ -1235,7 +1229,7 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 1. Add another method called **GetSasForBlobContainer** with the following code
 
-	(Code Snippet - _GetSasForBlobContainer_ - _Ex4-GetSasForBlobContainerMethod_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-GetSasForBlobContainer_)
 
 	````C#
 	public static string GetSasForBlobContainer()
@@ -1260,8 +1254,6 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 1. Open the _Index.cshtml_ located in the _Views\Home_ folder, and add the following code to add the share link to the photos actions.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-IndexViewUpdateWithShareLink_)
-
 	<!-- mark:5,11 -->
 	````CSHTML
 	<td>
@@ -1274,7 +1266,7 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 	> **Note:** Notice that the **ActionLink** is calling the Share action passing the partition and row keys as parameters.
 
-1. Open the **HomeController.cs** file, located in the _Controllers_ folder, and add the following field.
+1. Open the **HomeController.cs** file, located in the _Controllers_ folder, and add the uriBlob field.
 
 	<!-- mark:3 -->
 	````C#
@@ -1285,7 +1277,7 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 1. Scroll down to the **GetBlobContainer** method and replace it with the following implementation that uses SAS.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-NewCloudBlobClientCall_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-NewCloudBlobClientWithSas_)
 	
 	<!-- mark:1-6 -->
 	````C#
@@ -1301,7 +1293,7 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-ShareAction_)
 
-	<!-- mark:1-26 -->
+	<!-- mark:1-24 -->
 	````C#
 	public async Task<ActionResult> Share(string partitionKey, string rowKey)
 	{
@@ -1331,15 +1323,15 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 	The preceding code gets the blob reference by using the partition and row keys, and calls the **GetReadonlyUriWithSasForBlob** method passing the blob name as parameter. In this case, the SAS is created with **Read** permissions.
 
-1. You will now add the corresponding view to the **Share** action you just created. To do so, right click in the **Home** folder under **Views**, go to **Add** and select **Existing Item...**.
+1. You will now add the corresponding view to the **Share** action you just created. To do so, right-click the **Home** folder under **Views**, go to **Add** and select **Existing Item...**.
 
 1. Browse to the _Assets/Ex4-IntroducingSAS_ folder, select the **Share.cshtml** file and click **Add**.
 
-1. Run the solution by pressing **F5**.
+1. Press **F5** to run the solution.
 
-1. Log into the application. If you do not have a user, register to create one.
+1. Log in to the application. If you do not have a user, register to create one.
 
-1. If you haven't uploaded images yet, upload one image now.
+1. If you have not yet uploaded images, upload an image now.
 
 1. Click the **Share** link, next to one of the uploaded photos. You will navigate to the _Share_ page.
 
@@ -1353,18 +1345,18 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 	_Opening a shared blob_
 
-1. Wait two minutes (time it takes for this SAS token to expire) and press **Ctrl+F5** to make a full page refresh. As the token is no longer valid, you will not be able to see the image and an error will be displayed.
+1. Wait two minutes (the time it takes for this SAS token to expire) and press **Ctrl + F5** to make a full page refresh. As the token is no longer valid, you will not be able to see the image and an error will be displayed.
 
 	![Opening an expired share link](Images/opening-an-expired-share-link.png?raw=true "Opening an expired share link")
 
 	_Opening an expired share link_
 
-	>**Note:** If you don't get the expected error, Internet Explorer may be serving the image from the cache. You can avoid hitting the cache by accessing in _Private Mode_ (press _Ctrl+Shift+P_).
+	>**Note:** If you do not get the expected error, Internet Explorer may be serving the image from the cache. You can avoid hitting the cache by accessing in _Private Mode_ (press _Ctrl + Shift + P_).
 
 <a name="Ex4Task3" />
 #### Task 3 - Adding SAS at Queue level  ####
 
-In this task you will use SAS at queue level to restrict access to the Queue Storage. SAS can enable Read, Add, Process, and Update permissions on a queue.
+In this task you will use SAS at queue level to restrict access to the Queue Storage. SAS can enable Read, Add, Process, and Update permissions in a queue.
 
 1. Open the **SasService.cs** file and add the following _using_ statements.
 	
@@ -1390,9 +1382,7 @@ In this task you will use SAS at queue level to restrict access to the Queue Sto
 		return sasToken;
 	}
 	````
-1. Open the **HomeController.cs** file under the _Controllers_ folder, and add the following field.
-
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-UriQueueProperty_)
+1. Open the **HomeController.cs** file under the _Controllers_ folder, and add the uriQueue field.
 
 	<!-- mark:6 -->
 	````C#
@@ -1408,9 +1398,9 @@ In this task you will use SAS at queue level to restrict access to the Queue Sto
 
 	>**Note**: Replace _<http://127.0.0.1:10001/devstoreaccount1>_ with your storage account table URI in order to work against Windows Azure.
 
-1. Scroll down to the **GetCloudQueue** method and update the **queueClient** creation with the following code. 
+1. Scroll down to the **GetCloudQueue** method and update the line where you create the **CloudQueueClient** with the following code. 
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-NewQueueClientCall_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-NewQueueClientWithSas_)
 
 	<!-- mark:3-4 -->
 	````C#
@@ -1460,11 +1450,11 @@ In this task you will use SAS at queue level to restrict access to the Queue Sto
 	}
 	````
 
-	This method gets a reference to the application's queue and generates a SAS token that has permissions to process, read, add, and update messages.
+	> **Note:** This method gets a reference to the application's queue and generates a SAS token that has permissions to process, read, add, and update messages.
 
-1. Now update the **Run** method by replacing its body with the following code.
+1. Now replace the **Run** method with the following code.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-RunMethodUpdate_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-WorkerroleRun_)
 
 	````C#
 	public override void Run()
@@ -1520,9 +1510,9 @@ In this task you will use SAS at queue level to restrict access to the Queue Sto
 <a name="Exercise5" />
 ### Exercise 5: Updating SAS to use Stored Access Policies ###
 
-A Stored Access Policy provides **an additional level of control** over Shared Access Signatures on the server side. Establishing a Stored Access Policy serves to group Shared Access Signatures and to provide additional restrictions for signatures that are bound by the policy. You can use a stored access policy to change the start time, expiry time, or permissions for a signature, or to revoke it after it has been issued.
+A Stored Access Policy provides **an additional level of control** over Shared Access Signatures on the server side. Establishing a Stored Access Policy serves to group Shared Access Signatures and to provide additional restrictions for signatures that are bound by the policy. You can use a stored access policy to change the start time, expiration time, or permissions for a signature, or to revoke it after it has been issued.
 
-A stored access policy gives you greater control over Shared Access Signatures you have released. Instead of specifying the signature's lifetime and permissions on the URL, you can specify these parameters within the Stored Access Policy on the blob, container, queue, or table that is being shared. To change these parameters for one or more signatures, you modify only the Stored Access Policy, rather than reissuing the signatures. You can also quickly revoke the signature by modifying the Stored Access Policy, for example in case of a security breach.
+A stored access policy gives you greater control over Shared Access Signatures you have released. Instead of specifying the signature's lifetime and permissions on the URL, you can specify these parameters within the Stored Access Policy on the blob, container, queue, or table that is being shared. To change these parameters for one or more signatures, you modify only the Stored Access Policy, rather than reissuing the signatures. You can also quickly revoke the signature by modifying the Stored Access Policy, for example in the case of a security breach.
 
 
 <a name="Ex5Task1" />
@@ -1530,9 +1520,15 @@ A stored access policy gives you greater control over Shared Access Signatures y
 
 In this task you will update table security to use Stored Access Policy.
 
-1. Continue working with the end solution of the previous exercise or open the solution located at _/Source/Ex5-UpdatingSASToUseStoredAccessPolicies/Begin_. Remember to run Visual Studio **as administrator** to be able to use the Windows Azure storage emulator.
+1. Continue working with the end solution of the previous exercise, or open the solution located at _/Source/Ex5-UpdatingSASToUseStoredAccessPolicies/Begin_. Remember to run Visual Studio **as administrator** to be able to use the Windows Azure storage emulator.
 
-1. Update **Global.asax.cs** to set the Stored Access Policies for Table Storage.
+1. Open **Global.asax.cs** and add the following using directive.
+
+	````C#
+	using Microsoft.WindowsAzure.Storage.Table;
+	````
+
+1. Update the following code at the end of the **Application_Start** method to set the Stored Access Policies for Table Storage.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-TableStorageStoredAccessPoliciesTables_)
 
@@ -1554,14 +1550,10 @@ In this task you will update table security to use Stored Access Policy.
 
 1. Open the **SasService.cs** class located in the **Services** folder and replace the **GetSasForTable** method with the following code.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetSasForTableImplementation_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetSasForTable_)
 
-	<!-- mark:5-23 -->
+	<!-- mark:1-20 -->
 	````C#
-	public class SasService
-	{
-		...
-
 		public static string GetSasForTable(string username, string policyName)
 		{
 			var cloudTableClient = StorageAccount.CreateCloudTableClient();
@@ -1584,10 +1576,10 @@ In this task you will update table security to use Stored Access Policy.
 	}
 	````
 
-1. Scroll down to the **GetPhotoContext** method and update the **sasToken** creation with the following code.  
+1. Open the **HomeController.cs** class located in the _Controllers_ folder.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetPhotoContext_)
-	
+1. Locate the **GetPhotoContext** method and update the line where you get the **sasToken** with the following code.  
+
 	<!-- mark:3 -->
 	````C#
 	private PhotoDataServiceContext GetPhotoContext()
@@ -1620,7 +1612,7 @@ In this task you will update table security to use Stored Access Policy.
 
 	>**Note**: Replace the _<http://127.0.0.1:10002/devstoreaccount1>_ with your storage account table URI in order to work against Windows Azure if not already replaced.
 
-1. Open the **SasService.cs** class and replace the _GetReadonlyUriWithSasForBlob_ method with the following implementation. Notice you only added a new **policyId** parameter and passed it to _GetSharedAccessSignature_.
+1. Open the **SasService.cs** class and replace the _GetReadonlyUriWithSasForBlob_ method with the following code. Notice you added a new **policyId** parameter which you are using when getting the shared access signature for given blob.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetSasForBlobWithStoredAccessPolicy_)
 	
@@ -1640,7 +1632,7 @@ In this task you will update table security to use Stored Access Policy.
 	}
 	````
 
-1. Open the **HomeController.cs** class and scroll down to the _Share_ method. Replace the _GetSasForBlob_ method call with the new implementation.
+1. Open the **HomeController.cs** class and locate the _Share_ action. Replace the line where you invoke _GetSasForBlob_ with the following code.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-ShareActionWithStoredAccessPolicy_)
 
@@ -1681,7 +1673,7 @@ In this task you will update table security to use Stored Access Policy.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-QueueStorageWithStoredAccessPolicy_)
 
-	<!-- mark:5-13 -->
+	<!-- mark:5-12 -->
 	````C#
 	protected void Application_Start()
 	{
@@ -1697,32 +1689,25 @@ In this task you will update table security to use Stored Access Policy.
 	}
 	````
 
-1. Open the **SasService.cs** file located in the **Service** folder and locate the _GetAddSasForQueues_ method. Replace the _GetSharedAccessSignature_ method call with the following code.
+1. Open the **SasService.cs** file in the _Services_ folder and replace the _GetAddSasForQueues_ method with the following code.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetAddSasForQueuesWithStoredAccessPolicy_)
-
-	<!-- mark:10 -->
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetAddSasForQueues_)
+	<!-- mark:1-6 -->
 	````C#
 	public static string GetAddSasForQueues()
 	{
 		var cloudQueueClient = StorageAccount.CreateCloudQueueClient();
-		var policy = new SharedAccessQueuePolicy() 
-		{ 
-			Permissions = SharedAccessQueuePermissions.Add | SharedAccessQueuePermissions.Read, 
-			SharedAccessExpiryTime = DateTime.UtcNow.AddMinutes(15) 
-		};
-
-		var sasToken = cloudQueueClient.GetQueueReference("messagequeue").GetSharedAccessSignature(policy, "add");
+		var sasToken = cloudQueueClient.GetQueueReference("messagequeue").GetSharedAccessSignature(new SharedAccessQueuePolicy(), "add");
 		return sasToken;
 	}
 	````
 
 1. Open the **HomeController.cs** file located in the _Controllers_ folder and locate the **Create** _POST_ method.
 
-1. Update the code inside the **if** block with the following in order to **add metadata** to the blob reference before uploading it.
+1. Update the code inside the second **if** block with the following in order to **add metadata** to the blob reference before uploading it.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-BlobMetadata_)
-	<!-- mark:11-16 -->
+	<!-- mark:12-17 -->
 	````C#
 	[HttpPost]
 	public async Task<ActionResult> Create(PhotoViewModel photoViewModel, HttpPostedFileBase file, FormCollection collection)
@@ -1734,6 +1719,7 @@ In this task you will update table security to use Stored Access Policy.
 			// Save file stream to Blob Storage
 			var blob = this.GetBlobContainer().GetBlockBlobReference(file.FileName);
 			blob.Properties.ContentType = file.ContentType;
+
 			var image = new System.Drawing.Bitmap(file.InputStream);
 			if (image != null)
 			{
@@ -1756,6 +1742,15 @@ In this task you will update table security to use Stored Access Policy.
 
 	>**Note:** The **Bitmap** class allows you to easily read the _Width_ and _Height_ properties of the uploaded image.
 
+1. Additionally, in the same method, update the line where you create the **CloudQueueMessage** with the following:
+
+	<!--mark:2-->
+	````C#
+	// Send create notification
+	var msg = new CloudQueueMessage(string.Format("Photo Uploaded,{0}", photo.BlobReference));
+	await this.GetCloudQueue().AddMessageAsync(msg);
+	````
+
 1. On the **QueueProcessor_WorkerRole** project, open the **WorkerRole.cs** file.
 
 1. Add the following using statements.
@@ -1771,9 +1766,9 @@ In this task you will update table security to use Stored Access Policy.
 	private CloudBlobContainer container;
 	````
 
-1. Create a new method called **CreateCloudBlobClient** in order to create the container and also set the _container_ variable. To do that, insert the following code.
+1. Create a new method called **CreateCloudBlobClient** in order to create the container and also set the _container_ variable by inserting the following code.
 	
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-CreateCloudBlobClientImplementation_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-CreateCloudBlobClient_)
 
 	````C#
 	private void CreateCloudBlobClient()
@@ -1785,10 +1780,8 @@ In this task you will update table security to use Stored Access Policy.
 	}
 	````
 
-1. In the **OnStart** method, call the **CreateCloudBlobClient** method you have just created.
+1. In the **OnStart** method, add the following line to invoke the **CreateCloudBlobClient** method you have just created.
 	
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-CreateCloudBlobClientCall_)
-
 	<!-- mark:5 -->
 	````C#
 	public override bool OnStart()
@@ -1803,7 +1796,7 @@ In this task you will update table security to use Stored Access Policy.
 
 1. Scroll down to the **GetProcessSasForQueues** method. Replace the entire method with the following code.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-QueueSharedAccessSignatureWithStoredAccessPolicyInWorkerRole_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-GetProcessSasForQueuesWithStoredAccessPolicy_)
 
 	````C#
 	public string GetProcessSasForQueues()
@@ -1825,9 +1818,9 @@ In this task you will update table security to use Stored Access Policy.
 	}
 	````
 
-1. Add the following code to the **Run** method in the **WorkerRole** class in order to display the properties and metadata saved in the WebRole. Replace the  **if (msg != null) { ... }** block with the following code.
+1. Update the **Run** method with the following code in order to display the properties and metadata saved in the WebRole. Replace the  last **if** block with the following code.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-RunMethodUpdate_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-TraceResizeInformation_)
 
 	<!-- mark:11-36 -->
 	````C#
@@ -1894,15 +1887,15 @@ In this task you will update table security to use Stored Access Policy.
 
 	>**Note**: The Windows Azure Emulator should start.
 
-1. Log into the application with the user you created in Exercise 3.
+1. Log in to the application with the user you created in Exercise 3.
 
-1. Click the **Share** link in one of the photos you have uploaded. If you have not, you can do it now.
+1. Click **Share** in one of your uploaded photos. If you have not uploaded any photos, you can do so now.
 
 	![Sharing a photo with Stored Access Policy](Images/sharing-a-photo-with-stored-access-policy.png?raw=true "Sharing a photo with Stored Access Policy")
 
 	_Sharing a photo with Stored Access Policy_
 
-	>**Note**: Notice how there's a new parameter in the query string named _si_ that has the value _read_ which is the Signed Identifier.
+	>**Note**: Notice how there is a new parameter in the query string named _si_ with the value _read_ which is the Signed Identifier.
 
 1. Go back to the **Index** page and click on **Create**.
 
@@ -1918,13 +1911,13 @@ In this task you will update table security to use Stored Access Policy.
 
 ## Next Steps ##
 
-To learn more about **Windows Azure Storage**, please refer to the following articles which expand the information on the technologies explained on this lab:
+To learn more about **Windows Azure Storage**, please refer to the following articles which expand on the technologies explained in this lab:
 
 - [Shared Access Signatures, Part 1: Understanding the SAS Model](http://aka.ms/Fkjgzx): In Part 1 of this tutorial on shared access signatures, you will see an overview of the SAS model and review SAS best practices.
 
 - [Shared Access Signatures, Part 2: Create and Use a SAS with the Blob Service](http://aka.ms/Xsyztd): Part 2 of this tutorial walks you through the process of creating SAs with the Blob service.
 
-- [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS](http://aka.ms/Yaqi4e): In this blog POST, we will see usage scenarios for these features along with sample code.
+- [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS](http://aka.ms/Yaqi4e): In this blog post, we will see usage scenarios for these features along with sample code.
 
 - [How to use the Table Storage Service](http://aka.ms/Yf1l4c): This guide will show you how to perform common scenarios using the Windows Azure Table Storage Service.
 
@@ -1947,13 +1940,13 @@ To learn more about **Windows Azure Storage**, please refer to the following art
 
 By completing this hands-on lab you have learned how to:
 
-* Create a Storage Account.
-* Enable Geo-Replication.
-* Configure Monitoring metrics for your account.
-* Configure Logging for each service.
-* Consume Storage Services from a Web Application.
-* Create and consume Shared Access Signatures.
-* Enhance Shared Access Signatures by using Stored Access Policies.
+* Create a Storage Account
+* Enable Geo-Replication
+* Configure Monitoring metrics for your account
+* Configure Logging for each service
+* Consume Storage Services from a Web Application
+* Create and consume Shared Access Signatures
+* Enhance Shared Access Signatures by using Stored Access Policies
 
 ---
 

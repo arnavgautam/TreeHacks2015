@@ -7,7 +7,6 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace PhotoUploader_WebRole

@@ -77,7 +77,6 @@ namespace QueueProcessor_WorkerRole
             }
         }
 
-
         public override bool OnStart()
         {
             // Set the maximum number of concurrent connections 
@@ -85,7 +84,6 @@ namespace QueueProcessor_WorkerRole
 
             // For information on handling configuration changes
             // see the MSDN topic at http://go.microsoft.com/fwlink/?LinkId=166357.
-
             this.CreateCloudBlobClient();
 
             return base.OnStart();
