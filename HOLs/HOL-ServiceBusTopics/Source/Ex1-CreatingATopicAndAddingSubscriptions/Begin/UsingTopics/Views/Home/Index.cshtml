@@ -11,7 +11,6 @@
                     <input type="text" class="form-control" id="topicName" placeholder="Enter topic name" required="required">
                 </div>
                 <button id="createTopicButton" type="button" class="btn btn-default" disabled="disabled">Create</button>
-                <label id="createStatus">Creating...</label>
             </div>
         </form>
     </div>
@@ -50,18 +49,26 @@
             <label for="messageBody">Subscriptions</label>
             <p id="noMessages">There is no topic selected</p>
             <div class="list-group" id="messageSubscriptions">
-                @*<a href="#" class="list-group-item"><span class="badge">0</span> AllMessages</a>
-                    <a href="#" class="list-group-item"><span class="badge">0</span> Priority</a>
-                    <a href="#" class="list-group-item"><span class="badge">0</span> FollowUp</a>*@
             </div>
         </div>
         <div class="form-inline">
             <button id="retrieveMessage" type="submit" class="btn btn-default" disabled="disabled">Receive</button>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-8 col-md-8">
+        <h4>Logs</h4>
+        <div class="form-horizontal">
+            <textarea id="logs" readonly="readonly" class="form-control form-inline" rows="10"></textarea>
+        </div>
+    </div>
+    <div class="col-sm-4 col-md-4">
         <hr />
+        <h4>Message Details</h4>
         <div class="form-group">
-            <label for="messageBody">Message Contents</label>
-            <div id="messageBody">
+            <label for="messageContent">Content</label>
+            <div id="messageContent">
             </div>
             <label>
                 BrokeredMessage Properties
@@ -78,39 +85,39 @@
         </div>
     </div>
 </div>
-<div class="row" id="log">
-
-</div>
 
 @section scripts{
     <script type="text/javascript">
-        var getTopicsUrl = "@Url.Action("Topics")";
-        var getSubscriptionsUrl = "@Url.Action("Subscriptions")";
-        var getTopicsSubscriptionsUrl = "@Url.Action("TopicsWithSubscriptions")";
-        var getFiltersUrl = "@Url.Action("Filters")";
-        var getMessageCount = "@Url.Action("GetMessageCount")";
-        var getRetrieveUrl = "@Url.Action("RetrieveMessage")"
-
-        var subscriptionList = [];
-
         function createTopic() {
             var topicName = { topicName: $("#topicName").val() };
             $("#createTopicForm").attr("disabled", "disabled");
-            $("#createStatus").show();
+            logMessage("Creating topic '" + topicName.topicName + "'...");
+
+            var topicClick = function () {
+                $("#topicList a.active").removeClass("active");
+                $(this).addClass("active");
+                $("#sendMessageButton").removeAttr("disabled");
+                loadSubscriptions(topicName.topicName);
+            };
+
             $.post('/Home/CreateTopic', topicName)
                 .always(function () {
                     $("#createTopicForm").removeAttr("disabled");
-                    $("#createStatus").hide();
                 }).success(function (data) {
-                    var newTopic = $("<a href='#' class='list-group-item'>").html(data);
-                    $("topicList").append(newTopic);
+                    var newTopic = $("<a href='#' class='list-group-item'>")
+                        .on('click', topicClick)
+                        .html(data);
+                    $("#topicList").append(newTopic);
+                    logMessage("Done!");
                 }).fail(function () {
+                    logMessage('ERROR: Unable to create topic.');
                 });
         }
 
         function loadTopics() {
             //Fill topic's list with topics and subscriptions
-            $.get(getTopicsSubscriptionsUrl)
+            logMessage("Retrieving list of topics...");
+            $.get("/Home/TopicsWithSubscriptions")
                 .always(function () {
                     $("#loading").hide();
                 })
@@ -118,7 +125,6 @@
                     var ul = $("#topicList").empty();
                     $.each(response, function (index, topic) {
                         var topicClick = function () {
-                            logMessage("Loading list of Subscriptions");
                             $("#topicList a.active").removeClass("active");
                             $(this).addClass("active");
                             $("#sendMessageButton").removeAttr("disabled");
@@ -131,30 +137,35 @@
 
                         ul.append(topicItem);
                     });
-
-                    $(".loading").hide();
+                    logMessage("Done!");
+                }).fail(function () {
+                    logMessage('ERROR: Unable to get the list of topics.');
                 });
         }
 
         function loadSubscriptions(selectedTopicName) {
             var receiveMsgSubscription = $("#messageSubscriptions");
             receiveMsgSubscription.empty();
+            logMessage("Retrieving the topic subscriptions...");
+            $.get("/Home/Subscriptions", { topicName: selectedTopicName })
+                .done(function (response) {
+                    receiveMsgSubscription.empty();
+                    for (var i = 0; i < response.length; i++) {
+                        var subscriptionClick = function () {
+                            $("#messageSubscriptions a.active").removeClass("active");
+                            $(this).addClass("active");
+                            $("#retrieveMessage").removeAttr("disabled");
+                        };
 
-            $.get(getSubscriptionsUrl, { topicName: selectedTopicName }).success(function (response) {
-                for (var i = 0; i < response.length; i++) {
-                    var subscriptionClick = function () {
-                        $("#messageSubscriptions a.active").removeClass("active");
-                        $(this).addClass("active");
-                        $("#retrieveMessage").removeAttr("disabled");
-                    };
-
-                    var topicItem = $('<a href="#" class="list-group-item"><span class="badge" data-value="' + response[i].Name + '">' + response[i].MessageCount + '</span>' + response[i].Name + '</a>')
-                            .on('click', subscriptionClick);
-                    receiveMsgSubscription.append(topicItem);
-                }
-
-                $('#noMessages').hide();
-            });
+                        var topicItem = $('<a href="#" class="list-group-item"><span class="badge" data-value="' + response[i].Name + '">' + response[i].MessageCount + '</span>' + response[i].Name + '</a>')
+                                .on('click', subscriptionClick);
+                        receiveMsgSubscription.append(topicItem);
+                    }
+                    logMessage("Done!");
+                    $('#noMessages').hide();
+                }).fail(function () {
+                    logMessage('ERROR: Unable to get the topic subscriptions.');
+                });
         }
 
         function sendMessage() {
@@ -165,9 +176,12 @@
                 isFollowUp: $("#followUpCheck").is(":checked")
             };
 
+            logMessage("Sending Message to " + message.topicName + " {isUrgent: " + message.isUrgent + "; isFollowUp: " + message.isFollowUp + "}");
             $.post('/Home/SendMessage/', message, function (data) {
+                logMessage("Done!");
                 sendMessageSuccessHandler(message.topicName);
             }).fail(function () {
+                logMessage('ERROR: Unable to send message.');
             });
         }
 
@@ -175,7 +189,7 @@
             $("#messageBody").val("");
             $('#messageSubscriptions').empty();
 
-            $.get(getSubscriptionsUrl, { topicName: selectedTopicName }).success(function (response) {
+            $.get("/Home/Subscriptions", { topicName: selectedTopicName }).success(function (response) {
                 for (var i = 0; i < response.length; i++) {
                     var subscriptionClick = function () {
                         $("#messageSubscriptions a.active").removeClass("active");
@@ -193,23 +207,23 @@
 
         function retrieveMessage() {
             event.preventDefault();
-            var url = getRetrieveUrl;
             var topicName = $("#topicList a.active").html();
             var subscriptionName = $("#messageSubscriptions a.active span").data("value");
             $(".loading").show();
-
-            $.get(url, { topicName: topicName, subscriptionName: subscriptionName })
+            logMessage("Retrieving message from topic:'" + topicName + "'...");
+            $.get("/Home/RetrieveMessage", { topicName: topicName, subscriptionName: subscriptionName })
                 .success(function (response) {
+                    logMessage("Done!");
                     renderMessage(response);
                     loadTopics();
                 })
                 .error(function () {
+                    logMessage('ERROR: Unable to retrieve message.');
                     renderMessage(false);
                 });
         }
 
         function handleEvents() {
-            $("#createStatus").hide();
             $("#createTopicButton").click(createTopic);
             $("#topicName").keyup(function () {
                 if ($("#topicName").val().length == 0) {
@@ -226,55 +240,11 @@
             $(".loading").show();
             handleEvents();
             loadTopics();
-            /*
-            $("#sendMessage").submit(function (event) {
-                event.preventDefault();
-
-                var url = $(this).attr('action');
-                var topicName = $("#sendMessageTopic option:selected").val();
-                var message = $("#messageToSend").val();
-                var isUrgent = $("#isUrgent").is(':checked');
-                var isImportant = $("#isImportant").is(':checked');
-                enableLinks(false);
-                $(".loading").show();
-                $.post(url, { message: message, topicName: topicName, messageIsUrgent: isUrgent, messageIsImportant: isImportant })
-                    .success(function (response) {
-                        logSuccess("Topics retrieved");
-                        renderSendMessageStatus(response);
-                        loadTopics();
-                    })
-                    .error(function (a, b, c) {
-                        renderSendMessageStatus(false);
-                        logError("Error retrieving topics");
-                    });
-            });
-
-            $("#retrieveMessage").submit(function (event) {
-                $("#noMessage").hide();
-                $("#message").hide();
-                event.preventDefault();
-                var url = $(this).attr('action');
-                var topicName = $("#retrieveMessageTopic option:selected").val();
-                var subscriptionName = $("#retrieveMessageSubscription option:selected").val();
-                $(".loading").show();
-                enableLinks(false);
-                $.get(url, { topicName: topicName, subscriptionName: subscriptionName })
-                    .success(function (response) {
-                        logSuccess("Messages retrieved");
-                        renderMessage(response);
-                        loadTopics();
-                    })
-                    .error(function () {
-                        renderMessage(false);
-                        logError("Error retrieving messages");
-                    });
-            });
-            */
         });
 
         function renderMessage(response) {
             if (response) {
-                $("#messageBody").html("<p>" + response.Message + "</p>")
+                $("#messageContent").html("<p>" + response.Message + "</p>")
                 var properties = $("#properties table");
 
                 properties.children().remove();
@@ -313,7 +283,7 @@
 
         function viewSubscriptionFilters(topicName, subscriptionName) {
             $(".loading").show();
-            $.get(getFiltersUrl, { topicName: topicName, subscriptionName: subscriptionName })
+            $.get("/Home/Filters", { topicName: topicName, subscriptionName: subscriptionName })
             .success(function (response) {
                 var ul = $(".viewSubscriptionFilters > ul");
                 ul.children().remove();
@@ -345,39 +315,12 @@
             }
         }
 
-        /*HELPER FUNCTIONS*/
-        function logError(message) {
-            logMessage(message, 'error');
-        }
-
-        function logSuccess(message) {
-            logMessage(message, 'success');
-        }
-
-        function logWarning(message) {
-            logMessage(message, 'warning');
-        }
-
         function logMessage(message, type) {
             if (!message) {
                 return;
             }
 
-            var classes = {
-                'success': 'alert alert-success',
-                'warning': 'alert alert-warning',
-                'error': 'alert alert-danger'
-            }
-
-            var alert = document.createElement('div');
-            alert.innerHTML = '<a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>' + message;
-            alert.setAttribute('class', classes[type]);
-
-            $("#log").append(alert);
-            setTimeout(function () {
-                $(alert).alert('close');
-            }, 3000);
-
+            $("#logs").val(message + '\n' + $("#logs").val());
         }
     </script>
 }
