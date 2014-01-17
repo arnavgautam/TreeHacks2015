@@ -53,7 +53,7 @@
         </div>
         <div class="form-inline">
             <button id="retrieveMessage" type="submit" class="btn btn-default" disabled="disabled">Receive</button>
-            <button id="viewSubscriptionFilters" type="button" class="btn btn-default">Filters</button>
+            <button id="viewSubscriptionFilters" type="button" class="btn btn-default" disabled="disabled">View Filters</button>
         </div>
     </div>
 </div>
@@ -98,7 +98,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -173,6 +172,7 @@
                             $("#messageSubscriptions a.active").removeClass("active");
                             $(this).addClass("active");
                             $("#retrieveMessage").removeAttr("disabled");
+                            $("#viewSubscriptionFilters").removeAttr("disabled");
                         };
 
                         var topicItem = $('<a href="#" class="list-group-item"><span class="badge" data-value="' + response[i].Name + '">' + response[i].MessageCount + '</span>' + response[i].Name + '</a>')
@@ -213,6 +213,7 @@
                         $("#messageSubscriptions a.active").removeClass("active");
                         $(this).addClass("active");
                         $("#retrieveMessage").removeAttr("disabled");
+                        $("#viewSubscriptionFilters").removeAttr("disabled");
                     };
 
                     var topicItem = $('<a href="#" class="list-group-item"><span class="badge" value="' + response[i].Name + '">' + response[i].MessageCount + '</span>' + response[i].Name + '</a>').on('click', subscriptionClick);
@@ -303,7 +304,7 @@
         function viewSubscriptionFilters() {
             var topicName = $("#topicList a.active").html();
             var subscriptionName = $("#messageSubscriptions a.active span").data("value");
-            logMessage("Retrieving filters for subscription '" + subscriptionName + " (topic: '" + topicName + ")'...");
+            logMessage("Retrieving filters for subscription '" + subscriptionName + "' (topic: '" + topicName + "')...");
             $.get("/Home/Filters", { topicName: topicName, subscriptionName: subscriptionName })
             .success(function (response) {
                 var ul = $("#filtersList");
