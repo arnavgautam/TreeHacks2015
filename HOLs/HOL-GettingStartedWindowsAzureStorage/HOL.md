@@ -433,8 +433,6 @@ In this task you will update the MVC application actions to perform operations a
 
 1. Add a private field to create a _StorageAccount_ object. This object will be used to perform operations for each storage service.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-StorageAccountVariable_)
-
 	<!-- mark:3 -->
 	````C#
 	public class HomeController : Controller
@@ -1086,7 +1084,7 @@ You can grant access to an entire table, a table range (for example, to all the 
 
 1. In the next steps you will use **Shared Access Signature** to restrict the information your users will be able to see.
 
-1. First, create a folder named **Services** in the root of your project. Right-click **PhotoUploader_WebRole** project, and under **Add** click **New Folder**. Type **Services** and click _Enter_.
+1. First, create a folder named **Services** in the root of your project. Right-click **PhotoUploader_WebRole** project, and under **Add** click **New Folder**. Type **Services** and hit _Enter_.
 
 1. Right-click the **Services** folder and select **Add** | **Class**.
 
@@ -1103,8 +1101,6 @@ You can grant access to an entire table, a table range (for example, to all the 
 	````
 
 1. Add the **StorageAccount** field to the class and initialize it with your **StorageConnectionString**.
-
-	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex4-SasServiceStorageAccount_)
 
 	<!-- mark:3 -->
 	````C#
@@ -1148,9 +1144,7 @@ You can grant access to an entire table, a table range (for example, to all the 
 
 	> **Note**: This method takes the **username** passed as argument and creates a SAS for the _Photos_ table. This SAS will grant the specified permissions only to the rows with a partition equal to "**username**". Finally, it returns the SAS in string format.
 
-1. Open the **HomeController.cs** file under the _Controllers_ folder and add the following field.
-
-	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex4-HomeControllerUriTable_)
+1. Open the **HomeController.cs** file under the _Controllers_ folder and add the uriTable field.
 
 	<!-- mark:4 -->
 	````C#
@@ -1170,12 +1164,13 @@ You can grant access to an entire table, a table range (for example, to all the 
 
 	````C#
 	using Microsoft.WindowsAzure.Storage.Auth;
+    using Microsoft.WindowsAzure.Storage.Table;
 	using PhotoUploader_WebRole.Services;
 	````
 
-1. Scroll down to the **GetPhotoContext** method and update the **cloudTableClient** creation with the following code. 
+1. Scroll down to the **GetPhotoContext** method and replace line where you create the **CloudTableClient** with the following code. 
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-NewCloudTableClientCall_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-NewCloudTableClientWithSas_)
 
 	<!-- mark:3-4 -->
 	````C#
@@ -1214,7 +1209,7 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 1. Create a new method called **GetReadonlyUriWithSasForBlob** with the following code.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-GetReadonlyUriWithSasForBlobMethod_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-GetReadonlyUriWithSasForBlob_)
 
 	````C#
 	public static string GetReadonlyUriWithSasForBlob(string blobName)
@@ -1234,7 +1229,7 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 1. Add another method called **GetSasForBlobContainer** with the following code
 
-	(Code Snippet - _GetSasForBlobContainer_ - _Ex4-GetSasForBlobContainerMethod_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-GetSasForBlobContainer_)
 
 	````C#
 	public static string GetSasForBlobContainer()
@@ -1259,8 +1254,6 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 1. Open the _Index.cshtml_ located in the _Views\Home_ folder, and add the following code to add the share link to the photos actions.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-IndexViewUpdateWithShareLink_)
-
 	<!-- mark:5,11 -->
 	````CSHTML
 	<td>
@@ -1273,7 +1266,7 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 	> **Note:** Notice that the **ActionLink** is calling the Share action passing the partition and row keys as parameters.
 
-1. Open the **HomeController.cs** file, located in the _Controllers_ folder, and add the following field.
+1. Open the **HomeController.cs** file, located in the _Controllers_ folder, and add the uriBlob field.
 
 	<!-- mark:3 -->
 	````C#
@@ -1284,7 +1277,7 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 1. Scroll down to the **GetBlobContainer** method and replace it with the following implementation that uses SAS.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-NewCloudBlobClientCall_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-NewCloudBlobClientWithSas_)
 	
 	<!-- mark:1-6 -->
 	````C#
@@ -1389,9 +1382,7 @@ In this task you will use SAS at queue level to restrict access to the Queue Sto
 		return sasToken;
 	}
 	````
-1. Open the **HomeController.cs** file under the _Controllers_ folder, and add the following field.
-
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-UriQueueProperty_)
+1. Open the **HomeController.cs** file under the _Controllers_ folder, and add the uriQueue field.
 
 	<!-- mark:6 -->
 	````C#
@@ -1407,9 +1398,9 @@ In this task you will use SAS at queue level to restrict access to the Queue Sto
 
 	>**Note**: Replace _<http://127.0.0.1:10001/devstoreaccount1>_ with your storage account table URI in order to work against Windows Azure.
 
-1. Scroll down to the **GetCloudQueue** method and update the **queueClient** creation with the following code. 
+1. Scroll down to the **GetCloudQueue** method and update the line where you create the **CloudQueueClient** with the following code. 
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-NewQueueClientCall_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-NewQueueClientWithSas_)
 
 	<!-- mark:3-4 -->
 	````C#
@@ -1459,11 +1450,11 @@ In this task you will use SAS at queue level to restrict access to the Queue Sto
 	}
 	````
 
-	This method gets a reference to the application's queue and generates a SAS token that has permissions to process, read, add, and update messages.
+	> **Note:** This method gets a reference to the application's queue and generates a SAS token that has permissions to process, read, add, and update messages.
 
-1. Now update the **Run** method by replacing its body with the following code.
+1. Now replace the **Run** method with the following code.
 
-	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-RunMethodUpdate_)
+	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex4-WorkerroleRun_)
 
 	````C#
 	public override void Run()
