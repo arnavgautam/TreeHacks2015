@@ -31,20 +31,20 @@ In this hands-on lab, you will learn how to:
 
 * Create a Storage Account.
 * Learn the different configuration options for Geo-Replication, Monitoring and Logging.
-* Access Tables, Blobs and Queues using **Windows Azure SDK 2.0** in a MVC Web Application.
+* Access Tables, Blobs and Queues using **Windows Azure SDK 2.2** in a MVC Web Application.
 
 <a name="Prerequisites" />
 ### Prerequisites ###
 
 The following is required to complete this hands-on lab:
 
-- [Microsoft Visual Studio Express 2013 for Web] [1]
-- [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)] [2]
-- A Windows Azure subscription - [sign up for a free trial] [3]
-
-[1]: http://www.visualstudio.com/en-us/downloads/
-[2]: http://www.microsoft.com/windowsazure/sdk/
-[3]: http://aka.ms/WATK-FreeTrial
+- [Microsoft Visual Studio Express 2013 for Web] (http://www.visualstudio.com/en-us/downloads/)
+- [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)] (http://www.microsoft.com/windowsazure/sdk/)
+- A Windows Azure subscription
+	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial).
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 
 <a name="Setup" />
 ### Setup ###
