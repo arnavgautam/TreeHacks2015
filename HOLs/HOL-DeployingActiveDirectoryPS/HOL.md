@@ -5,11 +5,11 @@
 <a name="Overview" /></a>
 ## Overview ##
 
-When deploying Active Directory in Windows Azure, two aspects are important to point out.
+When deploying Active Directory in Windows Azure, there are two important aspects to point out.
 
-The first one is the networking configuration. Domain members and domain controllers need to find the DNS server hosting the domain DNS information. You will use the Azure network configuration, to set up the DNS service.
+The first is the networking configuration. Domain members and domain controllers need to find the DNS server hosting the domain DNS information. You will use the Azure network configuration to set up the DNS service.
 
-Secondly, it is important to prevent Active Directory database corruption. Active Directory assumes that it can write its database updates directly to disk. That means that you should place the Active Directory database files on a data disk that does not have write caching enabled.
+Secondly, it is important to prevent Active Directory database corruption. Active Directory assumes that it can write its database updates directly to a disk. That means that you should place the Active Directory database files on a data disk that does not have write caching enabled.
 
 <a name="Objectives" /></a>
 ### Objectives ###
@@ -26,14 +26,14 @@ The following is required to complete this hands-on lab:
  
 - [Windows PowerShell 3.0]( http://microsoft.com/powershell/) (or higher)
 - Windows Azure PowerShell Cmdlets v0.7.1 (or higher)
-	- Follow the [Install Windows Azure PowerShell](http://www.windowsazure.com/en-us/manage/install-and-configure-windows-powershell/#Install) how to guide to install the cmdlets
+	- Follow the [Install Windows Azure PowerShell](http://www.windowsazure.com/en-us/manage/install-and-configure-windows-powershell/#Install) how-to guide to install the cmdlets.
 - A Windows Azure subscription
-	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
+	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial).
 	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
 	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
 	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 - A Windows Server 2012 virtual machine
-	- Follow the [Quickly create a virtual machine](http://msdn.microsoft.com/en-us/library/windowsazure/jj835085.aspx#bk_Quick) section of the [Create or Delete Virtual Machines Using Windows Azure Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj835085.aspx) how to guide to create a Windows Server virtual machine (make sure to pick a Windows Server 2012 image from the images list).
+	- Follow the [Quickly create a virtual machine](http://msdn.microsoft.com/en-us/library/windowsazure/jj835085.aspx#bk_Quick) section of the [Create or Delete Virtual Machines Using Windows Azure Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj835085.aspx) how-to guide to create a Windows Server virtual machine (make sure to pick a Windows Server 2012 image from the images list).
 
 		> **Note:**  You can use the following command to retrieve the name of the latest Windows Server 2012 image available.
 
@@ -52,13 +52,13 @@ In order to complete this lab, you will need your subscription’s secure creden
 <a name="GSTask1" /></a>
 #### Task 1 - Downloading and Importing a Publish Settings file ####
 
-> **Note:** If you have done these steps in a previous lab on the same computer you can move on to Exercise 1.
+> **Note:** If you have completed these steps in a previous lab on the same computer you can move on to Exercise 1.
 
-In this task, you will log on to the Windows Azure Portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription that you will use in your development environment. Therefore, you will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
+In this task, you will log on to the Windows Azure Portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription that you will use in your development environment. You will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
 
 1. Search for **Windows Azure PowerShell** in the Start screen and choose **Run as Administrator**.
 
-1.	Change the PowerShell execution policy to **RemoteSigned**. When asked to confirm press **Y** and then **Enter**.
+1.	Change the PowerShell execution policy to **RemoteSigned**. When asked to confirm, press **Y** and then **Enter**.
 	
 	````PowerShell
 	Set-ExecutionPolicy RemoteSigned
@@ -71,7 +71,7 @@ In this task, you will log on to the Windows Azure Portal and download the Publi
 	> - _RemoteSigned_ - Downloaded scripts must be signed by a trusted publisher before they can be run.
 	> - _Unrestricted_ - No restrictions; all Windows PowerShell scripts can be run.
 	>
-	> For more information about Execution Policies refer to this TechNet article: <http://technet.microsoft.com/en-us/library/ee176961.aspx>
+	> For more information about Execution Policies, refer to this TechNet article: <http://technet.microsoft.com/en-us/library/ee176961.aspx>
 
 1.	Execute the following command to download the subscription information. This command will open a web page on the Windows Azure Management Portal.
 
@@ -87,13 +87,13 @@ In this task, you will log on to the Windows Azure Portal and download the Publi
 
 	_Downloading Publish Settings file_
 
-1.	The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Windows Azure Subscription. Replace the placeholder with the path to your Publish Setting file and execute the script.
+1.	The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Windows Azure Subscription. Replace the placeholder with the path to your Publish Settings file and execute the script.
 
 	````PowerShell
 	Import-AzurePublishSettingsFile '[YOUR-PUBLISH-SETTINGS-PATH]'   
 	````
 
-	> **Note:** It is recommend that you delete the publishing profile that you downloaded using _Get-AzurePublishSettingsFile_ after you import those settings. Because the management certificate includes security credentials, it should not be accessed by unauthorized users. If you need information about your subscriptions, you can get it from the Windows Azure Management Portal or the Microsoft Online Services Customer Portal.
+	> **Note:** It is recommended that you delete the publishing profile that you downloaded using _Get-AzurePublishSettingsFile_ after you import those settings. Because the management certificate includes security credentials, unauthorized users should not be allowed access. If needed, you can access information about your subscriptions from the Windows Azure Management Portal or the Microsoft Online Services Customer Portal.
 
 1. Execute the following command and take note of the subscription name you will use for this exercise.
  
@@ -108,7 +108,7 @@ In this task, you will log on to the Windows Azure Portal and download the Publi
  
 	> **Note:** For the _[DC-LOCATION]_ placeholder above, please replace it with the deployment location of your virtual machine.
  
-1. If the preceding command does NOT return a storage account, you should create one first. To do this, execute the following command:
+1. If the preceding command does NOT return a storage account, you should create one first. To do this, execute the following command.
                
 	````PowerShell
 	New-AzureStorageAccount -StorageAccountName '[YOUR-STORAGE-ACCOUNT]' -Location '[DC-LOCATION]'
@@ -127,25 +127,20 @@ In this task, you will log on to the Windows Azure Portal and download the Publi
 
 This hands-on lab includes the following exercises:
 
-1. [Adding a new data disk to the virtual machine](#Exercise1)
-1. [Deploying a new domain controller in Windows Server 2012](#Exercise2)
+1. [Exercise 1 - Adding a new Data Disk to the Virtual Machine](#Exercise1)
+1. [Exercise 2 - Deploying a new Domain Controller in Windows Server 2012](#Exercise2)
 
 <a name="Exercise1" /></a>
-### Exercise 1: Adding a new data disk to the virtual machine ###
+### Exercise 1: Adding a new Data Disk to the Virtual Machine ###
 
-You will now modify the virtual machine you already created. We will create and provision a data disk to this existing VM which will be used in exercise 2 to place the AD database files.
-
-Exercise 1 contains 2 tasks:
-
-1. Attaching a data disk to your VM
-1. Configuring a new data disk on your VM
+You will now modify the virtual machine you already created. We will create and provision a data disk to the existing VM which will be used in Exercise 2 to place the AD database files.
 
 <a name="Ex1Task1" /></a>
-#### Task 1 - Attaching a data disk to your VM####
+#### Task 1 - Attaching a Data Disk to your Virtual Machine####
 
 1. Start **Windows Azure PowerShell**.
 
-1. Run the following command to add a data disk to the existing virtual machine. Make sure you replace the placeholder accordingly, using the service name and the virtual machine name you provided when creating the virtual machine for this lab.
+1. Run the following command to add a data disk to the existing virtual machine. Make sure you replace the placeholder accordingly, using the service name and virtual machine name you provided when creating the virtual machine for this lab.
 
 	````PowerShell
 	$cloudSvcName = '[YOUR-SERVICE-NAME]'
@@ -158,12 +153,12 @@ Exercise 1 contains 2 tasks:
 
 	>**Note:** Notice the HostCaching option set to None. For use with the Active Directory database files, we need to use a data disk without caching. 
 
-	![Adding data disk](./Images/add-data-disk.png?raw=true "Adding data disk")
+	![Adding Data Disk](./Images/add-data-disk.png?raw=true "Adding data disk")
 
-	_Adding data disk_
+	_Adding Data Disk_
 
 <a name="Ex1Task2" /></a>
-#### Task 2 - Configuring a new data disk on your VM####
+#### Task 2 - Configuring a new Data Disk on your Virtual Machine####
 
 1. In **Windows Azure PowerShell**, run the following command to save the DNS in a variable.
 
@@ -171,25 +166,25 @@ Exercise 1 contains 2 tasks:
 	$dnsName = (Get-AzureVM $cloudSvcName).DNSName.split('/')[2]
 	````
 
-1. Now execute the following command to save to a variable the remote PowerShell endpoint that was created when you provisioned the virtual machine.
+1. Run the following command to save to a variable the remote PowerShell endpoint that was created when you provisioned the virtual machine.
 
 	````PowerShell
 	$winRmHTTpsEndpoint = Get-AzureVM $cloudSvcName | Get-AzureEndpoint -Name "WinRmHTTPs"
 	````
 
-1. In Windows Azure PowerShell, type the following command to access remotely to the virtual machine. Note that this command use the _$dnsName_ and _$winRmHTTpsEndpoint_ variables obtained in the previous steps. Replace [YOUR-VM-USERNAME] with the administrator username provided when you created the virtual machine.
+1. Type the following command to access the virtual machine remotely. Note that this command uses the _$dnsName_ and _$winRmHTTpsEndpoint_ variables obtained in the previous steps. Replace _[YOUR-VM-USERNAME]_ with the administrator username provided when you created the virtual machine.
 
 	````PowerShell
 	Enter-PSSession -ComputerName $dnsName -Port $winRmHTTpsEndpoint.Port -Authentication Negotiate -Credential '[YOUR-VM-USERNAME]' -UseSSL -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
 	````
 
-	>**Note:** When prompted, login with the administrator password.
+	>**Note:** When prompted, log in with the administrator password.
 
 1. You should now be at a prompt with the host name to the left.
 
 1. Type the following command to list the available disks in the virtual machine and take note of the Number of the disk you added in the previous task.
 
-	>**Note:** You can identify the disk you added through the size, 10 GB, and the partition style listed as RAW.
+	>**Note:** You can identify the disk you added by the size (10 GB) and partition style (RAW).
 
 	````PowerShell
 	Get-Disk
@@ -199,42 +194,36 @@ Exercise 1 contains 2 tasks:
 
 	_Get-Disk Cmdlet Output_
 
-1. Type the following command to initialize the disk. This will allow the creation of a partition and volume. Make sure to replace [YOUR-DISK-NUMBER] with the disk number you got in the previous step.
+1. Type the following command to initialize the disk. This will allow the creation of a partition and volume. Make sure to replace _[YOUR-DISK-NUMBER]_ with the disk number you got in the previous step.
 
 	````PowerShell
 	Initialize-Disk -Number [YOUR-DISK-NUMBER] -PartitionStyle MBR
 	````
 
-	>**Note:** After the command executes, type again _Get-Disk_. You will see the disk partition style now listed as MBR.
+	>**Note:** After the command executes, run the command _Get-Disk_ again. You will see the disk partition style now listed as MBR.
 
 	![Initialize-Disk Cmdlet Output](Images/initialize-disk-cmdlet-output.png?raw=true)
 
 	_Initialize-Disk Cmdlet Output_
 
-1. Now you need to create a new partition on the initialized disk and then format the volume. To do this, type the following command. Make sure to replace [YOUR-DISK-NUMBER] with the disk number you got in step 6. When asked for confirmation, type Y to continue.
+1. Now you need to create a new partition on the initialized disk and then format the volume. To do this, type the following command. Make sure to replace _[YOUR-DISK-NUMBER]_ with the disk number you got in step 5. When asked for confirmation, type Y to continue.
 
 	````PowerShell
 	New-Partition -DiskNumber [YOUR-DISK-NUMBER] -UseMaximumSize -DriveLetter 'F' | 
       Format-Volume -NewFileSystemLabel "AD DS Data" -FileSystem NTFS
 	````
 
-	>**Note:** This command will create a new partition on the disk, assigning the drive letter F and using the whole space available. Then, it will format a volume on the newly created partition using NTFS file system.
+	>**Note:** This command will create a new partition on the disk, assigning the F drive and using all available space. Then, it will format a volume on the newly created partition using the NTFS file system.
 
 	![New-Partition Cmdlet Output](Images/new-partition-cmdlet-output.png?raw=true)
 
 	_New-Partition Cmdlet Output_
 
-	>**Note:** Do not close the remote session as you will need it in the next exercise.
+	>**Note:** Do not close the remote session. You will need it in the next exercise.
 
 <a name="Exercise2" /></a>
-### Exercise 2: Deploying a new domain controller in Windows Server 2012 ###
+### Exercise 2: Deploying a new Domain Controller in Windows Server 2012 ###
 You have just created a base virtual machine, attached the necessary data disk, and provisioned the disk. Now you are going to install and configure active directory and then verify the install was successful.
-
-Exercise 2 contains 3 tasks:
-
-1. Installing the Active Directory Domain Services Role 
-1. Configuring the Active Directory Domain Services Role
-1. Verifying the Domain Controller Installed Successfully
 
 <a name="Ex2Task1" /></a>
 #### Task 1 - Installing the Active Directory Domain Services Role ####
@@ -257,7 +246,7 @@ Exercise 2 contains 3 tasks:
 	Install-ADDSForest  -DomainName "contoso.com" -InstallDns:$true  -DatabasePath "F:\NTDS"  -LogPath "F:\NTDS"  -SysvolPath "F:\SYSVOL"  -NoRebootOnCompletion:$false  -Force:$true
 	````
 
-	>**Note:** The C: disk is the OS disk, and has caching enabled. The Active Directory database should not be stored on a disk that has write caching enabled. The F: disk is the data disk that you added earlier, and does not have this feature enabled.
+	>**Note:** The C: disk is the OS disk, and has caching enabled. The Active Directory database should not be stored on a disk that has write caching enabled. The F: disk is the data disk that you added earlier and does not have this feature enabled.
 
 1. At the **SafeModeAdministratorPassword** prompt and the **Confirm SafeModeAdministratorPassword** prompt, type the administrator password, and then press **Enter**. 
 
@@ -280,13 +269,13 @@ Exercise 2 contains 3 tasks:
 <a name="Ex2Task3" /></a>
 #### Task 3 - Verifying the Domain Controller Installed Successfully ####
 
-1. If you lose the remote connection, wait two to three minutes for the Virtual Machine to restart and type the following command in Windows Azure PowerShell in order to connect again. Note that this command use the _$dnsName_ and _$winRmHTTpsEndpoint_ variables obtained in Exercise 1. Replace [YOUR-VM-USERNAME] with the administrator username provided when you created the virtual machine.
+1. If you lose the remote connection, wait two to three minutes for the Virtual Machine to restart and type the following command in Windows Azure PowerShell in order to connect again. Note that this command uses the _$dnsName_ and _$winRmHTTpsEndpoint_ variables obtained in Exercise 1. Replace _[YOUR-VM-USERNAME]_ with the administrator username provided when you created the virtual machine.
 
 	````PowerShell
 	Enter-PSSession -ComputerName $dnsName -Port $winRmHTTpsEndpoint.Port -Authentication Negotiate -Credential '[YOUR-VM-USERNAME]' -UseSSL -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
 	````
 
-	>**Note:** When prompted, login with the administrator password.
+	>**Note:** When prompted, log in with the administrator password.
 
 1. To verify that the virtual machine is working properly, run the following command:
 
@@ -298,7 +287,7 @@ Exercise 2 contains 3 tasks:
 
 	_Dcdiag command output_
 
-	>**Note:** The output of the command confirms that the virtual machine was successfully promoted to domain controller
+	>**Note:** The output of the command confirms that the virtual machine was successfully promoted to domain controller.
 
 ---
 
@@ -308,7 +297,7 @@ To learn more about configuring Windows virtual machines on Windows Azure, pleas
 
 **Technical Reference**
 
-This is a list of articles that expands the information on the technologies explained on this lab:
+This is a list of articles that expand on the technologies explained in this lab:
 
 - You can continue reading the Hands-on lab **Understanding Virtual Machine Imaging with Capture (PowerShell)**.
 
@@ -316,7 +305,7 @@ This is a list of articles that expands the information on the technologies expl
 
 - [Windows Azure Virtual Networks](http://aka.ms/Tj1lj3): Windows Azure Virtual Network provides you with the capability to extend your network into Windows Azure and treat deployments in Windows as a natural extension of your on-premises network.
 
-- [Add a Virtual Machine to a Virtual Network](http://aka.ms/pej5x8): This tutorial walks you through the steps to create a Windows Azure storage account and virtual machine (VM) to add to a virtual network.
+- [Add a Virtual Machine to a Virtual Network](http://aka.ms/pej5x8): This tutorial walks you through the steps to create a Windows Azure storage account and virtual machine to add to a virtual network.
 
 - [Load Balancing Virtual Machines](http://aka.ms/Vf3h6k): Endpoints can be used for different purposes, such as to balance the load of network traffic among them, to maintain high availability, or for direct virtual machine connectivity through protocols such as RDP or SSH.
 
