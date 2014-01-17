@@ -266,7 +266,9 @@ In this task you will configure the _StorageConnectionString_ of the application
 
 1. Open **Visual Studio Express 2013 for Web** as Administrator.
 
-1. In the Start Page, click **Open Project...**, then browse to the **Source\Ex3-UnderstandingStorageAbstractions\Begin\** folder of this lab and open the **Begin.sln** solution. Make sure to set the **PhotoUploader** cloud project as the default project.
+1. In the Start Page, click **Open Project...**, then browse to the **Source\Ex3-UnderstandingStorageAbstractions\Begin\** folder of this lab and open the **PhotoUploader.sln** solution. Make sure to set the **PhotoUploader** cloud project as the default project.
+
+1. Press **CTRL+SHIFT+B** to build the solution.
 
 1. Go to the **PhotoUploader_WebRole** located in the **Roles** folder of the **PhotoUploader** solution. Right-click it and select **Properties**.
 
@@ -427,7 +429,6 @@ In this task you will update the MVC application actions to perform operations a
 	using System.Threading.Tasks;
 	using Microsoft.WindowsAzure;
 	using Microsoft.WindowsAzure.Storage;
-	using Microsoft.WindowsAzure.Storage.Table;
 	````
 
 1. Add a private field to create a _StorageAccount_ object. This object will be used to perform operations for each storage service.
@@ -444,7 +445,7 @@ In this task you will update the MVC application actions to perform operations a
 	}
 	````
 
-1.	In order to display the entities in the View, you will convert them to a **ViewModel** class. You are going to add two helper methods to convert from a **ViewModel** to a **Model** and viceversa. Add the following methods at the end of the class declaration.
+1.	In order to display the entities in the View, you will convert them to a **ViewModel** class. You are going to add two helper methods to convert from a **ViewModel** to a **Model** and vice versa. Add the following methods at the end of the **HomeController** class declaration.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-ViewModelHelpers_)
 
@@ -470,7 +471,7 @@ In this task you will update the MVC application actions to perform operations a
 	}
 	````
 
-1.	You will be using a **PhotoDataServiceContext** to interact with Table Storage, so add a new **GetPhotoContext** private method at the bottom of the class to create the context.
+1.	You will be using a **PhotoDataServiceContext** to interact with Table Storage, so add a new **GetPhotoContext** private method below the code you have just added to create the context.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-TableStorageGetPhotoContext_)
 
@@ -515,6 +516,7 @@ In this task you will update the MVC application actions to perform operations a
 		}
 
 		var viewModel = this.ToViewModel(photo);
+
 		return this.View(viewModel);
 	}
 	````
@@ -533,6 +535,7 @@ In this task you will update the MVC application actions to perform operations a
 		}
 
 		var photo = this.FromViewModel(photoViewModel);
+
 		// Save information to Table Storage
 		var photoContext = this.GetPhotoContext();
 		await photoContext.AddPhotoAsync(photo);
@@ -557,6 +560,7 @@ In this task you will update the MVC application actions to perform operations a
 		}
 
 		var viewModel = this.ToViewModel(photo);
+
 		return this.View(viewModel);
 	}
 	````
@@ -610,6 +614,7 @@ In this task you will update the MVC application actions to perform operations a
 		}
 
 		var viewModel = this.ToViewModel(photo);
+
 		return this.View(viewModel);
 	}
 	````
@@ -632,6 +637,7 @@ In this task you will update the MVC application actions to perform operations a
 		}
 
 		await photoContext.DeletePhotoAsync(photo);
+
 		return this.RedirectToAction("Index");
 	}
 	````
@@ -641,7 +647,6 @@ In this task you will update the MVC application actions to perform operations a
 	````C#
 	using Microsoft.WindowsAzure;
 	using Microsoft.WindowsAzure.Storage;
-	using Microsoft.WindowsAzure.Storage.Table;
 	````
 
 1. Add the following code at the end of the **Application_Start** method to ensure that whenever you start the application, the _Photos_ table is created.
@@ -925,13 +930,7 @@ In this task, you will use queues to simulate a notification service, where a me
 	}
 	````
 
-1. As you did with **Table** and **Blob**, you need to create the Queue at application start if it doesn't exist. Open **Global.asax.cs** and add the following using directive.
-
-	````C#
-	using Microsoft.WindowsAzure.Storage.Blob;
-	````
-
-1. Add the following code at the end of the **Application_Start** method to ensure the queue is created.
+1. Open **Global.asax.cs** and add the following code at the end of the **Application_Start** method to ensure the queue is created.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex3-QueueAppStart_)
 
@@ -1038,7 +1037,7 @@ In this task, you will use Visual Studio to inspect the Windows Azure Storage Ac
 
 1. Enter your **Live ID credentials** associated with the Storage Account you are using and sign in to Windows Azure.
 
-1. Expand the **Storage** drop-down and within it your account name. Notice that there is an entry for Tables, Blobs and Queues.
+1. Expand the **Storage** drop-down menu and within it your account name. Notice that there is an entry for Tables, Blobs and Queues.
 
 1. Expand the **Tables** container. You will see the **Photos** table under it.
 
