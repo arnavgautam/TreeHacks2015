@@ -119,7 +119,7 @@ In this task you will learn how to create a new Storage Account using the Window
 <a name="Exercise2" />
 ### Exercise 2: Managing a Windows Azure Storage Account ###
 
-In this exercise, you will configure the common settings for your Storage Account. You will manage your **Access Keys**, enable **Geo-Replication**, configure **Monitoring** and **Logging**.
+In this exercise, you will configure the common settings for your Storage Account. You will manage your **Access Keys**, enable **Geo-Replication**, and configure **Monitoring** and **Logging**.
 
 <a name="Ex2Task1" />
 #### Task 1 - Enabling Geo-Replication ####
@@ -268,7 +268,7 @@ In this task you will configure the _StorageConnectionString_ of the application
 
 1. In the Start Page, click **Open Project...**, then browse to the **Source\Ex3-UnderstandingStorageAbstractions\Begin\** folder of this lab and open the **PhotoUploader.sln** solution. Make sure to set the **PhotoUploader** cloud project as the default project.
 
-1. Press **CTRL+SHIFT+B** to build the solution.
+1. Press **Ctrl + Shift + B** to build the solution.
 
 1. Go to the **PhotoUploader_WebRole** located in the **Roles** folder of the **PhotoUploader** solution. Right-click it and select **Properties**.
 
@@ -1063,18 +1063,18 @@ In this task, you will use Visual Studio to inspect the Windows Azure Storage Ac
 <a name="Exercise4" />
 ### Exercise 4: Introducing SAS (Shared Access Signature) ###
 
-Shared Access Signatures allows granular access to tables, queues, blob containers, and blobs. A SAS token can be configured to allow executing only specific operations on a given storage, and for a certain amount of time or without any limit. Allowed operations could be many of: read, write, delete or list. And the storage could be a specific table, key range within a table, queue, blob or blob container. The SAS token appears as part of the resource's URI as a series of query parameters.
+Shared Access Signature allows granular access to tables, queues, blob containers, and blobs. A SAS token can be configured to allow the execution of specific operations in a given storage location, either for a certain amount of time or without any limit. Possible operations include read, write, delete or list. The storage location could be a specific table, key range within a table, queue, blob or blob container. The SAS token appears as part of the resource's URI as a series of query parameters.
 
 In this exercise you will learn how to use Shared Access Signatures with the three storage abstractions: Tables, Blobs, and Queues.
 
->**Note:** This sample application does not follow all best practices for using Shared Access Signature for simplicity's sake. In a production environment you will typically have a service that generates the SAS for your application.
+>**Note:** For simplicity's sake, this sample application does not follow all best practices for using Shared Access Signature. In a production environment you will typically have a service that generates the SAS for your application.
 
 <a name="Ex4Task1" />
 #### Task 1 - Adding SAS at Table level  ####
 
-In this task you will learn how to create SAS for Windows Azure Tables. You as the account owner can create SAS when you want to grant access to your storage without sharing your account key, and also restricting the operations in several ways.
+In this task you will learn how to create SAS for Windows Azure Tables. As the account owner, you can create SAS when you want to grant access to your storage without sharing your account key and also restrict the operations in several ways.
 
-You can grant access to an entire table, to a table range (for example, to all the rows under a particular partition key), or to some specific rows. Additionally, you can grant execution rights only to specific methods such as _Query_, _Add_, _Update_, _Delete_. Finally, you can specify the SAS token start and expiry time.
+You can grant access to an entire table, a table range (for example, to all the rows under a particular partition key), or specific rows. Additionally, you can grant execution rights to specific methods such as _Query_, _Add_, _Update_, _Delete_. Finally, you can specify the SAS token start and expiration time.
 
 1. Continue working with the end solution of the previous exercise or open the solution located at _Source/Ex04-IntroducingSAS/Begin_. Remember to run Visual Studio **as administrator** to be able to use the Windows Azure Storage Emulator.
 
@@ -1148,7 +1148,7 @@ You can grant access to an entire table, to a table range (for example, to all t
 
 	> **Note**: This method takes the **username** passed as argument and creates a SAS for the _Photos_ table. This SAS will grant the specified permissions only to the rows with a partition equal to "**username**". Finally, it returns the SAS in string format.
 
-1. Open the **HomeController.cs** file under the _Controllers_ folder, and add the following field.
+1. Open the **HomeController.cs** file under the _Controllers_ folder and add the following field.
 
 	(Code Snippet - _GettingStartedWindowsAzureStorage - Ex4-HomeControllerUriTable_)
 
@@ -1188,7 +1188,7 @@ You can grant access to an entire table, to a table range (for example, to all t
 	}
 	````
 
-1. Run the solution by pressing **F5**.
+1. Press **F5** to run the solution.
 
 1. Log in with the new user you created at the beginning of this task, and you will notice that you no longer see the other user's photos.
 
@@ -1198,7 +1198,7 @@ You can grant access to an entire table, to a table range (for example, to all t
 
 1. Add a **new entry** to check that everything is working as expected.
 
-1. You can also log in with **the other user** to see that your photos are still there, but not the newest entry.
+1. You can also log in with **the other user** to verify that your photos are still there, but you will not see the newest entry.
 
 <a name="Ex4Task2" />
 #### Task 2 - Adding SAS at Blob level  ####
@@ -1330,15 +1330,15 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 	The preceding code gets the blob reference by using the partition and row keys, and calls the **GetReadonlyUriWithSasForBlob** method passing the blob name as parameter. In this case, the SAS is created with **Read** permissions.
 
-1. You will now add the corresponding view to the **Share** action you just created. To do so, right click in the **Home** folder under **Views**, go to **Add** and select **Existing Item...**.
+1. You will now add the corresponding view to the **Share** action you just created. To do so, right-click the **Home** folder under **Views**, go to **Add** and select **Existing Item...**.
 
 1. Browse to the _Assets/Ex4-IntroducingSAS_ folder, select the **Share.cshtml** file and click **Add**.
 
-1. Run the solution by pressing **F5**.
+1. Press **F5** to run the solution.
 
-1. Log into the application. If you do not have a user, register to create one.
+1. Log in to the application. If you do not have a user, register to create one.
 
-1. If you haven't uploaded images yet, upload one image now.
+1. If you have not yet uploaded images, upload an image now.
 
 1. Click the **Share** link, next to one of the uploaded photos. You will navigate to the _Share_ page.
 
@@ -1352,18 +1352,18 @@ In this task you will learn how to create SAS for Azure Blobs. SAS tokens can be
 
 	_Opening a shared blob_
 
-1. Wait two minutes (time it takes for this SAS token to expire) and press **Ctrl+F5** to make a full page refresh. As the token is no longer valid, you will not be able to see the image and an error will be displayed.
+1. Wait two minutes (the time it takes for this SAS token to expire) and press **Ctrl + F5** to make a full page refresh. As the token is no longer valid, you will not be able to see the image and an error will be displayed.
 
 	![Opening an expired share link](Images/opening-an-expired-share-link.png?raw=true "Opening an expired share link")
 
 	_Opening an expired share link_
 
-	>**Note:** If you don't get the expected error, Internet Explorer may be serving the image from the cache. You can avoid hitting the cache by accessing in _Private Mode_ (press _Ctrl+Shift+P_).
+	>**Note:** If you do not get the expected error, Internet Explorer may be serving the image from the cache. You can avoid hitting the cache by accessing in _Private Mode_ (press _Ctrl + Shift + P_).
 
 <a name="Ex4Task3" />
 #### Task 3 - Adding SAS at Queue level  ####
 
-In this task you will use SAS at queue level to restrict access to the Queue Storage. SAS can enable Read, Add, Process, and Update permissions on a queue.
+In this task you will use SAS at queue level to restrict access to the Queue Storage. SAS can enable Read, Add, Process, and Update permissions in a queue.
 
 1. Open the **SasService.cs** file and add the following _using_ statements.
 	
@@ -1519,9 +1519,9 @@ In this task you will use SAS at queue level to restrict access to the Queue Sto
 <a name="Exercise5" />
 ### Exercise 5: Updating SAS to use Stored Access Policies ###
 
-A Stored Access Policy provides **an additional level of control** over Shared Access Signatures on the server side. Establishing a Stored Access Policy serves to group Shared Access Signatures and to provide additional restrictions for signatures that are bound by the policy. You can use a stored access policy to change the start time, expiry time, or permissions for a signature, or to revoke it after it has been issued.
+A Stored Access Policy provides **an additional level of control** over Shared Access Signatures on the server side. Establishing a Stored Access Policy serves to group Shared Access Signatures and to provide additional restrictions for signatures that are bound by the policy. You can use a stored access policy to change the start time, expiration time, or permissions for a signature, or to revoke it after it has been issued.
 
-A stored access policy gives you greater control over Shared Access Signatures you have released. Instead of specifying the signature's lifetime and permissions on the URL, you can specify these parameters within the Stored Access Policy on the blob, container, queue, or table that is being shared. To change these parameters for one or more signatures, you modify only the Stored Access Policy, rather than reissuing the signatures. You can also quickly revoke the signature by modifying the Stored Access Policy, for example in case of a security breach.
+A stored access policy gives you greater control over Shared Access Signatures you have released. Instead of specifying the signature's lifetime and permissions on the URL, you can specify these parameters within the Stored Access Policy on the blob, container, queue, or table that is being shared. To change these parameters for one or more signatures, you modify only the Stored Access Policy, rather than reissuing the signatures. You can also quickly revoke the signature by modifying the Stored Access Policy, for example in the case of a security breach.
 
 
 <a name="Ex5Task1" />
@@ -1529,7 +1529,7 @@ A stored access policy gives you greater control over Shared Access Signatures y
 
 In this task you will update table security to use Stored Access Policy.
 
-1. Continue working with the end solution of the previous exercise or open the solution located at _/Source/Ex5-UpdatingSASToUseStoredAccessPolicies/Begin_. Remember to run Visual Studio **as administrator** to be able to use the Windows Azure storage emulator.
+1. Continue working with the end solution of the previous exercise, or open the solution located at _/Source/Ex5-UpdatingSASToUseStoredAccessPolicies/Begin_. Remember to run Visual Studio **as administrator** to be able to use the Windows Azure storage emulator.
 
 1. Update **Global.asax.cs** to set the Stored Access Policies for Table Storage.
 
@@ -1770,7 +1770,7 @@ In this task you will update table security to use Stored Access Policy.
 	private CloudBlobContainer container;
 	````
 
-1. Create a new method called **CreateCloudBlobClient** in order to create the container and also set the _container_ variable. To do that, insert the following code.
+1. Create a new method called **CreateCloudBlobClient** in order to create the container and also set the _container_ variable by inserting the following code.
 	
 	(Code Snippet - _GettingStartedWindowsAzureStorage_ - _Ex5-CreateCloudBlobClientImplementation_)
 
@@ -1893,15 +1893,15 @@ In this task you will update table security to use Stored Access Policy.
 
 	>**Note**: The Windows Azure Emulator should start.
 
-1. Log into the application with the user you created in Exercise 3.
+1. Log in to the application with the user you created in Exercise 3.
 
-1. Click the **Share** link in one of the photos you have uploaded. If you have not, you can do it now.
+1. Click **Share** in one of your uploaded photos. If you have not uploaded any photos, you can do so now.
 
 	![Sharing a photo with Stored Access Policy](Images/sharing-a-photo-with-stored-access-policy.png?raw=true "Sharing a photo with Stored Access Policy")
 
 	_Sharing a photo with Stored Access Policy_
 
-	>**Note**: Notice how there's a new parameter in the query string named _si_ that has the value _read_ which is the Signed Identifier.
+	>**Note**: Notice how there is a new parameter in the query string named _si_ with the value _read_ which is the Signed Identifier.
 
 1. Go back to the **Index** page and click on **Create**.
 
@@ -1917,13 +1917,13 @@ In this task you will update table security to use Stored Access Policy.
 
 ## Next Steps ##
 
-To learn more about **Windows Azure Storage**, please refer to the following articles which expand the information on the technologies explained on this lab:
+To learn more about **Windows Azure Storage**, please refer to the following articles which expand on the technologies explained in this lab:
 
 - [Shared Access Signatures, Part 1: Understanding the SAS Model](http://aka.ms/Fkjgzx): In Part 1 of this tutorial on shared access signatures, you will see an overview of the SAS model and review SAS best practices.
 
 - [Shared Access Signatures, Part 2: Create and Use a SAS with the Blob Service](http://aka.ms/Xsyztd): Part 2 of this tutorial walks you through the process of creating SAs with the Blob service.
 
-- [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS](http://aka.ms/Yaqi4e): In this blog POST, we will see usage scenarios for these features along with sample code.
+- [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS](http://aka.ms/Yaqi4e): In this blog post, we will see usage scenarios for these features along with sample code.
 
 - [How to use the Table Storage Service](http://aka.ms/Yf1l4c): This guide will show you how to perform common scenarios using the Windows Azure Table Storage Service.
 
@@ -1946,13 +1946,13 @@ To learn more about **Windows Azure Storage**, please refer to the following art
 
 By completing this hands-on lab you have learned how to:
 
-* Create a Storage Account.
-* Enable Geo-Replication.
-* Configure Monitoring metrics for your account.
-* Configure Logging for each service.
-* Consume Storage Services from a Web Application.
-* Create and consume Shared Access Signatures.
-* Enhance Shared Access Signatures by using Stored Access Policies.
+* Create a Storage Account
+* Enable Geo-Replication
+* Configure Monitoring metrics for your account
+* Configure Logging for each service
+* Consume Storage Services from a Web Application
+* Create and consume Shared Access Signatures
+* Enhance Shared Access Signatures by using Stored Access Policies
 
 ---
 
