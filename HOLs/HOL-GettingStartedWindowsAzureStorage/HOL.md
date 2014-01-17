@@ -31,7 +31,7 @@ In this hands-on lab, you will learn how to:
 
 * Create a Storage Account.
 * Learn the different configuration options for Geo-Replication, Monitoring and Logging.
-* Access Tables, Blobs and Queues using **Windows Azure SDK 2.2** in a MVC Web Application.
+* Access Tables, Blobs and Queues using **Windows Azure SDK 2.2** in an MVC Web Application.
 
 <a name="Prerequisites" />
 ### Prerequisites ###
@@ -119,7 +119,7 @@ In this task you will learn how to create a new Storage Account using the Window
 <a name="Exercise2" />
 ### Exercise 2: Managing a Windows Azure Storage Account ###
 
-In this exercise, you will configure the common settings for your Storage Account. You will manage your **Access Keys**, enabling **Geo-Replication** and configuring **Monitoring and Logging**.
+In this exercise, you will configure the common settings for your Storage Account. You will manage your **Access Keys**, enable **Geo-Replication**, configure **Monitoring** and **Logging**.
 
 <a name="Ex2Task1" />
 #### Task 1 - Enabling Geo-Replication ####
@@ -145,7 +145,7 @@ Geo-replication replicates the stored content to a secondary location to enable 
 
 From the **Monitoring** section, you can monitor your storage accounts in the Windows Azure Management Portal. For each storage service associated with the storage account (Blob, Queue, and Table), you can choose the level of monitoring - minimal or verbose - and specify the appropriate data retention policy.
 
-1. In the **Configure** page, go to the **Monitoring** section.
+1. In the **Configure** page, scroll to the **Monitoring** section.
 
 	![configuring-storage-monitoring](Images/configuring-storage-monitoring.png?raw=true)
 
@@ -161,7 +161,7 @@ From the **Monitoring** section, you can monitor your storage accounts in the Wi
 
 	> **Note:** There are cost considerations when selecting monitoring. For more information, see [Storage Analytics and Billing](http://msdn.microsoft.com/en-us/library/windowsazure/hh360997.aspx).
 
-1. To set the data retention policy, in **Retention** (in days), type the number of days that data should be retained from 1-365 days. If there is no retention policy (by entering zero value), it is up to you to delete the monitoring data. 
+1. To set the data retention policy, in **Retention (in days)**, type the number of days that data should be retained from 1-365 days. If there is no retention policy (by entering zero value), it is up to you to delete the monitoring data. 
 
 	> **Note:** It is recommended to set a retention policy based on how long you want to retain storage analytics data for your account so that old and unused analytics data can be deleted by the system at no cost.
 
@@ -220,7 +220,7 @@ From the **Monitoring** section, you can monitor your storage accounts in the Wi
 
 You can save diagnostic logs for Read Requests, Write Requests, and/or Delete Requests and can set the data retention policy for each of the services. In this task you will configure logging for your storage account.
 
-1. In the **Configure** page, go to the **Logging** section.
+1. In the **Configure** page, scroll to the **Logging** section.
 
 1.	For each service (Blob, Table or Queue), you can configure the types of request to log: Read Requests, Write Requests, and Delete Requests. You can also configure the number of days to retain the logged data. Enter zero if you do not want to set a retention policy. If you do not set a retention policy, it is up to you to delete the logs.
 
@@ -248,7 +248,7 @@ When you create a storage account, Windows Azure generates two 512-bit storage a
 
 	_Copying Access Keys_
 
-1.	By clicking the **Regenerate** button, a new Access Key is created. You should change the access keys to your storage account periodically to help keep your storage connections more secure. Two access keys are assigned to enable you to maintain connections to the storage account using one access key while you regenerate the other access key. 
+1.	By clicking the **Regenerate** button, a new Access Key is created. You should change the access keys to your storage account periodically to help keep your storage connections more secure. Two access keys are assigned to enable you to maintain connections to the storage account using one access key while you regenerate the other one. 
 
 	> **Note:** Regenerating your access keys affects virtual machines, media services, and any applications that are dependent on the storage account.
 
