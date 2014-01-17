@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="UsingQueues.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2013-10.2.2">
+  <Role name="UsingQueues">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="issuerName" value="owner" />
+      <Setting name="issuerKey" value="[Issuer-Key]" />
+      <Setting name="namespaceAddress" value="[Namespace]" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>
