@@ -1,0 +1,278 @@
+﻿@{
+    ViewBag.Title = "Service Bus Queues";
+}
+
+<div id="mainContent">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <h4> 1. Create a Queue</h4>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <label class="sr-only" for="queueName">Queue name</label>
+                    <input type="text" class="form-control" id="queueName" placeholder="Enter Queue name" required="required">
+                </div>
+                <button id="createQueueButton" type="button" disabled="disabled" class="btn btn-default">Create</button>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-4 col-md-4">
+            <h4>2. Select a Queue</h4>
+            <div class="form-group">
+                <label>Queue Explorer</label>
+                <p id="loading">Loading...</p>
+                <div id="queueList" class="list-group "></div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <h4>3. Send a message</h4>
+            <form role="form">
+                <div class="form-group">
+                    <label for="messageBody">Message</label>
+                    <textarea id="messageBody" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-inline">
+                    <label><input id="urgentCheck" type="checkbox" /> Urgent </label>
+                </div>
+                <div class="form-inline">
+                    <label class="right"><input id="followUpCheck" type="checkbox" /> Follow Up</label>
+                </div>
+                <div class="form-inline">
+                    <button id="sendMessageButton" type="button" class="btn btn-default" disabled="disabled">Send</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <div class="row">
+
+                <h4>4. Read a message</h4>
+                <div class="form-group">    
+                    <label for="messageBody">Select a Queue first</label>                                    
+                </div>
+                <div class="form-inline">
+                    <button id="retrieveMessageButton" type="submit" class="btn btn-default" disabled="disabled">Receive</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-md-8">
+            <h4>Logs</h4>
+            <div class="form-horizontal">
+                <textarea id="logs" readonly="readonly" class="form-control form-inline" rows="10"></textarea>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <hr />
+            <h4>Message Details</h4>
+            <div class="form-group">
+                <label for="messageContent">Content</label>
+                <div id="messageContent">
+                </div>
+                <label>
+                    BrokeredMessage Properties
+                </label>
+                <div id="brokeredmessageproperties">
+                    <table></table>
+                </div>
+                <label>
+                    Message Properties
+                </label>
+                <div id="properties">
+                    <table></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">        
+
+        function setFormStatus(isEnabled) {
+            if (isEnabled) {
+                $("button").removeAttr("disabled");
+            } else {
+                $("button").attr("disabled", "disabled");
+            }
+
+            setCreateQueueButtonStatus();
+            $("#queueList a.active").length == 0 ? $("#sendMessageButton").attr("disabled", "disabled") : $("#sendMessageButton").removeAttr("disabled");
+            $("#queueList a.active").length == 0 ? $("#retrieveMessageButton").attr("disabled", "disabled") : $("retrieveMessageButton").removeAttr("disabled");
+        }
+
+        function setCreateQueueButtonStatus() {
+            $("#queueName").val().length == 0 ? $("#createQueueButton").attr("disabled", "disabled") : $("#createQueueButton").removeAttr("disabled");
+        }
+
+        function createQueue() {
+            setFormStatus(false);
+            var queueName = { queueName: $("#queueName").val() };
+            $("#queueName").val("");
+            setCreateQueueButtonStatus();
+            logMessage("Creating Queue '" + queueName.queueName + "'...");
+
+            var queueClick = function () {
+                $("#queueList a.active").removeClass("active");
+                $(this).addClass("active");
+                $("#sendMessageButton").removeAttr("disabled");                
+            };
+
+            $.post('/Home/CreateQueue', queueName)
+                .always(function () {
+                    setFormStatus(true);
+                }).success(function (data) {
+                    var newQueue = $("<a href='#' class='list-group-item'>")
+                        .on('click', queueClick)
+                        .html(data);
+                    $("#queueList").append(newQueue);
+                    logMessage("Done!");
+                }).fail(function () {
+                    logMessage('ERROR: Unable to create Queue.');
+                });
+        }
+
+        function loadQueues() {
+            //Fill Queue's list with Queues
+            logMessage("Retrieving list of queues...");
+            $.get("/Home/Queues")
+                .always(function () {
+                    setFormStatus(true);
+                })
+                .done(function (response) {
+                    fillQueueList(response);
+                    logMessage("Done!");
+                    setFormStatus(true);
+                }).fail(function () {
+                    logMessage('ERROR: Unable to get the list of queues.');
+                });
+        }
+
+        function fillQueueList(data) {
+            var ul = $("#queueList").empty();
+            $.each(data, function (index, queue) {
+                var queueClick = function () {
+                    $("#queueList a.active").removeClass("active");
+                    $(this).addClass("active");
+                    $("#sendMessageButton").removeAttr("disabled");                    
+                };
+                console.debug(queue.Name);
+                console.debug(queue.Messages);
+                var queueItem = $('<a href="#" class="list-group-item" data-value="' + queue.Name + '"><span class="badge" data-value="' + queue.Name + '">' + queue.Messages + '</span>' + queue.Name + '</a>')
+                    .on('click', queueClick);
+
+                ul.append(queueItem);
+            });
+
+            $("#loading").hide();
+        }       
+
+        function sendMessage() {
+            setFormStatus(false);
+            var message = {
+                queueName: $("#queueList a.active").attr("data-value"),
+                messageBody: $("#messageBody").val(),
+                isUrgent: $("#urgentCheck").is(":checked"),
+                isFollowUp: $("#followUpCheck").is(":checked")
+            };
+
+            logMessage("Sending Message to " + message.queueName + " {isUrgent: " + message.isUrgent + "; isFollowUp: " + message.isFollowUp + "}");
+            $.post('/Home/SendMessage/', message, function (data) {
+                logMessage("Done!");
+                sendMessageSuccessHandler(message.queueName);
+            })
+                .always(function () {
+                    setFormStatus(true);
+                })
+                .fail(function () {
+                    logMessage('ERROR: Unable to send message.');
+                });
+        }
+
+        function sendMessageSuccessHandler(selectedqueueName) {
+            $("#messageBody").val("");
+            updateMessageCount(selectedqueueName);
+        }
+
+        function updateMessageCount(selectedQueueName) {
+            logMessage("Updating message count values...");
+            $.get("/Home/GetMessageCount", { queueName: selectedQueueName })
+                .always(function () {
+                    logMessage("Done!");
+                })
+                .success(function (response) {
+                    for (var i = 0; i < response.length; i++) {
+                        $("#queueList span[data-value=" + selectedQueueName + "]").html(response);
+                    }
+                });
+        }
+
+        function retrieveMessage() {
+            event.preventDefault();
+
+            var queueName = $("#queueList a.active").attr("data-value");
+            
+            $(".loading").show();
+
+            logMessage("Retrieving message from Queue:'" + queueName + "'...");
+
+            $.get("/Home/RetrieveMessage", { queueName: queueName})
+                .success(function (response) {
+                    logMessage("Done!");
+                    renderMessage(response);
+                    updateMessageCount(queueName);
+                })
+                .error(function () {
+                    renderMessage(false);
+                });
+        }
+
+        function handleEvents() {
+            $("#createStatus").hide();
+            $("#createQueueButton").click(createQueue);
+            $("#queueName").keyup(function () {
+                setCreateQueueButtonStatus();
+            });
+
+            $("#sendMessageButton").click(sendMessage);
+            $("#retrieveMessageButton").click(retrieveMessage);
+        }
+
+        $(document).ready(function () {
+            $(".loading").show();
+            handleEvents();
+            loadQueues();
+        });
+
+        function renderMessage(response) {
+            if (response) {
+                $("#messageContent").html("<p>" + response.Message + "</p>")
+                var properties = $("#properties table");
+                properties.children().remove();
+                for (var i = 0; i < response.Properties.length; i++) {
+                    var item = response.Properties[i];
+                    var trClass = (i % 2 == 0) ? '' : 'class="odd"';
+                    properties.append('<tr ' + trClass + '><td>' + item.Key + '</td><td>' + item.Value + '</td></tr>');
+                }
+
+                var brokeredmsgproperties = $("#brokeredmessageproperties table");
+                brokeredmsgproperties.children().remove();
+                for (var i = 0; i < response.BrokeredMsgProperties.length; i++) {
+                    var item = response.BrokeredMsgProperties[i];
+                    var trClass = (i % 2 == 0) ? '' : 'class="odd"';
+                    brokeredmsgproperties.append('<tr ' + trClass + '><td>' + item.Key + '</td><td>' + item.Value + '</td></tr>');
+                }
+            }
+        }
+
+        function logMessage(message, type) {
+            if (!message) {
+                return;
+            }
+
+            $("#logs").val(message + '\n' + $("#logs").val());
+        }
+    </script>
+}
