@@ -128,19 +128,19 @@ In this task, you will learn how to create a new topic and add several subscript
 
 1. Open the **Begin.sln** solution file from **Source\Ex1-CreatingATopicAndAddingSubscriptions\Begin\**.
 
-1. Build the solution in order to download and install the NuGet package dependencies. To do this, click **Build** | **Build Solution** or press **Ctrl + Shift + B**.
+1. Build the solution in order to download and install the NuGet package dependencies. To do this, in **Solution Explorer** right-click the solution node and select **Build Solution** or press **Ctrl + Shift + B**.
 
 1. Set up your own Service Bus namespace settings in the **Service Configuration** files. To do this, in **Solution Explorer** expand the **Roles** folder in the **UsingTopics** project, right-click **UsingTopics.Web** and then select **Properties**.
 
- 	![Launching the Service Configuration editor](./Images/Launching-the-topics-service-configuration-editor.png?raw=true "Launching the Service Configuration editor")
+ 	![Launching the Service Configuration editor](Images/launching-the-service-configuration-editor.png?raw=true)
  
     _Launching the Service Configuration editor_
 
 1. In the **Settings** tab, set _namespaceAddress_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to the ones you previously copied from the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
 
- 	![Updating settings to the UsingTopics.Web Web Role](./Images/Updating-settings-to-the-UsingTopics.Web-Web-Role.png?raw=true "Updating settings to the UsingTopics.Web Web Role")
- 
-    _Updating settings to the **UsingTopics.Web** Web Role_
+	![Updating settings to the UsingTopics web role](Images/updating-settings-to-the-usingtopics-web-role.png?raw=true)
+
+    _Updating settings to the **UsingTopics** web role_
 
 1. Press **CTRL + S** to save the changes to the Web Role configuration.
 
@@ -148,7 +148,7 @@ In this task, you will learn how to create a new topic and add several subscript
 
     > **Note:** In the previous Exercise, you created a connection to the Service Bus Namespace inside the Constructor method of the **HomeController** class. For the current Exercise, this was already added for you in the Solution. For more information, refer to the step 12 of Task 1 in Exercise 1. 
 
-1. You will create a new **Topic** with two **Subscriptions**, named _AllMessages_, and _UrgentMessages_. To do this, add the following method at the end of the **HomeController** class.
+1. You will create a new **topic** with two **subscriptions**, named _AllMessages_, and _UrgentMessages_. To do this, add the following method at the end of the **HomeController** class.
 
 	(Code Snippet - _Service Bus Messaging - Ex02 - Create Topic and subscriptions_ - CS)
 	<!-- mark:1-19 -->
