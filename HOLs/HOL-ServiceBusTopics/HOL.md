@@ -227,6 +227,10 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 1. Press **CTRL + S** to save the changes to the Controller.
 
+<a name="Ex1Verification"></a>
+#### Verification ####
+You will now launch the updated application in the Windows Azure compute emulator to verify that you can create a Topic with subscriptions.
+
 1. In **Visual Studio**, configure the cloud project **UsingTopics.Azure** as the StartUp Project. To do this, in **Solution Explorer** right-click the **UsingTopics.Azure** project node and then select **Set as StartUp Project**.
 
 	![Configuring StartUp project](Images/configuring-startup-project.png?raw=true)
@@ -251,11 +255,13 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 	_Topic created_
 
-1. Select the topic from the topic list. The application will retrieve the subscriptions associated to the topic from Service Bus.
+1. Select the new topic from the topic list. The application will retrieve the subscriptions associated to the topic from Service Bus.
 
 	![Retrieving topic subscriptions](Images/retrieving-topic-subscriptions.png?raw=true)
 
 	_Retrieving topic subscriptions_
+
+1. Go back to **Visual Studio** and stop debugging.
 
 <a name="Exercise2"></a>
 ### Exercise 2: Using a Subscription Rule Filter Expression and Rule Filter Actions ###
@@ -557,83 +563,3 @@ In this...
 ## Summary ##
 
  By completing this hands-on lab, you have reviewed the basic elements of Service Bus Queues, Topics and Subscriptions. You have seen how to send and retrieve messages through a Queue and how to create Topics and Subscriptions to it. Finally, you learned how to apply Expression Filters and Rule Actions to Subscriptions to distribute your messages that matched those rules.
-
----
-
-<a name="appendixA" />
-## Appendix A: Creating Queues and Topics using Windows Azure Management Portal ##
-
-In this appendix you will learn how to create Service Bus Queues and Topics using the Windows Azure Management Portal.
-
-<a name="AppendixAQueues" />
-### Creating a Queue using Windows Azure Management Portal ###
-
-
-1. Make sure you have a Service Namespace created before continue. If you do not have a service namespace created, go to the [Getting Started](#GettingStarted) section of this lab.
-
-1. If not already open, navigate to  [http://manage.windowsazure.com](http://manage.windowsazure.com/). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
-
-1. Click **Service Bus** within the left pane and click your namespace's name to open its dashboard.
-
-	![Service Bus Namespace Dashboard](Images/service-bus-namespace-dashboard.png?raw=true "Service Bus Namespace Dashboard")
-
-	_Service Bus Namespace Dashboard_
-
-1. Click **New** in the bottom menu, then select **Service Bus Queue** | **Custom Create**.
-
-	![Creating a new Queue](Images/creating-a-new-queue.png?raw=true "Creating a new Queue")
-
-	_Creating a new Queue_
-
-1. In the **Add a new queue** page, select a **Queue Name** and the **Region** for your queue. Make sure the selected **Namespace** is where you want to create the Queue and click **Next**.
-
-	![Add new Queue](Images/add-new-queue.png?raw=true "Add new Queue")
-
-	_Add new Queue_
-
-1. In the **Configure queue** page, update the settings according to your needs and click **Finish**.
-
-	![Configure Queue](Images/configure-queue.png?raw=true "Configure Queue")
-
-	_Configure Queue_ 
-
-1. Wait until the **Queue** is created.
-
-	![Created Queue](Images/created-queue.png?raw=true "Created Queue")
-
-	_Created Queue_
-
-<a name="AppendixATopics" />
-### Creating a Topic using Windows Azure Management Portal ###
-
-1. If not already open, navigate to  [http://manage.windowsazure.com](http://manage.windowsazure.com/). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
-
-1. Click **Service Bus** within the left pane and click your namespace's name to open its dashboard.
-
-	![Service Bus Namespace Dashboard](Images/service-bus-namespace-dashboard.png?raw=true "Service Bus Namespace Dashboard")
-
-	_Service Bus Namespace Dashboard_
-
-1. Click **New** in the bottom menu, then select **Service Bus Topic** | **Custom Create**.
-
-	![Creating a new Topic](Images/creating-a-new-topic.png?raw=true "Creating a new Topic")
-
-	_Creating a new Topic_
-
-1. In the **Add a new topic** page, select a **Topic Name** and the **Region** for your topic. Make sure the selected **Namespace** is where you want to create the topic and click **Next**.
-
-	![Add new Topic](Images/add-new-topic.png?raw=true "Add new Topic")
-
-	_Add new Topic_
-
-1. In the **Configure topic** page, update the settings according to your needs and click **Finish**.
-
-	![Configure Topic](Images/configure-topic.png?raw=true "Configure Topic")
-
-	_Configure Topic_
-
-1. Wait until the **Topic** is created.
-
-	![Created Topic](Images/created-topic.png?raw=true "Created Topic")
-
-	_Created Topic_
