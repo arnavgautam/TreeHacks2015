@@ -5,16 +5,16 @@
     <Technology>Windows Azure</Technology>
   </Technologies>
   <Author>
-    <Name>mwasham</Name>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
   </Author>
-  <Description>In this hands-on lab you will walk through creating a customized virtual machine that is customized with Web Server role enabled. You will then learn how to generalize it and save it is an image so that all new virtual machines provisioned from it will have Web Server role enabled by default.</Description>
+  <Description>In this hands-on lab you will walk through configuring a virtual machine that is customized with Web Server role enabled. You will then learn how to generalize it and save it is an image so that all new virtual machines provisioned from it will have Web Server role enabled by default.</Description>
   <Document ConversionType="Html">.\HOL.md</Document>
   <Title>Understanding Virtual Machine Imaging with Capture (PowerShell)</Title>
-  <Version>2.0.0</Version>
+  <Version>2.0.1</Version>
   <Source>.\Source</Source>
-  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
   <CustomProperties>
     <Property Name="ContentType" Value="Scenario" />
-    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-UnderstandingVMImagingWithCapturePS/" />
   </CustomProperties>
 </Lab>

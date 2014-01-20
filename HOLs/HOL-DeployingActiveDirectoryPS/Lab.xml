@@ -5,16 +5,16 @@
     <Technology>Windows Azure</Technology>
   </Technologies>
   <Author>
+    <Blog></Blog>
+    <Email></Email>
     <Name></Name>
   </Author>
   <Description>In this Hands-on lab you will walk through the steps necessary to deploy a stand-alone domain in the cloud using Windows Azure Virtual Machines and Virtual Networks using PowerShell.</Description>
   <Document ConversionType="Html">.\HOL.md</Document>
   <Title>Deploying Active Directory in Windows Azure (PowerShell)</Title>
-  <Version>3.0.0</Version>
+  <Version>3.0.1</Version>
   <Source>.\Source</Source>
-  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
   <CustomProperties>
     <Property Name="ContentType" Value="Scenario" />
-    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-DeployingActiveDirectoryPS/" />
   </CustomProperties>
 </Lab>
