@@ -227,6 +227,8 @@ In this exercise you will use the capture feature for virtual machines to create
 
 	_Save-AzureVMImage Cmdlet Output_
 
+	> **Known issue:** Version **0.7.2.1** of the Windows Azure PowerShell has a known bug that causes the above command to return an **error message** even after being successfully run. This issue has **already been addressed** in the development branch but has not been included in the public package at the time of writing.
+
 ---
 
 <a name="Exercise3" />
