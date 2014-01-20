@@ -17,9 +17,7 @@
   <Title>Introduction to Windows Azure Media Services</Title>
   <Version>1.0.1</Version>
   <Source>.\Source</Source>
-  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
   <CustomProperties>
     <Property Name="ContentType" Value="VS2013" />
-    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-IntroToWindowsAzureMediaServices"/>
   </CustomProperties>
 </Lab>

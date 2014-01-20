@@ -7,7 +7,7 @@
 
 // TODO: Review Overview
 
-**Service Bus Topics** contains a brand-new set of cloud-based, message-oriented-middleware technologies including a fully-featured **Message Queue** with support for arbitrary content types, rich message properties, correlation, reliable binary transfer, and grouping. Another important feature is **Service Bus Topics** which provide a set of publish-and-subscribe capabilities and are based on the same backend infrastructure as **Service Bus Queues**. A **Topic** consists of a sequential message store just like a **Queue**, but allows for many concurrent and durable **Subscriptions** that can independently yield copies of the published messages to consumers. Each **Subscription** can define a set of rules with simple expressions that specify which messages from the published sequence are selected into the Subscription.
+**Service Bus Topics** contains a brand-new set of cloud-based, message-oriented-middleware technologies including a fully-featured **Message Queue** with support for arbitrary content types, rich |message properties, correlation, reliable binary transfer, and grouping. Another important feature is **Service Bus Topics** which provide a set of publish-and-subscribe capabilities and are based on the same backend infrastructure as **Service Bus Queues**. A **Topic** consists of a sequential message store just like a **Queue**, but allows for many concurrent and durable **Subscriptions** that can independently yield copies of the published messages to consumers. Each **Subscription** can define a set of rules with simple expressions that specify which messages from the published sequence are selected into the Subscription.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -229,7 +229,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 <a name="Ex1Verification"></a>
 #### Verification ####
-You will now launch the updated application in the Windows Azure compute emulator to verify that you can create a Topic with subscriptions.
+You will now launch the updated application in the Windows Azure compute emulator to verify that you can create a topic with subscriptions.
 
 1. In **Visual Studio**, configure the cloud project **UsingTopics.Azure** as the StartUp Project. To do this, in **Solution Explorer** right-click the **UsingTopics.Azure** project node and then select **Set as StartUp Project**.
 
@@ -264,91 +264,83 @@ You will now launch the updated application in the Windows Azure compute emulato
 1. Go back to **Visual Studio** and stop debugging.
 
 <a name="Exercise2"></a>
-### Exercise 2: Using a Subscription Rule Filter Expression and Rule Filter Actions ###
+### Exercise 2: Sending and Receiving Messages ###
 
-In this exercise, you will apply filters on subscriptions to retrieve only the messages relevant to that subscription. When you send a message to a topic, all the subscriptions verify if the message has a match with its own subscription rules. If there is a match, the subscription will contain a virtual copy of the message. This is useful to avoid sending multiple messages to different subscriptions. Sending a single message to a topic will distribute along different subscriptions by checking **Rule Expressions**. Additionally, you will learn how to apply **Filter Actions** to subscriptions to modify the **BrokeredMessage** properties of the messages that match a custom rule.
+// TODO: Add intro paragraph.
 
+<a name="Ex2Task1"></a>
+#### Task 1 - Sending Messages ####
 
-<a name="Ex2Task2"></a>
-#### Task 2 - Using a Subscription Rule Filter Expression ####
+In this task, you will send messages through a topic and verify that each message arrives to all subscriptions. You can send any serializable object as a **Message** through topics. You will send a **CustomMessage** object which has its own properties and is agnostic on how the Service Bus topic works or interacts with your application.
 
-**Rule Filters** are used in Subscriptions to retrieve messages that match certain rules. That way you can send one message to a Topic, but it _virtually_ replicates through multiple Subscriptions.
+1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
-1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics.Web** project.
+1. Create a new class under the **Models** folder of the **UsingTopics** project. To do this, right-click the folder, select **Add** and then **Class**. In the **Add New Item** dialog box, set the name of the class to _CustomMessage_.
 
-1. In the previous task, you created a Topic with two Subscriptions. Now, you will replace a line of that code to include a **SqlFilter** to the _UrgentMessages_ Subscription. With this filter, the _UrgentMessages_ subscription will get only the messages that match the rule **Urgent = '1'**. Replace the code you added in the previous task with the following highlighted code.
+1. Replace the entire code of the class with the following code.
 
-	(Code Snippet - _Service Bus Messaging - Ex02 - Create Topic and Subscriptions with Rule Filters_ - CS)
-	<!-- mark:9 -->
+	(Code Snippet - _Service Bus Topics - Ex02 - CustomMessage Class_ - CS)
+	<!-- mark:1-23 -->
 	````C#
-	[HttpPost]
-	public JsonResult CreateTopic(string topicName)
+	namespace UsingTopics.Models
 	{
-	    bool success;
-	    try
-	    {
-	        var topic = this.namespaceManager.CreateTopic(topicName);
-	        var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
-	        var urgentMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages", new SqlFilter("Urgent = '1'"));
-	   ...
+		 using System;
+
+		 [Serializable]
+		 public class CustomMessage
+		 {
+			  private DateTime date;
+			  private string body;
+
+			  public DateTime Date
+			  {
+					get { return this.date; }
+					set { this.date = value; }
+			  }
+
+			  public string Body
+			  {
+					get { return this.body; }
+					set { this.body = value; }
+			  }
+		 }
 	}
 	````
 
-    > **Note:** Take into account that you can use SQL92 as Filter Expressions.
+1. Press **CTRL + S** to save the changes.
 
-1. Press **CTRL + S** to save the changes to the Controller.
+1. Open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
-<a name="Ex2Task3"></a>
-#### Task 3 - Using a Subscription Rule Filter Action ####
+1. Add the following namespace directive to access the Service Bus messaging classes.
 
-Additionally to Rule Filter Expressions, you can use **Rule Filter Actions.** With this, you can modify the properties of a **BrokeredMessage** that matches the specified rule. You will create a new **Subscription** named _HighPriorityMessages_ containing a custom **Rule Filter Action**. All messages that match the rule _Urgent = '1'_ will be sent to that **Subscription** with the property **Priority** set to _'High'_.
-
-> **Note:** Both Filter Expressions and Filter Actions use the properties declared in the **BrokeredMessage** dictionary named **Properties**. These rules won't apply on custom objects inside the body of the **BrokeredMessage.**
-
-1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics.Web** project.
-
-1. Create a new **Subscription** object with a **RuleDescription**. Within this object, you can set a **Filter** and an **Action**. This way, if the **Filter** matches, the specific **Action** is applied to the **BrokeredMessage**. In the **CreateTopic** Action Method, add the highlighted code.
-
-	(Code Snippet - _Service Bus Messaging - Ex02 - Create Subscription with Action Filter_ - CS)
-	<!-- mark:11-16 -->
+	(Code Snippet - _Service Bus Topics - Ex02 - Adding Namespace Directives_ - CS)
+	<!-- mark:1-1 -->
 	````C#
-	[HttpPost]
-	public JsonResult CreateTopic(string topicName)
+	using Microsoft.ServiceBus.Messaging;
+	````
+
+1. Add the following property to the **HomeController** class to enable access to the Service Bus messaging capabilities.
+
+	(Code Snippet - _Service Bus Topics - Ex02 - MessagingFactory Property_ - CS)
+	<!-- mark:1-1 -->
+	````C#
+	private MessagingFactory messagingFactory;
+````
+
+1. In order to send a message you have to bind the **Service Bus Namespace** address to a **MessagingFactory**. This is the anchor class used for run-time operations to send and receive messages to and from topics or subscriptions. Add the following code at the end of the **HomeController** constructor.
+
+	(Code Snippet - _Service Bus Topics - Ex02 - Creating MessagingFactory_ - CS)
+	<!-- mark:5-5 -->
+	````C#
+	public HomeController()
 	{
-	    bool success;
-	    try
-	    {
-	        var topic = this.namespaceManager.CreateTopic(topicName);
-	        var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
-	        var urgentMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages", new SqlFilter("Urgent = '1'"));
-	
-	        var ruleDescription = new RuleDescription()
-	        {
-	            Filter = new SqlFilter("Important= '1' OR Priority = 'High'"),
-	            Action = new SqlRuleAction("set Priority= 'High'")
-	        };
-	        var highPriorityMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "HighPriorityMessages", ruleDescription);
-	        success = true;
-	    }
-	    catch (Exception)
-	    {
-	        success = false;
-	    }
-	
-	    return this.Json(success, JsonRequestBehavior.AllowGet);
+		...
+
+		this.messagingFactory = MessagingFactory.Create(namespaceAddress, TokenProvider.CreateSharedSecretTokenProvider(issuerName, issuerKey));
 	}
 	````
 
-1. Press **CTRL + S** to save the changes to the Controller.
-
-<a name="Ex2Task4"></a>
-#### Task 4 - Sending Messages ####
-
-In this task, you will send messages to a Topic and verify that each message arrives to the proper Subscription. You are going to use the same approach of Exercise 1, sending a serializable object as the **Message** with custom properties on it.
-
-1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics.Web** project.
-
-1. In order to send a Message you will create a **TopicClient** using the **MessagingFactory.** Next, you will create a **CustomMessage,** add it to the **BrokeredMessage** and then you will set the _Urgent_, _Important_ and _Priority_ properties with the values you receive from the UI. Finally, you will use the **TopicClient** to send the message to the **Topic**. Add the following method at the end of the **HomeController** class.
+1. Next, you will create the method in the **HomeController** class that allows you to send your custom object to a **topic**. Add the following method to the class.
 
 	(Code Snippet - _Service Bus Messaging - Ex02 - SendMessage_ - CS)
 	<!-- mark:1-31 -->
@@ -388,8 +380,8 @@ In this task, you will send messages to a Topic and verify that each message arr
 
 1. Press **CTRL + S** to save the changes to the Controller.
 
-<a name="Ex2Task5"></a>
-#### Task 5 - Receiving Messages ####
+<a name="Ex2Task2"></a>
+#### Task 2 - Receiving Messages ####
 
 In this task, you will learn how to receive messages from a subscription. You will use a very similar logic used in Exercise 1, but in this case you will instantiate a **MessageReceiver** object from a **SubscriptionClient**.
 
@@ -498,6 +490,84 @@ In this task, you will learn how to receive messages from a subscription. You wi
 
 1. Press **CTRL + S** to save the changes to the Controller.
 
+<a name="Exercise3"></a>
+### Exercise 3: Using a Subscription Rule Filter Expression and Rule Filter Actions ###
+
+In this exercise, you will apply filters on subscriptions to retrieve only the messages relevant to that subscription. When you send a message to a topic, all the subscriptions verify if the message has a match with its own subscription rules. If there is a match, the subscription will contain a virtual copy of the message. This is useful to avoid sending multiple messages to different subscriptions. Sending a single message to a topic will distribute along different subscriptions by checking **Rule Expressions**. Additionally, you will learn how to apply **Filter Actions** to subscriptions to modify the **BrokeredMessage** properties of the messages that match a custom rule.
+
+
+<a name="Ex3Task1"></a>
+#### Task 1 - Using a Subscription Rule Filter Expression ####
+
+**Rule Filters** are used in Subscriptions to retrieve messages that match certain rules. That way you can send one message to a Topic, but it _virtually_ replicates through multiple Subscriptions.
+
+1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics.Web** project.
+
+1. In the previous task, you created a Topic with two Subscriptions. Now, you will replace a line of that code to include a **SqlFilter** to the _UrgentMessages_ Subscription. With this filter, the _UrgentMessages_ subscription will get only the messages that match the rule **Urgent = '1'**. Replace the code you added in the previous task with the following highlighted code.
+
+	(Code Snippet - _Service Bus Messaging - Ex02 - Create Topic and Subscriptions with Rule Filters_ - CS)
+	<!-- mark:9 -->
+	````C#
+	[HttpPost]
+	public JsonResult CreateTopic(string topicName)
+	{
+	    bool success;
+	    try
+	    {
+	        var topic = this.namespaceManager.CreateTopic(topicName);
+	        var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
+	        var urgentMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages", new SqlFilter("Urgent = '1'"));
+	   ...
+	}
+	````
+
+    > **Note:** Take into account that you can use SQL92 as Filter Expressions.
+
+1. Press **CTRL + S** to save the changes to the Controller.
+
+<a name="Ex3Task2"></a>
+#### Task 2 - Using a Subscription Rule Filter Action ####
+
+Additionally to Rule Filter Expressions, you can use **Rule Filter Actions.** With this, you can modify the properties of a **BrokeredMessage** that matches the specified rule. You will create a new **Subscription** named _HighPriorityMessages_ containing a custom **Rule Filter Action**. All messages that match the rule _Urgent = '1'_ will be sent to that **Subscription** with the property **Priority** set to _'High'_.
+
+> **Note:** Both Filter Expressions and Filter Actions use the properties declared in the **BrokeredMessage** dictionary named **Properties**. These rules won't apply on custom objects inside the body of the **BrokeredMessage.**
+
+1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics.Web** project.
+
+1. Create a new **Subscription** object with a **RuleDescription**. Within this object, you can set a **Filter** and an **Action**. This way, if the **Filter** matches, the specific **Action** is applied to the **BrokeredMessage**. In the **CreateTopic** Action Method, add the highlighted code.
+
+	(Code Snippet - _Service Bus Messaging - Ex02 - Create Subscription with Action Filter_ - CS)
+	<!-- mark:11-16 -->
+	````C#
+	[HttpPost]
+	public JsonResult CreateTopic(string topicName)
+	{
+	    bool success;
+	    try
+	    {
+	        var topic = this.namespaceManager.CreateTopic(topicName);
+	        var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
+	        var urgentMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages", new SqlFilter("Urgent = '1'"));
+	
+	        var ruleDescription = new RuleDescription()
+	        {
+	            Filter = new SqlFilter("Important= '1' OR Priority = 'High'"),
+	            Action = new SqlRuleAction("set Priority= 'High'")
+	        };
+	        var highPriorityMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "HighPriorityMessages", ruleDescription);
+	        success = true;
+	    }
+	    catch (Exception)
+	    {
+	        success = false;
+	    }
+	
+	    return this.Json(success, JsonRequestBehavior.AllowGet);
+	}
+	````
+
+1. Press **CTRL + S** to save the changes to the Controller.
+
 <a name="Ex2Verification"></a>
 #### Verification ####
 
@@ -526,7 +596,6 @@ You will now launch the updated application in the Windows Azure compute emulato
 	_The application displays a message when a Topic is created_
 
 1. In the **Send Message** panel, select the previously created **Topic** from the dropdown list, enter "This is an urgent message" in the TextBox, check **Is Urgent** and click **Send.**
-
  
  	![Sending a message to the topic](./Images/Sending-a-message-to-the-topic.png?raw=true "Sending a message to the topic")
  
@@ -553,11 +622,6 @@ You will now launch the updated application in the Windows Azure compute emulato
  	_Sending an important message to the Topic_
 
 ---
-
-<a name="Exercise2"></a>
-### Exercise 3: Sending and Receiving Messages ###
-
-In this...
 
 <a name="Summary"></a>
 ## Summary ##

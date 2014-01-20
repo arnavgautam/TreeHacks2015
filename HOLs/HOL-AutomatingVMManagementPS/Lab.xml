@@ -5,16 +5,16 @@
     <Technology>Windows Azure</Technology>
   </Technologies>
   <Author>
-    <Name>mwasham</Name>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
   </Author>
   <Description>In this hands-on lab you will understand the capabilities of automating the deployment and management of virtual machines in Windows Azure.</Description>
   <Document ConversionType="Html">.\HOL.md</Document>
   <Title>Managing Virtual Machines with the Windows Azure PowerShell Cmdlets</Title>
-  <Version>1.0.3</Version>
-  <Source>Source</Source>
-  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <Version>1.0.4</Version>
+  <Source>.\Source</Source>
   <CustomProperties>
     <Property Name="ContentType" Value="Scenario" />
-    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-AutomatingVMManagementPS" />
   </CustomProperties>
 </Lab>

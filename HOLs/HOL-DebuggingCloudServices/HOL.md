@@ -6,31 +6,31 @@
 
 Using Visual Studio, you can debug applications in your local machine by stepping through code, setting breakpoints, and examining the value of program variables. For Windows Azure applications, the compute emulator allows you to run the code locally and debug it using these same features and techniques, making this process relatively straightforward.
 
-Ideally, you should take advantage of the compute emulator and use Visual Studio to identify and fix most bugs in your code, as this provides the most productive environment for debugging. Nevertheless, some bugs might remain undetected and will only manifest themselves once you deploy the application to the cloud. These are often the result of missing dependencies or caused by differences in the execution environment. The Visual Studio tools can help you debug these errors if you enable remote debugging when you publish your service and then attach the debugger to a role instance.
+Ideally, you should take advantage of the compute emulator and use Visual Studio to identify and fix most bugs in your code, as this provides the most productive environment for debugging. Nevertheless, some bugs might remain undetected and will only manifest themselves once you deploy the application to the cloud. These are often the result of missing dependencies or caused by differences in the execution environment. The tools in Visual Studio can help you debug these errors if you enable remote debugging when you publish your service and then attach the debugger to a role instance.
 
-However, there are some scenarios for which you should not use remote debugging. For example, if you start a remote debugging session with a cloud service hosted in a production environment, clients using the production service might be adversely affected. Instead, you need to rely on debugging information written to logs in order to diagnose and troubleshoot application failures. Windows Azure provides comprehensive diagnostic facilities that allow capturing information from different sources, including Windows Azure application logs, IIS logs, failed request traces, Windows event logs, custom error logs, and crash dumps. The availability of this diagnostic information relies on the Windows Azure Diagnostics Monitor to collect data from individual role instances and transfer this information to Windows Azure storage for aggregation. Once the information is in storage, you can retrieve it and analyze it.
+However, there are some scenarios for which you should not use remote debugging. For example, if you start a remote debugging session with a cloud service hosted in a production environment, clients using the production service might be adversely affected. Instead, you need to rely on debugging information written to logs in order to diagnose and troubleshoot application failures. Windows Azure provides comprehensive diagnostic facilities that allow you to capture information from different sources, including Windows Azure application logs, IIS logs, failed request traces, Windows event logs, custom error logs, and crash dumps. The availability of this diagnostic information relies on the Windows Azure Diagnostics Monitor to collect data from individual role instances and transfer this information to Windows Azure storage for aggregation. Once the information is in storage, you can retrieve it and analyze it.
 
-Sometimes an application may crash before it is able to produce logs that can help you determine the cause of the failure. With IntelliTrace debugging, a feature available in the Visual Studio 2013 Ultimate edition, you can log extensive debugging information for a role instance while it is running in Windows Azure. The lab discusses how to enable IntelliTrace for an Azure deployment to debug role start up failures.
+Sometimes an application may crash before it is able to produce logs that can help you determine the cause of the failure. With **IntelliTrace** debugging, a feature available in the Visual Studio 2013 Ultimate edition, you can log extensive debugging information for a role instance while it is running in Windows Azure. This lab shows you how to enable IntelliTrace for an Azure deployment to debug role start up failures.
 
 <a name="Objectives"></a>
 ### Objectives ###
 
 In this hands-on lab, you will:
 
-- Learn what features are available in Visual Studio to debug cloud services.
+- Learn what features are available in Visual Studio to debug cloud services
 
-- Use a simple **TraceListener** to log directly to table storage and a viewer to retrieve these logs.
+- Use a simple **TraceListener** to log directly to table storage and a viewer to retrieve these logs
 
-- Understand how to enable and use IntelliTrace to trace and debug applications.
+- Understand how to enable and use IntelliTrace to trace and debug applications
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
 
 The following is required to complete this hands-on lab:
 
-- [Visual Studio Express 2013 for Web][1] or greater.
+- [Visual Studio Express 2013 for Web][1] or later
 
-- [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)][2]
+- [Windows Azure Tools for Microsoft Visual Studio 2.2][2] or later
 
 - A Windows Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
@@ -42,7 +42,7 @@ The following is required to complete this hands-on lab:
 [1]: http://www.microsoft.com/visualstudio/
 [2]: http://www.microsoft.com/windowsazure/sdk/
 
->**Note:** This lab was designed for Windows 8
+>**Note:** This lab was designed for Windows 8.
 
 <a name="Setup"/>
 ### Setup ###
@@ -81,7 +81,7 @@ Estimated time to complete this lab: **40 minutes**.
 
 In this exercise, you will debug a simple cloud service application locally from Visual Studio by using the Windows Azure compute emulator. Then, you will learn how to use the Visual Studio tools to attach the debugger to the application when it is running in Windows Azure.
 
-The cloud service application that you will use for this exercise simulates an online auto insurance policy calculator. It has a single form where users can enter details about their vehicle and then submit the form to obtain an estimate on their insurance premium. Behind the scenes, the controller action that processes the form uses a separate assembly to calculate premiums based on the input from the user. The assembly contains a bug that causes it to raise an exception for input values that fall outside the expected range.
+The cloud service application that you will use for this exercise simulates an online car insurance policy calculator. It has a single form where users can enter details about their vehicle and then submit the form to obtain an estimate on their insurance premium. Behind the scenes, the controller action that processes the form uses a separate assembly to calculate premiums based on the input from the user. The assembly contains a bug that causes it to raise an exception for input values that fall outside the expected range.
 
 <a name="Ex1Task1"></a>
 #### Task 1 - Debugging the Fabrikam Insurance Application on the Local Computer ####
@@ -90,7 +90,7 @@ In this task, you will build and run the Fabrikam Insurance application in the W
 
 1. Open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Express 2013 for Web** shortcut and choosing **Run as administrator**.
 
-1. In the **File** menu, choose **Open Project**, browse to **Ex1-DebuggingInVisualStudio** in the **Source** folder of the lab, select **Begin.sln** in the **Begin** folder and then click **Open**.
+1. In the **File** menu, choose **Open Project...**, browse to **Ex1-DebuggingInVisualStudio** in the **Source** folder of the lab, select **Begin.sln** in the **Begin** folder and then click **Open**.
 
 1. Set the start action of the project. To do this, in **Solution Explorer**, right-click the **FabrikamInsurance** project and then select **Properties**. In the properties window, switch to the **Web** tab and then, under **Start Action**, select the **Specific Page** option. Leave the page value blank.
 
@@ -138,7 +138,7 @@ In this task, you will build and run the Fabrikam Insurance application in the W
 <a name="Ex1Task2"></a>
 #### Task 2 - Debugging the Fabrikam Insurance Application in Windows Azure ####
 
-In this task, you wil deploy the Fabrikam insurance application to Windows Azure and enable remote debugging when publishing the service. This will allow you to attach the Visual Studio debugger to the deployed cloud service.
+In this task, you will deploy the Fabrikam insurance application to Windows Azure and enable remote debugging when publishing the service. This will allow you to attach the Visual Studio debugger to the deployed cloud service.
 
 1. In **Solution Explorer**, right-click the **FabrikamInsurance.Azure** cloud project and select **Publish**.
 In the **Publish Windows Azure Application** dialog, click **Sign In** and sign in using the Microsoft account associated with your Windows Azure account. 
@@ -227,14 +227,14 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 	_Generic error page_
 
-1. To detach the debugger from all processes in your instance or role, press **SHIFT+F5** or righ-click the the role or instance node that you're debugging in **Server Explorer**, and then select **Detach Debugger**.
+1. To detach the debugger from all processes in your instance or role, press **SHIFT+F5** or right-click the role or instance node that you're debugging in **Server Explorer**, and then select **Detach Debugger**.
 
 <a name="Exercise2"></a>
-### Exercise 2: Adding diagnostic trace ###
+### Exercise 2: Adding Diagnostic Trace ###
 
 Because Windows Azure Diagnostics is oriented towards operational monitoring and has to cater for gathering information from multiple role instances, it requires that diagnostic data first be transferred from local storage in each role to Windows Azure storage, where it is aggregated. The Diagnostics Monitor -a process running on your role instances- then performs scheduled transfers to copy logging data to Windows Azure storage at regular intervals.
 
-In this exercise, you will debug the Fabrikam insurance application by configuring Windows Azure Diagnostics. To produce diagnostic data, you will instrument the application to write its trace information using standard methods in the System.Diagnostics namespace. Finally, you will take advantage of the the tools provided by Visual Studio to retrieve and display the contents of the diagnostics table.
+In this exercise, you will debug the Fabrikam insurance application by configuring Windows Azure Diagnostics. To produce diagnostic data, you will instrument the application to write its trace information using standard methods in the System.Diagnostics namespace. Finally, you will take advantage of the tools provided by Visual Studio to retrieve and display the contents of the diagnostics table.
 
 <a name="Ex2Task1"></a>
 #### Task 1 - Adding Tracing Support to the Application ####
@@ -300,7 +300,7 @@ In this task, you will configure Windows Azure Diagnostics in the Fabrikam Insur
 
 	> **Note:** The **Application_Error** event is raised to catch any unhandled ASP.NET errors while processing a request. The event handler shown above retrieves a reference to the unhandled exception object using **Server.GetLastError** and then uses the **TraceError** method of the **System.Diagnostics.Trace** class to log the error message. 
 
-	>Note that the **Trace** object outputs the message to each listener in its **Listeners** collection, which by default contains an instance of the **DefaultTraceListener** class. The role project templates provided by the Windows Azure Tools for Microsoft Visual Studio already include the settings required in the **Web.config** or **App.config** file  of the role to use the **DiagnosticMonitorTraceListener** to write to the Windows Azure diagnostics log. When using this type of trace listener, the logs are gathered locally in each role. The Diagnostic Monitor then copies the information to the storage service account configured in the _ServiceConfiguration.cscfg_  file (transferred trace data is located in the _WADLogsTable_ of the storage account).
+	>Note that the **Trace** object outputs the message to each listener in its **Listeners** collection, which by default contains an instance of the **DefaultTraceListener** class. The role project templates provided by the Windows Azure Tools for Microsoft Visual Studio already include the settings required in the **Web.config** or **App.config** file  of the role to use the **DiagnosticMonitorTraceListener** to write to the Windows Azure diagnostics log. When using this type of trace listener, the logs are gathered locally in each role. The Diagnostic Monitor then copies the information to the storage service account configured in the _ServiceConfiguration.cscfg_ file (transferred trace data is located in the _WADLogsTable_ of the storage account).
 
 1. Open the **QuoteController.cs** file in the **Controllers** folder of the **FabrikamInsurance** project and add the following method. 
 
@@ -374,7 +374,7 @@ You are now ready to re-deploy and run the solution in Windows Azure. At this po
 	>
 	> _Replacing the current deployment_ 
 
-1. Wait until the deployment completes and navigate to the deployed cloud service. In the browser window, complete the form making sure that you choose "_PORSCHE"_ for the **Make** of the vehicle and "_BOXSTER (BAD DATA)_" for the **Model** (the generic error page should be diplayed).
+1. Wait until the deployment completes and navigate to the deployed cloud service. In the browser window, complete the form making sure that you choose "_PORSCHE"_ for the **Make** of the vehicle and "_BOXSTER (BAD DATA)_" for the **Model** (the generic error page should be displayed).
 
 1. Switch back to Visual Studio, open **Server Explorer** and right-click the **FabrikamInsurance** role instance under the **Cloud Services** node. Then select **View Diagnostic Data**.
 
@@ -390,13 +390,13 @@ You are now ready to re-deploy and run the solution in Windows Azure. At this po
 
 1. To view the output from other informational trace messages, return to the browser window and click **About** followed by **Quotes** to execute both actions in the controller. Recall that you inserted trace messages at the start of each method.
 
-1. Go bach to the **Diagnostics Summary** report. Note that you will not see new entries as only errors are displayed in the summary. In order to see the informational trace messages you need to click **View all data** below the **Windows Azure application log** table.
+1. Go back to the **Diagnostics Summary** report. Note that you will not see new entries as only errors are displayed in the summary. In order to see the informational trace messages you need to click **View all data** below the **Windows Azure application log** table.
 
 	![Clicking View all data](Images/clicking-view-all-data.png?raw=true "Clicking View all data")
 
 	_Clicking View all data_
 
-1. the Windows Azure Storage Table viewer should open, loading the content of the **WADLogsTable** table. Locate the log entries with the information trace messages. If the infromation messages are not displayed yet, you might have to wait for the transfer period to elapse and then click the **Refresh** icon from the toolbar reload the table contents.
+1. The Windows Azure Storage Table viewer should open, loading the content of the **WADLogsTable** table. Locate the log entries with the information trace messages. If the information messages are not displayed yet, you might have to wait for the transfer period to elapse and then click the **Refresh** icon from the toolbar reload the table contents.
 
 	![Showing informational trace messages for the controller actions](Images/showing-informational-trace-messages.png?raw=true)
 

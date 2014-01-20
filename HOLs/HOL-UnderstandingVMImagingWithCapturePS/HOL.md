@@ -5,7 +5,7 @@
 
 <a name="Overview" />
 ## Overview ##
-In this hands-on lab you will walk through creating a customized virtual machine that is customized with Web Server role enabled. You will then learn how to generalize it and save it is an image so that all new virtual machines provisioned from it will have Web Server role enabled by default.
+In this hands-on lab you will walk through configuring a virtual machine that is customized with Web Server role enabled. You will then learn how to generalize it and save it is an image so that all new virtual machines provisioned from it will have Web Server role enabled by default.
 
 <a name="Objectives" />
 ### Objectives ###
