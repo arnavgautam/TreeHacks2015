@@ -13,7 +13,7 @@ In this hands-on lab you will learn how you can use Visual Studio 2013 and Windo
 <a name="Objectives" />
 ### Objectives ###
 - Create a Windows Azure Media Service
-- Manage media content: upload, encode and stream media.
+- Manage media content: upload, encode and stream media
 - Programmatically upload, encode and stream content 
 - Use the Microsoft Media Platform Player Framework in a Windows 8.1 application
 - Add Advertisements support to your Windows 8.1 video application
@@ -23,13 +23,13 @@ In this hands-on lab you will learn how you can use Visual Studio 2013 and Windo
 
 The following is required to complete this hands-on lab:
 
-- [Visual Studio Express 2013 for Desktop](http://www.microsoft.com/visualstudio) or higher
-- [Visual Studio Express 2013 for Windows](http://www.microsoft.com/en-us/download/details.aspx?id=30664) or higher
+- [Microsoft Visual Studio Express 2013 for Windows Desktop](http://www.visualstudio.com/downloads/download-visual-studio-vs#d-express-windows-desktop) or higher
+- [Microsoft Visual Studio Express 2013 for Windows](http://www.visualstudio.com/downloads/download-visual-studio-vs#d-express-windows-8) or higher
 - A Windows Azure subscription
-	- Sign up for a [Free Trial](<http://aka.ms/watk-freetrial>).
-	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](<http://aka.ms/watk-msdn>) now to start development and test on Windows Azure.
-	- [BizSpark](<http://aka.ms/watk-bizspark>) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
-	- Members of the [Microsoft Partner Network](<http://aka.ms/watk-mpn>) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
+	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial).
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 
 <a name="Exercises" />
 ## Exercises ##
@@ -38,7 +38,7 @@ This hands-on lab includes the following exercises:
 
 1. [Uploading a Job from the Portal for HTML5 playback](#Exercise1)
 1. [Building a Console app using the Media Services SDK that uploads, encodes, and streams a video programmatically](#Exercise2)
-1. [Microsoft Media Platform Player Framework for the client](#Exercise3)
+1. [Microsoft Media Platform Player Framework for the Client](#Exercise3)
 1. [Monetization](#Exercise4)
 
 ---
@@ -61,18 +61,18 @@ This task explains how to use the Quick Create method to create a new Media Serv
 
 	_Creating a new Media Service_
 
-1. In **NAME**, enter the name of the new account. A Media Services account name should be all lower-case numbers and/or letters with no spaces, and 3 - 24 characters in length.
+1. In **Name**, enter the name of the new account. A Media Services account name should be all lowercase letters and/or numbers without spaces and 3 to 24 characters long.
 
-1. In **REGION**, select the geographic region that will be used to store the metadata records for your Media Services account. Only the available Media Services regions appear in the dropdown menu.
+1. In **Region**, select the geographic region that will be used to store the metadata records for your Media Services account. Only the available Media Services regions appear in the dropdown menu.
  
-1. In **STORAGE ACCOUNT**, select a storage account to provide blob storage of the media content from your Media Services account. You can select an existing storage account in the same geographic region as your Media Services account, or you can create a new storage account. A new storage account has been created in the same region.
+1. In **Storage Account**, select a storage account to provide blob storage of the media content from your Media Services account. You can select an existing storage account, or you can create a new storage account. The storage account should be located in the same geographic region as your Media Services account.
  
-1. If you created a new storage account, in **NEW STORAGE ACCOUNT NAME**, enter a name for the storage account. The rules for storage account names are the same as for Media Services accounts.
+1. If you created a new storage account, in **New Storage Account Name**, enter a name for the storage account. The rules for storage account names are the same as for Media Services accounts.
 
 1. Click **Create Media Service** at the bottom of the form.
 
 	You can monitor the status of the process in the message area at the bottom of the window.
-The **media services** page opens with the new account displayed. When the status changes to Active, it means the account has been successfully created.
+The **media services** page opens with the new account displayed. When the status changes to **Active** the account has been successfully created.
 
 	![The recently created Media Service](Images/recently-created-media-service.png?raw=true "The recently created Media Service")
 
@@ -85,21 +85,21 @@ In this task you will upload content to the media service already created using 
 
 1. In the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?linkid=256666&clcid=0x409), click **Media Services** and then click the name of the media service created in the previous task.
 
-1. Click the **Content** view at the top of the page and then click **Upload** in the bottom toolbar. Your view should look similar to the following screenshot.
+1. Click the **Content** view at the top of the page and then click **Upload** in the bottom toolbar.
 
 	![Uploading Content](Images/uploading-content.png?raw=true "Uploading Content")
 
 	_Uploading Content_
 
-1. In the **Upload Content** dialog box, click **Browse Your Computer** and browse to the desired asset file. Click the file and then click **Open** or press **Enter**.
-
-	>**Note:** You can use the following short video to try uploading content to Media Services: [Azure_Intro.mp4](http://dpeshare.blob.core.windows.net/mediaserviceslabassets/Azure_Intro.mp4)
- 
-1. In the **Upload Content** dialog box, click the check button to submit the file and content name.
+1. In the **Upload Content** dialog box, click **From Local** and browse to the desired asset file. Click the file and then click **Open** or press **Enter**.
 
 	![Upload Content dialog box](Images/upload-content-dialog.png?raw=true "Upload Content dialog box")
 
 	_Upload Content dialog box_
+
+	>**Note:** You can use the following short video to try uploading content to Media Services: [Azure_Intro.mp4](http://dpeshare.blob.core.windows.net/mediaserviceslabassets/Azure_Intro.mp4)
+ 
+1. Now click the check button to submit the file and content name.
 
 1. The upload will start and you can track its progress in the bottom toolbar of the portal. 
  
@@ -109,7 +109,7 @@ In this task you will upload content to the media service already created using 
 
 	Once the upload is complete, you will see the new asset listed in the _Content_ list. By convention, the name will have **-Source** appended at the end to help track new content as source content for encoding tasks.
 
-	If the file size value is not updated after the uploading process finishes, press the **Sync Metadata** button. This synchronizes the asset file size with the actual file size in storage and refreshes the value on the _Content_ page. 
+	If the Size value of the file is not updated after the uploading process finishes, press the **Sync Metadata** button. This synchronizes the asset file size with the actual file size in storage and refreshes the value on the _Content_ page. 
 
 <a name="encoding-content-in-media-services" />
 ### Task 3 - Encoding content in Media Services ###
@@ -134,15 +134,15 @@ In this task you will encode a video previously uploaded in the Windows Azure Ma
 
 	**Advanced Presets** 
 	
-	The [Task Preset Strings for Windows Azure Media Encoder](http://go.microsoft.com/fwlink/?linkid=270865&clcid=0x409) topic explains what each preset in the Advanced Presets list means. 
+	The [Media Services Encoder System Presets](http://go.microsoft.com/fwlink/?linkid=270865&clcid=0x409) topic explains what each preset in the Advanced Presets list means. 
 
 	![Encoding Media](Images/encoding-media.png?raw=true "Encoding Media")
 
 	_Encoding Media_
 
-	Currently, the portal does not support all the encoding formats that are supported by the Media Encoder. It also does not support media asset encryption/decryption. You can perform these tasks programmatically; for more information see [Building Applications with the Media Services SDK for .NET] (http://go.microsoft.com/fwlink/?linkid=270866&clcid=0x409) and [Task Preset Strings for Windows Azure Media Encoder]( http://go.microsoft.com/fwlink/?linkid=270865&clcid=0x409).
+	>**Note:** Currently, the portal does not support all the encoding formats that are supported by the Media Encoder. It also does not support media asset encryption/decryption. You can perform these tasks programmatically; for more information see [Building Applications with the Media Services SDK for .NET](http://go.microsoft.com/fwlink/?linkid=270866&clcid=0x409) and [Media Services Encoder System Presets]( http://go.microsoft.com/fwlink/?linkid=270865&clcid=0x409).
 
-1. In the **Windows Azure Media Encoder** dialog box, enter the desired friendly output content name or accept the default. Then click the check button to start the encoding operation and you can track progress from the bottom of the portal.
+1. In the **Windows Azure Media Encoder** dialog box, enter the desired friendly output content name or accept the default. Then click the check button to start the encoding operation.
 
 	![Encoding media in Windows Azure](Images/encoding-media-in-windows-azure.png?raw=true "Encoding media in Windows Azure")
 
@@ -153,13 +153,13 @@ In this task you will encode a video previously uploaded in the Windows Azure Ma
 
 In this task, you will publish the previously encoded video and play it directly in the Windows Azure Management Portal.
 
-1. Click an asset that is not published - in this case, the video that was just encoded. Then click the **Publish** button in the bottom toolbar to publish the encoded video to a public URL. If prompt if you are sure that you want to publish the content, click **Yes**. Once the content is published to a URL, the URL can be opened by a client player capable of rendering the encoded content.
+1. Click an asset that is not published - in this case, the video that was just encoded. Then click the **Publish** button in the bottom toolbar to publish the encoded video to a public URL. When asked to confirm the operation, click **Yes**. Once the content is published, the URL can be used by a client player capable of rendering the encoded content.
 
 	![Publishing media in Windows Azure](Images/publish-button.png?raw=true "Publishing media in Windows Azure")
 
 	_Publishing media in Windows Azure_
 
-	>**Note**: It may take some minutes for the encoded video to be available for publishing.
+	>**Note**: It may take some minutes for the video to be available for publishing.
 
 1. Once the publishing process finishes, select the video and click the **Play** button in the bottom toolbar. Only content that has been published is playable from the portal. Also, the encoding must be supported by your browser.
 
@@ -187,7 +187,7 @@ In this exercise, you will create a new console application that allows you to p
 
 1. In the console, type the following command to download and install the **Windows Azure Media Services** NuGet package and its dependencies.
 
-	````NuGet Management Console
+	````Nuget
 	Install-Package windowsazure.mediaservices -Version 3.0.0.0
 	````
 
@@ -226,8 +226,6 @@ In this exercise, you will create a new console application that allows you to p
 	_Programmatically uploading a video_
 
 1. Copy the code snippet shown in the portal and paste it in inside the **Main** method, between the lines that notify about the uploading process. The resulting code will be similar to the following.
-
-	(Code Snippet - _Intro to Media Services - Ex2 - Upload Video_)
 
 	<!-- mark:5-9 -->
 	````C#
@@ -861,7 +859,6 @@ This is a list of articles that expands the information on the technologies expl
 **Development**
 
 This is a list of developer-oriented articles related to Windows Azure Media Services:
-
 
 - [How to: Deliver an Asset by Download](http://aka.ms/Rtzki2): This topic discusses options for delivering media assets uploaded to Media Services. You can deliver Media Services content in numerous application scenarios. You can download media assets, or access them by using a locator. You can send media content to another application or to another content provider.
 

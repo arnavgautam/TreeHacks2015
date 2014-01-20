@@ -2,7 +2,7 @@
 <Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
   <Id>IntroductionToWindowsAzureMediaServices</Id>
   <Technologies>
-	<Technology>Windows 8 Style UI apps</Technology>
+	<Technology>Windows 8.1 Style UI apps</Technology>
     <Technology>Windows Azure Media Services</Technology>
   </Technologies>
   <Author>
