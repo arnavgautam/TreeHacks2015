@@ -134,7 +134,7 @@
         function loadTopics() {
             //Fill topic's list with topics and subscriptions
             logMessage("Retrieving list of topics...");
-            $.get("/Home/TopicsWithSubscriptions")
+            $.get("/Home/Topics")
                 .always(function () {
                     $("#loading").hide();
                 })
@@ -145,12 +145,12 @@
                             $("#topicList a.active").removeClass("active");
                             $(this).addClass("active");
                             $("#sendMessageButton").removeAttr("disabled");
-                            loadSubscriptions(topic.Key);
+                            loadSubscriptions(topic);
                         };
 
                         var topicItem = $("<a href='#' class='list-group-item'>")
                             .on('click', topicClick)
-                            .html(topic.Key);
+                            .html(topic);
 
                         ul.append(topicItem);
                     });
@@ -195,7 +195,7 @@
             };
 
             logMessage("Sending Message to " + message.topicName + " {isUrgent: " + message.isUrgent + "; isImportant: " + message.isImportant + "}");
-            $.post('/Home/SendMessage/', message, function (data) {
+            $.post('/Home/SendMessage', message, function (data) {
                 logMessage("Done!");
                 sendMessageSuccessHandler(message.topicName);
             }).fail(function () {
