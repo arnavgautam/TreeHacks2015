@@ -1,4 +1,4 @@
-﻿namespace FabricamWorker
+﻿namespace FabrikamWorker
 {
     using System;
     using System.Runtime.Serialization;
