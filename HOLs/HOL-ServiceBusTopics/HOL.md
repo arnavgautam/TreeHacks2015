@@ -117,20 +117,26 @@ To work with Service Bus topics and subscriptions, you first need to create a Wi
 
 You have now created a new Windows Azure namespace for this hands-on lab. To sign in at any time, simply navigate to the Windows Azure Management Portal, click **Sign In** and provide your **Microsoft Account** credentials.
 
-> **Note:** In this lab you will learn how to create and make use of Service Bus  topics and subscriptions from Visual Studio and from an ASP.NET MVC Application. You can also create topics and subscriptions from the Windows Azure Management Portal, for more information see [How to Manage Service Bus Messaging Entities](http://www.windowsazure.com/en-us/documentation/articles/service-bus-manage-message-entities/).
+> **Note:** In this lab you will learn how to create and make use of Service Bus topics and subscriptions from Visual Studio and from an ASP.NET MVC application. You can also create topics and subscriptions from the Windows Azure Management Portal, for more information see [How to Manage Service Bus Messaging Entities](http://www.windowsazure.com/en-us/documentation/articles/service-bus-manage-message-entities/).
 
 <a name="Ex2Task1"></a>
-#### Task 1 - Creating a Topic and Adding Subscriptions Programmatically ####
+#### Task 2 - Creating a Topic and Adding Subscriptions Programmatically ####
 
-In this task, you will learn how to create a new topic and add several subscriptions to it. For this, first you will add the necessary configurations to connect to your Service Bus namespace.
+In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceManager** class to create a new topic and add several subscriptions to it. For this, first you will add the necessary configurations to connect to your Service Bus namespace.
 
-1. Open **Visual Studio 2013 Express for Web** as Administrator.
+1. Open **Visual Studio 2013 Express for Web** (or greater) as Administrator.
 
 1. Open the **Begin.sln** solution file from **Source\Ex1-CreatingATopicAndAddingSubscriptions\Begin\**.
 
 1. Build the solution in order to download and install the NuGet package dependencies. To do this, in **Solution Explorer** right-click the solution node and select **Build Solution** or press **Ctrl + Shift + B**.
 
-1. Set up your own Service Bus namespace settings in the **Service Configuration** files. To do this, in **Solution Explorer** expand the **Roles** folder in the **UsingTopics** project, right-click **UsingTopics.Web** and then select **Properties**.
+	>**Note:** NuGet is a Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects that use the .NET Framework.
+	>
+	> When you install the package, NuGet copies files to your solution and automatically makes whatever changes are needed, such as adding references and changing your app.config or web.config file. If you decide to remove the library, NuGet removes files and reverses whatever changes it made in your project so that no clutter is left.
+	>
+	>For more information about NuGet, visit [http://nuget.org/](http://nuget.org/).
+
+1. Update the service configuration to define the configuration settings required to access your Service Bus namespace. To do this, in **Solution Explorer** expand the **Roles** folder in the **UsingTopics** project, right-click **UsingTopics** and then select **Properties**.
 
  	![Launching the Service Configuration editor](Images/launching-the-service-configuration-editor.png?raw=true)
  
@@ -144,38 +150,112 @@ In this task, you will learn how to create a new topic and add several subscript
 
 1. Press **CTRL + S** to save the changes to the Web Role configuration.
 
+1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to the Windows Azure service bus from your application. In **Solution Explorer**, right-click the **UsingTopics** project node and select **Add Reference.**
+
+1. In the **Reference Manager** dialog box, check the **System.Runtime.Serialization** assembly. Then, select the **Extensions** assemblies from the left pane, check **Microsoft.ServiceBus** and ensure **Microsoft.WindowsAzure.ServiceRuntime** is checked as well. Click **OK** to add the references.
+
 1. Open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics.Web** project.
 
-    > **Note:** In the previous Exercise, you created a connection to the Service Bus Namespace inside the Constructor method of the **HomeController** class. For the current Exercise, this was already added for you in the Solution. For more information, refer to the step 12 of Task 1 in Exercise 1. 
+1. Add the following namespace directives to declare the Service Bus and the Windows Azure supporting assemblies.
 
-1. You will create a new **topic** with two **subscriptions**, named _AllMessages_, and _UrgentMessages_. To do this, add the following method at the end of the **HomeController** class.
+	(Code Snippet - _Service Bus Topics - Ex01 - Adding Namespace Directives_ - CS)
+	<!-- mark:1-2 -->
+	````C#
+	using Microsoft.ServiceBus;
+	using Microsoft.WindowsAzure.ServiceRuntime;
+	````
+1. Add the following property to the **HomeController** class to enable the communication with the Service Bus Namespace service.
 
-	(Code Snippet - _Service Bus Messaging - Ex02 - Create Topic and subscriptions_ - CS)
+	(Code Snippet - _Service Bus Topcis - Ex01 - NamespaceManager Property_ - CS)
+	<!-- mark:1-1 -->
+	````C#
+	private NamespaceManager namespaceManager;
+	````
+
+1. In order to create a topic, you have to connect to the **Service Bus Namespace** address and bind this namespace to a **NamespaceManager**. This class is in charge of creating the entities responsible for sending and receiving messages through topics. Add a constructor for the **HomeController** by including the following code:
+
+	(Code Snippet - _Service Bus Topics - Ex01 - HomeController Constructor_ - CS)
+	<!-- mark:1-10 -->
+	````C#
+	public HomeController()
+	{
+		 var baseAddress = RoleEnvironment.GetConfigurationSettingValue("namespaceAddress");
+		 var issuerName = RoleEnvironment.GetConfigurationSettingValue("issuerName");
+		 var issuerKey = RoleEnvironment.GetConfigurationSettingValue("issuerKey");
+
+		 Uri namespaceAddress = ServiceBusEnvironment.CreateServiceUri("sb", baseAddress, string.Empty);
+
+		 this.namespaceManager = new NamespaceManager(namespaceAddress, TokenProvider.CreateSharedSecretTokenProvider(issuerName, issuerKey));
+	}
+	````
+
+1. You will use the **namespaceManager** object to create a new **topic** with two **subscriptions**, named _AllMessages_, and _UrgentMessages_. To do this, add the following method at the end of the **HomeController** class.
+
+	(Code Snippet - _Service Bus Topics - Ex01 - Create Topic and subscriptions_ - CS)
 	<!-- mark:1-19 -->
 	````C#
 	[HttpPost]
 	public JsonResult CreateTopic(string topicName)
 	{
-	    bool success;
-	    try
-	    {
-	        var topic = this.namespaceManager.CreateTopic(topicName);
-	        var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
-	        var urgentMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages");
-	
-	        success = true;
-	    }
-	    catch (Exception)
-	    {
-	        success = false;
-	    }
-	
-	    return this.Json(success, JsonRequestBehavior.AllowGet);
+		 var topic = this.namespaceManager.CreateTopic(topicName);
+		 var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
+		 var urgentMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages");
+
+		 return this.Json(topicName, JsonRequestBehavior.AllowGet);
+	}
+	````
+
+1. Add the following code at the end of the **HomeController** class to retrieve the topics and subscriptions data to the view.
+
+	(Code Snippet - _Service Bus Topics - Ex02 - GetTopics and Subscriptions_ - CS)
+	<!-- mark:1-13 -->
+	````C#
+	[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+	public JsonResult Topics()
+	{
+		 var topics = this.namespaceManager.GetTopics().Select(c => c.Path);
+		 return this.Json(topics, JsonRequestBehavior.AllowGet);
+	}
+
+	[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+	public JsonResult Subscriptions(string topicName)
+	{
+		 var subscriptions = this.namespaceManager.GetSubscriptions(topicName).Select(c => new { Name = c.Name, MessageCount = c.MessageCount });
+		 return this.Json(subscriptions, JsonRequestBehavior.AllowGet);
 	}
 	````
 
 1. Press **CTRL + S** to save the changes to the Controller.
 
+1. In **Visual Studio**, configure the cloud project **UsingTopics.Azure** as the StartUp Project. To do this, in **Solution Explorer** right-click the **UsingTopics.Azure** project node and then select **Set as StartUp Project**.
+
+	![Configuring StartUp project](Images/configuring-startup-project.png?raw=true)
+
+	_Configuring StartUp project_
+
+1. Press **F5** to launch the application. The browser will show the default page of the application.
+
+	![Service Bus Topics application home page](Images/service-bus-topics-application-home-page.png?raw=true)
+
+	_Service Bus Topics application home page_
+
+1. In **Create a Topic** section, enter _SimpleTopic_ for the topic name, and click **Create**.
+
+	![Creating a topic](Images/creating-a-topic.png?raw=true)
+
+	_Creating a topic_
+
+1. The application calls Service Bus to create the topic. The topic is added to the topics list and a successful message is displayed.
+
+	![Topic created](Images/topic-created.png?raw=true)
+
+	_Topic created_
+
+1. Select the topic from the topic list. The application will retrieve the subscriptions associated to the topic from Service Bus.
+
+	![Retrieving topic subscriptions](Images/retrieving-topic-subscriptions.png?raw=true)
+
+	_Retrieving topic subscriptions_
 
 <a name="Exercise2"></a>
 ### Exercise 2: Using a Subscription Rule Filter Expression and Rule Filter Actions ###
