@@ -433,6 +433,24 @@ In this exercise you will publish the web application you created in [Exercise 2
 	_Add Customer view_
 
 ---
+
+<a name="NextSteps"></a>
+## Next Steps ##
+To learn more about Windows Azure Web Sites, please refer to the following articles:
+
+- [Get Better Acquainted with Azure](http://blogs.msdn.com/b/windowsazure/archive/2014/01/08/get-better-acquainted-with-azure.aspx): gives a wide set of resources to continue learning Windows Azure including blogs, Twitter accounts, forums, books and courses.
+- [Async in 4.5: Worth the Await](http://blogs.msdn.com/b/dotnet/archive/2012/04/03/async-in-4-5-worth-the-await.aspx): introduces the asynchronous features in the .NET Framework 4.5, the new async/await keywords and also accompanying changes made in the .NET Framework.
+- [Windows Azure Web Sites Documentation](http://www.windowsazure.com/en-us/documentation/services/web-sites/): provides reference information for developing your site with .NET, PHP, Node.js or Python and hosting them in Windows Azure Web Sites.
+- [How to Monitor Web Sites](http://www.windowsazure.com/en-us/documentation/articles/web-sites-monitor/): guides you through implementing and monitoring performance statistics for Windows Azure Web Sites.
+- [How to Use ASP.NET Session State with Windows Azure Web Sites](http://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-session-state-caching/): explains how to use the Windows Azure Cache Service to support ASP.NET session state caching.
+- [Create a Line-of-Business Application on Windows Azure Web Sites](http://www.windowsazure.com/en-us/documentation/articles/web-sites-business-application-solution-overview/): provides a technical overview of how to use Windows Azure Web Sites to create line-of-business applications.
+- [Windows Azure Web Sites, Cloud Services, and VMs: When to use which?](http://www.windowsazure.com/en-us/documentation/articles/choose-web-site-cloud-service-vm/): provides guidance on how to make an informed decision in choosing between Windows Azure Web Sites, Cloud Services, and virtual machines to host a web application.
+- [.NET Multi-Tier Application Using Storage Tables, Queues, and Blobs](http://www.windowsazure.com/en-us/documentation/articles/cloud-services-dotnet-multi-tier-app-storage-1-overview/): shows how to create a multi-tier ASP.NET MVC 4 web application that uses Windows Azure Storage tables, queues, and blobs, and how to deploy the application to a Windows Azure Cloud Service.
+- [Windows Azure Web Sites – Exploring the platform (Video)](http://channel9.msdn.com/Events/Build/2013/2-550): will show you more about building a web application, understanding options for deployment, and setting up continuous integration.
+- [Windows Azure Web Sites: Under the Hood (Video)](http://channel9.msdn.com/Events/TechEd/NorthAmerica/2012/AZR305): will show you how new web sites are provisioned, how incoming requests are routed and serviced, and what actually happens when it is time to scale your web site - both out and up.
+
+---
+
 <a name="Summary"></a>
 ## Summary ##
 In this hands-on lab, you have created a new MVC Web site using MVC 5 Scaffolding and published it to Windows Azure Web Sites. Web site publication and deployment has never been easier in Windows Azure. Using familiar tools such as Web Deploy or Git, and virtually no changes to the development workflow, Windows Azure Web Sites is the next step in the Microsoft Azure platform for web developers. 
