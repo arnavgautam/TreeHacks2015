@@ -14,16 +14,11 @@
     <Imports>
       <Import moduleName="Diagnostics" />
     </Imports>
-    <ConfigurationSettings>
-      <Setting name="FabrikamStorageConnectionString" />
-    </ConfigurationSettings>
   </WebRole>
   <WorkerRole name="FabrikamWorker" vmsize="Small">
     <Imports>
       <Import moduleName="Diagnostics" />
     </Imports>
-    <ConfigurationSettings>
-      <Setting name="FabrikamStorageConnectionString" />
-    </ConfigurationSettings>
+    <Runtime executionContext="elevated" />
   </WorkerRole>
 </ServiceDefinition>

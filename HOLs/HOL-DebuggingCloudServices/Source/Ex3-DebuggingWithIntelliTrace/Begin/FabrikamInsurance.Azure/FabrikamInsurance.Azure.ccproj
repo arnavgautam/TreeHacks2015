@@ -47,7 +47,7 @@
     </ProjectReference>
     <ProjectReference Include="..\FabrikamWorker\FabrikamWorker.csproj">
       <Name>FabrikamWorker</Name>
-      <Project>{2342ef30-4deb-4208-9d69-851ebb57d415}</Project>
+      <Project>{98520cb6-fbcd-4c30-b684-64fc5d8eea2c}</Project>
       <Private>True</Private>
       <RoleType>Worker</RoleType>
       <RoleName>FabrikamWorker</RoleName>
@@ -57,7 +57,6 @@
   <ItemGroup>
     <Folder Include="FabrikamInsuranceContent\" />
     <Folder Include="FabrikamWorkerContent\" />
-    <Folder Include="Profiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FabrikamInsuranceContent\diagnostics.wadcfg">

@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{20F8B4
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabrikamWorker", "FabrikamWorker\FabrikamWorker.csproj", "{2342EF30-4DEB-4208-9D69-851EBB57D415}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabrikamWorker", "FabrikamWorker\FabrikamWorker.csproj", "{98520CB6-FBCD-4C30-B684-64FC5D8EEA2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,10 +36,10 @@ Global
 		{6988985B-229C-49E7-96E9-94489A42E77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6988985B-229C-49E7-96E9-94489A42E77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6988985B-229C-49E7-96E9-94489A42E77C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2342EF30-4DEB-4208-9D69-851EBB57D415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2342EF30-4DEB-4208-9D69-851EBB57D415}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2342EF30-4DEB-4208-9D69-851EBB57D415}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2342EF30-4DEB-4208-9D69-851EBB57D415}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98520CB6-FBCD-4C30-B684-64FC5D8EEA2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98520CB6-FBCD-4C30-B684-64FC5D8EEA2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98520CB6-FBCD-4C30-B684-64FC5D8EEA2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98520CB6-FBCD-4C30-B684-64FC5D8EEA2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

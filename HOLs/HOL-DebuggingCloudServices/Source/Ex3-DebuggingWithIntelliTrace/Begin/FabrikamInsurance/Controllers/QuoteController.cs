@@ -1,13 +1,12 @@
 ﻿namespace FabrikamInsurance.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
     using FabrikamInsurance.Models;
     using InsurancePolicy;
-    using Microsoft.WindowsAzure;
-    using Microsoft.WindowsAzure.Storage;
-    using Microsoft.WindowsAzure.Storage.Queue;
 
     [HandleError]
     public class QuoteController : Controller
@@ -53,8 +52,6 @@
                 decimal premium = AutoInsurance.CalculatePremium(bookValue, model.ManufacturedYear, bodyStyleFactor, brakeTypeFactor, safetyEquipmentFactor, antiTheftDeviceFactor);
                 model.MonthlyPremium = premium / 12;
                 model.YearlyPremium = premium;
-
-                this.SavePremiumValue(premium, model);
             }
 
             return this.View(model);
@@ -80,21 +77,6 @@
             model.SafetyEquipment = this.repository.GetSafetyEquipment();
             model.AntiTheftDevices = this.repository.GetAntiTheftDevices();
             model.YearList = Enumerable.Range(DateTime.Today.Year - AutoInsurance.MaximumVehicleAge + 1, AutoInsurance.MaximumVehicleAge);
-        }
-
-        private void SavePremiumValue(decimal premium, QuoteViewModel model)
-        {
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                CloudConfigurationManager.GetSetting("FabrikamStorageConnectionString"));
-
-            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-
-            CloudQueue queue = queueClient.GetQueueReference("calculator-queue");
-            queue.CreateIfNotExists();
-
-            var calculatorLog = string.Format("{0},{1},{2},{3},{4},{5}", premium, model.ModelId, model.BodyStyleId, model.BrakeTypeId, model.SafetyEquipmentId, model.AntiTheftDeviceId);
-            CloudQueueMessage message = new CloudQueueMessage(calculatorLog);
-            queue.AddMessage(message);
         }
     }
 }
