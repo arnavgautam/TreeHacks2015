@@ -157,7 +157,7 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 1. Make sure the cloud service you just created is selected. Then, click the drop down list labeled **Build configuration** and select **Debug**.
 
-	> **Note:** For simplicity, you will debug the  cloud service deployed to the **Production** environment. In a real-world scenario, you should work in the **Staging** environment when performing remote debugging.
+	> **Note:** For simplicity, you will debug the cloud service deployed to the **Production** environment. In a real-world scenario, you should work in the **Staging** environment when performing remote debugging.
 
 	![Deployment common settings](Images/deployment-common-settings-debugging.png?raw=true)
 
@@ -368,6 +368,12 @@ You are now ready to re-deploy and run the solution in Windows Azure. At this po
 
 1. Deploy the application again, making sure to select the cloud service and the storage account created in Exercise 1.
 
+	> **Note:** Because the slot that you chose is already occupied by the previous deployment, Visual Studio warns you and asks for confirmation before replacing it. Click **Replace** to overwrite the current deployment.
+	>
+	> ![Replacing the current deployment](Images/replacing-the-current-deployment.png?raw=true "Replacing the current deployment")
+	>
+	> _Replacing the current deployment_ 
+
 1. Wait until the deployment completes and navigate to the deployed cloud service. In the browser window, complete the form making sure that you choose "_PORSCHE"_ for the **Make** of the vehicle and "_BOXSTER (BAD DATA)_" for the **Model** (the generic error page should be diplayed).
 
 1. Switch back to Visual Studio, open **Server Explorer** and right-click the **FabrikamInsurance** role instance under the **Cloud Services** node. Then select **View Diagnostic Data**.
@@ -419,16 +425,15 @@ In this exercise, you explore the use of IntelliTrace to diagnose a role start-u
 
 In this task, you will publish to Windows Azure the FabrikamInsurance application directly from Visual Studio, with the IntelliTrace feature enabled.
 
-
 1. If it is not already open, launch **Microsoft Visual Studio Ultimate 2013**.
 
-1. In the **File** menu, choose **Open Project** and browse to **Ex3-DebuggingWithIntelliTrace\Begin** in the **Source** folder of the lab. Select **Begin.sln** and click Open.
-
-1. In the **Solution Explorer**, expand the **FabrikamInsurance.Azure** cloud project and open the file named **ServiceConfiguration.Cloud.cscfg** in order to update the **FabrikamStorageConnectionString** for the FabrikamInsurance and FabrikamWorker roles.
-
-1. Update the value of both **FabrikamStorageConnectionString** entries replacing the **[your-account-name]** and **[your-account-key]** placeholders with your storage account name and key and save the changes. 
+1. In the **File** menu, choose **Open | Project/Solution...** and browse to **Ex3-DebuggingWithIntelliTrace\Begin** in the **Source** folder of the lab. Select **Begin.sln** and click Open.
 
 1. In the **Solution Explorer**, right-click the **FabrikamInsurance.Azure** cloud project and select **Publish**.
+
+	![Publishing the FabrikamInsurance.Azure project](Images/publishing-the-fabrikaminsuranceazure-project.png?raw=true "Publishing the FabrikamInsurance.Azure project")
+
+	_Publishing the FabrikamInsurance.Azure project_
 
 1. In the **Common Settings** tab, select the cloud service that you created during the first exercise of this lab.
  
@@ -436,7 +441,7 @@ In this task, you will publish to Windows Azure the FabrikamInsurance applicatio
 	
 	_Deployment Common Settings_
 
-1. Click **Advanced Settings** tab. In the list labeled **Storage account** select the storage service that you created during the task 1 of this exercise. Check the check box labeled **Enable IntelliTrace** and click **Next**.
+1. Click **Advanced Settings** tab. In the list labeled **Storage account** select the storage service that you created during the first exercise of this lab. Check the check box labeled **Enable IntelliTrace** and click **Next**.
  
 	![Deployment Advanced Settings](Images/deployment-advanced-settings.png?raw=true "Deployment Advanced Settings")
 	
@@ -448,22 +453,23 @@ In this task, you will publish to Windows Azure the FabrikamInsurance applicatio
 
 	_Starting Deployment_
 
+	> **Note:** Because the slot that you chose is already occupied by the previous deployment, Visual Studio warns you and asks for confirmation before replacing it. Click **Replace** to overwrite the current deployment.
+	>
+	> ![Replacing the current deployment](Images/replacing-the-current-deployment.png?raw=true "Replacing the current deployment")
+	>
+	> _Replacing the current deployment_ 
+
 1. After you start a deployment, you can examine the Windows Azure activity log window to determine the status of the operation. If this window is not visible, in the **View** menu, point to **Other Windows**, and then select **Windows Azure Activity Log**.
 
 	![Windows Azure Activity Log](Images/azure-activity-log.png?raw=true "Windows Azure Activity Log")
 
 	_Windows Azure Activity Log_
 
-1. You can examine the **History** panel on the right of the **Windows Azure Activity Log** window to determine the status of the deployment. Notice that the status of the role instances are shown as **stopped**.
+1. You can examine the **History** panel on the right of the **Windows Azure Activity Log** window to determine the status of the deployment. Notice that the FabrikamWorker is in an **unknown** state.
 
 	![Deployment Operation Details](Images/deployment-operation-details.png?raw=true "Deployment Operation Details")
 
 	_Viewing detailed information about a deployment operation_
-
-<a name="Ex3Task2" />
-#### Task 2 - Examining the IntelliTrace Logs to Determine the Cause of a Failure ####
-
-In the previous task, the role failed to start due to an unknown reason. In this task, you will use IntelliTrace to determine what caused the failure.
 
 1. In the **Windows Azure Activity Log** window, click **Open in Server Explorer**.
 
@@ -471,15 +477,24 @@ In the previous task, the role failed to start due to an unknown reason. In this
 
 	_Viewing the cloud service in Server Explorer_
 
-	> **Note:** If this window is not currently visible, in the **View** menu, point to **Other Windows**, and then select **Windows Azure Activity Log**.
-
-1. In the **Windows Azure Compute** node, examine the role instance status of the hosted service where you deployed the **FabrikamInsurance** application. Notice that the label for the deployment slot indicates that IntelliTrace is enabled for this deployment and that the status is shown as “**Busy**” here too.
+1. In the **Cloud Services** node, examine the role instance status of the hosted service where you deployed the **FabrikamInsurance** application. Notice that the label for the deployment slot indicates that IntelliTrace is enabled for this deployment and that the **FabrikamWorker** instance status is shown as “**Unknown**” here too.
 
 	![Fabrikam Insurance Service Instance](Images/service-instance-busy.png?raw=true "Fabrikam Insurance Service Instance")
 
 	_Fabrikam Insurance Service Instance_
 
-1. Now, right-click the slot node, labeled as **Instance 0 (Busy)** in **Server Explorer**, and then select **View IntelliTrace Logs** to download the information to your workstation. After you do this, notice that Visual Studio creates a new IntelliTrace entry in the **Windows Azure Activity Log** window to display the progress of the download operation.
+<a name="Ex3Task2" />
+#### Task 2 - Examining the IntelliTrace Logs to Determine the Cause of a Failure ####
+
+In the previous task, the role failed to start due to an unknown reason. In this task, you will use IntelliTrace to determine what caused the failure.
+
+1. In the **Cloud Services** node inside the **Server Explorer** windows, select the hosted service where you deployed the **FabrikamInsurance** application and expand it until you found the **FabrikamWorker** instance.
+
+1. Now, right-click the slot node, labeled as **Instance 0 (Unknown)** in **Server Explorer**, and then select **View IntelliTrace Logs** to download the information to your workstation. After you do this, notice that Visual Studio creates a new IntelliTrace entry in the **Windows Azure Activity Log** window to display the progress of the download operation.
+
+	![Downloading the IntelliTrace logs](Images/downloading-the-intellitrace-logs.png?raw=true "Downloading the IntelliTrace logs")
+
+	_Downloading the IntelliTrace logs_
 
 1. Wait for the download to complete, which may take several minutes. While this is happening, you can expand the corresponding entry in the **Windows Azure Activity Log** window and examine the **History** panel on the right to monitor the progress of the operation.
 
@@ -497,7 +512,7 @@ In the previous task, the role failed to start due to an unknown reason. In this
 
 	The sections available in the IntelliTrace summary window are:
 
-	**Exception Data** - lists unhandled exceptions that occur during the data collection period with details about the exception type, the exception message, the thread where the exception was raised, an HResult, if applicable, and the time of the exception. Selecting an entry in the list displays the corresponding call stack for the exception.
+	**Exception Data** - lists unhandled exceptions that occur during the data collection period with details about the exception type, the exception message, the number of exceptions of that kind that were raised, and the time of the newest exception. Selecting an entry in the list displays the corresponding call stack for the exception.
 
 	If an exception occurs in your code, you can select the exception in the list and then click **Start Debugging** to open the appropriate source file in Visual Studio with the cursor placed on the line of code that raised the exception.
 
@@ -505,17 +520,17 @@ In the previous task, the role failed to start due to an unknown reason. In this
 
 	_Exception Data section_
 
-	**Threads List** - shows every thread active during the diagnostics collection period, with each thread showing its ID, a name, if available, and the starting and ending times of the thread.
-
-	![Threads List section](Images/threads-list-section.png?raw=true "Threads List section")
-
-	_Threads List section_
-
 	**System Info** - shows information about the virtual machine environment where the diagnostics data was collected, including the computer name, operating system and CLR versions, physical memory and virtual memory available, number of processors, time zone, among other details.
 
 	![System Info section](Images/system-info-section.png?raw=true "System Info section")
 
 	_System Info section_
+
+	**Threads List** - shows every thread active during the diagnostics collection period, with each thread showing its ID, a name, if available, and the starting and ending times of the thread.
+
+	![Threads List section](Images/threads-list-section.png?raw=true "Threads List section")
+
+	_Threads List section_
 
 	**Modules** - lists every module loaded in memory, including the name of the module and the path from where it was loaded. This information can be useful to debug assembly-loading issues.
 
@@ -539,49 +554,41 @@ In the previous task, the role failed to start due to an unknown reason. In this
 
 	In general, this list contains multiple exceptions, some of which may be ignored as they are handled by the runtime environment and do not cause the role to crash. There is no precise rule regarding which exceptions are normal and can be ignored, so you will typically review the list to identify potentially fatal exceptions. You will find that examining IntelliTrace logs for successful deployments will enhance your ability to discriminate significant entries in this list.
 
-	Notice that the list includes a **System.TypeLoadException** with the message "_Unable to load the role entry point due to the following exceptions: -- System.IO.FileNotFoundException: Could not load file or assembly 'System.Web.Mvc, ..._". This exception indicates that the role was unable to locate the **System.Web.Mvc** assembly required by the application and is, in fact, the reason why the role could not start successfully earlier. This type of error is common and very difficult to diagnose in the cloud, especially when you cannot reproduce it locally because all the required dependencies are already present in your development environment.
+	Notice that the list includes a **FabrikamWorker.CustomException** with the message "_This is an example error._". This is a custom exception that was created to easily showcase IntelliTrace.
 
-	In the following task, you will fix the problem and re-deploy the service package. 
+	To fix the problem, just remove the statement that throw the exception inside the **Run** method of the **WorkerRole** class.
 
-	> **Note:** In general, you need to set **Copy Local** = _True_ for any assembly that is not installed by default in the Windows Azure VMs to ensure that it is deployed with your application. 
+1. Select the **FabrikamWorker.CustomException** exception and click **Debug Newest Exception in Group** in order to locate where the exception is being thrown.
+
+	![Debugging the CustomException](Images/debugging-the-customexception.png?raw=true "Debugging the CustomException")
+
+	_Debugging the CustomException_
+
+1. The **WorkerRole.cs** file should open in Debugging mode, highlighting the statement where the CustomException is throwed.
+
+	![Debugging the Worker Role](Images/debugging-the-worker-role.png?raw=true "Debugging the Worker Role")
+
+	_Debugging the Worker Role_
+
+1. In the IntelliTrace window, locate the highlighted event and click **Calls View** in order to switch to **IntelliTrace Calls View**.
+
+	![Switching to the Calls View](Images/switching-to-the-calls-view.png?raw=true "Switching to the Calls View")
+
+	_Switching to the Calls View_
+
+1. In **IntelliTrace Calls View**, click one of the calls above the one highlighted in order to move the debugger position to other statements.
+
+	![Changing to other statement using the IntelliTrace Calls View](Images/changing-to-other-statement-using-the-intelli.png?raw=true "Changing to other statement using the IntelliTrace Calls View")
+
+	_Changing to other statement using the IntelliTrace Calls View_
+
+1. Stop debugging by pressing **Shift + F5**.
 
 1. Cancel and remove the failing deployment to Windows Azure. In the Windows Azure activity log window, right-click the deployment and select **Cancel and remove**.
 
 	![Cancel the failing deployment](Images/cancel-failing-deployment.png?raw=true "Cancel the failing deployment")
 
 	_Cancel the failing deployment_
-
-<a name="Ex3Task3" />
-#### Task 3 - Fixing the Application and Re-Deploying (Optional) ####
-
-Now that you identified the cause of the role start up failure as a missing assembly, you can correct the problem and re-deploy the application.
-
-In this task, you add the missing assembly to the service package and re-deploy it to Windows Azure.
-
-1. Ensure that the **System.Web.Mvc** assembly is included in the service package that you deploy to Windows Azure. To do this, expand the **References** node for the **FabrikamInsurance** project in **Solution Explorer**, right-click the **System.Web.Mvc** assembly and select **Properties**. Locate the **Copy Local** setting and change its value to _True_.
-
-	![Including an assembly in the service package deployed to Windows Azure](Images/including-mvc-assembly.png?raw=true "Including an assembly in the service package deployed to Windows Azure")
-
-	_Including an assembly in the service package deployed to Windows Azure_
-
-1. In **Solution Explorer**, right-click the **FabrikamInsurance.Azure** cloud project and select **Publish**.
-In the **Publish Windows Azure Application** dialog, leave the IntelliTrace option enabled and then click **Publish** to start the deployment process one more time. You may wish to change the **Deployment label** to identify the deployment as the one that contains the bug fix.
-
-	![Deploying the updated application](Images/deploying-updated-application.png?raw=true "Deploying the updated application")
-
-	_Deploying the updated application_
-
-	> **Note:** Because the slot that you chose is already occupied by the previous deployment, Visual Studio warns you and asks for confirmation before replacing it. Click **Replace** to overwrite the current deployment.
-
-1. Wait for the deployment operation to complete, which may take several minutes.
-
-	![Deployment operation completed](Images/deployment-operation-completed.png?raw=true "Deployment operation completed")
-
-	_Deployment operation completed_
-
-1. Once the deployment is ready, in the **Windows Azure Activity Log** window, click the **Website URL** link for the deployment operation to open the application in your browser. Test the application and ensure that it is working properly.
-
-1. You may download the IntelliTrace log for the running application and compare it with the log that you obtained earlier, when the application failed to start. This will increase your ability to recognize which exceptions are normal.
 
 ## Next Steps ##
 
@@ -618,4 +625,4 @@ This is a list of developer-oriented articles related to debugging applications 
 
 By completing this hands-on lab, you learnt how to apply simple debugging techniques to troubleshoot your Windows Azure application locally and once you deploy it to the cloud. You saw how to use the Windows Azure Tools for Visual Studio to configure Windows Azure Diagnostics.
 
-Using IntelliTrace, you quickly diagnosed a role that failed to start due to a missing dependency; an error that would otherwise have been very difficult to diagnose in the cloud.
+Using IntelliTrace, you quickly diagnosed a role that failed to start due to an exception.
