@@ -99,6 +99,7 @@ In this task, you will log on to the Windows Azure Management Portal and downloa
 	Get-AzureSubscription | select SubscriptionName
 	Get-AzureStorageAccount | select StorageAccountName 
 	````
+
 	> **Note:** If the command Get-AzureSubscription shows more than one subscription, you can select a subscription other than the default by executing the following:
 
 	````PowerShell
@@ -193,7 +194,7 @@ The first step to create a virtual machine in Windows Azure is to define the vir
 
 	> **Note:** Specifying the **-Location** parameter on **New-AzureQuickVM** or **New-AzureVM** tells the Cmdlet to attempt to create a cloud service as a container for the virtual machines. Use this option when creating the first virtual machine and omit it when adding new virtual machines to the same cloud service.
 
-	![New-AzureQuickVM Cmdlet](Images/new-azurequickvm-Cmdlet.png?raw=true "New-AzureQuickVM Cmdlet")
+	![New-AzureQuickVM Cmdlet](Images/new-azurequickvm-cmdlet.png?raw=true "New-AzureQuickVM Cmdlet")
 
 	_New-AzureQuickVM Cmdlet Sample Output_
 
@@ -363,7 +364,7 @@ The task also adds a new endpoint for TCP port 1433 internally that is listening
 	Get-AzureVM -ServiceName $cloudSvcName -Name $vmname | Get-AzureDataDisk
 	````
 
-	![Get-AzureVM Cmdlet Result](Images/get-azurevm-Cmdlet-result.png?raw=true)
+	![Get-AzureVM Cmdlet Result](Images/get-azurevm-cmdlet-result.png?raw=true)
 
 	_Get-AzureVM Cmdlet Sample Output_
 
@@ -486,15 +487,21 @@ Windows Azure IaaS provides the capability to customize a virtual machine, gener
 		sudo /usr/sbin/waagent -deprovision+user
 		````
 
-1. Generate a new image using the **Save-AzureVMImage** Cmdlet. 
+1. Run the following command to return the current status of the virtual machine. Do not proceed past this point until the status is set to **StoppedVM**.
 
-	>**Note:** The virtual machine must be completely shut down before running the Save-AzureVMImage Cmdlet. You can check the status of the virtual machine by typing in **Get-AzureVM -Name $vmname** and making sure the status is **StoppedVM**.
+	````PowerShell
+	Get-AzureVM -ServiceName $cloudSvcName -Name $vmname | Select InstanceStatus 
+	````
+
+1. Generate a new image using the **Save-AzureVMImage** Cmdlet. 
 
 	````PowerShell
 	Save-AzureVMImage -ServiceName $cloudSvcName -Name $vmname -NewImageName '[YOUR-NEW-VM-IMAGE-NAME]' -NewImageLabel '[YOUR-NEW-IMAGE-LABEL]'
 	````
 
-	> **Note:** The **Save-AzureVMImage** Cmdlet makes a running persistent virtual machine available as an image for reuse. For Windows virtual machines, the image should be sysprepped before capture. After performing the capture, you can delete or reprovision the virtual machine using the PostCaptureAction parameter with Delete|Reprovision value.
+	>**Note:** The **Save-AzureVMImage** Cmdlet makes a running persistent virtual machine available as an image for reuse. For Windows virtual machines, the image should be sysprepped before capture. After performing the capture, you can delete or reprovision the virtual machine using the PostCaptureAction parameter with Delete|Reprovision value.
+
+	> **Known issue:** Version **0.7.2.1** of the Windows Azure PowerShell has a known bug that causes the above command to return an **error message** even after being successfully run. This issue has **already been addressed** in the development branch but has not been included in the public package at the time of writing.
 
 1. Verify the image was created by running the following script.
 
@@ -553,7 +560,7 @@ To discover the ports for these endpoints you can use the **Get-AzureEndpoint** 
 	Get-AzureVM -ServiceName $cloudSvcName -Name $vmname | Get-AzureEndpoint 
 	````
 
-	![Get-AzureEndpoint Cmdlet Output](Images/get-azureendpoint-Cmdlet-output.png?raw=true)
+	![Get-AzureEndpoint Cmdlet Output](Images/get-azureendpoint-cmdlet-output.png?raw=true)
 
 	_Get-AzureEndpoint Cmdlet Output_
 
