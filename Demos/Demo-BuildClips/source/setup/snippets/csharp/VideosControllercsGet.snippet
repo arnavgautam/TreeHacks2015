@@ -1,0 +1,21 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <Header>
+      <Title>VideosController.cs - Get</Title>
+      <Author>DPE</Author>
+      <Shortcut>VideosControllercsGet</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp" Delimiter="Å">
+        <![CDATA[// GET /api/videos
+public IQueryable<Video> Get()
+{
+    return this.service.GetAll();
+}]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

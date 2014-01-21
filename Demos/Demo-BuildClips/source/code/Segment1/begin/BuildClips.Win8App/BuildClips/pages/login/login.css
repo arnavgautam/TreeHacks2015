@@ -1,0 +1,165 @@
+﻿#loginBody {
+    clear: both;
+    height: 100%;
+    min-height: 100%;
+    background-color: rgb(226,82,49);
+    color: #fff;
+}
+
+/* login page */
+#leftBanner {
+    float: left;
+    width: 463px;
+    height:100%;
+    background: url(/images/buildClipsLogo.png) no-repeat left center #333;
+}
+
+#socialLoginForm {
+    margin-left: 320px;
+    margin-top: 300px;
+    float: left;
+    width: auto;
+}
+
+    #socialLoginForm h2 {
+        margin-bottom:  5px;
+    }
+
+    #socialLoginForm p.externaltitle {
+        font-size: 14px;
+        font-weight: bold; 
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    #socialLoginForm p.localtitle {
+        color: #fff;
+        font-size: 14px;
+        margin-top: 50px;
+        text-align: left;
+    }
+
+    #socialLoginList input[type="submit"],
+    #socialLoginList input[type="button"],
+    #socialLoginList button {
+        background-color: transparent;
+        margin-left: 7px;
+        margin-right: 7px;
+        border: none;
+        width: 46px;
+        height: 46px;
+        min-width: 46px;
+        cursor: pointer;
+    }
+
+    #socialLoginList p {
+        text-align: center;
+    }
+
+    #socialLoginList button.facebook {
+        background: url(/images/facebook.png);
+    }
+
+    #socialLoginList button.google {
+        background: url(/images/google.png);
+    }
+
+    #socialLoginList button.twitter {
+        background: url(/images/twitter.png);
+    }
+
+    #socialLoginList button.microsoft {
+        background: url(/images/microsoft.png);
+    }
+
+    #socialLoginList button.facebook:hover {
+        background: url(/images/facebook-active.png);
+    }
+
+    #socialLoginList button.google:hover {
+        background: url(/images/google-active.png);
+    }
+
+    #socialLoginList button.twitter:hover {
+        background: url(/images/twitter-active.png);
+    }
+
+    #socialLoginList button.microsoft:hover {
+        background: url(/images/microsoft-active.png);
+    }
+
+#localLogin {
+    text-align:center;
+}
+
+    #localLogin input[type="submit"] {
+        background:url(/images/signin.png) no-repeat center top;
+        border: none;
+        color:#fff;
+        font-size: 14px;
+        padding-top:69px;
+        text-transform:uppercase;
+        text-align:center;
+        margin:0 auto;
+        cursor:pointer;
+    }
+
+    #localLogin input[type="text"],
+    #localLogin input[type="password"] {
+        margin-bottom: 10px;
+        width: 302px;
+        height: 40px;
+        border: none;
+        font-size: 19px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+
+/* forms */
+#loginBody fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+    #loginBody fieldset legend {
+        display: none;
+    }
+
+    #loginBody fieldset ol {
+        padding: 0;
+        list-style: none;
+    }
+
+        #loginBody fieldset ol li {
+            padding-bottom: 5px;
+        }
+
+@media screen and (-ms-view-state: snapped) {
+    #leftBanner {
+        float: none;
+        width: 320px;
+        height: 309px;
+        background: url(/images/buildClipsLogo-snapped.png) no-repeat;
+        display: block;
+    }
+
+    #socialLoginForm {
+        margin-left: 0px;
+        margin-top: 100px;
+        float: none;
+        width: auto;
+        display: block;
+    }
+}
+.login h1.titlearea {
+    margin-left: 10px;
+}
+
+@media screen and (-ms-view-state: snapped) {
+    .login p {
+        margin-left: 0px;
+        text-align: center;
+    }
+}

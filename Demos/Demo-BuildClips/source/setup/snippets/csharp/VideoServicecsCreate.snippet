@@ -1,0 +1,29 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <Header>
+      <Title>VideoService.cs - Create</Title>
+      <Author>DPE</Author>
+      <Shortcut>VideoServicecsCreate</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp" Delimiter="Å">
+        <![CDATA[// Create an instance of the CloudMediaContext
+var mediaContext = new CloudMediaContext(
+                                 CloudConfigurationManager.GetSetting("MediaServicesAccountName"), 
+                                 CloudConfigurationManager.GetSetting("MediaServicesAccountKey"));
+
+// Create the Media Services asset from the uploaded video
+var asset = mediaContext.CreateAssetFromStream(name, title, type, dataStream);
+
+// Get the Media Services asset URL
+var videoUrl = mediaContext.GetAssetVideoUrl(asset);
+
+// Launch the smooth streaming encoding job and store its ID
+var jobId = mediaContext.ConvertAssetToSmoothStreaming(asset, true);]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

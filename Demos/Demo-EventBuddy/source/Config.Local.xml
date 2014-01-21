@@ -1,0 +1,58 @@
+<configuration>
+    
+    <settings>
+        <!-- Change this setting to true if you plan to run the application within Visual Studio Phone Emulator -->
+        <usePhoneEmulator>false</usePhoneEmulator>
+    </settings>
+    
+    <localPaths>
+		<!-- Location where the demo files will be copied in order to perform the demo -->
+        <workingDir>C:\Demos</workingDir>
+		
+		<!-- Location where the demo source files will be copied in order to perform the demo -->
+        <solutionWorkingDir>C:\Demos\Source</solutionWorkingDir>
+		
+		<!-- Relative path to the folder containing the begin solutions -->
+        <beginSolutionDir>.\code\begin</beginSolutionDir>
+		
+		<!-- Relative path to the Windows Store app solution -->
+        <win8SolutionFile>.\WindowsStoreApp\EventBuddy.sln</win8SolutionFile>
+		
+		<!-- Relative path to the Windows Phone 8 app solution -->
+        <phone8SolutionFile>.\WindowsPhone8\EventBuddy.WindowsPhone.sln</phone8SolutionFile>
+		
+		<!-- Relative path to the Windows Phone 8 app resources file (settings for connecting to the Mobile Services are stored there) -->
+        <appResourcesFile>.\WindowsPhone8\Resources\AppResources.resx</appResourcesFile>
+		
+		<!-- Relative path to the assets folder (inside the code folder) -->
+        <assetsDir>.\code\assets</assetsDir>
+		
+		<!-- Relative path to the folder where the Windows Store app .suo file is located -->
+        <vsSuoDir>.\setup\assets</vsSuoDir>
+		
+		<!-- Relative path to the location of the VS2012 settings file (The code for updating the VS2012 setting was commented out 
+			in the setup.local.ps1 to avoid making intrusive changes to the presenter's environment) -->
+        <!-- <vsSettingsFile>.\setup\assets\VS2012Settings.vssettings</vsSettingsFile> -->
+     </localPaths>
+    
+    <appSetup>
+		<!-- Windows Store app's package name (obtained after associating the app with the Windows Store).
+			This setting is used to install/uninstall the Windows Store app -->
+		<packagename>{Package Name in App Manifest}</packagename>
+		
+		<!-- Path to the Windows Store app package (generated after building the application with the setup.local.ps1 script). 
+			This setting is used to install the Windows Store app -->
+		<appxPath>\WindowsStoreApp\EventBuddy\AppPackages\EventBuddy_1.0.0.0_AnyCPU_Test</appxPath>
+    </appSetup>
+    
+    <codeSnippets>
+		<!-- Location of the vsi file containing the c# code snippets for the demo -->
+        <cSharp>.\setup\snippets\csharp</cSharp>
+    </codeSnippets>
+    
+    <favorites>
+		<!-- Location of the .url files containing the snippets for IE favorites bar -->
+        <iESnippets>.\setup\snippets\IESnippets</iESnippets>
+    </favorites>
+    
+</configuration>

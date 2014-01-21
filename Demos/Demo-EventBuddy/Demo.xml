@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>EventBuddy</Id>
+  <Technologies>
+		<Technology>Windows 8 Style UI apps</Technology>  
+		<Technology>Windows Azure Mobile Services</Technology>
+  </Technologies>
+  <Author>
+    <Name></Name>
+  </Author>
+  <Description>
+  In this demo you will start with a disconnected application that manages events and sessions to later connect it utilizing Windows Azure Mobile Services to provide structured storage for events and sessions. In order to use authentication within the application, you will add Twitter (or Facebook) to your application and services. Following this you finish by sending Live Tiles using push notificiations every time an attendee rates a sesion.
+  </Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Event Buddy - Windows Azure Mobile Services</Title>
+  <Version>1.0.1</Version>
+  <Source>Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-EventBuddy" />
+  </CustomProperties>
+</Demo>

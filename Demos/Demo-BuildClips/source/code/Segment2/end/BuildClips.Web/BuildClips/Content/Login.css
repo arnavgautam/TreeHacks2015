@@ -1,0 +1,272 @@
+﻿html {
+    margin: 0;
+    padding: 0;
+    height:100%;
+    min-height:100%;
+}
+
+body {
+    background-color: rgb(226,82,49);
+    color: #fff;
+    font-size: .85em;
+    font-family: "Segoe UI Semibold", "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    height:100%;
+    min-height:100%;
+}
+
+header, footer, hgroup,
+nav, section {
+    display: block;
+}
+
+hgroup {
+    text-transform:lowercase;
+}
+
+mark {
+    background-color: #a6dbed;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear-fix {
+    clear: both;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    color: #fff;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.75em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+    h5 a:link, h5 a:visited, h5 a:active {
+        padding: 0;
+        text-decoration: none;
+    }
+
+
+/* main layout
+----------------------------------------------------------*/
+.content-wrapper {
+    margin: 0 auto;
+    min-width:1200px;
+    height:100%;
+    min-height:100%;
+}
+
+#body {
+    clear: both;
+    height:100%;
+    min-height:100%;
+}
+
+/* login page */
+#leftBanner {
+    /*border-right: solid 2px #c8c8c8;*/
+    float: left;
+    width: 463px;
+    min-height: 705px;
+    height:100%;
+    background: url(images/buildClipsLogo.png) no-repeat;
+}
+
+#socialLoginForm {
+    margin-left: 235px;
+    margin-top: 96px;
+    float: left;
+    width: auto;
+}
+
+    #socialLoginForm h2 {
+        margin-bottom:  5px;
+    }
+
+    #socialLoginForm p.externaltitle {
+        font-size: 14px;
+        font-weight: bold; 
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    #socialLoginForm p.localtitle {
+        color: #fff;
+        font-size: 14px;
+        margin-top: 50px;
+        text-align: left;
+    }
+
+    #socialLoginList input[type="submit"],
+    #socialLoginList input[type="button"],
+    #socialLoginList button {
+        background-color: transparent;
+        margin-left: 7px;
+        margin-right: 7px;
+        border: none;
+        width: 46px;
+        height: 46px;
+        cursor: pointer;
+    }
+
+    #socialLoginList p {
+        text-align: center;
+    }
+
+    #socialLoginList button.facebook {
+        background: url(images/facebook.png);
+    }
+
+    #socialLoginList button.google {
+        background: url(images/google.png);
+    }
+
+    #socialLoginList button.twitter {
+        background: url(images/twitter.png);
+    }
+
+    #socialLoginList button.microsoft {
+        background: url(images/microsoft.png);
+    }
+
+    #socialLoginList button.facebook:hover {
+        background: url(images/facebook-active.png);
+    }
+
+    #socialLoginList button.google:hover {
+        background: url(images/google-active.png);
+    }
+
+    #socialLoginList button.twitter:hover {
+        background: url(images/twitter-active.png);
+    }
+
+    #socialLoginList button.microsoft:hover {
+        background: url(images/microsoft-active.png);
+    }
+
+#localLogin {
+    text-align:center;
+}
+
+    #localLogin input[type="submit"] {
+        background:url(images/signin.png) no-repeat center top;
+        border: none;
+        color:#fff;
+        font-size: 14px;
+        padding-top:69px;
+        text-transform:uppercase;
+        text-align:center;
+        margin:0 auto;
+        cursor:pointer;
+    }
+
+    #localLogin input[type="text"],
+    #localLogin input[type="password"] {
+        margin-bottom: 10px;
+        width: 302px;
+        height: 40px;
+        border: none;
+        font-size: 19px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+
+/* forms */
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+    fieldset legend {
+        display: none;
+    }
+
+    fieldset ol {
+        padding: 0;
+        list-style: none;
+    }
+
+        fieldset ol li {
+            padding-bottom: 5px;
+        }
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #fff;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.validation-summary-errors {
+    padding-top:50px;
+    color: #fff2ed;
+}
+
+    .validation-summary-errors ul {
+        list-style:none;
+        padding:0;
+        margin:0;
+    }
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* Placeholder styles*/
+::-webkit-input-placeholder {
+    color: #c9d1d2;
+}
+:-moz-placeholder {
+    color: #c9d1d2;
+}
+:-ms-input-placeholder {
+    color: #c9d1d2;
+}
+
+a.back {
+    border: none;
+    margin:0 auto;
+    margin-top: 50px;
+    background:url(images/signin.png) no-repeat center top;
+    width:75px;
+    display:block;
+    padding-top:69px;
+    color:#fff;
+    font-size: 14px;
+    text-transform:uppercase;
+    text-decoration:none;
+}

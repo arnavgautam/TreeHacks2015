@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>BuildClips</Id>
+  <Technologies>
+		<Technology>Windows 8 Style UI apps</Technology>		
+		<Technology>Windows Azure Media Services</Technology>
+  </Technologies>
+  <Author>
+    <Name></Name>
+  </Author>
+  <Description>
+  In this demo we will show how to build and deploy an ASP.NET Web site that enables users to browse, play, and upload their own personal videos using Windows Azure Media Services.
+  </Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>BUILD Clips</Title>
+  <Version>1.0.1</Version>
+  <Source>Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>    
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-BuildClips" />
+  </CustomProperties>
+</Demo>

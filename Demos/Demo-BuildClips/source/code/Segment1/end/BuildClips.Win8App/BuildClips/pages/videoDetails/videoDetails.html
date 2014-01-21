@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Video Details</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="/css/default.css" rel="stylesheet" />
+    <link href="/pages/videoDetails/videoDetails.css" rel="stylesheet" />
+    <script src="/js/config.js"></script>
+    <script src="/js/data.js"></script>
+    <script src="/js/webapi.js"></script>
+    <script src="/pages/videoDetails/videoDetails.js"></script>
+
+    <!-- PlayerFramework references -->
+    <link href="/Microsoft.PlayerFramework.Js/css/PlayerFramework-dark.css" rel="stylesheet">
+    <script src="/Microsoft.PlayerFramework.Js/js/PlayerFramework.js"></script>
+    
+    <!-- PlayerFramework.Adaptive references -->
+    <script src="/Microsoft.PlayerFramework.Js.Adaptive/js/PlayerFramework.Adaptive.js"></script>
+                 
+</head>
+<!-- The content that will be loaded and displayed. -->
+<body>
+	
+    <div id="commentTemplate" data-win-control="WinJS.Binding.Template">    
+        <div class="comment">
+            <span class="user" data-win-bind="textContent: user"></span>
+            <span>says</span> 
+            <span class="time" data-win-bind="textContent: date"></span>
+            <p data-win-bind="textContent: content">
+            </p>
+        </div>
+    </div>
+
+    <div class="fragment-details header itemdetailpage">
+        <header aria-label="Header content" role="banner">
+            <div class="topbar"></div>
+            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+            <div class="user-box">
+                <div id="user-image"></div>
+                <span id="full-name"></span>
+            </div>
+        </header>
+        <div class="content-details" aria-label="Main content" role="main">
+			
+            <div class="form">
+                <div class="video-player-container">
+                    <div id="mediaPlayer" 
+                        data-win-control="PlayerFramework.MediaPlayer"
+                        data-win-options="{ autoplay: true, isFullScreenVisible: true }">
+                    </div>
+                </div>
+
+                <div class="video-details-comments-container">
+                    <h4 class="black" data-win-bind="textContent: Title">Title</h4>
+                    <div class="video-details-container">
+						<div class="video-time">Uploaded: OCT 31 2012</div>
+                        <div class="video-description" data-win-bind="textContent: Description">Description</div>
+                        <div class="video-tags-container">
+                            <span class="video-tags">surface, development, color, website</span>
+                        </div>
+                    </div>
+                    <h4 class="black">Comments</h4>
+                    <div class="comments-container">
+                        <h2 class="comments-count"></h2>
+                        <div id="inner-comments-container">
+
+                        </div>
+                        <div class="new-comment">
+                            <textarea name="comment" id="comment" placeholder="leave a comment"></textarea>
+                            <button class="orange-submit" id="doComment" >comment</button>
+                        </div>
+                    </div>
+                    <span id="videoFailedToLoadMsg">Unable to load video - check your network connection</span>
+                 </div>
+            </div>          
+        </div>
+    </div>
+
+</body>
+</html>

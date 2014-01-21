@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>AndroidAndMobileServices</Id>
+  <Author>
+    <Name>Chris Risner</Name>
+    <Blog>http://www.chrisrisner.com</Blog>
+    <Email>chrisner@microsoft.com</Email>
+  </Author>
+  <Description>This demo script demonstrates how you can leverage Windows Azure Mobile Services to add structured storage and integrated authentication to your Android applications.</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Getting Started with Windows Azure Mobile Services and Android</Title>
+  <Version>1.0.0</Version>
+  <Source></Source>
+  <DependencyChecker></DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-AndroidAndMobileServices" />
+  </CustomProperties>
+</Demo>

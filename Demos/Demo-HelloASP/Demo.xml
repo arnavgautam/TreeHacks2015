@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>HelloASP</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Name></Name>
+    <Blog></Blog>
+    <Email></Email>
+  </Author>
+  <Description>This demo is designed to show how developers can quickly get started with Windows Azure Web Sites and even run classic ASP pages. This demo involves creating a Windows Azure Web Site in the management portal, creating a hello world classic ASP page, and deploying the page using FTP. This is a good demo to show as a second or third web site demo when presenting to enterprise customers or corporate developers that may have older ASP applications that are maintaining.</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Hello ASP in Windows Azure Web Sites</Title>
+  <Version>1.0.1</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-HelloASP" />
+  </CustomProperties>
+</Demo>

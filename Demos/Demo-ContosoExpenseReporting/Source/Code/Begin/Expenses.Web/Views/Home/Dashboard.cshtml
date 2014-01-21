@@ -1,0 +1,93 @@
+@using Expenses.Web.ViewModels
+
+@model DashboardItems
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h1 class="dashboard">Dashboard</h1>
+<hr/>
+
+<section class="dashboard">
+    <div class="content-wrapper">        
+        <div class="splash shadow">
+            <h1>Take control of your company&#8217;s expenses with <strong>Contoso Expense Review</strong>.</h1>
+            <p>An end-to-end expense report solution that delivers extraordinary visibility into a company&#8217;s spending through automated analytics and reporting.</p>
+        </div>
+        <div class="summary"> 
+            <ul>
+                <li class="header">Reports Summary</li>
+                <li class="item pending">
+                (
+                    @if (this.Model.Pending > 0) {
+                        @Html.ActionLink(this.Model.Pending.ToString(), "Index", "Reports", new { status = "Pending" }, null)
+                    }
+                    else {
+                        @("0")
+                    }
+                )
+                    Pending
+                </li>
+                <li class="item approved">
+                (
+                    @if (this.Model.Approved > 0) {
+                        @Html.ActionLink(this.Model.Pending.ToString(), "Index", "Reports", new { status = "Approved" }, null)
+                    }
+                    else {
+                        @("0")
+                    }
+                )
+                    Approved<br/>
+                    <div class="filters"><a href="#">Last Week</a> | <a href="#">Last 30 Days</a></div>
+                </li>
+                <li class="item rejected">
+                (
+                    @if (this.Model.Rejected > 0) {
+                        @Html.ActionLink(this.Model.Pending.ToString(), "Index", "Reports", new { status = "Rejected" }, null)
+                    }
+                    else {
+                        @("0")
+                    }
+                )
+                    Rejected<br/>
+                    <div class="filters"><a href="#">Last Week</a> | <a href="#">Last 30 Days</a></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Expense Report Statistics & Charts</h2>
+    <div class="content-wrapper">        
+        <form id="stats-form" action="">
+            <label>Start Date:</label>
+            <input type="text" class="datepicker" />
+
+            <label>End Date:</label>
+            <input type="text" class="datepicker" />
+
+            <label>Category:</label>
+            <select>
+                <option>All</option>
+            </select>
+
+            <label>Report Type:</label>
+            <select>
+                <option>All</option>
+            </select>
+
+            <label>Min. Amount:</label>
+            <input type="text"  />
+
+            <label>Max. Amount:</label>
+            <input type="text"  />
+        </form>
+        <div class="chart shadow">  
+            <ul>
+                <li>Pie Chart |</li>
+                <li><a href="#">Line Chart</a> |</li>
+                <li><a href="#">Bar Chart</a></li>
+            </ul><br />
+            <img src="@Url.Content("~/Content/img/chart.png")" />
+        </div>
+    </div>
+</section>

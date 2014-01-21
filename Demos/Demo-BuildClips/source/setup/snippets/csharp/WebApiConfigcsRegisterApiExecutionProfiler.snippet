@@ -1,0 +1,18 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <Header>
+      <Title>WebApiConfig.cs - Register - ApiExecutionProfiler</Title>
+      <Author>DPE</Author>
+      <Shortcut>WebApiConfigcsRegisterApiExecutionProfiler</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp" Delimiter="Å">
+        <![CDATA[Action clearCache = () => new Microsoft.ApplicationServer.Caching.DataCache().Clear();
+   config.MessageHandlers.Add(new ApiExecutionProfiler(clearCache));]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

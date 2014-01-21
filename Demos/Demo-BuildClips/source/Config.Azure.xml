@@ -1,0 +1,29 @@
+<configuration>
+
+    <publishSettingsFilePath>{YOUR-publishSettings-File-Path}</publishSettingsFilePath>
+    <subscriptionName>{YOUR-SUBSCRIPTION-NAME}</subscriptionName>
+
+    <websiteName>{YOUR-WEBSITE-NAME}</websiteName>
+
+    <storageAccounts>
+        <diagnosticsStorageAccount>
+            <name>{YOUR-STORAGE-ACCOUNT-NAME}</name>
+            <location>West US</location>
+        </diagnosticsStorageAccount>
+    </storageAccounts>
+
+    <cloudService>
+        <name>{YOUR-CLOUD-SERVICE-NAME}</name>
+        <location>West US</location>
+    </cloudService>
+
+    <sqlDatabase>
+        <name>{YOUR-SQL-DATABASE-NAME}</name>
+        <username>{YOUR-SQL-SERVER-USERNAME}</username>
+        <password>{YOUR-SQL-SERVER-PASSWORD}</password>
+        <location>West US</location>
+
+        <!-- Do not update the following element. It will be automatically updated by the scripts.-->
+        <serverName></serverName>
+    </sqlDatabase>
+</configuration>

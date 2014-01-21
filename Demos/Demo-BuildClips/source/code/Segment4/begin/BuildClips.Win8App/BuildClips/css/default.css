@@ -1,0 +1,276 @@
+﻿form.show-validations :invalid,
+form.show-validations .invalid {
+    border: 1px solid red !important;
+    outline: none;
+}
+
+#contenthost {
+    height: 100%;
+    width: 100%;    
+    color: #333;
+}
+
+.fragment {
+    /* Define a grid with rows for a banner and a body */
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 155px 1fr;
+    display: -ms-grid;
+    height: 100%;
+    width: 100%;
+	background-color: #242424;
+	color: #fff;
+}
+
+    .fragment header[role=banner] {
+        /* Define a grid with columns for the back button and page title. */
+        -ms-grid-columns: 500px 1fr;
+        -ms-grid-rows: 75px;
+        display: -ms-grid;
+        background-position: 0% 0%;
+        background-repeat: repeat;
+        background-origin: padding-box;
+        background-clip: border-box;
+        background-size: auto;
+        background-attachment: scroll;
+    }
+
+        .fragment header[role=banner] .topbar {
+            -ms-grid-row: 1;
+            -ms-grid-column: 1;
+            background: url(/images/logo.png) 45px center no-repeat;
+        }
+
+        .fragment header[role=banner] .win-backbutton {
+            -ms-grid-row: 2;
+            -ms-grid-column: 1;
+            margin-left: 30px;
+            margin-top: 20px;
+            color: #fff;
+            border-color: #fff;
+        }
+
+		.fragment header[role=banner] .titlearea {
+            -ms-grid-row: 2;
+            -ms-grid-column: 1;
+            margin-left: 36px;
+            height:80px;
+        }
+		
+        .fragment header[role=banner] .user-box {
+            -ms-grid-row: 1;
+            -ms-grid-column: 2;
+            color: white;
+            text-align: right;
+        }
+
+			.fragment header[role=banner] .user-box #user-image {
+				height: 60px;
+				width: 60px;
+            
+				margin: 5px 30px 5px 12px;
+				float: right;
+				border: 1px solid rgb(128, 128, 128);
+
+				background-repeat: no-repeat;
+				background-size: 100%;
+				background-position: center;
+			}
+
+				.fragment header[role=banner] .user-box #user-image.online {
+					border: 1px solid #0e850d;
+				}
+
+				.fragment header[role=banner] .user-box #user-image.offline {
+					border: 1px solid red;
+				}
+		
+			.fragment header[role=banner] .user-box #first-name {
+				font-size: 30px;
+				display: block;
+				margin-top: 20px;
+			}
+
+			.fragment header[role=banner] .user-box #last-name {
+				display: block;
+				font-size: 15px;
+			}
+			
+			.fragment header[role=banner] .user-box #full-name {
+				display: block;
+				font-size: 20px;
+				margin-right: 120px;
+				margin-top: 10px;
+				font-weight: 600;
+			}
+
+    .fragment section[role=main] {
+        -ms-grid-row: 2;
+        height: 100%;
+        width: 100%;
+    }
+
+.fragment header[role=banner] .titlearea .pagetitle {
+    margin-left: 60px;
+}
+
+.top-center-placement {
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
+
+    .top-center-placement > .container {
+        width: 100%;
+        margin-left: -50%;
+    }
+
+#messages {
+    padding: 5px;
+    border: 1px solid white;
+    border-top: none;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    min-width:300px; 
+    background-color: #f5cc6d;
+    text-align:center;
+    color: #000;
+    font-size: 18px;
+}
+
+    #messages:hover {
+        background-color: #f8e2ad;
+    }
+
+#messagesHistory {
+    padding: 5px;
+    border: 1px solid white;
+    background-color: #f5cc6d;
+    font-size: 16px;
+}
+
+#profilingFlyout .win-header {
+    background-color: #1F0068;
+}
+
+div.video-tags-list {
+    line-height: 2em;
+    width:100%;
+    height: 72px;
+}
+
+div.video-tags-list .tag {
+    display: inline-block;
+
+    height: 13px;
+    line-height: 13px;
+    
+    padding: 5px 8px;
+    margin: 2px 2px;
+
+    font-size: 0.85em;
+    font-weight: bold;
+
+    color: white;
+    background: linear-gradient(#a9c4c7, #98b3b6);
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+div.video-tags-list .tag:hover {
+    background: linear-gradient(#b9d4d7, #a8c3c6);
+    text-decoration: none;
+}
+
+div.video-tags-list .tag.active {
+    background: linear-gradient(#e45536, #d34525);
+} 
+
+div.video-tags-list .tag.active:hover {
+    background: linear-gradient(#f46546, #e35535);
+}
+
+div.video-tags-list .tag.more {
+    background: linear-gradient(#363636, #262626);
+    padding: 5px 12px;
+}
+
+div.video-tags-list .tag.more:hover {
+    background: linear-gradient(#464646, #363636);
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    .fragment header[role=banner] {
+        -ms-grid-columns: 100px 1fr;
+    }
+
+        .fragment header[role=banner] .win-backbutton {
+            margin-left: 29px;
+        }
+}
+
+/* Global Styles */
+
+::-ms-input-placeholder {
+    color: #c9d1d2;
+}
+
+textarea {
+    border: none;
+    margin: 0;
+    font-family: "Segoe UI Semibold";
+    vertical-align: top;
+    padding: 5px 17px;
+    overflow-y:auto;
+}
+
+button.orange-submit {
+    border: none;
+    background-color: rgb(226,73,29);
+    padding:15px 30px;
+    color: #fff;
+    text-transform:lowercase;
+    font-size:19px;
+}
+
+.float-left {
+    float:left;
+}
+
+div.last {
+    margin-right:0;
+}
+
+div.column-container {
+    float: left;
+    display: inline-block;
+
+    width: 400px;
+    height: 100%;
+}
+
+@media screen and (-ms-view-state: snapped) {
+	.fragment header[role=banner] .user-box {
+		display: none;
+	}
+	
+    .fragment header[role=banner] .topbar {
+        background-position-x: 5px;
+		background-position-y: 20px;
+    }
+
+    .fragment header[role=banner] .win-backbutton {
+        margin-top: -8px;
+        margin-left: 12px;
+    }
+
+	.fragment header[role=banner] .titlearea {
+		-ms-grid-column: 1;
+		-ms-grid-row: 1;
+		margin-left: 0;
+		margin-top: 50px;
+		font-size: 40px;
+		width: 50%;
+	}
+}

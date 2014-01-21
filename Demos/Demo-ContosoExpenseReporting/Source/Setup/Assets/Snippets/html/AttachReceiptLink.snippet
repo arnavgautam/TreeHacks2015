@@ -1,0 +1,23 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <Header>
+      <Title>Attach Receipt Link</Title>
+      <Author></Author>
+      <Shortcut>AttachReceiptLink</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="html" Delimiter="Å">
+        <![CDATA[<span class="upload-progress" style="display: none;"><img src="@Url.Content("~/Content/img/loading.gif")" alt="loading" /></span>
+            @if (string.IsNullOrEmpty(this.Model.ReceiptUrl)) {
+                <a class="attach" href="#">Attach receipt</a>
+            }
+            else {
+                <a class="receipt-attachment" href="@this.Model.ReceiptUrl">View receipt</a>
+            }]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

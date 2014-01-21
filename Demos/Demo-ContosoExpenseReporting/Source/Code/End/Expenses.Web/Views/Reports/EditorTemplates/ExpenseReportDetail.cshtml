@@ -1,0 +1,55 @@
+﻿@using System.Text.RegularExpressions
+
+@model Expenses.Web.Models.ExpenseReportDetail
+
+@{
+    var index = string.IsNullOrEmpty(ViewData.TemplateInfo.HtmlFieldPrefix) ? 0 : int.Parse(Regex.Replace(ViewData.TemplateInfo.HtmlFieldPrefix, @".*\[(\d+)\]$", "$1")) + 1;
+}
+
+@if (!User.IsInRole("manager"))
+{       
+    <tr class="expense" data-expense-id="@this.Model.Id">
+        <td>@index</td>
+        <td>@Html.TextBoxFor(m => m.Date, "{0:d}", new { @class = "datepicker small" })</td>
+        <td>@Html.TextBoxFor(m => m.Description)</td>
+        <td>@Html.TextBoxFor(m => m.Category)</td>
+        <td>@Html.TextBoxFor(m => m.Merchant)</td>
+        <td>@Html.TextBoxFor(m => m.BilledAmount, "{0:0.00}", new { @class = "small" })</td>
+        <td>@Html.TextBoxFor(m => m.TransactionAmount, "{0:0.00}", new { @class = "transaction-amount small" })</td>
+        <td class="actions">
+            <a class="more" href="#">more</a>
+            <span class="upload-progress" style="display: none;"><img src="@Url.Content("~/Content/img/loading.gif")" alt="loading" /></span>
+            @if (string.IsNullOrEmpty(this.Model.ReceiptUrl))
+            {
+                <a class="attach" href="#">Attach receipt</a>
+            }
+            else
+            {
+                <a class="receipt-attachment" href="@this.Model.ReceiptUrl">View receipt</a>
+            }
+            <a class="delete" href="#">Delete</a>
+        </td>
+    </tr>      
+    <tr class="additional-fields" style="display:none;">
+        <td>&nbsp;</td>
+        <td colspan="2" class="fields">
+            @Html.LabelFor(m => m.AccountNumber)
+            @Html.TextBoxFor(m => m.AccountNumber)<br/>
+        </td>            
+        <td colspan="2" class="fields">
+            @Html.LabelFor(m => m.CostCenter)
+            @Html.TextBoxFor(m => m.CostCenter)<br/>
+        </td>
+        <td colspan="3">&nbsp;</td>
+    </tr>
+}
+else
+{
+    <tr>
+        <td>@index</td>
+        <td>@this.Model.Description</td>
+        <td>@string.Format("{0:d}", this.Model.Date)</td>
+        <td>@string.Format("{0:0.00}", this.Model.BilledAmount)</td>
+        <td>@string.Format("{0:0.00}", this.Model.TransactionAmount)</td>
+    </tr>
+}

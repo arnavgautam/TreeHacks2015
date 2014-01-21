@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>EventBuddy</Id>
+  <Technologies>
+		<Technology>iOS connected app</Technology>  
+		<Technology>Windows Azure Mobile Services</Technology>
+  </Technologies>
+  <Author>
+    <Name></Name>
+  </Author>
+  <Description>
+  In this demo you will connect an iOS application to a pre-existing Windows Azure Mobile Service which is created as part of the primary Event Buddy demo.
+  </Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Event Buddy - iOS - Windows Azure Mobile Services</Title>
+  <Version>1.0.0</Version>
+  <Source>Source</Source>
+  <DependencyChecker></DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-Preview/EventBuddyiOS" />
+  </CustomProperties>
+</Demo>

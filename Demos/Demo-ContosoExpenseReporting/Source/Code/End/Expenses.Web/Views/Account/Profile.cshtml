@@ -1,0 +1,43 @@
+﻿@model Expenses.Web.Models.UserProfile
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h1 class="register">@ViewBag.Title</h1>
+<hr />
+<p>Use the form below to change your profile information. If your manager is registered you can select him/her on the manager drop down list.</p>
+
+@using (Html.BeginForm("Profile", "Account", FormMethod.Post, new { @id = "profile-form", @class = "centered-form" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>User Profile</legend>
+
+        @Html.HiddenFor(model => model.UserName)
+        @Html.HiddenFor(model => model.UserId)
+
+        @Html.LabelFor(model => model.FirstName)
+        @Html.EditorFor(model => model.FirstName)
+        @Html.ValidationMessageFor(model => model.FirstName)
+
+        @Html.LabelFor(model => model.LastName)
+        @Html.EditorFor(model => model.LastName)
+        @Html.ValidationMessageFor(model => model.LastName)
+
+        @Html.LabelFor(model => model.Title)
+        @Html.EditorFor(model => model.Title)
+        @Html.ValidationMessageFor(model => model.Title)
+
+        @Html.LabelFor(model => model.ManagerId)
+        @Html.DropDownList("ManagerId", ViewBag.Managers as SelectList, "Select your manager", new { id = "ManagerId" })
+        @Html.ValidationMessageFor(model => model.ManagerId)
+
+        <div class="actions">
+            <input type="submit" value="Save" class="button button-blue "/><br/>
+            @Html.ActionLink("Change your Password", "ChangePassword", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Change password" })<br />
+        </div>
+    </fieldset>
+    @Html.ValidationSummary(true, string.Empty)
+}

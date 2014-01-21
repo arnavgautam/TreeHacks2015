@@ -1,0 +1,114 @@
+@using Expenses.Web.Extensions
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - ExpenseReview</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/content/css")
+        @Styles.Render("~/content/themes/base/css")
+    </head>
+    <body>
+        <section class="main">
+            <header>
+                <section id="login">
+                    @Html.Partial("_LoginPartial")
+                </section>
+                @Html.ActionLink("Expenses", "Index", "Home", null, new { @class = "logo" })
+            </header>
+            <nav>
+                <ul id="menu">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.MenuActionLink("Dashboard", "Dashboard", "Home")</li>
+                        <li>@Html.MenuActionLink(User.IsInRole("manager") ? "Reports" : "My Reports", "Index", "Reports")</li>
+  
+                        if (User.IsInRole("manager"))
+                        {
+                            <li>@Html.MenuActionLink("To Approve", "Index", "Reports", new { status = "Pending" })</li>
+                        }
+                        else
+                        { 
+                            <li>@Html.MenuActionLink("Draft", "Index", "Reports", new { status = "Draft" })</li>
+                            <li>@Html.MenuActionLink("Pending", "Index", "Reports", new { status = "Pending" })</li>
+                            <li>@Html.MenuActionLink("Approved", "Index", "Reports", new { status = "Approved" })</li>
+                            <li>@Html.MenuActionLink("Rejected", "Index", "Reports", new { status = "Rejected" })</li>
+                        }
+                    }
+                    else
+                    { 
+                        <li>@Html.MenuActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.MenuActionLink("Contact", "Contact", "Home")</li>
+                    }
+                    <li>@Html.MenuActionLink("Policies", "Policies", "Home")</li>
+                </ul>
+            </nav>
+        </section>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="title">
+                    <p>&copy; @DateTime.Now.Year - Expense Review Application</p>
+                </div>
+                <div  class="links">
+                    <ul>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Home", "Index", "Home")|</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")|</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Home", "Dashboard", "Home")|</li>
+                            
+                            if (User.IsInRole("manager"))
+                            {
+                                <li>@Html.ActionLink("To Approve", "Index", "Reports", new { status = "Pending" }, null)|</li>
+                                <li>@Html.ActionLink("Reports", "Index", "Reports")|</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("My Reports", "Index", "Reports")|</li>
+                            }
+
+                            <li>@Html.ActionLink("Support", "Support", "Home")|</li>
+                        }
+                        <li>@Html.ActionLink("Policies", "Policies", "Home")|</li>
+                        <li><a href="#">Event Management & Registration App</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+        <div id="dialog-confirm" title="" style="display:none;">
+	        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span></p>
+        </div>
+        
+        @Scripts.Render("~/content/js")
+        @RenderSection("scripts", required: false)
+
+        @if (User.IsInRole("manager"))
+        {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $.ajax({
+                        url: '@Url.Action("summary", "reports")',
+                        type: "GET",
+                        cache: false
+                    }).done(function (data) {
+                        if (data.pending > 0) {
+                            $('a.toapprove').addClass('tooltip red-tooltip').append('<span>' + data.pending + '</span>');
+                        }
+                    });
+                });
+            </script>
+        }
+    </body>
+</html>

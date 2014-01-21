@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DependencyCheckerConfiguration version="2.0">
+	<title>Event Buddy - Windows Azure Mobile Services</title>
+	<dependencies>
+	<dependency
+			hint="Live SDK"
+			name="Live SDK for Windows and Windows Phone" 
+			helpLink="http://msdn.microsoft.com/en-us/live/ff621310" 
+			disableSkip="true"
+			type="Uninstall" />		
+		<dependency 
+			hint="WPDTV3_RTM"
+			name="Windows Phone SDK 8.0" 
+			helpLink="" 
+			disableSkip="false"
+			type="WebPI" />
+		<dependency
+			hint="Windows Azure SDK for Windows 8 and Windows Phone 8"
+			name="Windows Azure Mobile Services SDK for Windows 8" 
+			helpLink="http://go.microsoft.com/fwlink/?LinkId=257545&amp;clcid=0x409" 
+			disableSkip="true"
+			type="Uninstall" />
+    </dependencies>
+</DependencyCheckerConfiguration>

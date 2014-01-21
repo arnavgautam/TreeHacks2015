@@ -1,0 +1,32 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <Header>
+      <Title>Attach Receipt Method</Title>
+      <Author></Author>
+      <Shortcut>AttachReceiptMethod</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp" Delimiter="Å">
+        <![CDATA[[HttpPost]
+                public JsonResult AttachReceipt()
+                {
+                    var file = Request.Files[0];
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var container = Expenses.Web.Helpers.StorageHelper.GetUserContainer(User.Identity);
+                        var blob = container.GetBlobReference(Guid.NewGuid() + System.IO.Path.GetExtension(file.FileName));
+                        blob.Properties.ContentType = file.ContentType;
+                        blob.UploadFromStream(file.InputStream);
+
+                        return Json(new { success = true, url = blob.Uri.ToString() });
+                    }
+
+                    return Json(new { error = "an error ocurred while uploading the receipt." });
+                }]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,103 @@
+﻿@model BuildClips.Services.Models.Video
+
+<div class="video-title-container">
+    <h2>@Html.DisplayFor(model => model.Title)</h2>
+</div>
+
+<div class="video-details-page">
+    <div class="video-container">
+        <div class="video-player-container float-left">
+            <video controls="controls" autoplay="autoplay" style="height:100%;max-width:100%;margin:0;padding:0;">
+                <source src="@Model.SourceVideoUrl" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="video-details-container float-left">
+            @Html.DisplayFor(model => model.Description)
+        </div>
+        <div class="video-tags-container float-left">
+            <span class="video-tags">surface, development, color, website</span>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+</div>
+
+<div class="comments-container float-left">
+    <h2 class="comments-count">0 comments</h2>
+    <div id="inner-comments-container"></div>
+    <div class="new-comment">
+        <textarea name="comment" id="comment" placeholder="leave a comment"></textarea>
+        <span>You are signed in as</span><span class="user" id="user">@User.Identity.Name</span>
+        <input type="submit" class="orange-submit" value="comment" id="doComment" />
+    </div>
+</div>
+
+<div class="suggestions-container float-left">
+    <h2>recommendations</h2>
+    <div class="suggestion-box">
+        <img src="@Url.Content("~/Content/images/suggested-video-1.png")" alt="a tour around campus" width="296" height="164" />
+        <span>a tour around campus</span>
+    </div>
+
+    <div class="suggestion-box">
+        <img src="@Url.Content("~/Content/images/suggested-video-2.png")" alt="surface announced" width="296" height="164" />
+        <span>surface announced</span>
+    </div>
+
+    <div class="suggestion-box">
+        <img src="@Url.Content("~/Content/images/suggested-video-3.png")" alt="scott at pdc" width="296" height="164" />
+        <span>scott @@ pdc</span>
+    </div>
+</div>
+
+<div class="clear-fix"></div>
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/cookiesHelper.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.tmpl.min.js")"></script>
+    <script>
+        var id = @Model.Id
+
+        $(function () {
+            var comments = [];
+            var cookiename = "comments_" + id;
+
+            var loadComments = function () {
+                if (comments.length == 0) comments  = JSON.parse(readCookie(cookiename));
+                if (!comments) comments = [];
+                $("#commentTemplate").tmpl(comments).appendTo("#inner-comments-container");
+
+                $("h2.comments-count").html(comments.length + " comments");
+            };
+
+            $("#doComment").live('click', function () {
+                var now = new Date();
+                var textarea = $("#comment");
+                var comment = { User: $("#user")[0].innerHTML, Content: textarea.val(), Date: (now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear() }
+
+                $("#commentTemplate").tmpl(comment).appendTo("#inner-comments-container");
+                
+                comments.push(comment);
+                textarea.val("");
+                $("h2.comments-count").html(comments.length + " comments");
+
+                createCookie(cookiename, JSON.stringify(comments), 30);
+            });
+            
+            loadComments();
+        });
+    </script>
+
+        
+
+    <script id="commentTemplate" type="text/x-jquery-tmpl">    
+        <div class="comment">
+            <span class="user">${User}</span>
+            <span>says</span>
+            <span class="time">${Date}</span>
+            <p>
+                ${Content}
+            </p>
+        </div>
+    </script>
+}

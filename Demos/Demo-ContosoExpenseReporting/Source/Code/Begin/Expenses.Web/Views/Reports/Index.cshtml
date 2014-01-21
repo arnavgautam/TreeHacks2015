@@ -1,0 +1,69 @@
+﻿@using Expenses.Web.Models
+@model IEnumerable<ExpenseReport>
+
+@{
+    ViewBag.Title = "Reports";
+}
+@if (@User.IsInRole("manager")) {
+    if (!string.IsNullOrEmpty(Request["status"]) && Request["status"].Equals("pending", StringComparison.InvariantCultureIgnoreCase))
+    {
+        <h1 class="toapprove">Pending Approval</h1>
+    }
+    else
+    {
+        <h1 class="reports">Reports</h1>
+    }
+}
+else
+{
+    <h1 class="reports">My Reports</h1>
+}
+
+<hr/>
+<h3>@ViewBag.Header</h3>
+
+<table class="reports shadow">
+    <tr>
+    @if (User.IsInRole("manager"))
+    {
+        <th class="user">User</th>
+    }
+        <th class="report-name">Name</th>
+        <th class="submitted">Submitted Date</th>
+        <th class="status">Status</th>
+        <th class="total">Total</th>
+    </tr>
+
+@if (this.Model.Count() > 0)
+{
+    foreach (var report in this.Model)
+    {
+        <tr>
+            @if (User.IsInRole("manager"))
+            {
+                <td>@(report.User.FirstName + " " + report.User.LastName) </td>
+            }
+            <td><a href="@Url.RouteUrl("Report", new { @id = report.Id, action = string.Empty })">@report.Name</a></td>
+            <td>@string.Format("{0:d}", report.Submitted) </td>
+            <td>@report.Status.Name</td>
+            <td>@string.Format("{0:C}", report.Details.Sum(d => d.TransactionAmount))</td>
+        </tr>
+    }
+}
+else
+{
+    var colspan = User.IsInRole("manager") ? "6" : "5";
+    <tr>
+        <td colspan="@colspan">No reports were found.</td>
+    </tr>
+}
+</table>
+
+@if (!User.IsInRole("manager"))
+{
+    <div class="actions">
+        <a href="@Url.Action("new", "reports")" class="button button-black">
+            <span>Add New Report</span>
+        </a>
+    </div>
+}

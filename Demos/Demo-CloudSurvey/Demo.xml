@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>CloudSurvey</Id>
+  <Author>
+    <Name></Name>
+  </Author>
+  <Description>In this demo, you will learn how to publish an application into an Azure Web Site using Git and the Windows Azure Command-Line Tool.</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Cloud Survey</Title>
+  <Version>1.0.2</Version>
+  <Source>Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-CloudSurvey/" />
+  </CustomProperties>
+</Demo>

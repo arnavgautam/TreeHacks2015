@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Record</title>
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="/css/default.css" rel="stylesheet" />
+    <link href="/pages/record/record.css" rel="stylesheet" />
+    <script src="/js/config.js"></script>
+    <script src="/js/data.js"></script>
+    <script src="/js/webapi.js"></script>
+    <script src="/pages/record/record.js"></script>
+</head>
+<body>
+    <div class="fragment header capturepage">
+        <header aria-label="Header content" role="banner">
+            <div class="topbar"></div>
+            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle">Capture </span>
+            </h1>
+            <div class="user-box">
+                <div id="user-image"></div>
+                <span id="full-name"></span>
+            </div>
+        </header>
+        <div class="content" aria-label="Main content" role="main">
+            <article>
+                <div id="overlay">
+                    <div id="capture-status" class="win-contentTitle">
+                        Tap screen to capture media
+                    </div>
+                </div>
+                <video id="live-preview"></video>
+            </article>
+        </div>
+    </div>
+</body>
+</html>

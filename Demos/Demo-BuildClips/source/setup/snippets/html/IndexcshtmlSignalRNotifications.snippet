@@ -1,0 +1,31 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <Header>
+      <Title>Index.cshtml - SignalRNotifications</Title>
+      <Author>DPE</Author>
+      <Shortcut>IndexcshtmlSignalRNotifications</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp" Delimiter="Å">
+        <![CDATA[<script src="@Url.Content("~/Scripts/jquery.signalR-1.0.0-alpha2.min.js")"></script>
+    <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+    <script>
+        $(function () {
+            var connection = $.hubConnection();
+            var hub = connection.createHubProxy("Notifier");
+            hub.on("onVideoUpdate", function (video) {
+                if (video.ThumbnailUrl) {
+                    $("#video_" + video.Id).css("background", "url(" + video.ThumbnailUrl + ") no-repeat top left");
+                }
+            });
+
+            connection.start();
+        });
+    </script>]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

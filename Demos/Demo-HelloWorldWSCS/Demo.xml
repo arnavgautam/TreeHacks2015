@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>HelloWorldWSCS</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Name></Name>
+    <Blog></Blog>
+    <Email></Email>
+  </Author>
+  <Description>This demo demonstrates how to quickly build a simple ASP.NET MVC4 Web Application using Visual Studio 2012 and deploy the aplication to Windows Azure Web Sites. The second segment of this demo shows how to create a multi-tier Cloud Service from the MVC Web Application.</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Windows Azure Web Sites and Cloud Services</Title>
+  <Version>1.0.2</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-HelloWorldWSCS" />
+  </CustomProperties>
+</Demo>

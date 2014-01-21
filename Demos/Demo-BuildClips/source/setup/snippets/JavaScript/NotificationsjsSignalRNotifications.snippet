@@ -1,0 +1,39 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <Header>
+      <Title>Notifications.js - SignalRNotifications</Title>
+      <Author>DPE</Author>
+      <Shortcut>NotificationsjsSignalRNotifications</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="Javascript" Delimiter="Å">
+        <![CDATA[(function () {
+    "use strict";
+
+    var connection = null;
+
+    WinJS.Namespace.define("Notifications", {
+        connect: connect
+    });
+
+    function connect() {
+        if (connection == null) {
+            connection = $.hubConnection(Configuration.ApiBaseUrl);
+            var hub = connection.createHubProxy("Notifier");
+            hub.on("onVideoUpdate", function (video) {
+                Data.updateVideoItem(video);
+            });
+
+            connection.start({ waitForPageLoad: false });
+        }
+    }
+
+    connect();
+})();]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

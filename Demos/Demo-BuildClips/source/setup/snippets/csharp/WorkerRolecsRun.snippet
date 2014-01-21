@@ -1,0 +1,42 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <Header>
+      <Title>WorkerRole.cs - Run</Title>
+      <Author>DPE</Author>
+      <Shortcut>WorkerRolecsRun</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp" Delimiter="Å">
+        <![CDATA[public override void Run()
+{
+    // This is a sample worker implementation. Replace with your logic.
+    Trace.WriteLine("BackgroundService entry point called", "Information");
+
+    // Connect to SignalR
+    var connection = new HubConnection(CloudConfigurationManager.GetSetting("ApiBaseUrl"));
+    var proxy = connection.CreateHubProxy("Notifier");
+    connection.Start().Wait();
+
+    while (true)
+    {
+         Thread.Sleep(5000);
+
+         var service = new VideoService();
+         Trace.WriteLine("Getting Media Services active jobs", "Information");
+         var activeJobs = service.GetActiveJobs();
+
+         foreach (var video in activeJobs.ToList())
+         {
+             proxy.Invoke(
+                    "VideoUpdated", 
+                    (video.JobStatus == JobStatus.Completed) ? service.Publish(video.Id) : video);
+         }
+    }
+}]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

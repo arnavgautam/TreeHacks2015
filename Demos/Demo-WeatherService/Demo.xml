@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models"> 
+<Id>Demo-ServiceBusRelay</Id> 
+<Author> 
+<Name>Wenming Ye</Name> 
+<Blog>http://blogs.msdn.com/hpctrekker/</Blog> 
+<Email>wenmingy at Microsoft.com</Email> 
+</Author> 
+<Description> 
+
+It’s currently using a simple MVC 4 web front end.  
+Azure Tables storage for keeping jobs meta information. 
+HPC Azure scheduler which contains MPI runtime and a HPC portal.
+The Azure HPC scheduler is used as a batch system to dispatch compute jobs onto different worker role instances.
+
+The compute engine uses WRF or NCAR's weather research and forecast code  compiled with the PGI compiler.  The binary is available upon request but we are not including it here due to the complexity.  
+</Description> 
+<Document ConversionType="Html">Demo.md</Document> 
+<Title>HPC Compute on WindowsAzure- The NorthWind Weather demo </Title> 
+<Version>1.0.0</Version> 
+<Source>Source</Source> 
+<DependencyChecker>Setup\Dependencies.depi</DependencyChecker> 
+<!-- 
+<CustomProperties> 
+<Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit\Demo-WeatherService" /> 
+</CustomProperties> 
+--> 
+</Demo>

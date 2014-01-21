@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Northwind Trader";
+}
+
+<ul data-role="listview" data-inset="false" data-filter="false" data-theme="a">
+    <li class="profile">@Html.ActionLink("Customers", "Index", "Customer")</li>
+    <li class="profile">@Html.ActionLink("Orders","Index", "Home")</li>
+    <li class="profile">@Html.ActionLink("Categories","Index", "Home")</li>
+    <li class="profile">@Html.ActionLink("Products","Index", "Home")</li>
+    <li class="profile">@Html.ActionLink("Suppliers","Index", "Home")</li>
+    <li class="profile">@Html.ActionLink("Shippers","Index", "Home")</li>
+</ul>

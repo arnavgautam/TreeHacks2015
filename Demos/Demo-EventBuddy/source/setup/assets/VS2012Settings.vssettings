@@ -1,0 +1,40 @@
+<UserSettings>
+	<ApplicationIdentity version="11.0"/>
+	<ToolsOptions>
+		<ToolsOptionsCategory name="Environment" RegisteredName="Environment">
+			<ToolsOptionsSubCategory name="ProjectsAndSolution" RegisteredName="ProjectsAndSolution" PackageName="Visual Studio Environment Package">				
+				<PropertyValue name="ShowOutputWindowBeforeBuild">true</PropertyValue>
+			</ToolsOptionsSubCategory>
+		</ToolsOptionsCategory>
+	</ToolsOptions>
+	<Category name="Environment_Group" RegisteredName="Environment_Group">
+		<Category name="Environment_FontsAndColors" Category="{1EDA5DD4-927A-43a7-810E-7FD247D0DA1D}" Package="{DA9FB551-C724-11d0-AE1F-00A0C90FFFC3}" RegisteredName="Environment_FontsAndColors" PackageName="Visual Studio Environment Package">
+			<PropertyValue name="Version">2</PropertyValue>
+			<FontsAndColors Version="2.0">
+				<Categories>
+					<Category GUID="{58E96763-1D3B-4E05-B6BA-FF7115FD0B7B}" FontName="Consolas" FontSize="15" CharSet="1" FontIsDefault="No">
+						<Items/>
+					</Category>
+					<Category GUID="{75A05685-00A8-4DED-BAE5-E7A50BFA929A}" FontName="Consolas" FontSize="15" CharSet="1" FontIsDefault="No">
+						<Items/>
+					</Category>					
+					<Category GUID="{E0187991-B458-4F7E-8CA9-42C9A573B56C}" FontName="Consolas" FontSize="15" CharSet="1" FontIsDefault="No">
+						<Items/>
+					</Category>
+					<Category GUID="{FF349800-EA43-46C1-8C98-878E78F46501}" FontName="Consolas" FontSize="15" CharSet="1" FontIsDefault="No">
+						<Items/>
+					</Category>
+				</Categories>
+			</FontsAndColors>
+		</Category>
+		<Category name="Environment_ErrorList" Category="{68897077-DF64-4628-9BD4-025923684F2F}" Package="{4A9B7E50-AA16-11d0-A8C5-00A0C921A4D2}" RegisteredName="Environment_ErrorList" PackageName="Visual Studio Task List Package">
+			<PropertyValue name="Version">1</PropertyValue>
+			<PropertyValue name="ErrorListShowsErrors">true</PropertyValue>
+			<PropertyValue name="ErrorListShowsWarnings">false</PropertyValue>
+			<PropertyValue name="ErrorListShowsMessages">false</PropertyValue>
+			<PropertyValue name="ErrorListScopeFilteringActive">false</PropertyValue>
+			<PropertyValue name="ErrorListFilterScope">3</PropertyValue>
+			<PropertyValue name="ActiveProvider">{00000000-0000-0000-0000-000000000000}</PropertyValue>
+		</Category>
+	</Category>
+</UserSettings>

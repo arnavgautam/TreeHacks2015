@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DependencyCheckerConfiguration version="2.0">
+	<title>Contoso Expense Reporting Demo</title>
+	<dependencies>
+		<dependency hint="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DevDiv\Web Tools\Servicing\1~.0\VWDExpress11.Version,HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\DevDiv\Web Tools\Servicing\1~.0\VWDExpress11.Version,HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DevDiv\Web Tools\Servicing\1~.0\VisualStudio11.Version,HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\DevDiv\Web Tools\Servicing\1~.0\VisualStudio11.Version;^1\.[0-9]\.([3-9][0-9]\d*).[0-9]$"
+                        name="Visual Studio Web Development Feature Or Visual Studio Express 2012 for Web"
+                        description="Microsoft Visual Studio Ultimate 2012, Microsoft Visual Studio Premium 2012, Microsoft Visual Studio Professional 2012 or Microsoft Visual Studio Express 2012 for Web"
+                        helpLink="http://www.microsoft.com/visualstudio/"
+                        disableSkip="false"
+                	type="Registry" />
+		<dependency
+			hint="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\110\Tools\Setup\SQL_SSMS_Adv.Version;11.0.2100.60"
+			name="SQL Server 2012 Management Studio"
+			description="SQL Server 2012 Management Studio"
+			helpLink="http://www.microsoft.com/en-us/download/details.aspx?id=29062"
+			disableSkip = "false"
+			type="Registry" />
+		<dependency
+			hint="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\110\Tools\Setup.Version;11.0.2100.60"
+			name="SQL Server 2012 Express"
+			description="SQL Server 2012 Express"
+			helpLink="http://www.microsoft.com/en-us/download/details.aspx?id=29062"
+			disableSkip = "false"
+			type="Registry" />
+		<dependency
+		   	hint="azurenodesdk"
+		   	name="Windows Azure SDK for Node.js"
+		   	helpLink=""
+		   	type="WebPI" />
+		<dependency
+			hint="WindowsAzurePowershell" 
+			name="Windows Azure PowerShell"
+			helpLink="http://www.windowsazure.com/en-us/develop/nodejs"
+			type="WebPI" />
+    </dependencies>	
+	<setupCommands>
+      <setup command=".\DoSetup.cmd" name="HelloWorld"
+	description="HelloWorld demo setup..." />
+  </setupCommands>
+</DependencyCheckerConfiguration>

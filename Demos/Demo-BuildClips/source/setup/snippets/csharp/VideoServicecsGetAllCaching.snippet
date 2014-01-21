@@ -1,0 +1,29 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <Header>
+      <Title>VideoService.cs - GetAll - Caching</Title>
+      <Author>DPE</Author>
+      <Shortcut>VideoServicecsGetAllCaching</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp" Delimiter="Å">
+        <![CDATA[var dataCache = new DataCache();
+     var videos = dataCache.Get("videoList") as IEnumerable<Video>;
+
+     if (videos == null)
+     {
+          videos = this.context.Videos.OrderByDescending(v => v.Id);
+
+          dataCache.Put("videoList", videos.ToList());
+
+          Thread.Sleep(500);
+     }
+
+     return videos.AsQueryable();]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

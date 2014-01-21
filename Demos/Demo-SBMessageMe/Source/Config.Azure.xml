@@ -1,0 +1,20 @@
+<configuration>
+  <windowsAzureSubscription>
+    <!-- 
+		You must configure the publishSettingFile to a known and safe location.
+		For instance you can set it to: 'C:\SafeLocation\AzDemoSubscription-OtherSubscription-1-1-2012-credentials.publishsettings'
+	-->
+    <publishSettingsFile></publishSettingsFile>
+    <!-- 
+		The Cleanup.Azure process will remove the list of Web Sites configured (comma separated) in the webSitesToDelete element.
+	-->
+    <webSitesToDelete></webSitesToDelete>
+  </windowsAzureSubscription>
+  <urls>
+    <publishProfileDownloadUrl>https://windows.azure.com/download/publishprofile.aspx</publishProfileDownloadUrl>
+  </urls>
+  <!-- This setting is used in combination with the config.local.xml file where the Service Bus namespace is configured.
+       Please, make sure to configure the Service Bus namespace in the config.local.xml file.
+  -->
+  <queuename>demomessages</queuename>
+</configuration>

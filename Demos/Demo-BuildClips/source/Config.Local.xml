@@ -1,0 +1,66 @@
+<configuration>
+    <localPaths>
+        <workingDir>C:\Demos</workingDir>
+        <solutionWorkingDir>C:\Demos\BuildClips</solutionWorkingDir>
+        <segment2SolutionWorkingDir>C:\Demos\BuildClipsMedia</segment2SolutionWorkingDir>
+        <endSolutionWorkingDir>C:\Demos\BuildClipsDeploy</endSolutionWorkingDir>
+
+        <beginSolutionDir>.\code\Segment1\begin</beginSolutionDir>
+        <beginSolutionSegment2Dir>.\code\Segment2\begin</beginSolutionSegment2Dir>
+        <endSolutionDir>.\code\Segment5\begin</endSolutionDir>
+        <assetsDir>.\assets</assetsDir>
+        <webConfig>BuildClips.Web\BuildClips\Web.config</webConfig>
+        <webReleaseConfig>BuildClips.Web\BuildClips\Web.Release.config</webReleaseConfig>
+        <win8ConfigJs>BuildClips.Win8App\BuildClips\js\config.js</win8ConfigJs>
+        <appConfig>BuildClips.Web\BackgroundService\app.config</appConfig>
+        <appConfigAsset>assets\Segment3\BackgroundService\app.config</appConfigAsset>
+        <serviceConfiguration>BuildClips.Web\BuildClips.Azure\ServiceConfiguration.Cloud.cscfg</serviceConfiguration>
+        <serviceDefinition>BuildClips.Web\BuildClips.Azure\ServiceDefinition.csdef</serviceDefinition>
+        <videosDir>.\setup\assets\videos</videosDir>
+    </localPaths>
+
+    <appSettings>
+        <mediaServicesAccountName>{YOUR-MEDIA-SERVICES-ACCOUNT-NAME}</mediaServicesAccountName>
+        <mediaServicesAccountKey>{YOUR-MEDIA-SERVICES-ACCOUNT-KEY}</mediaServicesAccountKey>
+        <storageAccountConnectionString>DefaultEndpointsProtocol=https;AccountName={YOUR-ACCOUNT-NAME};AccountKey={YOUR-ACCOUNT-KEY}</storageAccountConnectionString>
+        <serviceBusConnectionString>Endpoint=sb://{YOUR-NAMESPACE}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={YOUR-SECRET}</serviceBusConnectionString>
+        <diagnosticsStorageAccountConnectionString>DefaultEndpointsProtocol=https;AccountName={YOUR-ACCOUNT-NAME};AccountKey={YOUR-ACCOUNT-KEY}</diagnosticsStorageAccountConnectionString>
+
+        <local>
+            <facebookApplicationId>{YOUR-FACEBOOK-APPID}</facebookApplicationId>
+            <facebookApplicationSecret>{YOUR-FACEBOOK-SECRET}</facebookApplicationSecret>
+            <twitterConsumerKey>{YOUR-TWITTER-CONSUMERKEY}</twitterConsumerKey>
+            <twitterConsumerSecret>{YOUR-TWITTER-SECRET}</twitterConsumerSecret>
+        </local>
+        
+        <website>
+            <facebookApplicationId>{YOUR-FACEBOOK-APPID}</facebookApplicationId>
+            <facebookApplicationSecret>{YOUR-FACEBOOK-SECRET}</facebookApplicationSecret>
+            <twitterConsumerKey>{YOUR-TWITTER-CONSUMERKEY}</twitterConsumerKey>
+            <twitterConsumerSecret>{YOUR-TWITTER-SECRET}</twitterConsumerSecret>
+
+            <apiBaseUrl>http://{YOUR-SITE-NAME}.azurewebsites.net/</apiBaseUrl>
+        </website>
+
+        <cloudService>
+            <facebookApplicationId>{YOUR-FACEBOOK-APPID}</facebookApplicationId>
+            <facebookApplicationSecret>{YOUR-FACEBOOK-SECRET}</facebookApplicationSecret>
+            <twitterConsumerKey>{YOUR-TWITTER-CONSUMERKEY}</twitterConsumerKey>
+            <twitterConsumerSecret>{YOUR-TWITTER-SECRET}</twitterConsumerSecret>
+        </cloudService>
+    </appSettings>
+
+    <localSqlServer>
+        <servername>(localdb)\v11.0</servername>
+        <dbName>BuildClipsDB</dbName>
+    </localSqlServer>
+
+    <codeSnippets>
+        <cSharp>.\setup\snippets\csharp</cSharp>
+        <html>.\setup\snippets\html</html>
+        <JavaScript>.\setup\snippets\JavaScript</JavaScript>
+        <!-- <xml>.\setup\snippets\xml</xml> -->
+    </codeSnippets>
+
+    <manualResetFile>.\setup\tasks\ManualSteps.txt</manualResetFile>
+</configuration>

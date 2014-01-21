@@ -1,0 +1,13 @@
+<configuration>	
+    <localPaths>
+        <solutions>
+            <solution>
+                <folder>TwitterReader\Begin</folder>
+                <file>Begin.sln</file>
+            </solution>
+        </solutions>
+    </localPaths>
+    <codeSnippets>
+        <cSharp>assets\snippets\csharp</cSharp>
+    </codeSnippets>
+</configuration>

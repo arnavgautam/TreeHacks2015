@@ -1,0 +1,39 @@
+﻿<configuration>	
+	<windowsAzureSubscription>
+	<!-- 
+		You must configure the publishSettingFile to a known and safe location to avoid being removed by the Cleanup.Local process (this process clears the Download folder and the Desktop)
+		For instances you can set it to: 'C:\SafeLocation\AzDemoSubscription-OtherSubscription-1-1-2012-credentials.publishsettings'
+	-->
+		<publishSettingsFile></publishSettingsFile>
+	<!-- 
+		The Cleanup.Azure process will remove the list of Web Sites configured (comma separated) in the webSitesToDelete element.
+	-->
+		<webSitesToDelete></webSitesToDelete>
+
+	<!-- 
+		The Cleanup.Azure process will remove the VM specified in the vmHostNameToDelete element. Specify the host name portion of your 
+                DNS name only (e.g. for a DNS [yourname].cloudapp.net, specify [yourname]).
+	-->
+		<vmHostNameToDelete></vmHostNameToDelete>
+
+	<!-- 
+		The Cleanup.Azure process will remove the storage account specified in the storageAccountNameToDelete element.
+	-->
+		<storageAccountNameToDelete></storageAccountNameToDelete>
+
+    </windowsAzureSubscription>
+	<urls>
+		<publishProfileDownloadUrl>https://windows.azure.com/download/publishprofile.aspx</publishProfileDownloadUrl>
+	</urls>
+
+	<!-- 
+		The Cleanup.Azure process will remove the Azure SQL databases specified in the azureSqlServer element.
+	-->
+	<azureSqlServer>
+		<servername></servername>
+		<username></username>
+		<password></password>
+		<expensesDbName></expensesDbName>
+        <federationDbName></federationDbName>
+	</azureSqlServer>
+</configuration>

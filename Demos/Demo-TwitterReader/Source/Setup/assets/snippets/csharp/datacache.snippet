@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Tweet Data Cache</Title>
+      <Shortcut>datacache</Shortcut>
+      <Description>Code snippet for adding cache when retrieving the Tweeter entries</Description>
+      <Author>Microsoft Corporation</Author>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[DataCache cache = new DataCache();
+
+            Tweets entries = Tweets.FromObject(cache.Get(name));
+            
+            if (entries == null)
+            {
+                entries = TwitterFeed.GetTweets(name);
+                cache.Add(name, entries.GetBytes());
+            }
+
+            return entries;]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

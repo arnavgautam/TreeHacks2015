@@ -1,0 +1,53 @@
+﻿@using Expenses.Web.Models
+@model IEnumerable<ExpenseReport>
+
+@{
+    Layout = null;
+}
+
+<h3>@this.ViewData["Title"]</h3>
+
+<table class="reports shadow">
+    <tr>
+        @if (User.IsInRole("manager"))
+        {
+            <th class="user">User</th>
+        }
+        <th class="report-name">Name</th>
+        <th>Created Date</th>
+        <th>Submitted Date</th>
+        <th>Total</th>
+    </tr>
+    @{
+        var colspan = User.IsInRole("manager") ? "5" : "4";
+
+        if (this.Model.Count() > 0)
+        {
+            foreach (ExpenseReport report in this.Model)
+            {
+                <tr>
+                    @if (User.IsInRole("manager"))
+                    {
+                        <td>@(report.User.FirstName + " " + report.User.LastName)
+                        </td>
+                    }
+                    <td>
+                        <a href="/reports/@report.Id">@report.Name</a>
+                    </td>
+                    <td>@string.Format("{0:d}", report.Created)</td>
+                    <td>@string.Format("{0:d}", report.Submitted)</td>
+                    <td>@string.Format("{0:C}", report.Details.Sum(d => d.TransactionAmount))</td>
+                </tr>        
+            }
+            
+        }
+        else
+        {
+        <tr>
+            <td colspan="@colspan">There are no @this.ViewData["Title"].ToString().ToLower() reports.</td>
+        </tr>
+        }
+    }
+</table>
+
+@Html.ActionLink("See complete list...", "Index", "Reports", new { status = this.ViewData["Title"] }, null)
