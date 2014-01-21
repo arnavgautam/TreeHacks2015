@@ -1,0 +1,32 @@
+﻿@model PhotoUploader_WebRole.Models.PhotoViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+<div class="row">
+    @Html.LabelFor(model => model.Title, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.DisplayFor(x => x.Title)
+    </div>
+</div>
+<div class="row">
+    @Html.LabelFor(model => model.Description, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.DisplayFor(x => x.Description)
+    </div>
+</div>
+<div class="row">
+    @Html.LabelFor(model => model.Uri, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        <img src="@Model.Uri" style="max-width: 300px" />
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { partitionKey = Model.PartitionKey, rowKey = Model.RowKey }, new { Class = "btn btn-primary" })
+    @Html.ActionLink("Back to List", "Index", null, new { Class = "btn btn-default" })
+</p>

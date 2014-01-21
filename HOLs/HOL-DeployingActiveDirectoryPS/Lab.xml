@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>DeployingActiveDirectoryPS</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>In this Hands-on lab you will walk through the steps necessary to deploy a stand-alone domain in the cloud using Windows Azure Virtual Machines and Virtual Networks using PowerShell.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Deploying Active Directory in Windows Azure (PowerShell)</Title>
+  <Version>3.0.1</Version>
+  <Source>.\Source</Source>
+  <CustomProperties>
+    <Property Name="ContentType" Value="Scenario" />
+  </CustomProperties>
+</Lab>

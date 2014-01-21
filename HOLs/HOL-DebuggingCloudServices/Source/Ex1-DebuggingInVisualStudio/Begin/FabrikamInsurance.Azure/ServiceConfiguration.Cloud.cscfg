@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="FabrikamInsurance.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2013-10.2.2">
+  <Role name="FabrikamInsurance">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=fabrikaminsurancestoragi;AccountKey=BDmMRwKNeB3kp15KJXj+aFmVmL/pzZMd77sOQD4xDbNlmchZXqXVLQ8f1rOgN2FvkiJYBYBJetKLAjeLz0xywg==" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

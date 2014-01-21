@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>ASPNETAppsWithWAZWebSites</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+    <Technology>ASP.NET MVC</Technology>
+    <Technology>Visual Studio</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>In this hands-on lab, you will explore the basic elements of the Windows Azure Web Sites service by creating a simple ASP.NET MVC 5 application, which uses scaffolding to automatically generate the baseline of your application's CRUD (Create, Read, Update and Delete). Then, you will deploy it using Web Deploy from Microsoft Visual Studio and finally, you will enable source control and use Git to publish directly from your local computer.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Building and Publishing ASP.NET Applications with Windows Azure Web Sites</Title>
+  <Version>1.2.1</Version>
+  <Source>.\Source</Source>
+  <CustomProperties>
+    <Property Name="ContentType" Value="VS2013" />
+  </CustomProperties>
+</Lab>

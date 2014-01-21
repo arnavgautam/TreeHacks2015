@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>BuildingRealWorldCloudApps</Id>
+  <Author>
+    <Name></Name>
+    <Blog></Blog>
+    <Email></Email>
+  </Author>
+  <Description>This demo explores how to build real world cloud applications using Windows Azure. The demo will cover key patterns of cloud computing such as Source Control Best Practices, Data Storage, Designing to survive failures, among others.</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Building Real World Cloud Apps</Title>
+  <Version>1.0.0</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker></DependencyChecker>
+</Demo>

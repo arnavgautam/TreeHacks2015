@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>IntroductionToWindowsAzureMediaServices</Id>
+  <Technologies>
+	<Technology>Windows 8.1 Style UI apps</Technology>
+    <Technology>Windows Azure Media Services</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>
+	In this hands-on lab you will learn how you can use Visual Studio 2013 and Windows Azure Media Services to upload, encode, deliver and stream media content. Additionally, you will learn how to add a media player to your Windows Store applications and how to monetize your application using advertisements in the player.
+  </Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Introduction to Windows Azure Media Services</Title>
+  <Version>1.0.1</Version>
+  <Source>.\Source</Source>
+  <CustomProperties>
+    <Property Name="ContentType" Value="VS2013" />
+  </CustomProperties>
+</Lab>

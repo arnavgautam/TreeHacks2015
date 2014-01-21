@@ -1,0 +1,37 @@
+﻿@model IEnumerable<PhotoUploader_WebRole.Models.PhotoViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (this.Model.Count() > 0)
+{
+    <table class="table">
+        <tr>
+            <th> Owner</th>
+            <th> Title</th>
+            <th> Description</th>
+            <th></th>
+        </tr>
+        @foreach (var photo in this.Model)
+        {
+            <tr>
+                <td>@photo.PartitionKey</td>
+                <td>@photo.Title</td>
+                <td>@photo.Description</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey }) |
+                    @Html.ActionLink("Details", "Details", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey }) |
+                    @Html.ActionLink("Delete", "Delete", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey }) |
+                    @Html.ActionLink("Share", "Share", new { partitionKey = photo.PartitionKey, rowKey = photo.RowKey })
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No images uploaded yet</p>
+}
