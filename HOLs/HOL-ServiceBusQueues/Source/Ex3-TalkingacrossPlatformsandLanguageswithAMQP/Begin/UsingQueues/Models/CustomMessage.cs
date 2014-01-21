@@ -20,5 +20,4 @@
             set { this.body = value; }
         }
     }
-
 }
