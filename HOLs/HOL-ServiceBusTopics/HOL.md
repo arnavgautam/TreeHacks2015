@@ -258,9 +258,9 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 	}
 	````
 
-1. Add the following code at the end of the **HomeController** class to retrieve the topics and subscriptions data to the view.
+1. The UI requires a way to retrieve the names of the existent topics, as well as the subscriptions of a given topic. Add the following code at the end of the **HomeController** class to retrieve the topics and subscriptions data to the view.
 
-	(Code Snippet - _Service Bus Topics - Ex02 - GetTopics and Subscriptions_ - CS)
+	(Code Snippet - _Service Bus Topics - Ex02 - Get Topics and Subscriptions_ - CS)
 	<!-- mark:1-13 -->
 	````C#
 	[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
@@ -277,6 +277,8 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 		 return this.Json(subscriptions, JsonRequestBehavior.AllowGet);
 	}
 	````
+
+	> **Note:** These methods are used by the view to retrieve the information on topics and subscriptions via jQuery and AJAX.
 
 1. Press **CTRL + S** to save the changes to the Controller.
 
@@ -319,12 +321,12 @@ You will now launch the updated application in the Windows Azure compute emulato
 <a name="Exercise2"></a>
 ### Exercise 2: Sending and Receiving Messages ###
 
-// TODO: Add intro paragraph.
+In the previous exercise, you added the necessary code to the aplication in order to create Windows Azure Service Bus topics and subscriptions. You will now update the application to send messages to a topic and receive the messages that arrive to the subscriptions.
 
 <a name="Ex2Task1"></a>
 #### Task 1 - Sending Messages ####
 
-In this task, you will send messages through a topic and verify that each message arrives to all subscriptions. You can send any serializable object as a **Message** through topics. You will send a **CustomMessage** object which has its own properties and is agnostic on how the Service Bus topic works or interacts with your application.
+In this task, you will send messages to a topic and verify that each message arrives to all subscriptions. You can send any serializable object as a **Message** through topics. You will send a **CustomMessage** object which has its own properties and is agnostic on how the Service Bus topic works or interacts with your application.
 
 1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
@@ -393,41 +395,28 @@ In this task, you will send messages through a topic and verify that each messag
 	}
 	````
 
-1. Next, you will create the method in the **HomeController** class that allows you to send your custom object to a **topic**. Add the following method to the class.
+1. Next, you will create a **CustomMessage,** add it to the **BrokeredMessage** and then you will set the _Urgent_, _Important_ and _Priority_ properties with the values you receive from the UI. Finally, you will use the **TopicClient** to send the message to the **topic**. Add the following method at the end of the **HomeController** class.
 
-	(Code Snippet - _Service Bus Messaging - Ex02 - SendMessage_ - CS)
-	<!-- mark:1-31 -->
+	(Code Snippet - _Service Bus Topics - Ex02 - SendMessage_ - CS)
+	<!-- mark:1-18 -->
 	````C#
 	[HttpPost]
-	public JsonResult SendMessage(string topicName, string message, bool messageIsUrgent, bool messageIsImportant)
+	public void SendMessage(string topicName, string messageBody, bool isUrgent, bool isImportant)
 	{
-	    TopicClient topicClient = this.messagingFactory.CreateTopicClient(topicName);
-	    var customMessage = new CustomMessage() { Body = message, Date = DateTime.Now };
-	    bool success = false;
-	    BrokeredMessage bm = null;
-	
-	    try
-	    {
-	        bm = new BrokeredMessage(customMessage);
-	        bm.Properties["Urgent"] = messageIsUrgent ? "1" : "0";
-	        bm.Properties["Important"] = messageIsImportant ? "1" : "0";
-	        bm.Properties["Priority"] = "Low";
-	        topicClient.Send(bm);
-	        success = true;
-	    }
-	    catch (Exception)
-	    {
-	        // TODO: do something
-	    }
-	    finally
-	    {
-	        if (bm != null)
-	        {
-	          bm.Dispose();
-	        }
-	    }
-	
-	    return this.Json(success, JsonRequestBehavior.AllowGet);
+		 TopicClient topicClient = this.messagingFactory.CreateTopicClient(topicName);
+		 var customMessage = new CustomMessage() { Body = messageBody, Date = DateTime.Now };
+		 var bm = new BrokeredMessage(customMessage);
+		 bm.Properties["Urgent"] = isUrgent ? "1" : "0";
+		 bm.Properties["Important"] = isImportant ? "1" : "0";
+
+		 // Force message priority to "Low". Subscription filters will change the value automatically if applies
+		 bm.Properties["Priority"] = "Low";
+		 topicClient.Send(bm);
+
+		 if (bm != null)
+		 {
+			  bm.Dispose();
+		 }
 	}
 	````
 
@@ -436,112 +425,64 @@ In this task, you will send messages through a topic and verify that each messag
 <a name="Ex2Task2"></a>
 #### Task 2 - Receiving Messages ####
 
-In this task, you will learn how to receive messages from a subscription. You will use a very similar logic used in Exercise 1, but in this case you will instantiate a **MessageReceiver** object from a **SubscriptionClient**.
+In the previous task, you instantiate a **TopicClient** in order to send messages to a topic. In this task you will learn how to use the **SubscriptionClient** to receive messages from a subscription and explore the properties inside the received message.
 
 1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics.Web** project.
 
 1. Add the following code at the end of the **HomeController** class.
 
-	(Code Snippet - _Service Bus Messaging - Ex02 - RetrieveMessages_ - CS)
+	(Code Snippet - _Service Bus Topics - Ex02 - RetrieveMessages_ - CS)
 	<!-- mark:1-34 -->
 	````C#
 	[HttpGet, OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
 	public JsonResult RetrieveMessage(string topicName, string subscriptionName)
 	{
-	    SubscriptionClient subscriptionClient = this.messagingFactory.CreateSubscriptionClient(topicName, subscriptionName, ReceiveMode.PeekLock);
-	    BrokeredMessage receivedMessage = subscriptionClient.Receive(new TimeSpan(0,0,30));
-	
-	    if (receivedMessage == null)
-	    {
-	        return this.Json(null, JsonRequestBehavior.AllowGet);
-	    }
-	
-	    var receivedCustomMessage = receivedMessage.GetBody<CustomMessage>();
+		 SubscriptionClient subscriptionClient = this.messagingFactory.CreateSubscriptionClient(topicName, subscriptionName, ReceiveMode.PeekLock);
+		 BrokeredMessage receivedMessage = subscriptionClient.Receive(new TimeSpan(0, 0, 30));
 
-		receivedMessage.Properties["Priority"] = receivedMessage.Properties["Important"].ToString() == "1" ? "High" : "Low";
+		 if (receivedMessage == null)
+		 {
+			  return this.Json(null, JsonRequestBehavior.AllowGet);
+		 }
 
-	    var brokeredMsgProperties = new Dictionary<string, object>();
-	    brokeredMsgProperties.Add("Size", receivedMessage.Size);
-	    brokeredMsgProperties.Add("MessageId", receivedMessage.MessageId.Substring(0, 15) + "...");
-	    brokeredMsgProperties.Add("TimeToLive", receivedMessage.TimeToLive.TotalSeconds);
-	    brokeredMsgProperties.Add("EnqueuedTimeUtc", receivedMessage.EnqueuedTimeUtc.ToString("yyyy-MM-dd HH:mm:ss"));
-	    brokeredMsgProperties.Add("ExpiresAtUtc", receivedMessage.ExpiresAtUtc.ToString("yyyy-MM-dd HH:mm:ss"));
-	
-	    var messageInfo = new
-	    {
-	        Label = receivedMessage.Label,
-	        Date = receivedCustomMessage.Date,
-	        Message = receivedCustomMessage.Body,
-	        Properties = receivedMessage.Properties.ToArray(),
-	        BrokeredMsgProperties = brokeredMsgProperties.ToArray()
-	    };
-	
-	    receivedMessage.Complete();
-	    return this.Json(messageInfo, JsonRequestBehavior.AllowGet);
+		 var receivedCustomMessage = receivedMessage.GetBody<CustomMessage>();
+
+		 receivedMessage.Properties["Priority"] = receivedMessage.Properties["Priority"].ToString() == "1" ? "High" : "Low";
+
+		 var brokeredMsgProperties = new Dictionary<string, object>();
+		 brokeredMsgProperties.Add("Size", receivedMessage.Size);
+		 brokeredMsgProperties.Add("MessageId", receivedMessage.MessageId.Substring(0, 15) + "...");
+		 brokeredMsgProperties.Add("TimeToLive", receivedMessage.TimeToLive.TotalSeconds);
+		 brokeredMsgProperties.Add("EnqueuedTimeUtc", receivedMessage.EnqueuedTimeUtc.ToString("yyyy-MM-dd HH:mm:ss"));
+		 brokeredMsgProperties.Add("ExpiresAtUtc", receivedMessage.ExpiresAtUtc.ToString("yyyy-MM-dd HH:mm:ss"));
+
+		 var messageInfo = new
+		 {
+			  Label = receivedMessage.Label,
+			  Date = receivedCustomMessage.Date,
+			  Message = receivedCustomMessage.Body,
+			  Properties = receivedMessage.Properties.ToArray(),
+			  BrokeredMsgProperties = brokeredMsgProperties.ToArray()
+		 };
+
+		 receivedMessage.Complete();
+		 return this.Json(messageInfo, JsonRequestBehavior.AllowGet);
 	}
 	````
 
 	> **Note:** In this code you are also adding additional information of the message that you will show in the UI.
 
-1. Add the following code at the end of the **HomeController** class to retrieve the topics and subscriptions data to the View.
-
-	(Code Snippet - _Service Bus Messaging - Ex02 - GetTopic and Subscriptions_ - CS)
-	<!-- mark:1-49 -->
-	````C#
-	[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-	public JsonResult Subscriptions(string topicName)
-	{
-	    var subscriptions = this.namespaceManager.GetSubscriptions(topicName).Select(c => c.Name);
-	    return this.Json(subscriptions, JsonRequestBehavior.AllowGet);
-	}
-	
-	[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-	public JsonResult TopicsWithSubscriptions()
-	{
-	    var topics = this.namespaceManager.GetTopics().Select(c => c.Path).ToList();
-	    var topicsToReturn = new Dictionary<string, object>();
-	    topics.ForEach(c =>
-	    {
-	        var subscriptions = this.namespaceManager.GetSubscriptions(c).Select(d => new { Name = d.Name, MessageCount = d.MessageCount });
-	        topicsToReturn.Add(c, subscriptions);
-	    });
-	
-	    return this.Json(topicsToReturn.ToArray(), JsonRequestBehavior.AllowGet);
-	}
-	
-	[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-	public JsonResult Filters(string topicName, string subscriptionName)
-	{
-	    var rules = this.namespaceManager.GetRules(topicName, subscriptionName);
-	    var sqlFilters = new List<Tuple<string, string>>();
-	
-	    foreach (var rule in rules)
-	    {
-	        var expression = rule.Filter as SqlFilter;
-	        var action = rule. Action as SqlRuleAction;
-	
-	        if (expression != null)
-	        {
-	            sqlFilters.Add(
-	                new Tuple<string, string>(
-	                    expression.SqlExpression,
-	                    action != null ? action.SqlExpression : string.Empty));
-	        }
-	    }
-	
-	    return this.Json(sqlFilters.Select(t => new { Filter = t.Item1, Action = t.Item2 }), JsonRequestBehavior.AllowGet);
-	}
-	
-	public long GetMessageCount(string topicName, string subscriptionName)
-	{
-	    var subscriptionDescription = this.namespaceManager.GetSubscription(topicName, subscriptionName);
-	    return subscriptionDescription.MessageCount;
-	}
-	````
-
-	> **Note:** These methods are used by the View to retrieve the information on Topics and Subscriptions via jQuery and AJAX.
-
 1. Press **CTRL + S** to save the changes to the Controller.
+
+<a name="Exercise2Verification"></a>
+### Verification ###
+
+
+1. In **Visual Studio**, perss **F5** to run the application.
+
+1. Select the topic you created from the application. Add a message in the **Message** textbox and click **Send**.
+
+	
 
 <a name="Exercise3"></a>
 ### Exercise 3: Using a Subscription Rule Filter Expression and Rule Filter Actions ###
