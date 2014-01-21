@@ -442,20 +442,20 @@ To learn more about Windows Azure Web Sites, please refer to the following artic
 
 This is a list of articles that expands the information on the technologies explained on this lab:
 
-- [Get Better Acquainted with Azure](http://blogs.msdn.com/b/windowsazure/archive/2014/01/08/get-better-acquainted-with-azure.aspx): gives a wide range of resources to continue learning about Windows Azure including blogs, Twitter accounts, forums, books and courses
-- [Windows Azure Web Sites Documentation](http://www.windowsazure.com/en-us/documentation/services/web-sites/): provides reference information for developing your site with .NET, PHP, Node.js or Python and hosting in Windows Azure Web Sites
-- [Windows Azure Web Sites, Cloud Services, and VMs: When to use which?](http://www.windowsazure.com/en-us/documentation/articles/choose-web-site-cloud-service-vm/): provides guidance on how to make an informed decision when choosing among Windows Azure Web Sites, Cloud Services, and virtual machines to host a web application
+- [Windows Azure Web Sites Documentation](http://aka.ms/Alwcgu): provides reference information for developing your site with .NET, PHP, Node.js or Python and hosting in Windows Azure Web Sites
+- [Get Better Acquainted with Azure](http://aka.ms/Y42duf): gives a wide range of resources to continue learning about Windows Azure including blogs, Twitter accounts, forums, books and courses
+- [Windows Azure Web Sites, Cloud Services, and VMs: When to use which?](http://aka.ms/Nocpe8): provides guidance on how to make an informed decision when choosing among Windows Azure Web Sites, Cloud Services, and virtual machines to host a web application
+- [Create a Line-of-Business Application on Windows Azure Web Sites](http://aka.ms/Kuynic): provides a technical overview of how to use Windows Azure Web Sites to create line-of-business applications
 
 **Development**
 
 This is a list of developer-oriented articles related to Windows Azure Web Sites:
 
-- [How to Monitor Web Sites](http://www.windowsazure.com/en-us/documentation/articles/web-sites-monitor/): guides you through implementing and monitoring performance statistics for Windows Azure Web Sites
-- [How to Use ASP.NET Session State with Windows Azure Web Sites](http://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-session-state-caching/): explains how to use the Windows Azure Cache Service to support ASP.NET session state caching
-- [Create a Line-of-Business Application on Windows Azure Web Sites](http://www.windowsazure.com/en-us/documentation/articles/web-sites-business-application-solution-overview/): provides a technical overview of how to use Windows Azure Web Sites to create line-of-business applications
-- [Publishing from Source Control to Windows Azure Web Sites](http://www.windowsazure.com/en-us/documentation/articles/web-sites-publish-source-control/): shows how to use Git to publish to a Windows Azure Web Site. You will learn how to do it with your local repository and also with web sites like BitBucket, CodePlex, DropBox, or GitHub
-- [Windows Azure Web Sites – Exploring the platform (Video)](http://channel9.msdn.com/Events/Build/2013/2-550): shows you more about building a web application, understanding options for deployment, and setting up continuous integration
-- [Windows Azure Web Sites: Under the Hood (Video)](http://channel9.msdn.com/Events/TechEd/NorthAmerica/2012/AZR305): shows you how new Web sites are provisioned, how incoming requests are routed and serviced, and what actually happens when it is time to scale your Web site - both out and up
+- [How to Use ASP.NET Session State with Windows Azure Web Sites](http://aka.ms/Odtcqj): explains how to use the Windows Azure Cache Service to support ASP.NET session state caching
+- [Publishing from Source Control to Windows Azure Web Sites](http://aka.ms/B68rqv): shows how to use Git to publish to a Windows Azure Web Site. You will learn how to do it with your local repository and also with web sites like BitBucket, CodePlex, DropBox, or GitHub
+- [How to Monitor Web Sites](http://aka.ms/Aovqr1): guides you through implementing and monitoring performance statistics for Windows Azure Web Sites
+- [Windows Azure Web Sites – Exploring the platform (Video)](http://aka.ms/E9g0c1): shows you more about building a web application, understanding options for deployment, and setting up continuous integration
+- [Windows Azure Web Sites: Under the Hood (Video)](http://aka.ms/H5il2o): shows you how new Web sites are provisioned, how incoming requests are routed and serviced, and what actually happens when it is time to scale your Web site - both out and up
 
 ---
 

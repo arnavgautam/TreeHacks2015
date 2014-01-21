@@ -1,7 +1,6 @@
 ﻿@{
     ViewBag.Title = "Service Bus Queues";
 }
-
 <div id="mainContent">
     <div class="row">
         <div class="col-sm-12 col-md-12">
@@ -39,10 +38,9 @@
         </div>
         <div class="col-sm-4 col-md-4">
             <div class="row">
-
                 <h4>4. Read a message</h4>
-                <div class="form-group">    
-                    <label for="messageBody">Select a Queue first</label>                                    
+                <div class="form-group">
+                    <label for="messageBody">Select a Queue first</label>
                 </div>
                 <div class="form-inline">
                     <button id="retrieveMessageButton" type="submit" class="btn btn-default" disabled="disabled">Receive</button>
@@ -81,9 +79,8 @@
     </div>
 </div>
 
-
 @section scripts{
-    <script type="text/javascript">        
+    <script type="text/javascript">
 
         function setFormStatus(isEnabled) {
             if (isEnabled) {
@@ -111,16 +108,17 @@
             var queueClick = function () {
                 $("#queueList a.active").removeClass("active");
                 $(this).addClass("active");
-                $("#sendMessageButton").removeAttr("disabled");                
+                $("#sendMessageButton").removeAttr("disabled");
+                $("#retrieveMessageButton").removeAttr("disabled");
             };
 
             $.post('/Home/CreateQueue', queue)
                 .always(function () {
                     setFormStatus(true);
                 }).success(function (data) {
-                    var newQueue = $("<a href='#' class='list-group-item'>")
+                    var newQueue = $("<a href='#' class='list-group-item'></a>")
                         .on('click', queueClick)
-                        .html(data);
+                        .html('<span class="badge" data-value="' + data.Path.toLowerCase() + '">0</span>' + data.Path.toLowerCase());
                     $("#queueList").append(newQueue);
                     logMessage("Done!");
                 }).fail(function () {
@@ -150,7 +148,8 @@
                 var queueClick = function () {
                     $("#queueList a.active").removeClass("active");
                     $(this).addClass("active");
-                    $("#sendMessageButton").removeAttr("disabled");                    
+                    $("#sendMessageButton").removeAttr("disabled");
+                    $("#retrieveMessageButton").removeAttr("disabled");
                 };
                 console.debug(queue.Name);
                 console.debug(queue.Messages);
@@ -161,7 +160,7 @@
             });
 
             $("#loading").hide();
-        }       
+        }
 
         function sendMessage() {
             setFormStatus(false);
@@ -192,15 +191,18 @@
 
         function updateMessageCount(selectedQueueName) {
             logMessage("Updating message count values...");
-            $.get("/Home/GetMessageCount", { queueName: selectedQueueName })
-                .always(function () {
-                    logMessage("Done!");
-                })
-                .success(function (response) {
-                    for (var i = 0; i < response.length; i++) {
-                        $("#queueList span[data-value=" + selectedQueueName + "]").html(response);
-                    }
-                });
+            $.ajax({
+                url: "/Home/GetMessageCount",
+                type: "GET",
+                cache: false,
+                data: { queueName: selectedQueueName }
+            })
+            .always(function () {
+                logMessage("Done!");
+            })
+            .success(function (response) {
+                $("#queueList span[data-value=" + selectedQueueName + "]").html(response);
+            });
         }
 
         function retrieveMessage() {
@@ -208,10 +210,10 @@
             var queueName = $("#queueList a.active").attr("data-value");
             $(".loading").show();
             logMessage("Retrieving message from Queue:'" + queueName + "'...");
-            $.get("/Home/RetrieveMessage", { queueName: queueName})
+            $.get("/Home/RetrieveMessage", { queueName: queueName })
                 .success(function (response) {
                     logMessage("Done!");
-                    renderMessage(response);
+                    renderMessage(response.MessageInfo);
                     updateMessageCount(queueName);
                 })
                 .error(function () {

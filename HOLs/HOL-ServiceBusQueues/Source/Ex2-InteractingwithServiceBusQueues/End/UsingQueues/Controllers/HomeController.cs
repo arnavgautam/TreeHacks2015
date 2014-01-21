@@ -1,5 +1,4 @@
 ﻿using Microsoft.ServiceBus;
-using Microsoft.ServiceBus.Messaging;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using System;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using UsingQueues.Models;
+using Microsoft.ServiceBus.Messaging;
 
 namespace UsingQueues.Controllers
 {
@@ -35,12 +35,32 @@ namespace UsingQueues.Controllers
         [HttpPost]
         public JsonResult CreateQueue(string queueName)
         {
-            var queueDescription = this.namespaceManager.CreateQueue(queueName);
-            return this.Json(queueDescription, JsonRequestBehavior.AllowGet);
+            try
+            {
+                var queueDescription = this.namespaceManager.CreateQueue(queueName);
+                return this.Json(queueDescription, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return this.Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public JsonResult Queues()
+        {
+            var queues = this.namespaceManager.GetQueues().Select(c => new { Name = c.Path, Messages = c.MessageCount }).ToArray();
+            return this.Json(queues, JsonRequestBehavior.AllowGet);
+        }
+
+        public long GetMessageCount(string queueName)
+        {
+            var queueDescription = this.namespaceManager.GetQueue(queueName);
+            return queueDescription.MessageCount;
         }
 
         [HttpPost]
-        public void SendMessage(string queueName, string messageBody, bool isUrgent, bool isFollowUp)
+        public void SendMessage(string queueName, string messageBody)
         {
             QueueClient queueClient = this.messagingFactory.CreateQueueClient(queueName);
             var customMessage = new CustomMessage() { Date = DateTime.Now, Body = messageBody };
@@ -53,7 +73,10 @@ namespace UsingQueues.Controllers
                 bm.Properties["Priority"] = "High";
                 queueClient.Send(bm);
             }
-            catch { }
+            catch
+            {
+                // TODO: do something
+            }
             finally
             {
                 if (bm != null)
@@ -93,21 +116,8 @@ namespace UsingQueues.Controllers
             };
 
             receivedMessage.Complete();
-            return this.Json(messageInfo, JsonRequestBehavior.AllowGet);
+            return this.Json(new { MessageInfo = messageInfo }, JsonRequestBehavior.AllowGet);
         }
 
-
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult Queues()
-        {
-            var queues = this.namespaceManager.GetQueues().Select(c => new { Name = c.Path, Messages = c.MessageCount }).ToArray();
-            return this.Json(queues, JsonRequestBehavior.AllowGet);
-        }
-
-        public long GetMessageCount(string queueName)
-        {
-            var queueDescription = this.namespaceManager.GetQueue(queueName);
-            return queueDescription.MessageCount;
-        }
     }
 }
