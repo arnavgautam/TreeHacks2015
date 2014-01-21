@@ -1,0 +1,1 @@
+To run the provided End solution you need to create a self signed certificate and replace the settings placeholders with your Azure account as described in the lab document in the Exercise 4.

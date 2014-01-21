@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DependencyCheckerConfiguration version="2.0">
+	<title>Introduction to Windows Azure Active Directory</title>
+	<dependencies>
+		<dependency hint="HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\DevDiv\vs\Servicing\11~.0\devenv.Version;^11\.[0-9]\.([3-9][0-9]\d*).[0-9]$"
+            name="Visual Studio 2012 Professional or Ultimate"
+            description="Microsoft Visual Studio Ultimate 2012, Microsoft Visual Studio Premium 2012, Microsoft Visual Studio Professional 2012 or Microsoft Visual Studio Express 2012 for Windows 8"
+            helpLink="http://www.microsoft.com/en-us/download/details.aspx?id=30664"
+            disableSkip="false"
+            type="Registry" />
+		<dependency
+			hint="WCF Data Services 5.3 Tools"
+			name="WCF Data Services 5.3 Tools"
+			description="This installer will update the NuGet packages referenced by the WCF Data Services item templates to 5.3.0. This installer also fixes a few bugs in code gen scenarios."
+			helpLink="http://www.microsoft.com/en-us/download/details.aspx?id=35840"
+			type="Uninstall" />
+    </dependencies>
+	<setupCommands>
+		<setup
+		command="setup.cmd"
+		name="Setup Script"
+		description="Executing setup scripts..." />
+	</setupCommands>	
+</DependencyCheckerConfiguration>
