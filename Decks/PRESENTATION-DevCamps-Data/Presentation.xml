@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Presentation xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>DevCamps-Data</Id>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name>Scott Klein</Name>
+  </Author>
+  <Description>Every application needs to store and manage data. In this session, you will get a firsthand look at the complete set of scalable and highly available data services including Windows Azure Storage and SQL Databases. You’ll see how you can effectively use these services to build, migrate, and extend data-centric applications in the cloud while using familiar tools.</Description>
+  <Document RemoveSpeakerNotes="false">.\DevCamps-Data.pptx</Document>
+  <Title>Windows Azure Storage and Database</Title>
+  <Version>1.0.2</Version>
+  <SlideThumbnail>1</SlideThumbnail>
+  <CustomProperties>
+    <Property Name="Filter" Value="DevCamps" />
+  </CustomProperties>
+</Presentation>

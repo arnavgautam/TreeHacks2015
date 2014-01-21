@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Presentation xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>DevCamps-Windows8AndWindowsAzureWebSites</Id>
+  <Author>
+    <Blog>http://www.nickharris.net</Blog>
+    <Email></Email>
+    <Name>Nick Harris</Name>
+  </Author>
+  <Description>
+Are you building a connected Windows 8 app? This session will introduce you to Windows Azure and demonstrate how you can build connected experiences for your Windows 8 apps. After walking the through the fundamentals of both platforms we will take a deep dive as I demonstrate how you can use Windows Azure to support common geo-location, multimedia, data and push notification scenarios. At the end of this session, you will be empowered to begin building and deploying your own Windows 8 client applications that are powered by Windows Azure Web Sites.
+  </Description>
+  <Document RemoveSpeakerNotes="false">.\Windows8AndWindowsAzureWebSites.pptx</Document>
+  <Title>Building Connected Windows 8 Apps with Windows Azure Web Sites</Title>
+  <Version>1.0.2</Version>
+  <SlideThumbnail>1</SlideThumbnail>
+  <CustomProperties>
+    <Property Name="Filter" Value="devcamps,device-plus-services" />
+  </CustomProperties>
+</Presentation>

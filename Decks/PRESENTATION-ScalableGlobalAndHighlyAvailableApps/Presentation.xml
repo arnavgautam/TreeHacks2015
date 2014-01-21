@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Presentation xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>BuildingScalableGlobalAndHighlyAvailableWebApps</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name>Haishi Bai</Name>
+  </Author>
+  <Description>
+	This presentation covers common techniques for designing and building highly available and scalable web applications using Windows Azure. You will learn about features provided by Windows Azure for fault tolerance, fail over, and non-disruptive upgrades.  You will also learn how to configure additional services including caching, the Content Delivery Network, and Traffic Manager.  
+  </Description>
+  <Document RemoveSpeakerNotes="false">.\BuildingScalableGlobalAndHighlyAvailableWebApps.pptx</Document>
+  <Title>Building Scalable, Global and Highly Available Web Apps</Title>
+  <Version>1.0.3</Version>
+  <SlideThumbnail>1</SlideThumbnail>
+  <CustomProperties>
+    <Property Name="Filter" Value="Foundation" />
+  </CustomProperties>
+</Presentation>

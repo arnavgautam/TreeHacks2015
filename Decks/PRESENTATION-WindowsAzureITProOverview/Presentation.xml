@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Presentation xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>WindowsAzureEnterpriseOverview</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name>David Tesar</Name>
+  </Author>
+  <Description>
+    The first section of this presentation provides an overview of Windows Azure for Enterprises including top usage scenarios which ~100-200 level targeted at decision makers and IT implementers.  The remaining sections cover Cloud Services, Web Sites, Virtual Networks, Virtual Machines, and to understand the capabilities and how it works. The latter section is targeted at ~200-300 level and IT implementers and architects.  This is not a developer focused deck.
+  </Description>
+  <Document RemoveSpeakerNotes="false">.\WindowsAzureEnterprise.pptx</Document>
+  <Title>Windows Azure Overview for Enterprises</Title>
+  <Version>2.0.1</Version>
+  <SlideThumbnail>1</SlideThumbnail>
+  <CustomProperties>
+    <Property Name="Filter" Value="Foundation,itprocamps" />
+  </CustomProperties>
+</Presentation>

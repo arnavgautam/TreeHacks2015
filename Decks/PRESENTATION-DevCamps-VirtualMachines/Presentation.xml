@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Presentation xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>DevCamps-VirtualMachines</Id>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name>Michael Washam</Name>
+  </Author>
+  <Description>Windows Azure provides a simple and flexible model for migrating and extending applications through direct access to Virtual Machines.  In this session you will learn how to provision and customize Windows Azure Virtual Machines and configure Virtual Network connectivity to migrate, build, and connect applications.</Description>
+  <Document RemoveSpeakerNotes="false">.\DevCamps-VirtualMachines.pptx</Document>
+  <Title>Windows Azure Virtual Machines</Title>
+  <Version>1.0.4</Version>
+  <SlideThumbnail>1</SlideThumbnail>
+  <CustomProperties>
+    <Property Name="Filter" Value="DevCamps" />
+  </CustomProperties>
+</Presentation>

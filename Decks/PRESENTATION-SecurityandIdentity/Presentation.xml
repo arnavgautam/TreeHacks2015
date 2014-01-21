@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Presentation xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>SecurityandIdentity</Id>
+  <Technologies>
+    <Technology>ACS</Technology>
+    <Technology>Azure Active Directory</Technology>
+  </Technologies>
+  <Author>
+    <Blog>http://blog.haishibai.com</Blog>
+    <Email>hbai@microsoft.com</Email>
+    <Name>Haishi Bai</Name>
+  </Author>
+  <Description>
+    This presentation provides a high-level overview of a claim-based architecture, the Windows Azure Access Control Service, and Windows Azure Active Directory.
+  </Description>
+  <Document RemoveSpeakerNotes="false">.\SecurityandIdentity.pptx</Document>
+  <Title>Security and Identity</Title>
+  <Version>2.0.4</Version>
+  <SlideThumbnail>1</SlideThumbnail>
+  <CustomProperties>
+    <Property Name="Filter" Value="Foundation" />
+  </CustomProperties>
+</Presentation>
