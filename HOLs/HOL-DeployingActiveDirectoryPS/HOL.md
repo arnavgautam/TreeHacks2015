@@ -41,8 +41,17 @@ The following is required to complete this hands-on lab:
 		$imageName = @($images | Where {$_.ImageName -match "106__Windows-Server-2012"})[-1].ImageName
 		```
 
-
 >**Note:** In order to run through the complete hands-on lab, you must have network connectivity. 
+
+---
+
+<a name="Exercises" /></a>
+## Exercises ##
+
+This hands-on lab includes the following exercises:
+
+1. [Adding a new Data Disk to the Virtual Machine](#Exercise1)
+1. [Deploying a new Domain Controller in Windows Server 2012](#Exercise2)
 
 <a name="gettingstarted" /></a>
 ### Getting Started: Obtaining Subscription's Credentials ###
@@ -121,14 +130,6 @@ In this task, you will log on to the Windows Azure Portal and download the Publi
 	````PowerShell
 	Set-AzureSubscription -SubscriptionName '[YOUR-SUBSCRIPTION-NAME]' -CurrentStorageAccount '[YOUR-STORAGE-ACCOUNT]'
 	````
-
-<a name="Exercises" /></a>
-## Exercises ##
-
-This hands-on lab includes the following exercises:
-
-1. [Exercise 1 - Adding a new Data Disk to the Virtual Machine](#Exercise1)
-1. [Exercise 2 - Deploying a new Domain Controller in Windows Server 2012](#Exercise2)
 
 <a name="Exercise1" /></a>
 ### Exercise 1: Adding a new Data Disk to the Virtual Machine ###

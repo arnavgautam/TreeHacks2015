@@ -1069,6 +1069,13 @@ In this task, you will update the application to take advantage of the data sour
 
 ---
 
+<a name="NextSteps" />
+## Next Steps ##
+
+TBC
+
+---
+
 <a name="Summary" />
 ## Summary ##
 

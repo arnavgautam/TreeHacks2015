@@ -448,7 +448,7 @@ This is a list of articles that expands the information on the technologies expl
 
 **Development**
 
-This is a list of developer-oriented articles related to Windows Azure Media Services:
+This is a list of developer-oriented articles related to Windows Azure Web Sites:
 
 - [How to Monitor Web Sites](http://www.windowsazure.com/en-us/documentation/articles/web-sites-monitor/): guides you through implementing and monitoring performance statistics for Windows Azure Web Sites
 - [How to Use ASP.NET Session State with Windows Azure Web Sites](http://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-session-state-caching/): explains how to use the Windows Azure Cache Service to support ASP.NET session state caching
