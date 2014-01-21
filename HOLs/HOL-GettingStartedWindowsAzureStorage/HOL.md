@@ -68,11 +68,11 @@ Throughout the lab document, you will be instructed to insert code blocks. For y
 
 This hands-on lab includes the following exercises:
 
-1.	[Exercise 1 - Creating a Windows Azure Storage Account](#Exercise1)
-1.	[Exercise 2 - Managing a Windows Azure Storage Account](#Exercise2)
-1.	[Exercise 3 - Understanding the Windows Azure Storage Abstractions](#Exercise3)
-1.	[Exercise 4 - Introducing SAS (Shared Access Signature)](#Exercise4)
-1.	[Exercise 5 - Updating SAS to use Stored Access Policies](#Exercise5)
+1.	[Creating a Windows Azure Storage Account](#Exercise1)
+1.	[Managing a Windows Azure Storage Account](#Exercise2)
+1.	[Understanding the Windows Azure Storage Abstractions](#Exercise3)
+1.	[Introducing SAS (Shared Access Signature)](#Exercise4)
+1.	[Updating SAS to use Stored Access Policies](#Exercise5)
 
 > **Note:** Each exercise is accompanied by a starting solution. These solutions are missing some code sections that are to be completed throughout each exercise and therefore will not necessarily work if you run them directly.
 Inside each exercise you will also find an **End** folder with the solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
@@ -1909,6 +1909,7 @@ In this task you will update table security to use Stored Access Policy.
 
 ---
 
+<a name="NextSteps" />
 ## Next Steps ##
 
 To learn more about **Windows Azure Storage**, please refer to the following articles which expand on the technologies explained in this lab:
@@ -1947,6 +1948,3 @@ By completing this hands-on lab you have learned how to:
 * Consume Storage Services from a Web Application
 * Create and consume Shared Access Signatures
 * Enhance Shared Access Signatures by using Stored Access Policies
-
----
-

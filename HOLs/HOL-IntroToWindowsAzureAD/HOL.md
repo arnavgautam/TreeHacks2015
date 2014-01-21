@@ -700,8 +700,8 @@ In this task you will update the **HomeController** of your MVC app to query the
 	</nav>
 	````
 
-<a name="Ex2Verification" />
-#### Verification ####
+<a name="Ex2Task4"></a>
+#### Task 4 – Verification ####
 
 1. Press **F5** to run the application. The single sign-on experience is the same as you saw in the previous exercise, requiring authentication using your Windows Azure AD credentials.
 
@@ -716,6 +716,13 @@ In this task you will update the **HomeController** of your MVC app to query the
 	![Displaying Users From AD Tenant](Images/displaying-users-from-ad-tenant.png?raw=true)
 
 	_Displaying Users From AD Tenant_
+
+---
+
+<a name="NextSteps" />
+## Next Steps ##
+
+TBC
 
 ---
 

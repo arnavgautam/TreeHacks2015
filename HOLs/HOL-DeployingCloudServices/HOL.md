@@ -66,11 +66,8 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 This hands-on lab includes the following exercises:
 
 1. [Deploying an Application Using the Windows Azure Management Portal](#Exercise1)
-
 1. [Using PowerShell to Manage Windows Azure Applications](#Exercise2)
-
 1. [Using Visual Studio to Publish Applications](#Exercise3)
-
 1. [Securing Windows Azure with SSL](#Exercise4)
 
 Estimated time to complete this lab: **90 minutes**.
@@ -376,8 +373,6 @@ Now that you have verified that the service is working correctly in the staging 
 
 	>**Note:** Even when a deployment is in a suspended state, Windows Azure still needs to allocate a virtual machine (VM) for each instance and charge you for it. Once you have completed testing the application, you need to remove the deployment from Windows Azure to avoid an unnecessary expense. To remove a running deployment, go to your Cloud Service **Dashboard** page, select the deployment slot where the service is currently hosted, staging or production, and then click **Stop** on the bottom menu. Once the service has stopped, click **Delete** to remove it.
 
----
-
 <a name="Exercise2" />
 ### Exercise 2: Using PowerShell to manage Windows Azure Applications ####
 
@@ -580,8 +575,8 @@ In this task, you use the Windows Azure PowerShell cmdlets to upgrade an existin
 	Get-AzureService -ServiceName $serviceName | Get-AzureDeployment -Slot staging | Move-AzureDeployment
 	````
 
-<a name="Ex2Verification" />
-#### Verification ####
+<a name="Ex2Task5" />
+#### Task 5 - Verification ####
 
 Now that you have deployed your updated solution to Window Azure, you are ready to test it. You will launch the application to determine if the deployment succeeded and ensure that the service is working correctly and is available at its production URL. 
 
@@ -592,8 +587,6 @@ Now that you have deployed your updated solution to Window Azure, you are ready 
 	_New deployment showing the updated footer text_
 
 	>**Note:** If you visit the production site shortly after its promotion, the DNS name might not be ready. If you encounter a DNS error (404), wait a few minutes and try again. Keep in mind that Windows Azure creates DNS name entries dynamically and that the changes might take few minutes to propagate.
-	
----
 
 <a name="Exercise3" />
 ### Exercise 3: Using Visual Studio to Publish Applications ####
@@ -717,8 +710,6 @@ Notice that the additional information provided includes the deployment slot, **
 	![Running the application deployed with Visual Studio](./Images/running-deployment.png?raw=true "Running the application deployed with Visual Studio")
 
 	_Running the application deployed with Visual Studio_
-
----
 
 <a name="Exercise4" />
 ### Exercise 4: Securing Windows Azure with SSL ###
@@ -877,8 +868,8 @@ In this task, you upload the self-signed certificate created in the previous ste
 
 	_Creating a certificate for the service_
 
-<a name="Ex4Verification" />
-#### Verification ####
+<a name="Ex4Task5" />
+#### Task 5 - Verification ####
 
 In this task, you deploy the application to Windows Azure and access its HTTPS endpoint to verify that your enabled SSL successfully.
 
@@ -916,8 +907,8 @@ In this task, you deploy the application to Windows Azure and access its HTTPS e
 
 	>**Note:** For your production deployments, you can purchase a certificate for your application from a trusted authority and use that instead.
 
-<a name="Ex4Task5" />
-#### Task 5 – Configuring a CNAME Entry for DNS Resolution (Optional) ####
+<a name="Ex4Task6" />
+#### Task 6 – Configuring a CNAME Entry for DNS Resolution (Optional) ####
 
 When you deploy your application, Windows Azure assigns it a URL of the form _http://\[servicemytodo\].cloudapp.net_, where [_servicemytodo_] is the public name that you chose for your cloud service at the time of creation. While this URL is completely functional, there are many reasons why you might prefer to use a URL in your own domain to access the service. In other words, instead of accessing the application as _http://servicemytodo.cloudapp.net_, use your own organization's domain name instead, for example _http://servicemytodo.fabrikam.com_.
 
@@ -965,6 +956,13 @@ As an example, this task briefly shows how you set up an alias using Microsoft D
 	
 
 	You will now be able to access the application using the alias.
+
+---
+
+<a name="NextSteps" />
+## Next Steps ##
+
+TBC
 
 ---
 
