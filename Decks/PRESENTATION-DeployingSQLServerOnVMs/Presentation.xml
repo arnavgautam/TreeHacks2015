@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Presentation xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>SQLServerOnVMS</Id>
+  <Author>
+    <Blog></Blog>
+    <Email>mwasham@microsoft.com</Email>
+    <Name>Michael Washam</Name>
+  </Author>
+  <Description>
+Understanding how and when to deploy SQL Server within Windows Azure Virtual Machines
+  </Description>
+  <Document RemoveSpeakerNotes="false">.\DeployingSQLOnVMs.pptx</Document>
+  <Title>Windows Azure Migrating SQL Server Workloads</Title>
+  <Version>1.0.3</Version>
+  <SlideThumbnail>1</SlideThumbnail>
+  <CustomProperties>
+    <Property Name="Filter" Value="Foundation" />
+  </CustomProperties>
+</Presentation>
