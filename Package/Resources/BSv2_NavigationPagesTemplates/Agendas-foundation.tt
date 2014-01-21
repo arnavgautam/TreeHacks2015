@@ -1,0 +1,21 @@
+﻿<#@ template language="C#" debug="True" #> 
+<#@ output extension="htm" #> 
+<#@ assembly name="System.dll" #> 
+<#@ assembly name="System.Core.dll" #> 
+<#@ assembly name="ContentFramework.Model.dll" #> 
+
+<#@ import namespace="ContentFramework.Model" #> 
+<#@ import namespace="System.Linq" #> 
+<#@ property name="Package" processor="PropertyProcessor" #> 
+
+<# var currentPage = "Agendas-Foundation"; #> 
+<#@ include file="Master.Header.include.tt" #>
+	<div class="genericInnerWrapper">
+		<h1>
+			Training Agenda</h1>
+		<p>
+		
+		New agendas coming soon!
+		
+	</div>
+<#@ include file="Master.Footer.include.tt" #>
