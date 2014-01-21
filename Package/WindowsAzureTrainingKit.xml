@@ -148,10 +148,6 @@
         <Presentation>..\Decks\PRESENTATION-Windows8AndWindowsAzureWebSites</Presentation>
         <Presentation>..\Decks\PRESENTATION-DevCamps-Windows8AndWindowsAzureWebSites</Presentation>
         <Presentation>..\Decks\PRESENTATION-DevCamps-WindowsPhoneAndWindowsAzure</Presentation>
-        <!-- <Presentation>..\Decks\DevCamps-Windows8AndWindowsAzureMobileServices</Presentation>
-        <Presentation>..\Decks\Presentation-Windows8AndWindowsAzureMobileServices</Presentation>
-        <Presentation>..\Decks\Presentation-BuildingAndroidAppsWithWindowsAzureMobileServices</Presentation>
-        <Presentation>..\Decks\Presentation-BuildingiOSAppsWithWindowsAzureMobileServices</Presentation> -->
       </Presentations>
     </Unit>
   </Units>
