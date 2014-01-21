@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <!-- Main Settings -->
+  <Id>WATK</Id>
+  <Name>Windows Azure Training Kit</Name>
+  <Description>This Windows Azure Training Kit includes a comprehensive set of technical content including hands-on labs and presentations that are designed to help you quickly learn how to use Windows Azure services.</Description>  
+  <Version>5.0.0</Version>
+  <Overview>
+    <Author>
+      <Blog>
+      </Blog>
+      <Email>WindowsAzureTrainingKit@microsoft.onmicrosoft.com</Email>
+      <Name>Microsoft Developer and Platform Evangelism</Name>
+    </Author>
+    <Description>Windows Azure Training Kit</Description>
+    <Document></Document>
+    <Title>Windows Azure Training Kit</Title>
+    <Version>January 2014 Update</Version>
+  </Overview>
+  <DefaultInstallLocation>C:\WATK</DefaultInstallLocation>
+  <RelatedResources/>
+  <!-- Prerequisites Section -->
+  <!--<Prerequisites>    
+    <Group Name="Visual Studio 2012" Order="1" Description="">
+      <Prerequisites>
+        <Prerequisite Name="Visual Studio 2012" Link="http://www.microsoft.com/visualstudio/eng/whats-new" Description="" />
+      </Prerequisites>
+    </Group>
+  </Prerequisites> -->
+  <!-- Content Units -->
+  <Units xmlns:d="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+    <!-- Unit: Windows Azure-->
+    <Unit>
+      <Id>WindowsAzure</Id>
+      <Name>Windows Azure</Name>
+      <Description>Windows Azure is an internet-scale cloud computing and services platform hosted in Microsoft data centers, which provides an operating system and a set of developer services which can be used individually or together. It gives developers the choice to build web applications; applications running on connected devices, PCs, or servers; or hybrid solutions offering the best of both worlds. New or enhanced applications can be built using existing skills with the Visual Studio development environment and the .NET Framework. With its standards-based and interoperable approach, the services platform supports multiple internet protocols, including HTTP, REST, SOAP, and plain XML.</Description>
+      <Presentations>
+		<Presentation>..\Decks\PRESENTATION-WindowsAzureOverview</Presentation>
+        <Presentation>..\Decks\PRESENTATION-WindowsAzureITProOverview</Presentation>
+		<Presentation>..\Decks\PRESENTATION-DevCamps-Keynote</Presentation>
+      </Presentations>
+    </Unit>
+    <!-- Unit: Web Sites-->
+    <Unit>
+      <Description>
+        Windows Azure provides the ability to quickly and easily create and deploy websites with support for multiple application frameworks and preloaded with popular open source applications including WordPress, Drupal, Joomla! and Umbraco. A website is the host for a web application running in the cloud that you can control and manage. After you create a website in Windows Azure you can start, stop, and delete it whenever you need to and you can access the website as easily as you access a website hosted on a web server in your office.
+      </Description>
+      <Id>WebSites</Id>
+      <Name>Web Sites</Name>
+      <Labs>  
+    	<Lab>..\HOLs\HOL-ASPNETAzureWebSites</Lab>
+      </Labs>
+      <Presentations>
+      	<Presentation>..\Decks\PRESENTATION-WindowsAzureWebSites</Presentation>
+      	<Presentation>..\Decks\PRESENTATION-DevCamps-WebSites</Presentation>
+      </Presentations>
+    </Unit>
+    <!-- Unit: Virtual Machines -->
+    <Unit>
+      <Id>VirtualMachines</Id>
+      <Name>Virtual Machines</Name>
+      <Description>
+        Windows Azure's flexible and interoperable platform can be used to build new applications to run from the cloud or enhance existing applications with cloud-based capabilities.
+      </Description>
+      <Labs>
+        <Lab>..\HOLs\HOL-UnderstandingVMImagingWithCapturePS</Lab>
+        <Lab>..\HOLs\HOL-DeployingActiveDirectoryPS</Lab>
+        <Lab>..\HOLs\HOL-AutomatingVMManagementPS</Lab>
+      </Labs>
+      <Presentations>
+		<Presentation>..\Decks\PRESENTATION-VirtualMachinesOverview</Presentation>
+		<Presentation>..\Decks\PRESENTATION-WindowsAzureVirtualMachines</Presentation>
+        <Presentation>..\Decks\PRESENTATION-VirtualNetworks</Presentation>
+        <Presentation>..\Decks\PRESENTATION-MigratingAppsAndWorkloads</Presentation>
+        <Presentation>..\Decks\PRESENTATION-ManagingVMsPowerShell</Presentation>
+        <Presentation>..\Decks\PRESENTATION-BuildingAppsWithIaaSAndPaaS</Presentation>
+        <Presentation>..\Decks\PRESENTATION-DeployingActiveDirectory</Presentation>
+        <Presentation>..\Decks\PRESENTATION-DeployingSQLServerOnVMs</Presentation>
+        <Presentation>..\Decks\PRESENTATION-DeployingSharePointOnVMs</Presentation>
+        <Presentation>..\Decks\PRESENTATION-LinuxVirtualMachines</Presentation>
+        <Presentation>..\Decks\PRESENTATION-DevCamps-VirtualMachines</Presentation>
+       </Presentations>
+    </Unit>
+    <!-- Unit: Cloud Services -->
+    <Unit>
+      <Id>CloudServices</Id>
+      <Name>Cloud Services</Name>
+      <Description>
+        Quickly deploy and manage powerful applications and services with Windows Azure Cloud Services. Simply upload your application and Windows Azure handles the deployment details - from provisioning and load balancing to health monitoring for continuous availability.
+      </Description>
+      <Labs>
+      	<!-- <Lab>..\HOLs\HOL-BuildingAppsWithCaching</Lab> -->
+      </Labs>
+      <Presentations>
+      	<Presentation>..\Decks\PRESENTATION-WindowsAzureCloudServices</Presentation>
+      	<Presentation>..\Decks\PRESENTATION-DevCamps-CloudServices</Presentation>
+		<Presentation>..\Decks\PRESENTATION-CloudServiceLifecycle</Presentation>
+      </Presentations>
+	  <Demos>
+		<Demo>..\Demos\Demo-BuildingRealWorldCloudApps</Demo>
+	  </Demos>
+    </Unit>
+    <!-- Unit: Building Block Services -->
+    <Unit>
+      <Id>BuildingBlockServices</Id>
+      <Name>Building Block Services</Name>
+      <Description>
+        Windows Azure is an internet-scale cloud computing and services platform hosted in Microsoft data centers. By deploying your multi-tiered application as a cloud service, you can define multiple web and worker roles, each with its own application files and configuration, to distribute processing and allow flexible scaling of your application. Web roles provide a dedicated Internet Information Services (IIS) web-server used for hosting front-end web applications. Applications hosted within worker roles can run asynchronous, long-running or perpetual tasks independent of user interaction or input.
+      </Description>
+      <Labs>
+    	<Lab>..\HOLs\HOL-GettingStartedWindowsAzureStorage</Lab>
+    	<!-- <Lab>..\HOLs\HOL-BuildingAppsWithCaching</Lab> -->
+		<!-- <Lab>..\HOLs\HOL-IntroToWindowsAzureAD</Lab> -->
+		<!-- <Lab>..\HOLs\HOL-ServiceBusQueues</Lab> -->
+		<!-- <Lab>..\HOLs\HOL-ServiceBusTopics</Lab> -->
+      </Labs>
+      <Demos>
+      </Demos>
+      <Presentations>
+		<Presentation>..\Decks\PRESENTATION-SQLDatabase</Presentation>
+        <Presentation>..\Decks\PRESENTATION-WindowsAzureStorage</Presentation>
+        <Presentation>..\Decks\PRESENTATION-WindowsAzureServiceBus</Presentation>
+        <Presentation>..\Decks\PRESENTATION-HadoopOnWindowsAzure</Presentation>
+        <Presentation>..\Decks\PRESENTATION-DevCamps-Data</Presentation>
+        <Presentation>..\Decks\PRESENTATION-IdentityAndAccessControl</Presentation>
+        <Presentation>..\Decks\PRESENTATION-SecurityandIdentity</Presentation>
+        <Presentation>..\Decks\PRESENTATION-SQLDataSync</Presentation>
+        <Presentation>..\Decks\PRESENTATION-SQLDatabaseMigration</Presentation>
+        <Presentation>..\Decks\PRESENTATION-SQLFederation</Presentation>
+        <Presentation>..\Decks\PRESENTATION-SQLReporting</Presentation>
+        <Presentation>..\Decks\PRESENTATION-ScalableGlobalAndHighlyAvailableApps</Presentation>
+        <Presentation>..\Decks\PRESENTATION-WindowsAzureHDInsight</Presentation>
+      </Presentations>
+    </Unit>
+    <Unit>
+      <Id>ApplicationScenarios</Id>
+      <Name>Mobile</Name>
+      <Description>
+        Windows Azure supports many different application scenarios, such as Mobile Applications, Windows Store Applications, Media Services and others.
+      </Description>
+      <Labs>
+    	<!-- <Lab>..\HOLs\HOL-BuildingWindows8AppsWithWindowsAzure</Lab> -->
+		<Lab>..\HOLs\HOL-IntroToWindowsAzureMediaServices</Lab>
+      </Labs>
+      <Presentations>
+    	<Presentation>..\Decks\PRESENTATION-DeliveringWindows8PushNotifications</Presentation>
+        <Presentation>..\Decks\PRESENTATION-BuildingDeviceCloudApps</Presentation>
+        <Presentation>..\Decks\PRESENTATION-Windows8AndWindowsAzureWebSites</Presentation>
+        <Presentation>..\Decks\PRESENTATION-DevCamps-Windows8AndWindowsAzureWebSites</Presentation>
+        <Presentation>..\Decks\PRESENTATION-DevCamps-WindowsPhoneAndWindowsAzure</Presentation>
+      </Presentations>
+    </Unit>
+  </Units>
+  <CustomProperties>
+    <Property Name="AzureHomeLink" Value="http://www.windowsazure.com/" />
+    <Property Name="AzureMsdnLink" Value="http://www.microsoft.com/windowsazure/learn/" />
+  </CustomProperties>
+  <Feedback>WindowsAzureTrainingKit@microsoft.onmicrosoft.com</Feedback>
+</Package>

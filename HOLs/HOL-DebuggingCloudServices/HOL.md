@@ -28,7 +28,7 @@ In this hands-on lab, you will:
 
 The following is required to complete this hands-on lab:
 
-- [Visual Studio Express 2013 for Web][1] or later
+- [Visual Studio Professional 2013][1] or higher
 
 - [Windows Azure Tools for Microsoft Visual Studio 2.2][2] or later
 
@@ -39,7 +39,7 @@ The following is required to complete this hands-on lab:
 	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 
 
-[1]: http://www.microsoft.com/visualstudio/
+[1]: http://www.visualstudio.com/downloads/download-visual-studio-vs
 [2]: http://www.microsoft.com/windowsazure/sdk/
 
 >**Note:** This lab was designed for Windows 8.
@@ -68,11 +68,9 @@ Throughout the lab document, you will be instructed to insert code blocks. For y
 
 This hands-on lab includes the following exercises:
 
-- [Debugging a Cloud Service in Visual Studio](#Exercise1)
-
-- [Adding Diagnostic Trace](#Exercise2)
-
-- [Using IntelliTrace to Diagnose Role Start-Up Failures](#Exercise3) (Optional for Visual Studio 2013 Ultimate edition)
+1. [Debugging a Cloud Service in Visual Studio](#Exercise1)
+1. [Adding Diagnostic Trace](#Exercise2)
+1. [Using IntelliTrace to Diagnose Role Start-Up Failures](#Exercise3) (Optional for Visual Studio 2013 Ultimate edition)
 
 Estimated time to complete this lab: **40 minutes**.
 
@@ -81,26 +79,26 @@ Estimated time to complete this lab: **40 minutes**.
 
 In this exercise, you will debug a simple cloud service application locally from Visual Studio by using the Windows Azure compute emulator. Then, you will learn how to use the Visual Studio tools to attach the debugger to the application when it is running in Windows Azure.
 
-The cloud service application that you will use for this exercise simulates an online car insurance policy calculator. It has a single form where users can enter details about their vehicle and then submit the form to obtain an estimate on their insurance premium. Behind the scenes, the controller action that processes the form uses a separate assembly to calculate premiums based on the input from the user. The assembly contains a bug that causes it to raise an exception for input values that fall outside the expected range.
+The cloud service application that you will use for this exercise simulates an online auto insurance policy calculator. It has a single form where users can enter details about their vehicle and then submit the form to obtain an estimate on their insurance premium. Behind the scenes, the controller action that processes the form uses a separate assembly to calculate premiums based on the input from the user. The assembly contains a bug that causes it to raise an exception for input values that fall outside the expected range.
 
 <a name="Ex1Task1"></a>
 #### Task 1 - Debugging the Fabrikam Insurance Application on the Local Computer ####
 
 In this task, you will build and run the Fabrikam Insurance application in the Windows Azure compute emulator so you can test and debug the cloud service before you deploy it.
 
-1. Open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Express 2013 for Web** shortcut and choosing **Run as administrator**.
+1. Open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Professional 2013** shortcut and choosing **Run as administrator**.
 
 1. In the **File** menu, choose **Open Project...**, browse to **Ex1-DebuggingInVisualStudio** in the **Source** folder of the lab, select **Begin.sln** in the **Begin** folder and then click **Open**.
 
-1. Set the start action of the project. To do this, in **Solution Explorer**, right-click the **FabrikamInsurance** project and then select **Properties**. In the properties window, switch to the **Web** tab and then, under **Start Action**, select the **Specific Page** option. Leave the page value blank.
+1. Set the start action of the project. To do this, in **Solution Explorer**, right-click the **FabrikamInsurance** project and then select **Properties**. In this window, switch to the **Web** tab and then, under **Start Action**, select the **Specific Page** option. Leave the page value blank, and save the changes.
 
  	![Configuring the start action of the project](Images/configuring-the-start-action-of-the-project.png?raw=true "Configuring the start action of the project")
 
 	_Configuring the start action of the project_
 
-1. You are now ready to test the Windows Azure Project application. To launch the application in the compute emulator, set the **FabrikamInsurance.Azure** cloud project as the Startup project and press **F5**. Wait until the deployment completes and the browser opens the **Auto Insurance Quotes** page.
+1. You are now ready to test the Windows Azure Project application. To launch the application in the compute emulator, set the **FabrikamInsurance.Azure** project as the Startup project and press **F5**. Wait until deployment has completed and you see the **Auto Insurance Quotes** open in the browser.
 
-1. To explore its operation, complete the form by choosing any combination of values from the **Vehicle Details** drop down lists and then click **Calculate** to obtain a quote for the insurance premium. Notice that after you submit the form, the page refreshes and shows the calculated amount.
+1. To explore its operation, complete the form by choosing any combination of values from the drop down lists and then click **Calculate** to obtain a quote for the insurance premium. Notice that after you submit the form, the page refreshes and shows the calculated amount.
 
 	![Exploring the Fabrikam Insurance application](Images/exploring-the-fabrikam-insurance-application.png?raw=true "Exploring the Fabrikam Insurance application")
   
@@ -113,21 +111,21 @@ In this task, you will build and run the Fabrikam Insurance application in the W
 	_Choosing make and model for the insurance premium calculation_
 
 
-1. Click **Calculate** to re-submit the form with new values. Notice that an unhandled exception occurs and execution halts in the Visual Studio debugger at the line that caused the error. 
+1. Click **Calculate** to re-submit the form with the new values. Notice that an unhandled exception occurs and execution halts in the Visual Studio debugger at the line that caused the error. 
 
  	![Unhandled exception in the application caused by bad data](Images/unhandled-exception-in-the-application-caused-by-bad-data.png?raw=true "Unhandled exception in the application caused by bad data")
 
 	_Unhandled exception in the application caused by bad data_
 
-	>**Note:** Within the Visual Studio debugger, you are able to step through code, set breakpoints, and examine the value of program variables. Debugging applications hosted in the compute emulator provides the same experience that you typically have when debugging other programs to which you can attach the Visual Studio debugger. Using the debugger under these conditions is covered extensively and will not be explored here. For more information, see [Debugging in Visual Studio](http://msdn.microsoft.com/en-us/library/sc65sadd.aspx).
+	>**Note:** Within the Visual Studio debugger, you are able to step through code, set breakpoints, and examine the value of program variables. Debugging applications hosted in the compute emulator provides the same experience that you typically have when debugging other programs to which you can attach the Visual Studio debugger. Using the debugger under these conditions will not be explored here. For more information, see [Debugging in Visual Studio](http://msdn.microsoft.com/en-us/library/sc65sadd.aspx).
 
-1. Press **F5** to continue execution and let ASP.NET handle the exception. Notice that the unhandled exception handler provides details about the exception, including the line in the source code that raised the exception. 
+1. Press **F5** to continue execution and let ASP.NET handle the exception. Notice that the exception handler provides details about the exception, including the line in the source code that raised the exception. 
 
- 	![ASP.NET default unhandled exception handler ](Images/aspnet-default-unhandled-exception-handler.png?raw=true "ASP.NET default unhandled exception handler ")
+ 	![ASP.NET default unhandled exception handler](Images/aspnet-default-unhandled-exception-handler.png?raw=true "ASP.NET default unhandled exception handler ")
   
-	_ASP.NET default unhandled exception handler_
+	_ASP.NET default exception handler_
 
-	>**Note:** Unhandled exceptions are typically handled by ASP.NET, which can report the error in its response including details about an error and the location in the source code where the exception was raised. However, for applications that are available publicly, exposing such information is not recommended to prevent unnecessary disclosure of internal details about the application that may compromise its security. Instead, errors and other diagnostics output should be written to a log that can only be retrieved after proper authorization. 
+	>**Note:** Unhandled exceptions are typically handled by ASP.NET, which can report the error in its response, including details and the location in the source code where the exception was raised. However, for applications that are available publicly, exposing such information is not recommended to prevent unnecessary disclosure of internal details about the application that may compromise its security. Instead, errors and other diagnostics output should be written to a log that can only be retrieved after proper authorization. 
 
 	>You can configure how information is displayed by ASP.NET when an unhandled error occurs during the execution of a Web request. 
 
@@ -140,7 +138,7 @@ In this task, you will build and run the Fabrikam Insurance application in the W
 
 In this task, you will deploy the Fabrikam insurance application to Windows Azure and enable remote debugging when publishing the service. This will allow you to attach the Visual Studio debugger to the deployed cloud service.
 
-1. In **Solution Explorer**, right-click the **FabrikamInsurance.Azure** cloud project and select **Publish**.
+1. In **Solution Explorer**, right-click the **FabrikamInsurance.Azure** cloud project and select **Publish...**.
 In the **Publish Windows Azure Application** dialog, click **Sign In** and sign in using the Microsoft account associated with your Windows Azure account. 
 
 	![Sign in to see your subscriptions](Images/sign-in-to-see-your-subscriptions.png?raw=true)
@@ -155,7 +153,7 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 	_Create the cloud service_
 
-1. Make sure the cloud service you just created is selected. Then, click the drop down list labeled **Build configuration** and select **Debug**.
+1. In the **Common Settings** tab, make sure that the cloud service you just created is selected. Click the drop down list labeled **Build configuration** and select **Debug**.
 
 	> **Note:** For simplicity, you will debug the cloud service deployed to the **Production** environment. In a real-world scenario, you should work in the **Staging** environment when performing remote debugging.
 
@@ -167,23 +165,27 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 	![Create the storage account](Images/create-the-storage-account.png?raw=true)
 
+	_Create the storage account_
+
 1. Make sure the storage service you just created is selected. Then, check the check box labeled **Enable Remote Debugger for all roles** and click **Next**.
 
 	![Deployment advanced settings](Images/deployment-advanced-settings-debugging.png?raw=true)
 
-1. Review the Summary information. If everything is OK, click **Publish** to start the deployment process.
+	_Deployment advanced settings_
+
+1. Review the Summary information and click **Publish** to start the deployment process.
 
 	![Starting deployment](Images/starting-deployment-debugging.png?raw=true)
 
 	_Starting deployment_
 
-1. After you start a deployment, you can examine the Windows Azure activity log window to determine the status of the operation. If this window is not visible, in the **View** menu, point to **Other Windows**, and then select **Windows Azure Activity Log**.
+1. After you start deployment, you can examine the Windows Azure activity log window to see the status of the operation. If this window is not visible, in the **View** menu, point to **Other Windows**, and then select **Windows Azure Activity Log**.
 
 	![Windows Azure Activity Log](Images/windows-azure-activity-log-debugging.png?raw=true)
 
 	_Windows Azure Activity Log_
 
-1. You can examine the **History** panel on the right of the **Windows Azure Activity Log** window to determine the status of the deployment. Wait for the deployment to complete (you should see a **Complete** message).
+1. You can examine the **History** panel to see more details about the status of the deployment. Wait until you see a **Complete** message.
 
 	![Deployment completed](Images/deployment-completed-debugging.png?raw=true)
 
@@ -195,7 +197,7 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 	_Viewing the cloud service in Server Explorer_
 
-1. In the **Windows Azure Compute** node in **Server Explorer**, right-click the node labeled as **FabrikamInsurance**, and then select **Attach Debugger**. 
+1. In the **Windows Azure** node in **Server Explorer**, right-click the node labeled as **FabrikamInsurance**, and then select **Attach Debugger**. 
 
 	![Attach the debugger to the role](Images/attach-the-debugger-to-the-role.png?raw=true)
 
@@ -564,7 +566,7 @@ In the previous task, the role failed to start due to an unknown reason. In this
 
 	_Debugging the CustomException_
 
-1. The **WorkerRole.cs** file should open in Debugging mode, highlighting the statement where the CustomException is throwed.
+1. The **WorkerRole.cs** file should open in Debugging mode, highlighting the statement where the CustomException is thrown.
 
 	![Debugging the Worker Role](Images/debugging-the-worker-role.png?raw=true "Debugging the Worker Role")
 
@@ -598,27 +600,27 @@ To learn more about debugging applications in Windows Azure, please refer to the
 
 This is a list of articles that expands the information on the technologies explained on this lab:
 
-- [Debugging in Visual Studio](http://msdn.microsoft.com/en-us/library/sc65sadd.aspx>): This article extensively covers the debugging functions integrated with Visual Studio.
+- [Debugging in Visual Studio](http://msdn.microsoft.com/en-us/library/sc65sadd.aspx>): extensively covers the debugging functions integrated with Visual Studio.
 
-- [Debugging a Cloud Service with Emulator Express](http://msdn.microsoft.com/en-us/library/windowsazure/dn339018.aspx): By using Emulator Express, you can test and debug a cloud service without running Visual Studio as an administrator.
+- [Debugging a Cloud Service with Emulator Express](http://msdn.microsoft.com/en-us/library/windowsazure/dn339018.aspx): by using Emulator Express, you can test and debug a cloud service without running Visual Studio as an administrator.
 
-- [Initialize or Change Windows Azure Diagnostics Configuration](http://msdn.microsoft.com/en-us/library/windowsazure/hh411537.aspx): This article describes the different aspects of the Diagnostic configuration, like the Diagnostics data sources, the Diagnostics Monitor settings and the storage of the Diagnostics data.
+- [Initialize or Change Windows Azure Diagnostics Configuration](http://msdn.microsoft.com/en-us/library/windowsazure/hh411537.aspx): describes the different aspects of the Diagnostic configuration, like the Diagnostics data sources, the Diagnostics Monitor settings and the storage of the Diagnostics data.
 
-- [Create and Use Performance Counters in a Windows Azure Application](http://msdn.microsoft.com/en-us/library/windowsazure/hh411542.aspx): You can use performance counters to measure the health of your Windows Azure application. You can collect data from existing performance counters or you can create custom performance counters to collect additional data.
+- [Create and Use Performance Counters in a Windows Azure Application](http://msdn.microsoft.com/en-us/library/windowsazure/hh411542.aspx): you can use performance counters to measure the health of your Windows Azure application. You can collect data from existing performance counters or you can create custom performance counters to collect additional data.
 
-- [How to: Configure Trace Switches](http://msdn.microsoft.com/en-us/library/t06xyy08.aspx): By placing **Trace Switches** in your code, you can control whether tracing occurs and how extensive it is. This lets you monitor the status of your application in a production environment.
+- [How to: Configure Trace Switches](http://msdn.microsoft.com/en-us/library/t06xyy08.aspx): by placing **Trace Switches** in your code, you can control whether tracing occurs and how extensive it is. This lets you monitor the status of your application in a production environment.
 
-- [Debug Your App by Recording Code Execution with IntelliTrace](http://msdn.microsoft.com/en-us/library/dd264915.aspx): Explains how to you use IntelliTrace to record and trace your code's execution history.
+- [Debug Your App by Recording Code Execution with IntelliTrace](http://msdn.microsoft.com/en-us/library/dd264915.aspx): explains how to you use IntelliTrace to record and trace your code's execution history.
 
 **Development**
 
 This is a list of developer-oriented articles related to debugging applications in Windows Azure:
 
-- [Remotely Change the Diagnostic Monitor Configuration](http://msdn.microsoft.com/en-us/library/windowsazure/gg432992.aspx): After you have deployed a cloud service you can remotely change the configuration of the diagnostic monitor from code running in an application outside of Windows Azure using the [DeploymentDiagnosticManager](http://msdn.microsoft.com/en-us/library/windowsazure/microsoft.windowsazure.diagnostics.management.deploymentdiagnosticmanager.aspx) class.
+- [Remotely Change the Diagnostic Monitor Configuration](http://msdn.microsoft.com/en-us/library/windowsazure/gg432992.aspx): after you have deployed a cloud service you can remotely change the configuration of the diagnostic monitor from code running in an application outside of Windows Azure using the [DeploymentDiagnosticManager](http://msdn.microsoft.com/en-us/library/windowsazure/microsoft.windowsazure.diagnostics.management.deploymentdiagnosticmanager.aspx) class.
 
-- [Trace the Flow of Your Windows Azure Application](http://msdn.microsoft.com/en-us/library/windowsazure/hh411529.aspx): You can add tracing and debugging instrumentation to your Windows Azure application when you develop it, and you can use that instrumentation both while you are developing the application and after you have deployed it.
+- [Trace the Flow of Your Windows Azure Application](http://msdn.microsoft.com/en-us/library/windowsazure/hh411529.aspx): you can add tracing and debugging instrumentation to your Windows Azure application when you develop it, and you can use that instrumentation both while you are developing the application and after you have deployed it.
 
-- [API Reference for IntelliTrace Extensibility](http://msdn.microsoft.com/en-us/library/ee661590.aspx): Provides information to use IntelliTrace extensibility APIs to read and decode .itrace files in your application.
+- [API Reference for IntelliTrace Extensibility](http://msdn.microsoft.com/en-us/library/ee661590.aspx): provides information to use IntelliTrace extensibility APIs to read and decode .itrace files in your application.
 
 <a name="Summary"></a>
 ## Summary ##

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+	<Id>WindowsAzureAD</Id>
+	<Technologies>
+		<Technology>Windows Azure</Technology>
+		<Technology>Windows Identity Foundation</Technology>
+	</Technologies>
+	<Author>
+		<Blog></Blog>
+		<Email></Email>
+		<Name>cfowler</Name>
+	</Author>
+	<Description>In this hands-on lab you will learn how to use Windows Azure Active Directory for implementing web single sign-on in an ASP.NET application. The instructions will focus on taking advantage of the directory tenant associated with your Windows Azure subscription.</Description>  
+	<Document ConversionType="Html">.\HOL.md</Document>
+	<Title>Introduction to Windows Azure Active Directory</Title>
+	<Version>1.0.0</Version>
+	<Source>.\Source</Source>
+	<DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+	<CustomProperties>
+		<Property Name="ContentType" Value="VS2012" />
+		<Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-IntroToWindowsAzureAD" />
+	</CustomProperties>   
+</Lab>

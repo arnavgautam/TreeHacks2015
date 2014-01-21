@@ -154,84 +154,90 @@ In this task you will create a new MVC 5 Web API project and explore its compone
 	_Retrieving the default values_
 
 <a name="Ex1Task2" />
-#### Task 2 – Creating a New Web Site Hosted in Windows Azure ####
+#### Task 2 – Adding a New Windows Azure Web Site from Server Explorer ####
 
-1. Go to the [Windows Azure Management portal](https://manage.windowsazure.com) and sign in using your **Microsoft Account** credentials associated with your subscription.
+1. Open **Microsoft Visual Studio Express 2013 For Web** and then open **Server Explorer** by selecting **View | Server Explorer**.
 
-	![Log in into Windows Azure portal](Images/log-in-into-windows-azure-portal.png?raw=true "Log in into Windows Azure portal")
+1. In **Server Explorer**, right-click the **Windows Azure** node and select **Connect to Windows Azure...**. Sign in using the Microsoft account associated with your Windows Azure account.
 
-	_Log in into Windows Azure portal_
+	![Connect to Windows Azure](Images/connect-to-windows-azure.png?raw=true)
 
-1. Click **New** on the command bar.
+	_Connect to Windows Azure_
 
-	![Creating a new Web Site](Images/creating-a-new-web-site.png?raw=true "Creating a new Web Site")
+1. After sign in, the **Windows Azure** node is populated with the resources in your Windows Azure subscription.
 
-	_Creating a new Web site_
+1. Expand the **Windows Azure** node, right-click the **Web Sites** node and select **Add New Site...**.
 
-1. Click **Compute**, **Web Site** and then **Quick Create**.  Provide an available URL (e.g. _customers-website_) for the new web site and click **Create Web Site**.
+	![Add new site](Images/add-new-website.png?raw=true)
 
-	> **Note:** A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Sites from outside the portal. It does not include steps for setting up a database.
+	_Add new site_
 
-	![Creating a new Web Site using Quick Create ](Images/creating-a-new-web-site-using-quick-create-op.png?raw=true "Creating a new Web Site using Quick Create")
+1. In the **Create site in Windows Azure** dialog box, provide the following information:
+	- In the **Site name** box, enter an available name for the Web site.
+	- In the **Location** drop-down list, select the region for the web site. This setting specifies which data center your Web site will run in.
+	- In the **Database server** drop-down list, select **Create new server**. Alternatively, you can select an existing SQL Server.
+	- In the **Database username** and **Database password** boxes, enter the administrator username and password for the SQL Server. If you selected a SQL Server you have created previously, you will be prompted for the password.
 
-	_Creating a new web site using Quick Create_
+1. Click **Create** to create the web site.
 
-1. Wait until the new web site is created.
+	![Create site on Windows Azure](Images/create-site-on-windows-azure.png?raw=true)
 
-	![Creating new web site status](Images/creating-new-web-site-status.png?raw=true "Creating new web site status")
+	_Create site on Windows Azure_
 
-	_Creating a new web site - Status_
+1. Wait for the new Web site to be created.
 
-1. Once the web site is created click the link under the **URL** column to check that it is working.
+	> **Note:** By default, Windows Azure provides domains at _azurewebsites.net_ but also gives you the possibility to set custom domains using the Windows Azure Management Portal (right-click your Web site from Server Explorer and select **Open Management Portal**). However, you can only manage custom domains if you are using certain Web site modes.
+	
+	> Windows Azure offers 3 modes for users to run their Web sites - Free, Shared, and Standard. In Free and Shared mode, all Web sites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are Free (strict quotas) vs. Shared (more flexible quotas). The maximum number of free sites may vary with your plan. In Standard mode, you choose which sites run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Web Sites Mode configuration in the **Scale** menu of your Web site.
 
-	![Browsing to the new web site](Images/browsing-to-new-site.png?raw=true "Browsing to the new web site")
+	> ![Web Site Modes](Images/web-site-modes.png?raw=true "Web Site Modes")
 
-	_Browsing to the new web site_
+	> If you are using **Shared** or **Standard** mode, you will be able to manage custom domains for your Web site by going to your Web site’s **Configure** menu and clicking **Manage Domains** under _domain names_.
 
-	![Web site running](Images/web-site-running.png?raw=true "Web site running")
+	> ![Manage Domains](Images/manage-domains.png?raw=true "Manage Domains")
+
+	> ![Manage Custom Domains](Images/manage-custom-domains.png?raw=true "Manage Custom Domains")
+
+1. Once the Web site is created, it will be displayed in Server Explorer under the **Web Sites** node. Right-click the new Web site and select **Open in Browser** to check that the Web site is running.
+
+	![Browsing to the new web site](Images/browsing-to-the-new-web-site.png?raw=true)
+
+	_Browsing to the new Web site_
+
+	![Web site running](Images/website-working.png?raw=true "Web site running")
 
 	_Web site running_
-
-1. Go back to the portal and click the name of the web site under the **Name** column to display the management pages for the web site.
-
-	![Opening the web site management pages](Images/selecting-the-dashboard-tab.png?raw=true "Opening the web site management pages")
-
-	_Opening the web site dashboard_
-
-1. In the **Dashboard** page, under the **quick glance** section, click the **Download publish profile** link and save the file to a known location. You will use this settings later to publish the web site from Visual Studio.
-
-	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft Visual Studio** supports reading publish profiles to automate the publishing configuration for web applications to Windows Azure Web Sites.
-
-	![Downloading the publish profile](Images/download-publish-profile.png?raw=true "Downloading the publish profile")
-
-	_Downloading the publish profile_
 
 <a name="Ex1Task3" />
 #### Task 3 – Publishing the Web API Service to Windows Azure Web Sites ####
 
-1. In the Solution Explorer, right-click the project node and select **Publish** to open the Publish Web wizard.
+1. In **Solution Explorer**, right-click the Web site project and select **Publish...**.
 
 	![Publishing the service](Images/publishing-the-service.png?raw=true "Publishing the service")
 
 	_Publishing the service_
 
-1. In the **Profile** page, click the **Import** button.
+1. In the **Profile** page, click **Import...** to import the publish profile.
 
 	![Publishing profile selection](Images/publishing-profile-profile-selection.png?raw=true)
 	
 	_Selecting a publishing profile_
 
-1. In the **Import Publish Settings** dialog, select the website you created in the previously and click **OK**.
+1. In the **Import Publish Settings** dialog box, select the **Import from a Windows Azure Web Site** option. If not already signed in, click the **Sign In...** button and sign in using the Microsoft account associated with your Windows Azure account.
+
+1. Select your Web site from the drop-down list, and then click **OK**.
 
 	![Selecting the new website](Images/selecting-the-new-website.png?raw=true "Selecting the new website")
 
 	_Selecting the new website_
 
-1. In the **Connection page**, leave the imported values and click **Next**.
+1. In the **Connection** page, leave the imported values and click **Validate Connection**. Once the validation is completed, click **Next**.
 
-	![Publishing profile imported](Images/publishing-profile-imported.png?raw=true "Publishing profile imported")
+	> **Note:** Validation is complete once a green checkmark appears to the right of the **Validate Connection** button.
 
-	_Publish profile imported_
+	![Validating connection](Images/validating-connection.png?raw=true)
+
+	_Validating connection_
 
 1. In the **Settings** page, leave the default values and click **Next**.
 
@@ -367,7 +373,7 @@ In this task you will create a blank Windows Store application that will consume
 
 In this exercise, you will learn how to bind your Windows Store application to an ASP.NET Web API service which is using Code First to generate the database from the model in SQL Database.
 
-You will start the exercise provisioning a new SQL Database. Then, you will create a new ASP.NET Web API service and use Entity Framework Scaffolding with Code First to generate the service methods and a database in SQL Database.
+You will create a new ASP.NET Web API service and use Entity Framework Scaffolding with Code First to generate the service methods and a database in SQL Database.
 Finally, you will explore and customize your Windows Store application to consume the service and show a customer list.
 
 > **Note:** If you are using Visual Studio 2013 Professional or higher, you are provided with two solutions named **Begin.All.sln** and **End.All.sln** with the Web Api and the StyleUI projects together in the **Source/Ex2-DataAccess/Begin** and **Source/Ex2-DataAccess/End** respective folders of this lab.
@@ -381,48 +387,11 @@ The Entity Framework Code First modeling workflow allows you to use your own dom
 >**Note:** You can learn more about Entity Framework [here](http://www.asp.net/entity-framework).
 
 <a name="Ex2Task1" />
-#### Task 1 - Creating a SQL Database Server ####
-
-In this task you will provision a SQL Database server in Windows Azure that will store your service data.
-
->**Note:** If you already have a SQL Database server provisioned in your Windows Azure account, you can skip this task.
-
-1. Switch to [Windows Azure Management portal](https://manage.windowsazure.com) and select **SQL Databases** on the left pane, click **Servers** link and select **Add** at the bottom of the page to start creating a SQL Database server.
-
-	![Creating a New SQL Database server](Images/creating-a-new-sql-database-server.png?raw=true "Creating a New SQL Database server")
-
-	_Creating a New SQL Database server_
-
-1. In the **Server Settings** dialog, enter a login name (e.g. User), a password and a region. Leave the default option checked and click the confirmation button to start creating the server.
-
-	![Server settings dialog](Images/server-settings-dialog.png?raw=true "Server settings dialog")
-
-	_Server settings dialog_
-
-1. Once the server is created, enter to the server **Dashboard** and copy the server URL from the **Manage URL** value. You will use it later in this lab to configure the Web API service data source.
-
-	![servers-dashboard](Images/servers-dashboard.png?raw=true)
-
-	_Server dashboard_
-
-<a name="Ex2Task2" />
-#### Task 2 - Creating an ASP.NET Web API Service with Entity Framework Code First and Scaffolding ####
+#### Task 1 - Creating an ASP.NET Web API Service with Entity Framework Code First and Scaffolding ####
 
 In this task you will add Entity Framework Scaffolding and Code First to an ASP.NET Web API service. At the end of this task, you will have a basic API service that performs CRUD operations (Create, Read, Update and Delete) implemented and published in Windows Azure Web Sites.
 
 1. Open **Visual Studio Express 2013 for Web** and open the ***WebApi.sln*** solution located under ***Source/Ex2-DataAccess/Begin*** folder. Alternatively, you may continue with the solution that you obtained after completing the previous exercise.
-
-1. Add a reference to _System.Runtime.Serialization_. In Solution Explorer, right-click the references folder and select **Add Reference**.
-
-	![Adding a new reference](Images/adding-a-new-reference.png?raw=true "Adding a new reference")
-
-	_Adding a new reference_
-
-1. Select the **Assemblies** section and search for _System.Runtime.Serialization_ and select it. Then click **OK**.
-
-	![Adding a reference ](Images/adding-a-reference.png?raw=true "Adding a reference ")
-
-	_Adding a reference to System.Runtime.Serialization_
 
 1. Right-click the **Models** folder in the **Solution Explorer** and select **Add | Class**. Name it **Customer.cs**.
 
@@ -665,8 +634,8 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 	}
 	````
 
-<a name="Ex2Task3" />
-#### Task 3 - Publishing the Customers Web API Service to Windows Azure ####
+<a name="Ex2Task2" />
+#### Task 2 - Publishing the Customers Web API Service to Windows Azure ####
 
 In this task you will first replace the connection string to use a SQL Database, and then publish the updated Web API service in Windows Azure Web Sites.
 
@@ -716,8 +685,8 @@ Server=tcp:[SERVER_URL],1433;Database=CustomersDB;User ID=[SERVER_ADMIN_LOGIN];P
 
 	>**Note:** Entity Framework will create the database the first time you run the application. You can also access the database tables in Windows Azure portal and check if the data was added.
 
-<a name="Ex2Task4" />
-#### Task 4 - Exploring the Windows Store Application ####
+<a name="Ex2Task3" />
+#### Task 3 - Exploring the Windows Store Application ####
 
 In this task you will explore the Customer client application, built using a Windows Store application Grid Template. You will perform a brief lap around and learn about the main components of a Style UI Grid application.
 
@@ -830,8 +799,8 @@ In this task you will explore the Customer client application, built using a Win
                             <Image Source="{Binding Image}" Stretch="None" />
 	````
 
-<a name="Ex2Task5" />
-#### Task 5 - Integrating the Web API Service with the Windows Store Application ####
+<a name="Ex2Task4" />
+#### Task 4 - Integrating the Web API Service with the Windows Store Application ####
 
 In this task you will bind your Windows Store Application against your customer's model retrieving data from the Web API service. You will start by configuring the binding, and then you will modify the application to call the service asynchronously and display the customers.
 
@@ -936,8 +905,8 @@ In this task you will bind your Windows Store Application against your customer'
 
 	>**Note:** You can find your service URL in the  dashboard of your Windows Azure Web Sites.
 
-<a name="Ex2Task6" />
-#### Task 6 - A Lap Around the Customer Manager Application ####
+<a name="Ex2Task5" />
+#### Task 5 - A Lap Around the Customer Manager Application ####
 
 1. Press **F5** to run the solution.
 

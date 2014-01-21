@@ -1,6 +1,8 @@
 ﻿<a name='HOLTop' />
 # Managing Virtual Machines with the Windows Azure PowerShell Cmdlets #
 
+---
+
 <a name='Overview' />
 ## Overview ##
 In this hands-on lab you will understand the capabilities of automating the deployment and management of virtual machines in Windows Azure.
@@ -39,7 +41,6 @@ The following is required to complete this hands-on lab:
 This hands-on lab includes the following exercises:
 
 1. [Provisioning a Virtual Machine using Windows Azure PowerShell Cmdlets](#Exercise1)
-
 1. [Using PowerShell Cmdlets for Advanced Provisioning](#Exercise2)
 
 <a name="gettingstarted" /></a>
@@ -125,8 +126,6 @@ In this task, you will log on to the Windows Azure Management Portal and downloa
 		````PowerShell
 		Set-AzureSubscription -SubscriptionName '[YOUR-SUBSCRIPTION-NAME]' -CurrentStorageAccount '[YOUR-STORAGE-ACCOUNT]'
 		````
-
----
 
 <a name='Exercise1' />
 ### Exercise 1: Provisioning a Virtual Machine using Windows Azure PowerShell Cmdlets###
@@ -227,7 +226,6 @@ The first step to create a virtual machine in Windows Azure is to define the vir
 
 	>**Note:** Make sure your virtual machine finished provisioning before executing these commands.
 
----
 <a name='Exercise2'/>
 ### Exercise 2: Using PowerShell Cmdlets for Advanced Provisioning ###
 
@@ -566,6 +564,7 @@ To discover the ports for these endpoints you can use the **Get-AzureEndpoint** 
 
 ---
 
+<a name='NextSteps' />
 ## Next Steps ##
 
 To learn more about configuring Windows virtual machines on Windows Azure, please refer to the following articles:
@@ -595,6 +594,8 @@ This is a list of useful sample scripts from [Script Center](http://aka.ms/Bv06q
 - [Deploy Windows Azure VMs to an Availability Set and Load Balanced on an Endpoint](http://aka.ms/Htx61t): Deploy a specified number of Virtual Machines based on a given image name. The Virtual Machines are placed in the same availability set and load balanced on a given endpoint name.
 
 - [Deploy Multiple Windows Azure VMs in the Same Windows Azure Virtual Network](http://aka.ms/Yg0n7j): Creates four Windows Server 2012 Virtual Machines across two separate cloud services and adds them to the same virtual network. If the virtual network indicated does not exist, it is then created.
+
+---
 
 <a name='Summary' />
 ## Summary ##

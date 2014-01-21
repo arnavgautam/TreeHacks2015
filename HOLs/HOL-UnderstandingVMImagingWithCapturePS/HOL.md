@@ -123,8 +123,6 @@ In this task, you will log on to the Windows Azure portal and download the Publi
 	Set-AzureSubscription -SubscriptionName '[YOUR-SUBSCRIPTION-NAME]' -CurrentStorageAccount '[YOUR-STORAGE-ACCOUNT]'
 	````
 
----
-
 <a name="Exercise1" />
 ###Exercise 1: Customizing and Generalizing the Virtual Machine###
 
@@ -199,8 +197,6 @@ The System Preparation (Sysprep) tool is used to change Windows images from a sp
 
 	>**Note:** When running _exit_ command you might get an access denied error. This is because sysprep is already running. Ignore the error and continue.
 
----
-
 <a name="Exercise2" />
 ### Exercise 2: Saving an Image in the Image Library ###
 
@@ -228,8 +224,6 @@ In this exercise you will use the capture feature for virtual machines to create
 	_Save-AzureVMImage Cmdlet Output_
 
 	> **Known issue:** Version **0.7.2.1** of the Windows Azure PowerShell has a known bug that causes the above command to return an **error message** even after being successfully run. This issue has **already been addressed** in the development branch but has not been included in the public package at the time of writing.
-
----
 
 <a name="Exercise3" />
 ### Exercise 3: Provisioning New Virtual Machines based on an Image ###
@@ -293,13 +287,14 @@ In this exercise you are going to create a new virtual machine using the image y
 
 ---
 
+<a name="NextSteps" />
 ## Next Steps ##
 
 To learn more about configuring Windows virtual machines on Windows Azure, please refer to the following articles:
 
 **Technical Reference**
 
-This is a list of articles that expands the information on the technologies explained on this lab:
+This is a list of articles that expand on the technologies explained in this lab:
 
 - You can continue reading the Hands-on lab **Deploy Active Directory in Windows Azure using PowerShell**.
 
@@ -333,6 +328,4 @@ By completing this hands-on lab you have learned how to:
 
  - Customize and Capture a virtual machine to the image library
  - Provision New Virtual Machines based off of the image
- - Navigate to a virtual machine through HTTP 
-
----
+ - Navigate to a virtual machine through HTTP

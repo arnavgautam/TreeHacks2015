@@ -1,0 +1,77 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="htm" #>
+<#@ assembly name="System.dll" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="ContentFramework.Model.dll" #>
+<#@ import namespace="ContentFramework.Model" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ property name="Package" processor="PropertyProcessor" #>
+<#
+var currentPage = "Resources";
+#>
+<#@ include file="Master.Header.include.tt" #>
+<div class="genericInnerWrapper">
+	<h1>Additional Resources</h1>
+
+<dl class="resources">	
+
+	<dt>Shows</dt>
+		<dd>
+			<div>
+				<a href="http://aka.ms/WATK-CloudCover" title="Cloud Cover Show" target="_blank">
+					<img src="Assets/NavSite/images/CloudCover.png" alt="Cloud Cover" />
+					<br />Cloud Cover</a>
+				</a>
+			</div>
+		</dd>
+		<dd>
+			<div>
+				<a href="http://aka.ms/WATK-WebCampsTV" title="Web Camps TV" target="_blank">
+					<img src="Assets/NavSite/images/WebCampsTv.png" alt="Web Camps TV" />
+					<br />Web Camps TV</a>
+			</div>	
+		</dd>
+		<dd>
+			<div>
+				<a href="http://aka.ms/WATK-Subscribe" title="Subscribe!" target="_blank">
+					<img src="Assets/NavSite/images/Subscribe.png" alt="Subscribe!" />
+					<br />Subscribe!</a>
+			</div>	
+		</dd>
+	<dt><div>Developer Centers</div></dt>
+		<dd>
+			<a href="http://www.windowsazure.com/en-us/develop/php" target="_blank"><img src="Assets/NavSite/images/Nav-PHP.png" alt="PHP Dev Center" /></a>
+		</dd>
+		<dd><a href="http://www.windowsazure.com/en-us/develop/nodejs" target="_blank"><img src="Assets/NavSite/images/Nav-Nodejs.png" alt="Node.js Dev Center" /></a>
+		</dd>
+		<dd>
+			<a href="http://www.windowsazure.com/en-us/develop/net" target="_blank"><img src="Assets/NavSite/images/Nav-Net.png" alt=".NET Dev Center" /></a>
+		</dd>
+		<dd>
+			<a href="http://www.windowsazure.com/en-us/develop/mobile" target="_blank"><img src="Assets/NavSite/images/Nav-Mobile.png" alt="Mobile Dev Center" /></a>
+		</dd>
+		<dd>
+			<a href="http://www.windowsazure.com/en-us/develop/media-services" target="_blank"><img src="Assets/NavSite/images/Nav-Media.png" alt="Media Dev Center" /></a>
+		</dd>
+		<dd>
+			<a href="http://www.windowsazure.com/en-us/develop/java" target="_blank"><img src="Assets/NavSite/images/Nav-Java.png" alt="Java Dev Center" /></a>
+		</dd>
+		<dd>
+			<a href="http://www.windowsazure.com/en-us/develop/python" target="_blank"><img src="Assets/NavSite/images/Nav-Python.png" alt="Python Dev Center" /></a>
+		</dd>
+	<dt>Blogs</dt>
+		<dd>
+			<a href="http://blogs.msdn.com/b/windowsazure" target="_blank">Windows Azure Blog</a>
+		</dd>	
+		<dt>Training Kits</dt>
+		<dd>
+			<a href="http://aka.ms/WebCamps-TrainingKit" target="_blank">Web Camps Training Kit</a>
+		</dd>
+		<dd>
+			<a href="http://aka.ms/WATK-Identity-TrainingKit" target="_blank">Identity Training Kit</a>
+		</dd>
+</dl>
+</div>
+<#@ include file="Master.Footer.include.tt" #>

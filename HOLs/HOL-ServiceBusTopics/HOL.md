@@ -14,9 +14,10 @@
 
 In this hands-on lab, you will learn how to:
 
-- Create Topics and Subscriptions.
-- Use Subscription Filter Expressions.
-- Use Subscription Filter Actions.
+- Create a Service Bus Namespace
+- Create Topics and Subscriptions
+- Use Subscription Filter Expressions
+- Use Subscription Filter Actions
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
@@ -109,7 +110,7 @@ To work with Service Bus topics and subscriptions, you first need to create a Wi
 
 	_View connection information_
 
-1. In the **Access connection information** dialog box, record the value shown for **Default Issuer** and **Default Key**, and click **OK**. You will need these values later when configuring your Web Role settings.
+1. In the **Access connection information** dialog box, record the value shown for **Default Issuer** and **Default Key**, and click **OK**. You will need these values later when connecting to Service Bus from Visual Studio and when configuring your web role settings.
 
  	![Service Bus default issuer and key](Images/service-bus-default-issuer-and-key.png?raw=true)
  
@@ -119,8 +120,60 @@ You have now created a new Windows Azure namespace for this hands-on lab. To sig
 
 > **Note:** In this lab you will learn how to create and make use of Service Bus topics and subscriptions from Visual Studio and from an ASP.NET MVC application. You can also create topics and subscriptions from the Windows Azure Management Portal, for more information see [How to Manage Service Bus Messaging Entities](http://www.windowsazure.com/en-us/documentation/articles/service-bus-manage-message-entities/).
 
-<a name="Ex2Task1"></a>
-#### Task 2 - Creating a Topic and Adding Subscriptions Programmatically ####
+<a name="Ex2Task2"></a>
+#### Task 2 - Creating a Topic and Adding Subscriptions in Visual Studio ####
+The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including topics and subscriptions. In this task, you will use Server Explorer to connect to the service bus namespace you created previously, create a topic and add a subscription to it.
+
+1. Open **Visual Studio 2013 Express for Web** (or greater) as Administrator.
+
+1. From the menu bar, select **View** and then click **Server Explorer**.
+
+1. In **Server Explorer**, expand the  **Windows Azure** node, right-click **Service Bus** and select **Add New Connection...**.
+
+	![Adding new Service Bus connection](Images/adding-new-service-bus-connection.png?raw=true)
+
+	_Adding new Service Bus connection_
+
+1. In the **Add Connection** dialog box, make sure the **Windows Azure Service Bus** option is selected. Enter the **Namespace name**, the **Issuer Name** and the **Issuer Key** using the values obtained in the previous task. Finally, click **OK**.
+
+	> **Note:** Alternatively, you can check the **Use connection string** checkbox and provide the service bus connection string.
+
+	![Add Connection dialog box](Images/add-connection-dialog-box.png?raw=true)
+
+	_Add Connection dialog box_
+
+1. After connecting to your Service Bus namespace, your namespace should appear under **Service Bus**. Expand the Service Bus namespace node, right-click **Topics** and select **Create New Topic...**. 
+
+	![Creating new Topic](Images/creating-a-new-topic.png?raw=true)
+
+	_Creating new topic_
+
+1. In the New Topic dialog, enter a name for the service bus topic in the **Name** textbox. Leave the default options and click **Save**.
+
+	![New Topic dialog box](Images/new-topic-dialog-box.png?raw=true)
+
+	_New Topic dialog box_
+
+1. The new topic should be added under **Topics**. Expand the topic node, right-click  **Subscriptions** and select **Create New Subscription...**.
+
+	![Creating new subscription](Images/creating-new-subscription.png?raw=true)
+
+	_Creating new subscription_
+
+1. In the **New Subscription** dialog box, enter a Name for the subscription in the **Name** textbox. Leave the default options and click **Save**.
+
+	![New Subscription dialog box](Images/new-subscription-dialog-box.png?raw=true)
+
+1. The new subscription should be added to your topic.
+
+	> **Note:** You can also use the Windows Azure Tools for Microsoft Visual Studio to send and receive test messages, as well as to define subscription rules. In the next exercises, you will learn how to perform those operations from code by using the **WindowsAzure.ServiceBus** NuGet package.
+
+	![New subscription created](Images/new-subscription-created.png?raw=true)
+
+	_New subscription created_
+
+<a name="Ex2Task3"></a>
+#### Task 3 - Creating a Topic and Adding Subscriptions Programmatically ####
 
 In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceManager** class to create a new topic and add several subscriptions to it. For this, first you will add the necessary configurations to connect to your Service Bus namespace.
 
@@ -237,13 +290,13 @@ You will now launch the updated application in the Windows Azure compute emulato
 
 	_Configuring StartUp project_
 
-1. Press **F5** to launch the application. The browser will show the default page of the application.
+1. Press **F5** to launch the application. The browser will show the default page of the application (note that the topic you created in the previous task is displayed under **Topic Explorer**).
 
 	![Service Bus Topics application home page](Images/service-bus-topics-application-home-page.png?raw=true)
 
 	_Service Bus Topics application home page_
 
-1. In **Create a Topic** section, enter _SimpleTopic_ for the topic name, and click **Create**.
+1. In the **Create a Topic** section, enter _SimpleTopic_ for the topic name, and click **Create**.
 
 	![Creating a topic](Images/creating-a-topic.png?raw=true)
 

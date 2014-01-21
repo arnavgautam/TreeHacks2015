@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>ServiceBusQueues</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>In this hands-on lab you will learn how to ....</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Service Bus Queues</Title>
+  <Version>3.1.3</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker></DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentTag" Value="1.8" />
+    <Property Name="ContentType" Value="VS2012" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-DeployingCloudServices-VS2012" />
+  </CustomProperties>
+</Lab>
