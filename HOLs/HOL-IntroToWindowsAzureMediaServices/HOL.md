@@ -2,6 +2,7 @@
 # Introduction to Windows Azure Media Services #
 
 ---
+
 <a name="Overview" />
 ## Overview ##
 Windows Azure Media Services allows you to build a media distribution solution that can stream audio and video to Windows, iOS, Android, and other devices and platforms. It offers the flexibility, scalability and reliability of a cloud platform to handle high quality media experiences for a global audience. Media Services includes cloud-based versions of many existing technologies from the Microsoft Media Platform and media partners including ingest, encoding, format conversion, content protection and both on-demand and live streaming capabilities.
@@ -12,6 +13,9 @@ In this hands-on lab you will learn how you can use Visual Studio 2013 and Windo
 
 <a name="Objectives" />
 ### Objectives ###
+
+In this hands-on lab, you will learn how to:
+
 - Create a Windows Azure Media Service
 - Manage media content: upload, encode and stream media
 - Programmatically upload, encode and stream content 
@@ -44,12 +48,12 @@ This hands-on lab includes the following exercises:
 ---
 
 <a name="Exercise1" />
-## Exercise 1: Uploading a Job from the Portal for HTML5 playback ##
+### Exercise 1: Uploading a Job from the Portal for HTML5 playback ###
 
 The Windows Azure Management Portal provides a way to quickly create a Windows Azure Media Services account. You can use your account to access Media Services that enable you to store, encrypt, encode, manage, and stream media content in Windows Azure. At the time you create a Media Services account, you also create an associated storage account (or use an existing one) in the same geographic region as the Media Services account.
 
 <a name="creating-a-media-service-account" />
-### Task 1 - Creating a Media Services Account ###
+#### Task 1 - Creating a Media Services Account ####
 
 This task explains how to use the Quick Create method to create a new Media Services account and then associate it with a storage account.
 
@@ -79,7 +83,7 @@ The **media services** page opens with the new account displayed. When the statu
 	_The recently created Media Service_
 
 <a name="uploading-content-to-media-services" />
-### Task 2 - Uploading content to Media Services ###
+#### Task 2 - Uploading content to Media Services ####
 
 In this task you will upload content to the media service already created using the Windows Azure Management Portal.
 
@@ -112,7 +116,7 @@ In this task you will upload content to the media service already created using 
 	If the Size value of the file is not updated after the uploading process finishes, press the **Sync Metadata** button. This synchronizes the asset file size with the actual file size in storage and refreshes the value on the _Content_ page. 
 
 <a name="encoding-content-in-media-services" />
-### Task 3 - Encoding content in Media Services ###
+#### Task 3 - Encoding content in Media Services ####
 
 In this task you will encode a video previously uploaded in the Windows Azure Management Portal.
 
@@ -149,7 +153,7 @@ In this task you will encode a video previously uploaded in the Windows Azure Ma
 	_Encoding media in Windows Azure_
 
 <a name="publishing-and-playing-content" />
-### Task 4 - Publishing and Playing content in Media Services ###
+#### Task 4 - Publishing and Playing content in Media Services ####
 
 In this task, you will publish the previously encoded video and play it directly in the Windows Azure Management Portal.
 
@@ -170,12 +174,12 @@ In this task, you will publish the previously encoded video and play it directly
 ---
 
 <a name="Exercise2" />
-## Exercise 2: Building a Console app using the Media Services SDK that uploads, encodes, and streams a video programmatically ##
+### Exercise 2: Building a Console app using the Media Services SDK that uploads, encodes, and streams a video programmatically ###
 
 In this exercise, you will create a new console application that allows you to perform the different tasks (uploading, encoding, and publishing) on your Azure Media Services subscription. This application uses the Media Services SDK to accomplish these operations.
 
 <a name="programmatically-uploading-a-mp4-video" />
-### Task 1 - Programmatically Uploading an Mp4 video ###
+#### Task 1 - Programmatically Uploading an Mp4 video ####
 
 1. Open **Microsoft Visual Studio 2013 Express for Desktop** (or higher) in elevated administrator mode. If the **User Account Control** dialog box appears, click **Yes**.
 
@@ -256,7 +260,7 @@ In this exercise, you will create a new console application that allows you to p
 1. Update the code you just pasted to point to the video that you want to upload, by replacing the _YOUR FILE PATH_ string. If you use the same video from the previous exercise, it is recommended that you rename the video to differentiate it from the one uploaded in the first exercise.
 
 <a name="programmatically-encoding-an-mp4-video" />
-### Task 2 - Programmatically encoding an MP4 video using Smooth Streaming ###
+#### Task 2 - Programmatically encoding an MP4 video using Smooth Streaming ####
 
 1. Add the following using statement at the top of the _Program.cs_ file.
 
@@ -304,7 +308,7 @@ In this exercise, you will create a new console application that allows you to p
 	The preceding code uses the **CloudMediaContext** instance to create an encoding job with an encoding task to the specified preset. In this case a smooth streaming encoding (H264 Smooth Streaming 720p) is used. Then the job is submitted. Notice that an event handler is attached to the **StateChanged** event of the job, which means that every time the state of the job changes, it will be prompted to the console.
 
 <a name="programmatically-delivering-and-streaming-an-mp4-video" />
-### Task 3 - Programmatically Delivering and Streaming an MP4 video ###
+#### Task 3 - Programmatically Delivering and Streaming an MP4 video ####
 
 1. Add the following code between the WriteLine blocks which will notify the user of the initiation and termination of the publishing operation.
 
@@ -378,14 +382,14 @@ In this exercise, you will create a new console application that allows you to p
 ---
 
 <a name="Exercise3" />
-## Exercise 3: Microsoft Media Platform Player Framework for the Client  ##
+### Exercise 3: Microsoft Media Platform Player Framework for the Client  ###
 
 Microsoft Media Platform is a complete set of technologies for digital media encoding, delivery and playback, for virtually any network-connected device. The Player Framework is an open source video player available for Silverlight, HTML5 and Xbox, as well as Windows 8.1 and Windows Phone apps. It allows you to play both progressive download videos and Smooth Streaming videos.
 
 In this exercise you will first download and install the Microsoft Media Platform Player Framework and then build a simple Store app. Within the app you will consume a video previously uploaded to Windows Azure Media Services and play it in a video player control.
 
 <a name="installing-MMPPF" />
-### Task 1 - Installing Microsoft Media Platform Player Framework ###
+#### Task 1 - Installing Microsoft Media Platform Player Framework ####
 
 In this task you will download and install the latest version of the Microsoft Media Platform Player Framework.
 
@@ -406,7 +410,7 @@ In this task you will download and install the latest version of the Microsoft M
     _Microsoft Media Platform Player Framework Installation Complete_
 
 <a name="adding-a-video-player-control-to-a-windows8-app" />
-### Task 2 - Adding a video player control to a Windows 8.1 app ###
+#### Task 2 - Adding a video player control to a Windows 8.1 app ####
 
 In this task you will create a new store app from scratch and add video control linked to a smooth streaming video uploaded to Windows Azure Media Services.
 
@@ -597,7 +601,7 @@ In this task you will create a new store app from scratch and add video control 
 ---
 
 <a name="Exercise4" />
-## Exercise 4: Monetization ##
+### Exercise 4: Monetization ###
 
 In this exercise you will add support for in-video advertisements to monetize your application by using a VMAP file that defines which ads will be played and when.
 
@@ -606,7 +610,7 @@ Scheduling is the first step to playing ads in the player framework. This allows
 One of the scheduling options is the **VMAP** (Digital Video Multiple Ad Playlist). VMAP is an xml schema that defines when ads should play for a given piece of content. The player framework includes a VMAP scheduler plugin that will download, parse and consume to control the timing of ads for you.
 
 <a name="adding-advertisements-using-a-vmap-file-to-a-windows8-video-app" />
-### Task 1 - Adding advertisements using a VMAP file to a Windows 8.1 video app ###
+#### Task 1 - Adding advertisements using a VMAP file to a Windows 8.1 video app ####
 
 In this task, you will add advertising support to the media player control of the app using the vmap scheduler plugin.
 
@@ -749,7 +753,7 @@ In this task, you will add advertising support to the media player control of th
 	````
 
 <a name="exploring-vmap-file-and-running-app" />
-### Task 2 - Exploring the VMAP file and running the app ###
+#### Task 2 - Exploring the VMAP file and running the app ####
 
 In this task you will add an already pre-configured VMAP file to the local assets folder of the application and explore its main content. Finally, you will run the application to check that the advertisements are displayed at the beginning of the video.
 
@@ -846,7 +850,7 @@ To learn more about configuring Windows Azure Media Services, please refer to th
 
 **Technical Reference**
 
-This is a list of articles that expands the information on the technologies explained on this lab:
+This is a list of articles that expand on the technologies explained in this lab:
 
 - [Developing Windows Azure Media Services Client Applications](http://aka.ms/S0u1ly): SDKs contain libraries and APIs that allow you to create client applications. Player Frameworks are built on top of the SDKs and contain user controls for common applications scenarios and out-of-the-box sample player applications and documentation. Both SDKs and Player Frameworks are available for multiple platforms.
 
