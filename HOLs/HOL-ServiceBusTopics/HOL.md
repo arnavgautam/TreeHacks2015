@@ -142,7 +142,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 	_Add Connection dialog box_
 
-1. After connecting to Service Bus, your service bus connection should appear under the **Service Bus** node. Expand your service bus connection, right-click the **Topics** node and select **Create New Topic...**. 
+1. After connecting to your Service Bus namespace, your namespace should appear under **Service Bus**. Expand the Service Bus namespace node, right-click **Topics** and select **Create New Topic...**. 
 
 	![Creating new Topic](Images/creating-a-new-topic.png?raw=true)
 
@@ -154,7 +154,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 	_New Topic dialog box_
 
-1. The new topic should be added under **Topics**. Expand the topic and right-click the **Subscriptions** node and select **Create New Subscription...**.
+1. The new topic should be added under **Topics**. Expand the topic node, right-click  **Subscriptions** and select **Create New Subscription...**.
 
 	![Creating new subscription](Images/creating-new-subscription.png?raw=true)
 
@@ -290,13 +290,13 @@ You will now launch the updated application in the Windows Azure compute emulato
 
 	_Configuring StartUp project_
 
-1. Press **F5** to launch the application. The browser will show the default page of the application.
+1. Press **F5** to launch the application. The browser will show the default page of the application (note that the topic you created in the previous task is displayed under **Topic Explorer**).
 
 	![Service Bus Topics application home page](Images/service-bus-topics-application-home-page.png?raw=true)
 
 	_Service Bus Topics application home page_
 
-1. In **Create a Topic** section, enter _SimpleTopic_ for the topic name, and click **Create**.
+1. In the **Create a Topic** section, enter _SimpleTopic_ for the topic name, and click **Create**.
 
 	![Creating a topic](Images/creating-a-topic.png?raw=true)
 
