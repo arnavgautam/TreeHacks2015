@@ -598,27 +598,27 @@ To learn more about debugging applications in Windows Azure, please refer to the
 
 This is a list of articles that expands the information on the technologies explained on this lab:
 
-- [Debugging in Visual Studio](http://msdn.microsoft.com/en-us/library/sc65sadd.aspx>): This article extensively covers the debugging functions integrated with Visual Studio.
+- [Debugging in Visual Studio](http://msdn.microsoft.com/en-us/library/sc65sadd.aspx>): extensively covers the debugging functions integrated with Visual Studio.
 
-- [Debugging a Cloud Service with Emulator Express](http://msdn.microsoft.com/en-us/library/windowsazure/dn339018.aspx): By using Emulator Express, you can test and debug a cloud service without running Visual Studio as an administrator.
+- [Debugging a Cloud Service with Emulator Express](http://msdn.microsoft.com/en-us/library/windowsazure/dn339018.aspx): by using Emulator Express, you can test and debug a cloud service without running Visual Studio as an administrator.
 
-- [Initialize or Change Windows Azure Diagnostics Configuration](http://msdn.microsoft.com/en-us/library/windowsazure/hh411537.aspx): This article describes the different aspects of the Diagnostic configuration, like the Diagnostics data sources, the Diagnostics Monitor settings and the storage of the Diagnostics data.
+- [Initialize or Change Windows Azure Diagnostics Configuration](http://msdn.microsoft.com/en-us/library/windowsazure/hh411537.aspx): describes the different aspects of the Diagnostic configuration, like the Diagnostics data sources, the Diagnostics Monitor settings and the storage of the Diagnostics data.
 
-- [Create and Use Performance Counters in a Windows Azure Application](http://msdn.microsoft.com/en-us/library/windowsazure/hh411542.aspx): You can use performance counters to measure the health of your Windows Azure application. You can collect data from existing performance counters or you can create custom performance counters to collect additional data.
+- [Create and Use Performance Counters in a Windows Azure Application](http://msdn.microsoft.com/en-us/library/windowsazure/hh411542.aspx): you can use performance counters to measure the health of your Windows Azure application. You can collect data from existing performance counters or you can create custom performance counters to collect additional data.
 
-- [How to: Configure Trace Switches](http://msdn.microsoft.com/en-us/library/t06xyy08.aspx): By placing **Trace Switches** in your code, you can control whether tracing occurs and how extensive it is. This lets you monitor the status of your application in a production environment.
+- [How to: Configure Trace Switches](http://msdn.microsoft.com/en-us/library/t06xyy08.aspx): by placing **Trace Switches** in your code, you can control whether tracing occurs and how extensive it is. This lets you monitor the status of your application in a production environment.
 
-- [Debug Your App by Recording Code Execution with IntelliTrace](http://msdn.microsoft.com/en-us/library/dd264915.aspx): Explains how to you use IntelliTrace to record and trace your code's execution history.
+- [Debug Your App by Recording Code Execution with IntelliTrace](http://msdn.microsoft.com/en-us/library/dd264915.aspx): explains how to you use IntelliTrace to record and trace your code's execution history.
 
 **Development**
 
 This is a list of developer-oriented articles related to debugging applications in Windows Azure:
 
-- [Remotely Change the Diagnostic Monitor Configuration](http://msdn.microsoft.com/en-us/library/windowsazure/gg432992.aspx): After you have deployed a cloud service you can remotely change the configuration of the diagnostic monitor from code running in an application outside of Windows Azure using the [DeploymentDiagnosticManager](http://msdn.microsoft.com/en-us/library/windowsazure/microsoft.windowsazure.diagnostics.management.deploymentdiagnosticmanager.aspx) class.
+- [Remotely Change the Diagnostic Monitor Configuration](http://msdn.microsoft.com/en-us/library/windowsazure/gg432992.aspx): after you have deployed a cloud service you can remotely change the configuration of the diagnostic monitor from code running in an application outside of Windows Azure using the [DeploymentDiagnosticManager](http://msdn.microsoft.com/en-us/library/windowsazure/microsoft.windowsazure.diagnostics.management.deploymentdiagnosticmanager.aspx) class.
 
-- [Trace the Flow of Your Windows Azure Application](http://msdn.microsoft.com/en-us/library/windowsazure/hh411529.aspx): You can add tracing and debugging instrumentation to your Windows Azure application when you develop it, and you can use that instrumentation both while you are developing the application and after you have deployed it.
+- [Trace the Flow of Your Windows Azure Application](http://msdn.microsoft.com/en-us/library/windowsazure/hh411529.aspx): you can add tracing and debugging instrumentation to your Windows Azure application when you develop it, and you can use that instrumentation both while you are developing the application and after you have deployed it.
 
-- [API Reference for IntelliTrace Extensibility](http://msdn.microsoft.com/en-us/library/ee661590.aspx): Provides information to use IntelliTrace extensibility APIs to read and decode .itrace files in your application.
+- [API Reference for IntelliTrace Extensibility](http://msdn.microsoft.com/en-us/library/ee661590.aspx): provides information to use IntelliTrace extensibility APIs to read and decode .itrace files in your application.
 
 <a name="Summary"></a>
 ## Summary ##
