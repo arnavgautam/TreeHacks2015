@@ -86,7 +86,7 @@ In this task, you will build and run the Fabrikam Insurance application in the W
 
 1. Open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Professional 2013** shortcut and choosing **Run as administrator**.
 
-1. In the **File** menu, choose **Open Project...**, browse to **Ex1-DebuggingInVisualStudio** in the **Source** folder of the lab, select **Begin.sln** in the **Begin** folder and then click **Open**.
+1. In the **File** menu, choose **Open | Project/Solution...**, browse to **Ex1-DebuggingInVisualStudio** in the **Source** folder of the lab, select **Begin.sln** in the **Begin** folder and then click **Open**.
 
 1. Set the start action of the project. To do this, in **Solution Explorer**, right-click the **FabrikamInsurance** project and then select **Properties**. In this window, switch to the **Web** tab and then, under **Start Action**, select the **Specific Page** option. Leave the page value blank, and save the changes.
 
@@ -113,7 +113,6 @@ In this task, you will build and run the Fabrikam Insurance application in the W
   	![Choosing make and model for the insurance premium calculation](Images/choosing-make-and-model-for-the-insurance-premium-calculation.png?raw=true "Choosing make and model for the insurance premium calculation")
 
 	_Choosing make and model for the insurance premium calculation_
-
 
 1. Click **Calculate** to re-submit the form with the new values. Notice that an unhandled exception occurs and execution halts in the Visual Studio debugger at the line that caused the error. 
 
@@ -177,13 +176,13 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 	_Deployment advanced settings_
 
-1. Review the Summary information and click **Publish** to start the deployment process.
+1. Make sure the Summary information is correct, and click **Publish** to start the deployment process.
 
 	![Starting deployment](Images/starting-deployment-debugging.png?raw=true)
 
 	_Starting deployment_
 
-1. After you start deployment, you can examine the Windows Azure activity log window to see the status of the operation. If this window is not visible, in the **View** menu, point to **Other Windows**, and then select **Windows Azure Activity Log**.
+1. After you start deployment, you can examine the Windows Azure activity log window to see the status of the operation. If this window is not visible, in the **View** menu, point to **Other Windows** and select **Windows Azure Activity Log**. Then, click on the operation.
 
 	![Windows Azure Activity Log](Images/windows-azure-activity-log-debugging.png?raw=true)
 
@@ -207,7 +206,7 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 	_Attach the debugger to the role_
 
-	> **Note:** When you select a role, the Visual Studio debugger attaches to each instance of that role. The debugger will break on a breakpoint for the first role instance that runs that line of code and meets any conditions of that breakpoint. If you select an instance, the debugger attaches to only that instance and breaks on a breakpoint only when that specific instance runs that line of code and meets the breakpoint's conditions.
+	> **Note:** When you select a role, the Visual Studio debugger attaches itself to each instance of that role. The debugger will break on a breakpoint for the first role instance that runs that line of code and meets any conditions of that breakpoint. If you select an instance, the debugger attaches to only that instance and breaks on a breakpoint only when that specific instance runs that line of code and meets the breakpoint's conditions.
 
 1. The debugger automatically attaches to the appropriate host process for your role. Depending on what the role is, the debugger attaches to w3wp.exe, WaWorkerHost.exe, or WaIISHost.exe. To verify the process to which the debugger is attached, expand the instance node in **Server Explorer**.
 
@@ -215,7 +214,7 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 	_Processes to which the debugger is attached_
 
-	> **Note:** To identify the processes to which the debugger is attached, open the **Processes** dialog box by selecting then **Debug** menu option, then pointing to **Windows** and then **Processes**.
+	> **Note:** To identify the processes to which the debugger is attached, open the **Debug** menu option, point to to **Windows** and select **Processes**.
 
 1. Open a browser window, and navigate to **http://[your-cloud-service-name].cloudapp.net/**. Complete the form making sure that you choose "_PORSCHE"_ for the **Make** of the vehicle and "_BOXSTER (BAD DATA)_" for the **Model**.
 
@@ -225,7 +224,7 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 	_Unhandled exception in the deployed application_
 
-	> **Note:** After the debugger attaches to a role or an instance, you can debug as usual. However, you should avoid long stops at breakpoints when remote debugging because Windows Azure treats a process that is stopped for longer than a few minutes as unresponsive and stops sending traffic to that instance. If you stop too much time, the Remote Debugging Monitor (_msvsmon_._exe_) that runs on your role instance shuts down and terminates your debugging session.
+	> **Note:** After the debugger attaches to a role or an instance, you can debug as usual. However, you should avoid long stops at breakpoints when remote debugging because Windows Azure treats a process that is stopped for longer than a few minutes as unresponsive and stops sending traffic to that instance. If you stop for too much time, the Remote Debugging Monitor (_msvsmon_._exe_) that runs on your role instance shuts down and terminates your debugging session.
 
 1. Press **F5** to continue execution and let ASP.NET handle the exception. Notice that this time the application shows a generic error page instead of the exception details that you saw earlier when running the application locally. This is because the default mode for the **customErrors** element is _remoteOnly_, and the application is now running in Windows Azure.
 
@@ -233,7 +232,7 @@ In the **Publish Windows Azure Application** dialog, click **Sign In** and sign 
 
 	_Generic error page_
 
-1. To detach the debugger from all processes in your instance or role, press **SHIFT+F5** or right-click the role or instance node that you're debugging in **Server Explorer**, and then select **Detach Debugger**.
+1. To detach the debugger from all processes in your instance or role, go back to Visual Studio and press **SHIFT+F5**, or right-click the role or instance node that you're debugging in **Server Explorer** and select **Detach Debugger**.
 
 <a name="Exercise2"></a>
 ### Exercise 2: Adding Diagnostic Trace ###
@@ -249,9 +248,9 @@ To debug the application once you deploy it to a production environment, you sho
 
 In this task, you will configure Windows Azure Diagnostics in the Fabrikam Insurance application and instrument the application to trace diagnostics data.
 
-1. If not already open, open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Express 2013 for Web** shortcut and choosing **Run as administrator**.
+1. If not already open, open Visual Studio in elevated administrator mode by right clicking the **Microsoft Visual Studio Professional 2013** shortcut and choosing **Run as administrator**.
 
-1. In the **File** menu, choose **Open Project**, browse to **Ex2-AddingDiagnosticTrace** in the **Source** folder of the lab, select **Begin.sln** in the **Begin** folder and then click **Open**.
+1. In the **File** menu, choose **Open | Project/Solution...**, browse to **Ex2-AddingDiagnosticTrace** in the **Source** folder of the lab, select **Begin.sln** in the **Begin** folder and then click **Open**.
 
 	> **Note:** Alternatively you can continue working with the solution obtained after completing the previous exercise.
 
@@ -269,7 +268,7 @@ In this task, you will configure Windows Azure Diagnostics in the Fabrikam Insur
 
 1. To customize the settings, select the **Custom plan** option, and then click the **Edit** button.
 
-	> **Note:** Among the available options (**Errors only**, **All information**, and **Custom plan**), **Errors only** is the default option and requires the least amount of storage because it doesn’t transfer warnings or tracing messages. All information transfers the most information and is, therefore, the most expensive option.
+	> **Note:** Among the available options (**Errors only**, **All information**, and **Custom plan**), **Errors only** is the default option and requires the least amount of storage because it doesn’t transfer warnings or tracing messages. The option **All information** transfers the most information and is, therefore, the most expensive option.
 
 	![Selecting the custom plan](Images/selecting-the-custom-plan.png?raw=true "Selecting the custom plan")
 
@@ -284,6 +283,8 @@ In this task, you will configure Windows Azure Diagnostics in the Fabrikam Insur
 1.  Make sure that the **Transfer period** is set to **1 minute**. The Diagnostic Monitor will transfer the application logs from the role instances to Windows Azure storage in this time interval.
 
 	![Application logs transfer period](Images/application-logs-transfer-period.png?raw=true)
+
+	_Selecting the Transfer period for Application logs_
 
 1. Click **OK** to close the dialog.
 
@@ -308,7 +309,7 @@ In this task, you will configure Windows Azure Diagnostics in the Fabrikam Insur
 
 	>Note that the **Trace** object outputs the message to each listener in its **Listeners** collection, which by default contains an instance of the **DefaultTraceListener** class. The role project templates provided by the Windows Azure Tools for Microsoft Visual Studio already include the settings required in the **Web.config** or **App.config** file  of the role to use the **DiagnosticMonitorTraceListener** to write to the Windows Azure diagnostics log. When using this type of trace listener, the logs are gathered locally in each role. The Diagnostic Monitor then copies the information to the storage service account configured in the _ServiceConfiguration.cscfg_ file (transferred trace data is located in the _WADLogsTable_ of the storage account).
 
-1. Open the **QuoteController.cs** file in the **Controllers** folder of the **FabrikamInsurance** project and add the following method. 
+1. Open the **QuoteController.cs** file in the **Controllers** folder of the **FabrikamInsurance** project and add the following method into the **QuoteController** class. 
 
 	(Code Snippet - WindowsAzureDebugging-Ex2-Controller OnException method-CS)
 	<!-- mark:6-9 -->
@@ -329,7 +330,7 @@ In this task, you will configure Windows Azure Diagnostics in the Fabrikam Insur
 
 	> By default, when an action method with the **HandleErrorAttribute** attribute throws any exception, MVC displays the **Error** view that is located in the **~/Views/Shared** folder.
 
-1. In addition to error logging, tracing can also be useful for recording other significant events during the execution of the application. For example, for registering whenever a given controller action is invoked. To show this feature, insert the following (highlighted) tracing statement at the start of the **Calculator** method to log a message whenever this action is called. 
+1. In addition to error logging, tracing can also be useful to record other significant events during the execution of the application; for example, to register whenever a given controller action is invoked. To show this feature, insert the following (highlighted) tracing statement at the start of the **Calculator** method to log a message whenever this action is called. 
 
 	<!-- mark:7 -->
 	````C#
@@ -374,15 +375,15 @@ You are now ready to re-deploy and run the solution in Windows Azure. At this po
 
 1. Deploy the application again, making sure to select the cloud service and the storage account created in Exercise 1.
 
-	> **Note:** Because the slot that you chose is already occupied by the previous deployment, Visual Studio warns you and asks for confirmation before replacing it. Click **Replace** to overwrite the current deployment.
+	> **Note:** Because the slot that you chose is already occupied by the previous deployment, Visual Studio will warn you and ask for confirmation before replacing it. Click **Replace** to overwrite the current deployment.
 	>
 	> ![Replacing the current deployment](Images/replacing-the-current-deployment.png?raw=true "Replacing the current deployment")
 	>
 	> _Replacing the current deployment_ 
 
-1. Wait until the deployment completes and navigate to the deployed cloud service. In the browser window, complete the form making sure that you choose "_PORSCHE"_ for the **Make** of the vehicle and "_BOXSTER (BAD DATA)_" for the **Model** (the generic error page should be displayed).
+1. Wait until the deployment completes and navigate to the deployed cloud service. In the browser window, complete the form making sure that you choose "_PORSCHE"_ for the **Make** of the vehicle and "_BOXSTER (BAD DATA)_" for the **Model**. The generic error page should be displayed.
 
-1. Switch back to Visual Studio, open **Server Explorer** and right-click the **FabrikamInsurance** role instance under the **Cloud Services** node. Then select **View Diagnostic Data**.
+1. Switch back to Visual Studio, open **Server Explorer** and right-click the **FabrikamInsurance** role instance under the **Cloud Services** node. Then select **View Diagnostics Data**.
 
 	![Clicking View Diagnostics Data](Images/clicking-view-diagnostics-data.png?raw=true "Clicking View Diagnostics Data")
 	
@@ -396,13 +397,13 @@ You are now ready to re-deploy and run the solution in Windows Azure. At this po
 
 1. To view the output from other informational trace messages, return to the browser window and click **About** followed by **Quotes** to execute both actions in the controller. Recall that you inserted trace messages at the start of each method.
 
-1. Go back to the **Diagnostics Summary** report. Note that you will not see new entries as only errors are displayed in the summary. In order to see the informational trace messages you need to click **View all data** below the **Windows Azure application log** table.
+1. Go back to the **Diagnostics Summary** report. Note that you will not see new entries as only errors are displayed in the summary. In order to see the informational trace messages you need to click **View all data** below the **Windows Azure application logs** table.
 
 	![Clicking View all data](Images/clicking-view-all-data.png?raw=true "Clicking View all data")
 
 	_Clicking View all data_
 
-1. The Windows Azure Storage Table viewer should open, loading the content of the **WADLogsTable** table. Locate the log entries with the information trace messages. If the information messages are not displayed yet, you might have to wait for the transfer period to elapse and then click the **Refresh** icon from the toolbar reload the table contents.
+1. The **Windows Azure Storage Table** viewer should open, loading the content of the **WADLogsTable** table. Locate the log entries with the information trace messages. If the information messages are not displayed yet, you might have to wait for the transfer period to elapse and then click the **Refresh** icon from the toolbar to reload the table contents.
 
 	![Showing informational trace messages for the controller actions](Images/showing-informational-trace-messages.png?raw=true)
 
