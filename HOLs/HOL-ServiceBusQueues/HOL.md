@@ -123,7 +123,6 @@ You have now created a new Windows Azure namespace for this hands-on lab. To sig
 
 >**Note**: In this lab you will learn how to create and make use of Service Bus queues from Visual Studio and from an ASP.NET MVC application. You can also create queues from the Windows Azure Management Portal, for more information see [How to Manage Service Bus Messaging Entities ](http://www.windowsazure.com/en-us/documentation/articles/service-bus-manage-message-entities/)
 
-
 <a name="Ex1Task2"></a>
 #### Task 2 - Creating a Queue Programmatically ####
 In this task, you will create a Queue in your Service Bus namespace.
@@ -239,10 +238,10 @@ In this task, you will create a Queue in your Service Bus namespace.
 	````
 
 
-1. Press **CTRL + S** to save the changes to the Controller. 
+1. Press **CTRL + S** to save the changes to the Controller.
 
-<a name="Ex2Verification"></a>
-#### Verification ####
+<a name="Ex1Task3"></a>
+#### Task 3 - Verification ####
 
 You will now launch the updated application in the Windows Azure compute emulator to verify that you can create a queue.
 
@@ -489,8 +488,8 @@ In the previous task, we instantiate a **QueueClient** in order to write message
 
 1. Press **CTRL + S** to save the changes to the Controller.
 
-<a name="Ex2Verification"></a>
-#### Verification ####
+<a name="Ex2Task3"></a>
+#### Task 3 - Verification ####
 
 You now launch the updated application in the Windows Azure compute emulator to verify that you can create a Queue, write messages to a specific queue and also read messages from a queue.
 
@@ -737,8 +736,8 @@ In this task yoy will deploy Java application which reads from the Queue to a Li
 
 > **Note:** Do not close the ssh conection as you will use it in the next task.
 
-<a name="Ex3Verification"></a>
-#### Verification ####
+<a name="Ex3Task4"></a>
+#### Task 4 - Verification ####
 
 You now launch the updated application in the Windows Azure compute emulator to verify that you can send a message to a Queue with a .NET application with AMQP protocol and receive the message from a Java application running on linux.
 
@@ -768,9 +767,10 @@ You now launch the updated application in the Windows Azure compute emulator to 
 
 ---
 
+<a name="NextSteps"></a>
 ## Next Steps ##
 
-To learn more about **Service Bus Queues**, please refer to the following articles which expand on the technologies explained in this lab:
+To learn more about **Service Bus Queues** please refer to the following articles:
 
 **Technical Reference**
 
@@ -784,14 +784,13 @@ This is a list of articles that expands the information on the technologies expl
 
 **Development**
 
-This is a list of developer-oriented articles related to Windows Azure Web Sites:
+This is a list of developer-oriented articles related to **Service Bus Queues**:
 
 - [How to Use Service Bus Queues](https://www.windowsazure.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-queues/): This guide will show you how to use Service Bus queues. The samples are written in C# and use the .NET API. The scenarios covered include creating queues, sending and receiving messages, and deleting queues.
 
 - [How to use AMQP 1.0 with the Service Bus .NET API](http://www.windowsazure.com/en-us/documentation/articles/service-bus-dotnet-advanced-message-queuing/): This how-to guide explains how to use the Service Bus brokered messaging features (queues and publish/subscribe topics) from .NET applications using the Service Bus .NET API. There is a companion how-to guide that explains how to do the same using the standard Java Message Service (JMS) API. You can use these two guides together to learn about cross-platform messaging using AMQP 1.0.
 
 - [How to use the Java Message Service (JMS) API with Service Bus & AMQP 1.0](http://www.windowsazure.com/en-us/documentation/articles/service-bus-java-how-to-use-jms-api-amqp/): This how-to guide explains how to use the Service Bus brokered messaging features (queues and publish/subscribe topics) from Java applications using the popular Java Message Service (JMS) API standard. There is a companion How-to guide that explains how to do the same using the Service Bus .NET API. You can use these two guides together to learn about cross-platform messaging using AMQP 1.0.
-
 
 ---
 

@@ -45,10 +45,10 @@ The following is required to complete this hands-on lab:
 
 This hands-on lab includes the following exercises:
 
-- [Exercise 1: Creating a Windows Azure Web Site with Visual Studio](#Exercise1)
-- [Exercise 2: Creating an MVC 5 Application with Entity Framework](#Exercise2)
-- [Exercise 3 Publishing an MVC 5 Application using Web Deploy](#Exercise3)
-- [Exercise 4: Publishing an MVC 5 Application using Git](#Exercise4)
+- [Creating a Windows Azure Web Site with Visual Studio](#Exercise1)
+- [Creating an MVC 5 Application with Entity Framework](#Exercise2)
+- [Publishing an MVC 5 Application using Web Deploy](#Exercise3)
+- [Publishing an MVC 5 Application using Git](#Exercise4)
 
 <a name="Exercise1"></a>
 ### Exercise 1: Creating a Windows Azure Web Site with Visual Studio ###
@@ -240,13 +240,12 @@ In this exercise, you will create a simple ASP.NET MVC 5 web application, using 
 
 	_Generated code for the Customer controller_
 
----
-
 <a name="Exercise3"></a>
 ### Exercise 3: Publishing an MVC 5 Application using Web Deploy ###
 
 In this exercise, you will publish the application you obtained in [Exercise 2](#Exercise2) to Windows Azure Web Sites by making use of the Web Deploy publishing feature provided by Visual Studio.
 
+<a name="Ex3Task1"></a>
 #### Task 1 – Publishing an ASP.NET MVC 5 Application using Web Deploy ####
 
 1. Open the solution you have obtained in [Exercise 2](#Exercise2) with Visual Studio. Alternatively, you can open the **MVCSample.Web** solution located in the **Source\Assets** folder of this lab.
@@ -307,16 +306,14 @@ In this exercise, you will publish the application you obtained in [Exercise 2](
 
 	_Customer view_
 
----
-
-<a name="Exercise2"></a>
+<a name="Exercise4"></a>
 ### Exercise 4: Publishing an MVC 5 Application using Git ###
 
 In this exercise you will publish the web application you created in [Exercise 2](#Exercise2), but this time using Git.
 
 > **Note:** If you did not execute [Exercise 2](#Exercise2) you can still perform this exercise by deploying the site located in the **Source\Assets** folder of this lab.
 
-<a name="Ex2Task1"></a>  
+<a name="Ex4Task1"></a>  
 #### Task 1 – Setting up Git Publishing ####
 
 1. In Visual Studio, right-click your Web site in **Server Explorer** and select **Open in Management Portal**. Sign in using the Microsoft credentials associated with your subscription.
@@ -365,7 +362,7 @@ In this exercise you will publish the web application you created in [Exercise 2
 
 1. Copy the **Git URL** value. You will use it later in this exercise.
 
-<a name="Ex2Task2"></a>  
+<a name="Ex4Task2"></a>  
 #### Task 2 – Pushing the Application to Windows Azure using Git ####
 
 1. Open the solution you obtained in [Exercise 1](#Exercise1) with Visual Studio. Alternatively, you can open the **MVCSample.Web** solution located in the **Source\Assets** folder of this lab.
