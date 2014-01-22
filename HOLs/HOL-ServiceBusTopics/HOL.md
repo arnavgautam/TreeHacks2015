@@ -296,7 +296,7 @@ You will now launch the updated application in the Windows Azure compute emulato
 
 	_Service Bus Topics application home page_
 
-1. In the **Create a Topic** section, enter _SimpleTopic_ for the topic name, and click **Create**.
+1. In the **Create a Topic** section, enter _simpletopic_ for the topic name, and click **Create**.
 
 	![Creating a topic](Images/creating-a-topic.png?raw=true)
 
