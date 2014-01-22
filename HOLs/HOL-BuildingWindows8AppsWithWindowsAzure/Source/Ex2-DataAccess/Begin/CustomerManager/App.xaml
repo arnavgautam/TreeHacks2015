@@ -9,7 +9,8 @@
 
         <!-- Application-specific resources -->
 
-        <x:String x:Key="AppName">CustomerManager</x:String>
+        <x:String x:Key="AppName">Customer Manager</x:String>
+        <x:String x:Key="ServiceUrl">[YOUR-SERVICE-SITE-URL]/api/customers</x:String>
 
     </Application.Resources>
 </Application>

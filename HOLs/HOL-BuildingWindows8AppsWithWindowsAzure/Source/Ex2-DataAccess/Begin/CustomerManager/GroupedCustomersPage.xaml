@@ -19,9 +19,8 @@
         -->
         <CollectionViewSource
             x:Name="groupedItemsViewSource"
-            Source="{Binding Groups}"
-            IsSourceGrouped="true"
-            ItemsPath="Items"/>
+            Source="{Binding CustomersList}"
+            IsSourceGrouped="false"/>
     </Page.Resources>
 
     <!--

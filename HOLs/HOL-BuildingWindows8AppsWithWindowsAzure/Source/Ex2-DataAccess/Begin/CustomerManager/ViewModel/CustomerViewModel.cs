@@ -69,7 +69,7 @@
 
         public CustomerViewModel(Customer customer)
         {
-            this.CustomerId = customer.CustomerId;
+            this.CustomerId = customer.CustomerId.ToString();
             this.Name = customer.Name;
             this.Phone = customer.Phone;
             this.Address = customer.Address;
