@@ -479,6 +479,7 @@ In the previous task, you instantiate a **TopicClient** in order to send message
 
 <a name="Ex2Task3"></a>
 #### Task 3 - Verification ####
+You will now run the application again to verify that you can send messages to a topic and receive messages from a subscription.
 
 1. In **Visual Studio**, press **F5** to run the application.
 
@@ -511,50 +512,50 @@ In the previous task, you instantiate a **TopicClient** in order to send message
 <a name="Exercise3"></a>
 ### Exercise 3: Using a Subscription Rule Filter Expression and Rule Filter Actions ###
 
-In this exercise, you will apply filters on subscriptions to retrieve only the messages relevant to that subscription. When you send a message to a topic, all the subscriptions verify if the message has a match with its own subscription rules. If there is a match, the subscription will contain a virtual copy of the message. This is useful to avoid sending multiple messages to different subscriptions. Sending a single message to a topic will distribute along different subscriptions by checking **Rule Expressions**. Additionally, you will learn how to apply **Filter Actions** to subscriptions to modify the **BrokeredMessage** properties of the messages that match a custom rule.
+In this exercise, you will apply filters on subscriptions to retrieve only the messages relevant to that subscription. When you send a message to a topic, all the subscriptions verify if the message has a match with its own subscription rules. If there is a match, the subscription will contain a virtual copy of the message. This is useful to avoid sending multiple messages to different subscriptions. Sending a single message to a topic will distribute along different subscriptions by checking **rule expressions**. Additionally, you will learn how to apply **filter actions** to subscriptions to modify the **BrokeredMessage** properties of the messages that match a custom rule.
 
 
 <a name="Ex3Task1"></a>
 #### Task 1 - Using a Subscription Rule Filter Expression ####
 
-**Rule Filters** are used in Subscriptions to retrieve messages that match certain rules. That way you can send one message to a Topic, but it _virtually_ replicates through multiple Subscriptions.
+**Rule filters** are used in subscriptions to retrieve messages that match certain rules. That way you can send one message to a topic, but it _virtually_ replicates through multiple subscriptions.
 
-1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics.Web** project.
+1. In **Visual Studio**, open the **Begin.sln** solution file from **Source\Ex3-UsingSubscriptionRules\Begin\**. Alternatively, you may continue with the solution that you obtained after completing the previous exercise.
 
-1. In the previous task, you created a Topic with two Subscriptions. Now, you will replace a line of that code to include a **SqlFilter** to the _UrgentMessages_ Subscription. With this filter, the _UrgentMessages_ subscription will get only the messages that match the rule **Urgent = '1'**. Replace the code you added in the previous task with the following highlighted code.
+1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
-	(Code Snippet - _Service Bus Topics - Ex03 - Create Topic and Subscriptions with Rule Filters_ - CS)
-	<!-- mark:9 -->
+1. In the previous task, you created a topic with one subscription. Now, you will update the **CreateTopic** method to add a new _UrgentMessages_ subcription. This subscription will include a **SqlFilter** to get only the messages that match the rule _Urgent = '1'_. Add the following highlighted code in the **CreateTopic** action method.
+
+	(Code Snippet - _Service Bus Topics - Ex03 - Add Subscription with Rule Filter_ - CS)
+	<!-- mark:6 -->
 	````C#
 	[HttpPost]
 	public JsonResult CreateTopic(string topicName)
 	{
-	    bool success;
-	    try
-	    {
-	        var topic = this.namespaceManager.CreateTopic(topicName);
-	        var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
-	        var urgentMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages", new SqlFilter("Urgent = '1'"));
-	   ...
+		var topic = this.namespaceManager.CreateTopic(topicName);
+		var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
+		var urgentMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages", new SqlFilter("Urgent = '1'"));
+		
+		return this.Json(topicName, JsonRequestBehavior.AllowGet);
 	}
 	````
 
-    > **Note:** Take into account that you can use SQL92 as Filter Expressions.
+    > **Note:** Take into account that you can use SQL92 as filter expressions.
 
 1. Press **CTRL + S** to save the changes to the Controller.
 
 <a name="Ex3Task2"></a>
 #### Task 2 - Using a Subscription Rule Filter Action ####
 
-Additionally to Rule Filter Expressions, you can use **Rule Filter Actions.** With this, you can modify the properties of a **BrokeredMessage** that matches the specified rule. You will create a new **Subscription** named _HighPriorityMessages_ containing a custom **Rule Filter Action**. All messages that match the rule _Urgent = '1'_ will be sent to that **Subscription** with the property **Priority** set to _'High'_.
+Additionally to rule filter expressions, you can use **rule filter actions.** With this, you can modify the properties of a **BrokeredMessage** that matches the specified rule. You will create a new subscription named _HighPriorityMessages_ containing a custom rule filter action. All messages that match the rule _Urgent = '1'_ will be sent to that subscription with the **Priority** property set to _High_.
 
-> **Note:** Both Filter Expressions and Filter Actions use the properties declared in the **BrokeredMessage** dictionary named **Properties**. These rules won't apply on custom objects inside the body of the **BrokeredMessage.**
+> **Note:** Both filter expressions and filter actions use the properties declared in the **BrokeredMessage** dictionary named **Properties**. These rules won't apply on custom objects inside the body of the **BrokeredMessage.**
 
-1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics.Web** project.
+1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
-1. Create a new **Subscription** object with a **RuleDescription**. Within this object, you can set a **Filter** and an **Action**. This way, if the **Filter** matches, the specific **Action** is applied to the **BrokeredMessage**. In the **CreateTopic** Action Method, add the highlighted code.
+1. Create a new **subscription** object with a **RuleDescription**. Within this object, you can set a **filter** and an **action**. This way, if the **filter** matches, the specific **action** is applied to the **BrokeredMessage**. Add the highlighted code to the **CreateTopic** action method.
 
-	(Code Snippet - _Service Bus Topics - Ex03 - Create Subscription with Action Filter_ - CS)
+	(Code Snippet - _Service Bus Topics - Ex03 - Add Subscription with Action Filter_ - CS)
 	<!-- mark:11-16 -->
 	````C#
 	[HttpPost]
