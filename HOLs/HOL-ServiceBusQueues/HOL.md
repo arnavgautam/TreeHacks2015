@@ -7,27 +7,28 @@
 
 **Service Bus Messaging** contains a brand-new set of cloud-based, message-oriented-middleware technologies including a fully-featured **Message Queue** with support for arbitrary content types, rich message properties, correlation, reliable binary transfer, and grouping.
 
+**Queues** offer First In, First Out (FIFO) message delivery to one or more competing consumers. That is, messages are typically expected to be received and processed by the receivers in the temporal order in which they were added to the queue, and each message is received and processed by only one message consumer. Using queues to intermediate between message producers and consumers provides an inherent loose coupling between the components. Because producers and consumers are not aware of each other, a consumer can be upgraded without having any effect on the producer.
+
+In this hands-on lab, you will learn how to create a Service Bus namespace using Windows Azure Management Portal. Then you will explore how to create an cloud based application that writes and reads messages to a queue. Finally you will see how to interact from different platforms and languages using the Advanced Messaging Queue Protocol (AMQP) with queues.
+
 <a name="Objectives"></a>
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-- Create a Queue.
-- Send and Receive Messages through a Queue.
-- Inspect Message Properties.
-- Use AMQP protocol to send messages to a Queue.
-- Receive messages from the Queue with a Java applications using AMQP
+- Create a Service Bus Namespace and queue
+- Write and read nessages through a queue
+- Inspect message properties
+- Use AMQP to write a messages to a queue with a .NET application
+- Use AMQP to read a message from a queue with a Java applications
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
 
-
 You must have the following items to complete this lab:
 
 - [Visual Studio Express 2013 for Web][1] or greater
-
 - [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)][2]
-
 - A Windows Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
 	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
@@ -770,6 +771,20 @@ You now launch the updated application in the Windows Azure compute emulator to 
 ## Next Steps ##
 
 To learn more about **Service Bus Queues**, please refer to the following articles which expand on the technologies explained in this lab:
+
+**Technical Reference**
+
+This is a list of articles that expands the information on the technologies explained on this lab:
+
+- [Windows Azure Queues and Windows Azure Service Bus Queues - Compared and Contrasted](http://msdn.microsoft.com/en-us/library/windowsazure/hh767287.aspx): This article analyzes the differences and similarities between the two types of queues offered by Windows Azure today: Windows Azure Queues and Windows Azure Service Bus Queues. By using this information, you can compare and contrast the respective technologies and be able to make a more informed decision about which solution best meets your needs.
+
+- [Service Bus Queues, Topics, and Subscriptions](http://msdn.microsoft.com/en-us/library/windowsazure/hh367516.aspx): The new release of the Windows Azure Service Bus adds a set of cloud-based, message-oriented-middleware technologies including reliable message queuing and durable publish/subscribe messaging. These “brokered” messaging capabilities can be thought of as asynchronous, or decoupled messaging features that support publish-subscribe, temporal decoupling, and load balancing scenarios using the Service Bus messaging fabric. 
+
+- [How to Manage Service Bus Messaging Entities](http://www.windowsazure.com/en-us/documentation/articles/service-bus-manage-message-entities/): This topic describes how to create and manage your Service Bus entities using the Windows Azure Management Portal. You can use the portal to create new service namespaces or messaging entities (queues, topics, or subscriptions). You can also delete entities, or change the status of entities.
+
+**Development**
+
+This is a list of developer-oriented articles related to Windows Azure Web Sites:
 
 - [How to Use Service Bus Queues](https://www.windowsazure.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-queues/): This guide will show you how to use Service Bus queues. The samples are written in C# and use the .NET API. The scenarios covered include creating queues, sending and receiving messages, and deleting queues.
 
