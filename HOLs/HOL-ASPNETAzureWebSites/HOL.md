@@ -248,7 +248,7 @@ In this exercise, you will publish the application you obtained in [Exercise 2](
 <a name="Ex3Task1"></a>
 #### Task 1 – Publishing an ASP.NET MVC 5 Application using Web Deploy ####
 
-1. Open the solution you have obtained in [Exercise 2](#Exercise2) with Visual Studio. Alternatively, you can open the **MVCSample.Web** solution located in the **Source\Assets** folder of this lab.
+1. Open the solution you obtained in [Exercise 2](#Exercise2) with Visual Studio. Alternatively, you can open the **MVCSample.Web** solution located in the **Source\Assets** folder of this lab.
 
 1. In **Solution Explorer**, right-click the Web site project and select **Publish...**.
 
@@ -266,7 +266,7 @@ In this exercise, you will publish the application you obtained in [Exercise 2](
 
 1. Select your Web site from the drop-down list, and then click **OK**.
 
-	![Importing publish profile from web site](Images/importing-publish-profile-from-web-site.png?raw=true)
+	![Importing publish profile from Web site](Images/importing-publish-profile-from-web-site.png?raw=true)
 
 	_Importing publish profile from Web site_
 
@@ -298,7 +298,7 @@ In this exercise, you will publish the application you obtained in [Exercise 2](
 
 	_Application published to Windows Azure_
 
-	>**Note:** If you still see the Windows Azure Web Sites default page reload the page by pressing **F5**. 
+	>**Note:** If you still see the Windows Azure Web Sites default page, press **F5** to reload the page. 
 
 1. Go to **/Customer** to verify that the _Customers_ views are working as expected. You can try adding a new Customer to verify it is successfully saved to the database.
 
@@ -334,7 +334,7 @@ In this exercise you will publish the web application you created in [Exercise 2
 
 	_Connection String in Windows Azure Management Portal_
 
-1. Back in the **Dashboard** page, click **Set up deployment from source control** link under the **quick glance** section.
+1. Back in the **Dashboard** page, click **Set up deployment from source control** under the **quick glance** section.
 
 	![Set up deployment from source control](Images/set-up-git-publishing.png?raw=true "Set up deployment from source control")
 
@@ -437,7 +437,7 @@ To learn more about Windows Azure Web Sites, please refer to the following artic
 
 **Technical Reference**
 
-This is a list of articles that expands the information on the technologies explained on this lab:
+This is a list of articles that expand on the technologies explained on this lab:
 
 - [Windows Azure Web Sites Documentation](http://aka.ms/Alwcgu): provides reference information for developing your site with .NET, PHP, Node.js or Python and hosting in Windows Azure Web Sites
 - [Get Better Acquainted with Azure](http://aka.ms/Y42duf): gives a wide range of resources to continue learning about Windows Azure including blogs, Twitter accounts, forums, books and courses
@@ -449,7 +449,7 @@ This is a list of articles that expands the information on the technologies expl
 This is a list of developer-oriented articles related to Windows Azure Web Sites:
 
 - [How to Use ASP.NET Session State with Windows Azure Web Sites](http://aka.ms/Odtcqj): explains how to use the Windows Azure Cache Service to support ASP.NET session state caching
-- [Publishing from Source Control to Windows Azure Web Sites](http://aka.ms/B68rqv): shows how to use Git to publish to a Windows Azure Web Site. You will learn how to do it with your local repository and also with web sites like BitBucket, CodePlex, DropBox, or GitHub
+- [Publishing from Source Control to Windows Azure Web Sites](http://aka.ms/B68rqv): shows how to use Git to publish to a Windows Azure Web Site using your local repository as well as with Web sites like BitBucket, CodePlex, DropBox, or GitHub
 - [How to Monitor Web Sites](http://aka.ms/Aovqr1): guides you through implementing and monitoring performance statistics for Windows Azure Web Sites
 - [Windows Azure Web Sites – Exploring the platform (Video)](http://aka.ms/E9g0c1): shows you more about building a web application, understanding options for deployment, and setting up continuous integration
 - [Windows Azure Web Sites: Under the Hood (Video)](http://aka.ms/H5il2o): shows you how new Web sites are provisioned, how incoming requests are routed and serviced, and what actually happens when it is time to scale your Web site - both out and up
