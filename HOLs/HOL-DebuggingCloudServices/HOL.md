@@ -94,7 +94,13 @@ In this task, you will build and run the Fabrikam Insurance application in the W
 
 	_Configuring the start action of the project_
 
-1. You are now ready to test the Windows Azure Project application. To launch the application in the compute emulator, set the **FabrikamInsurance.Azure** project as the Startup project and press **F5**. Wait until deployment has completed and you see the **Auto Insurance Quotes** open in the browser.
+1. Configure the cloud project **FabrikamInsurance.Azure** as the StartUp Project. To do this, in **Solution Explorer** right-click the **FabrikamInsurance.Azure** project node and then select **Set as StartUp Project**.
+
+	![Configuring StartUp project](Images/configuring-startup-project.png?raw=true)
+
+	_Configuring StartUp project_
+
+1. You are now ready to test the Windows Azure Project application. To launch the application in the compute emulator, press **F5**. Wait until deployment has completed and you see the **Auto Insurance Quotes** open in the browser.
 
 1. To explore its operation, complete the form by choosing any combination of values from the drop down lists and then click **Calculate** to obtain a quote for the insurance premium. Notice that after you submit the form, the page refreshes and shows the calculated amount.
 
