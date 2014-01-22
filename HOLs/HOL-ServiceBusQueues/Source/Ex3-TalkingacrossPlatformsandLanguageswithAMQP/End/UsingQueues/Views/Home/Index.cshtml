@@ -116,9 +116,9 @@
                 .always(function () {
                     setFormStatus(true);
                 }).success(function (data) {
-                    var newQueue = $("<a href='#' class='list-group-item'></a>")
+                    var newQueue = $("<a href='#' class='list-group-item' data-value='" + data.Path.toLowerCase() + "'></a>")
                         .on('click', queueClick)
-                        .html('<span class="badge" data-value="' + data.Path.toLowerCase() + '">0</span>' + data.Path.toLowerCase());
+                        .html('<span class="badge" >0</span>' + data.Path.toLowerCase());
                     $("#queueList").append(newQueue);
                     logMessage("Done!");
                 }).fail(function () {
@@ -201,7 +201,7 @@
                 logMessage("Done!");
             })
             .success(function (response) {
-                $("#queueList span[data-value=" + selectedQueueName + "]").html(response);
+                $("#queueList a[data-value=" + selectedQueueName + "] span").html(response);
             });
         }
 
