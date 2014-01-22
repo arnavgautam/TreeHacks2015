@@ -106,7 +106,10 @@
             };
 
             receivedMessage.Complete();
-            return this.Json(messageInfo, JsonRequestBehavior.AllowGet);
+
+            var subscription = this.namespaceManager.GetSubscription(topicName, subscriptionName);
+
+            return this.Json(new { MessageInfo = messageInfo, MessagesInSubscription = subscription.MessageCount }, JsonRequestBehavior.AllowGet);
         }
     }
 }

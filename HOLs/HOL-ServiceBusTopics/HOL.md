@@ -1,11 +1,11 @@
 ﻿<a name="HOLTop"></a>
-# Windows Azure Service Bus Topics#
+# Service Bus Topics#
 ---
 
 <a name="Overview"></a>
 ## Overview ##
 
-**Windows Azure Service Bus Messaging** contains a brand-new set of cloud-based, message-oriented-middleware technologies including a fully-featured **Service Bus queue** with support for arbitrary content types, rich message properties, correlation, reliable binary transfer, and grouping. Another important feature is **Service Bus topics** which provide a set of publish-and-subscribe capabilities and are based on the same backend infrastructure as **Service Bus queues**. A **topic** consists of a sequential message store just like a **queue**, but allows for many concurrent and durable **subscriptions** that can independently yield copies of the published messages to consumers. Each **subscription** can define a set of rules with simple expressions that specify which messages from the published sequence are selected into the Subscription.
+**Windows Azure Service Bus Messaging** contains a brand-new set of cloud-based, message-oriented-middleware technologies including a fully-featured **Service Bus queue** with support for arbitrary content types, rich message properties, correlation, reliable binary transfer, and grouping. Another important feature is **Service Bus topics** which provide a set of publish-and-subscribe capabilities and are based on the same backend infrastructure as **Service Bus queues**. A **topic** consists of a sequential message store just like a **queue**, but allows for many concurrent and durable **subscriptions** that can independently yield copies of the published messages to consumers. Each **subscription** can define a set of rules with simple expressions that specify which messages from the published sequence are selected into the subscription.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -432,7 +432,7 @@ In the previous task, you instantiate a **TopicClient** in order to send message
 1. Add the following code at the end of the **HomeController** class.
 
 	(Code Snippet - _Service Bus Topics - Ex02 - RetrieveMessages_ - CS)
-	<!-- mark:1-34 -->
+	<!-- mark:1-37 -->
 	````C#
 	[HttpGet, OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
 	public JsonResult RetrieveMessage(string topicName, string subscriptionName)
@@ -466,7 +466,10 @@ In the previous task, you instantiate a **TopicClient** in order to send message
 		 };
 
 		 receivedMessage.Complete();
-		 return this.Json(messageInfo, JsonRequestBehavior.AllowGet);
+
+		 var subscription = this.namespaceManager.GetSubscription(topicName, subscriptionName);
+
+		 return this.Json(new { MessageInfo = messageInfo, MessagesInSubscription = subscription.MessageCount }, JsonRequestBehavior.AllowGet);
 	}
 	````
 
@@ -642,4 +645,4 @@ You will now launch the updated application in the Windows Azure compute emulato
 <a name="Summary"></a>
 ## Summary ##
 
- By completing this hands-on lab, you have reviewed the basic elements of Service Bus Queues, Topics and Subscriptions. You have seen how to send and retrieve messages through a Queue and how to create Topics and Subscriptions to it. Finally, you learned how to apply Expression Filters and Rule Actions to Subscriptions to distribute your messages that matched those rules.
+ By completing this hands-on lab, you have reviewed the basic elements of Service Bus topics and subscriptions. You have seen how to create topics and subscriptions, send messages to a topic and receive messages from subscriptions. Finally, you learned how to apply expression filters and rule actions to subscriptions to distribute your messages that matched those rules.

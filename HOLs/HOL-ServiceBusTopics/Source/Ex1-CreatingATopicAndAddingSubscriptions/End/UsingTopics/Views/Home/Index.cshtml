@@ -207,35 +207,19 @@
 
         function sendMessageSuccessHandler(selectedTopicName) {
             $("#messageBody").val("");
-            $('#messageSubscriptions').empty();
-
-            $.get("/Home/Subscriptions", { topicName: selectedTopicName }).success(function (response) {
-                for (var i = 0; i < response.length; i++) {
-                    var subscriptionClick = function () {
-                        $("#messageSubscriptions a.active").removeClass("active");
-                        $(this).addClass("active");
-                        $("#retrieveMessage").removeAttr("disabled");
-                        $("#viewSubscriptionFilters").removeAttr("disabled");
-                    };
-
-                    var topicItem = $('<a href="#" class="list-group-item"><span class="badge" value="' + response[i].Name + '">' + response[i].MessageCount + '</span>' + response[i].Name + '</a>').on('click', subscriptionClick);
-                    $('#messageSubscriptions').append(topicItem);
-                }
-
-                $('#noMessages').hide();
-            });
+            loadSubscriptions(selectedTopicName);
         }
 
         function retrieveMessage() {
             event.preventDefault();
             var topicName = $("#topicList a.active").html();
             var subscriptionName = $("#messageSubscriptions a.active span").data("value");
-            $(".loading").show();
             logMessage("Retrieving message from subscription '" + subscriptionName + "' (topic: '" + topicName + "')...");
             $.get("/Home/RetrieveMessage", { topicName: topicName, subscriptionName: subscriptionName })
                 .success(function (response) {
                     logMessage("Done!");
-                    renderMessage(response);
+                    $("#messageSubscriptions span[data-value=" + subscriptionName + "]").html(response.MessagesInSubscription);
+                    renderMessage(response.MessageInfo);
                     loadTopics();
                 })
                 .error(function () {
@@ -291,8 +275,6 @@
             } else {
                 $("#noMessage").show();
             }
-
-            $(".loading").hide();
         }
 
         function viewSubscriptionFilters() {
