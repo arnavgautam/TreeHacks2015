@@ -280,8 +280,8 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 1. Press **CTRL + S** to save the changes to the Controller.
 
-<a name="Ex1Verification"></a>
-#### Verification ####
+<a name="Ex1Task4"></a>
+#### Task 4 - Verification ####
 You will now launch the updated application in the Windows Azure compute emulator to verify that you can create a topic with subscriptions.
 
 1. In **Visual Studio**, configure the cloud project **UsingTopics.Azure** as the StartUp Project. To do this, in **Solution Explorer** right-click the **UsingTopics.Azure** project node and then select **Set as StartUp Project**.
@@ -477,11 +477,10 @@ In the previous task, you instantiate a **TopicClient** in order to send message
 
 1. Press **CTRL + S** to save the changes to the Controller.
 
-<a name="Exercise2Verification"></a>
-### Verification ###
+<a name="Ex2Task3"></a>
+#### Task 3 - Verification ####
 
-
-1. In **Visual Studio**, perss **F5** to run the application.
+1. In **Visual Studio**, press **F5** to run the application.
 
 1. Select the previously created topic. In the **Send a message section**, type _this is an urgent message_ in the **Message** textbox and click **Send**.
 
@@ -587,8 +586,8 @@ Additionally to Rule Filter Expressions, you can use **Rule Filter Actions.** Wi
 
 1. Press **CTRL + S** to save the changes to the Controller.
 
-<a name="Ex2Verification"></a>
-#### Verification ####
+<a name="Ex3Task3"></a>
+#### Task 3 - Verification ####
 
 You will now launch the updated application in the Windows Azure compute emulator to verify that you can create a Topic with subscriptions, send and receive messages. You will verify that each message will go to the subscription that matches the correct filter.
 
@@ -642,7 +641,14 @@ You will now launch the updated application in the Windows Azure compute emulato
 
 ---
 
-<a name="Summary"></a>
+<a name="NextSteps" />
+## Next Steps ##
+
+TBC
+
+---
+
+<a name="Summary" />
 ## Summary ##
 
  By completing this hands-on lab, you have reviewed the basic elements of Service Bus topics and subscriptions. You have seen how to create topics and subscriptions, send messages to a topic and receive messages from subscriptions. Finally, you learned how to apply expression filters and rule actions to subscriptions to distribute your messages that matched those rules.
