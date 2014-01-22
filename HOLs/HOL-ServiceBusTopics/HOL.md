@@ -432,7 +432,7 @@ In the previous task, you instantiate a **TopicClient** in order to send message
 1. Add the following code at the end of the **HomeController** class.
 
 	(Code Snippet - _Service Bus Topics - Ex02 - RetrieveMessages_ - CS)
-	<!-- mark:1-37 -->
+	<!-- mark:1-35 -->
 	````C#
 	[HttpGet, OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
 	public JsonResult RetrieveMessage(string topicName, string subscriptionName)
@@ -446,8 +446,6 @@ In the previous task, you instantiate a **TopicClient** in order to send message
 		 }
 
 		 var receivedCustomMessage = receivedMessage.GetBody<CustomMessage>();
-
-		 receivedMessage.Properties["Priority"] = receivedMessage.Properties["Priority"].ToString() == "1" ? "High" : "Low";
 
 		 var brokeredMsgProperties = new Dictionary<string, object>();
 		 brokeredMsgProperties.Add("Size", receivedMessage.Size);
@@ -576,6 +574,36 @@ Additionally to rule filter expressions, you can use **rule filter actions.** Wi
 	}
 	````
 
+1. Add the following action method to retrieve the subscription filters for a given subscription to the view.
+
+	(Code Snippet - _Service Bus Topics - Ex03 - Get Subscription Filters_ - CS)
+	<!-- mark:1-22 -->
+	````C#
+	[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+	public JsonResult Filters(string topicName, string subscriptionName)
+	{
+		var rules = this.namespaceManager.GetRules(topicName, subscriptionName);
+		var sqlFilters = new List<Tuple<string, string>>();
+
+		foreach (var rule in rules)
+		{
+			var expression = rule.Filter as SqlFilter;
+			var action = rule.Action as SqlRuleAction;
+
+			if (expression != null)
+			{
+				sqlFilters.Add(
+					new Tuple<string, string>(
+						expression.SqlExpression,
+						action != null ? action.SqlExpression : string.Empty));
+			}
+		}
+
+		return this.Json(sqlFilters.Select(t => new { Filter = t.Item1, Action = t.Item2 }), JsonRequestBehavior.AllowGet);
+	}
+
+	````
+
 1. Press **CTRL + S** to save the changes to the Controller.
 
 <a name="Ex3Task3"></a>
@@ -585,40 +613,31 @@ You will now run the updated application one more time to verify that each messa
 
 1. In **Visual Studio**, press **F5** to launch the application.
 
-1. Create a new topic named _topicwithrules_, and click **Create**.
+1. In the **Create a Topic** section, enter _topicwithrules_ for the topic name, and click **Create**.
 
-1. Select the previously created topic. In the **Send a message section**, type _this is an urgent message_ in the **Message** textbox and click **Send**.
-
-
- 	![The application displays a message when a Topic is created](./Images/The-application-displays-a-message-when-a-Topic-is-created.png?raw=true "The application displays a message when a Topic is created")
+1. Select the previously created topic from the topic list. In the **Send a message section**, type _This is an urgent message_ in the **Message** textbox, check the **Urgent** checkbox and click **Send**.
  
-	_The application displays a message when a Topic is created_
-
-1. In the **Send Message** panel, select the previously created **Topic** from the dropdown list, enter "This is an urgent message" in the TextBox, check **Is Urgent** and click **Send.**
+ 	![Sending an urgent message to the topic](Images/sending-an-urgent-message-to-the-topic.png?raw=true)
  
- 	![Sending a message to the topic](./Images/Sending-a-message-to-the-topic.png?raw=true "Sending a message to the topic")
- 
-	_Sending a message to the topic_
+	_Sending an urgent message to the topic_
 
-1. Check that the message is received only by the **UrgentMessages** and the **AllMessages** subscriptions. To do this, select each subscription in the dropdown list located in the **Receive Message** panel and click **Retrieve First message in Subscription**.
+1. Check that the message is received only by the **UrgentMessages** and the **AllMessages** subscriptions. Alternatively, you can select each subscription and click **Receive** to verify that the message is retrieved.
 
- 	![Retrieving a message to the AllMessages subscription](./Images/Retrieving-a-message-to-the-AllMessages-subscription.png?raw=true "Retrieving a message to the AllMessages subscription")
- 
-	_Retrieving a message to the AllMessages subscription_
+	![Urgent message arriving to UrgentMessages and AllMessages subscriptions](Images/urgent-message-arriving.png?raw=true)
 
- 	![Retrieving a message to the HighPriorityMessages subscription](./Images/Retrieving-a-message-to-the-HighPriorityMessages-subscription.png?raw=true "Retrieving a message to the HighPriorityMessages subscription")
- 
-	_Retrieving a message to the HighPriorityMessages subscription_
+	_Urgent message arriving to UrgentMessages and AllMessages subscriptions_
 
- 	![Retrieving a message to the UrgentMessages subscription](./Images/Retrieving-a-message-to-the-UrgentMessages-subscription.png?raw=true "Retrieving a message to the UrgentMessages subscription")
- 
-	_Retrieving a message to the UrgentMessages subscription_
+1. Send another message to the topic, but this time, uncheck the **Urgent** checkbox and check **Mark as Important**.
 
-1. Send another message to the Topic, but this time, uncheck the **Is Urgent** checkbox and check **Mark as important**. Retrieve the message from the **HighPriorityMessages** subscription and verify that the Priority is now set to **High**.
-
- 	![Sending an important message to the Topic](./Images/Sending-an-important-message-to-the-Topic.png?raw=true "Sending an important message to the Topic")
+ 	![Sending an important message to the topic](Images/sending-an-important-message-to-the-topic.png?raw=true)
  
  	_Sending an important message to the Topic_
+
+1. Retrieve the message from the **HighPriorityMessages** subscription and verify that the **Priority** is now set to _High_.
+
+	![Important message received from the HighPriorityMessages subscription](Images/important-message-received.png?raw=true)
+
+	_Important message received from the HighPriorityMessages subscription_
 
 ---
 

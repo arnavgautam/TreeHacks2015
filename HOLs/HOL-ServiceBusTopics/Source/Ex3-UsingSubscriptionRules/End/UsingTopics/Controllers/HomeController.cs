@@ -36,6 +36,15 @@
         {
             var topic = this.namespaceManager.CreateTopic(topicName);
             var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
+            var urgentMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages", new SqlFilter("Urgent = '1'"));
+
+            var ruleDescription = new RuleDescription()
+            {
+                Filter = new SqlFilter("Important= '1' OR Priority = 'High'"),
+                Action = new SqlRuleAction("set Priority= 'High'")
+            };
+
+            var highPriorityMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "HighPriorityMessages", ruleDescription);
 
             return this.Json(topicName, JsonRequestBehavior.AllowGet);
         }
@@ -86,6 +95,8 @@
 
             var receivedCustomMessage = receivedMessage.GetBody<CustomMessage>();
 
+            //receivedMessage.Properties["Priority"] = receivedMessage.Properties["Priority"].ToString() == "1" ? "High" : "Low";
+
             var brokeredMsgProperties = new Dictionary<string, object>();
             brokeredMsgProperties.Add("Size", receivedMessage.Size);
             brokeredMsgProperties.Add("MessageId", receivedMessage.MessageId.Substring(0, 15) + "...");
@@ -107,6 +118,29 @@
             var subscription = this.namespaceManager.GetSubscription(topicName, subscriptionName);
 
             return this.Json(new { MessageInfo = messageInfo, MessagesInSubscription = subscription.MessageCount }, JsonRequestBehavior.AllowGet);
+        }
+
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public JsonResult Filters(string topicName, string subscriptionName)
+        {
+            var rules = this.namespaceManager.GetRules(topicName, subscriptionName);
+            var sqlFilters = new List<Tuple<string, string>>();
+
+            foreach (var rule in rules)
+            {
+                var expression = rule.Filter as SqlFilter;
+                var action = rule.Action as SqlRuleAction;
+
+                if (expression != null)
+                {
+                    sqlFilters.Add(
+                        new Tuple<string, string>(
+                            expression.SqlExpression,
+                            action != null ? action.SqlExpression : string.Empty));
+                }
+            }
+
+            return this.Json(sqlFilters.Select(t => new { Filter = t.Item1, Action = t.Item2 }), JsonRequestBehavior.AllowGet);
         }
     }
 }
