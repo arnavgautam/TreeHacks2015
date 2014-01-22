@@ -86,7 +86,7 @@ namespace CustomerManager
         /// session.  The state will be null the first time a page is visited.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            string selectedCustomerId = (string)sender;
+            string selectedCustomerId = (string)e.NavigationParameter;
             if (e.PageState != null && e.PageState.ContainsKey("SelectedCustomerId"))
             {
                 selectedCustomerId = (string)e.PageState["SelectedCustomerId"];
