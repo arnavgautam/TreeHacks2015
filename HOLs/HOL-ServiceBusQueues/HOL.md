@@ -823,7 +823,7 @@ To learn more about **Service Bus Queues** please refer to the following article
 
 **Technical Reference**
 
-This is a list of articles that expands the information on the technologies explained on this lab:
+This is a list of articles that expand on the technologies explained on this lab:
 
 - [Windows Azure Queues and Windows Azure Service Bus Queues - Compared and Contrasted](http://aka.ms/Nofjzt): This article analyzes the differences and similarities between the two types of queues offered by Windows Azure today: Windows Azure Queues and Windows Azure Service Bus Queues. By using this information, you can compare and contrast the respective technologies and be able to make a more informed decision about which solution best meets your needs.
 

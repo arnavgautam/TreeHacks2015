@@ -606,7 +606,7 @@ To learn more about debugging applications in Windows Azure, please refer to the
 
 **Technical Reference**
 
-This is a list of articles that expands the information on the technologies explained on this lab:
+This is a list of articles that expand on the technologies explained on this lab:
 
 - [Debugging in Visual Studio](http://msdn.microsoft.com/en-us/library/sc65sadd.aspx>): extensively covers the debugging functions integrated with Visual Studio.
 

@@ -136,7 +136,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 1. In the **Add Connection** dialog box, make sure the **Windows Azure Service Bus** option is selected. Enter the **Namespace name**, the **Issuer Name** and the **Issuer Key** using the values obtained in the previous task. Finally, click **OK**.
 
-	> **Note:** Alternatively, you can check the **Use connection string** checkbox and provide the service bus connection string.
+	> **Note:** Alternatively, you can select the **Use connection string** checkbox and provide the service bus connection string.
 
 	![Add Connection dialog box](Images/add-connection-dialog-box.png?raw=true)
 
@@ -619,7 +619,7 @@ You will now run the updated application one more time to verify that each messa
 
 1. In the **Create a Topic** section, enter _topicwithrules_ for the topic name, and click **Create**.
 
-1. Select the previously created topic from the topic list. In the **Send a message section**, type _This is an urgent message_ in the **Message** textbox, check the **Urgent** checkbox and click **Send**.
+1. Select the previously created topic from the topic list. In the **Send a message section**, type _This is an urgent message_ in the **Message** textbox, select the **Urgent** checkbox and click **Send**.
  
  	![Sending an urgent message to the topic](Images/sending-an-urgent-message-to-the-topic.png?raw=true)
  
@@ -631,7 +631,7 @@ You will now run the updated application one more time to verify that each messa
 
 	_Urgent message arriving to UrgentMessages and AllMessages subscriptions_
 
-1. Send another message to the topic, but this time, uncheck the **Urgent** checkbox and check **Mark as Important**.
+1. Send another message to the topic, but this time, unselect the **Urgent** checkbox and select the **Mark as Important** checkbox.
 
  	![Sending an important message to the topic](Images/sending-an-important-message-to-the-topic.png?raw=true)
  
@@ -652,7 +652,7 @@ To learn more about **Service Bus Topics** and **Service Bus Messaging** please 
 
 **Technical Reference**
 
-This is a list of articles that expands the information on the technologies explained on this lab:
+This is a list of articles that expand on the technologies explained on this lab:
 
 - [An Introduction to Service Bus Topics article on the AppFabrik Team Blog](http://aka.ms/Qfzy2g): provides an introduction to the publish/subscribe capabilities offered by Service Bus Topics.
 
