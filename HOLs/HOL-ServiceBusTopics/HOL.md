@@ -483,7 +483,7 @@ You will now run the application again to verify that you can send messages to a
 
 1. In **Visual Studio**, press **F5** to run the application.
 
-1. Select the previously created topic. In the **Send a message section**, type _this is an urgent message_ in the **Message** textbox and click **Send**.
+1. Select the previously created topic. In the **Send a message section**, type _This is a test message_ in the **Message** textbox and click **Send**.
 
 	![Sending a message](Images/sending-a-message.png?raw=true)
 
@@ -513,7 +513,6 @@ You will now run the application again to verify that you can send messages to a
 ### Exercise 3: Using a Subscription Rule Filter Expression and Rule Filter Actions ###
 
 In this exercise, you will apply filters on subscriptions to retrieve only the messages relevant to that subscription. When you send a message to a topic, all the subscriptions verify if the message has a match with its own subscription rules. If there is a match, the subscription will contain a virtual copy of the message. This is useful to avoid sending multiple messages to different subscriptions. Sending a single message to a topic will distribute along different subscriptions by checking **rule expressions**. Additionally, you will learn how to apply **filter actions** to subscriptions to modify the **BrokeredMessage** properties of the messages that match a custom rule.
-
 
 <a name="Ex3Task1"></a>
 #### Task 1 - Using a Subscription Rule Filter Expression ####
@@ -556,32 +555,24 @@ Additionally to rule filter expressions, you can use **rule filter actions.** Wi
 1. Create a new **subscription** object with a **RuleDescription**. Within this object, you can set a **filter** and an **action**. This way, if the **filter** matches, the specific **action** is applied to the **BrokeredMessage**. Add the highlighted code to the **CreateTopic** action method.
 
 	(Code Snippet - _Service Bus Topics - Ex03 - Add Subscription with Action Filter_ - CS)
-	<!-- mark:11-16 -->
+	<!-- mark:7-14 -->
 	````C#
 	[HttpPost]
 	public JsonResult CreateTopic(string topicName)
 	{
-	    bool success;
-	    try
-	    {
-	        var topic = this.namespaceManager.CreateTopic(topicName);
-	        var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
-	        var urgentMessagesSubscript= this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages", new SqlFilter("Urgent = '1'"));
-	
-	        var ruleDescription = new RuleDescription()
-	        {
-	            Filter = new SqlFilter("Important= '1' OR Priority = 'High'"),
-	            Action = new SqlRuleAction("set Priority= 'High'")
-	        };
-	        var highPriorityMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "HighPriorityMessages", ruleDescription);
-	        success = true;
-	    }
-	    catch (Exception)
-	    {
-	        success = false;
-	    }
-	
-	    return this.Json(success, JsonRequestBehavior.AllowGet);
+		 var topic = this.namespaceManager.CreateTopic(topicName);
+		 var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
+		 var urgentMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages", new SqlFilter("Urgent = '1'"));
+
+		 var ruleDescription = new RuleDescription()
+		 {
+			  Filter = new SqlFilter("Important= '1' OR Priority = 'High'"),
+			  Action = new SqlRuleAction("set Priority= 'High'")
+		 };
+
+		 var highPriorityMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "HighPriorityMessages", ruleDescription);
+
+		 return this.Json(topicName, JsonRequestBehavior.AllowGet);
 	}
 	````
 
@@ -590,25 +581,14 @@ Additionally to rule filter expressions, you can use **rule filter actions.** Wi
 <a name="Ex3Task3"></a>
 #### Task 3 - Verification ####
 
-You will now launch the updated application in the Windows Azure compute emulator to verify that you can create a Topic with subscriptions, send and receive messages. You will verify that each message will go to the subscription that matches the correct filter.
+You will now run the updated application one more time to verify that each message sent will go to the subscription that matches the correct filter.
 
-1. In **Visual Studio**, configure the cloud project **UsingTopics** as the StartUp Project. To do this, in the **Solution Explorer**, right-click on **UsingTopics** and then select **Set as StartUp Project**.
+1. In **Visual Studio**, press **F5** to launch the application.
 
- 	![Configuring StartUp Project](./Images/setting-startup-project2.png?raw=true "Configuring StartUp Project")
- 
-	_Configuring StartUp Project_
+1. Create a new topic named _topicwithrules_, and click **Create**.
 
-1. Press **F5** to launch the application. The browser will show the default page of the application.
+1. Select the previously created topic. In the **Send a message section**, type _this is an urgent message_ in the **Message** textbox and click **Send**.
 
- 	![UsingTopics Application Home Page](./Images/UsingTopics-Application-Home-Page.png?raw=true "UsingTopics Application Home Page")
- 
-	_UsingTopics Application Home Page_
-
-1. In the panel named **Topics**, enter a topic name, for example _MyTopic_, and click **Create**.
-
- 	![Creating a Topic](./Images/Creating-a-Topic.png?raw=true "Creating a Topic")
- 
-	_Creating a Topic_
 
  	![The application displays a message when a Topic is created](./Images/The-application-displays-a-message-when-a-Topic-is-created.png?raw=true "The application displays a message when a Topic is created")
  
