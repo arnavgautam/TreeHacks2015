@@ -35,6 +35,8 @@ The following is required to complete this hands-on lab:
 	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
 	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 
+---
+
 <a name="Exercises" />
 ## Exercises ##
 
@@ -44,8 +46,6 @@ This hands-on lab includes the following exercises:
 1. [Building a Console app using the Media Services SDK that uploads, encodes, and streams a video programmatically](#Exercise2)
 1. [Microsoft Media Platform Player Framework for the Client](#Exercise3)
 1. [Monetization](#Exercise4)
-
----
 
 <a name="Exercise1" />
 ### Exercise 1: Uploading a Job from the Portal for HTML5 playback ###
@@ -170,8 +170,6 @@ In this task, you will publish the previously encoded video and play it directly
 	![Playing media in Windows Azure](Images/playing-media.png?raw=true "Playing media in Windows Azure")
 
 	_Playing media in Windows Azure_
-
----
 
 <a name="Exercise2" />
 ### Exercise 2: Building a Console app using the Media Services SDK that uploads, encodes, and streams a video programmatically ###
@@ -378,8 +376,6 @@ In this exercise, you will create a new console application that allows you to p
 	_The smooth streaming video being played_
 
 	>**Note:** You may notice that this video plays faster than the one uploaded in _Exercise 1_. This is due to smooth streaming as it encodes the video in several qualities and sends you the best video depending on your bandwidth.
-
----
 
 <a name="Exercise3" />
 ### Exercise 3: Microsoft Media Platform Player Framework for the Client  ###
@@ -597,8 +593,6 @@ In this task you will create a new store app from scratch and add video control 
 	![Store app playing the Smooth Streaming video](Images/store-app-running.png?raw=true "Store app playing the Smooth Streaming video")
 
     _Store app playing the Smooth Streaming video_
-
----
 
 <a name="Exercise4" />
 ### Exercise 4: Monetization ###
@@ -846,11 +840,11 @@ In this task you will add an already pre-configured VMAP file to the local asset
 
 ## Next Steps ##
 
-To learn more about configuring Windows Azure Media Services, please refer to the following articles:
+To learn more about configuring **Windows Azure Media Services**, please refer to the following articles:
 
 **Technical Reference**
 
-This is a list of articles that expand on the technologies explained in this lab:
+This is a list of articles that expand on the technologies explained on this lab:
 
 - [Developing Windows Azure Media Services Client Applications](http://aka.ms/S0u1ly): SDKs contain libraries and APIs that allow you to create client applications. Player Frameworks are built on top of the SDKs and contain user controls for common applications scenarios and out-of-the-box sample player applications and documentation. Both SDKs and Player Frameworks are available for multiple platforms.
 
@@ -862,7 +856,7 @@ This is a list of articles that expand on the technologies explained in this lab
 
 **Development**
 
-This is a list of developer-oriented articles related to Windows Azure Media Services:
+This is a list of developer-oriented articles related to **Windows Azure Media Services**:
 
 - [How to: Deliver an Asset by Download](http://aka.ms/Rtzki2): This topic discusses options for delivering media assets uploaded to Media Services. You can deliver Media Services content in numerous application scenarios. You can download media assets, or access them by using a locator. You can send media content to another application or to another content provider.
 
@@ -882,6 +876,4 @@ In this hands-on lab you have learned how to:
 - Upload, encode, and publish media content from the Windows Azure portal.
 - Programmatically upload, encode, and publish media content using the Media Services SDK.
 - Use the Microsoft Media Platform Player Framework to play smooth streaming content.
-- Monetize your media content using ads defined in a VMAP file. 
-
----
+- Monetize your media content using ads defined in a VMAP file.
