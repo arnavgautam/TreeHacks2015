@@ -412,30 +412,30 @@ You are now ready to re-deploy and run the solution in Windows Azure. At this po
 <a name="Exercise3"></a>
 ### Exercise 3: Using IntelliTrace to Diagnose Role Start-Up Failures ###
 
-> **Note:** This exercise is optional, since IntelliTrace is only available for **Visual Studio 2013 Ultimate Edition**. For more information on specific Visual Studio 2013 features, compare versions [here](http://www.microsoft.com/visualstudio/eng/products/compare).
+> **Note:** This exercise is optional, since IntelliTrace is only available for **Visual Studio 2013 Ultimate**. For more information on specific Visual Studio 2013 features, compare versions [here](http://www.microsoft.com/visualstudio/eng/products/compare).
 
 IntelliTrace provides the ability to collect data about an application while it is executing. When you enable IntelliTrace, it records key code execution and environment data and then allows you to replay this data from within Visual Studio, stepping through the same code that executes in the cloud.
 
 When you deploy a service to Windows Azure from within Visual Studio, you can enable IntelliTrace debugging to package the necessary IntelliTrace files along with an agent that Visual Studio will communicate with to retrieve the IntelliTrace data. Once enabled, IntelliTrace operates in the background, collecting information about the running service.
 
-You can customize the basic IntelliTrace configuration specifying, which events to log, whether to collect call information, which modules and processes to collect logs for, and how much space to allocate to the recording (the default size is 250 MB).
+You can customize the basic IntelliTrace configuration specifying which events to log, whether to collect call information, which modules and processes to collect logs for, and how much space to allocate to the recording (the default size is 250 MB).
 
 The collected information is saved to an IntelliTrace file, which you can open later to start troubleshooting the problem. This information lets you step back in time to see what happened in the application and which events led to a crash.
 
-In this exercise, you explore the use of IntelliTrace to diagnose a role start-up failure while deploying the Fabrikam Insurance application to Windows Azure.
+In this exercise, you will explore the use of IntelliTrace to diagnose a role start-up failure while deploying the Fabrikam Insurance application to Windows Azure.
 
-> **Important:** IntelliTrace debugging is intended for debug scenarios only, and should not be used for a production deployment. 
+> **Note:** IntelliTrace debugging is intended for debug scenarios only, and should not be used for a production deployment. 
 
 <a name="Ex3Task1"></a>
 #### Task 1 - Deploying the Application with IntelliTrace Enabled ####
 
 In this task, you will publish to Windows Azure the FabrikamInsurance application directly from Visual Studio, with the IntelliTrace feature enabled.
 
-1. If it is not already open, launch **Microsoft Visual Studio Ultimate 2013**.
+1. Open **Microsoft Visual Studio Ultimate 2013**.
 
-1. In the **File** menu, choose **Open | Project/Solution...** and browse to **Ex3-DebuggingWithIntelliTrace\Begin** in the **Source** folder of the lab. Select **Begin.sln** and click Open.
+1. In the **File** menu, choose **Open | Project/Solution...** and browse to **Ex3-DebuggingWithIntelliTrace\Begin** in the **Source** folder of the lab. Select **Begin.sln** and click **Open**.
 
-1. In the **Solution Explorer**, right-click the **FabrikamInsurance.Azure** cloud project and select **Publish**.
+1. In the **Solution Explorer**, right-click the **FabrikamInsurance.Azure** cloud project and select **Publish...**.
 
 	![Publishing the FabrikamInsurance.Azure project](Images/publishing-the-fabrikaminsuranceazure-project.png?raw=true "Publishing the FabrikamInsurance.Azure project")
 
@@ -447,7 +447,7 @@ In this task, you will publish to Windows Azure the FabrikamInsurance applicatio
 	
 	_Deployment Common Settings_
 
-1. Click **Advanced Settings** tab. In the list labeled **Storage account** select the storage service that you created during the first exercise of this lab. Check the check box labeled **Enable IntelliTrace** and click **Next**.
+1. Click **Advanced Settings** tab. In the list labeled **Storage account** select the storage service that you created during the first exercise of this lab. Check the box labeled **Enable IntelliTrace** and click **Next**.
  
 	![Deployment Advanced Settings](Images/deployment-advanced-settings.png?raw=true "Deployment Advanced Settings")
 	
@@ -465,7 +465,7 @@ In this task, you will publish to Windows Azure the FabrikamInsurance applicatio
 	>
 	> _Replacing the current deployment_ 
 
-1. After you start a deployment, you can examine the Windows Azure activity log window to determine the status of the operation. If this window is not visible, in the **View** menu, point to **Other Windows**, and then select **Windows Azure Activity Log**.
+1. After you start a deployment, you can examine the Windows Azure activity log window to determine the status of the operation. If this window is not visible, in the **View** menu, point to **Other Windows** and select **Windows Azure Activity Log**.
 
 	![Windows Azure Activity Log](Images/azure-activity-log.png?raw=true "Windows Azure Activity Log")
 
@@ -483,7 +483,7 @@ In this task, you will publish to Windows Azure the FabrikamInsurance applicatio
 
 	_Viewing the cloud service in Server Explorer_
 
-1. In the **Cloud Services** node, examine the role instance status of the hosted service where you deployed the **FabrikamInsurance** application. Notice that the label for the deployment slot indicates that IntelliTrace is enabled for this deployment and that the **FabrikamWorker** instance status is shown as “**Unknown**” here too.
+1. In the **Cloud Services** node, examine the role instance status of the hosted service where you deployed the **FabrikamInsurance** application. Notice that the label for the deployment slot indicates that IntelliTrace is enabled for this deployment and that the **FabrikamWorker** instance status is shown as **Unknown**.
 
 	![Fabrikam Insurance Service Instance](Images/service-instance-busy.png?raw=true "Fabrikam Insurance Service Instance")
 
@@ -494,59 +494,59 @@ In this task, you will publish to Windows Azure the FabrikamInsurance applicatio
 
 In the previous task, the role failed to start due to an unknown reason. In this task, you will use IntelliTrace to determine what caused the failure.
 
-1. In the **Cloud Services** node inside the **Server Explorer** windows, select the hosted service where you deployed the **FabrikamInsurance** application and expand it until you found the **FabrikamWorker** instance.
+1. In the **Cloud Services** node inside the **Server Explorer** window, select the hosted service where you deployed the **FabrikamInsurance** application and expand it until you find the **FabrikamWorker** instance.
 
-1. Now, right-click the slot node, labeled as **Instance 0 (Unknown)** in **Server Explorer**, and then select **View IntelliTrace Logs** to download the information to your workstation. After you do this, notice that Visual Studio creates a new IntelliTrace entry in the **Windows Azure Activity Log** window to display the progress of the download operation.
+1. Right-click the slot node labeled **Instance 0 (Unknown)**, and select **View IntelliTrace logs** to download the information to your workstation. After you do this, notice that Visual Studio creates a new IntelliTrace entry in the **Windows Azure Activity Log** window to display the progress of the download operation.
 
 	![Downloading the IntelliTrace logs](Images/downloading-the-intellitrace-logs.png?raw=true "Downloading the IntelliTrace logs")
 
 	_Downloading the IntelliTrace logs_
 
-1. Wait for the download to complete, which may take several minutes. While this is happening, you can expand the corresponding entry in the **Windows Azure Activity Log** window and examine the **History** panel on the right to monitor the progress of the operation.
+1. Wait for the download to complete (it may take several minutes). Meanwhile, you can expand the corresponding entry in the **Windows Azure Activity Log** window and examine the **History** panel on the right to monitor the progress of the operation.
 
 	![IntelliTrace operation history log](Images/intellitrace-operation-history-log.png?raw=true "IntelliTrace operation history log")
 
 	_IntelliTrace operation history log_
 
-	> **Note:** When you request the IntelliTrace logs, a snapshot of the information collected so far is uploaded from the VM instance where the role is running to your storage account and then downloaded to a disk file on your local computer. Once the log is transferred successfully, it is deleted from the storage.
+	> **Note:** When you request the IntelliTrace logs, a snapshot of the information collected so far is uploaded from the VM instance where the role is running to your storage account and then downloaded to a disk file on your local computer. Once the log is transferred successfully, it is deleted from the storage account.
 
 1. After the download completes, Visual Studio automatically opens the IntelliTrace log file and displays it in a window. The **IntelliTrace Summary** window is divided into several sections that contain diagnostics information collected for the deployment.
 
 	![IntelliTrace summary window](Images/intellitrace-summary-window.png?raw=true "IntelliTrace summary window")
 
-	_IntelliTrace summary window_
+	_IntelliTrace Summary window_
 
 	The sections available in the IntelliTrace summary window are:
 
-	**Exception Data** - lists unhandled exceptions that occur during the data collection period with details about the exception type, the exception message, the number of exceptions of that kind that were raised, and the time of the newest exception. Selecting an entry in the list displays the corresponding call stack for the exception.
+	**Exception Data:** lists unhandled exceptions that occurred during the data collection period, including details about the exception type, the exception message, the number of exceptions of that kind that were raised, and the time of the newest exception. Selecting an entry in the list displays the corresponding call stack for the exception.
 
-	If an exception occurs in your code, you can select the exception in the list and then click **Start Debugging** to open the appropriate source file in Visual Studio with the cursor placed on the line of code that raised the exception.
+	If an exception occurs in your code, you can select the exception in the list and then click **Debug Newest Exception in Group** to open the appropriate source file in Visual Studio with the cursor placed on the line of code that raised the exception.
 
 	![Exception Data section](Images/exception-data-section.png?raw=true "Exception Data section")
 
 	_Exception Data section_
 
-	**System Info** - shows information about the virtual machine environment where the diagnostics data was collected, including the computer name, operating system and CLR versions, physical memory and virtual memory available, number of processors, time zone, among other details.
+	**System Info:** shows information about the virtual machine environment where the diagnostics data was collected, including the computer name, operating system and CLR versions, physical memory and virtual memory available, number of processors, time zone, among other details.
 
 	![System Info section](Images/system-info-section.png?raw=true "System Info section")
 
 	_System Info section_
 
-	**Threads List** - shows every thread active during the diagnostics collection period, with each thread showing its ID, a name, if available, and the starting and ending times of the thread.
+	**Threads List:** shows every thread active during the diagnostics collection period, with each thread showing its ID, name (if available), and the starting and ending times of the thread.
 
 	![Threads List section](Images/threads-list-section.png?raw=true "Threads List section")
 
 	_Threads List section_
 
-	**Modules** - lists every module loaded in memory, including the name of the module and the path from where it was loaded. This information can be useful to debug assembly-loading issues.
+	**Modules:** lists every module loaded in memory, including the name of the module and the path from where it was loaded. This information can be useful to debug assembly-loading issues.
 
 	![Modules section](Images/modules-section.png?raw=true "Modules section")
 
 	_Modules section_
 
-	> **Note:** For the current deployment, you used default settings to define the events captured by IntelliTrace.
+	> **Note:** For the current deployment, you used the default settings to define the events captured by IntelliTrace.
 
-	>To configure which events should be included in the IntelliTrace log, during the Publishing operation, click **Settings** in **Windows Azure Publish Settings** | **Advanced Settings** to open the **IntelliTrace Settings** window.
+	>To configure which events should be included in the IntelliTrace log during the Publishing operation, click **Settings** next to the **Enable IntelliTrace** check box to open the **IntelliTrace Settings** window.
 
 	>	![Configuring IntelliTrace settings](Images/configuring-intellitrace-settings.png?raw=true "Configuring IntelliTrace settings")
 
@@ -558,11 +558,11 @@ In the previous task, the role failed to start due to an unknown reason. In this
 
 	_Viewing exception data in the IntelliTrace summary window_
 
-	In general, this list contains multiple exceptions, some of which may be ignored as they are handled by the runtime environment and do not cause the role to crash. There is no precise rule regarding which exceptions are normal and can be ignored, so you will typically review the list to identify potentially fatal exceptions. You will find that examining IntelliTrace logs for successful deployments will enhance your ability to discriminate significant entries in this list.
+	In general, this list contains multiple exceptions, some of which may be ignored, as they are handled by the runtime environment and do not cause the role to crash. There is no precise rule regarding which exceptions are normal and can be ignored, so you will typically review the list to identify potentially fatal exceptions. 
 
-	Notice that the list includes a **FabrikamWorker.CustomException** with the message "_This is an example error._". This is a custom exception that was created to easily showcase IntelliTrace.
+	Notice that the list includes a **FabrikamWorker.CustomException** with the message "_This is an example error_". This is a custom exception that was created to easily showcase IntelliTrace.
 
-	To fix the problem, just remove the statement that throw the exception inside the **Run** method of the **WorkerRole** class.
+	To fix this particular problem, just remove the statement that throws the exception inside the **Run** method of the **WorkerRole** class.
 
 1. Select the **FabrikamWorker.CustomException** exception and click **Debug Newest Exception in Group** in order to locate where the exception is being thrown.
 
@@ -582,15 +582,15 @@ In the previous task, the role failed to start due to an unknown reason. In this
 
 	_Switching to the Calls View_
 
-1. In **IntelliTrace Calls View**, click one of the calls above the one highlighted in order to move the debugger position to other statements.
+1. In **IntelliTrace Calls View**, click one of the calls above the one highlighted in order to move the debugger's position to other statements.
 
 	![Changing to other statement using the IntelliTrace Calls View](Images/changing-to-other-statement-using-the-intelli.png?raw=true "Changing to other statement using the IntelliTrace Calls View")
 
-	_Changing to other statement using the IntelliTrace Calls View_
+	_Changing to other statements using the IntelliTrace Calls View_
 
 1. Stop debugging by pressing **Shift + F5**.
 
-1. Cancel and remove the failing deployment to Windows Azure. In the Windows Azure activity log window, right-click the deployment and select **Cancel and remove**.
+1. Cancel and remove the failing deployment to Windows Azure. To do this, in the **Windows Azure Activity Log** window, right-click the deployment and select **Cancel and remove**.
 
 	![Cancel the failing deployment](Images/cancel-failing-deployment.png?raw=true "Cancel the failing deployment")
 
