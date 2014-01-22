@@ -408,7 +408,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 	{
 		 public class Customer
 		 {
-			  public string CustomerId { get; set; }
+			  public int CustomerId { get; set; }
 
 			  public string Name { get; set; }
 
@@ -471,19 +471,31 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 1. Now, you will add a database initializer method in your database context to populate the database with initial data. Add the following **CustomerContextInitializer** class in **CustomerContext.cs** file (under the **Models** folder) after **CustomerContext** class, and save the changes.
 
 	(Code Snippet - _Building Windows 8.1 Apps - Ex2 - Context Initializer_)
-	<!-- mark:13-19 -->
+	<!-- mark:26-31 -->
 	````C#
+	using System;
+	using System.Collections.Generic;
 	using System.Data.Entity;
+	using System.Linq;
+	using System.Web;
 
 	namespace WebApi.Models
 	{
 		 public class CustomerContext : DbContext
 		 {
+			  // You can add custom code to this file. Changes will not be overwritten.
+			  // 
+			  // If you want Entity Framework to drop and regenerate your database
+			  // automatically whenever you change your model schema, please use data migrations.
+			  // For more information refer to the documentation:
+			  // http://msdn.microsoft.com/en-us/data/jj591621.aspx
+		 
 			  public CustomerContext() : base("name=CustomerContext")
 			  {
 			  }
 
-			  public DbSet<Customer> Customers { get; set; }
+			  public System.Data.Entity.DbSet<WebApi.Models.Customer> Customers { get; set; }
+		 
 		 }
 
 		 public class CustomerContextInitializer : DropCreateDatabaseIfModelChanges<CustomerContext>
@@ -635,53 +647,41 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 <a name="Ex2Task2" />
 #### Task 2 - Publishing the Customers Web API Service to Windows Azure ####
 
-In this task you will first replace the connection string to use a SQL Database, and then publish the updated Web API service in Windows Azure Web Sites.
+In this task you will publish the updated Web API service in Windows Azure Web Sites replacing the connection string to use a SQL Database.
 
-1. 	Open **Web.Config** and locate the **connectionStrings** section under the **configuration** section.
+1. In **Solution Explorer**, right-click the Web API service project and select **Publish...**.
 
-	Before publishing the service in Windows Azure Web Sites, you will change the connection string and use the SQL Database you have created in the first task of this exercise.
+	![Publishing the service](Images/publishing-the-service.png?raw=true "Publishing the service")
 
-	You will now replace the default CustomerContext connection string, which is using LocalDB, to target your SQL Database server. To do this, replace the **connectionString** value of the **CustomerContext** connection string with the following value. Replace the placeholders as follows: 
+	_Publishing the service_
 
-	>**Note**: LocalDB is a version of SQL Server Express, installed by default with Visual Studio 2013 and created specifically for developers. It is very easy to install and requires no management, yet it offers the same T-SQL language, programming surface and client-side providers as the regular SQL Server Express. 
-	- **Server  URL:** Complete this value with your server URL. For example: eswngivxru.database.windows.net
-	- **Server Name**: This is your server name. For example: eswngivxru
-	- **Server Admin User:** Use your server's administrator login.
-	- **Password:** Use your server's administrator password.
-	- **Database:** Make sure the Initial Catalog value does **NOT** match the name of any existing database in your server. Entity Framework Code First will create the database for you.
+1. In the **Preview** page, click **Prev** button to navigate to the **Settings** page in order to configure the SQL database.
 
-	````XML
-Server=tcp:[SERVER_URL],1433;Database=CustomersDB;User ID=[SERVER_ADMIN_LOGIN];Password=[SERVER_ADMIN_PASSWORD];Trusted_Connection=False;Encrypt=True;Connection Timeout=30;
-	````	
+	![Navigating to the Settings Page](Images/navigating-to-the-settings-page.png?raw=true "Navigating to the Settings Page")
+
+	_Navigating to the Settings Page_
+
+1. In the **Settings** page, under the **Databases** section, if the **CustomerContext** section is not expanded, click the down arrow in the **CustomerContext** textbox, and select the SQL database shown in the drop-downlist.
+
+	> **Note:** The SQL Database you just selected was automatically generated when you created the Windows Azure Web Site in [Exercise 1](#Exercise1).
+
+	![Selecting the SQL Database](Images/selecting-the-sql-database.png?raw=true)
+
+	_Selecting the SQL Database_
+
+1. Click **Next** and then in the **Preview** page, click **Publish**.
+
+	![Publishing a web site](Images/publishing-a-web-site.png?raw=true "Publishing a web site")
 	
-	For example:
+	_Publishing a web site_
 
-	`````XML
-	<add name="CustomerContext" connectionString="Server=tcp:[YOUR-SERVER-NAME].database.windows.net,1433;Database=CustomersDB;User ID=[YOUR-SERVER-USERNAME];Password=[YOUR-SERVER-PASSWORD];Trusted_Connection=False;Encrypt=True;Connection Timeout=30;"
-      providerName="System.Data.SqlClient" />
-	```
-
-	>**Note:** You can get your **Server URL** from the SQL Database Server **Dashboard** in the Windows Azure Management portal. For simplicity purposes you are using your server administrator user to connect to the database, however in a production scenario it is recommended that you create another SQL Server user.
-	>
-	> ![Server's dashboard](Images/servers-dashboard.png?raw=true "Server's dashboard")
-	
-1. Press **CTRL+S** to save the changes.
-
-1. Now that the connection string is targeting your SQL Database, you will publish the service in Windows Azure Web Sites. Follow the steps in [Task 1 from Exercise 1](#Ex1Task1) to create a new Windows Azure Web Site. You can delete the one created in exercise 1 if you want. Also download its publish profile.
-
-1. Back in Visual Studio, right-click the Web API service project in the Solution Explorer, and select **Publish**.
-
-1. Click **Import**, and import the web site publish profile.
-
-1. Click **Publish** to publish the web service, and wait until the process is completed.
-
-1. In the browser opened, go to **/api/customers** to retrieve the full list of customers.
+1. When the process is completed the published web site will be opened in your default web browser. Go to **/api/customers** to retrieve the full list of customers.
 
 	![Testing the Customers Web API](Images/testing-the-customers-web-api.png?raw=true "Testing the Customers Web API")
 
 	_Testing the Customers Web API_
 
-	>**Note:** Entity Framework will create the database the first time you run the application. You can also access the database tables in Windows Azure portal and check if the data was added.
+	>**Note:** Entity Framework will create the database schema the first time you run the application. You can also access the database tables in Windows Azure portal and check if the data was added.
 
 <a name="Ex2Task3" />
 #### Task 3 - Exploring the Windows Store Application ####
