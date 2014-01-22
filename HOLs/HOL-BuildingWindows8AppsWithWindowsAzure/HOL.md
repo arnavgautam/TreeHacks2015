@@ -696,7 +696,7 @@ In this task you will explore the Customer client application, built using a Win
 
 	In this solution you will find a simplified Grid template, which only contains group and detail pages with a custom data model for customers.
 
-	![CustomerManager Windows Store Application](Images/customermanager-styleui-app.png?raw=true "CustomerManager Windows Store Application")
+	![CustomerManager Windows Store Application](Images/customermanager-app.png?raw=true "CustomerManager Windows Store Application")
 
 	_CustomerManager Windows Store Application_
 
@@ -738,27 +738,24 @@ In this task you will explore the Customer client application, built using a Win
 
 	> **Note:** The Windows Runtime now supports using ObservableCollection to set up dynamic bindings so that insertions or deletions in the collection update the UI automatically.
 
-	The **GroupedCustomersPage.cs** code-behind declares, initializes and binds the view model as follows.
+	The **GroupedCustomersPage.xaml.cs** code-behind declares, initializes and binds the view model as follows.
 
+	<!--mark:4,8-11-->
 	````C#
-	...
+	public sealed partial class GroupedCustomersPage : Page
+	{
+		private NavigationHelper navigationHelper;
+		private GroupedCustomersViewModel viewModel = new GroupedCustomersViewModel();
 
-	private GroupedCustomersViewModel ViewModel { get; set; }
+		...
 
-	public GroupedCustomersPage()
-	{            
-		this.InitializeComponent();
-		this.ViewModel = new GroupedCustomersViewModel();
+		public GroupedCustomersViewModel ViewModel
+		{
+			get { return this.viewModel; }
+		}
+
+		...
 	}
-
-	... 
-
-	protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
-	{            
-		this.DataContext = this.ViewModel;
-	}
-
-	...
 	````
 
 	In the XAML code of this page, each collection is bound to the ViewModel through a CollectionViewSource, that points to the customers list from the ViewModel.
@@ -776,25 +773,38 @@ In this task you will explore the Customer client application, built using a Win
 
 	Then, each of the page elements (lists, grids, etc.) use the defined collection view source and bind to specific properties.
 
-	<!-- mark:8,17 -->
+	<!-- mark:7,16,19-20 -->
 	````XML
 	<GridView
-            x:Name="itemGridView"
-            AutomationProperties.AutomationId="ItemGridView"
-            AutomationProperties.Name="Grouped Items"
-            Grid.Row="1"
-            Margin="0,-3,0,0"
-            Padding="116,0,40,46"
-            ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"            
-            SelectionMode="None"
-            IsItemClickEnabled="True"
-            ItemClick="CustomerItem_Click">
-
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="225"  Margin="0,0,0,0">
-                        <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                            <Image Source="{Binding Image}" Stretch="None" />
+		 x:Name="itemGridView"
+		 AutomationProperties.AutomationId="ItemGridView"
+		 AutomationProperties.Name="Grouped Items"
+		 Grid.RowSpan="2"
+		 Padding="116,137,40,46"
+		 ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
+		 SelectionMode="None"
+		 IsSwipeEnabled="false"
+		 IsItemClickEnabled="True"
+		 ItemClick="CustomerItem_Click">
+		 <GridView.ItemTemplate>
+			  <DataTemplate>
+					<Grid HorizontalAlignment="Center" Width="300" Height="225" Margin="0,0,0,0">
+						 <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}">
+							  <Image Source="{Binding ImagePath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+						 </Border>
+						 <StackPanel VerticalAlignment="Bottom" Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}">
+							  <TextBlock Text="{Binding Name}" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Height="60" Margin="15,0,15,0"/>
+							  <TextBlock Text="{Binding Company}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+						 </StackPanel>
+					</Grid>
+			  </DataTemplate>
+		 </GridView.ItemTemplate>
+		 <GridView.ItemsPanel>
+			  <ItemsPanelTemplate>
+					<ItemsWrapGrid GroupPadding="0,0,70,0"/>
+			  </ItemsPanelTemplate>
+		 </GridView.ItemsPanel>
+	</GridView>
 	````
 
 <a name="Ex2Task4" />
@@ -803,6 +813,10 @@ In this task you will explore the Customer client application, built using a Win
 In this task you will bind your Windows Store Application against your customer's model retrieving data from the Web API service. You will start by configuring the binding, and then you will modify the application to call the service asynchronously and display the customers.
 
 1. Right-click the **DataModel** project folder in the solution explorer and select **Add | Existing Item**. 
+
+	![Adding an existing item](Images/adding-an-existing-item.png?raw=true "Adding an existing item")
+	
+	_Adding an existing item_
 
 1. Browse to the **WebApi** project, open the **Models** folder and select **Customer.cs**. Click the arrow next to the **Add** button and click **Add as Link**.
 
