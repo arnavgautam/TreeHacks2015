@@ -9,7 +9,9 @@
     <Email></Email>
     <Name></Name>
   </Author>
-  <Description>In this hands-on lab you will learn how to ....</Description>
+  <Description>
+    In this hands-on lab, you will learn how to create a Service Bus namespace using Windows Azure Management Portal. Then you will explore how to create a cloud-based application that writes and reads messages through a queue. Finally, you will see how different platforms and languages can interact seamlessly using the Advanced Messaging Queue Protocol (AMQP) with Windows Azure Service Bus Queues.
+  </Description>
   <Document ConversionType="Html">.\HOL.md</Document>
   <Title>Service Bus Queues</Title>
   <Version>3.1.3</Version>
