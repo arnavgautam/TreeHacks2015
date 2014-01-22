@@ -1,4 +1,4 @@
-Copyright 2013 Microsoft
+Copyright 2014 Microsoft
 
 The **Deploying Active Directory in Windows Azure (PowerShell) Hands-on Lab** is licensed under the terms of the Apache License, Version 2.0.
 You may use it according to the license as is most appropriate for your project on a case-by-case basis.

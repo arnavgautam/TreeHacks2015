@@ -1,4 +1,4 @@
-﻿# Service Bus Queues #
+﻿# Service Bus Topics #
 
 ## Hands-on Lab ##
 
@@ -6,7 +6,7 @@
 
 Hands-On Labs are sets of step-by-step guides that are designed to help you learn how to use key Windows Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
 
-In this hands-on lab, you will explore how to create a cloud based application that writes and reads messages to a Service Bus queue. Finally, you will see how to interact from different platforms and languages using the Advanced Messaging Queue Protocol (AMQP) with queues.
+This hands-on lab will show you the basic elements of Service Bus topics and subscriptions. You will start by creating topics and subscriptions and then explore how to send messages to a topic and receive messages from a subscription. Finally, you learn how to apply expression filters and rule actions to subscriptions to distribute your messages that matched those rules.
 
 > **Note:** You can download the latest build of the Windows Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
 
