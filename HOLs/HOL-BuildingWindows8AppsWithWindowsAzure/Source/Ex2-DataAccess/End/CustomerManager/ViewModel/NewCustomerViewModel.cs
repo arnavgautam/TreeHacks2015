@@ -17,7 +17,7 @@
         {
             CustomersWebApiClient.CreateCustomer(new Customer
             {
-                CustomerId = this.Customer.CustomerId,
+                CustomerId = int.Parse(this.Customer.CustomerId),
                 Name = this.Customer.Name,
                 Phone = this.Customer.Phone,
                 Address = this.Customer.Address,
