@@ -125,7 +125,7 @@ You have now created a new Windows Azure namespace for this hands-on lab. To sig
 
 
 <a name="Ex1Task2"></a>
-#### Task 2 - Creating a Topic and Adding Subscriptions in Visual Studio ####
+#### Task 2 - Creating a Queue in Visual Studio ####
 
 The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including queues. In this task, you will use Server Explorer to connect to the service bus namespace you created previously, create a queue.
 
