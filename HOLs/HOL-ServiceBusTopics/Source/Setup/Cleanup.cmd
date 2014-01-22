@@ -7,11 +7,11 @@ echo.
 
 for /f "tokens=2,*" %%a in ('reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" /v "Personal" 2^>NUL ^| findstr Personal') do set MyDocuments=%%b
 
-DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\Visual C#\My Code Snippets\GettingStartedWindowsAzureStorage*.snippet" 2>NUL
-DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\XAML\My XAML Snippets\GettingStartedWindowsAzureStorage*.snippet" 2>NUL
-DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\Visual Web Developer\My CSS Snippets\GettingStartedWindowsAzureStorage*.snippet" 2>NUL
-DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\Visual Web Developer\My HTML Snippets\GettingStartedWindowsAzureStorage*.snippet" 2>NUL
-DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\JavaScript\My Code Snippets\GettingStartedWindowsAzureStorage*.snippet" 2>NUL
+DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\Visual C#\My Code Snippets\ServiceBusTopics*.snippet" 2>NUL
+DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\XAML\My XAML Snippets\ServiceBusTopics*.snippet" 2>NUL
+DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\Visual Web Developer\My CSS Snippets\ServiceBusTopics*.snippet" 2>NUL
+DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\Visual Web Developer\My HTML Snippets\ServiceBusTopics*.snippet" 2>NUL
+DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\JavaScript\My Code Snippets\ServiceBusTopics*.snippet" 2>NUL
 
 echo Lab Code Snippets have been removed!
 PAUSE

@@ -123,13 +123,57 @@ You have now created a new Windows Azure namespace for this hands-on lab. To sig
 
 >**Note**: In this lab you will learn how to create and make use of Service Bus queues from Visual Studio and from an ASP.NET MVC application. You can also create queues from the Windows Azure Management Portal, for more information see [How to Manage Service Bus Messaging Entities ](http://www.windowsazure.com/en-us/documentation/articles/service-bus-manage-message-entities/)
 
+
 <a name="Ex1Task2"></a>
-#### Task 2 - Creating a Queue Programmatically ####
-In this task, you will create a Queue in your Service Bus namespace.
+#### Task 2 - Creating a Queue in Visual Studio ####
 
-1. Open **Visual Studio 2013 Express for Web or higher** as Administrator.
+The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including queues. In this task, you will use Server Explorer to connect to the service bus namespace you created previously, create a queue.
 
-1. Open the **Begin.sln** solution file from **Source\Ex1-CreatingAQueue\Begin**.
+1. Open **Visual Studio 2013 Express for Web** (or greater) as Administrator.
+
+1. From the menu bar, select **View** and then click **Server Explorer**.
+
+1. In **Server Explorer**, expand the  **Windows Azure** node, right-click **Service Bus** and select **Add New Connection...**.
+
+	![Adding new Service Bus connection](Images/adding-new-service-bus-connection.png?raw=true)
+
+	_Adding new Service Bus connection_
+
+1. In the **Add Connection** dialog box, make sure the **Windows Azure Service Bus** option is selected. Enter the **Namespace name**, the **Issuer Name** and the **Issuer Key** using the values obtained in the previous task. Finally, click **OK**.
+
+	> **Note:** Alternatively, you can check the **Use connection string** checkbox and provide the service bus connection string.
+
+	![Add Connection dialog box](Images/add-connection-dialog-box.png?raw=true)
+
+	_Add Connection dialog box_
+
+1. After connecting to your Service Bus namespace, your namespace should appear under **Service Bus**. Expand the Service Bus namespace node, right-click **Queues** and select **Create New Queue...**. 
+
+	![Creating a new queue](Images/creating-a-new-queue.png?raw=true "Creating a new queue")
+
+	_Creating a new queue_
+
+1. In the **New Queue** dialog box, enter a name for the service bus queue in the **Name** textbox. Leave the default options and click **Save**.
+
+	![New queue dialog box](Images/new-queue-dialog-box.png?raw=true "New queue dialog box")
+
+	_New queue dialog box_
+
+1. The new queue should be added to your Service Bus Namespace.
+
+	> **Note:** You can also use the Windows Azure Tools for Microsoft Visual Studio to send and receive test messages, as well as to define subscription rules. In the next exercises, you will learn how to perform those operations from code by using the **WindowsAzure.ServiceBus** NuGet package.
+
+	![New queue created](Images/new-queue-created.png?raw=true "New queue created")
+
+	_New queue created_
+
+
+<a name="Ex1Task3"></a>
+#### Task 3 - Creating a Queue Programmatically ####
+In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceManager** class to create a new queue. For this, first you will add the necessary configurations to connect to your Service Bus namespace
+
+
+1. In **Visual Studio**, open the **Begin.sln** solution file from **Source\Ex1-CreatingAQueue\Begin**.
 
 1. Build the solution in order to download and install the NuGet package dependencies. To do this, click **Build** | **Build Solution** or press **Ctrl + Shift + B**.
 
@@ -749,7 +793,7 @@ You now launch the updated application in the Windows Azure compute emulator to 
 
 1. In **Send a Message** section, enter a message in the Textbox named **Message**, and click **Send**. 
 
-	![Sending the Message with AMQP](Images/sending-the-message-with-amqp.png?raw=true "Sending the Message with AMQP")
+	![Sending a Message with AMQP](Images/sending-a-message-with-amqp.png?raw=true "Sending a Message with AMQP")
 
 	_Sending the Message with AMQP_
 

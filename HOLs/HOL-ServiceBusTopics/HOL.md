@@ -123,7 +123,7 @@ You have now created a new Windows Azure namespace for this hands-on lab. To sig
 
 <a name="Ex2Task2"></a>
 #### Task 2 - Creating a Topic and Adding Subscriptions in Visual Studio ####
-The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including topics and subscriptions. In this task, you will use Server Explorer to connect to the service bus namespace you created previously, create a topic and add a subscription to it.
+The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including topics and subscriptions. In this task, you will use Server Explorer to connect to the Service Bus namespace you created previously, create a topic and add a subscription to it.
 
 1. Open **Visual Studio 2013 Express for Web** (or greater) as Administrator.
 
@@ -149,7 +149,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 	_Creating new topic_
 
-1. In the New Topic dialog, enter a name for the service bus topic in the **Name** textbox. Leave the default options and click **Save**.
+1. In the New Topic dialog box, enter a name for the service bus topic in the **Name** textbox. Leave the default options and click **Save**.
 
 	![New Topic dialog box](Images/new-topic-dialog-box.png?raw=true)
 
@@ -161,7 +161,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 	_Creating new subscription_
 
-1. In the **New Subscription** dialog box, enter a Name for the subscription in the **Name** textbox. Leave the default options and click **Save**.
+1. In the **New Subscription** dialog box, enter a name for the subscription in the **Name** textbox. Leave the default options and click **Save**.
 
 	![New Subscription dialog box](Images/new-subscription-dialog-box.png?raw=true)
 
@@ -202,11 +202,11 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 1. Press **CTRL + S** to save the changes to the Web Role configuration.
 
-1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to the Windows Azure service bus from your application. In **Solution Explorer**, right-click the **UsingTopics** project node and select **Add Reference.**
+1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to Windows Azure Service Bus from your application. In **Solution Explorer**, right-click the **UsingTopics** project node and select **Add Reference.**
 
 1. In the **Reference Manager** dialog box, check the **System.Runtime.Serialization** assembly. Then, select the **Extensions** assemblies from the left pane, check **Microsoft.ServiceBus** and ensure **Microsoft.WindowsAzure.ServiceRuntime** is checked as well. Click **OK** to add the references.
 
-1. Open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics.Web** project.
+1. Open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
 1. Add the following namespace directives to declare the Service Bus and the Windows Azure supporting assemblies.
 
@@ -319,7 +319,7 @@ You will now launch the updated application in the Windows Azure compute emulato
 <a name="Exercise2"></a>
 ### Exercise 2: Sending and Receiving Messages ###
 
-In Exercise 1, you added the necessary code to the aplication in order to create Windows Azure Service Bus topics and subscriptions. You will now update the application to send messages to a topic and receive the messages that arrive to the subscriptions.
+In Exercise 1, you added the necessary code to the application in order to create Windows Azure Service Bus topics and subscriptions. You will now update the application to send messages to a topic and receive the messages that arrive to the subscriptions.
 
 <a name="Ex2Task1"></a>
 #### Task 1 - Sending Messages ####
@@ -395,7 +395,7 @@ In this task, you will send messages to a Service Bus topic. You can send any se
 	}
 	````
 
-1. Next, you will create a **CustomMessage,** add it to the **BrokeredMessage** and then you will set the _Urgent_, _Important_ and _Priority_ properties with the values you receive from the UI. Finally, you will use the **TopicClient** to send the message to the topic. Add the following method at the end of the **HomeController** class.
+1. Next, you will create a **CustomMessage,** add it to the **BrokeredMessage** and then you will set the _Urgent_ and _Important_ properties with the values you receive from the UI. Finally, you will use the **TopicClient** to send the message to the topic. Add the following method at the end of the **HomeController** class.
 
 	(Code Snippet - _Service Bus Topics - Ex02 - SendMessage_ - CS)
 	<!-- mark:1-18 -->
@@ -420,19 +420,19 @@ In this task, you will send messages to a Service Bus topic. You can send any se
 	}
 	````
 
-1. Press **CTRL + S** to save the changes to the Controller.
+1. Press **CTRL + S** to save the changes to the Controller class.
 
 <a name="Ex2Task2"></a>
 #### Task 2 - Receiving Messages ####
 
 In the previous task, you instantiate a **TopicClient** in order to send messages to a topic. In this task you will learn how to use the **SubscriptionClient** to receive messages from a subscription and explore the properties inside the received message.
 
-1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics.Web** project.
+1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
 1. Add the following code at the end of the **HomeController** class.
 
 	(Code Snippet - _Service Bus Topics - Ex02 - RetrieveMessages_ - CS)
-	<!-- mark:1-37 -->
+	<!-- mark:1-35 -->
 	````C#
 	[HttpGet, OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
 	public JsonResult RetrieveMessage(string topicName, string subscriptionName)
@@ -446,8 +446,6 @@ In the previous task, you instantiate a **TopicClient** in order to send message
 		 }
 
 		 var receivedCustomMessage = receivedMessage.GetBody<CustomMessage>();
-
-		 receivedMessage.Properties["Priority"] = receivedMessage.Properties["Priority"].ToString() == "1" ? "High" : "Low";
 
 		 var brokeredMsgProperties = new Dictionary<string, object>();
 		 brokeredMsgProperties.Add("Size", receivedMessage.Size);
@@ -475,7 +473,7 @@ In the previous task, you instantiate a **TopicClient** in order to send message
 
 	> **Note:** In this code you are also adding additional information of the message that you will show in the UI.
 
-1. Press **CTRL + S** to save the changes to the Controller.
+1. Press **CTRL + S** to save the changes to the Controller class.
 
 <a name="Ex2Task3"></a>
 #### Task 3 - Verification ####
@@ -523,7 +521,7 @@ In this exercise, you will apply filters on subscriptions to retrieve only the m
 
 1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
-1. In the previous task, you created a topic with one subscription. Now, you will update the **CreateTopic** method to add a new _UrgentMessages_ subcription. This subscription will include a **SqlFilter** to get only the messages that match the rule _Urgent = '1'_. Add the following highlighted code in the **CreateTopic** action method.
+1. In the previous task, you created a topic with one subscription. Now, you will update the **CreateTopic** method to add a new _UrgentMessages_ subscription. This subscription will include a **SqlFilter** to get only the messages that match the rule _Urgent = '1'_. Add the following highlighted code in the **CreateTopic** action method.
 
 	(Code Snippet - _Service Bus Topics - Ex03 - Add Subscription with Rule Filter_ - CS)
 	<!-- mark:6 -->
@@ -541,7 +539,7 @@ In this exercise, you will apply filters on subscriptions to retrieve only the m
 
     > **Note:** Take into account that you can use SQL92 as filter expressions.
 
-1. Press **CTRL + S** to save the changes to the Controller.
+1. Press **CTRL + S** to save the changes to the Controller class.
 
 <a name="Ex3Task2"></a>
 #### Task 2 - Using a Subscription Rule Filter Action ####
@@ -576,7 +574,37 @@ Additionally to rule filter expressions, you can use **rule filter actions.** Wi
 	}
 	````
 
-1. Press **CTRL + S** to save the changes to the Controller.
+1. Add the following action method to retrieve the subscription filters for a given subscription to the view.
+
+	(Code Snippet - _Service Bus Topics - Ex03 - Get Subscription Filters_ - CS)
+	<!-- mark:1-22 -->
+	````C#
+	[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+	public JsonResult Filters(string topicName, string subscriptionName)
+	{
+		var rules = this.namespaceManager.GetRules(topicName, subscriptionName);
+		var sqlFilters = new List<Tuple<string, string>>();
+
+		foreach (var rule in rules)
+		{
+			var expression = rule.Filter as SqlFilter;
+			var action = rule.Action as SqlRuleAction;
+
+			if (expression != null)
+			{
+				sqlFilters.Add(
+					new Tuple<string, string>(
+						expression.SqlExpression,
+						action != null ? action.SqlExpression : string.Empty));
+			}
+		}
+
+		return this.Json(sqlFilters.Select(t => new { Filter = t.Item1, Action = t.Item2 }), JsonRequestBehavior.AllowGet);
+	}
+
+	````
+
+1. Press **CTRL + S** to save the changes to the Controller class.
 
 <a name="Ex3Task3"></a>
 #### Task 3 - Verification ####
@@ -585,40 +613,31 @@ You will now run the updated application one more time to verify that each messa
 
 1. In **Visual Studio**, press **F5** to launch the application.
 
-1. Create a new topic named _topicwithrules_, and click **Create**.
+1. In the **Create a Topic** section, enter _topicwithrules_ for the topic name, and click **Create**.
 
-1. Select the previously created topic. In the **Send a message section**, type _this is an urgent message_ in the **Message** textbox and click **Send**.
-
-
- 	![The application displays a message when a Topic is created](./Images/The-application-displays-a-message-when-a-Topic-is-created.png?raw=true "The application displays a message when a Topic is created")
+1. Select the previously created topic from the topic list. In the **Send a message section**, type _This is an urgent message_ in the **Message** textbox, check the **Urgent** checkbox and click **Send**.
  
-	_The application displays a message when a Topic is created_
-
-1. In the **Send Message** panel, select the previously created **Topic** from the dropdown list, enter "This is an urgent message" in the TextBox, check **Is Urgent** and click **Send.**
+ 	![Sending an urgent message to the topic](Images/sending-an-urgent-message-to-the-topic.png?raw=true)
  
- 	![Sending a message to the topic](./Images/Sending-a-message-to-the-topic.png?raw=true "Sending a message to the topic")
- 
-	_Sending a message to the topic_
+	_Sending an urgent message to the topic_
 
-1. Check that the message is received only by the **UrgentMessages** and the **AllMessages** subscriptions. To do this, select each subscription in the dropdown list located in the **Receive Message** panel and click **Retrieve First message in Subscription**.
+1. Check that the message is received only by the **UrgentMessages** and the **AllMessages** subscriptions. Alternatively, you can select each subscription and click **Receive** to verify that the message is retrieved.
 
- 	![Retrieving a message to the AllMessages subscription](./Images/Retrieving-a-message-to-the-AllMessages-subscription.png?raw=true "Retrieving a message to the AllMessages subscription")
- 
-	_Retrieving a message to the AllMessages subscription_
+	![Urgent message arriving to UrgentMessages and AllMessages subscriptions](Images/urgent-message-arriving.png?raw=true)
 
- 	![Retrieving a message to the HighPriorityMessages subscription](./Images/Retrieving-a-message-to-the-HighPriorityMessages-subscription.png?raw=true "Retrieving a message to the HighPriorityMessages subscription")
- 
-	_Retrieving a message to the HighPriorityMessages subscription_
+	_Urgent message arriving to UrgentMessages and AllMessages subscriptions_
 
- 	![Retrieving a message to the UrgentMessages subscription](./Images/Retrieving-a-message-to-the-UrgentMessages-subscription.png?raw=true "Retrieving a message to the UrgentMessages subscription")
- 
-	_Retrieving a message to the UrgentMessages subscription_
+1. Send another message to the topic, but this time, uncheck the **Urgent** checkbox and check **Mark as Important**.
 
-1. Send another message to the Topic, but this time, uncheck the **Is Urgent** checkbox and check **Mark as important**. Retrieve the message from the **HighPriorityMessages** subscription and verify that the Priority is now set to **High**.
-
- 	![Sending an important message to the Topic](./Images/Sending-an-important-message-to-the-Topic.png?raw=true "Sending an important message to the Topic")
+ 	![Sending an important message to the topic](Images/sending-an-important-message-to-the-topic.png?raw=true)
  
  	_Sending an important message to the Topic_
+
+1. Retrieve the message from the **HighPriorityMessages** subscription and verify that the **Priority** is now set to _High_.
+
+	![Important message received from the HighPriorityMessages subscription](Images/important-message-received.png?raw=true)
+
+	_Important message received from the HighPriorityMessages subscription_
 
 ---
 

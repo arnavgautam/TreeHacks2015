@@ -1,0 +1,309 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="row">
+    <div class="col-md-12">
+        <h3> 1. Create a Topic</h3>
+        <form class="form-inline" role="form">
+            <div id="createTopicForm">
+                <div class="form-group">
+                    <label class="sr-only" for="topicName">Topic name</label>
+                    <input type="text" class="form-control" id="topicName" placeholder="Enter topic name" required="required">
+                </div>
+                <button id="createTopicButton" type="button" class="btn btn-default" disabled="disabled">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <h3>2. Select a Topic</h3>
+        <div class="form-group">
+            <label>Topic Explorer</label>
+            <p id="loading">Loading...</p>
+            <div id="topicList" class="list-group"></div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h3>3. Send a message</h3>
+        <form role="form">
+            <div class="form-group">
+                <label for="messageBody">Message</label>
+                <textarea id="messageBody" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-inline">
+                <label><input id="urgentCheck" type="checkbox" /> Urgent </label>
+            </div>
+            <div class="form-inline">
+                <label class="right"><input id="importantCheck" type="checkbox" /> Mark as Important</label>
+            </div>
+            <div class="form-inline">
+                <button id="sendMessageButton" type="button" class="btn btn-default" disabled="disabled">Send</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <h3>4. Receive a message</h3>
+        <div class="form-group">
+            <label for="messageBody">Subscriptions</label>
+            <p id="noMessages">There is no topic selected</p>
+            <div class="list-group" id="messageSubscriptions">
+            </div>
+        </div>
+        <div class="form-inline">
+            <button id="retrieveMessage" type="submit" class="btn btn-default" disabled="disabled">Receive</button>
+            <button id="viewSubscriptionFilters" type="button" class="btn btn-default" disabled="disabled">View Filters</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-8 col-md-8">
+        <h4>Logs</h4>
+        <div class="form-horizontal">
+            <textarea id="logs" readonly="readonly" class="form-control form-inline" rows="10"></textarea>
+        </div>
+    </div>
+    <div class="col-sm-4 col-md-4">
+        <hr />
+        <h4>Message Details</h4>
+        <div class="form-group">
+            <label for="messageContent">Content</label>
+            <div id="messageContent">
+            </div>
+            <label>
+                BrokeredMessage Properties
+            </label>
+            <div id="brokeredmessageproperties">
+                <table></table>
+            </div>
+            <label>
+                Message Properties
+            </label>
+            <div id="properties">
+                <table></table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="filtersModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Subscription Filters</h4>
+            </div>
+            <div class="modal-body">
+                <ul id="filtersList"></ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section scripts{
+    <script type="text/javascript">
+        function createTopic() {
+            var topicName = { topicName: $("#topicName").val() };
+            $("#createTopicForm").attr("disabled", "disabled");
+            logMessage("Creating topic '" + topicName.topicName + "'...");
+
+            var topicClick = function () {
+                $("#topicList a.active").removeClass("active");
+                $(this).addClass("active");
+                $("#sendMessageButton").removeAttr("disabled");
+                loadSubscriptions(topicName.topicName);
+            };
+
+            $.post('/Home/CreateTopic', topicName)
+                .always(function () {
+                    $("#createTopicForm").removeAttr("disabled");
+                }).success(function (data) {
+                    var newTopic = $("<a href='#' class='list-group-item'>")
+                        .on('click', topicClick)
+                        .html(data);
+                    $("#topicList").append(newTopic);
+                    logMessage("Done!");
+                }).fail(function () {
+                    logMessage('ERROR: Unable to create topic.');
+                });
+        }
+
+        function loadTopics() {
+            //Fill topic's list with topics and subscriptions
+            logMessage("Retrieving list of topics...");
+            $.get("/Home/Topics")
+                .always(function () {
+                    $("#loading").hide();
+                })
+                .done(function (response) {
+                    var ul = $("#topicList").empty();
+                    $.each(response, function (index, topic) {
+                        var topicClick = function () {
+                            $("#topicList a.active").removeClass("active");
+                            $(this).addClass("active");
+                            $("#sendMessageButton").removeAttr("disabled");
+                            loadSubscriptions(topic);
+                        };
+
+                        var topicItem = $("<a href='#' class='list-group-item'>")
+                            .on('click', topicClick)
+                            .html(topic);
+
+                        ul.append(topicItem);
+                    });
+                    logMessage("Done!");
+                }).fail(function () {
+                    logMessage('ERROR: Unable to get the list of topics.');
+                });
+        }
+
+        function loadSubscriptions(selectedTopicName) {
+            var receiveMsgSubscription = $("#messageSubscriptions");
+            receiveMsgSubscription.empty();
+            $("#retrieveMessage").attr("disabled", "disabled");
+            $("#viewSubscriptionFilters").attr("disabled", "disabled");
+            logMessage("Retrieving the topic subscriptions...");
+            $.get("/Home/Subscriptions", { topicName: selectedTopicName })
+                .done(function (response) {
+                    receiveMsgSubscription.empty();
+                    for (var i = 0; i < response.length; i++) {
+                        var subscriptionClick = function () {
+                            $("#messageSubscriptions a.active").removeClass("active");
+                            $(this).addClass("active");
+                            $("#retrieveMessage").removeAttr("disabled");
+                            $("#viewSubscriptionFilters").removeAttr("disabled");
+                        };
+
+                        var topicItem = $('<a href="#" class="list-group-item"><span class="badge" data-value="' + response[i].Name + '">' + response[i].MessageCount + '</span>' + response[i].Name + '</a>')
+                                .on('click', subscriptionClick);
+                        receiveMsgSubscription.append(topicItem);
+                    }
+                    logMessage("Done!");
+                    $('#noMessages').hide();
+                }).fail(function () {
+                    logMessage('ERROR: Unable to get the topic subscriptions.');
+                });
+        }
+
+        function sendMessage() {
+            var message = {
+                topicName: $("#topicList a.active").html(),
+                messageBody: $("#messageBody").val(),
+                isUrgent: $("#urgentCheck").is(":checked"),
+                isImportant: $("#importantCheck").is(":checked")
+            };
+
+            logMessage("Sending Message to " + message.topicName + " {isUrgent: " + message.isUrgent + "; isImportant: " + message.isImportant + "}");
+            $.post('/Home/SendMessage', message, function (data) {
+                logMessage("Done!");
+                sendMessageSuccessHandler(message.topicName);
+            }).fail(function () {
+                logMessage('ERROR: Unable to send message.');
+            });
+        }
+
+        function sendMessageSuccessHandler(selectedTopicName) {
+            $("#messageBody").val("");
+            loadSubscriptions(selectedTopicName);
+        }
+
+        function retrieveMessage() {
+            event.preventDefault();
+            var topicName = $("#topicList a.active").html();
+            var subscriptionName = $("#messageSubscriptions a.active span").data("value");
+            logMessage("Retrieving message from subscription '" + subscriptionName + "' (topic: '" + topicName + "')...");
+            $.get("/Home/RetrieveMessage", { topicName: topicName, subscriptionName: subscriptionName })
+                .success(function (response) {
+                    logMessage("Done!");
+                    $("#messageSubscriptions span[data-value=" + subscriptionName + "]").html(response.MessagesInSubscription);
+                    renderMessage(response.MessageInfo);
+                    loadTopics();
+                })
+                .error(function () {
+                    logMessage('ERROR: Unable to retrieve message.');
+                    renderMessage(false);
+                });
+        }
+
+        function handleEvents() {
+            $("#createTopicButton").click(createTopic);
+            $("#topicName").keyup(function () {
+                if ($("#topicName").val().length == 0) {
+                    $("#createTopicButton").attr("disabled", "disabled");
+                } else {
+                    $("#createTopicButton").removeAttr("disabled");
+                }
+            });
+            $("#sendMessageButton").click(sendMessage);
+            $("#retrieveMessage").click(retrieveMessage);
+            $("#viewSubscriptionFilters").click(viewSubscriptionFilters);
+        }
+
+        $(document).ready(function () {
+            $(".loading").show();
+            handleEvents();
+            loadTopics();
+        });
+
+        function renderMessage(response) {
+            if (response) {
+                $("#messageContent").html("<p>" + response.Message + "</p>")
+                var properties = $("#properties table");
+
+                properties.children().remove();
+
+                for (var i = 0; i < response.Properties.length; i++) {
+                    var item = response.Properties[i];
+                    var trClass = (i % 2 == 0) ? '' : 'class="odd"';
+                    properties.append('<tr ' + trClass + '><td>' + item.Key + '</td><td>' + item.Value + '</td></tr>');
+                }
+
+                var brokeredmsgproperties = $("#brokeredmessageproperties table");
+
+                brokeredmsgproperties.children().remove();
+
+                for (var i = 0; i < response.BrokeredMsgProperties.length; i++) {
+                    var item = response.BrokeredMsgProperties[i];
+                    var trClass = (i % 2 == 0) ? '' : 'class="odd"';
+                    brokeredmsgproperties.append('<tr ' + trClass + '><td>' + item.Key + '</td><td>' + item.Value + '</td></tr>');
+                }
+
+                $("#message").show();
+            } else {
+                $("#noMessage").show();
+            }
+        }
+
+        function viewSubscriptionFilters() {
+            var topicName = $("#topicList a.active").html();
+            var subscriptionName = $("#messageSubscriptions a.active span").data("value");
+            logMessage("Retrieving filters for subscription '" + subscriptionName + "' (topic: '" + topicName + "')...");
+            $.get("/Home/Filters", { topicName: topicName, subscriptionName: subscriptionName })
+            .success(function (response) {
+                var ul = $("#filtersList");
+                ul.children().remove();
+                for (var i = 0; i < response.length; i++) {
+                    var item = response[i];
+                    ul.append('<li>Filter Expression: "' + item.Filter + '"</li>');
+                    if (item.FilterAction) ul.append('<li>Filter Action: "' + item.Action + '"</li>');
+                }
+                logMessage("Done!");;
+                $("#filtersModal").modal();
+            })
+            .error(function () {
+                logMessage('ERROR: Unable to retrieve subscription filters.');
+            });
+        }
+
+        function logMessage(message, type) {
+            if (!message) {
+                return;
+            }
+
+            $("#logs").val(message + '\n' + $("#logs").val());
+        }
+    </script>
+}
