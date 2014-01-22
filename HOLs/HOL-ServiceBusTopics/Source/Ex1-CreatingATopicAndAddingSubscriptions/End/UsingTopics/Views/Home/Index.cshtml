@@ -163,6 +163,8 @@
         function loadSubscriptions(selectedTopicName) {
             var receiveMsgSubscription = $("#messageSubscriptions");
             receiveMsgSubscription.empty();
+            $("#retrieveMessage").attr("disabled", "disabled");
+            $("#viewSubscriptionFilters").attr("disabled", "disabled");
             logMessage("Retrieving the topic subscriptions...");
             $.get("/Home/Subscriptions", { topicName: selectedTopicName })
                 .done(function (response) {
@@ -229,7 +231,7 @@
             var topicName = $("#topicList a.active").html();
             var subscriptionName = $("#messageSubscriptions a.active span").data("value");
             $(".loading").show();
-            logMessage("Retrieving message from topic:'" + topicName + "'...");
+            logMessage("Retrieving message from subscription '" + subscriptionName + "' (topic: '" + topicName + "')...");
             $.get("/Home/RetrieveMessage", { topicName: topicName, subscriptionName: subscriptionName })
                 .success(function (response) {
                     logMessage("Done!");
@@ -290,15 +292,7 @@
                 $("#noMessage").show();
             }
 
-            enableLinks(true);
             $(".loading").hide();
-        }
-
-        function getMessage(numberOfMessages) {
-            var message = numberOfMessages + " Messages";
-            if (numberOfMessages == "0") message = "No Messages";
-            if (numberOfMessages == "1") message = numberOfMessages + " Message";
-            return message;
         }
 
         function viewSubscriptionFilters() {
@@ -320,23 +314,6 @@
             .error(function () {
                 logMessage('ERROR: Unable to retrieve subscription filters.');
             });
-        }
-
-        function doSubmit(frm) {
-            $("#" + frm).submit();
-        }
-
-        function enableLinks(enable) {
-            if (enable) {
-                $("#sendMessageButton").removeAttr("disabled");
-                $("#recieveMessageButton").removeAttr("disabled");
-                $("#createTopic").removeAttr("disabled");
-            }
-            else {
-                $("#sendMessageButton").attr("disabled", "disabled");
-                $("#recieveMessageButton").attr("disabled", "disabled");
-                $("#createTopic").attr("disabled", "disabled");
-            }
         }
 
         function logMessage(message, type) {

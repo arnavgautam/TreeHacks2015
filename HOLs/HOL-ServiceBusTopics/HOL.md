@@ -1,13 +1,11 @@
 ﻿<a name="HOLTop"></a>
-# Service Bus Topics#
+# Windows Azure Service Bus Topics#
 ---
 
 <a name="Overview"></a>
 ## Overview ##
 
-// TODO: Review Overview
-
-**Service Bus Topics** contains a brand-new set of cloud-based, message-oriented-middleware technologies including a fully-featured **Message Queue** with support for arbitrary content types, rich |message properties, correlation, reliable binary transfer, and grouping. Another important feature is **Service Bus Topics** which provide a set of publish-and-subscribe capabilities and are based on the same backend infrastructure as **Service Bus Queues**. A **Topic** consists of a sequential message store just like a **Queue**, but allows for many concurrent and durable **Subscriptions** that can independently yield copies of the published messages to consumers. Each **Subscription** can define a set of rules with simple expressions that specify which messages from the published sequence are selected into the Subscription.
+**Windows Azure Service Bus Messaging** contains a brand-new set of cloud-based, message-oriented-middleware technologies including a fully-featured **Service Bus queue** with support for arbitrary content types, rich message properties, correlation, reliable binary transfer, and grouping. Another important feature is **Service Bus topics** which provide a set of publish-and-subscribe capabilities and are based on the same backend infrastructure as **Service Bus queues**. A **topic** consists of a sequential message store just like a **queue**, but allows for many concurrent and durable **subscriptions** that can independently yield copies of the published messages to consumers. Each **subscription** can define a set of rules with simple expressions that specify which messages from the published sequence are selected into the Subscription.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -16,6 +14,8 @@ In this hands-on lab, you will learn how to:
 
 - Create a Service Bus Namespace
 - Create Topics and Subscriptions
+- Send Messages to a Topic
+- Receive Messages from Subscriptions 
 - Use Subscription Filter Expressions
 - Use Subscription Filter Actions
 
@@ -65,8 +65,9 @@ Throughout the lab document, you will be instructed to insert code blocks. For y
 This hands-on lab includes the following exercises:
 
 1. [Creating a Topic and Adding Subscriptions](#Exercise1)
-1. [Using a Subscription Rule Filter Expression and Rule Filter Actions](#Exercise2)
-1. [Sending and Receiving Messages](#Exercise3)
+1. [Sending and Receiving Messages](#Exercise2)
+1. [Using a Subscription Rule Filter Expression and Rule Filter Actions](#Exercise3)
+
 
 Estimated time to complete this lab: **60 minutes**.
 
@@ -177,9 +178,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceManager** class to create a new topic and add several subscriptions to it. For this, first you will add the necessary configurations to connect to your Service Bus namespace.
 
-1. Open **Visual Studio 2013 Express for Web** (or greater) as Administrator.
-
-1. Open the **Begin.sln** solution file from **Source\Ex1-CreatingATopicAndAddingSubscriptions\Begin\**.
+1. In **Visual Studio**, open the **Begin.sln** solution file from **Source\Ex1-CreatingATopicAndAddingSubscriptions\Begin\**.
 
 1. Build the solution in order to download and install the NuGet package dependencies. To do this, in **Solution Explorer** right-click the solution node and select **Build Solution** or press **Ctrl + Shift + B**.
 
@@ -219,7 +218,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 	````
 1. Add the following property to the **HomeController** class to enable the communication with the Service Bus Namespace service.
 
-	(Code Snippet - _Service Bus Topcis - Ex01 - NamespaceManager Property_ - CS)
+	(Code Snippet - _Service Bus Topics - Ex01 - NamespaceManager Property_ - CS)
 	<!-- mark:1-1 -->
 	````C#
 	private NamespaceManager namespaceManager;
@@ -242,9 +241,9 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 	}
 	````
 
-1. You will use the **namespaceManager** object to create a new **topic** with two **subscriptions**, named _AllMessages_, and _UrgentMessages_. To do this, add the following method at the end of the **HomeController** class.
+1. You will use the **namespaceManager** object to create a new **topic** with a **subscription** named _AllMessages_. To do this, add the following method at the end of the **HomeController** class.
 
-	(Code Snippet - _Service Bus Topics - Ex01 - Create Topic and subscriptions_ - CS)
+	(Code Snippet - _Service Bus Topics - Ex01 - Create Topic and subscription_ - CS)
 	<!-- mark:1-19 -->
 	````C#
 	[HttpPost]
@@ -252,13 +251,12 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 	{
 		 var topic = this.namespaceManager.CreateTopic(topicName);
 		 var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
-		 var urgentMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages");
 
 		 return this.Json(topicName, JsonRequestBehavior.AllowGet);
 	}
 	````
 
-1. The UI requires a way to retrieve the names of the existent topics, as well as the subscriptions of a given topic. Add the following code at the end of the **HomeController** class to retrieve the topics and subscriptions data to the view.
+1. The UI requires a way to retrieve the names of the existing topics, as well as the subscriptions of a given topic. Add the following code at the end of the **HomeController** class to retrieve the topics and subscriptions data to the view.
 
 	(Code Snippet - _Service Bus Topics - Ex02 - Get Topics and Subscriptions_ - CS)
 	<!-- mark:1-13 -->
@@ -321,12 +319,14 @@ You will now launch the updated application in the Windows Azure compute emulato
 <a name="Exercise2"></a>
 ### Exercise 2: Sending and Receiving Messages ###
 
-In the previous exercise, you added the necessary code to the aplication in order to create Windows Azure Service Bus topics and subscriptions. You will now update the application to send messages to a topic and receive the messages that arrive to the subscriptions.
+In Exercise 1, you added the necessary code to the aplication in order to create Windows Azure Service Bus topics and subscriptions. You will now update the application to send messages to a topic and receive the messages that arrive to the subscriptions.
 
 <a name="Ex2Task1"></a>
 #### Task 1 - Sending Messages ####
 
-In this task, you will send messages to a topic and verify that each message arrives to all subscriptions. You can send any serializable object as a **Message** through topics. You will send a **CustomMessage** object which has its own properties and is agnostic on how the Service Bus topic works or interacts with your application.
+In this task, you will send messages to a Service Bus topic. You can send any serializable object as a **Message** through topics. You will send a **CustomMessage** object which has its own properties and is agnostic on how the Service Bus topic works or interacts with your application.
+
+1. In **Visual Studio**, open the **Begin.sln** solution file from **Source\Ex2-SendingAndReceivingMessages\Begin\**. Alternatively, you may continue with the solution that you obtained after completing the previous exercise.
 
 1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
@@ -395,7 +395,7 @@ In this task, you will send messages to a topic and verify that each message arr
 	}
 	````
 
-1. Next, you will create a **CustomMessage,** add it to the **BrokeredMessage** and then you will set the _Urgent_, _Important_ and _Priority_ properties with the values you receive from the UI. Finally, you will use the **TopicClient** to send the message to the **topic**. Add the following method at the end of the **HomeController** class.
+1. Next, you will create a **CustomMessage,** add it to the **BrokeredMessage** and then you will set the _Urgent_, _Important_ and _Priority_ properties with the values you receive from the UI. Finally, you will use the **TopicClient** to send the message to the topic. Add the following method at the end of the **HomeController** class.
 
 	(Code Snippet - _Service Bus Topics - Ex02 - SendMessage_ - CS)
 	<!-- mark:1-18 -->
@@ -480,9 +480,31 @@ In the previous task, you instantiate a **TopicClient** in order to send message
 
 1. In **Visual Studio**, perss **F5** to run the application.
 
-1. Select the topic you created from the application. Add a message in the **Message** textbox and click **Send**.
+1. Select the previously created topic. In the **Send a message section**, type _this is an urgent message_ in the **Message** textbox and click **Send**.
 
-	
+	![Sending a message](Images/sending-a-message.png?raw=true)
+
+	_Sending a message_
+
+1. Check that the message arrived to the **AllMessages** subscription. You should see that the message counter of the subscription is incremented to **1**.
+
+	![Message arrived to subscription](Images/message-arrived-to-subscription.png?raw=true)
+
+	_Message arrived to subscription_
+
+1. Select the subscription in the **Receive a message** section and click **Receive** to retrieve the message. 
+
+	![_Retrieving a message_](Images/retrieving-a-message.png?raw=true)
+
+	_Retrieving a message_
+
+1. Verify that the message has been received.
+
+	![Message retrieved from the subscription](Images/message-retrieved-from-the-subscription.png?raw=true)
+
+	_Message retrieved from the subscription_
+
+1. Go back to **Visual Studio** and stop debugging.
 
 <a name="Exercise3"></a>
 ### Exercise 3: Using a Subscription Rule Filter Expression and Rule Filter Actions ###
@@ -499,7 +521,7 @@ In this exercise, you will apply filters on subscriptions to retrieve only the m
 
 1. In the previous task, you created a Topic with two Subscriptions. Now, you will replace a line of that code to include a **SqlFilter** to the _UrgentMessages_ Subscription. With this filter, the _UrgentMessages_ subscription will get only the messages that match the rule **Urgent = '1'**. Replace the code you added in the previous task with the following highlighted code.
 
-	(Code Snippet - _Service Bus Messaging - Ex02 - Create Topic and Subscriptions with Rule Filters_ - CS)
+	(Code Snippet - _Service Bus Topics - Ex03 - Create Topic and Subscriptions with Rule Filters_ - CS)
 	<!-- mark:9 -->
 	````C#
 	[HttpPost]
@@ -530,7 +552,7 @@ Additionally to Rule Filter Expressions, you can use **Rule Filter Actions.** Wi
 
 1. Create a new **Subscription** object with a **RuleDescription**. Within this object, you can set a **Filter** and an **Action**. This way, if the **Filter** matches, the specific **Action** is applied to the **BrokeredMessage**. In the **CreateTopic** Action Method, add the highlighted code.
 
-	(Code Snippet - _Service Bus Messaging - Ex02 - Create Subscription with Action Filter_ - CS)
+	(Code Snippet - _Service Bus Topics - Ex03 - Create Subscription with Action Filter_ - CS)
 	<!-- mark:11-16 -->
 	````C#
 	[HttpPost]
@@ -541,7 +563,7 @@ Additionally to Rule Filter Expressions, you can use **Rule Filter Actions.** Wi
 	    {
 	        var topic = this.namespaceManager.CreateTopic(topicName);
 	        var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
-	        var urgentMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages", new SqlFilter("Urgent = '1'"));
+	        var urgentMessagesSubscript= this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages", new SqlFilter("Urgent = '1'"));
 	
 	        var ruleDescription = new RuleDescription()
 	        {

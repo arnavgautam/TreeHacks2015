@@ -37,7 +37,6 @@
         {
             var topic = this.namespaceManager.CreateTopic(topicName);
             var allMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "AllMessages");
-            var urgentMessagesSubscription = this.namespaceManager.CreateSubscription(topic.Path, "UrgentMessages");
 
             return this.Json(topicName, JsonRequestBehavior.AllowGet);
         }
