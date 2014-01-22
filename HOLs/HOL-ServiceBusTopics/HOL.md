@@ -654,11 +654,11 @@ To learn more about **Service Bus Topics** and **Service Bus Messaging** please 
 
 This is a list of articles that expands the information on the technologies explained on this lab:
 
-- [An Introduction to Service Bus Topics article on the AppFabrik Team Blog](http://blogs.msdn.com/b/windowsazure/archive/2011/05/25/an-introduction-to-service-bus-topics.aspx): provides an introduction to the publish/subscribe capabilities offered by Service Bus Topics.
+- [An Introduction to Service Bus Topics article on the AppFabrik Team Blog](http://aka.ms/Qfzy2g): provides an introduction to the publish/subscribe capabilities offered by Service Bus Topics.
 
-- [Service Bus Queues, Topics, and Subscriptions](http://msdn.microsoft.com/en-us/library/windowsazure/hh367516.aspx): the new release of the Windows Azure Service Bus adds a set of cloud-based, message-oriented-middleware technologies including reliable message queuing and durable publish/subscribe messaging. These “brokered” messaging capabilities can be thought of as asynchronous, or decoupled messaging features that support publish-subscribe, temporal decoupling, and load balancing scenarios using the Service Bus messaging fabric. 
+- [Service Bus Queues, Topics, and Subscriptions](http://aka.ms/Jed5rg): the new release of the Windows Azure Service Bus adds a set of cloud-based, message-oriented-middleware technologies including reliable message queuing and durable publish/subscribe messaging. These “brokered” messaging capabilities can be thought of as asynchronous, or decoupled messaging features that support publish-subscribe, temporal decoupling, and load balancing scenarios using the Service Bus messaging fabric. 
 
-- [Partitioned Service Bus Queues and Topics](http://blogs.msdn.com/b/windowsazure/archive/2013/10/29/partitioned-service-bus-queues-and-topics.aspx): whereas a conventional queue or topic is handled by a single message broker and stored in one messaging store, a partitioned queue or topic is handled by multiple message brokers and stored in multiple messaging stores. This means that the overall throughput of a partitioned queue or topic is no longer limited by the performance of a single message broker or messaging store
+- [Partitioned Service Bus Queues and Topics](http://aka.ms/Sy2ssi): whereas a conventional queue or topic is handled by a single message broker and stored in one messaging store, a partitioned queue or topic is handled by multiple message brokers and stored in multiple messaging stores. This means that the overall throughput of a partitioned queue or topic is no longer limited by the performance of a single message broker or messaging store
 
 - You can continue reading the **Service Bus Queues** hands-on lab.
 
@@ -666,11 +666,11 @@ This is a list of articles that expands the information on the technologies expl
 
 This is a list of developer-oriented articles related to **Service Bus Topics**:
 
-- [How to Use Service Bus Topics/Subscriptions](http://www.windowsazure.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-topics-subscriptions/): will show you how to use Service Bus topics and subscriptions. The samples are written in C# and use the .NET API.
+- [How to Use Service Bus Topics/Subscriptions](http://aka.ms/Hz4ja5): will show you how to use Service Bus topics and subscriptions. The samples are written in C# and use the .NET API.
 
-- [Creating Applications that Use Service Bus Topics and Subscriptions](http://msdn.microsoft.com/en-us/library/windowsazure/hh699844.aspx): offers an introduction to the publish/subscribe capabilities offered by Service Bus topics.
+- [Creating Applications that Use Service Bus Topics and Subscriptions](http://aka.ms/U0fsy9): offers an introduction to the publish/subscribe capabilities offered by Service Bus topics.
 
-- [SqlFilter Class](http://msdn.microsoft.com/en-us/library/windowsazure/microsoft.servicebus.messaging.sqlfilter.aspx): represents a filter which is a composition of an expression and an action that is executed in the pub/sub pipeline
+- [SqlFilter Class](http://aka.ms/Fugit9): represents a filter which is a composition of an expression and an action that is executed in the pub/sub pipeline
 
 ---
 
