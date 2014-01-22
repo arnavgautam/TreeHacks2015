@@ -69,7 +69,7 @@ This hands-on lab includes the following exercises:
 1. [Using a Subscription Rule Filter Expression and Rule Filter Actions](#Exercise3)
 
 
-Estimated time to complete this lab: **60 minutes**.
+Estimated time to complete this lab: **40 minutes**.
 
 > **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.
 
