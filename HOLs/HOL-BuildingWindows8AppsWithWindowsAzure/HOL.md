@@ -12,12 +12,12 @@ In this hands-on lab you will learn how to combine the fluency of Windows 8.1 ap
 <a name="Objectives" />
 ### Objectives ###
 
-In this hands-on lab, you will learn how to use Visual Studio 2013 to:
+In this hands-on lab, you will learn how to:
 
-* Create an ASP.NET MVC 5 Web API service
-* Publish the service to Windows Azure Web Sites
-* Create a Windows Store application that consumes the Web API service
-* Add Push Notifications to the Windows Store application by using WNS Recipe
+- Create an ASP.NET MVC 5 Web API service
+- Publish the service to Windows Azure Web Sites
+- Create a Windows Store application that consumes the Web API service
+- Add Push Notifications to the Windows Store application by using WNS Recipe
 
 <a name="Prerequisites" />
 ### Prerequisites ###
@@ -365,8 +365,6 @@ In this task you will create a blank Windows Store application that will consume
 	![Basic service output](Images/basic-service-output.png?raw=true "basic service output")
 
 	_Service output_
-
----
 
 <a name="Exercise2" />
 ### Exercise 2: Basic Data Binding and Data Access Using Windows Azure SQL Databases and Entity Framework Code First ###
@@ -938,8 +936,6 @@ In this task you will bind your Windows Store Application against your customer'
 
 	>**Note:** If you cannot see the new customer added, go to the details page and come back to the home page. As the CreateCustomer method is asynchronous, to avoid blocking the UI, the GetCustomers method might execute before the new customer is posted to the service.
 
----
-
 <a name="Exercise3" />
 ### Exercise 3: Adding Push Notification Support to your Windows Store Application ###
 
@@ -1432,14 +1428,19 @@ In this task you will call the ChannelController of the WebApi app to request th
 
 ---
 
-<a name="Summary"></a>
+<a name="NextSteps" />
+## Next Steps ##
+
+TBC
+
+---
+
+<a name="Summary" />
 ## Summary ##
 
 By completing this hands-on lab you have learnt how to use Visual Studio 2013 to:
 
-* Create an ASP.NET MVC 4 Web API service
-* Publish the service to Windows Azure Web Sites
-* Create a Windows Store application that consumes the Web API service
-* Add Push Notifications to the Windows Store application by using WNS Recipe
-
----
+- Create an ASP.NET MVC 4 Web API service
+- Publish the service to Windows Azure Web Sites
+- Create a Windows Store application that consumes the Web API service
+- Add Push Notifications to the Windows Store application by using WNS Recipe
