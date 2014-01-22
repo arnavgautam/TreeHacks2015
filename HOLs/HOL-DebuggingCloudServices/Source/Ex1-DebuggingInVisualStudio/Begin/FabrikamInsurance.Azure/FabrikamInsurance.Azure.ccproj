@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FabrikamInsuranceContent\" />
-    <Folder Include="Profiles" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FabrikamInsuranceContent\diagnostics.wadcfg">
