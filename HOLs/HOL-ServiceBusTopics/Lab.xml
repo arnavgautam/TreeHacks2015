@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
-  <Id>ServiceBusQueues</Id>
+  <Id>ServiceBusTopics</Id>
   <Technologies>
     <Technology>Windows Azure</Technology>
   </Technologies>
@@ -9,9 +9,9 @@
     <Email></Email>
     <Name></Name>
   </Author>
-  <Description>In this hands-on lab, you will explore how to create a cloud based application that writes and reads messages to a Service Bus queue. Finally, you will see how to interact from different platforms and languages using the Advanced Messaging Queue Protocol (AMQP) with queues.</Description>
+  <Description>This hands-on lab will show you the basic elements of Service Bus topics and subscriptions. You will start by creating topics and subscriptions and then explore how to send messages to a topic and receive messages from a subscription. Finally, you learn how to apply expression filters and rule actions to subscriptions to distribute your messages that matched those rules.</Description>
   <Document ConversionType="Html">.\HOL.md</Document>
-  <Title>Service Bus Queues</Title>
+  <Title>Service Bus Topics</Title>
   <Version>3.2.0</Version>
   <Source>.\Source</Source>
   <CustomProperties>

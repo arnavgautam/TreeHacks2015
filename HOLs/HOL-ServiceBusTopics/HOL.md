@@ -37,7 +37,7 @@ You must have the following items to complete this lab:
 [1]: http://www.microsoft.com/visualstudio/
 [2]: http://www.microsoft.com/windowsazure/sdk/
 
->**Note:** This lab was designed to use Windows 8 Operating System.
+>**Note:** This lab was designed to use Windows 8.1 Operating System.
 
 <a name="Setup"></a>
 ### Setup ###
@@ -48,7 +48,6 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment and install the Visual Studio Code Snippets for this lab.
 
 1. If the User Account Control dialog is shown, confirm the action to proceed.
-
  
 > **Note:** Make sure you have checked all the dependencies for this lab before running the setup.
 
@@ -68,7 +67,6 @@ This hands-on lab includes the following exercises:
 1. [Sending and Receiving Messages](#Exercise2)
 1. [Using a Subscription Rule Filter Expression and Rule Filter Actions](#Exercise3)
 
-
 Estimated time to complete this lab: **40 minutes**.
 
 > **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.
@@ -76,14 +74,14 @@ Estimated time to complete this lab: **40 minutes**.
 <a name="Exercise1"></a>
 ### Exercise 1: Creating a Topic and Adding Subscriptions ###
 
-In this exercise, you will learn how to create a Windows Azure Service Bus topic and add subscriptions to it. Topics and subscriptions provide a one-to-many form of communication, in a “publish/subscribe” pattern. Useful for scaling to very large numbers of recipients, each published message is made available to each subscription registered with the topic.
+In this exercise, you will learn how to create a Windows Azure Service Bus topic and add subscriptions to it. Topics and subscriptions provide a one-to-many form of communication, in a "publish/subscribe" pattern. Useful for scaling to very large numbers of recipients, each published message is made available to each subscription registered with the topic.
 
 <a name="Ex1Task1"></a>
 #### Task 1 - Creating your Service Bus Namespace ####
 
-To work with Service Bus topics and subscriptions, you first need to create a Windows Azure Service Bus namespace. Once created, it can be used for **all** of the labs that use Windows Azure Service Bus and for your own projects as well.
+To work with Service Bus topics and subscriptions, you first need to create a Windows Azure Service Bus namespace. Once created, it can be used for **all** the labs that use Windows Azure Service Bus and for your own projects as well.
 
-1. Navigate to [http://manage.windowsazure.com/](http://manage.windowsazure.com). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
+1. Navigate to [Windows Azure Management Portal](http://manage.windowsazure.com). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
 
 1. Click **Service Bus** within the left pane.
 
@@ -117,12 +115,13 @@ To work with Service Bus topics and subscriptions, you first need to create a Wi
  
 	_Service Bus default keys_
 
-You have now created a new Windows Azure namespace for this hands-on lab. To sign in at any time, simply navigate to the Windows Azure Management Portal, click **Sign In** and provide your **Microsoft Account** credentials.
+You have now created a new Windows Azure Service Bus namespace for this hands-on lab. To sign in at any time, simply navigate to the Windows Azure Management Portal, click **Sign In** and provide your **Microsoft Account** credentials.
 
 > **Note:** In this lab you will learn how to create and make use of Service Bus topics and subscriptions from Visual Studio and from an ASP.NET MVC application. You can also create topics and subscriptions from the Windows Azure Management Portal, for more information see [How to Manage Service Bus Messaging Entities](http://www.windowsazure.com/en-us/documentation/articles/service-bus-manage-message-entities/).
 
-<a name="Ex2Task2"></a>
+<a name="Ex1Task2"></a>
 #### Task 2 - Creating a Topic and Adding Subscriptions in Visual Studio ####
+
 The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including topics and subscriptions. In this task, you will use Server Explorer to connect to the Service Bus namespace you created previously, create a topic and add a subscription to it.
 
 1. Open **Visual Studio 2013 Express for Web** (or greater) as Administrator.
@@ -173,7 +172,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 	_New subscription created_
 
-<a name="Ex2Task3"></a>
+<a name="Ex1Task3"></a>
 #### Task 3 - Creating a Topic and Adding Subscriptions Programmatically ####
 
 In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceManager** class to create a new topic and add several subscriptions to it. For this, first you will add the necessary configurations to connect to your Service Bus namespace.
@@ -227,6 +226,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 1. In order to create a topic, you have to connect to the **Service Bus Namespace** address and bind this namespace to a **NamespaceManager**. This class is in charge of creating the entities responsible for sending and receiving messages through topics. Add a constructor for the **HomeController** by including the following code:
 
 	(Code Snippet - _Service Bus Topics - Ex01 - HomeController Constructor_ - CS)
+
 	<!-- mark:1-10 -->
 	````C#
 	public HomeController()
@@ -244,7 +244,8 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 1. You will use the **namespaceManager** object to create a new **topic** with a **subscription** named _AllMessages_. To do this, add the following method at the end of the **HomeController** class.
 
 	(Code Snippet - _Service Bus Topics - Ex01 - Create Topic and subscription_ - CS)
-	<!-- mark:1-19 -->
+
+	<!-- mark:1-8 -->
 	````C#
 	[HttpPost]
 	public JsonResult CreateTopic(string topicName)
@@ -258,7 +259,8 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 1. The UI requires a way to retrieve the names of the existing topics, as well as the subscriptions of a given topic. Add the following code at the end of the **HomeController** class to retrieve the topics and subscriptions data to the view.
 
-	(Code Snippet - _Service Bus Topics - Ex02 - Get Topics and Subscriptions_ - CS)
+	(Code Snippet - _Service Bus Topics - Ex01 - Get Topics and Subscriptions_ - CS)
+
 	<!-- mark:1-13 -->
 	````C#
 	[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
@@ -369,9 +371,11 @@ In this task, you will send messages to a Service Bus topic. You can send any se
 1. Add the following namespace directive to access the Service Bus messaging classes.
 
 	(Code Snippet - _Service Bus Topics - Ex02 - Adding Namespace Directives_ - CS)
-	<!-- mark:1-1 -->
+
+	<!-- mark:1-2 -->
 	````C#
 	using Microsoft.ServiceBus.Messaging;
+	using UsingTopics.Models;
 	````
 
 1. Add the following property to the **HomeController** class to enable access to the Service Bus messaging capabilities.
@@ -644,7 +648,29 @@ You will now run the updated application one more time to verify that each messa
 <a name="NextSteps" />
 ## Next Steps ##
 
-TBC
+To learn more about **Service Bus Topics** and **Service Bus Messaging** please refer to the following articles:
+
+**Technical Reference**
+
+This is a list of articles that expands the information on the technologies explained on this lab:
+
+- [An Introduction to Service Bus Topics article on the AppFabrik Team Blog](http://blogs.msdn.com/b/windowsazure/archive/2011/05/25/an-introduction-to-service-bus-topics.aspx): provides an introduction to the publish/subscribe capabilities offered by Service Bus Topics.
+
+- [Service Bus Queues, Topics, and Subscriptions](http://msdn.microsoft.com/en-us/library/windowsazure/hh367516.aspx): the new release of the Windows Azure Service Bus adds a set of cloud-based, message-oriented-middleware technologies including reliable message queuing and durable publish/subscribe messaging. These “brokered” messaging capabilities can be thought of as asynchronous, or decoupled messaging features that support publish-subscribe, temporal decoupling, and load balancing scenarios using the Service Bus messaging fabric. 
+
+- [Partitioned Service Bus Queues and Topics](http://blogs.msdn.com/b/windowsazure/archive/2013/10/29/partitioned-service-bus-queues-and-topics.aspx): whereas a conventional queue or topic is handled by a single message broker and stored in one messaging store, a partitioned queue or topic is handled by multiple message brokers and stored in multiple messaging stores. This means that the overall throughput of a partitioned queue or topic is no longer limited by the performance of a single message broker or messaging store
+
+- You can continue reading the **Service Bus Queues** hands-on lab.
+
+**Development**
+
+This is a list of developer-oriented articles related to **Service Bus Topics**:
+
+- [How to Use Service Bus Topics/Subscriptions](http://www.windowsazure.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-topics-subscriptions/): will show you how to use Service Bus topics and subscriptions. The samples are written in C# and use the .NET API.
+
+- [Creating Applications that Use Service Bus Topics and Subscriptions](http://msdn.microsoft.com/en-us/library/windowsazure/hh699844.aspx): offers an introduction to the publish/subscribe capabilities offered by Service Bus topics.
+
+- [SqlFilter Class](http://msdn.microsoft.com/en-us/library/windowsazure/microsoft.servicebus.messaging.sqlfilter.aspx): represents a filter which is a composition of an expression and an action that is executed in the pub/sub pipeline
 
 ---
 

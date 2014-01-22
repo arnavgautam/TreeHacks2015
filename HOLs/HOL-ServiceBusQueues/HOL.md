@@ -5,11 +5,11 @@
 <a name="Overview"></a>
 ## Overview ##
 
-**Service Bus Messaging** contains a brand-new set of cloud-based, message-oriented-middleware technologies including a fully-featured **Message Queue** with support for arbitrary content types, rich message properties, correlation, reliable binary transfer, and grouping.
+**Service Bus Messaging** contains a brand-new set of cloud-based, message-oriented middleware technologies including a full-featured **Message Queue** with support for arbitrary content types, rich message properties, correlation, reliable binary transfer, and grouping.
 
-**Queues** offer First In, First Out (FIFO) message delivery to one or more competing consumers. That is, messages are typically expected to be received and processed by the receivers in the temporal order in which they were added to the queue, and each message is received and processed by only one message consumer. Using queues to intermediate between message producers and consumers provides an inherent loose coupling between the components. Because producers and consumers are not aware of each other, a consumer can be upgraded without having any effect on the producer.
+**Queues** offer First In, First Out (FIFO) message delivery to one or more competing consumers. That is, messages are typically expected to be received and processed by the receivers in the temporal order in which they were added to the queue, and each message is received and processed by only one message consumer. Using queues to intermediate between message producers and consumers provides an inherent loose coupling between both components. Because producers and consumers are not aware of each other, consumers can be upgraded without having any effect on the producer.
 
-In this hands-on lab, you will learn how to create a Service Bus namespace using Windows Azure Management Portal. Then you will explore how to create an cloud based application that writes and reads messages to a queue. Finally you will see how to interact from different platforms and languages using the Advanced Messaging Queue Protocol (AMQP) with queues.
+In this hands-on lab, you will learn how to create a Service Bus namespace using Windows Azure Management Portal. Then you will explore how to create a cloud-based application that writes and reads messages through a queue. Finally, you will see how different platforms and languages can interact seamlessly using the Advanced Messaging Queue Protocol (AMQP) with Windows Azure Service Bus Queues.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -19,7 +19,7 @@ In this hands-on lab, you will learn how to:
 - Create a Service Bus Namespace and queue
 - Write and read nessages through a queue
 - Inspect message properties
-- Use AMQP to write a messages to a queue with a .NET application
+- Use AMQP to write a message to a queue with a .NET application
 - Use AMQP to read a message from a queue with a Java applications
 
 <a name="Prerequisites"></a>
@@ -56,7 +56,7 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 <a name="UsingCodeSnippets"></a>
 ### Using the Code Snippets ###
 
-Throughout the lab document, you will be instructed to insert code blowcks. For your convenience, most of that code is provided as Visual Studio Code Snippets, which you can use from within Visual Studio 2013 to avoid having to add it manually.
+Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of that code is provided as Visual Studio Code Snippets, which you can use within Visual Studio 2013 to avoid adding them manually.
 
 ---
 
@@ -127,7 +127,7 @@ You have now created a new Windows Azure namespace for this hands-on lab. To sig
 <a name="Ex1Task2"></a>
 #### Task 2 - Creating a Queue in Visual Studio ####
 
-The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including queues. In this task, you will use Server Explorer to connect to the service bus namespace you created previously, create a queue.
+The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including queues. In this task, you will use Server Explorer to connect to the service bus namespace you created previously and create a queue.
 
 1. Open **Visual Studio 2013 Express for Web** (or greater) as Administrator.
 
@@ -179,11 +179,11 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 	>**Note:** NuGet is a Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects that use the .NET Framework.
 	>
-	> When you install the package, NuGet copies files to your solution and automatically makes whatever changes are needed, such as adding references and changing your app.config or web.config file. If you decide to remove the library, NuGet removes files and reverses whatever changes it made in your project so that no clutter is left.
+	> When you install the package, NuGet copies files to your solution and automatically makes whatever changes are needed, such as adding references and changing your _App.config_ or _Web.config_ files. If you decide to remove the library, NuGet removes files and reverses whatever changes it made in your project so that no clutter is left.
 	>
 	>For more information about NuGet, visit [http://nuget.org/](http://nuget.org/).
 
-1. Update the service definition to define the configuration settings required to access your Service Bus namespace. To do this, in **Solution Explorer** expand the **Roles** folder of the **UsingQueues** project in **Solution Explorer**, right-click **UsingQueues.Web**, and then select **Properties**.
+1. Update the service definition to define the configuration settings required to access your Service Bus namespace. To do this, in **Solution Explorer** expand the **Roles** folder of the **UsingQueues.Azure** project in **Solution Explorer**, right-click **UsingQueues**, and then select **Properties**.
 
 	![Launching the service configuration editor](Images/launching-the-service-configuration-editor.png?raw=true "Launching the service configuration editor")
  
@@ -197,7 +197,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 1. Press **CTRL + S** to save the changes to the Web Role configuration.
 
-1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to the **Windows Azure Service Bus** from your application. In **Solution Explorer**, right-click on **UsingQueues** project node and select **Add Reference.**
+1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to the **Windows Azure Service Bus** from your application. In **Solution Explorer**, right-click on **UsingQueues** project node and select **Add | Reference...**.
 
 1. In the **Reference Manager** dialog box, check the **System.Runtime.Serialization** assembly.  Then, select the **Extensions** assemblies from the left pane, check **Microsoft.ServiceBus** and ensure **Microsoft.WindowsAzure.ServiceRuntime** is checked as well. Click **OK** to add the references.
 
@@ -240,7 +240,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 	}
 	````
 
-1. Add the following method to the **HomeController** class. This method uses the **namespaceClient** object to create a new Queue.
+1. Add the following action to the **HomeController** class. This method uses the **namespaceClient** object to create a new Queue.
 
 	(Code Snippet - _Service Bus Messaging - Ex01 - CreateQueue_ - CS)
 
@@ -287,9 +287,9 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 <a name="Ex1Task3"></a>
 #### Task 3 - Verification ####
 
-You will now launch the updated application in the Windows Azure compute emulator to verify that you can create a queue.
+You will now launch the updated application in the Windows Azure Compute Emulator to verify that you can create a queue.
 
-1. In **Visual Studio**, configure the cloud project **UsingQueues** as the StartUp Project. To do this, in the **Solution Explorer**, right-click on **UsingQueues** and then select **Set as StartUp Project**.
+1. In **Visual Studio**, configure the cloud project **UsingQueues.Azure** as the startup Project. To do this, in the **Solution Explorer**, right-click on **UsingQueues.Azure** and then select **Set as StartUp Project**.
 
  	![Configuring StartUp Project](Images/configuring-startup-project.png?raw=true "Configuring StartUp Project")
  
@@ -324,7 +324,7 @@ In this exercise, you will learn how to use a **Service Bus Queue**. You will se
 <a name="Ex2Task1"></a>
 #### Task 1 - Write a Message to the Queue ####
 
-In this task, you learn how to write a message to a queue. You can send any serializable object as a **Message** through qeues. You will send a **CustomMessage** object which has its own properties and is agnostic on how the **Service Bus Queue** works or interacts with your application.
+In this task, you learn how to write a message to a queue. You can send any serializable object as a **Message** through queues. You will send a **CustomMessage** object which has its own properties and is agnostic on how the **Service Bus Queue** works or interacts with your application.
 
 1. Create a new class under the **Models** folder of the **UsingQueues** project. To do this, right-clicking the folder, select **Add** and then **Class**. In the **Add New Item** dialog, set the name of the class to _CustomMessage_.
 
@@ -363,7 +363,7 @@ In this task, you learn how to write a message to a queue. You can send any seri
 
 1. Next, you will create the method in the **HomeController** class that allows you to send your custom object to a **Queue**. Open the **HomeController.cs** file under the **Controllers** folder in the **UsingQueues** project.
 
-1. First add the following using statement on top of the file.
+1. First add the following using statement at the top of the file.
 
 	(Code Snippet - _Service Bus Messaging - Ex02 - Adding Namespace Directives_ - CS)
 
@@ -401,17 +401,17 @@ In this task, you learn how to write a message to a queue. You can send any seri
 	}
 	````
 
-1. Add the following method to the class.
+1. Add the following action to the class.
 
 	(Code Snippet - _Service Bus Messaging - Ex02 - NewCustomMessage_ - CS)
 
 	<!-- mark:1-6 -->
 	````C#
 	[HttpPost]
-	public void SendMessage(string queueName, string message)
+	public void SendMessage(string queueName, string messageBody)
 	{
 	    QueueClient queueClient = this.messagingFactory.CreateQueueClient(queueName);
-	    var customMessage = new CustomMessage() { Date = DateTime.Now, Body = message };
+	    var customMessage = new CustomMessage() { Date = DateTime.Now, Body = messageBody };
 	}
 	````
 
@@ -422,10 +422,10 @@ In this task, you learn how to write a message to a queue. You can send any seri
 	<!-- mark:6-23 -->
 	````C#
 	[HttpPost]
-	public void SendMessage(string queueName, string message)
+	public void SendMessage(string queueName, string messageBody)
 	{
 	    QueueClient queueClient = this.messagingFactory.CreateQueueClient(queueName);
-	    var customMessage = new CustomMessage() { Date = DateTime.Now, Body = message };
+	    var customMessage = new CustomMessage() { Date = DateTime.Now, Body = messageBody };
 	    BrokeredMessage bm = null;
 	    
 	    try
@@ -454,10 +454,10 @@ In this task, you learn how to write a message to a queue. You can send any seri
 	<!-- mark:11-12 -->
 	````C#
 	[HttpPost]
-	public void SendMessage(string queueName, string message)
+	public void SendMessage(string queueName, string messageBody)
 	{
 	    QueueClient queueClient = this.messagingFactory.CreateQueueClient(queueName);
-	    var customMessage = new CustomMessage() { Date = DateTime.Now, Body = message };
+	    var customMessage = new CustomMessage() { Date = DateTime.Now, Body = messageBody };
 	    BrokeredMessage bm = null;
 	    
 	    try
@@ -488,7 +488,7 @@ In this task, you learn how to write a message to a queue. You can send any seri
 
 In the previous task, we instantiate a **QueueClient** in order to write messages to a queue. In this task you learn how to use a **QueueClient**, to read messages from a queue and explore the properties inside the message.
 
-1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingQueues** project.
+1. Go to the **HomeController.cs** file under the **Controllers** folder in the **UsingQueues** project.
 
 1. Add the following method within **HomeController** class:
 
@@ -545,13 +545,13 @@ You now launch the updated application in the Windows Azure compute emulator to 
 
 	_Sending a Message to the queue_
 
-1. Notice how the message count is updated in **Select a Queue** section.
+1. Notice that the message count is updated in **Select a Queue** section.
 
 	![Message count updated](Images/message-count-updated.png?raw=true "Message count updated")
 
 	_Message count updated_
 
-1. If not selected, in **Select a Queue** section select your queue. In **Read a Message** section click on **Recieve** to read the first message from the queue. The Message will be shown in **Message Details** section.
+1. If not selected, in **Select a Queue** section select your queue. In **Read a Message** section click on **Receive** to read the first message from the queue. The Message will be shown in **Message Details** section.
 
  	![Retrieving the first message in the queue](Images/retrieving-the-first-message-in-the-queue.png?raw=true "Retrieving the first message in the queue")
  
@@ -562,22 +562,48 @@ You now launch the updated application in the Windows Azure compute emulator to 
 <a name="Exercise3"></a>
 ### Exercise 3: Talking across Platforms and Languages with AMQP ###
 
-The Advanced Message Queuing Protocol (AMQP) 1.0 is an efficient, reliable, wire-level messaging protocol that you can use to build robust, cross-platform, messaging applications.
+The Advanced Message Queuing Protocol (AMQP) 1.0 is an efficient, reliable, wire-level messaging protocol that you can use to build robust, cross-platform messaging applications.
 
 Support for AMQP 1.0 in Service Bus means that you can use the queuing and publish/subscribe brokered messaging features from a range of platforms using an efficient binary protocol. 
 
-In this exercise you will learn how to use the Service Bus brokered messaging features from .NET applications using the Service Bus .NET API. And then you will see how you can interact with different platforms and Languages.
+In this exercise you will learn how to use the Service Bus brokered messaging features from .NET applications using the Service Bus .NET API. Then you will see how you can interact with different platforms and languages.
 
 <a name="Ex3Task1"></a>
 #### Task 1 - Converting write code to send via AMQP ####
 
-In this task you will update the solution you created in last exercise to support AMQP. You will update the send message functionallity to send messages using AMQP.
+In this task you will update the solution you created in last exercise to support AMQP. You will update the SendMessage action to send messages using AMQP.
 
 1. If not already open, open **Visual Studio 2013 Express for Web or higher** as Administrator and open the solution file located at **Source\Ex3-TalkingacrossPlatformsandLanguageswithAMQP\Begin\Begin.sln**.
 
-	>**Note:** You can continue working with the solution you were working on exercise 2.
+	>**Note:** You can continue working with the solution from Exercise 2. If using the **Begin** solution remember to update project settings as explained in Exercise 2.
 
-1. Open **Web.config** file from **UsingQueue** project.
+1. Open **CustomMessage.cs** file located in **Models** folder.
+
+1. Add the following directive bellow the **using System;** statement
+
+	(Code Snippet -  _Service Bus Messaging - Ex03 - Using Statements in Custom Message class_ - CS))
+
+	<!-- mark:1 -->
+	````C#
+	using System.Collections.Generic;
+	````
+
+1. Add the following Helper method that returns the object's properties in a Dictionary.
+	
+	(Code Snippet -  _Service Bus Messaging - Ex03 - ToDictionary helper method_ - CS))
+
+	<!-- mark:1-7 -->
+	````C#
+	public Dictionary<string, object> ToDictionary()
+	{
+		var dictionary = new Dictionary<string, object>();
+		dictionary.Add("body", this.body);
+		dictionary.Add("date", this.date);
+		return dictionary;
+	}
+	````
+
+1. Open **Web.config** file from **UsingQueues** project.
 
 2. Locate the **Microsoft.ServiceBus.ConnectionString** key in the **appSettings** tag and replace the placeholders with your namepsace name and issuer key. After updating the connection string, 
 
@@ -624,14 +650,14 @@ In this task you will update the solution you created in last exercise to suppor
 	}
 	````
 
-1. Scroll down to the **SendMessage** action and replace it with the following implementation.
+1. Scroll down to the **SendMessage** action and modify it as follows.
 
 	(Code Snippet -  _Service Bus Messaging - Ex03 - SendMessage with AMQP_ - CS))
 
-	<!-- mark:1-23 -->
+	<!-- mark:1-26 -->
 	````C#
 	[HttpPost]
-	public void SendMessage(string queueName, string messageBody, bool isUrgent, bool isFollowUp)
+	public void SendMessage(string queueName, string messageBody)
 	{
 		MessageSender sender = this.messagingFactory.CreateMessageSender(queueName);
 		var customMessage = new CustomMessage() { Date = DateTime.Now, Body = messageBody };
@@ -639,12 +665,15 @@ In this task you will update the solution you created in last exercise to suppor
 
 		try
 		{
-			bm = new BrokeredMessage(customMessage.ToDictinary());
+			bm = new BrokeredMessage(customMessage.ToDictionary());
 			bm.Properties["Urgent"] = "1";
 			bm.Properties["Priority"] = "High";
 			sender.Send(bm);
 		}
-		catch { }
+		catch
+		{
+			// TODO: do something
+		}
 		finally
 		{
 			if (bm != null)
@@ -655,40 +684,14 @@ In this task you will update the solution you created in last exercise to suppor
 	}
 	````
 
-	>**Note** The custom message is converted to a Dictionary with all the properties before being sent. The dictionary maps to a Map in the AMQP types. To check all the mapping AMQP types, click [here](http://msdn.microsoft.com/en-us/library/windowsazure/jj841075.aspx#sectionSection2)
-
-1. Open **CustomMessage.cs** file located in **Models** folder.
-
-1. Add the following directive bellow the using System; statement
-
-	(Code Snippet -  _Service Bus Messaging - Ex03 - Using Statements in Custom Message class_ - CS))
-
-	<!-- mark:1 -->
-	````C#
-	using System.Collections.Generic;
-	````
-
-1. Add the following Helper method to return the object properties in a Dictionary.
-	
-	(Code Snippet -  _Service Bus Messaging - Ex03 - ToDictionary helper method_ - CS))
-
-	<!-- mark:1-7 -->
-	````C#
-	public Dictionary<string, object> ToDictinary()
-	{
-		var dictionary = new Dictionary<string, object>();
-		dictionary.Add("body", this.body);
-		dictionary.Add("date", this.date);
-		return dictionary;
-	}
-	````
+	>**Note** The custom message is converted to a **Dictionary** with its properties as key-value pairs before being sent. The **Dictionary** type maps to the **Map** AMQP type. To check all the AMQP types mapping, click [here](http://msdn.microsoft.com/en-us/library/windowsazure/jj841075.aspx#sectionSection2).
 
 1. Build the solution.
 
 <a name="Ex3Task2"></a>
 #### Task 2 - Creating an Oracle Linux VM with Java Runtime Environment (JRE) installed ####
 
-In this task you will create a Linux Virtual Machine with Java already installed which you are going to use then to deploy a Java application that reads messages from the Queue.
+In this task you will create a Linux Virtual Machine to host a Java application that reads messages from the Queue.
 
 1. Navigate to [Windows Azure Management Portal](http://manage.windowsazure.com/). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
 
@@ -737,9 +740,9 @@ In this task you will create a Linux Virtual Machine with Java already installed
 
 In this task yoy will deploy Java application which reads from the Queue to a Linux Virtual Machine.
 
->**Note** You can follow [this guide](http://www.windowsazure.com/en-us/documentation/articles/service-bus-java-how-to-use-jms-api-amqp/) in order to user Service Bus & AMQP 1.0 with JAVA.
-
->You can find the source code of the Java Console Application in **Assets/SbQueueReaderCode**
+>**Note:** You can follow [this guide](http://www.windowsazure.com/en-us/documentation/articles/service-bus-java-how-to-use-jms-api-amqp/) in order to use Service Bus & AMQP 1.0 with JAVA.
+>
+>You can find the source code of the Java Console Application in **Assets/SbQueueReaderCode**.
 
 1. Open the **servicesbus.properties** file located at **Assets/JavaApp** with your favorite text editor.
 
@@ -751,16 +754,18 @@ In this task yoy will deploy Java application which reads from the Queue to a Li
 	>
 	>- **[namespace]** The Service Bus namespace obtained from the Windows Azure Management Portal.
 	>- **[username]** The Service Bus issuer name obtained from the Windows Azure Management Portal.
-	>- **[password]** URL encoded form of the Service Bus issuer key obtained from the Windows Azure Management Portal.
+	>- **[password]** URL encoded form of the Service Bus issuer key obtained from the Windows Azure Management Portal. A useful URL-encoding utility is available at http://www.w3schools.com/tags/ref_urlencode.asp.
 
-1. Update the **queue.QUEUE** value with the name of the queue you have created in the previous exercise (avoid the quotations). Save the file.
+1. Update the **queue.QUEUE** value with the name of the queue you have created in the previous exercise. Save the file.
+
+	>**Note:** You **do not** have to surround the name with quotation marks.
 
 1. Copy the assets inside the **Assets/JavaApp** folder to the Virtual Machine.
 
 
 	> **Note:** You can use  to copy the files to the virtual machine using the command **scp**
 	>
-	>	`scp -r ./JavaApp/ azureuser@[your-vm-name].cloudapp.net:/home/azureuser`
+	>	`scp -r ./JavaApp/ [your-vm-username]@[your-vm-name].cloudapp.net:/home/[your-vm-username]`
 	>
 	>	![Copying the Java queue client to the VM](Images/copying-the-java-queue-client-to-the-vm.png?raw=true "Copying the Java queue client to the VM")
 	>
@@ -783,11 +788,11 @@ In this task yoy will deploy Java application which reads from the Queue to a Li
 <a name="Ex3Task4"></a>
 #### Task 4 - Verification ####
 
-You now launch the updated application in the Windows Azure compute emulator to verify that you can send a message to a Queue with a .NET application with AMQP protocol and receive the message from a Java application running on linux.
+You will now launch the updated application in the Windows Azure Compute Emulator to verify that you can send a message with a .NET application and receive it from a Java application running on Linux. **Windows Azure Service Bus Queues** helps you achieve interoperability by using **AMQP**.
 
-1. In **Visual Studio**, configure the cloud project **UsingQueues** as the StartUp Project.
+1. In **Visual Studio**, configure the cloud project **UsingQueues.Azure** as the startup project.
 
-1. Press **F5** to launch the application adn wait until the application retrieves the list of queues.
+1. Press **F5** to launch the application and wait until the application retrieves the list of queues.
 
 1. In **Select a Queue** section, select the queue you have created in the previous exercise.
 
@@ -797,7 +802,7 @@ You now launch the updated application in the Windows Azure compute emulator to 
 
 	_Sending the Message with AMQP_
 
-1. Switch to the PuTTY client connected to the Linux Virtual Machine and run the following command in order to execute the java client.
+1. Switch to your remote terminal to the Linux Virtual Machine and run the following command in order to execute the java client.
 
 	````Bash
 	java -jar sbqueuereader.jar
@@ -807,7 +812,7 @@ You now launch the updated application in the Windows Azure compute emulator to 
 	
 	_Executing the java client in the VM_
 
-	>**Note** Notice how the application receives the message and displays the output in the console.
+	>**Note** The application receives the message and displays the output in the console.
 
 ---
 
