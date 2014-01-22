@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <localPaths>
+    <workingDir>C:\Projects</workingDir>
+  </localPaths>
+ 
+  <!-- 
+	You must configure the publishSettingFile to a known and safe location to avoid being removed by the Reset.Local process (this process clears the Download folder and the Desktop)
+ 	For instance, you can set it to: 'C:\SafeLocation\AzDemoSubscription-OtherSubscription-1-1-2012-credentials.publishsettings'
+  -->
+  <publishSettingsFile></publishSettingsFile>
+ 
+  <!-- To run the demo, you need to have configured a SQL Database in Azure. -->
+  <surveyConnectionString>Server=tcp:{your_server_name_here},1433;Database={your_db_name_here};User ID={your_user_here};Password={your_password_here};Trusted_Connection=False;Encrypt=True;Connection Timeout=30;</surveyConnectionString>
+  
+  <urls>
+    <publishProfileDownloadUrl>https://windows.azure.com/download/publishprofile.aspx</publishProfileDownloadUrl>
+  </urls>
+</Configuration>

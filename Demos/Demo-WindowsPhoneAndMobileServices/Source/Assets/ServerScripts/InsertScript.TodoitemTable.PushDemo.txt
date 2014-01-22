@@ -1,0 +1,23 @@
+function insert(item, user, request) {
+    request.execute({
+        success: function(){
+		request.respond();
+		sendNotifications(item);
+        }
+    });
+}
+
+function sendNotifications(item){               
+    var channelTable = tables.getTable('Channel'); 
+        channelTable.read({ 
+            success: function(channels){
+                channels.forEach(function(channel){
+                    
+                    push.mpns.sendFlipTile(channel.Uri,{
+                        title: item.text
+                    });
+                    
+                });
+            }        
+    });    
+}

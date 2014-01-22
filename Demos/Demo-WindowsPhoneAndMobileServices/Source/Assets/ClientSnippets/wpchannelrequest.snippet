@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>wpchannelrequest</Title>
+      <Author>Nick Harris http://twitter.com/cloudnick</Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>wpchannelrequest</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp"><![CDATA[                    // Code to execute when the application is launching (eg, from Start)
+        // This code will not execute when the application is reactivated
+        private void Application_Launching(object sender, LaunchingEventArgs e)
+        {
+            RequestAndRegister();
+        }
+
+        // Code to execute when the application is activated (brought to foreground)
+        // This code will not execute when the application is first launched
+        private void Application_Activated(object sender, ActivatedEventArgs e)
+        {
+            RequestAndRegister();
+        }
+
+        private async void RequestAndRegister()
+        {
+            var channel = RequestChannel();
+            await RegisterChannel(channel.ChannelUri); 
+        }
+           
+        private HttpNotificationChannel RequestChannel()
+        {
+            string channelName = "MyPushChannel";
+            
+            var channel = HttpNotificationChannel.Find(channelName);
+ 
+            if (channel == null)
+            {
+                channel = new HttpNotificationChannel(channelName);
+
+                //register for events
+                channel.ChannelUriUpdated += channel_ChannelUriUpdated;
+                channel.ErrorOccurred += channel_ErrorOccurred;
+                channel.HttpNotificationReceived += channel_HttpNotificationReceived;
+                channel.ShellToastNotificationReceived += channel_ShellToastNotificationReceived;                
+                channel.Open();         
+            }
+            else
+            {
+                channel.ChannelUriUpdated += channel_ChannelUriUpdated;
+                channel.ErrorOccurred += channel_ErrorOccurred;
+                channel.HttpNotificationReceived += channel_HttpNotificationReceived;
+                channel.ShellToastNotificationReceived += channel_ShellToastNotificationReceived;
+            }
+
+            if(!channel.IsShellTileBound)
+                channel.BindToShellTile(); //TODO list of channel Uri
+
+            if(!channel.IsShellToastBound)
+                channel.BindToShellToast();
+
+            return channel;
+        }      
+
+        private async Task RegisterChannel(Uri channelUri)
+        {
+            if (channelUri != null)
+            {
+                var channel = new Channel
+                {
+                    Id = IsolatedStorageSettings.ApplicationSettings.Contains("ChannelId")
+                                    ? IsolatedStorageSettings.ApplicationSettings["ChannelId"] as int?
+                                    : null,
+                    Uri = channelUri.ToString()
+                };
+
+                //if first time registering channel
+                if (!channel.Id.HasValue)
+                {
+                    await App.MobileService.GetTable<Channel>().InsertAsync(channel);
+                    IsolatedStorageSettings.ApplicationSettings["ChannelId"] = channel.Id;
+                }
+                else
+                {
+                    await App.MobileService.GetTable<Channel>().UpdateAsync(channel);
+                }
+            }
+        }
+
+        private class Channel
+        {
+            public int? Id { get; set; }
+            public string Uri { get; set; }
+        }
+
+        void channel_HttpNotificationReceived(object sender, HttpNotificationEventArgs e)
+        {
+
+        }
+
+        void channel_ErrorOccurred(object sender, NotificationChannelErrorEventArgs e)
+        {
+            
+        }
+
+        async void channel_ChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
+        {
+            await RegisterChannel(e.ChannelUri);
+        }
+
+        void channel_ShellToastNotificationReceived(object sender, NotificationEventArgs e)
+        {
+
+        }
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

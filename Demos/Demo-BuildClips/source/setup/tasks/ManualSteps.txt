@@ -1,0 +1,20 @@
+If this is the first time you are executing the demo:
+====================================================
+1. Add encoded videos shown from the Azure portal in Segment #2:
+   a. Log in to the Windows Azure Management Portal.
+   b. Select Media Services, and select the media service account to be used during the demo.
+   c. In the Content tab, upload two videos and also encode them, but do not publish them.
+
+If you already executed the demo:
+================================
+1. Log in to the Windows Azure Management Portal.
+2. Select Web Sites, and remove the web site created in Segment #1.
+3. Select Service Bus, and then select the namespace created for this demo. Remove all the topics in this namespace.
+4. Select Media Services and select the media service account used during the demo. In the Content tab:
+   a. Delete the media assets uploaded during the demo. 
+   b. Select the video published in Segment #2, and unpublish it.
+5. Remove the Azure subscription entries from Visual Studio. To do this:
+   a. Open the solution in \source\code\Segment3\end\BuildClips.Web.
+   b. In Solution Explorer, right-click the BuildClips.Azure project and select Publish.
+   c. Click the subscriptions combobox and select Manage. Then delete all subscriptions from the list.
+   d. Close the solution.

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        @Styles.Render("~/Content/mobileCss", "~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <div data-role="page" data-theme="b">
+            <div data-role="header">
+                @if (IsSectionDefined("Header")) {
+                    @RenderSection("Header")
+                } else {
+                    <table>
+                           <tr><td><img src="@Url.Content("~/Content/Images/Northwind.png")" style="width:28px;margin-left:10px;margin-right:10px;"/></td><td><h2 style="margin-top:15px; cursor:pointer" id="header_text">Northwind Trader</h2></td></tr>
+                    </table>
+                }
+            </div>
+            <div data-role="content">
+                @RenderBody()
+            </div>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        <script type="text/javascript">
+            $(document).bind("mobileinit", function() {
+                // As of Beta 2, jQuery Mobile's Ajax navigation does not work in all cases (e.g.,
+                // when navigating from a mobile to a non-mobile page, or when clicking "back"
+                // after a form post), hence disabling it.
+                $.mobile.ajaxEnabled = false;
+            });
+            $(document).ready(function () {
+                $('#header_text').click(function () {
+                    window.location.href = "/";
+                });
+            });
+        </script>
+        @Scripts.Render("~/bundles/jquerymobile")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Video list</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="/css/default.css" rel="stylesheet" />    
+    <link href="/css/themes/base/jquery.ui.slider.css" rel="stylesheet" />
+    <link href="/pages/videoList/videoList.css" rel="stylesheet" />
+    <script src="/js/config.js"></script>
+    <script src="/js/data.js"></script>
+    <script src="/js/webapi.js"></script>
+    <script src="/Scripts/MvvmJS.BindingExtensions.Fragment.js"></script>
+    <script src="/pages/videoList/videoList.js"></script>
+
+    <script src="/Scripts/jquery-1.6.4.js"></script>
+    <script src="/Scripts/jquery-ui-1.8.20.min.js"></script>
+</head>
+<body>
+
+    <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item">
+            <div class="video-thumb completed" data-win-bind="backgroundImage: backgroundImage MvvmJS.Binding.urlStyle; style.display: status VideoItemConverters.statusCompletedConverter"></div>
+            <div class="video-thumb encoding" data-win-bind="style.display: status VideoItemConverters.statusInProgressConverter">
+                <div class="encoding-status">
+                    <span>last updated: </span><span data-win-bind="textContent: statusTimespan VideoItemConverters.statusTimespanConverter"></span>
+                </div>
+                <div class="encoding-progress">
+                    <progress></progress>
+                    <progress class="win-ring"></progress>
+                </div>
+                <div class="encoding-message">
+                    this video is still being encoded
+                </div>
+            </div>
+            <div class="video-information">
+                <span class="video-title" data-win-bind="textContent: title"></span>
+                <span> 
+                    <span class="video-time" data-win-bind="textContent: videoTime"></span> / 
+                    <span class="video-upload-date" data-win-bind="textContent: videoDate"></span>
+                </span>
+                <span class="video-stats">
+                    <span class="icon-heart" data-win-bind="textContent: heart"></span>
+                    <span class="icon-eye" data-win-bind="textContent: eye"></span>
+                    <span class="icon-comment" data-win-bind="textContent: comment"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div id="filtersFlyout" data-win-control="WinJS.UI.Flyout">
+        <div class="date-range-slider-container">
+            <div class="date-range-slider">
+                <div> 
+                    <div id="filterSlider"></div>
+                </div>
+            </div>
+       </div>
+       <div>
+            <div id="tagsFilter" class="video-tags-list">
+                <a href="#" class="tag">keynote</a>
+                <a class="tag">speaker</a>
+                <a class="tag">azure</a>
+                <a class="tag">native</a>
+                <a class="tag">ui</a>
+                <a class="tag">hardware</a>
+                <a class="tag">session</a>
+                <a class="tag">attendees</a>
+                <a class="tag">windows 8</a>
+                <a class="tag">.net</a>
+                <a class="tag">directx</a>
+                <a class="tag more">...</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- The content that will be loaded and displayed. -->
+    <div class="fragment groupeditemspage">
+        
+        <header aria-label="Header content" role="banner">
+            <div class="topbar">
+            </div>
+			<div class="user-box">
+                <div id="user-image"></div>
+                <span id="full-name"></span>
+            </div>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle-no-button">My Clips</span>
+            </h1>
+			<div id="videoCounters" class="videos-count" style="display: none">
+                <span class="videos-count-item">My Videos <span id="myVideosCount" class="number"></span></span>
+                <span class="videos-count-item">All Videos <span id="allVideosCount" class="number"></span></span> 
+                <span class="videos-count-item">Recommended <span class="number">5</span></span>
+
+                <select>
+                    <option id="myVideosCountInSelect" data-caption="My Videos"></option>
+                    <option id="allVideosCountInSelect" data-caption="All Videos"></option> 
+                    <option>Recommended (5)</option>
+                </select>
+            </div>
+        </header>
+
+        <section aria-label="Main content" role="main">
+            <div id="videosList" class="groupeditemslist win-selectionstylefilled" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
+        </section>
+    </div>
+    <div id="appbar" data-win-control="WinJS.UI.AppBar">
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'upload', label:'Upload', icon:'upload', section:'selection'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'capture', label:'Capture', icon:'video', section:'selection'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'refresh', label:'Refresh', icon:'refresh', section:'selection'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'filters', label:'Filters', icon:'filter', section:'global'}"></button>
+    </div>
+</body>
+</html>

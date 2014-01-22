@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>Windows8AndMobileServices</Id>
+  <Author>
+    <Name>Nick Harris</Name>
+    <Blog>http://www.nickharris.net</Blog>
+    <Email>http://twitter.com/cloudnick</Email>
+  </Author>
+  <Description>This demo script demonstrates how you can leverage Visual Studio 2012 and Windows Azure Mobile Services to add structured storage, push notifications and integrated authentication to your Windows Store application.</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Getting Started with Windows Azure Mobile Services</Title>
+  <Version>1.0.2</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker></DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-Windows8AndMobileServices" />
+  </CustomProperties>
+</Demo>

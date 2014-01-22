@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="1bfd4fc3-4a37-4c24-8834-134b2c02a158" Publisher="CN=EventBuddy" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>EventBuddy</DisplayName>
+    <PublisherDisplayName>EventBuddy</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="EventBuddy.App">
+      <VisualElements DisplayName="EventBuddy" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="EventBuddy" ForegroundText="light" BackgroundColor="#2D8AEF">
+        <DefaultTile ShowName="noLogos" WideLogo="Assets\Sessions.png" />
+        <SplashScreen Image="Assets\SplashScreen.png" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

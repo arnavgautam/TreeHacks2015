@@ -1,0 +1,99 @@
+﻿.fragment header[role=banner] .pagetitle {
+	margin-left: 60px;
+}
+
+.capturepage .header .content {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    display: block;
+    height: 100%;
+    overflow-x: auto;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+}
+
+	.capturepage .content article {
+		/* Define a multi-column, horizontally scrolling article by default. */
+		column-fill: auto;
+		column-gap: 80px;
+		column-width: 480px;
+		margin-left: 100px;
+		margin-top: 180px;
+		width: 600px;
+	}
+
+        .capturepage .content article header .item-title {
+            margin-bottom: 19px;
+        }
+
+        .capturepage .content article header .item-subtitle {
+            margin-bottom: 16px;
+            margin-top: 0;
+        }
+
+        .icapturepage .content article .item-image {
+            height: 240px;
+            width: 460px;
+        }
+
+        .capturepage .content article .item-content p {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            margin-right: 20px;
+        }
+
+#live-preview {
+    height: 368px;
+    width: 600px;
+	margin-top: 40px;
+}
+
+@media screen and (-ms-view-state: snapped) {
+    #live-preview {
+        height: 280px;
+        width: 280px;
+    }
+
+    .capturepage .content {
+        -ms-grid-row: 2;
+        -ms-grid-column: 2;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .capturepage .content article {
+        /* Define a single column, vertically scrolling article in snapped mode. */
+        -ms-grid-columns: 300px 1fr;
+        -ms-grid-row: 2;
+        -ms-grid-rows: auto 60px;
+        display: -ms-grid;
+        height: auto;
+        margin-left: 0px;
+        margin-top: 10px;
+        width: 300px;
+    }
+
+    .capturepage .content article video{
+        margin-top: 20px;
+    }
+
+    .capturepage .content article header .item-title {
+        margin-bottom: 10px;
+    }
+
+    .capturepage .content article .item-image {
+        height: 140px;
+        width: 280px;
+    }
+
+    .capturepage .content article .item-content {
+        padding-bottom: 60px;
+    }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    .capturepage .content article {
+        margin-left: 100px;
+    }
+}

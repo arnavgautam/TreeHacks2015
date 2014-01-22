@@ -1,0 +1,42 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <Header>
+      <Title>VideoService.cs - GetActiveJobs</Title>
+      <Author>DPE</Author>
+      <Shortcut>VideoServicecsGetActiveJobs</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp" Delimiter="Å">
+        <![CDATA[public IEnumerable<Video> GetActiveJobs()
+{
+    var activeJobs = this.context.Videos.Where(v => !string.IsNullOrEmpty(v.JobId));
+
+    if (activeJobs.Any())
+    {
+        var mediaContext = new CloudMediaContext(
+                                         CloudConfigurationManager.GetSetting("MediaServicesAccountName"),
+                                         CloudConfigurationManager.GetSetting("MediaServicesAccountKey"));
+
+        foreach (var video in activeJobs)
+        {
+            var job = mediaContext.GetJob(video.JobId);
+            if (job != null)
+            {
+                // The video status will be Encoding unless the encoding job is finished or error
+                video.JobStatus = (job.State == JobState.Finished || job.State == JobState.Error)
+                                    ? JobStatus.Completed : JobStatus.Encoding;
+
+                yield return video;
+            }
+        }
+    }
+
+    yield break;
+}]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

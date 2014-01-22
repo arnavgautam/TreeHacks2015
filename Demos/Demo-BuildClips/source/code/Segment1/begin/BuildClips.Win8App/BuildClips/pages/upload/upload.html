@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+     <head>
+        <title>Upload</title>
+            <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+            <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+            <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+            <script src="/Scripts/jquery-1.6.4.js"></script>
+
+            <link href="/css/default.css" rel="stylesheet" />
+            <link href="/pages/upload/upload.css" rel="stylesheet" />
+
+            <script src="/js/config.js"></script>
+            <script src="/js/data.js"></script>
+            <script src="/js/webapi.js"></script>
+            <script src="/pages/upload/upload.js"></script>
+    </head>
+    <body>
+        <div class="fragment uploadPage">
+            <header aria-label="Header content" role="banner">
+                <div class="topbar"></div>
+                <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+                <h1 class="titlearea win-type-ellipsis">
+                    <span class="pagetitle">Upload</span>
+                </h1>
+                <div class="user-box">
+                    <div id="user-image"></div>
+                    <span id="full-name"></span>
+                </div>
+            </header>
+
+            <div class="content" aria-label="Main content" role="main">
+                <form id="fileUpload">
+                    <div class="form">
+                        <div class="upload-description-container">
+                            <input name="videoTitle" id="videoTitle" type="text" placeholder="title" required title="Video must have a title." />
+                            <textarea name="videoDescription" id="videoDescription"  placeholder="description" required title="Video must have a description." ></textarea>
+                        </div>
+                        <div class="video-tags-container-upload column-container first-col">
+                            <h4>TAGS</h4>
+
+                            <div id="tagsContainer" class="tags-validation-container">
+                                <div class="video-tags-list">
+                                    <a class="tag">keynote</a>
+                                    <a class="tag">speaker</a>
+                                    <a class="tag">azure</a>
+                                    <a class="tag">native</a>
+                                    <a class="tag">ui</a>
+                                    <a class="tag">hardware</a>
+                                    <a class="tag">session</a>
+                                    <a class="tag">attendees</a>
+                                    <a class="tag">windows 8</a>
+                                    <a class="tag">.net</a>
+                                    <a class="tag">directx</a>
+                                </div>
+                                <input type="text" id="tags" placeholder="other tags"/>
+                            </div>
+                        </div>
+                        <div class="video-visibility column-container second-col">
+                            <h4>WHO CAN SEE THIS VIDEO?</h4>
+                            <div class="video-upload-visibility">
+                                <div id="public" class="selected">
+                                    <span>public</span>
+                                    <em>anyone can find and view this video</em>
+                                </div>
+                                <div id="private">
+                                    <span>private</span>
+                                    <em>only the people I invite can see this video</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="upload-submit">
+                            <button id="startUpload" class="orange-submit" type="button">Upload</button>
+                        </div>
+                        <div class="upload-stats">
+                            <progress id="uploadProgress"></progress>
+                            <span id="uploadStatus"></span>
+                        </div>
+                    </div>
+                </form>
+                <div>
+                    <p id="outputConsole"></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

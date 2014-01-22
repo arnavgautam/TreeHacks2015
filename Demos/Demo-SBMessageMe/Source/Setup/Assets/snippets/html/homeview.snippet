@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Home View</Title>
+      <Shortcut>homeview</Shortcut>
+      <Description>Code snippet for Home View</Description>
+      <Author>Microsoft Corporation</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="html">
+              <![CDATA[@{
+    ViewBag.Title = "Message Me";
+}
+<p>
+    Type a message to send:
+</p>
+
+@using (Html.BeginForm("SendMessage", "Home"))
+{
+    <input type="text" name="msg" />
+    <input type="submit" value="Send" />
+}]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,28 @@
+﻿@model BuildClips.Models.LoginModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.Login.cshtml";
+}
+
+<p class="externaltitle">Sign in with</p>
+@Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    <fieldset id="localLogin">
+        <legend>Log in Form</legend>
+            <p class="localtitle">Use a local account to sign in.</p>
+        <ol>
+            <li>
+                @Html.TextBoxFor(m => m.UserName, new { placeholder = "username" })
+            </li>
+            <li>
+                @Html.PasswordFor(m => m.Password, new { placeholder = "password" })
+            </li>
+        </ol>
+        <input type="submit" value="Sign in" />
+
+        @Html.ValidationSummary(true)
+    </fieldset>
+}

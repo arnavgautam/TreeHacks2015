@@ -1,0 +1,13 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.Login.cshtml";
+    ViewBag.Title = "Login Failure";
+}
+
+<hgroup class="title" style="text-align:center;margin-top:150px;">
+    <h1>@ViewBag.Title</h1>
+    <h2>Unsuccessful login with service</h2>
+
+    
+    @Html.ActionLink("Try Again", "Index", "Home", null, new { @class = "back" })
+</hgroup>

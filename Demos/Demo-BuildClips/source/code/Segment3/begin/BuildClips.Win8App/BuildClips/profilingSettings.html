@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profiling settings flyout</title>
+
+        <script src="/js/config.js"></script>
+        <script src="/js/data.js"></script>
+        <script src="/js/profilingSettings.js"></script>
+    </head>
+    <body>
+        <div id="profilingFlyout" data-win-control="WinJS.UI.SettingsFlyout" aria-label="App profiling settings flyout" data-win-options="{width:'narrow'}">
+            <div class="win-header">
+                <button type="button" onclick="WinJS.UI.SettingsFlyout.show()" class="win-backbutton"></button>
+                <div class="win-label">Profiling</div>
+            </div>
+            <div class="win-content">
+                <div class="win-settings-section">
+                    <h3>Enable Profiling</h3>
+                    <p>Use toggle to enable/disable Profiling information.</p>
+                    <div id="toggleDisplayProfiling" data-win-control="WinJS.UI.ToggleSwitch">
+                    </div>
+                    <hr />
+                    <h3>Clear Cache</h3>
+                    <p>Clear the contents of the data cache</p>
+                    <button id="clearCache" type="button">Clear</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

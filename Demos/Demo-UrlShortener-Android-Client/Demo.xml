@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>URL-Shortener-Android-Client</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Name></Name>
+    <Blog></Blog>
+    <Email></Email>
+  </Author>
+  <Description>This demo shows how to connect an Android application to a PHP Web backend running on Windows Azure Websites.  It covers configuring a prebuilt application to point to a previously deployed site, the functionality of the application, and the code that communicates between the mobile client and the server.</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Connecting an Android URL Shortener to a Backend in Windows Azure Websites</Title>
+  <Version>1.0.2</Version>
+  <Source></Source>
+  <DependencyChecker></DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-UrlShortener-Android-Client" />
+  </CustomProperties>
+</Demo>

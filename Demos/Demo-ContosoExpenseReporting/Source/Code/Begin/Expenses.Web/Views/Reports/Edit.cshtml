@@ -1,0 +1,107 @@
+﻿@using Expenses.Web.Models
+@model ExpenseReport
+
+@{
+    ViewBag.Title = this.Model.Id > 0 ? "Edit Report" : "New Report"; 
+}
+@if (this.Model.Id > 0)
+{
+    <div class="breadcrumbs">
+        @Html.ActionLink("reports", "Index", "Reports") <span>/</span>
+        @Html.ActionLink(this.Model.Status.Name, "Index", "Reports", new { status = this.Model.Status }, null) <span>/</span> 
+        @this.Model.Name
+    </div>
+    <h2>@this.Model.Name</h2>
+} else {
+    <div class="breadcrumbs">
+        @Html.ActionLink("reports", "Index", "Reports") <span>/</span>
+        Add new Report
+    </div>
+    <h2>ADD NEW REPORT</h2>
+}
+
+<form name="expense-report-form" id="expense-report-form" action="/" method="post">
+    <fieldset class="general">
+        <legend>Expense Report Details</legend>
+               
+        @Html.LabelFor(i => i.Name)
+        @Html.TextBoxFor(i => i.Name)
+        @Html.ValidationMessageFor(i => i.Name)<br/>
+    
+        @Html.LabelFor(i => i.Purpose)
+        @Html.TextBoxFor(i => i.Purpose)
+        @Html.ValidationMessageFor(i => i.Purpose)<br/>
+        
+        @Html.HiddenFor(i => i.Id)
+        @Html.Hidden("username", User.Identity.Name)
+    </fieldset>
+    
+    <fieldset class="expenses" style="height:100%;overflow:auto">
+        <legend>Expenses</legend>
+
+        <div class="expenses-header">
+        @if (!User.IsInRole("manager"))
+        {
+            <a href="#" class="add-new"><img src="@Url.Content("~/Content/img/add_new.png")" alt="Add New Expense" width="14" height="14"/>Add New Expense</a>
+        }
+            <h3>Expenses</h3>    
+        </div>
+
+        <table class="edit shadow">
+            <tr>
+                <th class="index">#</th>  
+                <th class="date">Date</th>                  
+                <th class="category">Category</th>
+                <th class="description">Description</th> 
+                <th class="merchant">Merchant</th>      
+                <th class="billed-amount">Billed Amount</th>
+                <th class="transaction-amount">Transaction Amount</th>
+                @if (!User.IsInRole("manager"))
+                {
+                    <th class="actions">Actions</th>
+                }
+            </tr>
+        @{
+            var noExpenses = false;
+            if (this.Model.Details != null && this.Model.Details.Count() > 0)
+            {
+                noExpenses = true;
+                @Html.EditorFor(m => m.Details);
+            } 
+            
+            <tr class="no-expense"><td colspan="@(User.IsInRole("manager") ? "7" : "8")" style="@(noExpenses ? "display:none;" : "")">There are no expenses for this report.</td></tr>
+            
+        }
+    
+        @{
+            decimal total = 0;
+            
+            if (this.Model.Details != null && this.Model.Details.Count() > 0) 
+            {
+                total = this.Model.Details.Sum(i => i.TransactionAmount);  
+            }
+        }
+        </table>
+    </fieldset>
+    <p class="total">
+        <strong>Total: $ <span>@string.Format("{0:0.00}", total)</span></strong>
+    </p>
+    <div class="actions">
+        <a href="#" class="button button-blue save-draft"><span>Save Draft</span></a>
+        <a href="#" class="button button-blue submit"><span>Save and Submit</span></a>
+        @if (this.Model.Id > 0)
+        {
+            <a href="@Url.RouteUrl("Report", new { @id = this.Model.Id, action = string.Empty })" class="button button-black discard"><span>Discard</span></a>
+        }
+        else 
+        { 
+            <a href="@Url.RouteUrl("Reports")" class="button button-black discard"><span>Discard</span></a>
+        }        
+    </div>
+</form>
+
+<!-- Attach Form Here -->
+
+<script type="text/html" id="detail-template">
+    @Html.Partial("EditorTemplates/ExpenseReportDetail", new ExpenseReportDetail() { Date = DateTime.Now })
+</script>

@@ -1,0 +1,15 @@
+[DEFAULT]
+BASEURL=https://manage.windowsazure.com/?t=1JtsNNu8eHk8*ZUP*dQ0!D3LUeCvmwVoRVbs*jZQQe52wfhOHHSS9ZpPv!QFIdTahtsLBZ!abfSLDrz7IFVwoOYbOiN74hi9QmlwPkZXT5mdo97mZWSLPUncVo6y3iu16DIW!EGtC3VHpdsda8XSBJAg%24%24&p=1Sjqn7*kMFrtz4JRa4kb*hk5t5xPSoIOZOFKY6G0vdhM2vaKSUylOAbnRP8rNaJfkk8ywPw!k7trRFf54PDszsjlD9aipmnd43B5aWpo9ipkQgSv4E!Tw1r1H4yvobKa7Nq0ZxGaZzWNHXW6jM3fXibwY2EH!iRhEGunGb2ftLV2J2JxXBsz7B0FnlNrq!JNinewlbu*e6D4w%24
+[DOC#638]
+BASEURL=about:blank
+ORIGURL=
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,15
+[InternetShortcut]
+IDList=
+URL=javascript:(function(){window.clipboardData.setData('text','function insert(item, user, request) {\n    item.userId = user.userId;\n    request.execute();\n}')})()
+IconFile=C:\Windows\System32\url.dll
+IconIndex=0
+HotKey=0
+[Bookmarklet]
+ExtendedURL=javascript:(function(){window.clipboardData.setData('text','function insert(item, user, request) {\n    item.userId = user.userId;\n    request.execute();\n}')})()

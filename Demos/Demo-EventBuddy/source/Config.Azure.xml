@@ -1,0 +1,5 @@
+<configuration>
+	<!-- Settings used to configure the Mobile Service in the Windows Phone 8 application and to clean up the Channel table -->
+	<mobileServiceUrl>https://[Mobile Service Name].azure-mobile.net/</mobileServiceUrl>
+	<mobileServiceKey>[Mobile Service Key]</mobileServiceKey>
+</configuration>

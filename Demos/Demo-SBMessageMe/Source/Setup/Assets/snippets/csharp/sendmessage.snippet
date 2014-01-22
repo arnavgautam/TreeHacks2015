@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Send Message Action</Title>
+      <Shortcut>sendmessage</Shortcut>
+      <Description>Code snippet for SendMessage action in controller</Description>
+      <Author>Microsoft Corporation</Author>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult SendMessage(string msg)
+        {
+            // Create Queue Client
+            var queueClient = QueueClient.Create("demomessages");
+
+            // Create and Send Message to Queue
+            var brokeredMessage = new BrokeredMessage(msg);
+            queueClient.Send(brokeredMessage);
+
+            // Redisplay home-page
+            return RedirectToAction("Index");
+        }]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

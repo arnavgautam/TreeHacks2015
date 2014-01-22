@@ -1,0 +1,30 @@
+﻿@model Expenses.Web.Models.LoginModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1 class="home">Home</h1>
+<p>Welcome to the expenses application, please log in to manage your reports.</p>
+<hr />
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @id = "login-form", @class = "centered-form" }))
+{
+    <fieldset class="login">
+        <legend>Login <span>New User? @Html.ActionLink("Register", "Register", "Account")</span></legend>
+
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName)
+        @Html.ValidationMessageFor(m => m.UserName)
+
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)
+
+        <div class="actions">
+            <input type="submit" value="Login" class="button button-blue "/><br/>
+            @Html.ActionLink("Forgot your password?", "Profile", "Account")
+        </div>
+
+    </fieldset>
+    @Html.ValidationSummary(true, string.Empty)
+}

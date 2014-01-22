@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>SBMessageMe</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Name></Name>
+    <Blog></Blog>
+    <Email></Email>
+  </Author>
+  <Description>
+		This demo is designed to show how the Windows Azure Service Bus messaging can be used by applications to 
+		exchange messages in a loosely coupled way for improved scale and resiliency. This is a fun example that consists of a simple ASP.NET MVC Mobile Web Application that sends messages to a Service Bus queue and a console application that reads from the queue and displays the messages. 
+	</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Service Bus - Message Me</Title>
+  <Version>1.0.1</Version>
+  <Source>Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-SBMessageMe" />
+  </CustomProperties>
+</Demo>

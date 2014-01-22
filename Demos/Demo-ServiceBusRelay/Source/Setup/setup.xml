@@ -1,0 +1,14 @@
+<configuration>	
+	<localPaths>
+    <solutions>
+      <solution>
+        <folder>ServiceBusRelay-Web</folder>
+        <file>ServiceBusRelay.Web.sln</file>
+      </solution>
+      <solution>
+        <folder>ServiceBusRelay-Console</folder>
+        <file>ServiceBusRelay.Console.sln</file>
+      </solution>      
+    </solutions>
+	</localPaths>
+</configuration>

@@ -1,0 +1,62 @@
+﻿@using BuildClips.Extensions
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>BUILDCLIPS</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css", "~/Content/themes/base/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryui")
+    </head>
+    <body>
+        <header>
+            <div class="page-content-column">
+                <div class="column-container">
+                    <a href="~/" class="logo"></a>
+                </div>
+                <div class="navigation-links">
+                    @if (Request.IsAuthenticated) {
+                        <a>picks</a> <text>/</text> 
+                        @Html.ActionActiveLink("explore", "Index", "Home") <text>/</text> 
+                        <a>my clips</a> <text>/</text> 
+                        @Html.ActionActiveLink("upload", "Create", "Home") <text>/</text> 
+                        
+                        <a>@User.Identity.Name</a> <text>/</text> 
+                        <text>
+                        @using( Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:document.getElementById('logoutForm').submit()">log off</a>
+                        }</text>
+                    }
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("headerControls", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="page-content-column">
+                <div class="float-left">
+                    <a>ABOUT</a>
+                    <a>DEVELOPERS</a>
+                    <a>TERMS</a>
+                    <a>PRIVACY</a>
+                    <a>SAFETY</a>
+                    <a>FEEDBACK</a>
+                </div>
+                <div class="float-right">
+                    <span>COPYRIGHT 2012</span>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

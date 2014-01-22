@@ -1,0 +1,24 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <Header>
+      <Title>Attach Receipt Form</Title>
+      <Author></Author>
+      <Shortcut>AttachReceiptForm</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="html" Delimiter="Å">
+        <![CDATA[<div class="attach-receipt" style="display:none;">
+		<form id="attachReceiptForm" action="@Url.Action("AttachReceipt", "Reports")" method="post" enctype="multipart/form-data">
+			<input type="file" name="PictureFile" id="PictureFile" />
+			<input type="hidden" id="expense-id" />
+			<input type="submit" value="Submit" />
+		</form>
+		<span class="status"></span>
+	   </div>]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

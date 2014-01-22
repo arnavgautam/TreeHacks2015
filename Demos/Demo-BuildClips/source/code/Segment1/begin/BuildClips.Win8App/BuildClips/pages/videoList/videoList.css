@@ -1,0 +1,374 @@
+﻿.groupeditemspage .groupeditemslist {
+    -ms-grid-row: 2;
+    height: 100%;
+    position: relative;
+    width: 100%;
+	z-index: 0;
+}
+
+    /* This selector is used to prevent ui-dark/light.css from overwriting changes
+       to .win-surface. */
+    .groupeditemspage .groupeditemslist .win-horizontal.win-viewport .win-surface {
+        margin-left: 33px;
+        margin-right: 45px;
+        margin-top: 20px;
+    }
+
+    .groupeditemspage .groupeditemslist .win-groupheader {
+        padding: 0;
+    }
+
+    /* Use grid and top level layout for truncation */
+    .groupeditemspage .groupeditemslist .group-header {
+        -ms-grid-columns: minmax(0, max-content) 7px max-content;
+        -ms-grid-rows: max-content;
+        display: -ms-inline-grid;
+        line-height: 1.5;
+    }
+
+    /* Override default button styles */
+    .groupeditemspage .groupeditemslist .group-header, .group-header:hover, .group-header:hover:active {
+        background: transparent;
+        border: 0;
+        margin-bottom: 1px;
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-top: 1px;
+        min-height: 0;
+        padding: 0;
+    }
+
+        .groupeditemspage .groupeditemslist .group-header .group-title {
+            display: inline-block;
+        }
+
+        .groupeditemspage .groupeditemslist .group-header .group-chevron {
+            -ms-grid-column: 3;
+            display: inline-block;
+        }
+
+            .groupeditemspage .groupeditemslist .group-header .group-chevron::before {
+                content: "\E26B";
+                font-family: 'Segoe UI Symbol';
+            }
+
+    .groupeditemspage .groupeditemslist .item {
+        height: 250px;
+        width: 350px;
+    }
+
+#filtersFlyout {
+    width: 400px;
+    background-color: rgb(217, 227, 228);
+}
+
+div.date-range-slider-container {
+    display: -ms-grid;
+    -ms-grid-columns: 1fr 350px 1fr;
+}
+
+div.date-range-slider {
+    height: 65px;
+    padding-top: 25px;
+    -ms-grid-column: 2;
+}
+
+div.date-range-slider div {
+    background: url(/images/slider-ranges.png) no-repeat center bottom;
+    height: 41px;
+}
+
+div.date-range-slider .ui-slider {
+    background: black;
+    border: 3px solid #CCC;
+    height: 4px;
+}
+
+div.date-range-slider .ui-slider-handle {
+    padding: 0;
+    margin: 0;
+    margin-left: -8px;
+    background: white;
+    border: 3px solid #e25231;
+    width: 10px;
+    height: 10px;
+    border-radius: 16px;
+}
+
+div.video-tags-list {
+    padding-top: 5px;
+}
+
+@media screen and (-ms-view-state: fullscreen-landscape), screen and (-ms-view-state: fullscreen-portrait), screen and (-ms-view-state: filled) {
+    .groupeditemspage .groupeditemslist .item .item-overlay {
+        background: rgba(0,0,0,0.65);
+    }
+
+    .groupeditemspage .groupeditemslist .item .item-overlay .item-title {
+        color: rgba(255,255,255,0.87);
+    }
+
+    .groupeditemspage .groupeditemslist .item .item-overlay .item-subtitle {
+        color: rgba(255,255,255,0.6);
+    }
+}
+
+@media screen and (-ms-view-state: fullscreen-landscape) and (-ms-high-contrast), screen and (-ms-view-state: fullscreen-portrait) and (-ms-high-contrast), screen and (-ms-view-state: filled) and (-ms-high-contrast) {
+    .groupeditemspage .groupeditemslist .item .item-overlay {
+        color: WindowText;
+    }
+}
+
+@media screen and (-ms-view-state: snapped) {
+    .groupeditemspage .groupeditemslist .item {
+        display: -ms-grid;
+        height: 60px;
+        width: 250px;
+    }
+
+    .groupeditemspage .groupeditemslist .item .item-image {
+        -ms-grid-column: 1;
+        -ms-grid-row-span: 1;
+        height: 60px;
+        width: 60px;
+    }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    .groupeditemspage .groupeditemslist .win-horizontal.win-viewport .win-surface {
+        margin-left: 25px;
+    }
+}
+
+#videosList.win-listview .win-container {
+    background-color: White;
+    padding: 0px; 
+    margin: 12px;
+}
+
+#videosList div.video-information {
+    height: 50px;
+    width: 100%;
+    font-family: "Segoe UI Semibold", "Segoe UI";
+
+    font-size: 0.82em;
+    line-height: 2em;
+    padding-left: 7px;
+    padding-top: 0px;
+	color: #000;
+}
+
+#videosList div.video-information span.video-title {
+    display: block;
+    font-size: 1.25em;
+}
+
+#videosList div.video-information span.video-upload-date, 
+div.video-information span.video-stats {
+    color: #9ab5b7;
+}
+
+#videosList div.video-information span.video-stats {
+    float: right;
+    padding-right: 15px;
+}
+
+span.icon-heart {
+    background: url(/images/icon-heart.png) no-repeat left center;
+    padding-left: 20px;
+    margin-left: 10px;
+}
+
+span.icon-eye {
+    background: url(/images/icon-eye.png) no-repeat left center;
+    padding-left: 20px;
+    margin-left:10px;
+}
+
+span.icon-comment {
+    background: url(/images/icon-comment.png) no-repeat left center;
+    padding-left: 20px;
+    margin-left:10px;
+}
+
+div.videos-count {
+    -ms-grid-row: 2;
+	-ms-grid-column: 2;
+	-ms-grid-row-align: end;
+    height: 50px;
+    padding-right: 20px;
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: 600;
+	text-align: right;
+	margin-top: 10px;
+}
+
+div.videos-count span.videos-count-item {
+    margin-right: 15px;
+}
+
+div.videos-count span.number {    
+    color: #E34F1C;
+	font-size: 40px;
+	font-weight: 100;
+}
+
+div.videos-count select {
+    display: none;
+}
+
+div.video-thumb {
+    height: 200px;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+}
+
+div.video-thumb.encoding {
+    display: -ms-grid;
+    -ms-grid-rows: 5px 25px 120px 40px 10px;
+    -ms-grid-columns: 1fr 300px 1fr;
+    background-color: rgb(156, 182, 184);
+    color: white;
+}
+
+div.video-thumb.encoding .encoding-status{
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    -ms-grid-column-align: center;
+    font-style: italic;
+    text-align: center;
+    padding-top: 5px;
+}
+
+div.video-thumb.encoding .encoding-progress{
+    -ms-grid-row: 3;
+    -ms-grid-row-align: center;
+    -ms-grid-column: 2;
+    -ms-grid-column-align: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+div.video-thumb.encoding .encoding-progress progress.win-ring {
+    display: none;
+}
+
+div.video-thumb.encoding .encoding-progress progress{
+    width: 100%;
+    color: white;
+}
+
+div.video-thumb.encoding .encoding-message{
+    -ms-grid-row: 4;
+    -ms-grid-row-align: start;
+    -ms-grid-column: 2;
+    -ms-grid-column-align: center;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 50px;
+}
+
+@media screen and (-ms-view-state: snapped) {
+    .fragment header[role=banner] {
+        margin-left: 12px;
+    }
+
+    .groupeditemspage .groupeditemslist {
+        margin-top: 20px;
+        height: calc(100% - 40px);  /* Substract size of sections bar */
+    }
+	
+    div.videos-count {
+		-ms-grid-row: 2;
+		-ms-grid-column: 1;
+		width: 50%;
+		margin-top: 50px;
+    }
+
+    div.videos-count span.videos-count-item {
+        display: none;
+    }
+
+    div.videos-count select {
+        display: block;
+        width: 100%;
+        height: 40px;
+    }
+	
+	#videosList .item {
+		width: 93%;
+	}
+	
+    #videosList div.video-information {
+        margin-left: 70px;
+        width: inherit;
+    }
+
+    #videosList div.video-information .video-stats {
+        width: 70px;
+        margin-right: 30px;
+        line-height: 1.4em;
+        margin-top: -30px;
+    }
+
+    #videosList div.video-information .video-title {
+        height: 2em;
+        font-size: 1.2em;
+        line-height: 1.2em;
+        width: 166px;
+		margin-top: 5px;
+    }
+
+    #videosList div.video-thumb {
+        height: 60px;
+		width: 60px;
+    }
+
+    #videosList div.video-thumb.encoding .encoding-status,
+    #videosList div.video-thumb.encoding .encoding-message {
+        display: none;
+    }
+
+    #videosList div.video-thumb.encoding .encoding-progress {
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;
+        -ms-grid-row-align: start;
+        -ms-grid-column-align: start;
+
+        height: 60px;
+        width: 60px;
+    }
+
+    div.video-thumb.encoding .encoding-progress progress {
+        display: none;
+    }
+
+    div.video-thumb.encoding .encoding-progress progress.win-ring {
+        display: block;
+    }
+
+    #filtersFlyout {
+        width: 300px;
+        margin-left: 0px;
+        padding: 10px 0px;
+        border: none;
+        border-top: 2px solid black;
+        overflow: visible;
+        margin-top: -10px;
+    }
+
+    #filtersFlyout div.date-range-slider-container {
+        display: block;
+        padding: 0px 10px;
+    }
+
+    #filtersFlyout div.date-range-slider-container div.date-range-slider > div {
+        background-size: 100% auto;
+    }
+
+    #filtersFlyout div.video-tags-list {
+        padding-top: 0px;
+        padding-bottom: 20px;
+    }
+}

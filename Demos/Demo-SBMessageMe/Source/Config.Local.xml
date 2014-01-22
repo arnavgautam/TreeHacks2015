@@ -1,0 +1,24 @@
+<configuration>
+	<localPaths>
+		<workingDir>C:\Projects</workingDir>
+	</localPaths>
+	<codeSnippets>
+		<cSharp>..\Assets\snippets\csharp</cSharp>
+		<html>..\Assets\snippets\html</html>
+	</codeSnippets>	
+	<ServiceBus>
+		<!-- To begin using the Service Bus relay in Windows Azure, you must first create a service namespace. 
+		A service namespace provides a scoping container for addressing Service Bus resources within your application. -->
+		
+		<!--Namespace. The service namespace obtained from the Windows Azure portal.-->
+		<Namespace>{service_bus_namespace}</Namespace>
+		
+		<!--Issuer. The default issuer of the service namespace. To obtain the issuer, select the namespace in the Windows Azure portal,
+		and in the Properties pane on the right side, click the View button of the Default Key.-->
+		<Issuer>owner</Issuer>
+		
+		<!--SecretKey. The default key of the service namespace. To obtain the default key, select the namespace in the Windows Azure portal,
+		and in the Properties pane on the right side, click the View button of the Default Key.-->
+		<SecretKey>{service_bus_secrey_key}</SecretKey>
+	</ServiceBus>
+</configuration>

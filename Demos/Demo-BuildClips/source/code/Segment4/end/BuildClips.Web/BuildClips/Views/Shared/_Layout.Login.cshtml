@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>BUILDCLIPS</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <link href="@Url.Content("~/Content/Login.css")" rel="stylesheet" />
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <header>
+        </header>
+        <div id="body">
+            <section class="content-wrapper main-content">
+                <section id="leftBanner">
+                </section>
+                <section class="social" id="socialLoginForm">
+                    @RenderBody()
+                </section>
+                <section class="clear-fix"></section>
+            </section>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

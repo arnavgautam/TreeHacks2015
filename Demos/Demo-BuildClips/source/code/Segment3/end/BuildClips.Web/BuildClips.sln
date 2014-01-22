@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildClips", "BuildClips\BuildClips.csproj", "{63AF8BB8-9B07-4BB2-83DD-D5D054DD16C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildClips.Services", "BuildClips.Service\BuildClips.Services.csproj", "{E55A9F75-A31C-4452-9DA0-EADC46FF4960}"
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "BuildClips.Azure", "BuildClips.Azure\BuildClips.Azure.ccproj", "{44AC5EF7-EBB4-4FDE-ACF3-B6655819E5C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundService", "BackgroundService\BackgroundService.csproj", "{6450A3ED-E747-4874-B8AD-C671A68FFADE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63AF8BB8-9B07-4BB2-83DD-D5D054DD16C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63AF8BB8-9B07-4BB2-83DD-D5D054DD16C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63AF8BB8-9B07-4BB2-83DD-D5D054DD16C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63AF8BB8-9B07-4BB2-83DD-D5D054DD16C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E55A9F75-A31C-4452-9DA0-EADC46FF4960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E55A9F75-A31C-4452-9DA0-EADC46FF4960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E55A9F75-A31C-4452-9DA0-EADC46FF4960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E55A9F75-A31C-4452-9DA0-EADC46FF4960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44AC5EF7-EBB4-4FDE-ACF3-B6655819E5C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44AC5EF7-EBB4-4FDE-ACF3-B6655819E5C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44AC5EF7-EBB4-4FDE-ACF3-B6655819E5C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44AC5EF7-EBB4-4FDE-ACF3-B6655819E5C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6450A3ED-E747-4874-B8AD-C671A68FFADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6450A3ED-E747-4874-B8AD-C671A68FFADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6450A3ED-E747-4874-B8AD-C671A68FFADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6450A3ED-E747-4874-B8AD-C671A68FFADE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\TransientFaultHandling.Core.5.1.1209.1\lib\NET4
+	EndGlobalSection
+EndGlobal

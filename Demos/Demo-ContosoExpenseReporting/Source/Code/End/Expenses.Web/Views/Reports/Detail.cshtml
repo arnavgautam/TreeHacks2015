@@ -1,0 +1,113 @@
+﻿@using Expenses.Web.Models
+@model ExpenseReport
+@{
+    ViewBag.Title = "Detail";
+}
+
+<div class="breadcrumbs">
+@if (User.IsInRole("manager"))
+{
+    @Html.ActionLink(this.Model.Status.Name, "Index", "Reports", new { status = this.Model.Status.Name }, null) <span>/</span> 
+    @Model.User.FullName<span>/</span> 
+    @Model.Name
+}
+else
+{
+    @Html.ActionLink("dashboard", "Index", "Home") <span>/</span>     
+    @Html.ActionLink(this.Model.Status.Name, "Index", "Reports", new { status = this.Model.Status.Name }, null) <span>/</span>
+    @Model.Name  
+}
+</div>
+
+<h2>@this.Model.Name</h2>
+<strong>Purpose:</strong> @this.Model.Purpose
+<br />
+<strong>Status:</strong> @this.Model.Status.Name
+<br />
+<strong>Owner:</strong> @(this.Model.User.FirstName + " " + this.Model.User.LastName)
+<br />
+<hr />
+
+@if (!string.IsNullOrEmpty(this.Model.ApproverName))
+{
+    <strong>Approver:</strong> @(this.Model.ApproverName)
+    <br />
+}
+@if (!string.IsNullOrEmpty(this.Model.Comments))
+{
+    <strong>Comments:</strong> @(this.Model.Comments)
+    <br />
+}
+
+@if (!User.IsInRole("manager") && this.Model.Status.Name.Equals("Draft"))
+{
+    <div class="expenses-header">
+        <a href="@Url.RouteUrl("Report", new { @id = this.Model.Id, action = "delete" })" class="delete-link delete-report">
+            <img src="@Url.Content("~/Content/img/delete.png")" alt="Delete" width="14" height="14"/>Delete
+        </a>
+        <a href="@Url.RouteUrl("Report", new { @id = this.Model.Id, action = "edit" })" class="edit-link">
+            <img src="@Url.Content("~/Content/img/edit.png")" alt="Edit" width="14" height="14"/>Edit
+        </a>   
+        <h3>Expenses</h3>
+    </div>
+} 
+else
+{
+    <h3>Expenses</h3>
+}
+
+<table class="details shadow">
+    <tr>
+        <th>#</th>
+        <th class="description">Description</th>
+        <th>Expense Date</th>
+        <th>Category</th>
+        <th>Merchant</th>
+        <th>Transaction Amount</th>
+        <th>Receipt</th>
+    </tr>
+    @if (this.Model.Details.Count() > 0)
+    {
+        var details = this.Model.Details.ToArray();
+        for (int i = 0; i < details.Length; i++)
+        {
+            var detail = details[i];
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@detail.Description</td>
+            <td>@string.Format("{0:d}", detail.Date)</td>
+            <td>@detail.Category</td>
+            <td>@detail.Merchant</td>
+            <td>@string.Format("{0:C}", detail.TransactionAmount)</td>
+            @if (string.IsNullOrEmpty(detail.ReceiptUrl))
+            {
+                <td>N/A</td>
+            }
+            else
+            {
+                <td><a href="@detail.ReceiptUrl" class="receipt-attachment">View</a></td>
+            }
+        </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="7">There are no expenses.</td>
+        </tr>
+    }
+</table>
+@if (User.IsInRole("manager"))
+{
+    if (this.Model.Status.Name.Equals("Pending"))
+    {
+    <form name="report-approve-form" id="report-approve-form" action="@Url.RouteUrl("Report", new { @id = this.Model.Id, action = "ApproveReject" })" method="post">
+        @Html.LabelFor(m => m.Comments)<br />
+        @Html.TextAreaFor(m => m.Comments, 5, 50, new { data_val = "true", data_val_required = "Comments are required." })
+        @Html.ValidationMessageFor(m => m.Comments)<br/>
+        @Html.Hidden("action")<br />
+        <input type="button" value="Approve" class="approve button button-blue"/>
+        <input type="button" value="Reject" class="reject button button-black"/>
+    </form>
+    }
+}

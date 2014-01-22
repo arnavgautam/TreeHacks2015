@@ -1,0 +1,169 @@
+﻿@model BuildClips.Services.Models.Video
+
+<style>
+    input[type="text"] {
+        border: none;
+        margin: 0;
+        padding: 0;
+
+        font-family: "Segoe UI Semibold";
+
+        height: 41px;
+        line-height: 38px;
+        vertical-align: middle;
+
+        width: 728px;
+        padding-left: 17px;
+    }
+
+    textarea {
+        width: 711px;
+        height: 70px;
+    }
+
+        #videoUploadArrow {
+            margin: 50px 100px 0px 100px;
+        }
+
+    #tags {
+        width:333px;
+    }
+
+    h4 {
+        text-transform:uppercase;
+        font-weight:bold;
+        font-size:12px;
+        padding-top:15px;
+    }
+
+    input[type="submit"] {
+        margin-top:25px;
+        float:right;
+    }
+
+label.filebutton {
+    width:277px;
+    padding:15px 0;
+    text-align:center;
+    overflow:hidden;
+    position:relative;
+    background-color:rgb(226,73,29);
+    color:#fff;
+    font:bold;
+    cursor: pointer;
+    font-size:18px;
+    margin:50px 36px 0 36px;
+}
+
+label span input {
+    z-index: 999;
+    line-height: 0;
+    font-size: 50px;
+    position: absolute;
+    top: -2px;
+    left: -700px;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    -ms-filter: "alpha(opacity=0)";
+    cursor: pointer;
+    margin: 0;
+    padding:0;
+}
+</style>
+
+<div class="upload-page">
+    @using (Html.BeginForm("Create", "Home", FormMethod.Post, new { Enctype = "multipart/form-data" }))
+    {
+        <fieldset>
+            <legend>Video</legend>
+
+            <div class="upload-box-container">
+                <img id="videoUploadArrow" src="@Url.Content("~/Content/images/arrow.png")"/>
+                
+                <label class="filebutton">
+                    choose a video to upload
+                    <span><input type="file" id="videoFile" name="videoFile"></span>
+                </label>
+            </div>
+
+            <div class="upload-description-container float-left">
+                @Html.TextBoxFor(m => m.Title, new { name = "Title", id = "Title", type = "text", placeholder = "title"})
+                @Html.TextAreaFor(m => m.Description, new { name = "Description",  id = "Description",  placeholder = "description"})
+                <div class="column-container float-left">
+                    <h4>TAGS</h4>
+                    <div class="video-tags-list">
+                        <a class="tag">keynote</a>
+                        <a class="tag">speaker</a>
+                        <a class="tag">client</a>
+                        <a class="tag">native</a>
+                        <a class="tag">ui</a>
+                        <a class="tag">hardware</a>
+                        <a class="tag">session</a>
+                        <a class="tag">attendees</a>
+                        <a class="tag">server</a>
+                        <a class="tag">.net</a>
+                        <a class="tag">directx</a>
+                    </div>
+                    <input type="text" id="tags" placeholder="other tags"/>
+                </div>
+                <div class="column-container float-left last">
+                    <h4>WHO CAN SEE THIS VIDEO?</h4>
+                    <div class="video-upload-visibility">
+                        <div id="public" class="selected">
+                            <span>public</span>
+                            <em>anyone can find and view this video</em>
+                        </div>
+                        <div id="private">
+                            <span>private</span>
+                            <em>only the people I invite can see this video</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="clear-fix"></div>
+            
+            @Html.ValidationSummary(true)
+            @Html.ValidationMessageFor(m => m.Title)<br/>
+            @Html.ValidationMessageFor(m => m.Description)
+            <input id="createVideo" type="submit" value="Upload" class="orange-submit" />
+        </fieldset>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        var fileSelected = "@Url.Content("~/Content/images/file-selected.png")"
+
+        $(function () {
+            $("form").submit(function (e) {
+                if ($(this).valid()) {
+                    $("#createVideo").attr("disabled", "disabled");
+                }
+            });
+
+            $(".tag").live('click', function (sender) {
+                var el = $(this);
+                if (el.hasClass('active'))
+                    el.removeClass('active');
+                else
+                    el.addClass('active');
+            });
+
+            $("#private").live('click', function () {
+                $("#public").removeClass('selected');
+                $(this).addClass('selected');
+            });
+
+            $("#public").live('click', function () {
+                $("#private").removeClass('selected');
+                $(this).addClass('selected');
+            });
+
+            $("#videoFile").live('change', function () {
+                $("#videoUploadArrow")[0].src = fileSelected;
+            });
+        });
+    </script>
+}

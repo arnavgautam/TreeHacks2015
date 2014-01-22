@@ -1,0 +1,349 @@
+﻿.content-details header[role=main] {
+	background-color: white;
+}
+
+.fragment-details {
+    /* Define a grid with rows for a banner and a body */
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 75px 1fr;
+    display: -ms-grid;
+    height: 100%;
+    width: 100%;
+}
+
+    .fragment-details header[role=banner] {
+        /* Define a grid with columns for the back button and page title. */
+        -ms-grid-columns: 1fr 500px;
+        -ms-grid-rows: 75px;
+        display: -ms-grid;
+        background-position: 0% 0%;
+        background-repeat: repeat;
+        background-origin: padding-box;
+        background-clip: border-box;
+        background-size: auto;
+        background-attachment: scroll;
+        background-color: #242424;
+		color: #000;
+    }
+
+		.fragment-details header[role=banner] .topbar {
+			-ms-grid-row: 1;
+            -ms-grid-column: 1;
+            background: url(/images/logo.png) 105px center no-repeat;
+		}
+		
+	    .fragment-details header[role=banner] .win-backbutton {
+            -ms-grid-row: 1;
+            -ms-grid-column: 1;
+            margin-left: 39px;
+            margin-top: 15px;
+            color:#fff;
+            border-color:#fff;
+        }
+		
+		.fragment-details header[role=banner] .user-box {
+			-ms-grid-row: 1;
+            -ms-grid-column: 2;
+            color: white;
+            text-align: right;
+			background-color: white;
+			color: black;
+		}
+
+			.fragment-details header[role=banner] .user-box #user-image {
+				height: 60px;
+				width: 60px;
+            
+				margin: 5px 30px 5px 12px;
+				float: right;
+				border: 1px solid rgb(128, 128, 128);
+
+				background-repeat: no-repeat;
+				background-size: 100%;
+				background-position: center;
+			}
+
+				.fragment-details header[role=banner] .user-box #user-image.online {
+					border: 1px solid #0e850d;
+				}
+
+				.fragment-details header[role=banner] .user-box #user-image.offline {
+					border: 1px solid red;
+				}
+			
+			.fragment-details header[role=banner] .user-box #full-name {
+				display: block;
+				font-size: 20px;
+				margin-right: 120px;
+				margin-top: 10px;
+				font-weight: 600;
+			}
+
+.itemdetailpage .content-details {
+    -ms-grid-row:2;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    z-index: 0;    
+}
+
+/* Define Upload page layout*/
+.itemdetailpage .form {
+    -ms-grid-columns: 1fr 500px;
+    -ms-grid-rows: 1fr;
+    display: -ms-grid;
+    height:100%;
+    width:100%;
+	background-color: white;
+}
+
+    .itemdetailpage .content-details article header .item-title {
+        margin-bottom: 19px;
+    }
+
+    .itemdetailpage .content-details article header .item-subtitle {
+        margin-bottom: 16px;
+        margin-top: 0;
+    }
+
+    .itemdetailpage .content-details article .item-image {
+        height: 240px;
+        width: 460px;
+    }
+
+    .itemdetailpage .content-details article .item-content p {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-right: 20px;
+    }
+
+    #mediaPlayer {
+        width: 100%;
+        height: 100%;
+    }
+
+    #mediaPlayer video {
+        width: 100%;
+        height: 100%;     
+    }
+
+@media screen and (-ms-view-state: snapped) {
+    #mediaPlayer {
+        min-height: 100px;
+        min-width: 100px;
+        width: 90%;
+    }
+
+    #mediaPlayer .pf-full-screen-toggle-control,
+    #mediaPlayer .pf-time-remaining-control,
+    #mediaPlayer .pf-time-elapsed-control
+    {
+        display: none !important;
+    }
+
+    .itemdetailpage .content {
+        -ms-grid-row: 2;
+        -ms-grid-row-span: 1;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+        .itemdetailpage .content article {
+            /* Define a single column, vertically scrolling article in snapped mode. */
+            -ms-grid-columns: 300px 1fr;
+            -ms-grid-row: 2;
+            -ms-grid-rows: auto 60px;
+            display: -ms-grid;
+            height: 100%;
+            margin-left: 20px;
+            margin-top: 6px;
+            width: 300px;
+        }
+
+            .itemdetailpage .content article header .item-title {
+                margin-bottom: 10px;
+            }
+
+            .itemdetailpage .content article .item-image {
+                height: 140px;
+                width: 280px;
+            }
+
+            .itemdetailpage .content article .item-content {
+                padding-bottom: 60px;
+            }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    .itemdetailpage .content article {
+        margin-left: 100px;
+    }
+}
+
+/* Details Page */
+
+.itemdetailpage h4 {
+    font-size: 25px;    
+    margin-bottom: 12px;
+}
+    .itemdetailpage h4.white {
+        color: rgb(255, 255, 255);
+    }
+
+    .itemdetailpage h4.black {
+        color: rgb(0, 0, 0);
+    }
+
+div.video-player-container {
+    -ms-grid-column: 1;
+    padding: 0;        
+    background-color: Black;
+    vertical-align: top;
+}
+
+div.video-details-comments-container {
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    margin-left: 30px;
+    margin-top: 50px;
+}
+
+#inner-comments-container {
+    max-height: 200px;
+    overflow-y: scroll;
+    width: calc(99% - 1px);
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+div.video-description {
+    color: #000;
+    font-size: 18px;
+    min-height: 25px;
+	margin-top: 15px;
+}
+
+div.video-time {
+    color: #000;
+	font-weight: 600;
+}
+
+div.video-tags-container {
+    width: 245px;
+	color: #E25232;
+	margin-top: 15px;
+}
+
+div.comments-container {
+    
+}
+
+    div.comments-container div.comment {
+        background: url(/images/comment-background.png);
+        padding: 10px 20px;
+        margin: 0px 0 5px 0;
+     }
+
+        div.comments-container div.comment span {
+            font-weight:bold;
+            font-size:16px;
+        }
+
+        div.comments-container div.comment span.time {
+            text-transform:uppercase;
+            font-size:13px;
+            color:#000;
+            font-weight:bold;     
+            float:right;       
+        }
+
+        div.comments-container div.comment p {
+            color:rgb(72,72,72);
+            margin:0;
+            padding:0;
+        }
+
+        div.comments-container div.new-comment textarea {
+            height:80px;
+            clear: right; 
+            width: calc(99% - 40px);
+			background-color: #dfe7e8;
+        }
+
+        div.new-comment {
+            color: #000;
+        }
+
+        div.comments-container div.new-comment span {
+            display:inline-block;
+            padding-top:20px;
+            font-size:16px;
+        }
+
+        div.comments-container div.new-comment button {
+            margin: 10px 10px;                     
+            float: right;
+            text-align: center;                      
+        }
+
+span#videoFailedToLoadMsg {
+    display:none;
+}
+
+span#videoFailedToLoadMsg.error {
+    font-size:15px;
+    font-weight:bold;
+    color:red;
+    display:inline-block;
+}
+
+@media screen and (-ms-view-state: snapped) {
+	.fragment-details header[role=banner] .topbar {
+        background-position-x: 80px;
+		background-position-y: 22px;
+        -ms-grid-column: 2;
+    }
+	
+	.fragment-details header[role=banner] .user-box {
+		display: none;
+	}
+	
+    div.video-player-container,
+    div.video-details-comments-container {
+        width: 320px;
+    }
+
+    div.video-player-container {
+        height: 320px;
+    }
+
+    div.video-details-comments-container {
+        -ms-grid-column: 1;
+        -ms-grid-row: auto;
+        margin: 0px;
+        margin-top: 350px;
+    }
+
+    div.video-details-comments-container > * {
+        margin: 0px 8px;
+    }
+
+    #mediaPlayer {
+        width: 100%;
+        margin: 10px 0px;
+    }
+	
+	div.comments-container div.new-comment textarea {
+        height:50px;
+    }
+	
+	div.comments-container div.new-comment #doComment {
+		padding: 10px;
+		font-size: 15px;
+	}
+	
+	.fragment-details header[role=banner] .win-backbutton {
+        margin-left: 20px;
+        margin-top: 22px;
+	}
+}

@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Message Me";
+}
+<p>
+    Type a message to send:
+</p>
+
+@using (Html.BeginForm("SendMessage", "Home"))
+{
+    <input type="text" name="msg" />
+    <input type="submit" value="Send" />
+}

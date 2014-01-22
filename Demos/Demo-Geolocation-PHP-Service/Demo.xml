@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>Geolocation-PHP</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Name></Name>
+    <Blog></Blog>
+    <Email></Email>
+  </Author>
+  <Description>This demo is designed to show how developers can quickly get started with Windows Azure Web Sites and run a PHP site. This demo involves creating a Windows Azure Web Site in the management portal, deploying pre-existing code to GIT, and setting up a MySQL database. This demo is a prerequisite in demonstrating some mobile client demos which rely on this site as a backend..</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Creating a Mobile Geolocation Backend in PHP with Windows Azure Web Sites</Title>
+  <Version>1.0.2</Version>
+  <Source></Source>
+  <DependencyChecker></DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-Geolocation-PHP-Service" />
+  </CustomProperties>
+</Demo>

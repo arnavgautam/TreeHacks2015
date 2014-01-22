@@ -1,0 +1,7 @@
+function insert(item, user, request) {
+    if(item.text.length < 5){
+	request.respond(statusCodes.BAD_REQUEST, 'text is too short');
+    } else {
+	request.execute();
+    }
+}

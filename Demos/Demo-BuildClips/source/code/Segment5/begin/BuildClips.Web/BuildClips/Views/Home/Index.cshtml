@@ -1,0 +1,102 @@
+﻿@model IEnumerable<BuildClips.Services.Models.Video>
+
+@section headerControls {
+    <div class="header-controls-container">
+        <div class="video-list-header">
+
+            <div class="column-container">
+                <input type="text" class="search" placeholder="search" />
+            </div>
+
+            <div class="column-container date-range-slider">
+                <div>
+                    <div id="slider"></div>
+                </div>
+            </div>
+
+            <div class="column-container last">
+                <div class="video-tags-list">
+                    <a class="tag active">keynote</a>
+                    <a class="tag">speaker</a>
+                    <a class="tag">client</a>
+                    <a class="tag">native</a>
+                    <a class="tag">ui</a>
+                    <a class="tag">hardware</a>
+                    <a class="tag">session</a>
+                    <a class="tag">attendees</a>
+                    <a class="tag">server</a>
+                    <a class="tag">.net</a>
+                    <a class="tag">directx</a>
+                    <a class="tag more">...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<h2 class="video-list-count">found @Model.Count() clips</h2>
+
+@{ 
+    var count = 0;
+    var rnd = new Random(0);
+}
+@foreach (var item in Model) {
+    count++;
+    <div class="video-grid-item-container @(count % 3 == 0 ? "last" : "")">
+        <div class="video-grid-item">
+            <div class="mask">
+            </div>
+            <a id="video_@item.Id" class="video-thumb" href="@Url.Action("Details", new { id=item.Id })" style="background:url(@(item.ThumbnailUrl ?? Url.Content("~/Content/images/nothumbnail.png"))) no-repeat top left;"></a>
+            <div class="video-information">
+                <span class="video-title">@Html.DisplayFor(modelItem => item.Title)</span>
+            
+                <span>@rnd.Next(4):@rnd.Next(59) / <span class="video-upload-date">OCT @rnd.Next(31) 2012</span></span>
+                <span class="video-stats">
+                    <span class="icon-heart">@rnd.Next(100)</span>
+                    <span class="icon-eye">@rnd.Next(1000)</span>
+                    <span class="icon-comment">@rnd.Next(10)</span>
+                </span>
+            </div>
+        </div>
+
+        <span class="video-tags">surface, development, color, website</span>
+    </div>
+}
+
+<script type="text/javascript">
+    $("#slider").slider({ min: 0, max: 5 });
+</script>
+
+@section Scripts {
+    <script src="@Url.Content("~/Scripts/jquery.signalR-1.0.0-alpha2.min.js")"></script>
+    <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+    <script>
+        $(function () {
+            var connection = $.hubConnection();
+            var hub = connection.createHubProxy("Notifier");
+            hub.on("onVideoUpdate", function (video) {
+                if (video.ThumbnailUrl) {
+                    $("#video_" + video.Id).css("background", "url(" + video.ThumbnailUrl + ") no-repeat top left");
+                }
+            });
+
+            connection.start();
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $(".tag").live('click', function () {
+                var el = $(this);
+                if (el.hasClass('active'))
+                    el.removeClass('active');
+                else
+                    el.addClass('active');
+            });
+
+            $(".mask").live('click', function () {
+                window.location = $(this).next()[0].href;
+            });
+        });
+    </script>
+}

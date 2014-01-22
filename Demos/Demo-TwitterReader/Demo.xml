@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>TwitterReader</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Name></Name>
+    <Blog></Blog>
+    <Email></Email>
+  </Author>
+  <Description>This demo is designed to highlight the new distributed caching support provided as part of the June Windows Azure update. The demo involves showing a simple Twitter Reader ASP.NET MVC application without caching and then adding caching to the application using the new Windows Azure Tools in Visual Studio. After adding the application is executed again within the Windows Azure compute emulator to demonstrate the performance improvements.</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Twitter Reader Demo</Title>
+  <Version>1.0.1</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-TwitterReader" />
+  </CustomProperties>
+</Demo>
