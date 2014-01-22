@@ -123,7 +123,7 @@ You have now created a new Windows Azure namespace for this hands-on lab. To sig
 
 <a name="Ex2Task2"></a>
 #### Task 2 - Creating a Topic and Adding Subscriptions in Visual Studio ####
-The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including topics and subscriptions. In this task, you will use Server Explorer to connect to the service bus namespace you created previously, create a topic and add a subscription to it.
+The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including topics and subscriptions. In this task, you will use Server Explorer to connect to the Service Bus namespace you created previously, create a topic and add a subscription to it.
 
 1. Open **Visual Studio 2013 Express for Web** (or greater) as Administrator.
 
@@ -149,7 +149,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 	_Creating new topic_
 
-1. In the New Topic dialog, enter a name for the service bus topic in the **Name** textbox. Leave the default options and click **Save**.
+1. In the New Topic dialog box, enter a name for the service bus topic in the **Name** textbox. Leave the default options and click **Save**.
 
 	![New Topic dialog box](Images/new-topic-dialog-box.png?raw=true)
 
@@ -161,7 +161,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 	_Creating new subscription_
 
-1. In the **New Subscription** dialog box, enter a Name for the subscription in the **Name** textbox. Leave the default options and click **Save**.
+1. In the **New Subscription** dialog box, enter a name for the subscription in the **Name** textbox. Leave the default options and click **Save**.
 
 	![New Subscription dialog box](Images/new-subscription-dialog-box.png?raw=true)
 
@@ -202,11 +202,11 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 1. Press **CTRL + S** to save the changes to the Web Role configuration.
 
-1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to the Windows Azure service bus from your application. In **Solution Explorer**, right-click the **UsingTopics** project node and select **Add Reference.**
+1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to Windows Azure Service Bus from your application. In **Solution Explorer**, right-click the **UsingTopics** project node and select **Add Reference.**
 
 1. In the **Reference Manager** dialog box, check the **System.Runtime.Serialization** assembly. Then, select the **Extensions** assemblies from the left pane, check **Microsoft.ServiceBus** and ensure **Microsoft.WindowsAzure.ServiceRuntime** is checked as well. Click **OK** to add the references.
 
-1. Open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics.Web** project.
+1. Open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
 1. Add the following namespace directives to declare the Service Bus and the Windows Azure supporting assemblies.
 
@@ -319,7 +319,7 @@ You will now launch the updated application in the Windows Azure compute emulato
 <a name="Exercise2"></a>
 ### Exercise 2: Sending and Receiving Messages ###
 
-In Exercise 1, you added the necessary code to the aplication in order to create Windows Azure Service Bus topics and subscriptions. You will now update the application to send messages to a topic and receive the messages that arrive to the subscriptions.
+In Exercise 1, you added the necessary code to the application in order to create Windows Azure Service Bus topics and subscriptions. You will now update the application to send messages to a topic and receive the messages that arrive to the subscriptions.
 
 <a name="Ex2Task1"></a>
 #### Task 1 - Sending Messages ####
@@ -395,7 +395,7 @@ In this task, you will send messages to a Service Bus topic. You can send any se
 	}
 	````
 
-1. Next, you will create a **CustomMessage,** add it to the **BrokeredMessage** and then you will set the _Urgent_, _Important_ and _Priority_ properties with the values you receive from the UI. Finally, you will use the **TopicClient** to send the message to the topic. Add the following method at the end of the **HomeController** class.
+1. Next, you will create a **CustomMessage,** add it to the **BrokeredMessage** and then you will set the _Urgent_ and _Important_ properties with the values you receive from the UI. Finally, you will use the **TopicClient** to send the message to the topic. Add the following method at the end of the **HomeController** class.
 
 	(Code Snippet - _Service Bus Topics - Ex02 - SendMessage_ - CS)
 	<!-- mark:1-18 -->
@@ -420,14 +420,14 @@ In this task, you will send messages to a Service Bus topic. You can send any se
 	}
 	````
 
-1. Press **CTRL + S** to save the changes to the Controller.
+1. Press **CTRL + S** to save the changes to the Controller class.
 
 <a name="Ex2Task2"></a>
 #### Task 2 - Receiving Messages ####
 
 In the previous task, you instantiate a **TopicClient** in order to send messages to a topic. In this task you will learn how to use the **SubscriptionClient** to receive messages from a subscription and explore the properties inside the received message.
 
-1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics.Web** project.
+1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
 1. Add the following code at the end of the **HomeController** class.
 
@@ -473,7 +473,7 @@ In the previous task, you instantiate a **TopicClient** in order to send message
 
 	> **Note:** In this code you are also adding additional information of the message that you will show in the UI.
 
-1. Press **CTRL + S** to save the changes to the Controller.
+1. Press **CTRL + S** to save the changes to the Controller class.
 
 <a name="Ex2Task3"></a>
 #### Task 3 - Verification ####
@@ -521,7 +521,7 @@ In this exercise, you will apply filters on subscriptions to retrieve only the m
 
 1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
-1. In the previous task, you created a topic with one subscription. Now, you will update the **CreateTopic** method to add a new _UrgentMessages_ subcription. This subscription will include a **SqlFilter** to get only the messages that match the rule _Urgent = '1'_. Add the following highlighted code in the **CreateTopic** action method.
+1. In the previous task, you created a topic with one subscription. Now, you will update the **CreateTopic** method to add a new _UrgentMessages_ subscription. This subscription will include a **SqlFilter** to get only the messages that match the rule _Urgent = '1'_. Add the following highlighted code in the **CreateTopic** action method.
 
 	(Code Snippet - _Service Bus Topics - Ex03 - Add Subscription with Rule Filter_ - CS)
 	<!-- mark:6 -->
@@ -539,7 +539,7 @@ In this exercise, you will apply filters on subscriptions to retrieve only the m
 
     > **Note:** Take into account that you can use SQL92 as filter expressions.
 
-1. Press **CTRL + S** to save the changes to the Controller.
+1. Press **CTRL + S** to save the changes to the Controller class.
 
 <a name="Ex3Task2"></a>
 #### Task 2 - Using a Subscription Rule Filter Action ####
@@ -604,7 +604,7 @@ Additionally to rule filter expressions, you can use **rule filter actions.** Wi
 
 	````
 
-1. Press **CTRL + S** to save the changes to the Controller.
+1. Press **CTRL + S** to save the changes to the Controller class.
 
 <a name="Ex3Task3"></a>
 #### Task 3 - Verification ####
