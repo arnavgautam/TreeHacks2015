@@ -220,7 +220,6 @@
                     logMessage("Done!");
                     $("#messageSubscriptions span[data-value=" + subscriptionName + "]").html(response.MessagesInSubscription);
                     renderMessage(response.MessageInfo);
-                    loadTopics();
                 })
                 .error(function () {
                     logMessage('ERROR: Unable to retrieve message.');
