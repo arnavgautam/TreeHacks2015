@@ -53,7 +53,7 @@ This hands-on lab includes the following exercises:
 <a name="Exercise1"></a>
 ### Exercise 1: Creating a Windows Azure Web Site with Visual Studio ###
 
-In this exercise, you will take advantage of the Windows Azure tools for Visual Studio to create a Windows Azure Web site. Through **Server Explorer**, you will connect to Windows Azure by signing in with your Microsoft Account and then create a Windows Azure Web site and its associated SQL database.
+In this exercise, you will take advantage of the Windows Azure tools for Visual Studio to create a Windows Azure Web Site. Through **Server Explorer**, you will connect to Windows Azure by signing in with your Microsoft Account and then create a Windows Azure Web Site and its associated SQL database.
 
 #### Task 1 – Adding a New Windows Azure Web Site from Server Explorer ####
 
@@ -73,13 +73,13 @@ In this exercise, you will take advantage of the Windows Azure tools for Visual 
 
 	_Add new site_
 
-1. In the **Create site in Windows Azure** dialog box, provide the following information:
+1. In the **Create site on Windows Azure** dialog box, provide the following information:
 	- In the **Site name** box, enter an available name for the Web site.
-	- In the **Location** drop-down list, select the region for the web site. This setting specifies which data center your Web site will run in.
+	- In the **Location** drop-down list, select the region for the Web site. This setting specifies which data center your Web site will run in.
 	- In the **Database server** drop-down list, select **Create new server**. Alternatively, you can select an existing SQL Server.
-	- In the **Database username** and **Database password** boxes, enter the administrator username and password for the SQL Server. If you selected a SQL Server you have created previously, you will be prompted for the password.
+	- In the **Database username** and **Database password** boxes, enter the administrator username and password for the SQL Server. If you select a SQL Server you have already created, you will be prompted for the password.
 
-1. Click **Create** to create the web site.
+1. Click **Create** to create the Web site.
 
 	![Create site on Windows Azure](Images/create-site-on-windows-azure.png?raw=true)
 
@@ -169,7 +169,7 @@ In this exercise, you will create a simple ASP.NET MVC 5 web application, using 
 	}
 	````
 
-1. **Build MVCSample.Web** by using the **Ctrl + Shift + B** keyboard shortcut which will save the changes and build the project.
+1. Build **MVCSample.Web** by using the **Ctrl + Shift + B** keyboard shortcut which will save the changes and build the project.
 
 1. In **Solution Explorer**, right-click the **Controllers** folder and select **Add | Controller...**. 
 
@@ -181,10 +181,10 @@ In this exercise, you will create a simple ASP.NET MVC 5 web application, using 
 
 1. Complete the scaffolding options in the **Add Controller** dialog box with the following values.
 	- In the **Controller name** box, type _CustomerController_.
-	- Check the **Use async controller actions** checkbox.
+	- Select the **Use async controller actions** checkbox.
 	- In the **Model class** drop-down list, select the **Customer** class.
 	- In the **Data Context class** field, click **\<New data context...\>**. In the dialog box displayed, replace the data context class type with **MVCSample.Web.Models.CustomerContext** and click **OK**.
-	- In the **Views** section, make sure that all checkboxes are checked.
+	- In the **Views** section, make sure that all checkboxes are selected.
 
 	![Adding the Customer controller with scaffolding](Images/add-customer-controller.png?raw=true)
 
@@ -198,7 +198,7 @@ In this exercise, you will create a simple ASP.NET MVC 5 web application, using 
 
 1. Open the **CustomerController.cs** file in the **Controllers** folder. Notice that the CRUD action methods have been generated automatically. 
 
-	> **Note:** By checking the **Use async controller actions** checkbox from the scaffolding options in the previous steps, Visual Studio generates asynchronous action methods for all actions that involve access to the Customer data context. It is recommended to use asynchronous action methods for long-running, non-CPU bound requests to avoid blocking the Web server from performing work while the request is being processed.
+	> **Note:** By selecting the **Use async controller actions** checkbox from the scaffolding options in the previous steps, Visual Studio generates asynchronous action methods for all actions that involve access to the Customer data context. It is recommended to use asynchronous action methods for long-running, non-CPU bound requests to avoid blocking the Web server from performing work while the request is being processed.
 
 	````C#
 	...
@@ -268,7 +268,7 @@ In this exercise, you will publish the application you obtained in [Exercise 2](
 
 	![Importing publish profile from web site](Images/importing-publish-profile-from-web-site.png?raw=true)
 
-	_Importing publish profile from web site_
+	_Importing publish profile from Web site_
 
 1. In the **Connection** page, leave the imported values and click **Validate Connection**. Once the validation is completed, click **Next**.
 
@@ -399,7 +399,7 @@ In this exercise you will publish the web application you created in [Exercise 2
 
 	_Pushing to Windows Azure_
 
-	> **Note:** When you deploy content to the FTP host or GIT repository of a Windows Azure website you must authenticate using **deployment credentials** that you create from the Web site’s **Quick Start** or **Dashboard** management pages.  If you do not know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset your deployment credentials** link. Provide a new password and click **OK**. Deployment credentials are valid for use with all Windows Azure Web sites associated with your subscription. 
+	> **Note:** When you deploy content to the FTP host or GIT repository of a Windows Azure website you must authenticate using **deployment credentials** that you create from the Web site’s **Quick Start** or **Dashboard** management pages.  If you do not know your deployment credentials you can easily reset them using the management portal. Open the Web site **Dashboard** page and click the **Reset your deployment credentials** link. Provide a new password and click **OK**. Deployment credentials are valid for use with all Windows Azure Web sites associated with your subscription. 
 
 1. In order to verify the Web site was successfully pushed to Windows Azure, go back to the **Windows Azure Management Portal** and click **Web Sites**.
 
@@ -423,7 +423,7 @@ In this exercise you will publish the web application you created in [Exercise 2
 
 	_Application Running in Windows Azure_
 	
-1. Go to **/Customer** to verify that the Customers views are working as expected. You can try adding a new Customer to verify it is successfully saved to the database.
+1. Go to **/Customer** to verify that the Customer views are working as expected. You can try adding a new Customer to verify it is successfully saved to the database.
 
 	![Customer view](Images/customer-view.png?raw=true)
 
