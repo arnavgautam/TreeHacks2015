@@ -4,10 +4,10 @@
 
     public partial class NorthwindEntities : DbContext
     {
-        public DbSet<Product> Products { get; set; }
-
         public NorthwindEntities()
         {
         }
+
+        public DbSet<Product> Products { get; set; }
     }
 }

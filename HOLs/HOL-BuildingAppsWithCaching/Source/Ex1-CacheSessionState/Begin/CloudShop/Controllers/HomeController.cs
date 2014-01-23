@@ -2,10 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using CloudShop.Models;
-    using System.Net;
     using Microsoft.WindowsAzure.ServiceRuntime;
 
     public class HomeController : Controller
@@ -15,7 +15,10 @@
             get
             {
                 if (this.Session["Cart"] as List<string> == null)
+                {
                     this.Session["Cart"] = new List<string>();
+                }
+
                 return this.Session["Cart"] as List<string>;
             }
         }
@@ -33,7 +36,7 @@
                 Products = filteredProducts
             };
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -45,12 +48,12 @@
             }
 
             this.Cart.Add(selectedItem);
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
 
         public ActionResult Checkout()
         {
-            return View(this.Cart);
+            return this.View(this.Cart);
         }
 
         [HttpPost]
@@ -62,11 +65,11 @@
             }
             else if (!this.Cart.Contains(selectedItem))
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
             
             this.Cart.Remove(selectedItem);
-            return RedirectToAction("Checkout");
+            return this.RedirectToAction("Checkout");
         }
 
         public EmptyResult Recycle()
