@@ -1,30 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace CloudShop.Controllers
+﻿namespace CloudShop.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using CloudShop.Models;
+    using System.Net;
+    using Microsoft.WindowsAzure.ServiceRuntime;
+
     public class HomeController : Controller
     {
+        private List<string> Cart
+        {
+            get
+            {
+                if (this.Session["Cart"] as List<string> == null)
+                    this.Session["Cart"] = new List<string>();
+                return this.Session["Cart"] as List<string>;
+            }
+        }
+
         public ActionResult Index()
         {
-            return View();
+            Services.IProductRepository productRepository = new Services.ProductsRepository();
+            var products = productRepository.GetProducts();
+
+            // add all products currently not in session
+            var filteredProducts = products.Where(p => !this.Cart.Contains(p));
+
+            IndexViewModel model = new IndexViewModel()
+            {
+                Products = filteredProducts
+            };
+
+            return View(model);
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Add(string selectedItem)
         {
-            ViewBag.Message = "Your application description page.";
+            if (selectedItem == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-            return View();
+            this.Cart.Add(selectedItem);
+            return RedirectToAction("Index");
         }
 
-        public ActionResult Contact()
+        public ActionResult Checkout()
         {
-            ViewBag.Message = "Your contact page.";
+            return View(this.Cart);
+        }
 
-            return View();
+        [HttpPost]
+        public ActionResult Remove(string selectedItem)
+        {
+            if (selectedItem == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else if (!this.Cart.Contains(selectedItem))
+            {
+                return HttpNotFound();
+            }
+            
+            this.Cart.Remove(selectedItem);
+            return RedirectToAction("Checkout");
+        }
+
+        public EmptyResult Recycle()
+        {
+            RoleEnvironment.RequestRecycle();
+            return new EmptyResult();
         }
     }
 }
