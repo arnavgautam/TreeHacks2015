@@ -4,9 +4,9 @@
     <Instances count="1" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
-      <Setting name="issuerName" value="owner" />
-      <Setting name="issuerKey" value="6Pep1ltSsdC7az3rrvFuP3lO7JPP6bsvjKaU942nmik=" />
-      <Setting name="namespaceAddress" value="yourservicenamespace" />
+      <Setting name="issuerName" value="[YOUR ISSUER NAME]" />
+      <Setting name="issuerKey" value="[YOUR ISSUER KEY]" />
+      <Setting name="namespaceName" value="[YOUR NAMESPACE NAME]" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>

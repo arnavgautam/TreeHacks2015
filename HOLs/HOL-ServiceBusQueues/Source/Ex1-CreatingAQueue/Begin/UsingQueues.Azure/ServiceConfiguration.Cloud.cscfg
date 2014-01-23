@@ -6,7 +6,7 @@
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="issuerName" value="[YOUR ISSUER NAME]" />
       <Setting name="issuerKey" value="[YOUR ISSUER KEY]" />
-      <Setting name="namespaceAddress" value="[YOUR NAMESPACE ADDRESS]" />
+      <Setting name="namespaceName" value="[YOUR NAMESPACE NAME]" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>
