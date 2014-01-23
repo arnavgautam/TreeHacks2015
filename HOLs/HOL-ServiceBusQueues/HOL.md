@@ -189,7 +189,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
  
 	_Launching the service configuration editor_
 
-1. In the **Settings** tab, set _namespaceAddress_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to the ones you previously copied from the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
+1. In the **Settings** tab, set _namespaceName_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to the ones you previously copied from the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
 
 	![Updating settings to the UsingQueues Web Role](Images/updating-settings-to-the-usingqueues-web-role.png?raw=true "Updating settings to the UsingQueues Web Role")
 
@@ -203,7 +203,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 1. Open the **HomeController.cs** file under the **Controllers** folder in the **UsingQueues** project.
 
-1. Add the following namespace directives to declare the Service Bus and the Windows Azure supporting assemblies, and a reference to the **Models** namespace of the Web project, which you will use in the next tasks.
+1. Add the following namespace directives to declare the Service Bus and the Windows Azure supporting assemblies.
 
 	(Code Snippet - _Service Bus Messaging - Ex01 - Adding Namespace Directives_ - CS)
 
@@ -230,7 +230,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 	````C#
 	public HomeController()
 	{
-	    var baseAddress = RoleEnvironment.GetConfigurationSettingValue("namespaceAddress");
+	    var baseAddress = RoleEnvironment.GetConfigurationSettingValue("namespaceName");
 	    var issuerName = RoleEnvironment.GetConfigurationSettingValue("issuerName");
 	    var issuerKey = RoleEnvironment.GetConfigurationSettingValue("issuerKey");
 	
@@ -295,7 +295,7 @@ You will now launch the updated application in the Windows Azure Compute Emulato
  
 	_Configuring StartUp Project_
 
-1. Press **F5** to launch the application. The browser will show the default page of the application.
+1. Press **F5** to launch the application. The browser will show the default page of the application (note that the queue you created in the previous task is displayed under **Queue Explorer**).
 
  	![UsingQueues Application Home Page](Images/usingqueues-application-home-page.png?raw=true "UsingQueues Application Home Page")
  
@@ -390,7 +390,7 @@ In this task, you learn how to write a message to a queue. You can send any seri
 	````C#
 	public HomeController()
 	{
-		var baseAddress = RoleEnvironment.GetConfigurationSettingValue("namespaceAddress");
+		var baseAddress = RoleEnvironment.GetConfigurationSettingValue("namespaceName");
 		var issuerName = RoleEnvironment.GetConfigurationSettingValue("issuerName");
 		var issuerKey = RoleEnvironment.GetConfigurationSettingValue("issuerKey");
 
@@ -639,7 +639,7 @@ In this task you will update the solution you created in last exercise to suppor
 	````C#
 	public HomeController()
 	{
-		var baseAddress = RoleEnvironment.GetConfigurationSettingValue("namespaceAddress");
+		var baseAddress = RoleEnvironment.GetConfigurationSettingValue("namespaceName");
 		var issuerName = RoleEnvironment.GetConfigurationSettingValue("issuerName");
 		var issuerKey = RoleEnvironment.GetConfigurationSettingValue("issuerKey");
 

@@ -17,7 +17,7 @@
     <ConfigurationSettings>
       <Setting name="issuerName" />
       <Setting name="issuerKey" />
-      <Setting name="namespaceAddress" />
+      <Setting name="namespaceName" />
     </ConfigurationSettings>
   </WebRole>
 </ServiceDefinition>
