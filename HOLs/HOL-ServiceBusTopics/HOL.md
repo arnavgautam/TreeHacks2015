@@ -193,7 +193,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
  
     _Launching the Service Configuration editor_
 
-1. In the **Settings** tab, set _namespaceAddress_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to the ones you previously copied from the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
+1. In the **Settings** tab, set _namespaceName_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to the ones you previously copied from the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
 
 	![Updating settings to the UsingTopics web role](Images/updating-settings-to-the-usingtopics-web-role.png?raw=true)
 
@@ -201,7 +201,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 1. Press **CTRL + S** to save the changes to the Web Role configuration.
 
-1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to Windows Azure Service Bus from your application. In **Solution Explorer**, right-click the **UsingTopics** project node and select **Add Reference.**
+1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to **Windows Azure Service Bus** from your application. In **Solution Explorer**, right-click the **UsingTopics** project node and select **Add | Reference...**.
 
 1. In the **Reference Manager** dialog box, check the **System.Runtime.Serialization** assembly. Then, select the **Extensions** assemblies from the left pane, check **Microsoft.ServiceBus** and ensure **Microsoft.WindowsAzure.ServiceRuntime** is checked as well. Click **OK** to add the references.
 
@@ -231,7 +231,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 	````C#
 	public HomeController()
 	{
-		 var baseAddress = RoleEnvironment.GetConfigurationSettingValue("namespaceAddress");
+		 var baseAddress = RoleEnvironment.GetConfigurationSettingValue("namespaceName");
 		 var issuerName = RoleEnvironment.GetConfigurationSettingValue("issuerName");
 		 var issuerKey = RoleEnvironment.GetConfigurationSettingValue("issuerKey");
 

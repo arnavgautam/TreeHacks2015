@@ -14,7 +14,7 @@ namespace UsingQueues.Controllers
 
         public HomeController()
         {
-            var baseAddress = RoleEnvironment.GetConfigurationSettingValue("namespaceAddress");
+            var baseAddress = RoleEnvironment.GetConfigurationSettingValue("namespaceName");
             var issuerName = RoleEnvironment.GetConfigurationSettingValue("issuerName");
             var issuerKey = RoleEnvironment.GetConfigurationSettingValue("issuerKey");
 
