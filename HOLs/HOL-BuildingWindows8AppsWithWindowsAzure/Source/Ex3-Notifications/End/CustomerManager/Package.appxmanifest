@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="57b154b6-0da0-4511-bd9c-469448489a38" Publisher="CN=User" Version="1.0.0.0" />
+  <Identity Name="41511nbarg.CustomerManager" Publisher="CN=0CA94C88-752D-4385-A13F-90B6DA11D589" Version="1.1.0.0" />
   <Properties>
     <DisplayName>CustomerManager</DisplayName>
-    <PublisherDisplayName>User</PublisherDisplayName>
+    <PublisherDisplayName>nbarg</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
@@ -15,12 +15,14 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="CustomerManager.App">
-      <m2:VisualElements DisplayName="CustomerManager" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="CustomerManager" ForegroundText="light" BackgroundColor="#464646">
+      <m2:VisualElements DisplayName="CustomerManager" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="CustomerManager" ForegroundText="light" BackgroundColor="#464646" ToastCapable="true">
         <m2:SplashScreen Image="Assets\SplashScreen.png" />
       </m2:VisualElements>
     </Application>
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="internetClientServer" />
+    <Capability Name="privateNetworkClientServer" />
   </Capabilities>
 </Package>

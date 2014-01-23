@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Models;
+using Microsoft.ServiceBus.Notifications;
+using NotificationsExtensions.ToastContent;
+using System.Configuration;
 
 namespace WebApi.Controllers
 {
@@ -82,6 +85,8 @@ namespace WebApi.Controllers
             db.Customers.Add(customer);
             await db.SaveChangesAsync();
 
+            this.SendNotification(customer);
+
             return CreatedAtRoute("DefaultApi", new { id = customer.CustomerId }, customer);
         }
 
@@ -113,6 +118,20 @@ namespace WebApi.Controllers
         private bool CustomerExists(int id)
         {
             return db.Customers.Count(e => e.CustomerId == id) > 0;
+        }
+
+        private async void SendNotification(Customer customer)
+        {
+            var connectionString = ConfigurationManager.AppSettings["HubConnectionString"];
+            var notificationHub = ConfigurationManager.AppSettings["HubName"];
+            NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(connectionString, notificationHub);
+
+            var notification = ToastContentFactory.CreateToastText02();
+
+            notification.TextHeading.Text = "New customer added!";
+            notification.TextBodyWrap.Text = customer.Name;
+
+            await hub.SendWindowsNativeNotificationAsync(notification.ToString());
         }
     }
 }
