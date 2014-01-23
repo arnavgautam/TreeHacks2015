@@ -1,30 +1,17 @@
-﻿using CustomerManager.Common;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The Grid App template is documented at http://go.microsoft.com/fwlink/?LinkId=234226
-
-namespace CustomerManager
+﻿namespace CustomerManager
 {
+    using System;
+    using CustomerManager.Common;
+    using Windows.ApplicationModel;
+    using Windows.ApplicationModel.Activation;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
+
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    public sealed partial class App : Application
     {
         /// <summary>
         /// Initializes the singleton Application object.  This is the first line of authored code
@@ -33,7 +20,7 @@ namespace CustomerManager
         public App()
         {
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            this.Suspending += this.OnSuspending;
         }
 
         /// <summary>
@@ -43,7 +30,6 @@ namespace CustomerManager
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-
 #if DEBUG
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached)
@@ -55,19 +41,21 @@ namespace CustomerManager
 
             Frame rootFrame = Window.Current.Content as Frame;
 
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
+            //// Do not repeat app initialization when the Window already has content,
+            //// just ensure that the window is active
 
             if (rootFrame == null)
             {
-                // Create a Frame to act as the navigation context and navigate to the first page
+                //// Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
-                //Associate the frame with a SuspensionManager key                                
+                
+                ////Associate the frame with a SuspensionManager key                                
                 SuspensionManager.RegisterFrame(rootFrame, "AppFrame");
-                // Set the default language
+                
+                //// Set the default language
                 rootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
 
-                rootFrame.NavigationFailed += OnNavigationFailed;
+                rootFrame.NavigationFailed += this.OnNavigationFailed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
@@ -78,14 +66,15 @@ namespace CustomerManager
                     }
                     catch (SuspensionManagerException)
                     {
-                        //Something went wrong restoring state.
-                        //Assume there is no state and continue
+                        ////Something went wrong restoring state.
+                        ////Assume there is no state and continue
                     }
                 }
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
+
             if (rootFrame.Content == null)
             {
                 // When the navigation stack isn't restored navigate to the first page,
@@ -93,6 +82,7 @@ namespace CustomerManager
                 // parameter
                 rootFrame.Navigate(typeof(GroupedCustomersPage), e.Arguments);
             }
+
             // Ensure the current window is active
             Window.Current.Activate();
         }
@@ -102,7 +92,7 @@ namespace CustomerManager
         /// </summary>
         /// <param name="sender">The Frame which failed navigation</param>
         /// <param name="e">Details about the navigation failure</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }

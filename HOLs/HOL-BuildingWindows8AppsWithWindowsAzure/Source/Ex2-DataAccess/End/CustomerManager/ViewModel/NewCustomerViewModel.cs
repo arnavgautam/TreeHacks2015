@@ -6,12 +6,12 @@
 
     public class NewCustomerViewModel : BindableBase
     {
-        public CustomerViewModel Customer { get; set; }
-
         public NewCustomerViewModel()
         {
             this.Customer = new CustomerViewModel();
         }
+
+        public CustomerViewModel Customer { get; set; }
 
         public void CreateCustomer()
         {

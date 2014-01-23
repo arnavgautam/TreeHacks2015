@@ -1,32 +1,26 @@
-﻿using CustomerManager.Common;
-using CustomerManager.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
-
-namespace CustomerManager
+﻿namespace CustomerManager
 {
+    using System;
+    using CustomerManager.Common;
+    using CustomerManager.ViewModel;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
+
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
     public sealed partial class NewCustomerPage : Page
     {
-
         private NavigationHelper navigationHelper;
         private NewCustomerViewModel viewModel = new NewCustomerViewModel();
+
+        public NewCustomerPage()
+        {
+            this.InitializeComponent();
+            this.navigationHelper = new NavigationHelper(this);
+            this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
+            this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+        }
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -45,33 +39,25 @@ namespace CustomerManager
             get { return this.navigationHelper; }
         }
 
-        public NewCustomerPage()
-        {
-            this.InitializeComponent();
-            this.navigationHelper = new NavigationHelper(this);
-            this.navigationHelper.LoadState += navigationHelper_LoadState;
-            this.navigationHelper.SaveState += navigationHelper_SaveState;
-        }
-
         #region NavigationHelper registration
 
-        /// The methods provided in this section are simply used to allow
-        /// NavigationHelper to respond to the page's navigation methods.
-        /// 
-        /// Page specific logic should be placed in event handlers for the  
-        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
-        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
-        /// The navigation parameter is available in the LoadState method 
-        /// in addition to page state preserved during an earlier session.
+        //// The methods provided in this section are simply used to allow
+        //// NavigationHelper to respond to the page's navigation methods.
+        //// 
+        //// Page specific logic should be placed in event handlers for the  
+        //// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
+        //// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
+        //// The navigation parameter is available in the LoadState method 
+        //// in addition to page state preserved during an earlier session.
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            navigationHelper.OnNavigatedTo(e);
+            this.navigationHelper.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            navigationHelper.OnNavigatedFrom(e);
+            this.navigationHelper.OnNavigatedFrom(e);
         }
 
         #endregion
@@ -87,7 +73,7 @@ namespace CustomerManager
         /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
         /// a dictionary of state preserved by this page during an earlier
         /// session. The state will be null the first time a page is visited.</param>
-        private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
         }
 
@@ -99,7 +85,7 @@ namespace CustomerManager
         /// <param name="sender">The source of the event; typically <see cref="NavigationHelper"/></param>
         /// <param name="e">Event data that provides an empty dictionary to be populated with
         /// serializable state.</param>
-        private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
+        private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
         }
 
@@ -107,7 +93,10 @@ namespace CustomerManager
         {
             this.ViewModel.CreateCustomer();
 
-            while (this.NavigationHelper.CanGoBack()) this.NavigationHelper.GoBack();
+            while (this.NavigationHelper.CanGoBack())
+            {
+                this.NavigationHelper.GoBack();
+            }
         }
     }
 }

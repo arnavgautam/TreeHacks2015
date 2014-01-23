@@ -8,14 +8,14 @@
 
     public class GroupedCustomersViewModel : BindableBase
     {
-        public ObservableCollection<CustomerViewModel> CustomersList { get; set; }
-
         public GroupedCustomersViewModel()
         {
             this.CustomersList = new ObservableCollection<CustomerViewModel>();
 
             this.GetCustomers();
         }
+
+        public ObservableCollection<CustomerViewModel> CustomersList { get; set; }
 
         private async void GetCustomers()
         {

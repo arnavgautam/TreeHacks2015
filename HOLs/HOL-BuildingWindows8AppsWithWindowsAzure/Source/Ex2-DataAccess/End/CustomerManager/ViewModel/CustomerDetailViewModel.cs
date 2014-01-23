@@ -12,12 +12,20 @@
         private string selectedCustomerId;
         private CustomerViewModel selectedCustomer;
 
+        public CustomerDetailViewModel()
+        {
+            this.CustomersList = new ObservableCollection<CustomerViewModel>();
+
+            this.GetCustomers();
+        }
+
         public string SelectedCustomerId
         {
             get
             {
                 return this.selectedCustomerId;
             }
+
             set
             {
                 this.SetProperty(ref this.selectedCustomerId, value);
@@ -31,21 +39,14 @@
             {
                 return this.selectedCustomer;
             }
+
             set
             {
                 this.SetProperty(ref this.selectedCustomer, value);
             }
-
         }
 
         public ObservableCollection<CustomerViewModel> CustomersList { get; set; }
-
-        public CustomerDetailViewModel()
-        {
-            this.CustomersList = new ObservableCollection<CustomerViewModel>();
-
-            this.GetCustomers();
-        }
 
         private async void GetCustomers()
         {

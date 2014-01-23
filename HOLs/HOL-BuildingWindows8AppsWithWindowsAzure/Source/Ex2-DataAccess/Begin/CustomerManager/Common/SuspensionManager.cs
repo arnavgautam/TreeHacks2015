@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.ApplicationModel;
-using Windows.Storage;
-using Windows.Storage.Streams;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace CustomerManager.Common
+﻿namespace CustomerManager.Common
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime.Serialization;
+    using System.Threading.Tasks;
+    using Windows.Storage;
+    using Windows.Storage.Streams;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// SuspensionManager captures global session state to simplify process lifetime management
     /// for an application.  Note that session state will be automatically cleared under a variety
@@ -22,9 +19,17 @@ namespace CustomerManager.Common
     /// </summary>
     internal sealed class SuspensionManager
     {
-        private static Dictionary<string, object> _sessionState = new Dictionary<string, object>();
-        private static List<Type> _knownTypes = new List<Type>();
-        private const string sessionStateFilename = "_sessionState.xml";
+        private const string SessionStateFilename = "_sessionState.xml";
+        private static Dictionary<string, object> sessionState = new Dictionary<string, object>();
+        private static List<Type> knownTypes = new List<Type>();
+
+        private static DependencyProperty frameSessionStateKeyProperty =
+            DependencyProperty.RegisterAttached("_FrameSessionStateKey", typeof(string), typeof(SuspensionManager), null);
+
+        private static DependencyProperty frameSessionStateProperty =
+            DependencyProperty.RegisterAttached("_FrameSessionState", typeof(Dictionary<string, object>), typeof(SuspensionManager), null);
+
+        private static List<WeakReference<Frame>> registeredFrames = new List<WeakReference<Frame>>();
 
         /// <summary>
         /// Provides access to global session state for the current session.  This state is
@@ -35,7 +40,7 @@ namespace CustomerManager.Common
         /// </summary>
         public static Dictionary<string, object> SessionState
         {
-            get { return _sessionState; }
+            get { return sessionState; }
         }
 
         /// <summary>
@@ -45,7 +50,7 @@ namespace CustomerManager.Common
         /// </summary>
         public static List<Type> KnownTypes
         {
-            get { return _knownTypes; }
+            get { return knownTypes; }
         }
 
         /// <summary>
@@ -60,7 +65,7 @@ namespace CustomerManager.Common
             try
             {
                 // Save the navigation state for all registered frames
-                foreach (var weakFrameReference in _registeredFrames)
+                foreach (var weakFrameReference in registeredFrames)
                 {
                     Frame frame;
                     if (weakFrameReference.TryGetTarget(out frame))
@@ -72,15 +77,16 @@ namespace CustomerManager.Common
                 // Serialize the session state synchronously to avoid asynchronous access to shared
                 // state
                 MemoryStream sessionData = new MemoryStream();
-                DataContractSerializer serializer = new DataContractSerializer(typeof(Dictionary<string, object>), _knownTypes);
-                serializer.WriteObject(sessionData, _sessionState);
+                DataContractSerializer serializer = new DataContractSerializer(typeof(Dictionary<string, object>), knownTypes);
+                serializer.WriteObject(sessionData, sessionState);
 
                 // Get an output stream for the SessionState file and write the state asynchronously
-                StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync(sessionStateFilename, CreationCollisionOption.ReplaceExisting);
+                StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync(SessionStateFilename, CreationCollisionOption.ReplaceExisting);
                 using (Stream fileStream = await file.OpenStreamForWriteAsync())
                 {
                     sessionData.Seek(0, SeekOrigin.Begin);
                     await sessionData.CopyToAsync(fileStream);
+                    await fileStream.FlushAsync();
                 }
             }
             catch (Exception e)
@@ -100,26 +106,26 @@ namespace CustomerManager.Common
         /// completes.</returns>
         public static async Task RestoreAsync()
         {
-            _sessionState = new Dictionary<String, Object>();
+            sessionState = new Dictionary<string, object>();
 
             try
             {
                 // Get the input stream for the SessionState file
-                StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync(sessionStateFilename);
+                StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync(SessionStateFilename);
                 using (IInputStream inStream = await file.OpenSequentialReadAsync())
                 {
                     // Deserialize the Session State
-                    DataContractSerializer serializer = new DataContractSerializer(typeof(Dictionary<string, object>), _knownTypes);
-                    _sessionState = (Dictionary<string, object>)serializer.ReadObject(inStream.AsStreamForRead());
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(Dictionary<string, object>), knownTypes);
+                    sessionState = (Dictionary<string, object>)serializer.ReadObject(inStream.AsStreamForRead());
                 }
 
                 // Restore any registered frames to their saved state
-                foreach (var weakFrameReference in _registeredFrames)
+                foreach (var weakFrameReference in registeredFrames)
                 {
                     Frame frame;
                     if (weakFrameReference.TryGetTarget(out frame))
                     {
-                        frame.ClearValue(FrameSessionStateProperty);
+                        frame.ClearValue(frameSessionStateProperty);
                         RestoreFrameNavigationState(frame);
                     }
                 }
@@ -129,12 +135,6 @@ namespace CustomerManager.Common
                 throw new SuspensionManagerException(e);
             }
         }
-
-        private static DependencyProperty FrameSessionStateKeyProperty =
-            DependencyProperty.RegisterAttached("_FrameSessionStateKey", typeof(String), typeof(SuspensionManager), null);
-        private static DependencyProperty FrameSessionStateProperty =
-            DependencyProperty.RegisterAttached("_FrameSessionState", typeof(Dictionary<String, Object>), typeof(SuspensionManager), null);
-        private static List<WeakReference<Frame>> _registeredFrames = new List<WeakReference<Frame>>();
 
         /// <summary>
         /// Registers a <see cref="Frame"/> instance to allow its navigation history to be saved to
@@ -148,22 +148,22 @@ namespace CustomerManager.Common
         /// <see cref="SuspensionManager"/></param>
         /// <param name="sessionStateKey">A unique key into <see cref="SessionState"/> used to
         /// store navigation-related information.</param>
-        public static void RegisterFrame(Frame frame, String sessionStateKey)
+        public static void RegisterFrame(Frame frame, string sessionStateKey)
         {
-            if (frame.GetValue(FrameSessionStateKeyProperty) != null)
+            if (frame.GetValue(frameSessionStateKeyProperty) != null)
             {
                 throw new InvalidOperationException("Frames can only be registered to one session state key");
             }
 
-            if (frame.GetValue(FrameSessionStateProperty) != null)
+            if (frame.GetValue(frameSessionStateProperty) != null)
             {
                 throw new InvalidOperationException("Frames must be either be registered before accessing frame session state, or not registered at all");
             }
 
             // Use a dependency property to associate the session key with a frame, and keep a list of frames whose
             // navigation state should be managed
-            frame.SetValue(FrameSessionStateKeyProperty, sessionStateKey);
-            _registeredFrames.Add(new WeakReference<Frame>(frame));
+            frame.SetValue(frameSessionStateKeyProperty, sessionStateKey);
+            registeredFrames.Add(new WeakReference<Frame>(frame));
 
             // Check to see if navigation state can be restored
             RestoreFrameNavigationState(frame);
@@ -180,8 +180,8 @@ namespace CustomerManager.Common
         {
             // Remove session state and remove the frame from the list of frames whose navigation
             // state will be saved (along with any weak references that are no longer reachable)
-            SessionState.Remove((String)frame.GetValue(FrameSessionStateKeyProperty));
-            _registeredFrames.RemoveAll((weakFrameReference) =>
+            SessionState.Remove((string)frame.GetValue(frameSessionStateKeyProperty));
+            registeredFrames.RemoveAll((weakFrameReference) =>
             {
                 Frame testFrame;
                 return !weakFrameReference.TryGetTarget(out testFrame) || testFrame == frame;
@@ -196,34 +196,37 @@ namespace CustomerManager.Common
         /// that can still be useful when restoring pages that have been discarded from the
         /// navigation cache.
         /// </summary>
-        /// <remarks>Apps may choose to rely on <see cref="NavigationHelper"/> to manage
+        /// <remarks>Apps may choose to rely on <see cref="LayoutAwarePage"/> to manage
         /// page-specific state instead of working with frame session state directly.</remarks>
         /// <param name="frame">The instance for which session state is desired.</param>
         /// <returns>A collection of state subject to the same serialization mechanism as
         /// <see cref="SessionState"/>.</returns>
-        public static Dictionary<String, Object> SessionStateForFrame(Frame frame)
+        public static Dictionary<string, object> SessionStateForFrame(Frame frame)
         {
-            var frameState = (Dictionary<String, Object>)frame.GetValue(FrameSessionStateProperty);
+            var frameState = (Dictionary<string, object>)frame.GetValue(frameSessionStateProperty);
 
             if (frameState == null)
             {
-                var frameSessionKey = (String)frame.GetValue(FrameSessionStateKeyProperty);
+                var frameSessionKey = (string)frame.GetValue(frameSessionStateKeyProperty);
                 if (frameSessionKey != null)
                 {
                     // Registered frames reflect the corresponding session state
-                    if (!_sessionState.ContainsKey(frameSessionKey))
+                    if (!sessionState.ContainsKey(frameSessionKey))
                     {
-                        _sessionState[frameSessionKey] = new Dictionary<String, Object>();
+                        sessionState[frameSessionKey] = new Dictionary<string, object>();
                     }
-                    frameState = (Dictionary<String, Object>)_sessionState[frameSessionKey];
+
+                    frameState = (Dictionary<string, object>)sessionState[frameSessionKey];
                 }
                 else
                 {
                     // Frames that aren't registered have transient state
-                    frameState = new Dictionary<String, Object>();
+                    frameState = new Dictionary<string, object>();
                 }
-                frame.SetValue(FrameSessionStateProperty, frameState);
+
+                frame.SetValue(frameSessionStateProperty, frameState);
             }
+
             return frameState;
         }
 
@@ -232,7 +235,7 @@ namespace CustomerManager.Common
             var frameState = SessionStateForFrame(frame);
             if (frameState.ContainsKey("Navigation"))
             {
-                frame.SetNavigationState((String)frameState["Navigation"]);
+                frame.SetNavigationState((string)frameState["Navigation"]);
             }
         }
 
@@ -240,18 +243,6 @@ namespace CustomerManager.Common
         {
             var frameState = SessionStateForFrame(frame);
             frameState["Navigation"] = frame.GetNavigationState();
-        }
-    }
-    public class SuspensionManagerException : Exception
-    {
-        public SuspensionManagerException()
-        {
-        }
-
-        public SuspensionManagerException(Exception e)
-            : base("SuspensionManager failed", e)
-        {
-
         }
     }
 }

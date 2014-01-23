@@ -1,24 +1,12 @@
-﻿using CustomerManager.Common;
-using CustomerManager.Data;
-using CustomerManager.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The Grouped Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234231
-
-namespace CustomerManager
+﻿namespace CustomerManager
 {
+    using System;
+    using CustomerManager.Common;
+    using CustomerManager.ViewModel;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
+
     /// <summary>
     /// A page that displays a grouped collection of items.
     /// </summary>
@@ -26,6 +14,13 @@ namespace CustomerManager
     {
         private NavigationHelper navigationHelper;
         private GroupedCustomersViewModel viewModel = new GroupedCustomersViewModel();
+
+        public GroupedCustomersPage()
+        {
+            this.InitializeComponent();
+            this.navigationHelper = new NavigationHelper(this);
+            this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
+        }
 
         /// <summary>
         /// NavigationHelper is used on each page to aid in navigation and 
@@ -41,36 +36,28 @@ namespace CustomerManager
             get { return this.viewModel; }
         }
 
-        public GroupedCustomersPage()
-        {
-            this.InitializeComponent();
-            this.navigationHelper = new NavigationHelper(this);
-            this.navigationHelper.LoadState += navigationHelper_LoadState;
-        }
-
         #region NavigationHelper registration
 
-        /// The methods provided in this section are simply used to allow
-        /// NavigationHelper to respond to the page's navigation methods.
-        /// 
-        /// Page specific logic should be placed in event handlers for the  
-        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
-        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
-        /// The navigation parameter is available in the LoadState method 
-        /// in addition to page state preserved during an earlier session.
+        //// The methods provided in this section are simply used to allow
+        //// NavigationHelper to respond to the page's navigation methods.
+        //// 
+        //// Page specific logic should be placed in event handlers for the  
+        //// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
+        //// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
+        //// The navigation parameter is available in the LoadState method 
+        //// in addition to page state preserved during an earlier session.
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            navigationHelper.OnNavigatedTo(e);
+            this.navigationHelper.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            navigationHelper.OnNavigatedFrom(e);
+            this.navigationHelper.OnNavigatedFrom(e);
         }
 
         #endregion
-
 
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
@@ -83,7 +70,7 @@ namespace CustomerManager
         /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
         /// a dictionary of state preserved by this page during an earlier
         /// session.  The state will be null the first time a page is visited.</param>
-        private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
         }
 
