@@ -1,6 +1,5 @@
 ﻿namespace CloudShop.Services
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using CloudShop.Models;
@@ -9,25 +8,13 @@
     {
         public List<string> GetProducts()
         {
-            List<string> products = null;
-
-            NorthwindEntities context = new NorthwindEntities();
-
-            try
+            using (NorthwindEntities context = new NorthwindEntities())
             {
                 var query = from product in context.Products
                             select product.ProductName;
-                products = query.ToList();
+                var products = query.ToList();
+                return products;
             }
-            finally
-            {
-                if (context != null)
-                {
-                    context.Dispose();
-                }
-            }
-
-            return products;
         }
     }
 }

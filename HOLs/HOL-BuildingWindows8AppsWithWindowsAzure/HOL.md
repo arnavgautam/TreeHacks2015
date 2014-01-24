@@ -7,7 +7,7 @@
 
 Apps are at the center of the Windows 8 experience. They are alive with activity and vibrant content. Users are immersed in your full-screen, Windows Store apps, where they can focus on their content, rather than on the operating system.
 
-In this hands-on lab you will learn how to combine the fluency of Windows 8 applications with the power of Windows Azure: From a Windows Store application, you will consume an ASP.NET Web API service published in Windows Azure Web Sites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app to send toast notifications from your service to all the registered clients.
+In this hands-on lab you will learn how to combine the fluency of Windows 8 applications with the power of Windows Azure: from a Windows Store application, you will consume an ASP.NET Web API service published in Windows Azure Web Sites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app to send toast notifications from your service to all the registered clients.
 
 <a name="Objectives" />
 ### Objectives ###
@@ -25,7 +25,7 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Visual Studio Express 2013 for Web][1] or greater
-- [Visual Studio 2013 Express for Windows][2] or greater
+- [Visual Studio Express 2013 for Windows][2] or greater
 - A Windows Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
 	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
@@ -66,12 +66,12 @@ This hands-on lab includes the following exercises:
 
 > **Note:** Each exercise is accompanied by a starting solution located in the Begin folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and that they will not necessarily work until you complete the exercise.
 >
->Inside the source code for an exercise, you will also find an End folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
+>Inside the source code for an exercise, you will also find an **End** folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
 
 <a name="Exercise1" />
 ### Exercise 1: Building and Consuming an ASP.NET Web API from a Windows Store App ###
 
-ASP.NET Web API is a framework that facilitates to build and consume HTTP services for a wide range of clients.
+ASP.NET Web API is a framework that facilitates the process of building and consuming HTTP services for a wide range of clients.
 
 In this exercise you will learn the basics of consuming an ASP.NET Web API REST service - hosted in Windows Azure Web Sites - from a Windows Store application.
 
@@ -113,14 +113,14 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 
 	_ASP.NET Web API Project_
 
-	1. **Controllers:**  A controller is an object that handles HTTP requests. If you have worked with ASP.NET MVC, you will notice that they work similarly in Web API, but controllers in Web API derive from the ApiController instead of Controller Class. The first major difference is that actions on Web API controllers return data instead of views.
+	1. **Controllers:** A controller is an object that handles HTTP requests. If you have worked with ASP.NET MVC, you will notice that they work similarly in Web API, but controllers in Web API derive from the ApiController class instead of Controller Class. The first major difference is that actions on Web API controllers return data instead of views.
 		The New Project wizard created two other controllers for you when it created the project: Home and Values. 
 	
 		-The **Home** controller is responsible for serving HTML pages for the site, and is not directly related to Web API. 
 
 		-The **Values** Controller is an example of a Web API controller. 
 
-	1. **Models**: In this folder you will place the classes that represent the data in your application. ASP.NET Web API can automatically serialize your model to JSON, XML, or some other format, and then write the serialized data into the body of the HTTP response message. 
+	1. **Models:** In this folder you will place the classes that represent the data in your application. ASP.NET Web API can automatically serialize your model to JSON, XML, or some other format, and then write the serialized data into the body of the HTTP response message. 
 
 	1. **Routing:** To determine which action to invoke, the framework uses a routing table configured in App_Start/RouteConfig.cs. The project template creates a default HTTP route named "Default".
 		
@@ -145,18 +145,18 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 
 	> **Note:** If the web application is not displayed after the deployment, try refreshing the browser a couple of times.
 
-1. In the browser, go to **/api/values** to retrieve the JSON output of the sample service. 
+1. In the browser, append **api/values** to the URL to retrieve the JSON output of the sample service. 
 
 	In the browser, you will be prompted to download a file. Click **Open**. If prompted, choose to open the file with a text editor.
 	
-	![Retrieving the default  values](Images/retrieving-the-default-webapi-values.png?raw=true "Retrieving the default values")
+	![Retrieving the default values](Images/retrieving-the-default-webapi-values.png?raw=true "Retrieving the default values")
 
 	_Retrieving the default values_
 
 <a name="Ex1Task2" />
 #### Task 2 – Adding a New Windows Azure Web Site from Server Explorer ####
 
-1. Open **Microsoft Visual Studio Express 2013 For Web** and then open **Server Explorer** by selecting **View | Server Explorer**.
+1. If not already opened, open **Microsoft Visual Studio Express 2013 For Web** and then open **Server Explorer** by selecting **View | Server Explorer**.
 
 1. In **Server Explorer**, right-click the **Windows Azure** node and select **Connect to Windows Azure...**. Sign in using the Microsoft account associated with your Windows Azure account.
 
@@ -172,7 +172,7 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 
 	_Add new site_
 
-1. In the **Create site in Windows Azure** dialog box, provide the following information:
+1. In the **Create site on Windows Azure** dialog box, provide the following information:
 	- In the **Site name** box, enter an available name for the Web site.
 	- In the **Location** drop-down list, select the region for the Web site. This setting specifies which data center your Web site will run in.
 	- In the **Database server** drop-down list, select **Create new server**. Alternatively, you can select an existing SQL Server.
@@ -186,7 +186,7 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 
 1. Wait for the new Web site to be created.
 
-	> **Note:** By default, Windows Azure provides domains at _azurewebsites.net_ but also gives you the possibility to set custom domains using the Windows Azure Management Portal (right-click your Web site from Server Explorer and select **Open Management Portal**). However, you can only manage custom domains if you are using certain Web site modes.
+	> **Note:** By default, Windows Azure provides domains at _azurewebsites.net_ but also gives you the possibility to set custom domains using the Windows Azure Management Portal (right-click your Web site from Server Explorer and select **Open in Management Portal**). However, you can only manage custom domains if you are using certain Web site modes.
 	
 	> Windows Azure offers 3 modes for users to run their Web sites - Free, Shared, and Standard. In Free and Shared mode, all Web sites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are Free (strict quotas) vs. Shared (more flexible quotas). The maximum number of free sites may vary with your plan. In Standard mode, you choose which sites run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Web Sites Mode configuration in the **Scale** menu of your Web site.
 
@@ -251,7 +251,7 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 	
 	_Publishing a Web site_
 
-1. When the process is completed the published Web site will be opened in your default web browser. Go to **/api/values** to retrieve the default values and test that the Web API service is working successfully.
+1. When the process is completed the published Web site will be opened in your default web browser. Append **api/values** to the URL to retrieve the default values and test that the Web API service is working successfully.
 
 	![Default web service published](Images/default-web-service-published.png?raw=true "Default web service published")
 
@@ -264,7 +264,7 @@ In this task you will create a blank Windows Store application that will consume
 
 1. Open **Visual Studio Express 2013 for Windows** and select **File | New Project...** to start a new solution.
 
-1. In the **New Project** dialog box, select the **Blank** application under the **Visual C# | Windows Store** applications. Name it _Win8Client_ and click **OK**.
+1. In the **New Project** dialog box, select the **Blank App** under the **Visual C# | Windows Store** applications. Name it _Win8Client_ and click **OK**.
 
 	![Add a new Windows Store application basic client project](Images/add-new-style-ui-app-basic-client-project.png?raw=true "Add new Windows Store application basic client project")
 
@@ -274,7 +274,7 @@ In this task you will create a blank Windows Store application that will consume
 	
 	> ![Getting a Developer License](Images/getting-developer-license.png?raw=true "Getting a Developer License")
 	
-	> You will be requested to sign in using your Microsoft credentials. Do so and click **Sign In**. Now you have a developer license.
+	> You will be requested to sign in using your Microsoft credentials. Do so and click **Sign in**. Now you have a developer license.
 
 	> ![Inserting credentials to obtain a developer license](Images/inserting-credentials-developer-license.png?raw=true "Inserting credentials to obtain a developer license")
 
@@ -295,11 +295,11 @@ In this task you will create a blank Windows Store application that will consume
 
 1. Add the following method to the **MainPage.xaml.cs** class to perform an asynchronous call to the Web API service.
 
-	GetItem() instantiates an HttpClient object, which  sends a GET message to the service URL and retrieves a response asynchronously. Then, the response is deserialized and read by the JsonArray object before generating the value list. 
+	The method **GetItems()** instantiates an HttpClient object, which  sends a GET message to the service URL and retrieves a response asynchronously. Then, the response is deserialized and read by the JsonArray object before generating the value list. 
 	
 	> **Note:** If you want to read more about async methods you can check out [this article](http://msdn.microsoft.com/en-US/vstudio/async). 
 
-	(Code Snippet - _Building Windows 8 Apps - Ex1 - GetItems_)
+	(Code Snippet - _BuildingWindows8Apps - Ex1 - GetItems_)
 	<!-- mark:1-22 -->
 	````C#
 	public async void GetItems()
@@ -326,7 +326,7 @@ In this task you will create a blank Windows Store application that will consume
 	}
 	````
 
-1. Replace the value of the placeholder **[YOUR-WINDOWS-AZURE-SERVICE-URL]** with your Windows Azure published Web site URL. You can check that value in the Web site's dashboard.
+1. Replace the value of the placeholder [YOUR-WINDOWS-AZURE-SERVICE-URL] with your Windows Azure published Web site URL. You can check that value in the Web site's dashboard.
 
 	>**Note:** If you want to test the service locally, start the service project, check its URL and its port (e.g. http://localhost:3565/) and use that value.
 
@@ -358,7 +358,7 @@ In this task you will create a blank Windows Store application that will consume
 	</Grid>
 	````
 
-1. Make sure the Windows Store application is the start up project and press **F5** to run the solution. 
+1. Make sure the Windows Store application is the startup project and press **F5** to run the solution. 
 
 	You will see that the values retrieved from the service are listed in the List Box
 
@@ -661,7 +661,7 @@ In this task you will publish the updated Web API service in Windows Azure Web S
 
 	_Navigating to the Settings Page_
 
-1. In the **Settings** page, under the **Databases** section, if the **CustomerContext** section is not expanded, click the down arrow in the **CustomerContext** textbox, and select the SQL database shown in the drop-downlist.
+1. In the **Settings** page, under the **Databases** section, if the **CustomerContext** section is not expanded, click the down arrow in the **CustomerContext** textbox, and select the SQL database shown in the drop-down list.
 
 	> **Note:** The SQL Database you just selected was automatically generated when you created the Windows Azure Web Site in [Exercise 1](#Exercise1).
 
@@ -1133,9 +1133,9 @@ In this task you will configure your application to be capable of raising toast 
 
 1. Enter your credentials and click **Sign In**.
 
-	![Inserting your credentials to assciate your app in Windows Store](./Images/sign-in-for-association.png?raw=true)
+	![Inserting your credentials to associate your app in Windows Store](./Images/sign-in-for-association.png?raw=true)
 
-	_Inserting your credentials to assciate your app in Windows Store_
+	_Inserting your credentials to associate your app in Windows Store_
 
 1. In the Select an app name step, select **CustomerManager** and click **Next**.
 

@@ -1,20 +1,20 @@
 ﻿@model IEnumerable<string>
 
-@section featured {
-<section class="featured">
-    <div class="content-wrapper">
-        <hgroup class="title">
-            <h1>Your Order</h1>
-        </hgroup>
-    </div>
-</section>
+@{
+    ViewBag.Title = "Your Order";
 }
-    <label for="cart">You have selected the following products:</label>
-    @using (Html.BeginForm("Remove", "Home")) {
-        <select name="selectedItem" class="product-list" id="items" size="14">
-        @foreach (string product in ViewData.Model){
-            <option value="@product">@product</option>
-            } 
-        </select>
-        <a href="javascript:document.forms[0].submit();">Remove product from cart</a>
-   }
+
+<h2>Your Order</h2>
+
+@using (Html.BeginForm("Remove", "Home", FormMethod.Post, new { @role = "form" }))
+{
+    <label for="items">Select a product from the list:</label>
+    <select class="form-control" name="selectedItem" id="items" size="14">
+    @foreach (string product in Model)
+    {
+        <option value="@product">@product</option>
+    }
+    </select>
+}
+<br />
+<a href="javascript:document.forms[0].submit();" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove product from cart</a>

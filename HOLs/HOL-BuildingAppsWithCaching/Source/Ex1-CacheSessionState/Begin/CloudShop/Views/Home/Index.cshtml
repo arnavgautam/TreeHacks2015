@@ -4,18 +4,24 @@
     ViewBag.Title = "Products";
 }
 
-<h2>Products</h2>
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Products</h2>
 
-@using (Html.BeginForm("Add", "Home", FormMethod.Post, new { @role = "form" }))
-{
-    <label for="items">Select a product from the list:</label>
-    <select class="form-control" name="selectedItem" id="items" size="14">
-    @foreach (string product in Model.Products)
-    {
-        <option value="@product">@product</option>
-    }
-    </select>
-}
-<br />
-<a href="javascript:document.forms[0].submit();" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add item to cart</a>
-<a href="@Url.Action("Recycle", "Home")" class="btn btn-warning"><span class="glyphicon glyphicon glyphicon-refresh"></span> Recycle</a>
+        @using (Html.BeginForm("Add", "Home", FormMethod.Post, new { @role = "form" }))
+        {
+            <label for="items">Select a product from the list:</label>
+            <select class="form-control" name="selectedItem" id="items" size="14">
+                @foreach (string product in Model.Products)
+                {
+                    <option value="@product">@product</option>
+                }
+            </select>
+        }
+        <br />
+        <div class="row">
+            <a href="javascript:document.forms[0].submit();" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add item to cart</a>
+            <a href="@Url.Action("Recycle", "Home")" class="btn btn-warning"><span class="glyphicon glyphicon glyphicon-refresh"></span> Recycle</a>
+        </div>
+    </div>
+</div>

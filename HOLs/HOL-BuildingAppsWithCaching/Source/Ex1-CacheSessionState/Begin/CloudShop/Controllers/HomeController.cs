@@ -2,34 +2,20 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Net;
-    using System.Threading.Tasks;
     using System.Web.Mvc;
     using CloudShop.Models;
     using Microsoft.WindowsAzure.ServiceRuntime;
 
     public class HomeController : Controller
     {
-        private List<string> Cart
-        {
-            get
-            {
-                if (this.Session["Cart"] as List<string> == null)
-                {
-                    this.Session["Cart"] = new List<string>();
-                }
-
-                return this.Session["Cart"] as List<string>;
-            }
-        }
-
         public ActionResult Index()
         {
             Services.IProductRepository productRepository = new Services.ProductsRepository();
             var products = productRepository.GetProducts();
 
             // add all products currently not in session
-            var filteredProducts = products.Where(p => !this.Cart.Contains(p));
+            var itemsInSession = this.Session["Cart"] as List<string> ?? new List<string>();
+            var filteredProducts = products.Where(item => !itemsInSession.Contains(item));
 
             IndexViewModel model = new IndexViewModel()
             {
@@ -42,33 +28,34 @@
         [HttpPost]
         public ActionResult Add(string selectedItem)
         {
-            if (selectedItem == null)
+            if (selectedItem != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                List<string> cart = this.Session["Cart"] as List<string> ?? new List<string>();
+                cart.Add(selectedItem);
+                this.Session["Cart"] = cart;
             }
 
-            this.Cart.Add(selectedItem);
             return this.RedirectToAction("Index");
         }
 
         public ActionResult Checkout()
         {
-            return this.View(this.Cart);
+            var itemsInSession = this.Session["Cart"] as List<string> ?? new List<string>();
+            return this.View(itemsInSession);
         }
 
         [HttpPost]
         public ActionResult Remove(string selectedItem)
         {
-            if (selectedItem == null)
+            if (selectedItem != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var itemsInSession = this.Session["Cart"] as List<string>;
+                if (itemsInSession != null)
+                {
+                    itemsInSession.Remove(selectedItem);
+                }
             }
-            else if (!this.Cart.Contains(selectedItem))
-            {
-                return this.HttpNotFound();
-            }
-            
-            this.Cart.Remove(selectedItem);
+
             return this.RedirectToAction("Checkout");
         }
 

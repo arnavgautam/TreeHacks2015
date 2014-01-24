@@ -17,5 +17,11 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Session_Start()
+        {
+            this.Session["EnableCache"] = false;
+            this.Session["EnableLocalCache"] = false;
+        }
     }
 }

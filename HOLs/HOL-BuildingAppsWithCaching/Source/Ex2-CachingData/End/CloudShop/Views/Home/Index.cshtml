@@ -1,49 +1,58 @@
-@model CloudShop.Models.IndexViewModel
+﻿@model CloudShop.Models.IndexViewModel
 
-@section featured {
-<section class="featured">
-    <div class="content-wrapper">
-        <hgroup class="title">
-            <h1>Products</h1>
-        </hgroup>
-    </div>
-</section>
+@{
+    ViewBag.Title = "Products";
 }
-<label for="items">Select a product from the list:</label>
-<h3>Instance ID: @Model.InstanceId - Object ID: @Model.ObjectId</h3>
-@using (Html.BeginForm("Add","Home")) {
-<select name="selectedItem" class="product-list" id="items" size="14">
-    @foreach (string product in Model.Products) {
-        <option value="@product">@product</option>
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Products</h2>
+
+        @using (Html.BeginForm("Add", "Home", FormMethod.Post, new { @role = "form" }))
+        {
+            <label for="items">Select a product from the list:</label>
+            <select class="form-control" name="selectedItem" id="items" size="14">
+                @foreach (string product in Model.Products)
+                {
+                    <option value="@product">@product</option>
+                }
+            </select>
         }
-</select>
+        <br />
+        <div class="row">
+            <a href="javascript:document.forms[0].submit();" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add item to cart</a>
+            <a href="@Url.Action("Recycle", "Home")" class="btn btn-warning"><span class="glyphicon glyphicon glyphicon-refresh"></span> Recycle</a>
+        </div>
+    </div>
+    <div class="col-sm-6">
 
-    <a href="javascript:document.forms[0].submit();">Add item to cart</a>
-    }
-<p>@Html.ActionLink("Recycle", "Recycle", "Home")</p>
-<fieldset>
-    <legend>Cache settings for product data</legend>Enable Cache:
-    @if (Model.IsCacheEnabled)
-    {
-        <span>Yes |</span><span>@Html.ActionLink("No", "EnableCache", new { enabled = false })</span>
-    }
-    else
-    {
-        <span>@Html.ActionLink("Yes", "EnableCache", new { enabled = true })</span><span> | No</span>
-    }
-    <br />
-    @if (Model.IsCacheEnabled)
-    {
-        <span>Use Local Cache:</span>
-         if (Model.IsLocalCacheEnabled)
-         {
-        <span>Yes |</span><span>@Html.ActionLink("No", "EnableLocalCache", new { enabled = false })</span>
-          }
-          else
-          {
-        <span>@Html.ActionLink("Yes", "EnableLocalCache", new { enabled = true })</span><span> | No</span>
-          }
-     }
-    <div id="elapsedTime">Elapsed time: @Model.ElapsedTime.ToString() milliseconds.</div>
-</fieldset>
-
+        <div class="row">
+            <h2>Cache settings for Cloud Shop</h2>
+            <p><b>Instance ID:</b> @Model.InstanceId</p>
+            <p><b>Object ID:</b> @Model.ObjectId</p>
+            <h4>Cache Management:</h4>
+            @if (!Model.IsCacheEnabled)
+            {
+                <a href="@Url.Action("EnableCache", "Home", new { enabled = true })" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-flash"></span> Enable Cache</a>
+            }
+            else
+            {
+                <a href="@Url.Action("EnableCache", "Home", new { enabled = false })" class="btn btn-danger"><span class="glyphicon glyphicon glyphicon-off"></span> Disable Cache</a>
+            }
+            @if (Model.IsCacheEnabled)
+            {
+                if (!Model.IsLocalCacheEnabled)
+                {
+                    <a href="@Url.Action("EnableLocalCache", "Home", new { enabled = true })" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-flash"></span> Enable Local Cache</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("EnableLocalCache", "Home", new { enabled = false })" class="btn btn-danger"><span class="glyphicon glyphicon glyphicon-off"></span> Disable Local Cache</a>
+                }
+            }
+            <br />
+            <br />
+            <div id="elapsedTime">Elapsed time: @Model.ElapsedTime.ToString() milliseconds.</div>
+        </div>
+    </div>
+</div>

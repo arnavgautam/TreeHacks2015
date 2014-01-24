@@ -37,13 +37,13 @@ The following is required to complete this hands-on lab:
 ### Setup ###
 In order to run the exercises in this hands-on lab you need to set up your environment first.
 
-1. Open a Windows Explorer window and browse to the lab’s **Source** folder.
+1. Open a Windows Explorer window and browse to the lab's **Source** folder.
 1. Right-click on **Setup.cmd** and select Run as Administrator to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.
 1. If the User Account Control dialog is shown, confirm the action to proceed.
 
 >**Note:** Make sure you have checked all the dependencies for this lab before running the setup.
 
->This lab requires a Windows Azure SQL Database to start. To build the Northwind2 database automatically, the **Setup.cmd** file will prompt to you with your Windows Azure SQL Database account information. Remember to update the NorthwindEntities connection string in the application’s configuration file to point to your database for each solution.
+>This lab requires a Windows Azure SQL Database to start. To build the Northwind2 database automatically, the **Setup.cmd** file will prompt to you with your Windows Azure SQL Database account information. Remember to update the NorthwindEntities connection string in the application's configuration file to point to your database for each solution.
 
 >Remember to configure the firewall setting your Windows Azure SQL Database account to allow you to specify a list of IP addresses that can access your Windows Azure SQL Database Server. The firewall will deny all connections by default, so **be sure to configure your allow list** so you can connect to the database. Changes to your firewall settings can take a few moments to become effective. For additional information on how to prepare your Windows Azure SQL Database account, refer to the exercise 1 of the Introduction to Windows Azure SQL Database lab in the training kit.
 
@@ -51,10 +51,11 @@ In order to run the exercises in this hands-on lab you need to set up your envir
 
 >_Windows Azure SQL Database setup_
 
+
 <a name="CodeSnippets" />
 ### Using the Code Snippets ###
 
-Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of that code is provided as Visual Studio Code Snippets, which you can use from within Visual Studio 2012 to avoid having to add it manually. 
+Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of that code is provided as Visual Studio Code Snippets, which you can use from within Visual Studio 2013 to avoid having to add it manually. 
 
 >**Note**: Each exercise is accompanied by a starting solution located in the Begin folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and that they will not necessarily work until you complete the exercise. Inside the source code for an exercise, you will also find an End folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
 
@@ -78,11 +79,11 @@ Estimated time to complete this lab: **60 minutes**.
 In this exercise, you will explore the use of the session state provider for Cache service as the mechanism for out-of-process storage of session state data. For this purpose, you will use **Cloud Shop**, a sample shopping cart application implemented with ASP.NET MVC4. You will run this application in the compute emulator and then modify it to take advantage of the Windows Azure Cache service as the back-end store for the ASP.NET session state. You will start with a begin solution and explore the sample using the default ASP.NET in-proc session state provider. Next, you will add references to the Cache assemblies and configure the session state provider to store the contents of the shopping cart in the distributed cache cluster provided by Cache service.
 
 <a name="Ex1Task1" />
-#### Task 1 – Running the Cloud Shop Sample Site in the Compute Emulator ####
+#### Task 1 - Running the Cloud Shop Sample Site in the Compute Emulator ####
 
 In this task, you will run the Cloud Shop application in the compute emulator using the default session state provider; you will change that provider to take advantage of the Windows Azure Cache service later on.
 
-1. Start **Microsoft Visual Studio 2012 Express for Web** as administrator.
+1. Start **Microsoft Visual Studio 2013 Express for Web** as administrator.
 1. Open the **Begin** solution located at **Source\\Ex1-CacheSessionState\\Begin**.
 
 	>**Important:** 	Before you execute the solution, make sure that the startup project is set. For MVC projects, the start page must be left blank.
@@ -132,7 +133,7 @@ In this task, you will run the Cloud Shop application in the compute emulator us
 1. Close the browser window to stop the application.
 
 <a name="Ex1Task2" />
-#### Task 2 – Adding a dedicated caching role ####
+#### Task 2 - Adding a dedicated caching role ####
 In this task, you will add a new worker role that serves as a dedicated cache host. All other web roles and worker roles in the Cloud Service will be able to access the Cache service hosted by this role. You can set up multiple dedicated worker roles within your Cloud Service. In addition, you can also enable Cache service on any of the existing roles and allocate certain percentage of virtual machine memory to be used as cache. 
 
 1. In solution explorer, expand **CloudShop.Azure** node, and then right-click on **Roles**. Then, select **Add** | **New Worker Role Project...**.
@@ -144,16 +145,16 @@ In this task, you will add a new worker role that serves as a dedicated cache ho
 1. Press **CTRL + SHIFT + S** to save all the items.
 
 <a name="Ex1Task3" />
-#### Task 3 – Configuring Session State Using Windows Azure Cache service ####
+#### Task 3 - Configuring Session State Using Windows Azure Cache service ####
 
 In this task, you will change the Session State provider to take advantage of the Windows Azure Cache as the storage mechanism. This requires adding the appropriate assemblies to the **CloudShop** project and then updating the corresponding configuration in the **Web.config** file. 
 
-1. In Visual Studio 2012 Express for Web, open **Package Manager Console** from **Tools** | **Library Package Manager** | **Package Manager Console** menu.
+1. In Visual Studio 2013 Express for Web, open **Package Manager Console** from **Tools** | **Library Package Manager** | **Package Manager Console** menu.
 
-1. Make sure that **CloudShop** is selected in the **Default project** drop-down list. Issue the following command to install the Nuget package for Cache service:  
+1. Make sure that **CloudShop** is selected in the **Default project** drop-down list. Issue the following command to install the Nuget package for Cache service:
  
 	````PowerShell
-	Install-package Microsoft.WindowsAzure.Caching -Version 2.2.0.0
+	Install-package Microsoft.WindowsAzure.Caching
 	````
    
 1. Open the **Web.config** file located in the root folder of the **CloudShop** project.
@@ -192,7 +193,7 @@ In this task, you will change the Session State provider to take advantage of th
 1. Press **CTRL + S** to save your changes to the **Web.config** file.
 
 <a name="Ex1Task4"></a>
-#### Task 4 – Verification ####
+#### Task 4 - Verification ####
 
 1. Press **Ctrl + F5** to build and run the application. Wait for the browser to launch and show the **Products** page.
 
@@ -208,26 +209,26 @@ In this task, you will change the Session State provider to take advantage of th
 
 1. **Products** page should load correctly. Navigate to **Checkout** page. Notice that the order is intact. This confirms that with the Windows Azure Caching provider, the session state is stored outside the role instance and can persist through application restarts.
 
-	> **Note:** You should infer from the verification that for an application hosted in multiple servers or Windows Azure role instances where a load balancer distributes requests to the application, clients would continue to have access to their session data regardless of which instance responds to the request.
+	> **Note:** You should infer from the verification that, if your application is hosted in multiple servers or Windows Azure role instances, and a load balancer distributes requests to the application, clients would continue to have access to their session data regardless of which instance responds to the request.
 
 1. Close the browser window to stop the application.
 
 <a name="Exercise2" />
 ### Exercise 2: Caching Data with Windows Azure Caching ###
 
-This exercise will show you how to use the Windows Azure Caching to cache results from queries to Windows Azure SQL Database. You will continue with a solution based on the one used for the previous exercise. The only difference is in the home page, which has been updated to show the elapsed time to retrieve the list of products in the catalog, and now has a link to enable or disable the use of the cache.
+This exercise will show you how to use Windows Azure Caching to cache results from queries to Windows Azure SQL Database. You will continue with a solution based on the one used for the previous exercise. The only difference is in the home page, which has been updated to show the elapsed time to retrieve the list of products in the catalog, and now has a link to enable or disable the use of the cache.
 During the exercise, you will update the data access code with a trivial implementation of caching. It uses the canonical pattern, in which the code checks the cache first to retrieve the results of a query and, if there is no data available, executes the query against the database to cache the results.
 
 <a name="Ex2Task1" />
-#### Task 1 – Caching Data Retrieved from the SQL Database ####
+#### Task 1 - Caching Data Retrieved from the SQL Database ####
 
 To make use of Windows Azure Caching, you first need to create a **DataCacheFactory** object. This object determines the cache cluster connection information, which is set programmatically or by reading settings from the configuration file. Typically, you create an instance of the factory class and use it for the lifetime of the application. To store data in the cache, you request a **DataCache** instance from the **DataCacheFactory** and then use it to add or retrieve items from the cache.
 In this task, you update the data access code to cache the result of queries to Windows Azure SQL Database using the Windows Azure Caching. 
 
-1. Start **Microsoft Visual Studio 2012 Express for Web** as administrator.
+1. Start **Microsoft Visual Studio 2013 Express for Web** as administrator.
 1. Open the **Begin** solution located at **Source\\Ex2-CachingData\\Begin**.
 
-	>**Important:** Before you execute the solution, make sure that the start-up project is set. For MVC projects, the start page must be left blank. 
+	>**Important:** Before you execute the solution, make sure that the startup project is set. For MVC projects, the start page must be left blank. 
 	> To set the startup project, in **Solution Explorer**, right-click the **CloudShop.Azure** project and then select **Set as StartUp Project**. 
 	> To set the start page, in **Solution Explorer**, right-click the **CloudShop** project and select **Properties**. In the **Properties** window, select the **Web** tab and in the **Start Action**, select **Specific Page**. Leave the value of this field blank.
 
@@ -238,12 +239,12 @@ In this task, you update the data access code to cache the result of queries to 
 1. Open the **ProductsRepository.cs** file in the **Services** folder of the **CloudShop** project.
 1. Add a namespace directive for **Microsoft.ApplicationServer.Caching**.
 
-	<!--mark: 5-->
+	<!--mark: 4-5-->
 	````C#
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using CloudShop.Models;
+	using System;
 	using Microsoft.ApplicationServer.Caching;
 	...
 	````
@@ -255,18 +256,18 @@ In this task, you update the data access code to cache the result of queries to 
 	````C#
 	public class ProductsRepository : IProductRepository	
 	{
-	  private static DataCacheFactory cacheFactory = new DataCacheFactory();
-	  private bool enableCache = false;
- 
-	  public ProductsRepository(bool enableCache)
-	  {
-	    this.enableCache = enableCache;
-	  }
- 
-	  public List<string> GetProducts()
-	  {
-	    ...
-	  }
+		private static DataCacheFactory cacheFactory = new DataCacheFactory();
+		private bool enableCache = false;
+
+		public ProductsRepository(bool enableCache)
+		{
+			this.enableCache = enableCache;
+		}
+
+		public List<string> GetProducts()
+		{
+			...
+		}
 	}
 	````
 
@@ -275,104 +276,75 @@ In this task, you update the data access code to cache the result of queries to 
 1. Locate the **GetProducts** method and insert the following (highlighted) code immediately after the line that declares the **products** local variable.
 	
 	(Code Snippet - _BuildingAppsWithCachingService-Ex2-GetProducts read cache-CS_)
-	<!--mark: 8-30-->
-	````C#
-	public class ProductsRepository : IProductRepository
-	{
-	  ...
-	  public List<string> GetProducts()
-	  {
-	    List<string> products = null;
-	
-	    DataCache dataCache = null;
-	    if (this.enableCache)
-	    {
-	      try
-	      {
-	        dataCache = cacheFactory.GetDefaultCache();
-	        products = dataCache.Get("products") as List<string>;
-	        if (products != null)
-	        {
-	          products[0] = "(from cache)";
-	          return products;
-	        }
-	      }
-	      catch (DataCacheException ex)
-	      {
-	        if (ex.ErrorCode != DataCacheErrorCode.RetryLater)
-	        {
-	          throw;
-	        }
-
-	        // ignore temporary failures
-	      }
-	    }
- 	    
-	    NorthwindEntities context = new NorthwindEntities();
-	    
-	    try
-	    {
-	      var query = from product in context.Products
-	                  select product.ProductName;
-	      products = query.ToList();
-	    }
-	    finally
-	    {
-	      if (context != null)
-	      {
-	        context.Dispose();
-	      }
-	    }
-	    
-	    return products;
-	  }
-	}
-	````
-
-	>**Note:** The inserted code uses the **DataCacheFactory** object to return an instance of the default cache object and then attempts to retrieve an item from this cache using a key with the value "_products_". If the cache contains an object with the requested key, it sets the text of the first entry to indicate that the list was retrieved from the cache and then returns it. The code treats temporary failures from the Windows Azure Caching service as a cache miss so that it can retrieve the item from its data source instead.
-
-1. Next, add the following (highlighted) code block to the **GetProducts** method, immediately before the line that returns the **products** list at the end of the method.
-
-	(Code Snippet - _BuildingAppsWithCachingService-Ex2-GetProducts write cache-CS_)
-	<!--mark: 30-35-->
+	<!--mark: 6-28-->
 	````C#
 	public class ProductsRepository : IProductRepository
 	{
 		...
 		public List<string> GetProducts()
 		{
-			List<string> products = null;
-		
 			DataCache dataCache = null;
 			if (this.enableCache)
 			{
-			  ...
+				try
+				{
+					dataCache = cacheFactory.GetDefaultCache();
+					var products = dataCache.Get("products") as List<string>;
+					if (products != null)
+					{
+						products[0] = "(from cache)";
+						return products;
+					}
+				}
+				catch (DataCacheException ex)
+				{
+					if (ex.ErrorCode != DataCacheErrorCode.RetryLater)
+					{
+						throw;
+					}
+
+					// ignore temporary failures
+				}
 			}
-		
-			NorthwindEntities context = new NorthwindEntities();
-		
-			try
+
+			using (NorthwindEntities context = new NorthwindEntities())
 			{
-			  var query = from product in context.Products
-			             select product.ProductName;
-			  products = query.ToList();
+				var query = from product in context.Products
+				select product.ProductName;
+				var products = query.ToList();
+				return products;
 			}
-			finally
+		}
+	}
+	````
+
+	>**Note:** The inserted code uses the **DataCacheFactory** object to return an instance of the default cache object and then attempts to retrieve an item from this cache using a key with the value "_products_". If the cache contains an object with the requested key, it inserts a new entry to indicate that the list was retrieved from the cache and then returns it. The code treats temporary failures from the Windows Azure Caching service as a cache miss so that it can retrieve the item from its data source instead.
+
+1. Next, add the following (highlighted) code block to the **GetProducts** method, immediately before the line that returns the **products** list at the end of the method.
+
+	(Code Snippet - _BuildingAppsWithCachingService-Ex2-GetProducts write cache-CS_)
+	<!-- mark:12-17 -->
+	````C#
+	public class ProductsRepository : IProductRepository
+	{
+		...
+		public List<string> GetProducts()
+		{
+			...
+			using (NorthwindEntities context = new NorthwindEntities())
 			{
-			  if (context != null)
-			  {
-			    context.Dispose();
-			  }
+				var query = from product in context.Products
+				select product.ProductName;
+				var products = query.ToList();
+				products.Insert(0, "(from data source)");
+
+				if (this.enableCache && dataCache != null)
+				{
+					dataCache.Add("products", products, TimeSpan.FromSeconds(30));
+				}
+
+				return products;
 			}
-		
-			products.Insert(0, "(from data source)");
-		
-			if (this.enableCache && dataCache != null)
-			{
-			  dataCache.Add("products", products, TimeSpan.FromSeconds(30));
-			}
-			
-			return products;
 		}
 	}
 	````
@@ -380,7 +352,7 @@ In this task, you update the data access code to cache the result of queries to 
 	>**Note:** The inserted code stores the result of the query against the data source into the cache and sets its expiration policy to purge the item from the cache after 30 seconds.
 
 <a name="Ex2Task2" />
-#### Task 2 – Measuring the Data Access Latency ####
+#### Task 2 - Measuring the Data Access Latency ####
 
 In this task, you will update the application to allow control of the use of the cache from the UI and to display the time required to retrieve catalog data, allowing you to compare the latency of retrieving data from the cache against the time required to access the data source.
 
@@ -394,38 +366,34 @@ In this task, you will update the application to allow control of the use of the
 1. Find the **Index** action, locate the lines that instantiate a new **ProductsRepository** and call its **GetProducts** method, and replace them with the highlighted code, as shown below.
 
 	(Code Snippet - _BuildingAppsWithCachingService-Ex2-GetProducts latency-CS_)
-	<!--mark: 9-17; strike:6-8-->
+	<!-- mark:6-13 -->
 	````C#
 	public class HomeController : Controller
 	{
-	  ...                       
-	  public ActionResult Index()
-	  {
-	    Services.IProductRepository productRepository =
-	        new Services.ProductsRepository();
-	    var products = productRepository.GetProducts();
-	    bool enableCache = (bool)this.Session["EnableCache"];
-	
-	    // retrieve product catalog from repository and measure the elapsed time
-	    Services.IProductRepository productRepository =
-	        new Services.ProductsRepository(enableCache);
-	    Stopwatch stopWatch = new Stopwatch();
-	    stopWatch.Start();
-	    var products = productRepository.GetProducts();
-	    stopWatch.Stop();
- 
-	    // add all products currently not in session
-	    var itemsInSession = this.Session["Cart"] as List<string> ?? new List<string>();
-	    var filteredProducts = products.Where(item => !itemsInSession.Contains(item));
-	
-	    IndexViewModel model = new IndexViewModel()
-	    {
-	      Products = filteredProducts
-	    };
-	
-	    return View(model);
-	  }
-	  ...
+		...                       
+		public ActionResult Index()
+		{
+			bool enableCache = (bool)this.Session["EnableCache"];
+
+			// retrieve product catalog from repository and measure the elapsed time
+			Services.IProductRepository productRepository = new Services.ProductsRepository(enableCache);
+			Stopwatch stopWatch = new Stopwatch();
+			stopWatch.Start();
+			var products = productRepository.GetProducts();
+			stopWatch.Stop();
+
+			// add all products currently not in session
+			var itemsInSession = this.Session["Cart"] as List<string> ?? new List<string>();
+			var filteredProducts = products.Where(item => !itemsInSession.Contains(item));
+
+			IndexViewModel model = new IndexViewModel()
+			{
+				Products = filteredProducts
+			};
+
+			return this.View(model);
+		}
+		...
 	}
 	````
 
@@ -436,34 +404,34 @@ In this task, you will update the application to allow control of the use of the
 	````C#
 	public class HomeController : Controller
 	{
-	  ...                       
-	  public ActionResult Index()
-	  {
-	    bool enableCache = (bool)this.Session["EnableCache"];
-	
-	    // retrieve product catalog from repository and measure the elapsed time
-	    Services.IProductRepository productRepository =
-	        new Services.ProductsRepository(enableCache);
-	    Stopwatch stopWatch = new Stopwatch();
-	    stopWatch.Start();
-	    var products = productRepository.GetProducts();
-	    stopWatch.Stop();
-	
-	    // add all products currently not in session
-	    var itemsInSession = this.Session["Cart"] as List<string> ?? new List<string>();
-	    var filteredProducts = products.Where(item => !itemsInSession.Contains(item));
-	
-	    IndexViewModel model = new IndexViewModel()
-	    {
-	      Products = filteredProducts,
-	      ElapsedTime = stopWatch.ElapsedMilliseconds,
-	      IsCacheEnabled = enableCache,
-	      ObjectId = products.GetHashCode().ToString()
-		};
-	
-	    return View(model);
-	  }
-	  ...
+		...                       
+		public ActionResult Index()
+		{
+			bool enableCache = (bool)this.Session["EnableCache"];
+
+			// retrieve product catalog from repository and measure the elapsed time
+			Services.IProductRepository productRepository =
+			new Services.ProductsRepository(enableCache);
+			Stopwatch stopWatch = new Stopwatch();
+			stopWatch.Start();
+			var products = productRepository.GetProducts();
+			stopWatch.Stop();
+
+			// add all products currently not in session
+			var itemsInSession = this.Session["Cart"] as List<string> ?? new List<string>();
+			var filteredProducts = products.Where(item => !itemsInSession.Contains(item));
+
+			IndexViewModel model = new IndexViewModel()
+			{
+				Products = filteredProducts,
+				ElapsedTime = stopWatch.ElapsedMilliseconds,
+				IsCacheEnabled = enableCache,
+				ObjectId = products.GetHashCode().ToString()
+			};
+
+			return this.View(model);
+		}
+		...
 	}
 	````
 
@@ -477,20 +445,20 @@ In this task, you will update the application to allow control of the use of the
 	````C#
 	public class HomeController : Controller
 	{
-	  ...
-	  public ActionResult EnableCache(bool enabled)
-	  {
-	    this.Session["EnableCache"] = enabled;
-	    return RedirectToAction("Index");
-	  }
-	 }
+		...
+		public ActionResult EnableCache(bool enabled)
+		{
+			this.Session["EnableCache"] = enabled;
+			return this.RedirectToAction("Index");
+		}
+	}
 	````
 
 1. Press **Ctrl** + **F5** to build and launch the application in the compute emulator.
 
 	>**Note:** Ideally, you should test the code in Windows Azure. When you execute the application in the compute emulator, consider that accessing the Windows Azure SQL Database data source and the Windows Azure Caching require executing requests to resources located outside the bounds of your own network. Depending on your geographic location, both requests may exhibit a relatively high latency, which may overshadow the difference between the cached and non-cached scenarios. Once you deploy the application to Windows Azure, it is co-located in the same data center as the Windows Azure Caching service in Windows Azure SQL Database. As the latency is much lower, the results should be more significant.
 
-1. When you start the application, the cache is initially disabled. Refresh the page and notice the elapsed time displayed at the bottom of the page that indicates the time required to retrieve the product catalog. Note that the first item in the list indicates that the application retrieved the product catalog from the data source.
+1. When you start the application, the cache is initially disabled. Refresh the page and notice the elapsed time displayed under the **Cache settings for Cloud Shop** section that indicates the time required to retrieve the product catalog. Also that the first item in the list indicates that the application retrieved the product catalog from the data source.
 
 	>**Note:** You may need to refresh the page several times to obtain a stable reading. The value shown for the first request may be greater because ASP.NET needs to compile the page.
 
@@ -500,7 +468,7 @@ In this task, you will update the application to allow control of the use of the
 
 1. Observe the **Object ID** indicator shown above the product catalog and notice how it changes every time you refresh the page indicating that the repository returns a different object for each call.
 
-1. Now, click **Yes** in **Enable Cache** and wait for the page to refresh. Notice that the first item in the list indicates that it was still necessary for the application to retrieve the product catalog from the data source because the information has yet to be cached.
+1. Now, click the **Enable** button in **Enable Cache** and wait for the page to refresh. Notice that the first item in the list indicates that it was still necessary for the application to retrieve the product catalog from the data source because the information has yet to be cached.
 
 1. Click **Products**, or refresh the page in the browser. This time, the application retrieves the product data from the Windows Azure Caching and the elapsed time should be lower. Confirm that the first item in the list indicates that the source of the information is the cache.
 
@@ -511,7 +479,7 @@ In this task, you will update the application to allow control of the use of the
 1. Close the browser.
 
 <a name="Ex2Task3"></a>
-#### Task 3 – Enabling the Local Cache ####
+#### Task 3 - Enabling the Local Cache ####
 
 When using Windows Azure Caching, you have the option of using a local cache that allows objects to be cached in-memory at the client, as well as being stored in the cache cluster. In this task, you will enable the local cache and then compare the access time with the remote case.
 
@@ -564,7 +532,7 @@ When using Windows Azure Caching, you have the option of using a local cache tha
 1. Open the **HomeController.cs** file in the **Controllers** folder and find the **Index** action. Locate the line that instantiates a new **ProductsRepository** and replace those lines with the following highlighted code:
 
 	(Code Snippet - _BuildingAppsWithCachingService-Ex2-GetProducts LocalCache-CS_)
-	<!--mark: 7-10; strike: 11-13-->
+	<!--mark: 7-10-->
 	````C#
 	public class HomeController : Controller
 	{
@@ -576,9 +544,6 @@ When using Windows Azure Caching, you have the option of using a local cache tha
 
 		// retrieve product catalog from repository and measure the elapsed time
 		Services.IProductRepository productRepository = new Services.ProductsRepository(enableCache, enableLocalCache);
-		// retrieve product catalog from repository and measure the elapsed time
-		Services.IProductRepository productRepository =
-		new Services.ProductsRepository(enableCache);
 		Stopwatch stopwatch = new Stopwatch();
 		stopWatch.Start();
 		var products = productRepository.GetProducts();
@@ -587,38 +552,21 @@ When using Windows Azure Caching, you have the option of using a local cache tha
 	````
 
 1. In the same method, locate the code that creates a new **IndexViewModel** and add the following highlighted property.
-
-	<!--mark: 25-->
-	````C#
-	public class HomeController : Controller
+	<!-- mark:9 -->
+	````C#                  
+	public ActionResult Index()
 	{
-	  ...                       
-	  public ActionResult Index()
-	  {
-	      bool enableCache = (bool)this.Session["EnableCache"];
-	      bool enableLocalCache = (bool)this.Session["EnableLocalCache"];
-	      // retrieve product catalog from repository and measure the elapsed time
-	      Services.IProductRepository productRepository =
-	      new Services.ProductsRepository(enableCache, enableLocalCache);
-	      Stopwatch stopwatch = new Stopwatch();
-	      stopWatch.Start();
-	      var products = productRepository.GetProducts();
-	      stopWatch.Stop();
-	
-	      // add all products currently not in session
-	      var itemsInSession = this.Session["Cart"] as List<string> ?? new List<string>();
-	      var filteredProducts = products.Where(item => !itemsInSession.Contains(item));
-	
-	      IndexViewModel model = new IndexViewModel()
-	      {
-	          Products = filteredProducts,
-	          ElapsedTime = stopWatch.ElapsedMilliseconds,
-	          IsCacheEnabled = enableCache,
-	          IsLocalCacheEnabled = enableLocalCache,
-	          ObjectId = products.GetHashCode().ToString()
-	      };
-	      return View(model);
-	  }
+		...
+		IndexViewModel model = new IndexViewModel()
+		{
+			Products = filteredProducts,
+			ElapsedTime = stopWatch.ElapsedMilliseconds,
+			IsCacheEnabled = enableCache,
+			IsLocalCacheEnabled = enableLocalCache,
+			ObjectId = products.GetHashCode().ToString()
+		};
+
+		return this.View(model);
 	}
 	````
 
@@ -629,46 +577,47 @@ When using Windows Azure Caching, you have the option of using a local cache tha
 	````C#
 	public class HomeController : Controller
 	{
-	  ...
-	  public ActionResult EnableLocalCache(bool enabled)
-	  {
-	    this.Session["EnableLocalCache"] = enabled;
-	    return RedirectToAction("Index");
-	  }
- }
+		...
+		public ActionResult EnableLocalCache(bool enabled)
+		{
+			this.Session["EnableLocalCache"] = enabled;
+			return RedirectToAction("Index");
+		}
+	}
 	````
 
 1. Open **Index.cshtml** file in the **Views\Home** folder and add the following highlighted code above the **elapsedTime** div.
 
 	(Code Snippet - _BuildingAppsWithCachingService-Ex2-EnableLocalCache Option-HTML_)
-	<!--mark: 12-23-->
+	<!--mark: 13-23-->
 	````HTML
-	<fieldset>
-		 <legend>Cache settings for product data</legend>Enable Cache:
-		 @if (Model.IsCacheEnabled)
-		 {
-			  <span>Yes |</span><span>@Html.ActionLink("No", "EnableCache", new { enabled = false })</span>
-		 }
-		 else
-		 {
-			  <span>@Html.ActionLink("Yes", "EnableCache", new { enabled = true })</span><span> | No</span>
-		 }
-		 <br />
-		 @if(Model.IsCacheEnabled)
-		 {
-			  <span>Use Local Cache:</span>
-			  if (Model.IsLocalCacheEnabled)
-			  {
-					<span>Yes |</span><span>@Html.ActionLink("No", "EnableLocalCache", new { enabled = false })</span>
-			  }
-			  else
-			  {
-					<span>@Html.ActionLink("Yes", "EnableLocalCache", new { enabled = true })</span><span> | No</span>
-			  }
-		 }
-		 <div id="elapsedTime">Elapsed time: @Model.ElapsedTime.ToString() milliseconds.</div>
-	</fieldset>
-````
+	<h2>Cache settings for Cloud Shop</h2>
+	<p><b>Instance ID:</b> @Model.InstanceId</p>
+	<p><b>Object ID:</b> @Model.ObjectId</p>
+	<h4>Cache Management:</h4>
+	@if (!Model.IsCacheEnabled)
+	{
+		<a href="@Url.Action("EnableCache", "Home", new { enabled = true })" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-flash"></span> Enable Cache</a>
+	}
+	else
+	{
+		<a href="@Url.Action("EnableCache", "Home", new { enabled = false })" class="btn btn-danger"><span class="glyphicon glyphicon glyphicon-off"></span> Disable Cache</a>
+	}
+	@if (Model.IsCacheEnabled)
+	{
+		if (!Model.IsLocalCacheEnabled)
+		{
+			<a href="@Url.Action("EnableLocalCache", "Home", new { enabled = true })" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-flash"></span> Enable Local Cache</a>
+		}
+		else
+		{
+			<a href="@Url.Action("EnableLocalCache", "Home", new { enabled = false })" class="btn btn-danger"><span class="glyphicon glyphicon glyphicon-off"></span> Disable Local Cache</a>
+		}
+	}
+	<br />
+	<br />
+	<div id="elapsedTime">Elapsed time: @Model.ElapsedTime.ToString() milliseconds.</div>
+	````
 
 1. Press **Ctrl** + **F5** to build and launch the application in the compute emulator.
  
@@ -713,7 +662,7 @@ To take advantage of this caching implementation in the Cloud Shop application, 
 - Implement each method in the **IProductRepository** interface by calling the **RetrievedCachedData** method in the base class and supplying a delegate that calls the original data source class.
 
 <a name="Ex3Task1" />
-#### Task 1 – Implementing a Caching Data Source Base Class ####
+#### Task 1 - Implementing a Caching Data Source Base Class ####
 
 In this task, you will create the abstract class that you will use as the base class for your caching data source classes. You can take advantage of this general-purpose class in any project that requires a caching layer.
 
@@ -845,7 +794,7 @@ In this task, you will create the abstract class that you will use as the base c
 1. Save the **CachedDataSource.cs** file.
 
 <a name="Ex3Task2" />
-#### Task 2 – Building a Caching Product Catalog Repository ####
+#### Task 2 - Building a Caching Product Catalog Repository ####
 
 Once you have created an abstract base class for caching data sources, you will now create a concrete implementation that will provide a caching alternative for the **ProductsRepository** class. This task represents the steps you would typically follow when creating a caching layer for your data access code using the **CachedDataSource** class.
 
@@ -918,7 +867,7 @@ Once you have created an abstract base class for caching data sources, you will 
 	Because the **IProductRepository** contract is so simple, this is all that is required to provide a caching implementation. Typically, your data sources will have more than one method, but the basic approach should not change, allowing you to implement every method by copying this same pattern.
 
 <a name="Ex3Task3" />
-#### Task 3 – Creating a Data Source Factory Class ####
+#### Task 3 - Creating a Data Source Factory Class ####
 
 In this task, you will create a factory class that can return data source instances. The factory determines the cache provider to use from the application configuration settings and returns a data source suitably configured to use the chosen cache provider.
 
@@ -1011,7 +960,7 @@ In this task, you will create a factory class that can return data source instan
 	````
 
 <a name="Ex3Task4" />
-#### Task 4 – Configuring the Application for Caching ####
+#### Task 4 - Configuring the Application for Caching ####
 
 In this task, you will update the application to take advantage of the data source factory to instantiate the product catalog data source. To complete the setup of the caching layer, you will define the necessary configuration settings to select a caching provider.
 
