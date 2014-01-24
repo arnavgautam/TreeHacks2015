@@ -984,17 +984,17 @@ In this task you will obtain the information that will be needed to enable your 
 
 1. In Visual Studio, continue working with the solutions obtained from the previous exercise. If you did not executed the previous exercise you can open **WebApi.sln** with **Visual Studio Express 2013 for Web** and **CustomerManager.sln** with **Visual Studio Express 2013 for Windows 8.1**, both located in the **Source/Ex3-Notifications/Begin** folder of this lab.
 
-1. If you opened the **WebApi** begin solution, open **Web.config** and configure the **CustomerContext** connection string to point to a Windows Azure SQL Database. You can use the connection string below replacing the placeholders. [Exercise 2 - Task 3](#Ex2Task3) instructs how to do this. Then build the solution.
+1. If you opened the **WebApi** begin solution, deploy it configuring the **CustomerContext** connection string to point to a Windows Azure SQL Database. [Exercise 2 - Task 2](#Ex2Task2) instructs how to do this.
 
-	````XML
-	<add name="CustomerContext" connectionString="Server=tcp:[SERVER_URL],1433;Database=CustomersDB;User ID=[SERVER_ADMIN_LOGIN];Password=[SERVER_ADMIN_PASSWORD];Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" providerName="System.Data.SqlClient" />
-	````
+1. In the **CustomerManager** begin solution, open **Package.appxmanifest** and take note of the **Package Display Name** located in the **Packaging** tab.
 
-1. In the **CustomerManager** begin solution, open **Package.appxmanifest**.
+	![Taking note of the Package display name](Images/taking-note-of-the-package-display-name.png?raw=true "Taking note of the Package display name")
+
+	_Taking note of the Package display name_
 
     > **Note:** The package manifest is an XML document that contains the info the system needs to deploy, display, or update a Windows Store app. This info includes package identity, package dependencies, required capabilities, visual elements, and extensibility points. Every application package must include one package manifest.
 
-1.	Click **Store** in the Visual Studio menu and select **Reserve App Name**.
+1.	Click **Store** in the Visual Studio menu and select **Reserve App Name...**.
 
 	![Reserving App Name](./Images/reserving-app-name.png?raw=true)
 
@@ -1008,7 +1008,7 @@ In this task you will obtain the information that will be needed to enable your 
 
 	_Giving your app a unique name_
 
-1.	In the App name field, insert the Package Display Name that is inside the **Package.appxmanifest** file of your solution and click **Reserve app name**. Then click **Save** to confirm the reservation.
+1.	In the App name field, insert the **Package Display Name** that is inside the **Package.appxmanifest** file of your solution and click **Reserve app name**. Then click **Save** to confirm the reservation.
 
 	![Reserving an app name](./Images/app-name-windows-store.png?raw=true)
 
@@ -1018,13 +1018,13 @@ In this task you will obtain the information that will be needed to enable your 
 
 	_Confirming the app name reservation_
 
-1. Now you will have to identify your application to get a name and a publisher to insert in the **Package.appxmanifest** file. In the Submit an app page, click **Advanced features**.
+1. Now you will have to identify your application to get a name and a publisher to insert in the **Package.appxmanifest** file. In the Submit an app page, click **Services**.
 
 	![Configuring push notifications for the Notifications.Client app](./Images/app-name-reverved-completely-windows-store.png?raw=true)
 
 	_Configuring push notifications for the Notifications.Client app_
 
-1. In the Advanced features page, click **Push notifications and Live Connect services info**.
+1. In the Services page, click **Live Services site**.
 
 	![Advanced features page](./Images/push-notif-live-connect-service-info.png?raw=true)
 
@@ -1036,13 +1036,13 @@ In this task you will obtain the information that will be needed to enable your 
 
 	_Push notifications Overview page_
 
-1. Now we have to set the Identity Name and Publisher of our **Package.appxmanifest** file with the information in Windows Store. Go back to Visual Studio, right-click the **Package.appxmanifest** and select **View Code**. Replace the Name and Publisher attributes of the Identity element with the ones obtained in Windows Store. Click **Authenticating your service**.
+1. In the Identifying your app section, click **Authenticating your service**.
 
 	![Setting Identity Name and Publisher](./Images/app-identification.png?raw=true)
 
 	_Setting Identity Name and Publisher_
 
-1. Finally we obtained a **Package Security Identifier (SID)** and a **Client secret**, which are the WNS Credentials that we need to update the Web configuration of our Notification App Server.
+1. Take note of the **Package Security Identifier (SID)** and the **Client secret**, which are the WNS Credentials that are requiered to configure the Notification Hub.
 
 	![Package Security Identifier (SID) and Client secret](./Images/sid-client-secret.png?raw=true)
 
@@ -1050,13 +1050,57 @@ In this task you will obtain the information that will be needed to enable your 
 
 	> **Note:** To send notifications to this application, your Web Site must use these credentials exactly. You cannot use another Web Site credentials to send notifications to this application, and you cannot use these credentials to send notifications to another app.
 
+	> **Note:** The client secret and package SID are important security credentials. Do not share these values with anyone or distribute them with your app.
 
 <a name="Ex3Task2" />
-#### Task 2 - Enabling Push Notifications####
+#### Task 2 - Creating a Notification Hub ####
 
-In this task you will configure your application  to be capable of raising toast notifications. Then, you will create the necessary classes required for sending and receiving push notifications in both the WebApi and the CustomerManager.StyleUI solutions.
+In this task you will create a **Windows Azure Notification Hub** using the **Windows Azure Management Portal**.
 
-1. Go back to Visual Studio, open the application manifest and select the **Application.UI** tab.
+1. Log on to the **Windows Azure Management Portal**, and click **NEW** at the bottom of the screen.
+
+1. Click on **App Services**, then **Service Bus**, then **Notification Hub**, then **Quick Create**.
+
+	![Creating a new Notification Hub](Images/creating-a-new-notification-hub.png?raw=true "Creating a new Notification Hub")
+
+	_Creating a new Notification Hub_
+
+1. Type a name for your notification hub, select your desired Region, and then click **Create a new Notification Hub**.
+
+	![Specifying your Notification Hub name](Images/specifying-your-notification-hub-name.png?raw=true "Specifying your Notification Hub name")
+
+	_Specifying your Notification Hub name_
+
+1. Wait until the new namespace is ready and click on it.
+
+	![Selecting the new namespace](Images/selecting-the-new-namespace.png?raw=true "Selecting the new namespace")
+	
+	_Selecting the new namespace_
+
+1. Select the tab **Notification Hubs** at the top, and then click the notification hub you just created.
+
+	![Selecting the Notification Hub](Images/selecting-the-notification-hub.png?raw=true "Selecting the Notification Hub")
+
+	_Selecting the Notification Hub_
+
+1. Select the tab **Configure** at the top, enter the **Client secret** and **Package SID** values you obtained from WNS in the previous section, and then click **Save**.
+
+	![Configuring the WNS credentials](Images/configuring-the-wns-credentials.png?raw=true "Configuring the WNS credentials")
+
+	_Configuring the WNS credentials_
+
+1. Select the tab **Dashboard** at the top, and then click **Connection Information**. Take note of the two connection strings.
+
+	![Taking note of the connection strings](Images/taking-note-of-the-connection-strings.png?raw=true "Taking note of the connection strings")
+
+	_Taking note of the connection strings_
+
+<a name="Ex3Task3" />
+#### Task 3 - Enabling Push Notifications####
+
+In this task you will configure your application to be capable of raising toast notifications.
+
+1. Go back to Visual Studio, open the application manifest and select the **Application** tab.
 
 1. Find the **Notifications** section and set **Yes** for **Toast capable**.
 
@@ -1073,9 +1117,7 @@ In this task you will configure your application  to be capable of raising toast
 
     _Enabling network capabilities_
 
-	> **Note:** In the following steps you will associate your application with the Windows Store. If you obtained your WNS credentials from the Windows Push Notifications & Live Connect Portal, you can skip the next 5 steps.
-
-1.	Click **Store** in the Visual Studio menu and select **Associate App with the Store**.
+1.	Click **Store** in the Visual Studio menu and select **Associate App with the Store...**.
 
 	![Associating App with Store](./Images/associating-app-with-store.png?raw=true)
 
@@ -1093,7 +1135,7 @@ In this task you will configure your application  to be capable of raising toast
 
 	_Inserting your credentials to assciate your app in Windows Store_
 
-1. In the Select an app name step, select **Notifications.Client** and click **Next**.
+1. In the Select an app name step, select **CustomerManager** and click **Next**.
 
 	![Selecting your app name](./Images/selecting-app-name.png?raw=true)
 
@@ -1105,306 +1147,134 @@ In this task you will configure your application  to be capable of raising toast
 
 	_Associating your app with the Windows Store Summary_
 
+
+<a name="Ex3Task4" />
+#### Task 4 - Sending Push Notifications ####
+
+TODO: Review this text
+
+To send a notification, the Web Site must be authenticated through WNS. The first step in this process occurs when you register your application with the Windows Store Dashboard. During the registration process, your application is given a Package security identifier (SID) and a secret key. This information is used by your Web Site to authenticate with WNS.
+
+The WNS authentication scheme is implemented using the client credentials profile from the [OAuth 2.0](http://go.microsoft.com/fwlink/?linkid=226787) protocol. The Web Site authenticates with WNS by providing its credentials (Package SID and secret key). In return, it receives an access token. This access token allows a Web Site to send a notification. The token is required with every notification request sent to the WNS.
+
 1. Go to the **WebApi** solution and open the **Package Manager Console** from the **Tools | Library Package Manager** menu.
 
 1. In **Default project** make sure **WebApi** is selected.
 
 1. Execute the following command to install the packages required for WNS Recipe.
 
-    ````PowerShell
+	````PowerShell
 	Install-Package WnsRecipe
-    ````
+	````
 
     > **Note:** The Windows Push Notification Service Recipe (**WnsRecipe**) is a push notification server-side helper library that provides an easy way to send all three types of push notification messages supported by Windows Push Notification Services (WNS): Tile, Toast, and Badge.
 
-1. Inside the **Models** folder, create a new class and name it **Channel**. Replace its content with the following one:
+1. Add a reference to the Windows Azure Service Bus SDK with the **WindowsAzure.ServiceBus** NuGet package.
 
-	````C#
-	namespace WebApi.Models
-	{
-		 using System.Runtime.Serialization;
-
-		 [DataContract]
-		 public class Channel
-		 {
-			  [DataMember]
-			  public int? Id { get; set; }
-
-			  [DataMember]
-			  public string Uri { get; set; }
-		 }
-	}
+	````PowerShell
+	Install-Package WindowsAzure.ServiceBus
 	````
-
-1. Open **CustomerContext.cs** from the **Models** folder and add the following line of code after the declaration of the Customers DbSet in the CustomerContext class.
-
-	(Code Snippet - _Building Windows 8.1 Apps - Ex3 - Channels DbSet_)
-	
-	<!-- mark:7 -->
-	````C#
-	public class CustomerContext : DbContext
-	{
-		...
-
-		public DbSet<Customer> Customers { get; set; }
-
-		public DbSet<Channel> Channels { get; set; }
-	}
-	````
-
-1. Now create a new class inside the **Controllers** folder named **ChannelController** and add the following using directives.
-
-	````C#
-	using System.Web.Http;
-	using WebApi.Models;
-	````
-
-1. Make the ChannelController inherit from the **ApiController** class by adding the following highlighted code:
-
-	<!-- mark:1 -->
-	````C#
-	public class ChannelController : ApiController
-	{
-	}
-	````
-
-1. Insert the following member to have the CustomerContext available to perform the necessary operations with Entity Framework.
-	
-	(Code Snippet - _Building Windows 8.1 Apps - Ex3 - Customer Context Instantiation_)
-
-	<!-- mark:3 -->
-	````C#
-	public class ChannelController : ApiController
-	{
-		private CustomerContext db = new CustomerContext();
-	}
-	````
-
-1. Add the following **Create** method to process the create channel requests that you will implement later in this exercise in the Store app.
-
-	(Code Snippet - _Building Windows 8.1 Apps - Ex3 - Create Channel Method_)
-
-	<!-- mark:5-24 -->
-	````C#
-	public class ChannelController : Controller
-	{
-		...
-		
-		//
-		// POST: /Channel/Create
-		public Channel Create(Channel channel)
-		{
-			Channel ch = null;
-
-			if (ModelState.IsValid)
-			{
-				 ch = db.Channels.Find(channel.Id);
-
-				 if (ch == null)
-				 {
-					  db.Channels.Add(channel);
-					  db.SaveChanges();
-					  return channel;
-				 }
-			}
-
-			return ch;
-		}
-	}
-	````
-
-1. Add a **Dispose** method at the end of the controller.
-
-	(Code Snippet - _Building Windows 8.1 Apps - Ex3 - Channel Controller Dispose Method_)
-
-	<!-- mark:5-9 -->
-	````C#
-	public class ChannelController : Controller
-	{
-		...
-		
-		protected override void Dispose(bool disposing)
-		{
-			db.Dispose();
-			base.Dispose(disposing);
-		}
-	}
-	````
-
-1. Switch back to the **CustomerManager.StyleUI** solution and add a link to the _Channel_ class that you created early in the WebApi solution. To do this, right-click the **DataModel** folder and select **Add | Existing Item**. Browse to the **Source/Ex3-Notifications/Begin/WebApi/Models** folder and select **Channel.cs**. Now, click the down arrow next to the _Add_ button and select **Add As Link**.
-
-	![Adding a Link to the Channel Entity](Images/adding-link-to-channel-entity.png?raw=true "Adding a Link to the Channel Entity ")
-
-	_Adding a Link to the Channel Entity_
-	
-1. Inside the **DataModel** folder, add a new class named **ChannelWebApiClient** with the following using directives.
-
-	````C#
-	using System.IO;
-	using System.Net.Http;
-	using System.Runtime.Serialization.Json;
-	using WebApi.Models;
-	````
-
-1. Insert the following **RegisterChannel** method that will call the ChannelController of the WebApi to create a new channel for the current application.
-
-	(Code Snippet - _Building Windows 8.1 Apps - Ex3 - Register Channel Method_)
-
-	````C#
-	public static async Task<Channel> RegisterChannel(Channel channel)
-	{
-		object channelServiceUrl;
-		App.Current.Resources.TryGetValue("ChannelServiceUrl", out channelServiceUrl);
-
-		using (HttpClient client = new HttpClient())
-		{
-			 DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Channel));
-
-			 using (MemoryStream stream = new MemoryStream())
-			 {
-				  serializer.WriteObject(stream, channel);
-				  stream.Seek(0, SeekOrigin.Begin);
-
-				  var json = new StreamReader(stream).ReadToEnd();
-
-				  var response = await client.PostAsync(channelServiceUrl as string + "/create", new StringContent(json, Encoding.UTF8, "application/json"));
-				  response.EnsureSuccessStatusCode();
-
-				  using (var responseStream = await response.Content.ReadAsStreamAsync())
-				  {
-						DataContractJsonSerializer responseSerializer = new DataContractJsonSerializer(typeof(Channel));
-						return responseSerializer.ReadObject(responseStream) as Channel;
-				  }
-			 }
-		}
-	}
-	````
-
-<a name="Ex3Task3" />
-#### Task 3 - Sending Push Notifications ####
-
-To send a notification, the Web Site must be authenticated through WNS. The first step in this process occurs when you register your application with the Windows Store Dashboard. During the registration process, your application is given a Package security identifier (SID) and a secret key. This information is used by your Web Site to authenticate with WNS.
-
-The WNS authentication scheme is implemented using the client credentials profile from the [OAuth 2.0](http://go.microsoft.com/fwlink/?linkid=226787) protocol. The Web Site authenticates with WNS by providing its credentials (Package SID and secret key). In return, it receives an access token. This access token allows a Web Site to send a notification. The token is required with every notification request sent to the WNS.
 
 1. Open the **CustomersController.cs** file from the WebApi project and add the following using directives.
     
-    ````C#
-	using System.Configuration;
-	using NotificationsExtensions;
+	````C#
+	using Microsoft.ServiceBus.Notifications;
 	using NotificationsExtensions.ToastContent;
-    ````
+	using System.Configuration;
+	````
 
 1. Add the following private method to send a toast notification about the new customers.
 
-	(Code Snippet - _Building Windows 8.1 Apps - Ex3 - SendNotification_)
-
+	(Code Snippet - _Building Windows 8 Apps - Ex3 - SendNotification_)
+	<!--mark:1-13 -->
 	````C#
-	private void SendNotification(Customer customer)
+	private async void SendNotification(Customer customer)
 	{
-		var clientId = ConfigurationManager.AppSettings["ClientId"];
-		var clientSecret = ConfigurationManager.AppSettings["ClientSecret"];
-		var tokenProvider = new WnsAccessTokenProvider(clientId, clientSecret);
-		var notification = ToastContentFactory.CreateToastText02();
+		 var connectionString = ConfigurationManager.AppSettings["HubConnectionString"];
+		 var notificationHub = ConfigurationManager.AppSettings["HubName"];
+		 NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(connectionString, notificationHub);
 
-		notification.TextHeading.Text = "New customer added!";
-		notification.TextBodyWrap.Text = customer.Name;
+		 var notification = ToastContentFactory.CreateToastText02();
 
-		var channels = db.Channels;
+		 notification.TextHeading.Text = "New customer added!";
+		 notification.TextBodyWrap.Text = customer.Name;
 
-		foreach (var channel in channels)
-		{
-			 var result = notification.Send(new Uri(channel.Uri), tokenProvider);
-		}
+		 await hub.SendWindowsNativeNotificationAsync(notification.ToString());
 	}
 	````
 
-	> **Note:** A channel is a unique address that represents a single user on a single device for a single application or secondary tile. Using the channel URI, the Web Site can send a notification whenever it has an update for the user. With the **NotificationServiceContext** we can get the full list of the client endpoints registered with the Web Site.
+	> **Note:** A channel is a unique address that represents a single user on a single device for a single application or secondary tile. Using the channel URI, the Web Site can send a notification whenever it has an update for the user. With the **NotificationHubClient** we can send a notification to the full list of the client endpoints registered in the Notification Hub.
 
 1. Find the **PostCustomer** function and add a call to **SendNotification** method.
 
-	(Code Snippet - _Building Windows 8.1 Apps - Ex3 - Call to Send Notification_)
-
-    <!-- mark:9 -->
+    <!-- mark:13 -->
     ````C#
 	// POST api/Customers
-	public HttpResponseMessage PostCustomer(Customer customer)
+	[ResponseType(typeof(Customer))]
+	public async Task<IHttpActionResult> PostCustomer(Customer customer)
 	{
-		if (ModelState.IsValid)
+		if (!ModelState.IsValid)
 		{
-			db.Customers.Add(customer);
-			db.SaveChanges();
-
-			this.SendNotification(customer);
-
-			HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, customer);
-			response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = customer.CustomerId }));
-			return response;
+			return BadRequest(ModelState);
 		}
-		else
-		{
-			return Request.CreateResponse(HttpStatusCode.BadRequest);
-		}
+
+		db.Customers.Add(customer);
+		await db.SaveChangesAsync();
+
+		this.SendNotification(customer);
+
+		return CreatedAtRoute("DefaultApi", new { id = customer.CustomerId }, customer);
 	}
-    ````
+   ````
  
-1. Open the **Web.config** file and add the following settings in the `appSettings` section. Replace the placeholders using the values that you obtained either from the Windows Store or from the Windows Push Notifications & Live Connect Portal.
+1. Open the **Web.config** file and add the following settings in the `appSettings` section. Replace the placeholders using the values that you obtained in task 3.
 
     <!-- mark:2-3 -->
     ````XML
       ...
-      <add key="ClientId" value="[Package Security Identifier (SID)]"/>
-      <add key="ClientSecret" value="[Client secret]"/>
+      <add key="HubConnectionString" value="[connection string with full access]"/>
+      <add key="HubName" value="[hub name]"/>
     </appSettings>
     ````
 
     > **Note:** For demo purposes we simply store these values in the Web.config file, but the Package security identifier SID and client secret should be securely stored. Disclosure or theft of this information could enable an attacker to send notifications to your users without your permission or knowledge.
 
-1. Publish the Customers Web API service in Windows Azure. To do this, follow the steps in [Exercise 2, Task 3](#Ex2Task3).
+1. Publish the Customers Web API service in Windows Azure. To do this, follow the steps in [Exercise 2, Task 2](#Ex2Task2).
 
-<a name="Ex3Task4" />
-#### Task 4 - Registering the Notifications Client ####
+<a name="Ex3Task5" />
+#### Task 5 - Registering the Notifications Client ####
 
 When an application that is capable of receiving push notifications runs, it must first request a notification channel.
-After the application has successfully created a channel URI, it sends it to its Web Site, together with any app-specific metadata that should be associated with this URI.
+After the application has successfully created a channel URI, it sends it to its Notification Hub.
 
-In this task you will call the ChannelController of the WebApi app to request the channel and register your application with the service when it is launched and unregister it when it is suspended. 
+In this task you will register the your application with the service and then register that channel in the Notification Hub.
 
-1. Open **App.xaml.cs** from the **CustomerManager.StyleUI** project and add the following using directives.
+1. Add a reference to the Windows Azure Messaging library for Windows Store using the **WindowsAzure.Messaging.Managed** NuGet package. In Visual Studio Main Menu, click **Tools**, then click **Library Package Manager**, then click **Package Manager Console**. Then, in the console window type:
+
+    ````PowerShell
+	Install-Package WindowsAzure.Messaging.Managed
+    ````
+
+1. Open **App.xaml.cs** from the **CustomerManager** project and add the following using directives.
 
 	````C#
-	using CustomerManager.StyleUI.DataModel;
-	using WebApi.Models;
 	using Windows.Networking.PushNotifications;
-	using Windows.Storage;
+	using Microsoft.WindowsAzure.Messaging;
 	````
 
-1. Add the following private method at the end of the class to register a channel that will be used to send push notifications.
-    
-	(Code Snippet - _Building Windows 8.1 Apps - Ex3 - Register and Unregister Channel methods_)
+1. Add the following private method at the end of the class to retrieve the ChannelURI for the app from WNS, and then register that ChannelURI with your notification hub. Make sure to replace the **<hub name>** and **<connection string with listen access>** placeholders with the name of the notification hub (ex. _customer-manager-hub_) and its corresponding **DefaultListenSharedAccessSignature** obtained in the previous task.
 
-	<!-- mark:5-18 -->
-    ````C#
-	sealed partial class App : Application
+	(Code Snippet - _Building Windows 8.1 Apps - Ex3 - RegisterChannel_)
+	<!-- mark:1-7 -->
+	````C#
+	private async void RegisterChannel()
 	{
-		...
+		 var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
 
-		private async void RegisterChannel()
-		{
-			var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
-
-			if (ApplicationData.Current.LocalSettings.Values["ChannelId"] == null)
-			{
-				 var channelDTO = await ChannelWebApiClient.RegisterChannel(new Channel
-				 {
-					  Uri = channel.Uri
-				 });
-
-				 ApplicationData.Current.LocalSettings.Values["ChannelId"] = channelDTO.Id;
-			}
-		}
+		 var hub = new NotificationHub("<hub name>", "<connection string with listen access>");
+		 var result = await hub.RegisterNativeAsync(channel.Uri);
 	}
-    ````
+	````
 
 1. Call the **RegisterChannel** method in the **OnLaunched** event.
 
@@ -1412,25 +1282,13 @@ In this task you will call the ChannelController of the WebApi app to request th
 
     <!-- mark:5 -->
     ````C#
-    protected override async void OnLaunched(LaunchActivatedEventArgs args)
+    protected override async void OnLaunched(LaunchActivatedEventArgs e)
     {
         ...
 
         this.RegisterChannel();
     }
     ````
-
-1. Open **App.xaml** and locate the **ServiceURL** key. Make sure the **ServiceUrl** key value has the URL of the Web API service URL deployed.
-	
-	````XML
-	<x:String x:Key="ServiceUrl">[YOUR-SERVICE-SITE-URL]/api/customers</x:String>
-	````
-
-1. Add a new key named **ChannelServiceUrl**. To do this, insert the following line right after the _ServiceUrl_ one, replacing the _[YOUR-SERVICE-SITE-URL]_ with the one of the Web API service deployed as you did in the previous step.
-
-	````XML
-	<x:String x:Key="ChannelServiceUrl">[YOUR-SERVICE-SITE-URL]/api/channel</x:String>
-	````
 
 1. Run the Windows Store application.
 
