@@ -716,8 +716,6 @@ In this task you will explore the Customer client application, built using a Win
 	````C#
     public class GroupedCustomersViewModel : BindableBase
     {
-        public ObservableCollection<CustomerViewModel> CustomersList { get; set; }
-
         public GroupedCustomersViewModel()
         {
             this.CustomersList = new ObservableCollection<CustomerViewModel>();
@@ -725,14 +723,16 @@ In this task you will explore the Customer client application, built using a Win
             this.GetCustomers();
         }
 
+        public ObservableCollection<CustomerViewModel> CustomersList { get; set; }
+
         private async void GetCustomers()
-        { 
+        {
             IEnumerable<Customer> customers = await CustomersWebApiClient.GetCustomers();
 
             foreach (var customer in customers)
             {
-                this.CustomersList.Add(new CustomerViewModel(customer));                
-            }        
+                this.CustomersList.Add(new CustomerViewModel(customer));
+            }
         }
     }
 	````
