@@ -11,7 +11,6 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Models;
 using Microsoft.ServiceBus.Notifications;
-using NotificationsExtensions.ToastContent;
 using System.Configuration;
 
 namespace WebApi.Controllers
@@ -126,12 +125,16 @@ namespace WebApi.Controllers
             var notificationHub = ConfigurationManager.AppSettings["HubName"];
             NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(connectionString, notificationHub);
 
-            var notification = ToastContentFactory.CreateToastText02();
+            var toast = "<toast>" +
+                            "<visual>" +
+                                "<binding template=\"ToastText02\">" +
+                                    "<text id=\"1\">New customer added!</text>" +
+                                    "<text id=\"2\">" + customer.Name + "</text>" +
+                                "</binding>" +
+                            "</visual>" +
+                        "</toast>";
 
-            notification.TextHeading.Text = "New customer added!";
-            notification.TextBodyWrap.Text = customer.Name;
-
-            await hub.SendWindowsNativeNotificationAsync(notification.ToString());
+            await hub.SendWindowsNativeNotificationAsync(toast);
         }
     }
 }
