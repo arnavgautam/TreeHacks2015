@@ -646,7 +646,7 @@ In this task you will update the solution you created in last exercise to suppor
 		Uri namespaceAddress = ServiceBusEnvironment.CreateServiceUri("sb", baseAddress, string.Empty);
 
 		this.namespaceManager = new NamespaceManager(namespaceAddress, TokenProvider.CreateSharedSecretTokenProvider(issuerName, issuerKey));
-		this.messagingFactory = MessagingFactory.CreateFromConnectionString(connectionString);
+		this.messagingFactory = MessagingFactory.CreateFromConnectionString(this.connectionString);
 	}
 	````
 
