@@ -1,32 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.WindowsAzure.ServiceRuntime;
-using CloudShop.Models;
-using System.Diagnostics;
-
-namespace CloudShop.Controllers
+﻿namespace CloudShop.Controllers
 {
-    [HandleError]
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using CloudShop.Models;
+    using Microsoft.WindowsAzure.ServiceRuntime;
+
     public class HomeController : Controller
     {
-        public ActionResult About()
-        {
-            return this.View();
-        }
-
-        public EmptyResult Recycle()
-        {
-            RoleEnvironment.RequestRecycle();
-            return new EmptyResult();
-        }
-
         public ActionResult Index()
         {
             bool enableCache = (bool)this.Session["EnableCache"];
-
             bool enableLocalCache = (bool)this.Session["EnableLocalCache"];
 
             // retrieve product catalog from repository and measure the elapsed time
@@ -49,29 +36,29 @@ namespace CloudShop.Controllers
                 ObjectId = products.GetHashCode().ToString()
             };
 
-            return View(model);
+            return this.View(model);
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
         public ActionResult Add(string selectedItem)
         {
             if (selectedItem != null)
             {
                 List<string> cart = this.Session["Cart"] as List<string> ?? new List<string>();
                 cart.Add(selectedItem);
-                Session["Cart"] = cart;
+                this.Session["Cart"] = cart;
             }
 
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
 
         public ActionResult Checkout()
         {
             var itemsInSession = this.Session["Cart"] as List<string> ?? new List<string>();
-            return View(itemsInSession);
+            return this.View(itemsInSession);
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
         public ActionResult Remove(string selectedItem)
         {
             if (selectedItem != null)
@@ -83,19 +70,25 @@ namespace CloudShop.Controllers
                 }
             }
 
-            return RedirectToAction("Checkout");
+            return this.RedirectToAction("Checkout");
+        }
+
+        public EmptyResult Recycle()
+        {
+            RoleEnvironment.RequestRecycle();
+            return new EmptyResult();
         }
 
         public ActionResult EnableCache(bool enabled)
         {
             this.Session["EnableCache"] = enabled;
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
 
         public ActionResult EnableLocalCache(bool enabled)
         {
             this.Session["EnableLocalCache"] = enabled;
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
     }
 }

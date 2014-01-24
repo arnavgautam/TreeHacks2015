@@ -40,19 +40,17 @@
                 factoryConfig = new DataCacheFactoryConfiguration();
                 cacheFactory = new DataCacheFactory(factoryConfig);
             }
-        }
+        } 
 
         public List<string> GetProducts()
         {
-            List<string> products = null;
-
             DataCache dataCache = null;
             if (this.enableCache)
             {
                 try
                 {
                     dataCache = cacheFactory.GetDefaultCache();
-                    products = dataCache.Get("products") as List<string>;
+                    var products = dataCache.Get("products") as List<string>;
                     if (products != null)
                     {
                         products[0] = "(from cache)";
@@ -70,30 +68,20 @@
                 }
             }
 
-            NorthwindEntities context = new NorthwindEntities();
-
-            try
+            using (NorthwindEntities context = new NorthwindEntities())
             {
                 var query = from product in context.Products
                             select product.ProductName;
-                products = query.ToList();
-            }
-            finally
-            {
-                if (context != null)
+                var products = query.ToList();
+                products.Insert(0, "(from data source)");
+
+                if (this.enableCache && dataCache != null)
                 {
-                    context.Dispose();
+                    dataCache.Add("products", products, TimeSpan.FromSeconds(30));
                 }
+
+                return products;
             }
-
-            products.Insert(0, "(from data source)");
-
-            if (this.enableCache && dataCache != null)
-            {
-                dataCache.Add("products", products, TimeSpan.FromSeconds(30));
-            }
-
-            return products;
         }
     }
 }
