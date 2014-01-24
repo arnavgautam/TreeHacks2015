@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using CustomerManager.Common;
-    using CustomerManager.Data;
+    using CustomerManager.DataModel;
     using WebApi.Models;
 
     public class GroupedCustomersViewModel : BindableBase

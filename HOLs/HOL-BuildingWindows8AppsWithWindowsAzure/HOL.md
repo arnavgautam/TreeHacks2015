@@ -7,7 +7,7 @@
 
 Apps are at the center of the Windows 8 experience. They are alive with activity and vibrant content. Users are immersed in your full-screen, Windows Store apps, where they can focus on their content, rather than on the operating system.
 
-In this hands-on lab you will learn how to combine the fluency of Windows 8 applications with the power of Windows Azure: from a Windows Store application, you will consume an ASP.NET Web API service published in Windows Azure Web Sites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app to send toast notifications from your service to all the registered clients.
+In this hands-on lab you will learn how to combine the fluency of Windows 8 applications with the power of Windows Azure: from a Windows Store application, you will consume an ASP.NET Web API service published in Windows Azure Web Sites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app using Windows Azure Notification Hubs to send toast notifications from your service to all the registered clients.
 
 <a name="Objectives" />
 ### Objectives ###
@@ -145,13 +145,13 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 
 	> **Note:** If the web application is not displayed after the deployment, try refreshing the browser a couple of times.
 
-1. In the browser, append **api/values** to the URL to retrieve the JSON output of the sample service. 
-
-	In the browser, you will be prompted to download a file. Click **Open**. If prompted, choose to open the file with a text editor.
+1. In the browser, append **api/values** to the URL to retrieve the JSON output of the sample service. You will be prompted to download a file. Click **Open**. If prompted, choose to open the file with a text editor.
 	
 	![Retrieving the default values](Images/retrieving-the-default-webapi-values.png?raw=true "Retrieving the default values")
 
 	_Retrieving the default values_
+
+1. Press **Shift + F5** to stop running the solution.
 
 <a name="Ex1Task2" />
 #### Task 2 – Adding a New Windows Azure Web Site from Server Explorer ####
@@ -188,7 +188,7 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 
 	> **Note:** By default, Windows Azure provides domains at _azurewebsites.net_ but also gives you the possibility to set custom domains using the Windows Azure Management Portal (right-click your Web site from Server Explorer and select **Open in Management Portal**). However, you can only manage custom domains if you are using certain Web site modes.
 	
-	> Windows Azure offers 3 modes for users to run their Web sites - Free, Shared, and Standard. In Free and Shared mode, all Web sites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are Free (strict quotas) vs. Shared (more flexible quotas). The maximum number of free sites may vary with your plan. In Standard mode, you choose which sites run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Web Sites Mode configuration in the **Scale** menu of your Web site.
+	> Windows Azure offers 3 modes for users to run their Web sites - **Free**, **Shared**, and **Standard**. In **Free** and **Shared** mode, all Web sites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are **Free** (strict quotas) vs. **Shared** (more flexible quotas). The maximum number of free sites may vary with your plan. In **Standard** mode, you choose which sites run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Web Sites Mode configuration in the **Scale** menu of your Web site.
 
 	> ![Web Site Modes](Images/web-site-modes.png?raw=true "Web Site Modes")
 
@@ -295,9 +295,7 @@ In this task you will create a blank Windows Store application that will consume
 
 1. Add the following method to the **MainPage.xaml.cs** class to perform an asynchronous call to the Web API service.
 
-	The method **GetItems()** instantiates an HttpClient object, which  sends a GET message to the service URL and retrieves a response asynchronously. Then, the response is deserialized and read by the JsonArray object before generating the value list. 
-	
-	> **Note:** If you want to read more about async methods you can check out [this article](http://msdn.microsoft.com/en-US/vstudio/async). 
+	The method **GetItems()** instantiates an HttpClient object, which  sends a GET message to the service URL and retrieves a response asynchronously. Then, the response is deserialized and read by the JsonArray object before generating the value list.  
 
 	(Code Snippet - _BuildingWindows8Apps - Ex1 - GetItems_)
 	<!-- mark:1-22 -->
@@ -326,13 +324,16 @@ In this task you will create a blank Windows Store application that will consume
 	}
 	````
 
+	> **Note:** If you want to read more about async methods you can check out [this article](http://msdn.microsoft.com/en-US/vstudio/async).
+
 1. Replace the value of the placeholder [YOUR-WINDOWS-AZURE-SERVICE-URL] with your Windows Azure published Web site URL. You can check that value in the Web site's dashboard.
 
 	>**Note:** If you want to test the service locally, start the service project, check its URL and its port (e.g. http://localhost:3565/) and use that value.
 
-1. Then, in the **OnNavigateTo** method, add a call to the GetItem method and press **CTRL+S** to save.
+1. Then, override the **OnNavigatedTo** method adding a call to the GetItem method and press **CTRL+S** to save.
 
-	<!-- mark:3 -->
+	(Code Snippet - _BuildingWindows8Apps - Ex1 - OnNavigatedTo_)
+	<!-- mark:1-4 -->
 	````C#
 	protected override void OnNavigatedTo(NavigationEventArgs e)
 	{
@@ -714,8 +715,6 @@ This is a client Windows Store application that displays customers. It is based 
 	````C#
     public class GroupedCustomersViewModel : BindableBase
     {
-        public ObservableCollection<CustomerViewModel> CustomersList { get; set; }
-
         public GroupedCustomersViewModel()
         {
             this.CustomersList = new ObservableCollection<CustomerViewModel>();
@@ -723,14 +722,16 @@ This is a client Windows Store application that displays customers. It is based 
             this.GetCustomers();
         }
 
+        public ObservableCollection<CustomerViewModel> CustomersList { get; set; }
+
         private async void GetCustomers()
-        { 
+        {
             IEnumerable<Customer> customers = await CustomersWebApiClient.GetCustomers();
 
             foreach (var customer in customers)
             {
-                this.CustomersList.Add(new CustomerViewModel(customer));                
-            }        
+                this.CustomersList.Add(new CustomerViewModel(customer));
+            }
         }
     }
 	````
@@ -970,7 +971,7 @@ The process of sending a notification requires few steps:
 
 In this exercise you will learn how to send a toast notification from the Web API service (Web site) using Windows Azure Notification Hubs to the registered clients (Windows Store applications) whenever a new customer is added.
 
-Windows Azure Notification Hubs provide all the functionality of a push infrastructure that enables you to send mobile push notifications from any backend (in the cloud or on-premises) to any mobile platform. Using Windows Azure Notification Hubs, devices are only responsible for registering PNS handles, and the backend is responsible for sending platform-independent messages to users or interest groups
+Windows Azure Notification Hubs provide all the functionality of a push infrastructure that enables you to send push notifications from any backend (in the cloud or on-premises) to any mobile platform. By using Windows Azure Notification Hubs you remove the responsability of managing channel URIs and device registration from the backend since it's handled by the service, allowing you to focus on sending the platform-independent notifications to clients.
 
 A toast notification is a transient message to the user that contains relevant, time-sensitive information and provides quick access to related content in an app. It can appear whether you are in another app, the Start screen, the lock screen, or on the desktop. Toasts should be viewed as an invitation to return to your app to follow up on something of interest.
 
@@ -1324,7 +1325,7 @@ This is a list of developer-oriented articles related to Windows Store applicati
 
 By completing this hands-on lab you have learnt how to use Visual Studio 2013 to:
 
-- Create an ASP.NET MVC 4 Web API service
+- Create an ASP.NET Web API service
 - Publish the service to Windows Azure Web Sites
 - Create a Windows Store application that consumes the Web API service
-- Add Push Notifications to the Windows Store application by using WNS Recipe
+- Add Push Notifications to the Windows Store application by using Windows Azure Notification Hubs

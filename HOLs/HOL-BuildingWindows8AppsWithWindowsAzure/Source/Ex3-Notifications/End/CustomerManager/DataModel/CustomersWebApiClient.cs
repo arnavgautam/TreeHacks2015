@@ -1,4 +1,4 @@
-﻿namespace CustomerManager.Data
+﻿namespace CustomerManager.DataModel
 {
     using System;
     using System.Collections.Generic;
