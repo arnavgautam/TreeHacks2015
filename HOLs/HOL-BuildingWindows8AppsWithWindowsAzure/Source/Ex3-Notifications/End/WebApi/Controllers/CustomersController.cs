@@ -84,9 +84,9 @@ namespace WebApi.Controllers
             db.Customers.Add(customer);
             await db.SaveChangesAsync();
 
-            await this.SendNotification(customer);
+            await this.SendNotificationAsync(customer);
 
-            return Ok(customer);
+            return CreatedAtRoute("DefaultApi", new { id = customer.CustomerId }, customer);
         }
 
         // DELETE api/Customers/5

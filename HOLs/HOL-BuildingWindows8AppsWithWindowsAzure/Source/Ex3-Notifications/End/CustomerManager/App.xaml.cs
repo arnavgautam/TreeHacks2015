@@ -118,7 +118,7 @@
         {
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
 
-            var hub = new NotificationHub("customer-manager-hub", "Endpoint=sb://customer-manager-hub-ns.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=HkWczUIEkPDU1yGChvdAq1kei5R0KiA3ZS73wUgoLCA=");
+            var hub = new NotificationHub("<hub name>", "<connection string with listen access>");
             var result = await hub.RegisterNativeAsync(channel.Uri);
         }
     }
