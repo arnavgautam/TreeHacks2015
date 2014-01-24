@@ -1296,7 +1296,27 @@ In this task you will register the your application with the service and then re
 <a name="NextSteps" />
 ## Next Steps ##
 
-TBC
+To learn more about Windows Store applications and Windows Azure Web Sites, please refer to the following articles:
+
+**Technical Reference**
+
+This is a list of articles that expand on the technologies explained on this lab:
+
+- [Windows Azure Web Sites Documentation](http://aka.ms/Alwcgu): provides reference information for developing your site with .NET, PHP, Node.js or Python and hosting in Windows Azure Web Sites.
+- [Windows Azure Web Sites, Cloud Services, and VMs: When to use which?](http://aka.ms/Nocpe8): provides guidance on how to make an informed decision when choosing among Windows Azure Web Sites, Cloud Services, and virtual machines to host a web application.
+- [Create a Global Web Presence on Windows Azure Web Sites](http://aka.ms/Rvc3yr): provides a technical overview of how to host your organization's (.COM) site on Windows Azure.
+- [ASP.Net Web API (The official Microsoft ASP.NET Site)](http://aka.ms/Bxoypx): is a framework that makes it easy to build HTTP services that reach a broad range of clients, including browsers and mobile devices. ASP.NET Web API is an ideal platform for building RESTful applications on the .NET Framework.
+- [Notification Hubs Documentation](http://aka.ms/Dmg3nf): provides tutorials and guides for using Notification Hubs to send mobile push notifications from any backend (in the cloud or on-premises) to any mobile platform.
+- [Tiles, badges, and notifications (Windows Store apps)](http://aka.ms/Fasloi): discusses the concepts and terminologies required to design tiles (including secondary tiles and lock screen apps), badges, and toast notifications.
+
+**Development**
+
+This is a list of developer-oriented articles related to Windows Store applications and Windows Azure Web Sites:
+
+- [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](http://aka.ms/Gv0w5g): shows you how to build a secure ASP.NET MVC 5 web app that enables users to log in with credentials from Facebook or Google.
+- [Developing Windows Store apps](http://aka.ms/Ryj9xy): provides reference information for designing and developing great Windows Store apps.
+- [Securing a Windows Store Application and REST Web Service Using Windows Azure AD](http://aka.ms/T5ejfa): will show you how to create a simple web API resource and a Windows Store client application using the Windows Azure Authentication Library and Windows Azure AD.
+- [Connecting to Windows Azure Mobile Services](http://aka.ms/Uvxhgy): explores the different scenarios to enable Mobile Services enables in your Windows Store apps.
 
 ---
 
