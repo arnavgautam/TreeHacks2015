@@ -1,10 +1,7 @@
 ﻿namespace CloudShop.Services
 {
-    using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Linq;
-    using System.Threading.Tasks;
     using CloudShop.Models;
 
     public class ProductsRepository : IProductRepository
@@ -15,7 +12,8 @@
             {
                 var query = from product in context.Products
                             select product.ProductName;
-                return query.ToList();
+                var products = query.ToList();
+                return products;
             }
         }
     }
