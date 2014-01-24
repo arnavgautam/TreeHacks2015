@@ -7,7 +7,7 @@
 
 Apps are at the center of the Windows 8 experience. They are alive with activity and vibrant content. Users are immersed in your full-screen, Windows Store apps, where they can focus on their content, rather than on the operating system.
 
-In this hands-on lab you will learn how to combine the fluency of Windows 8 applications with the power of Windows Azure: from a Windows Store application, you will consume an ASP.NET Web API service published in Windows Azure Web Sites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app to send toast notifications from your service to all the registered clients.
+In this hands-on lab you will learn how to combine the fluency of Windows 8 applications with the power of Windows Azure: from a Windows Store application, you will consume an ASP.NET Web API service published in Windows Azure Web Sites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app using Windows Azure Notification Hubs to send toast notifications from your service to all the registered clients.
 
 <a name="Objectives" />
 ### Objectives ###
@@ -971,7 +971,7 @@ The process of sending a notification requires few steps:
 
 In this exercise you will learn how to send a toast notification from the Web API service (Web site) using Windows Azure Notification Hubs to the registered clients (Windows Store applications) whenever a new customer is added.
 
-Windows Azure Notification Hubs provide all the functionality of a push infrastructure that enables you to send mobile push notifications from any backend (in the cloud or on-premises) to any mobile platform. Using Windows Azure Notification Hubs, devices are only responsible for registering PNS handles, and the backend is responsible for sending platform-independent messages to users or interest groups
+Windows Azure Notification Hubs provide all the functionality of a push infrastructure that enables you to send push notifications from any backend (in the cloud or on-premises) to any mobile platform. By using Windows Azure Notification Hubs you remove the responsability of managing channel URIs and device registration from the backend since it's handled by the service, allowing you to focus on sending the platform-independent notifications to clients.
 
 A toast notification is a transient message to the user that contains relevant, time-sensitive information and provides quick access to related content in an app. It can appear whether you are in another app, the Start screen, the lock screen, or on the desktop. Toasts should be viewed as an invitation to return to your app to follow up on something of interest.
 
@@ -1305,7 +1305,7 @@ TBC
 
 By completing this hands-on lab you have learnt how to use Visual Studio 2013 to:
 
-- Create an ASP.NET MVC 4 Web API service
+- Create an ASP.NET Web API service
 - Publish the service to Windows Azure Web Sites
 - Create a Windows Store application that consumes the Web API service
-- Add Push Notifications to the Windows Store application by using WNS Recipe
+- Add Push Notifications to the Windows Store application by using Windows Azure Notification Hubs
