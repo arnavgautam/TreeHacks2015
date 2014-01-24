@@ -380,7 +380,7 @@ Finally, you will explore and customize your Windows Store application to consum
 
 Entity Framework (EF) is an object-relational mapper (ORM) that enables you to create data access applications by programming with a conceptual application model instead of programming directly using a relational storage schema.
 
-The Entity Framework Code First modeling workflow allows you to use your own domain classes to represent the model that EF relies on when performing querying, change tracking and when updating functions. Using the Code First development workflow, you do not need to begin your application by creating a database or specifying schema!. Instead, you can begin by writing standard .NET classes that define the most appropriate domain model objects for your application, and Entity Framework will create the database for you.
+The Entity Framework Code First modeling workflow allows you to use your own domain classes to represent the model that EF relies on when performing querying, change tracking and when updating functions. Using the Code First development workflow, you do not need to begin your application by creating a database or specifying schema. Instead, you can begin by writing standard .NET classes that define the most appropriate domain model objects for your application, and Entity Framework will create the database for you.
 
 >**Note:** You can learn more about Entity Framework [here](http://www.asp.net/entity-framework).
 
@@ -391,7 +391,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 1. Open **Visual Studio Express 2013 for Web** and open the ***WebApi.sln*** solution located under ***Source/Ex2-DataAccess/Begin*** folder. Alternatively, you may continue with the solution that you obtained after completing the previous exercise.
 
-1. Right-click the **Models** folder in the **Solution Explorer** and select **Add | Class**. Name it **Customer.cs**.
+1. Right-click the **Models** folder in the **Solution Explorer** and select **Add | Class...**. Name it **Customer.cs**.
 
 	![Adding a model class](Images/add-model-class.png?raw=true "Add model class")
 
@@ -427,11 +427,11 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 	}
 	````
 
-1. In Solution Explorer, right-click the WebApi project and select **Build**.
+1. In Solution Explorer, right-click the **WebApi** project and select **Build**.
 
-	> **Note:** If you build the entire solution you will get errors as the Windows Store app client is still incomplete.
+	> **Note:** If you build the entire solution you will get errors, because the Windows Store app client is still incomplete.
 
-1. In Solution Explorer, right-click the **Controllers** folder of the Web API project and select **Add | Controller** to open the **Add Controller** dialog box.
+1. In Solution Explorer, right-click the **Controllers** folder of the Web API project and select **Add | Controller...** to open the **Add Controller** dialog box.
 
 	![Adding new scaffolded item](Images/adding-new-scaffolded-item.png?raw=true "Adding new scaffolded item")
 
@@ -451,7 +451,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 	> **Note:** If you do not have model classes to select you need to build the project.
 
-1. In the Data context class, select **New data context**. Name the new data context _CustomerContext_ and click **OK**.
+1. In the Data context class, select **New data context...**. Name the new data context _CustomerContext_ and click **Add**.
 
 	![New customers context](Images/new-customers-context.png?raw=true "New customers context")
 
@@ -468,7 +468,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 	Notice that each operation has the HTTP verb as a prefix in the name (Delete, Get, Post, etc.).
 
-1. Now, you will add a database initializer method in your database context to populate the database with initial data. Add the following **CustomerContextInitializer** class in **CustomerContext.cs** file (under the **Models** folder) after **CustomerContext** class, and save the changes.
+1. Now you will add a database initializer method in your database context to populate the database with initial data. Add the following **CustomerContextInitializer** class in **CustomerContext.cs** file (in the **Models** folder) after **CustomerContext** class, and save the changes.
 
 	(Code Snippet - _BuildingWindows8Apps - Ex2 - ContextInitializer_)
 	<!-- mark:26-31 -->
@@ -649,7 +649,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 In this task you will publish the updated Web API service in Windows Azure Web Sites replacing the connection string to use a SQL Database.
 
-1. In **Solution Explorer**, right-click the Web API service project and select **Publish...**.
+1. In **Solution Explorer**, right-click the **WebAPI** project and select **Publish...**.
 
 	![Publishing the service](Images/publishing-the-service.png?raw=true "Publishing the service")
 
@@ -689,10 +689,9 @@ In this task you will publish the updated Web API service in Windows Azure Web S
 In this task you will explore the Customer client application, built using a Windows Store application Grid Template. You will perform a brief lap around and learn about the main components of a Windows Store Grid application.
 
 1. Open **Visual Studio Express 2013 for Windows** and open the **CustomerManager.sln** solution located under **Source/Ex2-DataAccess/Begin** folder.
+This is a client Windows Store application that displays customers. It is based on the Visual Studio Grid template.
 
-1. This is a client Windows Store application that displays customers. It is based on the Visual Studio Grid template.
-
-	>**Note:** The Grid application is one of the Visual Studio 2013 available templates for Windows Store applications, which contains three pages. The first page displays a group of items in a grid layout. When a group is clicked, the second page shows the details of the selected group. Finally, when an item is selected, the third page shows the item details.
+	>**Note:** The Grid application is one of the available Visual Studio 2013 templates for Windows Store applications, which contains three pages. The first page displays a group of items in a grid layout. When a group is clicked, the second page shows the details of the selected group. Finally, when an item is selected, the third page shows the item details.
 
 	In this solution you will find a simplified Grid template, which only contains group and detail pages with a custom data model for customers.
 
@@ -812,7 +811,7 @@ In this task you will explore the Customer client application, built using a Win
 
 In this task you will bind your Windows Store Application against your customer's model retrieving data from the Web API service. You will start by configuring the binding, and then you will modify the application to call the service asynchronously and display the customers.
 
-1. Right-click the **DataModel** project folder in the solution explorer and select **Add | Existing Item**. 
+1. In **Solution Explorer**, right-click the **DataModel** project folder and select **Add | Existing Item...**. 
 
 	![Adding an existing item](Images/adding-an-existing-item.png?raw=true "Adding an existing item")
 	
@@ -826,7 +825,7 @@ In this task you will bind your Windows Store Application against your customer'
 
 	By adding the Customer class as a link, your application will be using the same model class from the Web API service. This class will serve as data contract between the Web API service and the Windows Store app.
 
-1. Right-click the **DataModel** project folder in the Solution Explorer and select **Add | Class**. Name it _CustomersWebApiClient.cs_. 
+1. In **Solution Explorer**, right-click the **DataModel** project folder and select **Add | Class...**. Name it _CustomersWebApiClient.cs_. 
 
 	This class will contain the methods that retrieve the customers from the Web API service you have already published on Windows Azure.
 
@@ -834,7 +833,7 @@ In this task you will bind your Windows Store Application against your customer'
 
 	_Adding a new class_
 
-1. 	Open the **CustomersWebApiClient.cs** class and add the following using directives. 
+1. 	In the **CustomersWebApiClient** class, add the following using directives. 
 
 	(Code Snippet - _BuildingWindows8Apps - Ex2 - CustomersWebApiClientNamespace_)
 
@@ -848,7 +847,7 @@ In this task you will bind your Windows Store Application against your customer'
 
 	>**Note:** WebApi.Models references your service models, and it is necessary to use the customer class you have added as a link.
 	
-1. In the CustomersWebApiClient class, add the following **GetCustomers()** method.
+1. In the **CustomersWebApiClient** class, add the following **GetCustomers()** method.
 
 	(Code Snippet - _BuildingWindows8Apps - Ex2 - CustomersWebApiClientGetCustomersMethod_)
 
@@ -878,7 +877,7 @@ In this task you will bind your Windows Store Application against your customer'
 
 	The Web API service URL is retrieved from a resources dictionary in App.xaml.
 
-1. Now add the **CreateCustomer** method to post new customers to the service.
+1. In the **CustomersWebApiClient** class, add the following **CreateCustomer** method to post new customers to the service.
 
 	(Code Snippet - _BuildingWindows8Apps - Ex2 - CustomersWebApiClientCreateCustomerMethod_)
 
