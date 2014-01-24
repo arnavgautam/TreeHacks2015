@@ -401,7 +401,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 1. Replace the Customer.cs class content with the following code. Press **CTRL+S** to save the changes.
 
-	(Code Snippet - _Building Windows 8 Apps - Ex2 - Customer class_)
+	(Code Snippet - _BuildingWindows8Apps - Ex2 - CustomerClass_)
 	<!-- mark:1-21 -->
 	````C#
 	namespace WebApi.Models
@@ -470,7 +470,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 1. Now, you will add a database initializer method in your database context to populate the database with initial data. Add the following **CustomerContextInitializer** class in **CustomerContext.cs** file (under the **Models** folder) after **CustomerContext** class, and save the changes.
 
-	(Code Snippet - _Building Windows 8 Apps - Ex2 - Context Initializer_)
+	(Code Snippet - _BuildingWindows8Apps - Ex2 - ContextInitializer_)
 	<!-- mark:26-31 -->
 	````C#
 	using System;
@@ -516,7 +516,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 1. In the CustomerContextInitializer **Seed** method, add the following customers to the context to populate the database with customers.
 
-	(Code Snippet - _Building Windows 8 Apps - Ex2 - Context Initializer Seed_)
+	(Code Snippet - _BuildingWindows8Apps - Ex2 - ContextInitializerSeed_)
 	<!-- mark:3-102 -->
 	````C#
 	protected override void Seed(CustomerContext context)
@@ -836,7 +836,7 @@ In this task you will bind your Windows Store Application against your customer'
 
 1. 	Open the **CustomersWebApiClient.cs** class and add the following using directives. 
 
-	(Code Snippet - _Building Windows 8 Apps - Ex2 - CustomersWebApiClient namespace_)
+	(Code Snippet - _BuildingWindows8Apps - Ex2 - CustomersWebApiClientNamespace_)
 
 	<!-- mark:1-4 -->
 	````C#
@@ -850,7 +850,7 @@ In this task you will bind your Windows Store Application against your customer'
 	
 1. In the CustomersWebApiClient class, add the following **GetCustomers()** method.
 
-	(Code Snippet - _Building Windows 8 Apps - Ex2 - CustomersWebApiClient GetCustomers Method_)
+	(Code Snippet - _BuildingWindows8Apps - Ex2 - CustomersWebApiClientGetCustomersMethod_)
 
 	<!-- mark:1-18 -->
 	````C#
@@ -880,7 +880,7 @@ In this task you will bind your Windows Store Application against your customer'
 
 1. Now add the **CreateCustomer** method to post new customers to the service.
 
-	(Code Snippet - _Building Windows 8 Apps - Ex2 - CustomersWebApiClient CreateCustomer Method_)
+	(Code Snippet - _BuildingWindows8Apps - Ex2 - CustomersWebApiClientCreateCustomerMethod_)
 
 	<!-- mark:1-21 -->
 	````C#
@@ -1176,7 +1176,7 @@ In this tasks you will use the Windows Azure Notification Hub created and config
 
 1. Add the following private method to send a toast notification about the new customers.
 
-	(Code Snippet - _Building Windows 8 Apps - Ex3 - SendNotification_)
+	(Code Snippet - _BuildingWindows8Apps - Ex3 - SendNotification_)
 	<!--mark:1-17 -->
 	````C#
 	private async Task SendNotificationAsync(Customer customer)
@@ -1257,7 +1257,7 @@ In this task you will register the your application with the service and then re
 
 1. Add the following private method at the end of the class to retrieve the ChannelURI for the app from WNS, and then register that ChannelURI with your notification hub. Make sure to replace the **<hub name>** and **<connection string with listen access>** placeholders with the name of the notification hub (ex. _customer-manager-hub_) and its corresponding **DefaultListenSharedAccessSignature** obtained in the previous task.
 
-	(Code Snippet - _Building Windows 8 Apps - Ex3 - RegisterChannel_)
+	(Code Snippet - _BuildingWindows8Apps - Ex3 - RegisterChannel_)
 	<!-- mark:1-7 -->
 	````C#
 	private async void RegisterChannel()
@@ -1271,7 +1271,7 @@ In this task you will register the your application with the service and then re
 
 1. Call the **RegisterChannel** method in the **OnLaunched** event.
 
-	(Code Snippet - _Building Windows 8 Apps - Ex3 - Call Register Channel method_)
+	(Code Snippet - _BuildingWindows8Apps - Ex3 - CallRegisterChannelMethod_)
 
     <!-- mark:5 -->
     ````C#
