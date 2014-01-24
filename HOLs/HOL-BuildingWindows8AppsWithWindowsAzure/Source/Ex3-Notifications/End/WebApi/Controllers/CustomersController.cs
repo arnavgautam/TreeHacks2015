@@ -84,9 +84,9 @@ namespace WebApi.Controllers
             db.Customers.Add(customer);
             await db.SaveChangesAsync();
 
-            this.SendNotification(customer);
+            await this.SendNotification(customer);
 
-            return CreatedAtRoute("DefaultApi", new { id = customer.CustomerId }, customer);
+            return Ok(customer);
         }
 
         // DELETE api/Customers/5
@@ -119,7 +119,7 @@ namespace WebApi.Controllers
             return db.Customers.Count(e => e.CustomerId == id) > 0;
         }
 
-        private async void SendNotification(Customer customer)
+        private async Task SendNotificationAsync(Customer customer)
         {
             var connectionString = ConfigurationManager.AppSettings["HubConnectionString"];
             var notificationHub = ConfigurationManager.AppSettings["HubName"];

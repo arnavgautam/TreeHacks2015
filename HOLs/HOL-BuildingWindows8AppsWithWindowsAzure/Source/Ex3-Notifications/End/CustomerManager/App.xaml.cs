@@ -7,6 +7,8 @@
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;
+    using Windows.Networking.PushNotifications;
+    using Microsoft.WindowsAzure.Messaging;
 
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -85,6 +87,7 @@
 
             // Ensure the current window is active
             Window.Current.Activate();
+            this.RegisterChannel();
         }
 
         /// <summary>
@@ -109,6 +112,14 @@
             var deferral = e.SuspendingOperation.GetDeferral();
             await SuspensionManager.SaveAsync();
             deferral.Complete();
+        }
+
+        private async void RegisterChannel()
+        {
+            var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
+
+            var hub = new NotificationHub("customer-manager-hub", "Endpoint=sb://customer-manager-hub-ns.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=HkWczUIEkPDU1yGChvdAq1kei5R0KiA3ZS73wUgoLCA=");
+            var result = await hub.RegisterNativeAsync(channel.Uri);
         }
     }
 }
