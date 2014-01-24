@@ -1,25 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.WindowsAzure.ServiceRuntime;
-using CloudShop.Models;
-
-namespace CloudShop.Controllers
+﻿namespace CloudShop.Controllers
 {
-    [HandleError]
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using CloudShop.Models;
+    using Microsoft.WindowsAzure.ServiceRuntime;
+
     public class HomeController : Controller
     {
-        public ActionResult About()
+        private List<string> Cart
         {
-            return this.View();
-        }
+            get
+            {
+                if (this.Session["Cart"] as List<string> == null)
+                {
+                    this.Session["Cart"] = new List<string>();
+                }
 
-        public EmptyResult Recycle()
-        {
-            RoleEnvironment.RequestRecycle();
-            return new EmptyResult();
+                return this.Session["Cart"] as List<string>;
+            }
         }
 
         public ActionResult Index()
@@ -28,49 +29,53 @@ namespace CloudShop.Controllers
             var products = productRepository.GetProducts();
 
             // add all products currently not in session
-            var itemsInSession = this.Session["Cart"] as List<string> ?? new List<string>();
-            var filteredProducts = products.Where(item => !itemsInSession.Contains(item));
+            var filteredProducts = products.Where(p => !this.Cart.Contains(p));
 
             IndexViewModel model = new IndexViewModel()
             {
                 Products = filteredProducts
             };
 
-            return View(model);
+            return this.View(model);
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
         public ActionResult Add(string selectedItem)
         {
-            if (selectedItem != null)
+            if (selectedItem == null)
             {
-                List<string> cart = this.Session["Cart"] as List<string> ?? new List<string>();
-                cart.Add(selectedItem);
-                Session["Cart"] = cart;
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            return RedirectToAction("Index");
+            this.Cart.Add(selectedItem);
+            return this.RedirectToAction("Index");
         }
 
         public ActionResult Checkout()
         {
-            var itemsInSession = this.Session["Cart"] as List<string> ?? new List<string>();
-            return View(itemsInSession);
+            return this.View(this.Cart);
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
         public ActionResult Remove(string selectedItem)
         {
-            if (selectedItem != null)
+            if (selectedItem == null)
             {
-                var itemsInSession = this.Session["Cart"] as List<string>;
-                if (itemsInSession != null)
-                {
-                    itemsInSession.Remove(selectedItem);
-                }
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            else if (!this.Cart.Contains(selectedItem))
+            {
+                return this.HttpNotFound();
+            }
+            
+            this.Cart.Remove(selectedItem);
+            return this.RedirectToAction("Checkout");
+        }
 
-            return RedirectToAction("Checkout");
+        public EmptyResult Recycle()
+        {
+            RoleEnvironment.RequestRecycle();
+            return new EmptyResult();
         }
     }
 }

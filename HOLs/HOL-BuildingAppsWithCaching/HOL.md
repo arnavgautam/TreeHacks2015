@@ -75,7 +75,7 @@ Estimated time to complete this lab: **60 minutes**.
 <a name="Exercise1" />
 ### Exercise 1: Enable Cache service for Session State ###
 
-In this exercise, you will explore the use of the session state provider for Cache service as the mechanism for out-of-process storage of session state data. For this purpose, you will use **Cloud Shop** a sample shopping cart application implemented with ASP.NET MVC4. You will run this application in the compute emulator and then modify it to take advantage of the Windows Azure Cache service as the back-end store for the Asp.Net session state. You will start with a begin solution and explore the sample using the default Asp.Net in-proc session state provider. Next, you will add references to the Cache assemblies and configure the session state provider to store the contents of the shopping cart in the distributed cache cluster provided by Cache service.
+In this exercise, you will explore the use of the session state provider for Cache service as the mechanism for out-of-process storage of session state data. For this purpose, you will use **Cloud Shop**, a sample shopping cart application implemented with ASP.NET MVC4. You will run this application in the compute emulator and then modify it to take advantage of the Windows Azure Cache service as the back-end store for the ASP.NET session state. You will start with a begin solution and explore the sample using the default ASP.NET in-proc session state provider. Next, you will add references to the Cache assemblies and configure the session state provider to store the contents of the shopping cart in the distributed cache cluster provided by Cache service.
 
 <a name="Ex1Task1" />
 #### Task 1 – Running the Cloud Shop Sample Site in the Compute Emulator ####
@@ -85,9 +85,9 @@ In this task, you will run the Cloud Shop application in the compute emulator us
 1. Start **Microsoft Visual Studio 2012 Express for Web** as administrator.
 1. Open the **Begin** solution located at **Source\\Ex1-CacheSessionState\\Begin**.
 
-	>**Important:** 	Before you execute the solution, make sure that the start-up project is set. For MVC projects, the start page must be left blank.
+	>**Important:** 	Before you execute the solution, make sure that the startup project is set. For MVC projects, the start page must be left blank.
 
-	>To set the start-up project, in **Solution Explorer**, right-click the **CloudShop.Azure** project and select **Set as StartUp Project**.
+	>To set the startup project, in **Solution Explorer**, right-click the **CloudShop.Azure** project and select **Set as StartUp Project**.
 	
 	>To set the start page, in **Solution Explorer**, right-click the **CloudShop** project and select **Properties**. In the **Properties** window, select the **Web** tab and in the **Start Action**, select **Specific Page**. Leave the value of this field blank.
 
@@ -133,7 +133,7 @@ In this task, you will run the Cloud Shop application in the compute emulator us
 
 <a name="Ex1Task2" />
 #### Task 2 – Adding a dedicated caching role ####
-In this task, you will add a new worker role that serves as a dedicated cache host. All other web roles and worker roles in the Cloud Service will be able to access the Cache service hosted by this role. You can set up multiple such dedicated worker roles within your Cloud Service. In addition, you can also enable Cache service on any of the existing roles and allocate certain percentage of virtual machine memory to be used as cache. 
+In this task, you will add a new worker role that serves as a dedicated cache host. All other web roles and worker roles in the Cloud Service will be able to access the Cache service hosted by this role. You can set up multiple dedicated worker roles within your Cloud Service. In addition, you can also enable Cache service on any of the existing roles and allocate certain percentage of virtual machine memory to be used as cache. 
 
 1. In solution explorer, expand **CloudShop.Azure** node, and then right-click on **Roles**. Then, select **Add** | **New Worker Role Project...**.
 
@@ -153,7 +153,7 @@ In this task, you will change the Session State provider to take advantage of th
 1. Make sure that **CloudShop** is selected in the **Default project** drop-down list. Issue the following command to install the Nuget package for Cache service:  
  
 	````PowerShell
-	Install-package Microsoft.WindowsAzure.Caching 
+	Install-package Microsoft.WindowsAzure.Caching -Version 2.2.0.0
 	````
    
 1. Open the **Web.config** file located in the root folder of the **CloudShop** project.
@@ -186,17 +186,26 @@ In this task, you will change the Session State provider to take advantage of th
 	...
 	</system.web>
    ````
+
+	>**Note:** You can replace the commented settings that were added when installing **Microsoft.WindowsAzure.Caching** package.
+ 
 1. Press **CTRL + S** to save your changes to the **Web.config** file.
 
 <a name="Ex1Task4"></a>
 #### Task 4 – Verification ####
 
-1. Press **Ctrl + F5** to build and run the application. Wait for the browser to launch and show the **Products** page. 
+1. Press **Ctrl + F5** to build and run the application. Wait for the browser to launch and show the **Products** page.
+
 1. Select one product from the list and click **Add item to cart**. Repeat the process to store additional items in the cart.
+
 1. Click the **Checkout** link to view the contents of the shopping cart. Verify that the items you selected appear on the list.
+
 1. Navigate back to **Products** page and click on **Recycle** link.
+
 1. Observe the web role getting recycled in **Show Compute Emulator UI**. 
+
 1. Go back to browser, remove */Home/Recycle* from address, and then press Enter to reload the site.
+
 1. **Products** page should load correctly. Navigate to **Checkout** page. Notice that the order is intact. This confirms that with the Windows Azure Caching provider, the session state is stored outside the role instance and can persist through application restarts.
 
 	> **Note:** You should infer from the verification that for an application hosted in multiple servers or Windows Azure role instances where a load balancer distributes requests to the application, clients would continue to have access to their session data regardless of which instance responds to the request.

@@ -95,8 +95,6 @@
 
             var receivedCustomMessage = receivedMessage.GetBody<CustomMessage>();
 
-            //receivedMessage.Properties["Priority"] = receivedMessage.Properties["Priority"].ToString() == "1" ? "High" : "Low";
-
             var brokeredMsgProperties = new Dictionary<string, object>();
             brokeredMsgProperties.Add("Size", receivedMessage.Size);
             brokeredMsgProperties.Add("MessageId", receivedMessage.MessageId.Substring(0, 15) + "...");

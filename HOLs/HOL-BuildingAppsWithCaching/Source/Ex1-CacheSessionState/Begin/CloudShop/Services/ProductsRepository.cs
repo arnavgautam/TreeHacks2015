@@ -2,32 +2,21 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
+    using System.Threading.Tasks;
     using CloudShop.Models;
 
     public class ProductsRepository : IProductRepository
     {
         public List<string> GetProducts()
         {
-            List<string> products = null;
-
-            NorthwindEntities context = new NorthwindEntities();
-
-            try
+            using (NorthwindEntities context = new NorthwindEntities())
             {
                 var query = from product in context.Products
                             select product.ProductName;
-                products = query.ToList();
+                return query.ToList();
             }
-            finally
-            {
-                if (context != null)
-                {
-                    context.Dispose();
-                }
-            }
-
-            return products;
         }
     }
 }
