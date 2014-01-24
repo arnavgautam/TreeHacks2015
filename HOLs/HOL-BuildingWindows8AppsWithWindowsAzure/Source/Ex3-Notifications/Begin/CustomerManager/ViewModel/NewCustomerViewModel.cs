@@ -1,7 +1,7 @@
 ﻿namespace CustomerManager.ViewModel
 {
     using CustomerManager.Common;
-    using CustomerManager.Data;
+    using CustomerManager.DataModel;
     using WebApi.Models;
 
     public class NewCustomerViewModel : BindableBase

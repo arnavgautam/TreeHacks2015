@@ -4,7 +4,7 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using CustomerManager.Common;
-    using CustomerManager.Data;
+    using CustomerManager.DataModel;
     using WebApi.Models;
 
     public class CustomerDetailViewModel : BindableBase
