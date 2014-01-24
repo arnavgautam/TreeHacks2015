@@ -1299,7 +1299,7 @@ To learn more about Windows Store applications and Windows Azure Web Sites, plea
 
 **Technical Reference**
 
-This is a list of articles that expand on the technologies explained on this lab:
+This is a list of articles that expand on the technologies explained in this lab:
 
 - [Windows Azure Web Sites Documentation](http://aka.ms/Alwcgu): provides reference information for developing your site with .NET, PHP, Node.js or Python and hosting in Windows Azure Web Sites.
 - [Windows Azure Web Sites, Cloud Services, and VMs: When to use which?](http://aka.ms/Nocpe8): provides guidance on how to make an informed decision when choosing among Windows Azure Web Sites, Cloud Services, and virtual machines to host a web application.
