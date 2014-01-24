@@ -1161,14 +1161,6 @@ The WNS authentication scheme is implemented using the client credentials profil
 
 1. In **Default project** make sure **WebApi** is selected.
 
-1. Execute the following command to install the packages required for WNS Recipe.
-
-	````PowerShell
-	Install-Package WnsRecipe
-	````
-
-    > **Note:** The Windows Push Notification Service Recipe (**WnsRecipe**) is a push notification server-side helper library that provides an easy way to send all three types of push notification messages supported by Windows Push Notification Services (WNS): Tile, Toast, and Badge.
-
 1. Add a reference to the Windows Azure Service Bus SDK with the **WindowsAzure.ServiceBus** NuGet package.
 
 	````PowerShell
@@ -1179,27 +1171,30 @@ The WNS authentication scheme is implemented using the client credentials profil
     
 	````C#
 	using Microsoft.ServiceBus.Notifications;
-	using NotificationsExtensions.ToastContent;
 	using System.Configuration;
 	````
 
 1. Add the following private method to send a toast notification about the new customers.
 
 	(Code Snippet - _Building Windows 8 Apps - Ex3 - SendNotification_)
-	<!--mark:1-13 -->
+	<!--mark:1-17 -->
 	````C#
-	private async void SendNotification(Customer customer)
+	private async Task SendNotificationAsync(Customer customer)
 	{
 		 var connectionString = ConfigurationManager.AppSettings["HubConnectionString"];
 		 var notificationHub = ConfigurationManager.AppSettings["HubName"];
 		 NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(connectionString, notificationHub);
 
-		 var notification = ToastContentFactory.CreateToastText02();
+		 var toast = "<toast>" +
+							  "<visual>" +
+									"<binding template=\"ToastText02\">" +
+										 "<text id=\"1\">New customer added!</text>" +
+										 "<text id=\"2\">" + customer.Name + "</text>" +
+									"</binding>" +
+							  "</visual>" +
+						 "</toast>";
 
-		 notification.TextHeading.Text = "New customer added!";
-		 notification.TextBodyWrap.Text = customer.Name;
-
-		 await hub.SendWindowsNativeNotificationAsync(notification.ToString());
+		 await hub.SendWindowsNativeNotificationAsync(toast);
 	}
 	````
 
@@ -1221,7 +1216,7 @@ The WNS authentication scheme is implemented using the client credentials profil
 		db.Customers.Add(customer);
 		await db.SaveChangesAsync();
 
-		this.SendNotification(customer);
+		await this.SendNotificationAsync(customer);
 
 		return CreatedAtRoute("DefaultApi", new { id = customer.CustomerId }, customer);
 	}
