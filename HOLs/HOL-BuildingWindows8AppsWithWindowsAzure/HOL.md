@@ -145,13 +145,13 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 
 	> **Note:** If the web application is not displayed after the deployment, try refreshing the browser a couple of times.
 
-1. In the browser, append **api/values** to the URL to retrieve the JSON output of the sample service. 
-
-	In the browser, you will be prompted to download a file. Click **Open**. If prompted, choose to open the file with a text editor.
+1. In the browser, append **api/values** to the URL to retrieve the JSON output of the sample service. You will be prompted to download a file. Click **Open**. If prompted, choose to open the file with a text editor.
 	
 	![Retrieving the default values](Images/retrieving-the-default-webapi-values.png?raw=true "Retrieving the default values")
 
 	_Retrieving the default values_
+
+1. Press **Shift + F5** to stop running the solution.
 
 <a name="Ex1Task2" />
 #### Task 2 – Adding a New Windows Azure Web Site from Server Explorer ####
@@ -188,7 +188,7 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 
 	> **Note:** By default, Windows Azure provides domains at _azurewebsites.net_ but also gives you the possibility to set custom domains using the Windows Azure Management Portal (right-click your Web site from Server Explorer and select **Open in Management Portal**). However, you can only manage custom domains if you are using certain Web site modes.
 	
-	> Windows Azure offers 3 modes for users to run their Web sites - Free, Shared, and Standard. In Free and Shared mode, all Web sites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are Free (strict quotas) vs. Shared (more flexible quotas). The maximum number of free sites may vary with your plan. In Standard mode, you choose which sites run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Web Sites Mode configuration in the **Scale** menu of your Web site.
+	> Windows Azure offers 3 modes for users to run their Web sites - **Free**, **Shared**, and **Standard**. In **Free** and **Shared** mode, all Web sites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are **Free** (strict quotas) vs. **Shared** (more flexible quotas). The maximum number of free sites may vary with your plan. In **Standard** mode, you choose which sites run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Web Sites Mode configuration in the **Scale** menu of your Web site.
 
 	> ![Web Site Modes](Images/web-site-modes.png?raw=true "Web Site Modes")
 
@@ -295,9 +295,7 @@ In this task you will create a blank Windows Store application that will consume
 
 1. Add the following method to the **MainPage.xaml.cs** class to perform an asynchronous call to the Web API service.
 
-	The method **GetItems()** instantiates an HttpClient object, which  sends a GET message to the service URL and retrieves a response asynchronously. Then, the response is deserialized and read by the JsonArray object before generating the value list. 
-	
-	> **Note:** If you want to read more about async methods you can check out [this article](http://msdn.microsoft.com/en-US/vstudio/async). 
+	The method **GetItems()** instantiates an HttpClient object, which  sends a GET message to the service URL and retrieves a response asynchronously. Then, the response is deserialized and read by the JsonArray object before generating the value list.  
 
 	(Code Snippet - _BuildingWindows8Apps - Ex1 - GetItems_)
 	<!-- mark:1-22 -->
@@ -326,13 +324,16 @@ In this task you will create a blank Windows Store application that will consume
 	}
 	````
 
+	> **Note:** If you want to read more about async methods you can check out [this article](http://msdn.microsoft.com/en-US/vstudio/async).
+
 1. Replace the value of the placeholder [YOUR-WINDOWS-AZURE-SERVICE-URL] with your Windows Azure published Web site URL. You can check that value in the Web site's dashboard.
 
 	>**Note:** If you want to test the service locally, start the service project, check its URL and its port (e.g. http://localhost:3565/) and use that value.
 
-1. Then, in the **OnNavigateTo** method, add a call to the GetItem method and press **CTRL+S** to save.
+1. Then, override the **OnNavigatedTo** method adding a call to the GetItem method and press **CTRL+S** to save.
 
-	<!-- mark:3 -->
+	(Code Snippet - _BuildingWindows8Apps - Ex1 - OnNavigatedTo_)
+	<!-- mark:1-4 -->
 	````C#
 	protected override void OnNavigatedTo(NavigationEventArgs e)
 	{
