@@ -1,23 +1,23 @@
 ﻿<a name="Title" />
-# Building Windows 8.1 Applications using Windows Azure Web Sites #
+# Building Windows 8 Applications using Windows Azure Web Sites #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-Apps are at the center of the Windows 8.1 experience. They’re alive with activity and vibrant content. Users are immersed in your full-screen, Windows Store apps, where they can focus on their content, rather than on the operating system.
+Apps are at the center of the Windows 8 experience. They are alive with activity and vibrant content. Users are immersed in your full-screen, Windows Store apps, where they can focus on their content, rather than on the operating system.
 
-In this hands-on lab you will learn how to combine the fluency of Windows 8.1 applications with the power of Windows Azure: From a Windows Store application, you will consume an ASP.NET MVC 5 Web API service published in Windows Azure Web Sites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app to send toast notifications from your service to all the registered clients.
+In this hands-on lab you will learn how to combine the fluency of Windows 8 applications with the power of Windows Azure: From a Windows Store application, you will consume an ASP.NET Web API service published in Windows Azure Web Sites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app to send toast notifications from your service to all the registered clients.
 
 <a name="Objectives" />
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-- Create an ASP.NET MVC 5 Web API service
+- Create an ASP.NET Web API service
 - Publish the service to Windows Azure Web Sites
 - Create a Windows Store application that consumes the Web API service
-- Add Push Notifications to the Windows Store application by using WNS Recipe
+- Add Push Notifications to the Windows Store application by using Notifications Hub
 
 <a name="Prerequisites" />
 ### Prerequisites ###
@@ -25,7 +25,7 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Visual Studio Express 2013 for Web][1] or greater
-- [Visual Studio 2013 Express for Windows 8.1][2] or greater
+- [Visual Studio 2013 Express for Windows][2] or greater
 - A Windows Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
 	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
@@ -34,7 +34,7 @@ The following is required to complete this hands-on lab:
 
 
 [1]:http://www.microsoft.com/visualstudio/
-[2]:http://msdn.microsoft.com/en-us/windows/apps/hh852659
+[2]:http://www.microsoft.com/visualstudio/
 
 <a name="Setup"/>
 ### Setup ###
@@ -45,7 +45,7 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 
 1. Right-click the **Setup.cmd** file and click **Run as administrator**. This will launch the setup process that will install the Visual Studio code snippets for this lab.
 
-1. If the User Account Control dialog is shown, confirm the action to proceed.
+1. If the User Account Control dialog box is shown, confirm the action to proceed.
  
 >**Note:** Make sure you have checked all the dependencies for this lab before running the setup.
 
@@ -71,19 +71,19 @@ This hands-on lab includes the following exercises:
 <a name="Exercise1" />
 ### Exercise 1: Building and Consuming an ASP.NET Web API from a Windows Store App ###
 
-ASP.NET Web API is a new framework from MVC 5 that facilitates to build and consume HTTP services for a wide range of clients.
+ASP.NET Web API is a framework that facilitates to build and consume HTTP services for a wide range of clients.
 
-In this exercise you will learn the basics of consuming an ASP.NET MVC 5 Web API REST service - hosted in Windows Azure Web Sites - from a Windows Store application. 
+In this exercise you will learn the basics of consuming an ASP.NET Web API REST service - hosted in Windows Azure Web Sites - from a Windows Store application.
 
-For that purpose, you will first create a new Azure Web Site in the portal to host the service. Then, you will create a new ASP.NET MVC 5 Web API project and publish it in Windows Azure from Visual Studio. Once the default service is published, you will create a basic Windows Store client application with a simple list to retrieve the service values.
+For that purpose, you will first create a new Windows Azure Web Site in the portal to host the service. Then, you will create a new ASP.NET Web API project and publish it in Windows Azure from Visual Studio. Once the default service is published, you will create a basic Windows Store client application with a simple list to retrieve the service values.
 
-> **Note:** If you are using Visual Studio 2013 Professional or higher, you are provided with a solution named **End.All.sln** with the Web Api and the StyleUI projects together in the **Source/Ex1-BuildingWebAPI/End** folder of this lab.
+> **Note:** If you are using Visual Studio 2013 Professional or higher, you are provided with a solution named **End.All.sln** with the Web API and the Windows Store projects together in the **Source/Ex1-BuildingWebAPI/End** folder of this lab.
 
 
 <a name="Ex1Task1" />
-#### Task 1 – Creating an MVC 5 Web API Service ####
+#### Task 1 – Creating an Web API Service ####
 
-In this task you will create a new MVC 5 Web API project and explore its components. 
+In this task you will create a new ASP.NET Web API project and explore its components. 
 
 >**Note:** You can learn more about ASP.NET Web API  [here](http://www.asp.net/web-api).
 
@@ -93,7 +93,7 @@ In this task you will create a new MVC 5 Web API project and explore its compone
 
 	_Creating a New Project_
 
-1. In the **New Project** dialog, select **ASP.NET Web Application** under the **Visual C# | Web** tab.
+1. In the **New Project** dialog box, select **ASP.NET Web Application** under the **Visual C# | Web** tab.
 
 	Make sure the **.NET Framework 4.5** is selected, name it _WebApi_, choose a Location and click **OK**.
 
@@ -101,7 +101,7 @@ In this task you will create a new MVC 5 Web API project and explore its compone
 
 	_New MVC Project_
 
-1. In the **New ASP.NET Project - WebApi** dialog, select **Web API**.
+1. In the **New ASP.NET Project - WebApi** dialog box, select **Web API**.
 
 	![New ASP.NET MVC Web API project](Images/new-aspnet-mvc-webapi-project.png?raw=true "New ASP.NET MVC Web API project")
 
@@ -174,11 +174,11 @@ In this task you will create a new MVC 5 Web API project and explore its compone
 
 1. In the **Create site in Windows Azure** dialog box, provide the following information:
 	- In the **Site name** box, enter an available name for the Web site.
-	- In the **Location** drop-down list, select the region for the web site. This setting specifies which data center your Web site will run in.
+	- In the **Location** drop-down list, select the region for the Web site. This setting specifies which data center your Web site will run in.
 	- In the **Database server** drop-down list, select **Create new server**. Alternatively, you can select an existing SQL Server.
 	- In the **Database username** and **Database password** boxes, enter the administrator username and password for the SQL Server. If you selected a SQL Server you have created previously, you will be prompted for the password.
 
-1. Click **Create** to create the web site.
+1. Click **Create** to create the Web site.
 
 	![Create site on Windows Azure](Images/create-site-on-windows-azure.png?raw=true)
 
@@ -249,9 +249,9 @@ In this task you will create a new MVC 5 Web API project and explore its compone
 
 	![Publishing a web site](Images/publishing-a-web-site.png?raw=true "Publishing a web site")
 	
-	_Publishing a web site_
+	_Publishing a Web site_
 
-1. When the process is completed the published web site will be opened in your default web browser. Go to **/api/values** to retrieve the default values and test that the Web API service is working successfully.
+1. When the process is completed the published Web site will be opened in your default web browser. Go to **/api/values** to retrieve the default values and test that the Web API service is working successfully.
 
 	![Default web service published](Images/default-web-service-published.png?raw=true "Default web service published")
 
@@ -262,15 +262,15 @@ In this task you will create a new MVC 5 Web API project and explore its compone
 
 In this task you will create a blank Windows Store application that will consume the service you have already running.
 
-1. Open **Visual Studio Express 2013 for Windows 8.1** and select **File | New Project...** to start a new solution.
+1. Open **Visual Studio Express 2013 for Windows** and select **File | New Project...** to start a new solution.
 
-1. In the **New Project** dialog, select the **Blank** application under the **Visual C# | Windows Store** applications. Name it _Win8Client_ and click **OK**.
+1. In the **New Project** dialog box, select the **Blank** application under the **Visual C# | Windows Store** applications. Name it _Win8Client_ and click **OK**.
 
 	![Add a new Windows Store application basic client project](Images/add-new-style-ui-app-basic-client-project.png?raw=true "Add new Windows Store application basic client project")
 
 	_Add a new Windows Store application basic client project_
 
-	> **Note:** If it's the first time you create a Windows Syle UI application you will be prompted to get a developer license for Windows 8.1 to develop this kind of applications. In the Developer License window, click **I Agree**.
+	> **Note:** If it is the first time you create a Windows Store application you will be prompted to get a developer license for Windows Store to develop this kind of applications. In the Developer License window, click **I Agree**.
 	
 	> ![Getting a Developer License](Images/getting-developer-license.png?raw=true "Getting a Developer License")
 	
@@ -293,13 +293,13 @@ In this task you will create a blank Windows Store application that will consume
 	using Windows.Data.Json;
 	````
 
-1. Add the following method to the **MainPage.xaml.cs** class, to perform an asynchronous call to the Web API service.
+1. Add the following method to the **MainPage.xaml.cs** class to perform an asynchronous call to the Web API service.
 
 	GetItem() instantiates an HttpClient object, which  sends a GET message to the service URL and retrieves a response asynchronously. Then, the response is deserialized and read by the JsonArray object before generating the value list. 
 	
 	> **Note:** If you want to read more about async methods you can check out [this article](http://msdn.microsoft.com/en-US/vstudio/async). 
 
-	(Code Snippet - _Building Windows 8.1 Apps - Ex1 - GetItems_)
+	(Code Snippet - _Building Windows 8 Apps - Ex1 - GetItems_)
 	<!-- mark:1-22 -->
 	````C#
 	public async void GetItems()
@@ -326,7 +326,7 @@ In this task you will create a blank Windows Store application that will consume
 	}
 	````
 
-1. Replace the value of the placeholder **[YOUR-WINDOWS-AZURE-SERVICE-URL]** with your Windows Azure published web site URL. You can check that value in the web site's dashboard.
+1. Replace the value of the placeholder **[YOUR-WINDOWS-AZURE-SERVICE-URL]** with your Windows Azure published Web site URL. You can check that value in the Web site's dashboard.
 
 	>**Note:** If you want to test the service locally, start the service project, check its URL and its port (e.g. http://localhost:3565/) and use that value.
 
@@ -374,7 +374,7 @@ In this exercise, you will learn how to bind your Windows Store application to a
 You will create a new ASP.NET Web API service and use Entity Framework Scaffolding with Code First to generate the service methods and a database in SQL Database.
 Finally, you will explore and customize your Windows Store application to consume the service and show a customer list.
 
-> **Note:** If you are using Visual Studio 2013 Professional or higher, you are provided with two solutions named **Begin.All.sln** and **End.All.sln** with the Web Api and the StyleUI projects together in the **Source/Ex2-DataAccess/Begin** and **Source/Ex2-DataAccess/End** respective folders of this lab.
+> **Note:** If you are using Visual Studio 2013 Professional or higher, you are provided with two solutions named **Begin.All.sln** and **End.All.sln** with the ASP.NET Web API and the Windows Store projects together in the **Source/Ex2-DataAccess/Begin** and **Source/Ex2-DataAccess/End** respective folders of this lab.
 
 **About Entity Framework Code First**
 
@@ -401,7 +401,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 1. Replace the Customer.cs class content with the following code. Press **CTRL+S** to save the changes.
 
-	(Code Snippet - _Building Windows 8.1 Apps - Ex2 - Customer class_)
+	(Code Snippet - _Building Windows 8 Apps - Ex2 - Customer class_)
 	<!-- mark:1-21 -->
 	````C#
 	namespace WebApi.Models
@@ -429,15 +429,15 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 1. In Solution Explorer, right-click the WebApi project and select **Build**.
 
-	> **Note:** If you build the entire solution you will get errors as the Style UI app client is still incomplete.
+	> **Note:** If you build the entire solution you will get errors as the Windows Store app client is still incomplete.
 
-1. In Solution Explorer, right-click the **Controllers** folder of the Web API project and select **Add | Controller** to open the **Add Controller** dialog.
+1. In Solution Explorer, right-click the **Controllers** folder of the Web API project and select **Add | Controller** to open the **Add Controller** dialog box.
 
 	![Adding new scaffolded item](Images/adding-new-scaffolded-item.png?raw=true "Adding new scaffolded item")
 
 	_Adding new scaffolded item_
 
-1. In the **Add Scaffold** dialog, select **Web API 2 Controller with actions, using Entity Framework** and then click **Add.**
+1. In the **Add Scaffold** dialog box, select **Web API 2 Controller with actions, using Entity Framework** and then click **Add.**
 
 	![Selecting the Web API 2 controllers with actions](Images/selecting-the-web-api-2-controllers-with-acti.png?raw=true "Selecting the Web API 2 controllers with actions")
 
@@ -470,7 +470,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 1. Now, you will add a database initializer method in your database context to populate the database with initial data. Add the following **CustomerContextInitializer** class in **CustomerContext.cs** file (under the **Models** folder) after **CustomerContext** class, and save the changes.
 
-	(Code Snippet - _Building Windows 8.1 Apps - Ex2 - Context Initializer_)
+	(Code Snippet - _Building Windows 8 Apps - Ex2 - Context Initializer_)
 	<!-- mark:26-31 -->
 	````C#
 	using System;
@@ -516,7 +516,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 1. In the CustomerContextInitializer **Seed** method, add the following customers to the context to populate the database with customers.
 
-	(Code Snippet - _Building Windows 8.1 Apps - Ex2 - Context Initializer Seed_)
+	(Code Snippet - _Building Windows 8 Apps - Ex2 - Context Initializer Seed_)
 	<!-- mark:3-102 -->
 	````C#
 	protected override void Seed(CustomerContext context)
@@ -671,11 +671,11 @@ In this task you will publish the updated Web API service in Windows Azure Web S
 
 1. Click **Next** and then in the **Preview** page, click **Publish**.
 
-	![Publishing a web site](Images/publishing-a-web-site.png?raw=true "Publishing a web site")
+	![Publishing a Web site](Images/publishing-a-web-site.png?raw=true "Publishing a Web site")
 	
-	_Publishing a web site_
+	_Publishing a Web site_
 
-1. When the process is completed the published web site will be opened in your default web browser. Go to **/api/customers** to retrieve the full list of customers.
+1. When the process is completed the published Web site will be opened in your default web browser. Go to **/api/customers** to retrieve the full list of customers.
 
 	![Testing the Customers Web API](Images/testing-the-customers-web-api.png?raw=true "Testing the Customers Web API")
 
@@ -686,9 +686,9 @@ In this task you will publish the updated Web API service in Windows Azure Web S
 <a name="Ex2Task3" />
 #### Task 3 - Exploring the Windows Store Application ####
 
-In this task you will explore the Customer client application, built using a Windows Store application Grid Template. You will perform a brief lap around and learn about the main components of a Style UI Grid application.
+In this task you will explore the Customer client application, built using a Windows Store application Grid Template. You will perform a brief lap around and learn about the main components of a Windows Store Grid application.
 
-1. Open **Visual Studio Express 2013 for Windows 8.1** and open the **CustomerManager.sln** solution located under **Source/Ex2-DataAccess/Begin** folder.
+1. Open **Visual Studio Express 2013 for Windows** and open the **CustomerManager.sln** solution located under **Source/Ex2-DataAccess/Begin** folder.
 
 1. This is a client Windows Store application that displays customers. It is based on the Visual Studio Grid template.
 
@@ -824,7 +824,7 @@ In this task you will bind your Windows Store Application against your customer'
 
 	_Adding Customer.cs model class as a link_
 
-	By adding the Customer class as a link, your application will be using the same model class from the Web API service. This class will serve as data contract between the Web API service and the Style UI app.
+	By adding the Customer class as a link, your application will be using the same model class from the Web API service. This class will serve as data contract between the Web API service and the Windows Store app.
 
 1. Right-click the **DataModel** project folder in the Solution Explorer and select **Add | Class**. Name it _CustomersWebApiClient.cs_. 
 
@@ -836,7 +836,7 @@ In this task you will bind your Windows Store Application against your customer'
 
 1. 	Open the **CustomersWebApiClient.cs** class and add the following using directives. 
 
-	(Code Snippet - _Building Windows 8.1 Apps - Ex2 - CustomersWebApiClient namespace_)
+	(Code Snippet - _Building Windows 8 Apps - Ex2 - CustomersWebApiClient namespace_)
 
 	<!-- mark:1-4 -->
 	````C#
@@ -850,7 +850,7 @@ In this task you will bind your Windows Store Application against your customer'
 	
 1. In the CustomersWebApiClient class, add the following **GetCustomers()** method.
 
-	(Code Snippet - _Building Windows 8.1 Apps - Ex2 - CustomersWebApiClient GetCustomers Method_)
+	(Code Snippet - _Building Windows 8 Apps - Ex2 - CustomersWebApiClient GetCustomers Method_)
 
 	<!-- mark:1-18 -->
 	````C#
@@ -880,7 +880,7 @@ In this task you will bind your Windows Store Application against your customer'
 
 1. Now add the **CreateCustomer** method to post new customers to the service.
 
-	(Code Snippet - _Building Windows 8.1 Apps - Ex2 - CustomersWebApiClient CreateCustomer Method_)
+	(Code Snippet - _Building Windows 8 Apps - Ex2 - CustomersWebApiClient CreateCustomer Method_)
 
 	<!-- mark:1-21 -->
 	````C#
@@ -953,7 +953,7 @@ In this task you will bind your Windows Store Application against your customer'
 <a name="Exercise3" />
 ### Exercise 3: Adding Push Notification Support to your Windows Store Application ###
 
-The Windows Push Notification Services (WNS) enables third-party developers to send toast, tile, and badge updates from their own web site. This provides a mechanism to deliver new updates to your users in a power-efficient and dependable way.
+The Windows Push Notification Services (WNS) enables third-party developers to send toast, tile, and badge updates from their own Web site. This provides a mechanism to deliver new updates to your users in a power-efficient and dependable way.
 
 The process of sending a notification requires few steps:
 
@@ -969,20 +969,20 @@ The process of sending a notification requires few steps:
 
 	_WNS Flow Diagram_
 
-In this exercise you will learn how to send a toast notification from the Web API service (Web Site) to the registered clients (Windows Store applications) whenever a new customer is added.
+In this exercise you will learn how to send a toast notification from the Web API service (Web site) to the registered clients (Windows Store applications) whenever a new customer is added.
 
 A toast notification is a transient message to the user that contains relevant, time-sensitive information and provides quick access to related content in an app. It can appear whether you are in another app, the Start screen, the lock screen, or on the desktop. Toasts should be viewed as an invitation to return to your app to follow up on something of interest.
 
-> **Note:** If you are using Visual Studio 2013 Professional or higher, you are provided with two solutions named **Begin.All.sln** and **End.All.sln** with the Web Api and the StyleUI projects together in the **Source/Ex3-Notifications/Begin** and **Source/Ex3-Notifications/End** respective folders of this lab.
+> **Note:** If you are using Visual Studio 2013 Professional or higher, you are provided with two solutions named **Begin.All.sln** and **End.All.sln** with the Web API and the Windows Store projects together in the **Source/Ex3-Notifications/Begin** and **Source/Ex3-Notifications/End** respective folders of this lab.
 
 <a name="Ex3Task1" />
 #### Task 1 - Registering the Customer Manager Application for Push Notifications####
 
-Before you can send notifications through WNS, you must register your application with the Windows developer center that supports the end-to-end process for submitting, certifying, and managing applications for sale in the Windows Store. When you register your application with the Dashboard, you are given credentials — a Package security identifier (SID) and a secret key — which your Web Site will use to authenticate itself with WNS.
+Before you can send notifications through WNS, you must register your application with the Windows developer center that supports the end-to-end process for submitting, certifying, and managing applications for sale in the Windows Store. When you register your application with the Dashboard, you are given credentials — a Package security identifier (SID) and a secret key — which your Web site will use to authenticate itself with WNS.
 
 In this task you will obtain the information that will be needed to enable your application to communicate with WNS and Live Connect.
 
-1. In Visual Studio, continue working with the solutions obtained from the previous exercise. If you did not executed the previous exercise you can open **WebApi.sln** with **Visual Studio Express 2013 for Web** and **CustomerManager.sln** with **Visual Studio Express 2013 for Windows 8.1**, both located in the **Source/Ex3-Notifications/Begin** folder of this lab.
+1. In Visual Studio, continue working with the solutions obtained from the previous exercise. If you did not executed the previous exercise you can open **WebApi.sln** with **Visual Studio Express 2013 for Web** and **CustomerManager.sln** with **Visual Studio Express 2013 for Windows**, both located in the **Source/Ex3-Notifications/Begin** folder of this lab.
 
 1. If you opened the **WebApi** begin solution, deploy it configuring the **CustomerContext** connection string to point to a Windows Azure SQL Database. [Exercise 2 - Task 2](#Ex2Task2) instructs how to do this.
 
@@ -1048,7 +1048,7 @@ In this task you will obtain the information that will be needed to enable your 
 
 	_Package Security Identifier (SID) and Client secret_
 
-	> **Note:** To send notifications to this application, your Web Site must use these credentials exactly. You cannot use another Web Site credentials to send notifications to this application, and you cannot use these credentials to send notifications to another app.
+	> **Note:** To send notifications to this application, your application must use these credentials exactly. You cannot use another application credentials to send notifications to this application, and you cannot use these credentials to send notifications to another app.
 
 	> **Note:** The client secret and package SID are important security credentials. Do not share these values with anyone or distribute them with your app.
 
@@ -1196,7 +1196,7 @@ In this tasks you will use the Windows Azure Notification Hub created and config
 	}
 	````
 
-	> **Note:** A channel is a unique address that represents a single user on a single device for a single application or secondary tile. Using the channel URI, an application can send a notification whenever it has an update for the user. With the **NotificationHubClient** we can send a notification to the full list of the client endpoints registered in the Notification Hub.
+	> **Note:** A channel is a unique address that represents a single user on a single device for a single application or secondary tile. Using the channel URI, an application can send a notification whenever it has an update for the user. With the **NotificationHubClient** you can send a notification to the full list of the client endpoints registered in the Notification Hub.
 
 1. Find the **PostCustomer** function and add a call to **SendNotification** method.
 
@@ -1255,7 +1255,7 @@ In this task you will register the your application with the service and then re
 
 1. Add the following private method at the end of the class to retrieve the ChannelURI for the app from WNS, and then register that ChannelURI with your notification hub. Make sure to replace the **<hub name>** and **<connection string with listen access>** placeholders with the name of the notification hub (ex. _customer-manager-hub_) and its corresponding **DefaultListenSharedAccessSignature** obtained in the previous task.
 
-	(Code Snippet - _Building Windows 8.1 Apps - Ex3 - RegisterChannel_)
+	(Code Snippet - _Building Windows 8 Apps - Ex3 - RegisterChannel_)
 	<!-- mark:1-7 -->
 	````C#
 	private async void RegisterChannel()
@@ -1269,7 +1269,7 @@ In this task you will register the your application with the service and then re
 
 1. Call the **RegisterChannel** method in the **OnLaunched** event.
 
-	(Code Snippet - _Building Windows 8.1 Apps - Ex3 - Call Register Channel method_)
+	(Code Snippet - _Building Windows 8 Apps - Ex3 - Call Register Channel method_)
 
     <!-- mark:5 -->
     ````C#
