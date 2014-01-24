@@ -1151,11 +1151,9 @@ In this task you will configure your application to be capable of raising toast 
 <a name="Ex3Task4" />
 #### Task 4 - Sending Push Notifications ####
 
-TODO: Review this text
+To send a notification, the sender must be authenticated through WNS. The first step in this process occurs when you register your application with the Windows Store Dashboard. During the registration process, your application is given a Package security identifier (SID) and a secret key. This information is used by your application to authenticate with WNS.
 
-To send a notification, the Web Site must be authenticated through WNS. The first step in this process occurs when you register your application with the Windows Store Dashboard. During the registration process, your application is given a Package security identifier (SID) and a secret key. This information is used by your Web Site to authenticate with WNS.
-
-The WNS authentication scheme is implemented using the client credentials profile from the [OAuth 2.0](http://go.microsoft.com/fwlink/?linkid=226787) protocol. The Web Site authenticates with WNS by providing its credentials (Package SID and secret key). In return, it receives an access token. This access token allows a Web Site to send a notification. The token is required with every notification request sent to the WNS.
+In this tasks you will use the Windows Azure Notification Hub created and configured with your credentials (Package SID and secret key) previously to send push notifications to the Windows Store application.
 
 1. Go to the **WebApi** solution and open the **Package Manager Console** from the **Tools | Library Package Manager** menu.
 
@@ -1198,7 +1196,7 @@ The WNS authentication scheme is implemented using the client credentials profil
 	}
 	````
 
-	> **Note:** A channel is a unique address that represents a single user on a single device for a single application or secondary tile. Using the channel URI, the Web Site can send a notification whenever it has an update for the user. With the **NotificationHubClient** we can send a notification to the full list of the client endpoints registered in the Notification Hub.
+	> **Note:** A channel is a unique address that represents a single user on a single device for a single application or secondary tile. Using the channel URI, an application can send a notification whenever it has an update for the user. With the **NotificationHubClient** we can send a notification to the full list of the client endpoints registered in the Notification Hub.
 
 1. Find the **PostCustomer** function and add a call to **SendNotification** method.
 
@@ -1231,8 +1229,6 @@ The WNS authentication scheme is implemented using the client credentials profil
       <add key="HubName" value="[hub name]"/>
     </appSettings>
     ````
-
-    > **Note:** For demo purposes we simply store these values in the Web.config file, but the Package security identifier SID and client secret should be securely stored. Disclosure or theft of this information could enable an attacker to send notifications to your users without your permission or knowledge.
 
 1. Publish the Customers Web API service in Windows Azure. To do this, follow the steps in [Exercise 2, Task 2](#Ex2Task2).
 
