@@ -252,7 +252,7 @@ In this task you will update the data access code to cache the result of queries
 
 1. In the **ProductsRepository** class, add the following highlighted code to define a constructor and declare a static member variable for a **DataCacheFactory** object instance, in addition to a boolean instance variable to control the use of the cache.
 
-	(Code Snippet - _BuildingAppsWithCachingService-Ex2-ProductsRepository constructor-CS_)
+	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - ProductsRepositoryConstructor_)
 	<!--mark: 3-9-->
 	````C#
 	public class ProductsRepository : IProductRepository	
@@ -276,7 +276,7 @@ In this task you will update the data access code to cache the result of queries
 
 1. Locate the **GetProducts** method and insert the following (highlighted) code at the very beginning.
 	
-	(Code Snippet - _BuildingAppsWithCachingService-Ex2-GetProducts read cache-CS_)
+	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - GetProductsReadCache_)
 	<!--mark: 6-28-->
 	````C#
 	public class ProductsRepository : IProductRepository
@@ -323,7 +323,7 @@ In this task you will update the data access code to cache the result of queries
 
 1. Next, add the following (highlighted) code block to the **GetProducts** method, immediately before the line that returns the **products** list at the end of the method.
 
-	(Code Snippet - _BuildingAppsWithCachingService-Ex2-GetProducts write cache-CS_)
+	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - GetProductsWriteCache_)
 	<!-- mark:12-17 -->
 	````C#
 	public class ProductsRepository : IProductRepository
@@ -366,7 +366,7 @@ In this task, you will update the application to allow control of the use of the
 
 1. Find the **Index** action, locate the lines that instantiate a new **ProductsRepository** and call its **GetProducts** method, and replace them with the highlighted code, as shown below.
 
-	(Code Snippet - _BuildingAppsWithCachingService-Ex2-GetProducts latency-CS_)
+	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - GetProductsLatency_)
 	<!-- mark:6-13 -->
 	````C#
 	public class HomeController : Controller
@@ -400,7 +400,7 @@ In this task, you will update the application to allow control of the use of the
 
 1. In the same method, locate the code that creates a new **IndexViewModel** instance and replace the **model** initialization with the following (highlighted) code block.
 
-	(Code Snippet - _BuildingAppsWithCachingService-Ex2-IndexViewModel initialization-CS_)
+	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - IndexViewModelInitialization_)
 	<!--mark: 22-25-->
 	````C#
 	public class HomeController : Controller
@@ -441,7 +441,7 @@ In this task, you will update the application to allow control of the use of the
 
 1. Add a new action method to the **HomeController** to enable or disable the cache from the UI of the application.
 
-	(Code Snippet - _BuildingAppsWithCachingService-Ex2-EnableCache method-CS_)
+	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - EnableCacheMethod_)
 	<!--mark: 4-8-->
 	````C#
 	public class HomeController : Controller
@@ -490,7 +490,7 @@ When using Windows Azure Cache Service, you have the option of using a local cac
 
 1. In the **ProductsRepository** class, replace the current member fields and the constructor with the following code, to add the logic for managing the localCache configuration.
 
-	(Code Snippet - _BuildingAppsWithCachingService-Ex2-ProductsRepository with local cache-CS_)
+	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - ProductsRepositoryWithLocalCache_)
 	<!--mark: 2-34-->
 	````C#
 	...	
@@ -532,24 +532,24 @@ When using Windows Azure Cache Service, you have the option of using a local cac
 
 1. Open the **HomeController.cs** file in the **Controllers** folder and find the **Index** action. Locate the code that instantiates a new **ProductsRepository** and replace those lines with the following highlighted code:
 
-	(Code Snippet - _BuildingAppsWithCachingService-Ex2-GetProducts LocalCache-CS_)
+	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - ProductsRepositoryLocalCache_)
 	<!--mark: 7-10-->
 	````C#
 	public class HomeController : Controller
 	{
-	  ...                       
-	  public ActionResult Index()
-	  {
-		bool enableCache = (bool)this.Session["EnableCache"];
-		bool enableLocalCache = (bool)this.Session["EnableLocalCache"];
+		...                       
+		public ActionResult Index()
+		{
+			bool enableCache = (bool)this.Session["EnableCache"];
+			bool enableLocalCache = (bool)this.Session["EnableLocalCache"];
 
-		// retrieve product catalog from repository and measure the elapsed time
-		Services.IProductRepository productRepository = new Services.ProductsRepository(enableCache, enableLocalCache);
-		Stopwatch stopwatch = new Stopwatch();
-		stopWatch.Start();
-		var products = productRepository.GetProducts();
-	    ...
-	}
+			// retrieve product catalog from repository and measure the elapsed time
+			Services.IProductRepository productRepository = new Services.ProductsRepository(enableCache, enableLocalCache);
+			Stopwatch stopwatch = new Stopwatch();
+			stopWatch.Start();
+			var products = productRepository.GetProducts();
+			...
+		}
 	````
 
 1. In the same method, locate the code that creates a new **IndexViewModel** and add the following highlighted property.
@@ -573,7 +573,7 @@ When using Windows Azure Cache Service, you have the option of using a local cac
 
 1. Add a new action method to the **HomeController** to enable or disable the local cache from the UI of the application.
 
-	(Code Snippet - _BuildingAppsWithCachingService-Ex2-EnableLocalCache method-CS_)
+	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - EnableLocalCacheMethod_)
 	<!--mark: 4-8-->
 	````C#
 	public class HomeController : Controller
@@ -589,7 +589,7 @@ When using Windows Azure Cache Service, you have the option of using a local cac
 
 1. Open **Index.cshtml** file in the **Views\Home** folder and add the following highlighted code above the **elapsedTime** div.
 
-	(Code Snippet - _BuildingAppsWithCachingService-Ex2-EnableLocalCache Option-HTML_)
+	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - EnableLocalCacheButton_)
 	<!--mark: 13-23-->
 	````HTML
 	<span class="h4">Cache settings for Cloud Shop</span>
@@ -1038,4 +1038,4 @@ TBC
 <a name="Summary" />
 ## Summary ##
 
-In this hands-on lab, you explored the use of the Windows Azure Caching. You saw how to configure session state to be cached across a cache cluster, allowing sessions to be preserved in the presence of restarts and across multiple role instances hosting the application. In addition, you learnt the basics of data caching with Windows Azure and in particular, how to cache the results of queries to a Windows Azure SQL Database. Finally, you looked at a reusable caching layer implementation that will allow you to add a caching layer to your applications in a very simple manner.
+In this hands-on lab, you explored the use of the Windows Azure Cache Service. You saw how to configure session state to be cached across a cache cluster, allowing sessions to be preserved in the presence of restarts and across multiple role instances hosting the application. In addition, you learnt the basics of data caching with Windows Azure and in particular, how to cache the results of queries to a Windows Azure SQL Database. Finally, you looked at a reusable caching layer implementation that will allow you to add a caching layer to your applications in a very simple manner.
