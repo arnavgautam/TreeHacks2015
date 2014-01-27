@@ -25,32 +25,37 @@ In this hands-on lab, you will learn how to:
 
 The following is required to complete this hands-on lab:
 
-- Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
-- [Visual Studio 2012 Professional or Visual Studio 2012 Ultimate][1]
+- [Visual Studio Express 2013 for Web][1] or greater
 - [Identity and Access Tools for Visual Studio 2012][2]
 - [WCF Data Services 5.3 Tools][3]
+- A Windows Azure subscription
+	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 
-[1]: http://www.microsoft.com/visualstudio
+
+[1]:http://www.microsoft.com/visualstudio/
 [2]: http://visualstudiogallery.msdn.microsoft.com/e21bf653-dfe1-4d81-b3d3-795cb104066e
 [3]:http://www.microsoft.com/en-us/download/details.aspx?id=35840
 
-<a name="Setup" />
+<a name="Setup"/>
 ### Setup ###
 
 In order to execute the exercises in this hands-on lab you need to set up your environment.
 
 1. Open a Windows Explorer window and browse to the lab's **Source** folder.
 
-1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.
+1. Right-click the **Setup.cmd** file and click **Run as administrator**. This will launch the setup process that will install the Visual Studio code snippets for this lab.
 
-1. If the User Account Control dialog is shown, confirm the action to proceed.
-
-> Make sure you have checked all the dependencies for this lab before running the setup.
+1. If the User Account Control dialog box is shown, confirm the action to proceed.
+ 
+>**Note:** Make sure you have checked all the dependencies for this lab before running the setup.
 
 <a name="UsingCodeSnippets" />
 ### Using the Code Snippets ###
 
-Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of that code is provided as Visual Studio Code Snippets, which you can use from within Visual Studio 2012 to avoid having to add it manually. 
+Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of that code is provided as Visual Studio Code Snippets, which you can use from within Visual Studio 2013 to avoid having to add it manually. 
 
 ---
 <a name="Exercises" />
@@ -92,29 +97,23 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 	_Adding a new Active Directory Tenant_
 
-1.	In the **Add Directory** dialog box, select **Create a new directory**.
+1.	In the **Add directory** dialog box, make sure that **Create new directory** is selected under **Directory**. Enter a **Name**, type an **Domain Name** (must be unique) and select a **Country or Region**. Click the check button to continue.
 
 	![create a new directory](Images/create-a-new-directory.png?raw=true)
 
 	_Creating a New Directory_
 
-1.	Enter a **Domain Name** (must be unique), select a **Region** and type an **Organization Name**. Click the check button to continue.
-
-	![filling ad details](Images/filling-ad-details.png?raw=true)
-
-	_Filling Active Directory Information_
-
 	> **Note:** This dialog gathers essential information needed to create a directory tenant for you.
 	>
 	> * **Organization Name**: This field is required, and its value will be used as a moniker whenever there's the need to display the company name. 
-	>
-	> * **Country or Region**: The value selected in this dropdown will determine where your tenant will be created. Given that the directory will store sensitive information, please do take into account the normative about privacy of the country in which your company operates. 
 	>
 	> * **Domain Name**: This field represents a critical piece of information: it is the part of the directory tenant domain name that is specific to your tenant, what distinguishes it from every other directory tenant. 
 	>
 	> 		At creation, every directory tenant is identified by a domain of the form <tenantname>.onmicrosoft.com. That domain is used in the UPN of all the directory users and in general wherever it is necessary to identify your directory tenant. After creation it is possible to register additional domains that you own. For more information, see domain management.
 	>
 	> * **The Domain Name must be unique**: the UI validation logic will help you to pick a unique value. It is recommended that you choose a handle which refers to your company, as that will help users and partners as they interact with the directory tenant.
+	>
+	> * **Country or Region**: The value selected in this dropdown will determine where your tenant will be created. Given that the directory will store sensitive information, please do take into account the normative about privacy of the country in which your company operates. 
 
 1.	Wait until the Active Directory is created (its status should display **Active**).
 
@@ -124,7 +123,7 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 	> **Note:** When a directory tenant is created, it is configured to store users and credentials in the cloud. If you want to integrate your directory tenant with your on-premises deployment of Windows Server Active Directory, you can find detailed instructions [here](http://technet.microsoft.com/library/jj151781.aspx).
 
-1.	Click on the newly created directory entry to display the user management UI. The directory tenant is initially empty, except for the Microsoft Account administering the Windows Azure subscription in which the new tenant was created.
+1.	Click on the newly created directory entry and then click the Users tabs to display the user management UI. The directory tenant is initially empty, except for the Microsoft Account administering the Windows Azure subscription in which the new tenant was created.
 
 	![active directory user list](Images/active-directory-user-list.png?raw=true)
 
@@ -142,28 +141,36 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 	_Filling new user details_
 
-1.	Enter the user profile data. Keep the **Role** option of **User**.
+1.	Enter the user profile data. Keep the **Role** option of **User**. Click **Next** to continue.
 
 	![Filling user profile information](Images/filling-user-profile-information.png?raw=true)
 
 	_Filling user profile information_
 
-1.	The Management Portal generates a temporary password, which will have to be used at the time of the first login. At that time the user will be forced to change password. Click the **create** button. Take note of the temporary password, as you will need it in the following tasks. Click the check button to create the user.
+1.	The Management Portal generates a temporary password, which will have to be used at the time of the first login. At that time the user will be forced to change password. Click the **create** button.
 
-	![creating a temporary password](Images/creating-a-temporary-password.png?raw=true)
+	![Creating a temporary password](Images/creating-a-temporary-password.png?raw=true "Creating a temporary password")
 
 	_Creating a temporary password_
 
-	At this point we have everything we need for providing an authentication authority in our web SSO scenario: a directory tenant and a valid user in it.
+1. Take note of the temporary password, as you will need it in the following tasks. Click the check button to create the user.
+
+	![Creating the new user](Images/creating-the-new-user.png?raw=true "Creating the new user")
+
+	_Creating the new user_
+
+1. TBD: Create an admin account
+
+	At this point we have everything we need for providing an authentication authority in our web SSO scenario: a directory tenant, a valid user and a valid admin in it.
 
 <a name="Ex1Task2" />
 #### Task 2 - Creating and Registering an MVC App in Active Directory Tenant ####
 
-In this task, you will create a new MVC Application using **Visual Studio 2012** and you will register it in the Active Directory tenant you created in the previous task.
+In this task, you will create a new MVC Application using **Visual Studio Express 2013 for Web** and you will register it in the Active Directory tenant you created in the previous task.
 
-1. Open **Microsoft Visual Studio 2012** as administrator by right-clicking the **Microsoft Visual Studio 2012** shortcut and choosing **Run as administrator**.
+1. Open **Visual Studio Express 2013 for 2013**.
 
-1. From the **File** menu, choose **New Project**.  
+1. From the **File** menu, choose **New Project**.
 
 1. In the **New Project** dialog, expand **Visual C#** in the **Installed** list and select **Web**. Choose the **ASP.NET MVC 4 Web Application** template, set the **Name** of the project to _ExpenseReport_ and set a location for the solution. Click **OK** to create the project.
 
