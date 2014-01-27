@@ -5,7 +5,7 @@
 <a name="Overview" />
 ## Overview ##
 
-Apps are at the center of the Windows 8 experience. They are alive with activity and vibrant content. Users are immersed in your full-screen, Windows Store apps, where they can focus on their content, rather than on the operating system.
+Apps are at the center of the Windows 8 experience. They are alive with activity and vibrant content. Users are immersed in your full-screen Windows Store apps, where they can focus on their content, rather than on the operating system.
 
 In this hands-on lab you will learn how to combine the fluency of Windows 8 applications with the power of Windows Azure: from a Windows Store application, you will consume an ASP.NET Web API service published in Windows Azure Web Sites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app using Windows Azure Notification Hubs to send toast notifications from your service to all the registered clients.
 
@@ -432,7 +432,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 	> **Note:** If you build the entire solution you will get errors, because the Windows Store app client is still incomplete.
 
-1. In Solution Explorer, right-click the **Controllers** folder of the Web API project and select **Add | Controller...** to open the **Add Controller** dialog box.
+1. In Solution Explorer, right-click the **Controllers** folder of the Web API project and select **Add | New Scaffolded Item...** to open the **Add Scaffold** dialog box.
 
 	![Adding new scaffolded item](Images/adding-new-scaffolded-item.png?raw=true "Adding new scaffolded item")
 
@@ -444,7 +444,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 	_Selecting the Web API 2 controllers with actions_
 
-1. Set **CustomersController** as the controller name. In the **Scaffolding options**, select the **API controller with read/write actions, using Entity Framework** Template, and **Customer** as the Model class.
+1. Set **CustomersController** as the controller name, check the **Use async controller actions** option and select the **Customer (WebApi.Models)** class as the Model class.
 
 	![Adding a controller with Scaffolding](Images/adding-a-controller-with-scaffolding.png?raw=true "Adding a controller with Scaffolding")
 
@@ -452,7 +452,13 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 	> **Note:** If you do not have model classes to select you need to build the project.
 
-1. In the Data context class, select **New data context...**. Name the new data context _CustomerContext_ and click **Add**.
+1. In the Data context class, select **New data context...**. 
+
+	![Creating a new data context](Images/creating-a-new-data-context.png?raw=true "Creating a new data context")
+
+	_Creating a new data context_
+
+1. In the **New Data Context** dialog box, name the new data context _CustomerContext_ and click **Add**.
 
 	![New customers context](Images/new-customers-context.png?raw=true "New customers context")
 
@@ -661,6 +667,8 @@ In this task you will publish the updated Web API service in Windows Azure Web S
 	![Navigating to the Settings Page](Images/navigating-to-the-settings-page.png?raw=true "Navigating to the Settings Page")
 
 	_Navigating to the Settings Page_
+
+	> **Note:** If you started from Exercise 2, you may want to see [Exercise 1 - Task 3](Ex1Task3) to configure the Web site profile and connetion settings.
 
 1. In the **Settings** page, under the **Databases** section, if the **CustomerContext** section is not expanded, click the down arrow in the **CustomerContext** textbox, and select the SQL database shown in the drop-down list.
 
