@@ -1,0 +1,20 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Your Order";
+}
+
+<h2>Your Order</h2>
+
+@using (Html.BeginForm("Remove", "Home", FormMethod.Post, new { @role = "form" }))
+{
+    <label for="items">Select a product from the list:</label>
+    <select class="form-control" name="selectedItem" id="items" size="14">
+    @foreach (string product in Model)
+    {
+        <option value="@product">@product</option>
+    }
+    </select>
+}
+<br />
+<a href="javascript:document.forms[0].submit();" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove product from cart</a>

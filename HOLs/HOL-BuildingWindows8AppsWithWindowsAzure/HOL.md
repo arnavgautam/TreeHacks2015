@@ -64,7 +64,7 @@ This hands-on lab includes the following exercises:
 1. [Basic Data Binding and Data Access Using Windows Azure SQL Databases and Entity Framework Code First](#Exercise2)
 1. [Adding Push Notification Support with the Windows Azure Notification Hubs](#Exercise3)
 
-> **Note:** Each exercise is accompanied by a starting solution located in the Begin folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and that they will not necessarily work until you complete the exercise.
+> **Note:** Each exercise is accompanied by a starting solution located in the **Begin** folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and that they will not necessarily work until you complete the exercise.
 >
 >Inside the source code for an exercise, you will also find an **End** folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
 
@@ -330,7 +330,7 @@ In this task you will create a blank Windows Store application that will consume
 
 	>**Note:** If you want to test the service locally, start the service project, check its URL and its port (e.g. http://localhost:3565/) and use that value.
 
-1. Then, override the **OnNavigatedTo** method adding a call to the GetItem method and press **CTRL+S** to save.
+1. Then, override the **OnNavigatedTo** method adding a call to the GetItems method and press **CTRL+S** to save.
 
 	(Code Snippet - _BuildingWindows8Apps - Ex1 - OnNavigatedTo_)
 	<!-- mark:1-4 -->
@@ -668,7 +668,7 @@ In this task you will publish the updated Web API service in Windows Azure Web S
 
 	_Navigating to the Settings Page_
 
-	> **Note:** If you started from Exercise 2, you may want to see [Exercise 1 - Task 3](Ex1Task3) to configure the Web site profile and connetion settings.
+	> **Note:** If you started from Exercise 2, you may want to see [Exercise 1 - Task 3](#Ex1Task3) to configure the Web site profile and connetion settings.
 
 1. In the **Settings** page, under the **Databases** section, if the **CustomerContext** section is not expanded, click the down arrow in the **CustomerContext** textbox, and select the SQL database shown in the drop-down list.
 
@@ -965,11 +965,11 @@ The Windows Push Notification Services (WNS) enables third-party developers to s
 
 The process of sending a notification requires few steps:
 
-1. **Request a channel.** Utilize the WinRT API to request a Channel Uri from WNS. The Channel Uri will be the unique identifier you use to send notifications to an application instance.
+1. **Request a channel.** Use the WinRT API to request a Channel Uri from WNS. The Channel Uri will be the unique identifier you use to send notifications to an application instance.
 
-1. **Register the channel with your Windows Azure Web Site.** Once you have your channel you can then store your channel and associate it with any application specific data (e.g user profiles and such) until your services decide that it’s time to send a notification to the given channel.
+1. **Register the channel with your Windows Azure Web Site.** Once you have your channel you can then store it and associate it with any application-specific data (e.g. user profiles and such) until your services decide that it’s time to send a notification to the given channel.
 
-1. **Authenticate against WNS.** To send notifications to your channel URI you are first required to Authenticate against WNS using OAuth2 to retrieve a token to be used for each subsequent notification that you push to WNS.
+1. **Authenticate against WNS.** To send notifications to your channel URI you are first required to authenticate against WNS using OAuth2 to retrieve a token to be used for each subsequent notification that you push to WNS.
 
 1. **Push notification to channel recipient.** Once you have your channel, notification payload and WNS access token you can then perform an HttpWebRequest to post your notification to WNS for delivery to your client.
 
@@ -979,7 +979,7 @@ The process of sending a notification requires few steps:
 
 In this exercise you will learn how to send a toast notification from the Web API service (Web site) using Windows Azure Notification Hubs to the registered clients (Windows Store applications) whenever a new customer is added.
 
-Windows Azure Notification Hubs provide all the functionality of a push infrastructure that enables you to send push notifications from any backend (in the cloud or on-premises) to any mobile platform. By using Windows Azure Notification Hubs you remove the responsability of managing channel URIs and device registration from the backend since it's handled by the service, allowing you to focus on sending the platform-independent notifications to clients.
+Windows Azure Notification Hubs provide all the functionality of a push infrastructure that enables you to send push notifications from any backend (in the cloud or on-premises) to any mobile platform. By using Windows Azure Notification Hubs you remove the responsibility of managing channel URIs and device registration from the backend since it's handled by the service, allowing you to focus on sending the platform-independent notifications to clients.
 
 A toast notification is a transient message to the user that contains relevant, time-sensitive information and provides quick access to related content in an app. It can appear whether you are in another app, the Start screen, the lock screen, or on the desktop. Toasts should be viewed as an invitation to return to your app to follow up on something of interest.
 
@@ -992,7 +992,7 @@ Before you can send notifications through WNS, you must register your applicatio
 
 In this task you will obtain the information that will be needed to enable your application to communicate with WNS and Live Connect.
 
-1. In Visual Studio, continue working with the solutions obtained from the previous exercise. If you did not executed the previous exercise you can open **WebApi.sln** with **Visual Studio Express 2013 for Web** and **CustomerManager.sln** with **Visual Studio Express 2013 for Windows**, both located in the **Source/Ex3-Notifications/Begin** folder of this lab.
+1. In Visual Studio, continue working with the solutions obtained from the previous exercise. If you did not execute the previous exercise you can open **WebApi.sln** with **Visual Studio Express 2013 for Web** and **CustomerManager.sln** with **Visual Studio Express 2013 for Windows**, both located in the **Source/Ex3-Notifications/Begin** folder of this lab.
 
 1. If you opened the **WebApi** begin solution, deploy it configuring the **CustomerContext** connection string to point to a Windows Azure SQL Database. [Exercise 2 - Task 2](#Ex2Task2) instructs how to do this.
 
@@ -1028,7 +1028,7 @@ In this task you will obtain the information that will be needed to enable your 
 
 	_Confirming the app name reservation_
 
-1. Now you will have to identify your application to get a name and a publisher to insert in the **Package.appxmanifest** file. In the Submit an app page, click **Services**.
+1. Now you will have to identify your application to get a name and a publisher to insert in the **Package.appxmanifest** file. In the **Submit an app** page, click **Services**.
 
 	![Configuring push notifications for the Notifications.Client app](./Images/app-name-reverved-completely-windows-store.png?raw=true)
 
@@ -1052,7 +1052,7 @@ In this task you will obtain the information that will be needed to enable your 
 
 	_Setting Identity Name and Publisher_
 
-1. Take note of the **Package Security Identifier (SID)** and the **Client secret**, which are the WNS Credentials that are requiered to configure the Notification Hub.
+1. Take note of the **Package Security Identifier (SID)** and the **Client secret**, which are the WNS Credentials that are required to configure the Notification Hub.
 
 	![Package Security Identifier (SID) and Client secret](./Images/sid-client-secret.png?raw=true)
 
@@ -1118,7 +1118,7 @@ In this task you will configure your application to be capable of raising toast 
 
     _Enabling toast notifications_
 
-1. Switch to the **Capabilities** tab and mark the following capabilities:
+1. Switch to the **Capabilities** tab and check the following capabilities:
     - Internet (Client)
     - Internet (Client & Server)
     - Private Networks (Client & Server)
@@ -1133,7 +1133,7 @@ In this task you will configure your application to be capable of raising toast 
 
 	_Associating App with Store_
 
-1. In the Associate Your App with the Windows Store wizard, click **Sign In**.
+1. In the **Associate Your App with the Windows Store** wizard, click **Next**.
 
 	![Associating App with Store Wizard](./Images/associate-app-with-store.png?raw=true)
 
@@ -1163,11 +1163,11 @@ In this task you will configure your application to be capable of raising toast 
 
 To send a notification, the sender must be authenticated through WNS. The first step in this process occurs when you register your application with the Windows Store Dashboard. During the registration process, your application is given a Package security identifier (SID) and a secret key. This information is used by your application to authenticate with WNS.
 
-In this tasks you will use the Windows Azure Notification Hub created and configured with your credentials (Package SID and secret key) previously to send push notifications to the Windows Store application.
+In this task you will use the Windows Azure Notification Hub created and configured with your credentials (Package SID and secret key) previously to send push notifications to the Windows Store application.
 
 1. Go to the **WebApi** solution and open the **Package Manager Console** from the **Tools | Library Package Manager** menu.
 
-1. In **Default project** make sure **WebApi** is selected.
+1. Make sure that **WebApi** is selected as **Default project**.
 
 1. Add a reference to the Windows Azure Service Bus SDK with the **WindowsAzure.ServiceBus** NuGet package.
 
@@ -1240,7 +1240,7 @@ In this tasks you will use the Windows Azure Notification Hub created and config
     </appSettings>
     ````
 
-1. Publish the Customers Web API service in Windows Azure. To do this, follow the steps in [Exercise 2, Task 2](#Ex2Task2).
+1. Publish the Customers Web API service in Windows Azure. To do this, follow the steps in [Exercise 2 - Task 2](#Ex2Task2).
 
 <a name="Ex3Task5" />
 #### Task 5 - Registering the Notifications Client ####
@@ -1248,7 +1248,7 @@ In this tasks you will use the Windows Azure Notification Hub created and config
 When an application that is capable of receiving push notifications runs, it must first request a notification channel.
 After the application has successfully created a channel URI, it sends it to its Notification Hub.
 
-In this task you will register the your application with the service and then register that channel in the Notification Hub.
+In this task you will register your application with the service and then register that channel in the Notification Hub.
 
 1. Add a reference to the Windows Azure Messaging library for Windows Store using the **WindowsAzure.Messaging.Managed** NuGet package. In Visual Studio Main Menu, click **Tools**, then click **Library Package Manager**, then click **Package Manager Console**. Then, in the console window type:
 
@@ -1323,8 +1323,8 @@ This is a list of developer-oriented articles related to Windows Store applicati
 
 - [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](http://aka.ms/Gv0w5g): shows you how to build a secure ASP.NET MVC 5 web app that enables users to log in with credentials from Facebook or Google.
 - [Developing Windows Store apps](http://aka.ms/Ryj9xy): provides reference information for designing and developing great Windows Store apps.
-- [Securing a Windows Store Application and REST Web Service Using Windows Azure AD](http://aka.ms/T5ejfa): will show you how to create a simple web API resource and a Windows Store client application using the Windows Azure Authentication Library and Windows Azure AD.
-- [Connecting to Windows Azure Mobile Services](http://aka.ms/Uvxhgy): explores the different scenarios to enable Mobile Services enables in your Windows Store apps.
+- [Securing a Windows Store Application and REST Web Service Using Windows Azure AD](http://aka.ms/T5ejfa): shows you how to create a simple web API resource and a Windows Store client application using the Windows Azure Authentication Library and Windows Azure AD.
+- [Connecting to Windows Azure Mobile Services](http://aka.ms/Uvxhgy): explores the different scenarios to enable Mobile Services in your Windows Store apps.
 
 ---
 

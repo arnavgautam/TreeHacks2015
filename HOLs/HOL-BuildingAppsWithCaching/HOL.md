@@ -45,7 +45,7 @@ In order to run the exercises in this hands-on lab you need to set up your envir
 
 > This lab requires a Windows Azure SQL Database to start. To build the Northwind2 database automatically, the **Setup.cmd** file will prompt you with your Windows Azure SQL Database account information. Remember to update the NorthwindEntities connection string in the application's configuration file to point to your database for each solution.
 
-> Remember to configure the firewall setting your Windows Azure SQL Database account to allow you to specify a list of IP addresses that can access your Windows Azure SQL Database Server. The firewall will deny all connections by default, so **be sure to configure your allow list** so you can connect to the database. Changes to your firewall settings can take a few moments to become effective. For additional information on how to prepare your Windows Azure SQL Database account, refer to the Windows Azure documentation on [How to Create and Configure SQL Database](http://www.windowsazure.com/en-us/documentation/articles/sql-database-create-configure).
+> Remember to configure the firewall setting of your Windows Azure SQL Database account. You can enable a list of IP addresses that can access your Windows Azure SQL Database Server. The firewall will deny all connections by default, so **be sure to configure your allow list** so you can connect to the database. Changes to your firewall settings can take a few moments to become effective. For more information, see [How to Create and Configure a SQL Database](http://www.windowsazure.com/en-us/documentation/articles/sql-database-create-configure).
 
 >![SQL database setup](Images/sql-database-setup.png?raw=true "Windows Azure SQL Database setup")
 
@@ -67,7 +67,7 @@ This hands-on lab includes the following exercises:
 
 1. [Enable Cache service for Session State](#Exercise1)
 1. [Caching Data with Windows Azure Caching](#Exercise2)
-1. [Creating a Reusable and Extensible Caching Layer](#Exercise3)
+1. [Caching common data patterns with WACEL](#Exercise3)
 
 Estimated time to complete this lab: **60 minutes**.
 
@@ -638,393 +638,236 @@ You should be aware of this when using the cache in your own applications and co
 1. Wait for at least 30 seconds and then refresh the page one more time. Notice that the elapsed time is back to its original value and that the object ID has changed, showing that the cached item has expired and been purged from the cache due to the expiration policy set on the object when it was stored.
 
 <a name="Exercise3" />
-### Exercise 3: Creating a Reusable and Extensible Caching Layer ###
+### Exercise 3: Caching common data patterns with WACEL ###
+This exercise will show you how to use  ....
 
-In the previous exercise, you explored the fundamental aspects of using the Windows Azure Caching by directly updating the methods in the data access class to cache data retrieved from the repository. While this approach can yield significant benefits, it requires you to change each one of your data access methods to enable caching. An alternative approach that does not require changes to your existing data access classes would be advantageous. 
-
-In this exercise, you will explore building a caching layer on top of your existing data access classes that will allow you to plug in different caching providers, or even remove them altogether, through simple configuration changes.
-
-To build this layer, you will implement an abstract caching class named **CachedDataSource** that will provide support for storing and removing data in the cache. You will then derive from this class to create a caching equivalent for any data source in your application. The only requirement is that your data source implements a contract to define its data access operations. The caching class encapsulates a caching provider, which you need to provide in its constructor, and provides methods to retrieve and remove data from the cache.
-
-The data retrieval method in the caching class receives a cache key that uniquely identifies a cached item, a delegate that retrieves data from the data source, and a cache expiration policy that determines when to purge the item from the cache. This method implements the classic caching pattern where it first attempts to retrieve an item from the cache and, if it does not find a copy, uses the supplied delegate to retrieve the data from the source and then stores it in the cache.
-
-The implementation of the **CachedDataSource** class is completely reusable, allowing you to use any caching provider that fits your requirements. To specify a caching provider, you supply an [ObjectCache](http://msdn.microsoft.com/en-us/library/system.runtime.caching.objectcache.aspx) instance to its constructor. The **ObjectCache** class, part of the **System.Runtime.Caching** namespace, was introduced in the .NET Framework 4 to make caching available for all applications. This abstract class represents an object cache and provides base methods and properties for accessing an underlying cache provider. The .NET Framework already offers a concrete implementation of this class that provides an in-memory cache, the [MemoryCache](http://msdn.microsoft.com/en-us/library/system.runtime.caching.memorycache.aspx). 
-
-To use a given cache service with the **CachedDataSource** derived class, you need to supply an **ObjectCache** implementation specific to the caching provider. A good approach is to create a data source factory that allows you to choose a suitable caching implementation based on your needs. Replacing the caching provider is then simply a matter of changing a setting in the configuration file.
-
-Currently, the Windows Azure Caching does not supply its own **ObjectCache** implementation. Nevertheless, you can create one that provides a wrapper around its services. You will find an example of such an implementation, the **AzureCacheProvider**, in the **\\Source\\Assets** folder. This class derives from **ObjectCache** to expose the services in the Windows Azure Caching.
-
-To take advantage of this caching implementation in the Cloud Shop application, you will create a caching counterpart of the **ProductsRepository** class. The application uses this class, which implements an **IProductRepository** contract with a single **GetProducts** operation, to retrieve catalog information from Windows Azure SQL Database. To create a caching products catalog source, you need to perform the following steps:
-
-- Create a new **CachingProductsRepository** class that inherits from **CachedDataSource**.
-
-- Add a constructor to the new class that receives an **IProductRepository** parameter with an instance of the non-caching data source class as well as an **ObjectCache** parameter with an instance of the caching provider to use.
-
-- Implement each method in the **IProductRepository** interface by calling the **RetrievedCachedData** method in the base class and supplying a delegate that calls the original data source class.
 
 <a name="Ex3Task1" />
-#### Task 1 - Implementing a Caching Data Source Base Class ####
+#### Task 1 - Retrieving data from Azure Storage Tables using WACEL ####
 
-In this task, you will create the abstract class that you will use as the base class for your caching data source classes. You can take advantage of this general-purpose class in any project that requires a caching layer.
+In this task you will learn how to use WACEL as a high-level data structure used on top of Windows Azure Table. To do so, you will first add a new View to the application that shows a list of customers from a Company.
 
-1. Start **Microsoft Visual Studio 2012 Express for Web** as administrator.
+>**Note:** WACEL provides implementation of high-level data structures that can be shared among your services and application. For more information, browse [http://wacel.codeplex.com/](http://wacel.codeplex.com/)
 
-1. Open the **Begin** solution located at **Source\\Ex3-ReusableCachingImplementation**.
+1. Start **Microsoft Visual Studio 2013 Express for Web** as administrator.
 
-	>**Important:** 	Before you execute the solution, make sure that the start-up project is set. For MVC projects, the start page must be left blank.  
+1. Open the **Begin** solution located at **Source\Ex2-CachingCommonDataPatternWithWACEL\Begin**.
+
+	>**Important:** Before you execute the solution, make sure that the startup project is set. For MVC projects, the start page must be left blank. To set the startup project, in **Solution Explorer**, right-click the **CloudShop.Azure** project and then select Set as StartUp Project. To set the start page, in **Solution Explorer**, right-click the **CloudShop** project and select **Properties**. In the **Properties** window, select the Web tab and in the **Start Action**, select **Specific Page**. Leave the value of this field blank.
+
+1. Right click in the **Home** folder inside **Views** in the **CloudShop** project and select **Add** | **Existing Item...**.
+
+	![Add existing item](Images/add-existing-item.png?raw=true "Add existing item")	
+
+	_Add existing item_
+
+1. Select the file **table.cshtml** located in the **Assets** folder of the lab.
+
+1. Open the **HomeController** and add the following code to return the View you added in the previous step.
+
+	<!-- mark:1-4 -->
+	````C#
+	public ActionResult Table()
+	{
+		return View();
+	}
+	````
+
+1. Open **Package Manager Console**. To do so, go to the **Tools** menu. Then go to the **Library Package Manager** and click on **Package Manager Console**.
+
+1. Execute _Install-Package WACEL_ to install **Windows Azure Cache Extension Library (WACEL)** dependency to the project. Make sure that **CloudShop** project is set as default project.
 	
-	> To set the startup project, in **Solution Explorer**, right-click the **CloudShop.Azure** project and then select **Set as StartUp Project**. 
+	![WACEL nuget installed](Images/wacel-nuget-installed.png?raw=true "WACEL nuget installed")
 
-	> To set the start page, in **Solution Explorer**, right-click the **CloudShop** project and select **Properties**. In the **Properties** window, select the **Web** tab and in the **Start Action**, select **Specific Page**. Leave the value of this field blank.
+	_WACEL nuget installed_
 
-1. In the **Web.config** file, update the _NorthwindEntities_ connection string to point to your database. Replace **[YOUR-SQL-DATABASE-SERVER-ADDRESS]**, **[SQL-DATABASE-USERNAME]**, and **[SQL-DATABASE-PASSWORD]** with the Windows Azure SQL Database server name, administrator username and administrator password that you registered at the portal and used for creating the database during setup.
+1. Right click in the **Models** folder and go to **Add** | **Class**.
 
-	>**Note:** 	Make sure that you follow the instructions of the setup section to create a copy of the Northwind2 database in your own Windows Azure SQL Database account and configure your Windows Azure SQL Database firewall settings.
-
-1. Add a reference to the **System.Runtime.Caching** assembly in the **CloudShop** project.
-
-1. In the **Services** folder of the **CloudShop** project, add a new folder named **Caching**.
-
-1. Inside the **Caching** folder created in the previous step, add a new class file named **CachedDataSource.cs**.
-
-1. In the new class file, add a namespace directive for **System.Runtime.Caching**.
-
-	<!--mark: 5-->
-	````C#
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Web;
-	using System.Runtime.Caching;
-	...
-	````
-
-1. Specify an **abstract** modifier for the **CachedDataSource** class.
-
-	<!--mark: 1-3-->
-	````C#
-	public abstract class CachedDataSource
-	{
-	}
-	````
-
-1. Add the following (highlighted) member fields to the class.
-
-	(Code Snippet - _BuildingAppsWithCachingService-Ex3-CachedDataSource member fields-CS_)
-	<!--mark: 3,4-->
-	````C#
-	public abstract class CachedDataSource
-	{
-	  private readonly ObjectCache cacheProvider;
-	  private readonly string regionName;
-	}
-	````
-
-1. Now, define a constructor that receives an object cache and a region name as parameters, as shown (highlighted) below.
-
-	(Code Snippet - _BuildingAppsWithCachingService-Ex3-CachedDataSource constructor-CS_)
-	<!--mark: 4-18-->
-	````C#
-	public abstract class CachedDataSource
-	{
-	  ...
-	  public CachedDataSource(ObjectCache cacheProvider, string regionName)
-	  {
-	    if (cacheProvider == null)
-	    {
-	      throw new ArgumentNullException("cacheProvider");
-	    }
+	![Add class](Images/add-class.png?raw=true "Add class")
 	
-	    if (cacheProvider is MemoryCache)
-	    {
-	      regionName = null;
-	    }
+	_Add class_
+
+1. Name it _Customer.cs_ and click **OK**.
+
+	![Add new item dialog box](Images/add-new-item-dialog-box.png?raw=true "Add new item dialog box")
+
+	_Add new item dialog box_
+
+1. Replace the **Customer** implementation with the following code
+
+	<!-- mark:1-19 -->
+	````C#
+	namespace CloudShop.Models
+	{
+		 using System;
+
+		 public class Customer
+		 {
+			  public string Id { get; set; }
+
+			  public string Company { get; set; }
+			  
+			  public string Name { get; set; }
+			  
+			  public double Value { get; set; }
+			  
+			  public string Comment { get; set; }
+			  
+			  public DateTime ContractDate { get; set; }
+		 }
+	}
+	````
+
+1. Add another class called **TableViewModel** in the **Models** folder.
+
+1. Replace the **TableViewModel** class implementation with the following code.
+
+	<!-- mark:1-11 -->
+	````C#
+	namespace CloudShop.Models
+	{
+		 using System.Collections.Generic;
+
+		 public class TableViewModel
+		 {
+			  public List<Customer> Customers { get; set; }
+
+			  public long ElapsedTime { get; set; }
+		 }
+	}
+	````
+
+1. Right click in the **Controllers** folder and go to **Add** | **Web API Class Controller (v2)**.
+
+	![Add Web API Controller](Images/add-web-api-controller.png?raw=true "Add Web API Controller")
+
+	_Add Web API controller_
+
+1. In the **Add Scaffold** dialog box, select **WebAPI 2 Controller - Empty** and then click **Add**
+
+	![Add Scaffold dialog box](Images/add-scaffold-dialog-box.png?raw=true "Add Scaffold dialog box")
+
+	_Add Scaffold dialog box_
 	
-	    this.cacheProvider = cacheProvider;
-	    this.regionName = regionName;
-	  }
-	}
+
+1. In the **Specify Name for Item** dialog box, set the name of the controller to _TableDataController_ and click **OK**.
+
+	![Specify Name for Item dialog box](Images/specify-name-for-item-dialog-box.png?raw=true "Specify Name for Item dialog box")
+
+	_Specify Name for Item dialog box_
+
+1. Add the following namespace directives to the Web API controller.
+
+	<!-- mark:1-4 -->
+	````C#
+	using CloudShop.Models;
+	using System.Diagnostics;
+	using Microsoft.Ted.Wacel;
+	using Microsoft.WindowsAzure
 	````
 
-	>**Note:** The **CachedDataSource** constructor receives an [ObjectCache] (http://msdn.microsoft.com/en-us/library/system.runtime.caching.objectcache.aspx) instance as a parameter, which provides methods and properties for accessing an object cache, as well as a region name.  A cache region is a partition in the cache used to organize cache objects.
-
-1. Next, add the following (highlighted) method to retrieve data from the cache.
-
-	(Code Snippet - _BuildingAppsWithCachingService-Ex3-RetrieveCachedData method-CS_)
-	<!--mark: 4-19-->
-	````C#
-	public abstract class CachedDataSource
-	{
-	  ...
-	  protected T RetrieveCachedData<T>(string cacheKey, Func<T> fallbackFunction, CacheItemPolicy cachePolicy) where T : class
-	  {
-	    var data = this.cacheProvider.Get(cacheKey, this.regionName) as T;
-	    if (data != null)
-	    {
-	      return data;
-	    }
+1. Add the following action to the **TableDataController** to retrieve the list of customers and the elapsed time of the call.
 	
-	    data = fallbackFunction();
-	    if (data != null)
-	    {
-	      this.cacheProvider.Add(new CacheItem(cacheKey, data, this.regionName), cachePolicy);
-	    }
-	
-	    return data;
-	  }
-	}
-	````
-
-	>**Note:** The **RetrieveCachedData** method uses the provided key to retrieve a copy of the requested item from the cache. If the data is available, it returns it; otherwise, it uses the provided fallback delegate to obtain the information from the data source and then caches the result using the supplied cache expiration policy.
-
-1. Finally, add a method to delete items from the cache.
-
-	(Code Snippet - _BuildingAppsWithCachingService-Ex3-RemoveCachedData method-CS_)
-	<!--mark: 4-7-->
+	<!-- mark:1-16 -->
 	````C#
-	public abstract class CachedDataSource
+	[HttpGet]
+	public List<Customer> GetTable(string partition, string startId, string endId)
 	{
-	  ...
-	  protected void RemoveCachedData(string cacheKey)
-	  {
-	    this.cacheProvider.Remove(cacheKey, this.regionName);
-	  }
-	}
-	````
-
-1. Save the **CachedDataSource.cs** file.
-
-<a name="Ex3Task2" />
-#### Task 2 - Building a Caching Product Catalog Repository ####
-
-Once you have created an abstract base class for caching data sources, you will now create a concrete implementation that will provide a caching alternative for the **ProductsRepository** class. This task represents the steps you would typically follow when creating a caching layer for your data access code using the **CachedDataSource** class.
-
-1. Inside the **Services\Caching** folder of the **CloudShop** project, add a new class file named **CachedProductsRepository.cs**.
-
-1. In the new class file, append a namespace directive for **System.Runtime.Caching** and **CloudShop.Services**.
-
-	<!-- mark:5-6 -->
-	````C#
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Web;
-	using CloudShop.Services;
-	using System.Runtime.Caching;
-	...
-	````
-
-1. Change the declaration for the **CachedProductsRepository** class to derive from both **CachedDataSource** and **IProductRepository**, as shown (highlighted) below.
-
-	<!--mark: 2-->
-	````C#
-	public class CachedProductsRepository 
-	  : CachedDataSource, IProductRepository
-	{
-	}
-	````
-
-	>**Note:** The caching data source class derives from **CachedDataSource** to provide the necessary caching behavior, as well as implementing the same contract used by the original data source class.
-
-1. Add the following code to define a constructor and declare a member field that holds a reference to the underlying data source, as shown (highlighted) below.
-
-	(Code Snippet - _BuildingAppsWithCachingService-Ex3-CachedProductsRepository constructor-CS_)
-	<!--mark: 3-9-->
-	````C#
-	public class CachedProductsRepository : CachedDataSource, IProductRepository
-	{
-	  private readonly IProductRepository repository;
-	 
-	  public CachedProductsRepository(IProductRepository repository, ObjectCache cacheProvider) :
-	    base(cacheProvider, "Products")
-	  {
-	    this.repository = repository;
-	  }
-	}
-	````
-
-	>**Note:** The **CachedProductsRepository** constructor initializes its base class using the supplied cache provider and saves a reference to the underlying data source in a member field. The class defines a "_Products_" cache region.
-
-1. Finally, fulfill the **IProductRepository** contract by implementing the **GetProducts** method, as shown (highlighted) below.
-
-	(Code Snippet - _BuildingAppsWithCachingService-Ex3-GetProducts method -CS_)
-	<!--mark: 4-10-->
-	````C#
-	public class CachedProductsRepository : CachedDataSource, IProductRepository
-	{
-	  ...
-	  public List<string> GetProducts()
-	  {
-		return RetrieveCachedData(
-		"allproducts",
-		() => this.repository.GetProducts(),
-		new CacheItemPolicy { AbsoluteExpiration = DateTime.UtcNow.AddMinutes(1) });
-	  }
-	}
-	````
-
-	>**Note:** The **GetProducts** method calls **RetrieveCachedData** in the base class, passing in a key that identifies the cached item, in this case "_allproducts_", a fallback delegate in the form of a lambda expression that simply calls the **GetProducts** method in the original data source, and a [CacheItemPolicy](http://msdn.microsoft.com/en-us/library/system.runtime.caching.cacheitempolicy.aspx) to set the expiration of the item to 1 minute.
-
-	Because the **IProductRepository** contract is so simple, this is all that is required to provide a caching implementation. Typically, your data sources will have more than one method, but the basic approach should not change, allowing you to implement every method by copying this same pattern.
-
-<a name="Ex3Task3" />
-#### Task 3 - Creating a Data Source Factory Class ####
-
-In this task, you will create a factory class that can return data source instances. The factory determines the cache provider to use from the application configuration settings and returns a data source suitably configured to use the chosen cache provider.
-
-1. Add a copy of the **AzureCacheProvider.cs** file located in the **\\Source\\Assets** folder to the **CloudShop** project and place it in its **Services\Caching** folder.
-
-	>**Note:** The **AzureCacheProvider** class implements an **ObjectCache** that wraps the services provided by the Windows Azure Cache Service.
-
-1. Inside the **Services** folder of the **CloudShop** project, add a new class file named **DataSourceFactory.cs**.
-
-1. In the new class file, insert namespace directives for **System.Configuration**, **System.Runtime.Caching**, **CloudShop.Services** and **CloudShop.Services.Caching**.
-
-	(Code Snippet - _BuildingAppsWithCachingService-Ex3-DataSourceFactory namespaces-CS_)
-	<!--mark: 5-8-->
-	````C#
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Web;
-	using System.Configuration;
-	using System.Runtime.Caching;
-	using CloudShop.Services;
-	using CloudShop.Services.Caching;
-	````
-
-1. Now, add the following code to define a type constructor for the **DataSourceFactory** class and declare a static field that holds a reference to the configured cache service provider, as shown (highlighted) below.
-
-	(Code Snippet - _BuildingAppsWithCachingService-Ex3-DataSourceFactory class constructor-CS_)
-	<!--mark: 3-20-->
-	````C#
-	public class DataSourceFactory
-	{
-	  private static readonly ObjectCache cacheProvider;
-	
-	  static DataSourceFactory()
-	  {
-	    string provider = ConfigurationManager.AppSettings["CacheService.Provider"];
-	    if (provider != null)
-	    {
-	      switch (ConfigurationManager.AppSettings["CacheService.Provider"].ToUpperInvariant())
-	      {
-	        case "AZURE":
-	          cacheProvider = new AzureCacheProvider();
-	          break;
-	        case "INMEMORY":
-	          cacheProvider = MemoryCache.Default;
-	          break;
-	      }
-	    }
-	  }
-	}
-	````
-
-	>**Note:** The class constructor reads the _CacheService.Provider_ setting from the configuration and initializes the cache provider for the application based on its value. In this example, two different values for the setting are recognized, one for the Windows Azure Caching and another one for the default in-memory cache provider offered by the .NET Framework 4.
-
-
-1. Next, add the following property to return the configured cache service provider.
-
-	(Code Snippet - _BuildingAppsWithCachingService-Ex3-CacheProvider property-CS_)
-	<!--mark: 4-7-->
-	````C#
-	public class DataSourceFactory
-	{
-	  ...
-	  public static ObjectCache CacheProvider
-	  {
-	    get { return cacheProvider; }
-	  }
-	}
-	````
-
-1. Finally, add a method to return an instance of the **IProductRepository** data source initialized with the configured cache service provider.
-
-	(Code Snippet - _BuildingAppsWithCachingService-Ex3-GetProductsRepository method-CS_)
-	<!--mark: 4-13-->
-	````C#
-	public class DataSourceFactory
-	{
-	  ...
-	  public static IProductRepository GetProductsRepository(bool enableCache)
-	  {
-	    var dataSource = new ProductsRepository();
-	    if (enableCache && CacheProvider != null)
-	    {
-	      return new CachedProductsRepository(dataSource, cacheProvider);
-	    }
-	
-	    return dataSource;
-	  }
-	}
-	````
-
-<a name="Ex3Task4" />
-#### Task 4 - Configuring the Application for Caching ####
-
-In this task, you will update the application to take advantage of the data source factory to instantiate the product catalog data source. To complete the setup of the caching layer, you will define the necessary configuration settings to select a caching provider.
-
-1. Open the **HomeController.cs** file in the **Controllers** folder and find the **Index** method. Inside this method, replace the line that initializes the **productRepository** local variable with the code shown (highlighted) below that uses the **DataSourceFactory** to retrieve an **IProductRepository** instance.
-
-	<!--mark: 10-->
-	````C#
-	public class HomeController : Controller
-	{
-	  ...
-	  public ActionResult Index()
-	  {
-		bool enableCache = (bool)this.Session["EnableCache"];
-	
-		// retrieve product catalog from repository and measure the elapsed time
-		Services.IProductRepository productRepository =
-		CloudShop.Services.DataSourceFactory.GetProductsRepository(enableCache);
 		Stopwatch stopWatch = new Stopwatch();
 		stopWatch.Start();
-		...
-	  }
-	  ...
+
+		Table<Customer> table = new Table<Customer>("Company", "Id", CloudConfigurationManager.GetSetting("StorageClient"), "customers");
+		var customers = table.List(startId, endId, partition, partition).ToList();
+
+		stopWatch.Stop();
+		return new TableViewModel()
+		{
+			Customers = customers,
+			ElapsedTime = stopWatch.ElapsedMilliseconds
+		};
 	}
 	````
 
-1. To configure the **DataSourceFactory**, open the **Web.config** file and add the following (highlighted) setting to the **appSettings** section.
+1. Now, in the **Solution Explorer**, expand the **Roles** folder and right click on **Properties**.
 
-	(Code Snippet - _BuildingAppsWithCachingService-Ex3-Web.config appSettings section-CS_)
-	<!--mark: 3-->
-	````XML
-	  <appSettings>
-		 ...
-	    <add key="CacheService.Provider" value="InMemory" />
-	  </appSettings>
+	![WebRole properties](Images/webrole-properties.png?raw=true "WebRole properties")
+
+	_WebRole properties_
+
+1. In the **Settings** tab, add a new setting named _StorageClient_. Set the type to _Connection String_ and set the value to _UseDevelopmentStorage=true_
+
+	![StorageClient setting](Images/storageclient-setting.png?raw=true "StorageClient setting")
+
+	_StorageClient setting_
+
+1. Press **F5** to run the application.
+
+1. Click on the **Customers** link on the Top bar.
+
+	![Customers link](Images/customers-link.png?raw=true "Customers link")
+
+	_Customers link_
+
+1. Wait until the table is field with a list of Customers. Notice the time it took to return the data from Windows Azure Tables.
+
+	![Customer list using WACEL without caching](Images/customer-list-without-caching.png?raw=true "Customer list using WACEL without caching")
+
+	_Customer list using WACEL without caching_
+
+1. Switch from **Company0** to **Company1** in the drop down list in order to show the Customers from Company 1
+
+	![Customer list from Company 1](Images/customer-list-from-company-1.png?raw=true "Customer list from Company 1")
+
+	_Customer list from Company 1_
+
+In the next task you will update the solution to include caching included in WACEL
+
+<a name="Ex3Task2" />
+#### Task 2 - Adding caching support to WACEL Cloud Tables ####
+
+In this task you will update the Web API to include caching provided by WACEL when querying the Customer table.
+
+1. Open the **TableDataController** located in the **Controllers** folder.
+
+1. Add the following namepsace directive to the top of the file.
+	
+	<!-- mark:1 -->
+	````C#
+	using Microsoft.ApplicationServer.Caching;
 	````
 
-	>**Note:** If you host the application in a single node, the in-memory cache provider would be a good choice.
+1. Update the **GetTable** method in order to add a new **DataCache** parameter to the **Table** constructor.
 
-1. Press **CTRL+F5** to build and test the enhanced caching implementation in the compute emulator.
-
-1. When you start the application, the cache is initially disabled. Click **Yes** in **Enable Cache** and wait for the page to refresh. Remember that the initial request after you enable the cache includes the overhead required to retrieve the data and insert it into the cache.
-
-1. Click **Products**, or refresh the page in the browser once again. This time, the application retrieves the product data from the cache and the elapsed time should be lower, most likely under a millisecond given that you have currently configured it to use the in-memory cache provided by the .NET Framework.
-
-1. Now, in the **Web.config** file, locate the **appSettings** section and set the value of the **CacheService.Provider** setting to _Azure_.
-
-	<!--mark: 3-->
-	````XML
-	  <appSettings>
-			  ...
-	        <add key="CacheService.Provider" value="Azure" />
-	  </appSettings>
+	<!-- mark:1 -->
+	````C#
+	Table<Customer> table = new Table<Customer>("Company", "Id", CloudConfigurationManager.GetSetting("StorageClient"), "customers", new DataCache("customers"));
 	````
+	
+	>**Note:** TBC
 
-	>**Note:** If you host the application in multiple nodes, the in-memory cache provider is no longer a good choice. Instead, you can take advantage of the distributed cache offered by the Windows Azure Caching.
+1. Now, in the **Solution Explorer**, expand the **Roles** folder and right click on the **CacheWorkerRole** and click on **properties**.
 
-1. Save the **Web.config** file.
+	![CacheWorkerRole properties](Images/cacheworkerrole-properties.png?raw=true "CacheWorkerRole properties")
 
-1. Click the **Recycle** link to recycle the role and reload the configuration. Once you click on the link, the Products page will turn blank.
+	_CacheWorkerRole properties_
+	
+1. In the **Caching** tab, add a new **Named Cache** called _customers_
+	
+	![Customers Named Cache](Images/customers-named-cache.png?raw=true "Customers Named Cache")
 
-1. Go back to the browser, remove _/Home/Recycle_ from the address bar, and then press **Enter** to reload the site. The **Products** page should come back normal after a short delay.
+	_Customers Named Cache_
 
-1. Make sure that the cache is still enabled and then refresh the page in the browser **twice** to prime the cache with data. Notice that the elapsed times for the cached scenario have increased indicating that the application is now using the Windows Azure Caching provider instead of the in-memory provider.
+	>**Note:** The name must match the string you passed as argument to the DataCache in the Web API controller.
+
+1. Press **F5** to run the application again.
+
+1. Switch between **Company0** and **Company1** to retrieve the list of Customers from Company 1.
+
+1. Switch back to **Company0**. Notice how the **Elapsed time** has decressed. It decressed because we are using WACEL Caching implementation with In-Role Caching.
+
+	![Customers list with WACEL and caching](Images/customers-list-with-wacel-and-caching.png?raw=true "Customers list with WACEL and caching")
+
+	_Customers list with WACEL and caching_
 
 ---
 
