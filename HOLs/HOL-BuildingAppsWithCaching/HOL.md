@@ -41,11 +41,11 @@ In order to run the exercises in this hands-on lab you need to set up your envir
 1. Right-click on **Setup.cmd** and select Run as Administrator to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.
 1. If the User Account Control dialog is shown, confirm the action to proceed.
 
->**Note:** Make sure you have checked all the dependencies for this lab before running the setup.
+> **Note:** Make sure you have checked all the dependencies for this lab before running the setup.
 
->This lab requires a Windows Azure SQL Database to start. To build the Northwind2 database automatically, the **Setup.cmd** file will prompt to you with your Windows Azure SQL Database account information. Remember to update the NorthwindEntities connection string in the application's configuration file to point to your database for each solution.
+> This lab requires a Windows Azure SQL Database to start. To build the Northwind2 database automatically, the **Setup.cmd** file will prompt you with your Windows Azure SQL Database account information. Remember to update the NorthwindEntities connection string in the application's configuration file to point to your database for each solution.
 
->Remember to configure the firewall setting your Windows Azure SQL Database account to allow you to specify a list of IP addresses that can access your Windows Azure SQL Database Server. The firewall will deny all connections by default, so **be sure to configure your allow list** so you can connect to the database. Changes to your firewall settings can take a few moments to become effective. For additional information on how to prepare your Windows Azure SQL Database account, refer to the exercise 1 of the Introduction to Windows Azure SQL Database lab in the training kit.
+> Remember to configure the firewall setting your Windows Azure SQL Database account to allow you to specify a list of IP addresses that can access your Windows Azure SQL Database Server. The firewall will deny all connections by default, so **be sure to configure your allow list** so you can connect to the database. Changes to your firewall settings can take a few moments to become effective. For additional information on how to prepare your Windows Azure SQL Database account, refer to the Windows Azure documentation on [How to Create and Configure SQL Database](http://www.windowsazure.com/en-us/documentation/articles/sql-database-create-configure).
 
 >![SQL database setup](Images/sql-database-setup.png?raw=true "Windows Azure SQL Database setup")
 
@@ -216,14 +216,15 @@ In this task, you will change the Session State provider to take advantage of th
 <a name="Exercise2" />
 ### Exercise 2: Caching Data with Windows Azure Caching ###
 
-This exercise will show you how to use Windows Azure Caching to cache results from queries to Windows Azure SQL Database. You will continue with a solution based on the one used for the previous exercise. The only difference is in the home page, which has been updated to show the elapsed time to retrieve the list of products in the catalog, and now has a link to enable or disable the use of the cache.
+This exercise will show you how to use Windows Azure Caching to cache results from queries to Windows Azure SQL Database. You will continue with a solution based on the one used for the previous exercise. The only difference is in the home page, which has been updated to show the elapsed time to retrieve the list of products in the catalog, and now has a button to enable or disable the use of the cache.
+
 During the exercise, you will update the data access code with a trivial implementation of caching. It uses the canonical pattern, in which the code checks the cache first to retrieve the results of a query and, if there is no data available, executes the query against the database to cache the results.
 
 <a name="Ex2Task1" />
 #### Task 1 - Caching Data Retrieved from the SQL Database ####
 
 To make use of Windows Azure Caching, you first need to create a **DataCacheFactory** object. This object determines the cache cluster connection information, which is set programmatically or by reading settings from the configuration file. Typically, you create an instance of the factory class and use it for the lifetime of the application. To store data in the cache, you request a **DataCache** instance from the **DataCacheFactory** and then use it to add or retrieve items from the cache.
-In this task, you update the data access code to cache the result of queries to Windows Azure SQL Database using the Windows Azure Caching. 
+In this task you will update the data access code to cache the result of queries to Windows Azure SQL Database using Windows Azure Caching. 
 
 1. Start **Microsoft Visual Studio 2013 Express for Web** as administrator.
 1. Open the **Begin** solution located at **Source\\Ex2-CachingData\\Begin**.
@@ -237,7 +238,7 @@ In this task, you update the data access code to cache the result of queries to 
 	> **Note:** 	Make sure that you followed the instructions of the setup section to create a copy of the Northwind2 database in your own Windows Azure SQL Database account and configure your Windows Azure SQL Database firewall settings.
 
 1. Open the **ProductsRepository.cs** file in the **Services** folder of the **CloudShop** project.
-1. Add a namespace directive for **Microsoft.ApplicationServer.Caching**.
+1. Add the following _using_ directives.
 
 	<!--mark: 4-5-->
 	````C#
@@ -273,7 +274,7 @@ In this task, you update the data access code to cache the result of queries to 
 
 	> **Note:** The **DataCacheFactory** member is declared as static and is used throughout the lifetime of the application.
 
-1. Locate the **GetProducts** method and insert the following (highlighted) code immediately after the line that declares the **products** local variable.
+1. Locate the **GetProducts** method and insert the following (highlighted) code at the very beginning.
 	
 	(Code Snippet - _BuildingAppsWithCachingService-Ex2-GetProducts read cache-CS_)
 	<!--mark: 6-28-->
@@ -310,7 +311,7 @@ In this task, you update the data access code to cache the result of queries to 
 			using (NorthwindEntities context = new NorthwindEntities())
 			{
 				var query = from product in context.Products
-				select product.ProductName;
+							select product.ProductName;
 				var products = query.ToList();
 				return products;
 			}
@@ -334,7 +335,7 @@ In this task, you update the data access code to cache the result of queries to 
 			using (NorthwindEntities context = new NorthwindEntities())
 			{
 				var query = from product in context.Products
-				select product.ProductName;
+							select product.ProductName;
 				var products = query.ToList();
 				products.Insert(0, "(from data source)");
 
@@ -354,7 +355,7 @@ In this task, you update the data access code to cache the result of queries to 
 <a name="Ex2Task2" />
 #### Task 2 - Measuring the Data Access Latency ####
 
-In this task, you will update the application to allow control of the use of the cache from the UI and to display the time required to retrieve catalog data, allowing you to compare the latency of retrieving data from the cache against the time required to access the data source.
+In this task, you will update the application to allow control of the use of the cache from the UI and to display the time required to retrieve catalog data, allowing you to compare the latency of retrieving data from the cache and the time required to access the data source.
 
 1. Open the **HomeController.cs** file in the **Controllers** folder and add the **System.Diagnostics** using directive at the top of the file.
 	
@@ -397,7 +398,7 @@ In this task, you will update the application to allow control of the use of the
 	}
 	````
 
-1. In the same method, locate the code that creates a new **IndexViewModel** instance and replace the product property initialization with the following (highlighted) code block.
+1. In the same method, locate the code that creates a new **IndexViewModel** instance and replace the **model** initialization with the following (highlighted) code block.
 
 	(Code Snippet - _BuildingAppsWithCachingService-Ex2-IndexViewModel initialization-CS_)
 	<!--mark: 22-25-->
@@ -435,7 +436,7 @@ In this task, you will update the application to allow control of the use of the
 	}
 	````
 
-	>**Note:** The elements added to the view model provide the time taken to load the product catalog from the repository, a flag to indicate whether the cache is enabled, and an identifier for the catalog object returned by the call to **GetProducts**. The view displays the object ID to allow you to determine whether the instance returned by the call to the repository has changed. This feature will be used later in the exercise, when you enable the local cache.
+	>**Note:** The data added to the view model provide the time taken to load the product catalog from the repository, a flag to indicate whether the cache is enabled, and an identifier for the catalog object returned by the call to **GetProducts**. The view displays the object ID to allow you to determine whether the instance returned by the call to the repository has changed. This feature will be used later in the exercise when you enable the local cache.
 
 
 1. Add a new action method to the **HomeController** to enable or disable the cache from the UI of the application.
@@ -470,7 +471,7 @@ In this task, you will update the application to allow control of the use of the
 
 1. Now, click the **Enable** button in **Enable Cache** and wait for the page to refresh. Notice that the first item in the list indicates that it was still necessary for the application to retrieve the product catalog from the data source because the information has yet to be cached.
 
-1. Click **Products**, or refresh the page in the browser. This time, the application retrieves the product data from the Windows Azure Caching and the elapsed time should be lower. Confirm that the first item in the list indicates that the source of the information is the cache.
+1. Click **Products**, or refresh the page in the browser. This time, the application retrieves the product data from Windows Azure Cache Service and the elapsed time should be lower. Confirm that the first item in the list indicates that the source of the information is the cache.
 
 	![Running the application with the cache enabled](Images/running-the-application-with-the-cache-enable.png?raw=true "Running the application with the cache enabled")
 
@@ -481,7 +482,7 @@ In this task, you will update the application to allow control of the use of the
 <a name="Ex2Task3"></a>
 #### Task 3 - Enabling the Local Cache ####
 
-When using Windows Azure Caching, you have the option of using a local cache that allows objects to be cached in-memory at the client, as well as being stored in the cache cluster. In this task, you will enable the local cache and then compare the access time with the remote case.
+When using Windows Azure Cache Service, you have the option of using a local cache that allows objects to be cached in-memory at the client. When the application requests the object, the cache client checks whether the object resides in the local cache. If so, the reference to the object is returned immediately without contacting the cache service. If it does not exist, the object is retrieved from the cache service. In this task, you will enable the local cache and then compare the access time with the remote case.
 
 1. Open the **ProductsRepository.cs** file in the **Services** folder of the **CloudShop** project.
 
@@ -529,7 +530,7 @@ When using Windows Azure Caching, you have the option of using a local cache tha
 	...
 	````
 
-1. Open the **HomeController.cs** file in the **Controllers** folder and find the **Index** action. Locate the line that instantiates a new **ProductsRepository** and replace those lines with the following highlighted code:
+1. Open the **HomeController.cs** file in the **Controllers** folder and find the **Index** action. Locate the code that instantiates a new **ProductsRepository** and replace those lines with the following highlighted code:
 
 	(Code Snippet - _BuildingAppsWithCachingService-Ex2-GetProducts LocalCache-CS_)
 	<!--mark: 7-10-->
@@ -591,10 +592,10 @@ When using Windows Azure Caching, you have the option of using a local cache tha
 	(Code Snippet - _BuildingAppsWithCachingService-Ex2-EnableLocalCache Option-HTML_)
 	<!--mark: 13-23-->
 	````HTML
-	<h2>Cache settings for Cloud Shop</h2>
+	<span class="h4">Cache settings for Cloud Shop</span>
 	<p><b>Instance ID:</b> @Model.InstanceId</p>
 	<p><b>Object ID:</b> @Model.ObjectId</p>
-	<h4>Cache Management:</h4>
+	<p><b>Cache Management:</b></p>
 	@if (!Model.IsCacheEnabled)
 	{
 		<a href="@Url.Action("EnableCache", "Home", new { enabled = true })" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-flash"></span> Enable Cache</a>
