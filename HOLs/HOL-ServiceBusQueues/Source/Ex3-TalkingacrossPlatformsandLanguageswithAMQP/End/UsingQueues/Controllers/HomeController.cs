@@ -19,15 +19,14 @@ namespace UsingQueues.Controllers
 
         public HomeController()
         {
-            var baseAddress = RoleEnvironment.GetConfigurationSettingValue("namespaceAddress");
+            var baseAddress = RoleEnvironment.GetConfigurationSettingValue("namespaceName");
             var issuerName = RoleEnvironment.GetConfigurationSettingValue("issuerName");
             var issuerKey = RoleEnvironment.GetConfigurationSettingValue("issuerKey");
 
             Uri namespaceAddress = ServiceBusEnvironment.CreateServiceUri("sb", baseAddress, string.Empty);
 
             this.namespaceManager = new NamespaceManager(namespaceAddress, TokenProvider.CreateSharedSecretTokenProvider(issuerName, issuerKey));
-            this.messagingFactory = MessagingFactory.CreateFromConnectionString(connectionString);
-
+            this.messagingFactory = MessagingFactory.CreateFromConnectionString(this.connectionString);
         }
 
         public ActionResult Index()
@@ -76,7 +75,9 @@ namespace UsingQueues.Controllers
                 bm.Properties["Priority"] = "High";
                 sender.Send(bm);
             }
-            catch { }
+            catch 
+            { 
+            }
             finally
             {
                 if (bm != null)
@@ -118,6 +119,5 @@ namespace UsingQueues.Controllers
             receivedMessage.Complete();
             return this.Json(new { MessageInfo = messageInfo }, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

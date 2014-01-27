@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>ServiceBusTopics</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>This hands-on lab will show you the basic elements of Service Bus topics and subscriptions. You will start by creating topics and subscriptions and then explore how to send messages to a topic and receive messages from a subscription. Finally, you learn how to apply expression filters and rule actions to subscriptions to distribute your messages that matched those rules.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Service Bus Topics</Title>
+  <Version>3.2.0</Version>
+  <Source>.\Source</Source>
+  <CustomProperties>
+    <Property Name="ContentType" Value="VS2013" />
+  </CustomProperties>
+</Lab>

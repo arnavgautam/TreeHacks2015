@@ -3,13 +3,14 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:CustomerManager"
-    xmlns:localData="using:CustomerManager.Data">
+    xmlns:localData="using:CustomerManager.DataModel">
 
     <Application.Resources>
 
         <!-- Application-specific resources -->
 
-        <x:String x:Key="AppName">CustomerManager</x:String>
+        <x:String x:Key="AppName">Customer Manager</x:String>
+        <x:String x:Key="ServiceUrl">[YOUR-SERVICE-SITE-URL]/api/customers</x:String>
 
     </Application.Resources>
 </Application>

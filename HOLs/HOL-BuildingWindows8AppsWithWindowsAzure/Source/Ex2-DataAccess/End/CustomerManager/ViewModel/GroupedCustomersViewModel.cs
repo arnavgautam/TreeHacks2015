@@ -3,19 +3,19 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using CustomerManager.Common;
-    using CustomerManager.Data;
+    using CustomerManager.DataModel;
     using WebApi.Models;
 
     public class GroupedCustomersViewModel : BindableBase
     {
-        public ObservableCollection<CustomerViewModel> CustomersList { get; set; }
-
         public GroupedCustomersViewModel()
         {
             this.CustomersList = new ObservableCollection<CustomerViewModel>();
 
             this.GetCustomers();
         }
+
+        public ObservableCollection<CustomerViewModel> CustomersList { get; set; }
 
         private async void GetCustomers()
         {

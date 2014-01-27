@@ -45,15 +45,15 @@ The following is required to complete this hands-on lab:
 
 This hands-on lab includes the following exercises:
 
-- [Exercise 1: Creating a Windows Azure Web Site with Visual Studio](#Exercise1)
-- [Exercise 2: Creating an MVC 5 Application with Entity Framework](#Exercise2)
-- [Exercise 3 Publishing an MVC 5 Application using Web Deploy](#Exercise3)
-- [Exercise 4: Publishing an MVC 5 Application using Git](#Exercise4)
+- [Creating a Windows Azure Web Site with Visual Studio](#Exercise1)
+- [Creating an MVC 5 Application with Entity Framework](#Exercise2)
+- [Publishing an MVC 5 Application using Web Deploy](#Exercise3)
+- [Publishing an MVC 5 Application using Git](#Exercise4)
 
 <a name="Exercise1"></a>
 ### Exercise 1: Creating a Windows Azure Web Site with Visual Studio ###
 
-In this exercise, you will take advantage of the Windows Azure tools for Visual Studio to create a Windows Azure Web site. Through **Server Explorer**, you will connect to Windows Azure by signing in with your Microsoft Account and then create a Windows Azure Web site and its associated SQL database.
+In this exercise, you will take advantage of the Windows Azure tools for Visual Studio to create a Windows Azure Web Site. Through **Server Explorer**, you will connect to Windows Azure by signing in with your Microsoft Account and then create a Windows Azure Web Site and its associated SQL database.
 
 #### Task 1 – Adding a New Windows Azure Web Site from Server Explorer ####
 
@@ -73,13 +73,13 @@ In this exercise, you will take advantage of the Windows Azure tools for Visual 
 
 	_Add new site_
 
-1. In the **Create site in Windows Azure** dialog box, provide the following information:
+1. In the **Create site on Windows Azure** dialog box, provide the following information:
 	- In the **Site name** box, enter an available name for the Web site.
-	- In the **Location** drop-down list, select the region for the web site. This setting specifies which data center your Web site will run in.
+	- In the **Location** drop-down list, select the region for the Web site. This setting specifies which data center your Web site will run in.
 	- In the **Database server** drop-down list, select **Create new server**. Alternatively, you can select an existing SQL Server.
-	- In the **Database username** and **Database password** boxes, enter the administrator username and password for the SQL Server. If you selected a SQL Server you have created previously, you will be prompted for the password.
+	- In the **Database username** and **Database password** boxes, enter the administrator username and password for the SQL Server. If you select a SQL Server you have already created, you will be prompted for the password.
 
-1. Click **Create** to create the web site.
+1. Click **Create** to create the Web site.
 
 	![Create site on Windows Azure](Images/create-site-on-windows-azure.png?raw=true)
 
@@ -169,7 +169,7 @@ In this exercise, you will create a simple ASP.NET MVC 5 web application, using 
 	}
 	````
 
-1. **Build MVCSample.Web** by using the **Ctrl + Shift + B** keyboard shortcut which will save the changes and build the project.
+1. Build **MVCSample.Web** by using the **Ctrl + Shift + B** keyboard shortcut which will save the changes and build the project.
 
 1. In **Solution Explorer**, right-click the **Controllers** folder and select **Add | Controller...**. 
 
@@ -181,10 +181,10 @@ In this exercise, you will create a simple ASP.NET MVC 5 web application, using 
 
 1. Complete the scaffolding options in the **Add Controller** dialog box with the following values.
 	- In the **Controller name** box, type _CustomerController_.
-	- Check the **Use async controller actions** checkbox.
+	- Select the **Use async controller actions** checkbox.
 	- In the **Model class** drop-down list, select the **Customer** class.
 	- In the **Data Context class** field, click **\<New data context...\>**. In the dialog box displayed, replace the data context class type with **MVCSample.Web.Models.CustomerContext** and click **OK**.
-	- In the **Views** section, make sure that all checkboxes are checked.
+	- In the **Views** section, make sure that all checkboxes are selected.
 
 	![Adding the Customer controller with scaffolding](Images/add-customer-controller.png?raw=true)
 
@@ -198,7 +198,7 @@ In this exercise, you will create a simple ASP.NET MVC 5 web application, using 
 
 1. Open the **CustomerController.cs** file in the **Controllers** folder. Notice that the CRUD action methods have been generated automatically. 
 
-	> **Note:** By checking the **Use async controller actions** checkbox from the scaffolding options in the previous steps, Visual Studio generates asynchronous action methods for all actions that involve access to the Customer data context. It is recommended to use asynchronous action methods for long-running, non-CPU bound requests to avoid blocking the Web server from performing work while the request is being processed.
+	> **Note:** By selecting the **Use async controller actions** checkbox from the scaffolding options in the previous steps, Visual Studio generates asynchronous action methods for all actions that involve access to the Customer data context. It is recommended to use asynchronous action methods for long-running, non-CPU bound requests to avoid blocking the Web server from performing work while the request is being processed.
 
 	````C#
 	...
@@ -240,16 +240,15 @@ In this exercise, you will create a simple ASP.NET MVC 5 web application, using 
 
 	_Generated code for the Customer controller_
 
----
-
 <a name="Exercise3"></a>
 ### Exercise 3: Publishing an MVC 5 Application using Web Deploy ###
 
 In this exercise, you will publish the application you obtained in [Exercise 2](#Exercise2) to Windows Azure Web Sites by making use of the Web Deploy publishing feature provided by Visual Studio.
 
+<a name="Ex3Task1"></a>
 #### Task 1 – Publishing an ASP.NET MVC 5 Application using Web Deploy ####
 
-1. Open the solution you have obtained in [Exercise 2](#Exercise2) with Visual Studio. Alternatively, you can open the **MVCSample.Web** solution located in the **Source\Assets** folder of this lab.
+1. Open the solution you obtained in [Exercise 2](#Exercise2) with Visual Studio. Alternatively, you can open the **MVCSample.Web** solution located in the **Source\Assets** folder of this lab.
 
 1. In **Solution Explorer**, right-click the Web site project and select **Publish...**.
 
@@ -267,9 +266,9 @@ In this exercise, you will publish the application you obtained in [Exercise 2](
 
 1. Select your Web site from the drop-down list, and then click **OK**.
 
-	![Importing publish profile from web site](Images/importing-publish-profile-from-web-site.png?raw=true)
+	![Importing publish profile from Web site](Images/importing-publish-profile-from-web-site.png?raw=true)
 
-	_Importing publish profile from web site_
+	_Importing publish profile from Web site_
 
 1. In the **Connection** page, leave the imported values and click **Validate Connection**. Once the validation is completed, click **Next**.
 
@@ -299,7 +298,7 @@ In this exercise, you will publish the application you obtained in [Exercise 2](
 
 	_Application published to Windows Azure_
 
-	>**Note:** If you still see the Windows Azure Web Sites default page reload the page by pressing **F5**. 
+	>**Note:** If you still see the Windows Azure Web Sites default page, press **F5** to reload the page. 
 
 1. Go to **/Customer** to verify that the _Customers_ views are working as expected. You can try adding a new Customer to verify it is successfully saved to the database.
 
@@ -307,16 +306,14 @@ In this exercise, you will publish the application you obtained in [Exercise 2](
 
 	_Customer view_
 
----
-
-<a name="Exercise2"></a>
+<a name="Exercise4"></a>
 ### Exercise 4: Publishing an MVC 5 Application using Git ###
 
 In this exercise you will publish the web application you created in [Exercise 2](#Exercise2), but this time using Git.
 
 > **Note:** If you did not execute [Exercise 2](#Exercise2) you can still perform this exercise by deploying the site located in the **Source\Assets** folder of this lab.
 
-<a name="Ex2Task1"></a>  
+<a name="Ex4Task1"></a>  
 #### Task 1 – Setting up Git Publishing ####
 
 1. In Visual Studio, right-click your Web site in **Server Explorer** and select **Open in Management Portal**. Sign in using the Microsoft credentials associated with your subscription.
@@ -337,7 +334,7 @@ In this exercise you will publish the web application you created in [Exercise 2
 
 	_Connection String in Windows Azure Management Portal_
 
-1. Back in the **Dashboard** page, click **Set up deployment from source control** link under the **quick glance** section.
+1. Back in the **Dashboard** page, click **Set up deployment from source control** under the **quick glance** section.
 
 	![Set up deployment from source control](Images/set-up-git-publishing.png?raw=true "Set up deployment from source control")
 
@@ -365,7 +362,7 @@ In this exercise you will publish the web application you created in [Exercise 2
 
 1. Copy the **Git URL** value. You will use it later in this exercise.
 
-<a name="Ex2Task2"></a>  
+<a name="Ex4Task2"></a>  
 #### Task 2 – Pushing the Application to Windows Azure using Git ####
 
 1. Open the solution you obtained in [Exercise 1](#Exercise1) with Visual Studio. Alternatively, you can open the **MVCSample.Web** solution located in the **Source\Assets** folder of this lab.
@@ -402,7 +399,7 @@ In this exercise you will publish the web application you created in [Exercise 2
 
 	_Pushing to Windows Azure_
 
-	> **Note:** When you deploy content to the FTP host or GIT repository of a Windows Azure website you must authenticate using **deployment credentials** that you create from the Web site’s **Quick Start** or **Dashboard** management pages.  If you do not know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset your deployment credentials** link. Provide a new password and click **OK**. Deployment credentials are valid for use with all Windows Azure Web sites associated with your subscription. 
+	> **Note:** When you deploy content to the FTP host or GIT repository of a Windows Azure website you must authenticate using **deployment credentials** that you create from the Web site’s **Quick Start** or **Dashboard** management pages.  If you do not know your deployment credentials you can easily reset them using the management portal. Open the Web site **Dashboard** page and click the **Reset your deployment credentials** link. Provide a new password and click **OK**. Deployment credentials are valid for use with all Windows Azure Web sites associated with your subscription. 
 
 1. In order to verify the Web site was successfully pushed to Windows Azure, go back to the **Windows Azure Management Portal** and click **Web Sites**.
 
@@ -426,7 +423,7 @@ In this exercise you will publish the web application you created in [Exercise 2
 
 	_Application Running in Windows Azure_
 	
-1. Go to **/Customer** to verify that the Customers views are working as expected. You can try adding a new Customer to verify it is successfully saved to the database.
+1. Go to **/Customer** to verify that the Customer views are working as expected. You can try adding a new Customer to verify it is successfully saved to the database.
 
 	![Customer view](Images/customer-view.png?raw=true)
 
@@ -440,7 +437,7 @@ To learn more about Windows Azure Web Sites, please refer to the following artic
 
 **Technical Reference**
 
-This is a list of articles that expands the information on the technologies explained on this lab:
+This is a list of articles that expand on the technologies explained on this lab:
 
 - [Windows Azure Web Sites Documentation](http://aka.ms/Alwcgu): provides reference information for developing your site with .NET, PHP, Node.js or Python and hosting in Windows Azure Web Sites
 - [Get Better Acquainted with Azure](http://aka.ms/Y42duf): gives a wide range of resources to continue learning about Windows Azure including blogs, Twitter accounts, forums, books and courses
@@ -452,7 +449,7 @@ This is a list of articles that expands the information on the technologies expl
 This is a list of developer-oriented articles related to Windows Azure Web Sites:
 
 - [How to Use ASP.NET Session State with Windows Azure Web Sites](http://aka.ms/Odtcqj): explains how to use the Windows Azure Cache Service to support ASP.NET session state caching
-- [Publishing from Source Control to Windows Azure Web Sites](http://aka.ms/B68rqv): shows how to use Git to publish to a Windows Azure Web Site. You will learn how to do it with your local repository and also with web sites like BitBucket, CodePlex, DropBox, or GitHub
+- [Publishing from Source Control to Windows Azure Web Sites](http://aka.ms/B68rqv): shows how to use Git to publish to a Windows Azure Web Site using your local repository as well as with Web sites like BitBucket, CodePlex, DropBox, or GitHub
 - [How to Monitor Web Sites](http://aka.ms/Aovqr1): guides you through implementing and monitoring performance statistics for Windows Azure Web Sites
 - [Windows Azure Web Sites – Exploring the platform (Video)](http://aka.ms/E9g0c1): shows you more about building a web application, understanding options for deployment, and setting up continuous integration
 - [Windows Azure Web Sites: Under the Hood (Video)](http://aka.ms/H5il2o): shows you how new Web sites are provisioned, how incoming requests are routed and serviced, and what actually happens when it is time to scale your Web site - both out and up

@@ -3,7 +3,7 @@
   <Role name="FabrikamInsurance">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=fabrikaminsurancestoragi;AccountKey=BDmMRwKNeB3kp15KJXj+aFmVmL/pzZMd77sOQD4xDbNlmchZXqXVLQ8f1rOgN2FvkiJYBYBJetKLAjeLz0xywg==" />
-    </ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+	</ConfigurationSettings>
   </Role>
 </ServiceConfiguration>

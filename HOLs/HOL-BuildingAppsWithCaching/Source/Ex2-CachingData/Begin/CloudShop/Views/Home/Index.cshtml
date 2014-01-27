@@ -1,37 +1,48 @@
-@model CloudShop.Models.IndexViewModel
+﻿@model CloudShop.Models.IndexViewModel
 
-@section featured {
-<section class="featured">
-    <div class="content-wrapper">
-        <hgroup class="title">
-            <h1>Products</h1>
-        </hgroup>
-    </div>
-</section>
+@{
+    ViewBag.Title = "Products";
 }
-<label for="items">Select a product from the list:</label>
-<h3>Instance ID: @Model.InstanceId - Object ID: @Model.ObjectId</h3>
-@using (Html.BeginForm("Add","Home")) {
-<select name="selectedItem" class="product-list" id="items" size="14">
-    @foreach (string product in Model.Products) {
-        <option value="@product">@product</option>
-        }
-</select>
 
-    <a href="javascript:document.forms[0].submit();">Add item to cart</a>
-    }
-<p>@Html.ActionLink("Recycle", "Recycle", "Home")</p>
-<fieldset>
-    <legend>Cache settings for product data</legend>Enable Cache:
-    @if (Model.IsCacheEnabled)
-    {
-        <span>Yes |</span><span>@Html.ActionLink("No", "EnableCache", new { enabled = false })</span>
-    }
-    else
-    {
-        <span>@Html.ActionLink("Yes", "EnableCache", new { enabled = true })</span><span> | No</span>
-    }
-    <br />
-    <div id="elapsedTime">Elapsed time: @Model.ElapsedTime.ToString() milliseconds.</div>
-</fieldset>
-
+<div class="row">
+    <div class="col-sm-12">
+        <h2>Products</h2>
+        <div class="row">
+            <div class="col-sm-6">
+                @using (Html.BeginForm("Add", "Home", FormMethod.Post, new { @role = "form" }))
+                {
+                    <label class="h4" for="items">Select a product from the list:</label>
+                    <select class="form-control" name="selectedItem" id="items" size="14">
+                        @foreach (string product in Model.Products)
+                        {
+                            <option value="@product">@product</option>
+                        }
+                    </select>
+                }
+                <br />
+                <div>
+                    <a href="javascript:document.forms[0].submit();" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add item to cart</a>
+                    <a href="@Url.Action("Recycle", "Home")" class="btn btn-warning"><span class="glyphicon glyphicon glyphicon-refresh"></span> Recycle</a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <hr class="visible-xs" />
+                <span class="h4">Cache settings for Cloud Shop</span>
+                <p><b>Instance ID:</b> @Model.InstanceId</p>
+                <p><b>Object ID:</b> @Model.ObjectId</p>
+                <p><b>Cache Management:</b></p>
+                @if (!Model.IsCacheEnabled)
+                {
+                    <a href="@Url.Action("EnableCache", "Home", new { enabled = true })" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-flash"></span> Enable Cache</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("EnableCache", "Home", new { enabled = false })" class="btn btn-danger"><span class="glyphicon glyphicon glyphicon-off"></span> Disable Cache</a>
+                }
+                <br />
+                <br />
+                <div id="elapsedTime">Elapsed time: @Model.ElapsedTime.ToString() milliseconds.</div>
+            </div>
+        </div>
+    </div>
+</div>

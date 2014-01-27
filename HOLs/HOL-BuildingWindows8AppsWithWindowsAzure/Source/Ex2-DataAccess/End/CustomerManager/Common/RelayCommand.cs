@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
-namespace CustomerManager.Common
+﻿namespace CustomerManager.Common
 {
+    using System;
+    using System.Windows.Input;
+
     /// <summary>
     /// A command whose sole purpose is to relay its functionality 
     /// to other objects by invoking delegates. 
@@ -16,13 +12,8 @@ namespace CustomerManager.Common
     /// </summary>
     public class RelayCommand : ICommand
     {
-        private readonly Action _execute;
-        private readonly Func<bool> _canExecute;
-
-        /// <summary>
-        /// Raised when RaiseCanExecuteChanged is called.
-        /// </summary>
-        public event EventHandler CanExecuteChanged;
+        private readonly Action execute;
+        private readonly Func<bool> canExecute;
 
         /// <summary>
         /// Creates a new command that can always execute.
@@ -41,10 +32,18 @@ namespace CustomerManager.Common
         public RelayCommand(Action execute, Func<bool> canExecute)
         {
             if (execute == null)
+            {
                 throw new ArgumentNullException("execute");
-            _execute = execute;
-            _canExecute = canExecute;
+            }
+
+            this.execute = execute;
+            this.canExecute = canExecute;
         }
+
+        /// <summary>
+        /// Raised when RaiseCanExecuteChanged is called.
+        /// </summary>
+        public event EventHandler CanExecuteChanged;
 
         /// <summary>
         /// Determines whether this <see cref="RelayCommand"/> can execute in its current state.
@@ -55,7 +54,7 @@ namespace CustomerManager.Common
         /// <returns>true if this command can be executed; otherwise, false.</returns>
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null ? true : _canExecute();
+            return this.canExecute == null ? true : this.canExecute();
         }
 
         /// <summary>
@@ -66,7 +65,7 @@ namespace CustomerManager.Common
         /// </param>
         public void Execute(object parameter)
         {
-            _execute();
+            this.execute();
         }
 
         /// <summary>
@@ -76,7 +75,7 @@ namespace CustomerManager.Common
         /// </summary>
         public void RaiseCanExecuteChanged()
         {
-            var handler = CanExecuteChanged;
+            var handler = this.CanExecuteChanged;
             if (handler != null)
             {
                 handler(this, EventArgs.Empty);

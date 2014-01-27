@@ -163,6 +163,8 @@
         function loadSubscriptions(selectedTopicName) {
             var receiveMsgSubscription = $("#messageSubscriptions");
             receiveMsgSubscription.empty();
+            $("#retrieveMessage").attr("disabled", "disabled");
+            $("#viewSubscriptionFilters").attr("disabled", "disabled");
             logMessage("Retrieving the topic subscriptions...");
             $.get("/Home/Subscriptions", { topicName: selectedTopicName })
                 .done(function (response) {
@@ -205,36 +207,19 @@
 
         function sendMessageSuccessHandler(selectedTopicName) {
             $("#messageBody").val("");
-            $('#messageSubscriptions').empty();
-
-            $.get("/Home/Subscriptions", { topicName: selectedTopicName }).success(function (response) {
-                for (var i = 0; i < response.length; i++) {
-                    var subscriptionClick = function () {
-                        $("#messageSubscriptions a.active").removeClass("active");
-                        $(this).addClass("active");
-                        $("#retrieveMessage").removeAttr("disabled");
-                        $("#viewSubscriptionFilters").removeAttr("disabled");
-                    };
-
-                    var topicItem = $('<a href="#" class="list-group-item"><span class="badge" value="' + response[i].Name + '">' + response[i].MessageCount + '</span>' + response[i].Name + '</a>').on('click', subscriptionClick);
-                    $('#messageSubscriptions').append(topicItem);
-                }
-
-                $('#noMessages').hide();
-            });
+            loadSubscriptions(selectedTopicName);
         }
 
         function retrieveMessage() {
             event.preventDefault();
             var topicName = $("#topicList a.active").html();
             var subscriptionName = $("#messageSubscriptions a.active span").data("value");
-            $(".loading").show();
-            logMessage("Retrieving message from topic:'" + topicName + "'...");
+            logMessage("Retrieving message from subscription '" + subscriptionName + "' (topic: '" + topicName + "')...");
             $.get("/Home/RetrieveMessage", { topicName: topicName, subscriptionName: subscriptionName })
                 .success(function (response) {
                     logMessage("Done!");
-                    renderMessage(response);
-                    loadTopics();
+                    $("#messageSubscriptions span[data-value=" + subscriptionName + "]").html(response.MessagesInSubscription);
+                    renderMessage(response.MessageInfo);
                 })
                 .error(function () {
                     logMessage('ERROR: Unable to retrieve message.');
@@ -289,16 +274,6 @@
             } else {
                 $("#noMessage").show();
             }
-
-            enableLinks(true);
-            $(".loading").hide();
-        }
-
-        function getMessage(numberOfMessages) {
-            var message = numberOfMessages + " Messages";
-            if (numberOfMessages == "0") message = "No Messages";
-            if (numberOfMessages == "1") message = numberOfMessages + " Message";
-            return message;
         }
 
         function viewSubscriptionFilters() {
@@ -320,23 +295,6 @@
             .error(function () {
                 logMessage('ERROR: Unable to retrieve subscription filters.');
             });
-        }
-
-        function doSubmit(frm) {
-            $("#" + frm).submit();
-        }
-
-        function enableLinks(enable) {
-            if (enable) {
-                $("#sendMessageButton").removeAttr("disabled");
-                $("#recieveMessageButton").removeAttr("disabled");
-                $("#createTopic").removeAttr("disabled");
-            }
-            else {
-                $("#sendMessageButton").attr("disabled", "disabled");
-                $("#recieveMessageButton").attr("disabled", "disabled");
-                $("#createTopic").attr("disabled", "disabled");
-            }
         }
 
         function logMessage(message, type) {

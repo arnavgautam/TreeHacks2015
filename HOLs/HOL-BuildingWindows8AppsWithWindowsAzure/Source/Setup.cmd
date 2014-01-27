@@ -13,9 +13,9 @@ cls
 echo Setup Options
 echo =============
 echo.
-echo 2. Execute setup scripts.
+echo 1. Execute setup scripts.
 echo.
-echo 3. Exit.
+echo 2. Exit.
 echo.
 choice /c:12 /M "Choose an option: " 
 if errorlevel 2 goto exit

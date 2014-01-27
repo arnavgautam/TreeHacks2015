@@ -15,6 +15,22 @@
         private string title = string.Empty;
         private string imagePath = string.Empty;
 
+        public CustomerViewModel()
+        {
+        }
+
+        public CustomerViewModel(Customer customer)
+        {
+            this.CustomerId = customer.CustomerId.ToString();
+            this.Name = customer.Name;
+            this.Phone = customer.Phone;
+            this.Address = customer.Address;
+            this.Email = customer.Email;
+            this.Company = customer.Company;
+            this.Title = customer.Title;
+            this.ImagePath = string.IsNullOrEmpty(customer.Image) ? "/Assets/CustomerPlaceholder.png" : customer.Image;
+        }
+
         public string CustomerId
         {
             get { return this.customerId; }
@@ -61,22 +77,6 @@
         { 
             get { return this.imagePath; }
             set { this.SetProperty(ref this.imagePath, value); }
-        }
-
-        public CustomerViewModel()
-        {
-        }
-
-        public CustomerViewModel(Customer customer)
-        {
-            this.CustomerId = customer.CustomerId;
-            this.Name = customer.Name;
-            this.Phone = customer.Phone;
-            this.Address = customer.Address;
-            this.Email = customer.Email;
-            this.Company = customer.Company;
-            this.Title = customer.Title;
-            this.ImagePath = string.IsNullOrEmpty(customer.Image) ? "/Assets/CustomerPlaceholder.png" : customer.Image;
         }
     }
 }

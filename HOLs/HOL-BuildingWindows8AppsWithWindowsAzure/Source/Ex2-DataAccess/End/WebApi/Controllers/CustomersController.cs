@@ -25,7 +25,7 @@ namespace WebApi.Controllers
 
         // GET api/Customers/5
         [ResponseType(typeof(Customer))]
-        public async Task<IHttpActionResult> GetCustomer(string id)
+        public async Task<IHttpActionResult> GetCustomer(int id)
         {
             Customer customer = await db.Customers.FindAsync(id);
             if (customer == null)
@@ -37,7 +37,7 @@ namespace WebApi.Controllers
         }
 
         // PUT api/Customers/5
-        public async Task<IHttpActionResult> PutCustomer(string id, Customer customer)
+        public async Task<IHttpActionResult> PutCustomer(int id, Customer customer)
         {
             if (!ModelState.IsValid)
             {
@@ -80,29 +80,14 @@ namespace WebApi.Controllers
             }
 
             db.Customers.Add(customer);
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (CustomerExists(customer.CustomerId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = customer.CustomerId }, customer);
         }
 
         // DELETE api/Customers/5
         [ResponseType(typeof(Customer))]
-        public async Task<IHttpActionResult> DeleteCustomer(string id)
+        public async Task<IHttpActionResult> DeleteCustomer(int id)
         {
             Customer customer = await db.Customers.FindAsync(id);
             if (customer == null)
@@ -125,7 +110,7 @@ namespace WebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool CustomerExists(string id)
+        private bool CustomerExists(int id)
         {
             return db.Customers.Count(e => e.CustomerId == id) > 0;
         }

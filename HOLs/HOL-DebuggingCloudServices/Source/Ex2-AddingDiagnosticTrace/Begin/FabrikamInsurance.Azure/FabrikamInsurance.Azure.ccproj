@@ -48,15 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FabrikamInsuranceContent\" />
-    <Folder Include="Profiles" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FabrikamInsuranceContent\diagnostics.wadcfg">
       <SubType>Content</SubType>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <PublishProfile Include="Profiles\fabrikaminsuranceserviceProduction.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

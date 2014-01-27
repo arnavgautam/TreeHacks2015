@@ -110,21 +110,33 @@ if (-NOT (test-path "$documentsFolder"))
     $documentsFolder = "$env:UserProfile\Documents";
 }
 
+# ensure code snippets folder exist
+New-Item "$documentsFolder\Visual Studio 2013\Code Snippets" -itemtype directory -force
+
 foreach ($node in $vscontent.VSContent.Content)
 {
     Write-Host "Installing Code Snippet $($node.FileName)"
     $codeSnippetFile = Join-Path "$extractLocation" "$($node.FileName)"
+    [string] $codeSnippetLocation = ""
     
     switch (($node.Attributes.Attribute | Where-Object { $_.name -eq "lang" }).value) 
     {       
-        "XML" { Copy-Item "$codeSnippetFile" -destination "$documentsFolder\Visual Studio 2012\Code Snippets\XML\My Xml Snippets" -force } 
-        "HTML" { Copy-Item "$codeSnippetFile" -destination "$documentsFolder\Visual Studio 2012\Code Snippets\Visual Web Developer\My HTML Snippets" -force } 
-        "csharp" { Copy-Item "$codeSnippetFile" -destination "$documentsFolder\Visual Studio 2012\Code Snippets\Visual C#\My Code Snippets" -force } 
-        "vb" { Copy-Item "$codeSnippetFile" -destination "$documentsFolder\Visual Studio 2012\Code Snippets\Visual Basic\My Code Snippets" -force } 
-        "JScript" { Copy-Item "$codeSnippetFile" -destination "$documentsFolder\Visual Studio 2012\Code Snippets\Visual Web Developer\My JScript Snippets" -force }  
-        "SQL" { Copy-Item "$codeSnippetFile" -destination "$documentsFolder\Visual Studio 2012\Code Snippets\SQL\My Code Snippets" -force }       
+        "XML" { $codeSnippetLocation = "$documentsFolder\Visual Studio 2013\Code Snippets\XML\My Xml Snippets" }
+        "XAML" { $codeSnippetLocation = "$documentsFolder\Visual Studio 2013\Code Snippets\XAML\My XAML Snippets" }
+		"HTML" { $codeSnippetLocation = "$documentsFolder\Visual Studio 2013\Code Snippets\Visual Web Developer\My HTML Snippets" } 
+		"CSS" { $codeSnippetLocation = "$documentsFolder\Visual Studio 2013\Code Snippets\Visual Web Developer\My CSS Snippets" } 
+        "JavaScript" { $codeSnippetLocation = "$documentsFolder\Visual Studio 2013\Code Snippets\JavaScript\My Code Snippets" }  
+		"csharp" { $codeSnippetLocation = "$documentsFolder\Visual Studio 2013\Code Snippets\Visual C#\My Code Snippets" } 
+        "vb" { $codeSnippetLocation = "$documentsFolder\Visual Studio 2013\Code Snippets\Visual Basic\My Code Snippets" } 
+        "SQL" { $codeSnippetLocation = "$documentsFolder\Visual Studio 2013\Code Snippets\SQL\My Code Snippets" }         
         
         default { Write-Error "Unexpected code snippet language: $_" }
+    }
+
+    if (![string]::IsNullOrWhiteSpace($codeSnippetLocation))
+    {
+        New-Item -path  $codeSnippetLocation -itemtype directory -force
+        Copy-Item "$codeSnippetFile" -destination $codeSnippetLocation -force
     }
     
     Write-Host "Installing Code Snippet $($node.FileName) done!"

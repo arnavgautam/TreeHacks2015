@@ -571,7 +571,7 @@ To learn more about configuring Windows virtual machines on Windows Azure, pleas
 
 **Technical Reference**
 
-This is a list of articles that expands the information on the technologies explained on this lab:
+This is a list of articles that expand on the technologies explained on this lab:
 
 - You can continue reading the Hands-on labs **Understanding Virtual Machine Imaging with Capture (PowerShell)** and **Deploy Active Directory in Windows Azure using PowerShell**.
 
