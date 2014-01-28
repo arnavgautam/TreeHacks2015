@@ -5,6 +5,8 @@
 <a name="Overview" />
 ## Overview ##
 
+TODO: updated the overview.
+
 In this hands-on lab you will learn how to use **Windows Azure Active Directory** for implementing web single sign-on in an ASP.NET application. The instructions will focus on taking advantage of the directory tenant associated with your Windows Azure subscription, as that constitutes the obvious choice of identity providers for Line of Business (LoB) applications in your own organization. This lab will show you how to provision the same application in a Windows Azure AD tenant, and how to configure the application's sign-on settings to connect to that tenant. At the end of the walkthrough, you will have a functioning web application fully configured for organizational single sign-on.
 
 
@@ -26,8 +28,8 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Visual Studio Express 2013 for Web][1] or greater
-- TBC: [Identity and Access Tools for Visual Studio 2012][2]
-- TBC: [WCF Data Services 5.3 Tools][3]
+- TODO: Review if it is requiered [Identity and Access Tools for Visual Studio 2012][2]
+- TODO: Review if it is requiered [WCF Data Services 5.3 Tools][3]
 - A Windows Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
 	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
@@ -210,9 +212,9 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 	At this point we have everything we need for providing an authentication authority in our web SSO scenario: a directory tenant, a valid user and a valid admin in it.
 
 <a name="Ex1Task2" />
-#### Task 2 - Creating and Registering an MVC App in Active Directory Tenant ####
+#### Task 2 - Creating and configuring an MVC App with Organizational Accounts Authentication ####
 
-In this task, you will create a new MVC Application using **Visual Studio Express 2013 for Web** and you will register it in the Active Directory tenant you created in the previous task.
+In this task, you will create a new MVC Application using **Visual Studio Express 2013 for Web** and you will configure it to use **Organizational Accounts** as Authentication method using the Active Directory tenant you created in the previous task.
 
 1. Open **Visual Studio Express 2013 for Web**.
 
@@ -255,7 +257,7 @@ In this task, you will create a new MVC Application using **Visual Studio Expres
 
 TBC
 
-1. Go to the **Solution Explorer** and explore the generated project.
+1. Go to **Solution Explorer** and explore the generated project.
 
 	![Exploring the ExpenseReport project in Solution Explorer](Images/exploring-the-expensereport-project-in-soluti.png?raw=true "Exploring the ExpenseReport project in Solution Explorer")
 
@@ -315,7 +317,7 @@ TBC
 
 	_Selecting the ExpenseReport application_
 
-1. TBC
+1. TBC: see what is important to show in the portal (e.g. config section)
 
 1. Switch back to Visual Studio.
 
@@ -374,7 +376,7 @@ TBC
 
 1.	Open the **_LoginPartial.cshtml** file located under **Views | Shared** folder.
 
-1. TBC
+1. TBC: describe the following snippet.
 
 	<!-- mark:1,6,9,17 -->
 	````CSHTML
@@ -399,13 +401,15 @@ TBC
 	}
 	````
 
-1. TBC
+1. TBC: See what more is important to show.
 
-<a name="Ex2Task4" />
+<a name="Ex1Task4" />
 #### Task 4 - Displaying information about the authenticated user####
+
+TBC:
 Now, you will display the authenticated user information in the Home page of the application.
 
-1.	Now, you will display the authenticated user information in the Home page of the application. Open **HomeController.cs** under the **Controllers** folder. 
+1.	Open **HomeController.cs** under the **Controllers** folder. 
 
 1. Add the following directive at the top of the class.
 
@@ -415,7 +419,9 @@ Now, you will display the authenticated user information in the Home page of the
 
 1. Replace the **Index** method contents with the following code.
 
-	(Code Snippet - _Introduction to Windows Azure AD - Ex1 Querying ClaimsPrincipal_)
+	TODO: This code snippet needs to be reviewed
+
+	(Code Snippet - _IntroductionToWindowsAzureAD - Ex1 - QueryingClaimsPrincipal_)
 
 	<!-- mark:3-7 -->
 	````C#
@@ -451,8 +457,10 @@ Now, you will display the authenticated user information in the Home page of the
 
 1. Stop running the solution by pressing **Shift + F5**.
 
-<a name="Ex2Task5" />
+<a name="Ex1Task5" />
 #### Task 5 - Adding Automatic Metadata Refresh ####
+
+TODO: this tasks needs to be reviewed.
 
 The **Identity and Access Tool** configured your application to accept tokens coming from your Windows Azure AD tenant of choice. In order to do so, it cached in the Web.config the necessary protocol coordinates for connecting to the intended Windows Azure AD endpoints. It is common security practice to regularly renew cryptographic keys, and Windows Azure AD signing keys are no exception: at fixed time intervals the old keys will be retired, and new ones will take their place in the issuer's signing logic and in your tenant's metadata document.
 
@@ -469,7 +477,7 @@ To minimize downtime, it is a good idea to add self-healing logic directly in th
 
 1. Add the following method at the bottom of the class.
 
-	(Code Snippet - _Introduction to Windows Azure AD - Ex1 Refresh Validation Settings_)
+	(Code Snippet - _IntroductionToWindowsAzureAD - Ex1 - RefreshValidationSettings_)
 
 	````C#
 	protected void RefreshValidationSettings()
@@ -500,6 +508,47 @@ To minimize downtime, it is a good idea to add self-healing logic directly in th
 	````
 
 	> **Note:** Calling **RefreshValidationSettings** from **Application_Start** guarantees that the Web.config will be modified in a safe time, whereas if you would do that later in the app's lifecycle you'd risk triggering a refresh.
+
+---
+
+## TODO: Additional information for Ex 1.
+
+1.	Enter the SSL URL from the MVC Application in both fields **APP URL** and **APP ID URI**. Click the check button to complete the application registration.
+
+	![Entering App Url](Images/entering-app-url.png?raw=true)
+
+	_Entering Application URL_
+	
+
+	> **Note:** In this screen the Windows Azure Management Portal gathers important coordinates which the service needs to drive the sign-in protocol flow.
+	>
+	> * **APP URL:** This parameter represents the address of your web application. Windows Azure AD needs to know your application's address so that, after a user successfully authenticated on Windows Azure AD's pages, it can redirect the flow back to your application.
+	>
+	> * **APP ID URI:** this parameter represents the identifier of your web application. Windows Azure AD uses this value at sign-on time, to determine that the authentication request is meant to enable a user to access this particular application - among all the ones registered - so that the correct settings can be applied. The APP ID URI must be unique within the directory tenant. A good default value for it is the APP URL value itself, however with that strategy the uniqueness constraint is not always easy to respect: developing the app on local hosting environments such as IIS Express and the Windows Azure Fabric Emulator tend to produce a restricted range of addresses that will be reused by multiple developers or even multiple projects from the same developer.
+
+1.	You successfully registered the application within your Active Directory tenant. In the application dashboard, copy the **Federation Metadata Document URL** from the **Enable single sign-on with Windows Azure AD** section. You will use it in the following tasks.
+
+	![Copying Federation Metadata Url](Images/copying-federation-metadata-url.png?raw=true)
+
+	_Copying Federation Metadata URL_
+
+<a name="Ex1Task3" />
+#### Task 3 - Connecting the application to Windows Azure Active Directory ####
+
+In this task, you will run the Identity and Access configuration to set up your application with Windows Azure Active Directory. Visual Studio 2012 offers point and click tools which can help you to configure applications to use WS-Federation for web sign-on: you can use the tool's UI to provide few key information about the authority you want to trust for authentication, and the tool will emit the corresponding configuration entries.
+
+The tool auto generates entries in the Web.config file. This is all you need for taking advantage of Windows Azure AD for Web sign-on.
+
+<a name="Ex1Task4" />
+#### Task 4 - Adding Sign Out to the MVC App ####
+
+In this task, you will add a Sign Out Controller to the MVC app. The web sign-on protocols in use today often include provisions for performing distributed sign out operations. Those are flows in which not only the current application cancels its current user's session, but it also reaches out to the authority to signal that a sign out command should be propagated to all the other applications' sessions that might have been established by the same authority.
+
+
+## TODO: End Additional information for Ex 1.
+
+---
+
 
 <a name="Exercise2"></a>
 ### Exercise 2: Using the Graph API to Query Windows Azure Active Directory ###
@@ -602,7 +651,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 1. In the **Solution Explorer**, expand the **Controllers** folder of the **ExpenseReport** project and open the **HomeController.cs**. Add the following assemblies to the file and then save it.
 
-	(Code Snippet - _Introduction to Windows Azure AD - Ex2 Home Controller References_)
+	(Code Snippet - _IntroductionToWindowsAzureAD - Ex2 - HomeControllerReferences_)
 
 	````C#
 	using System.Configuration;
@@ -614,7 +663,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 1. Add the following action method at the end of the **HomeController** class, which will retrieve the list of users from the Active Directory tenant using the Graph API Helper to obtain a JWT (JSON Web Token). This token is inserted in the Authorization header of subsequent requests from the Graph API.
 
-	(Code Snippet - _Introduction to Windows Azure AD - Ex2 Users Action Method_)
+	(Code Snippet - _IntroductionToWindowsAzureAD - Ex2 - UsersActionMethod_)
 
 	<!-- mark: 5-49 -->
 	````C#
@@ -680,7 +729,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 1. Replace the code of the **Users** view with the following block.
 
-	(Code Snippet - _Introduction to Windows Azure AD - Ex2 Users View_)
+	(Code Snippet - _IntroductionToWindowsAzureAD - Ex2 - UsersView_)
 
 	````CSHTML
 	@model IEnumerable<Microsoft.WindowsAzure.ActiveDirectory.User> 
