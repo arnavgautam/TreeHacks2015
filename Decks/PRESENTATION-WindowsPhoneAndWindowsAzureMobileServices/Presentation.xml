@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Presentation xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>WindowsPhoneAndWindowsAzureMobileServices</Id>
+  <Author>
+    <Blog>http://www.nickharris.net</Blog>
+    <Email>http://twitter.com/cloudnick</Email>
+    <Name>Nick Harris</Name>
+  </Author>
+  <Description>The best Windows Phone 8 apps are connected to the cloud.  In this presentation you will see how to use Windows Azure Mobile Services to add structured storage, integrated authentication and even Push Notifications to your Windows Phone 8 apps in minutes.  
+  </Description>
+  <Document RemoveSpeakerNotes="false">.\WindowsPhoneAndWindowsAzureMobileServices.pptx</Document>
+  <Title>Building Connected Windows Phone 8 Apps with Windows Azure Mobile Services</Title>
+  <Version>1.0.2</Version>
+  <SlideThumbnail>1</SlideThumbnail>
+  <CustomProperties>
+    <Property Name="Filter" Value="Foundation" />
+  </CustomProperties>
+</Presentation>
