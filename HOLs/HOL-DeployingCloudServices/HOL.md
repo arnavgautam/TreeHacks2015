@@ -20,7 +20,7 @@ During the lab, you will also learn how to provide an SSL connection to your Win
 
 In this hands-on lab, you will learn how to:
 
-- Use the Windows Azure Management Portal to create a storage accounts and a cloud service
+- Use the Windows Azure Management Portal to create a storage account and a cloud service
 - Deploy service component packages using the Windows Azure Management Portal user interface
 - Change configuration settings for a deployed application
 - Test deployments in a separate staging environment before deployment to final production
@@ -33,19 +33,24 @@ In this hands-on lab, you will learn how to:
 
 The following is required to complete this hands-on lab:
 
-- [Visual Studio Express 2012 for Web][1] or greater.
-- [ASP.NET MVC 4][2].
-- [Windows Azure Tools for Microsoft Visual Studio 1.8][3].
-- [Windows Azure PowerShell CmdLets][4].
-- IIS 7 (with ASP.NET, WCF HTTP Activation).
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial).
+- [Visual Studio Express 2013 for Web][1] or greater
 
-[1]:http://www.microsoft.com/visualstudio/
-[2]:http://www.asp.net/mvc/mvc4
-[3]:http://www.microsoft.com/windowsazure/sdk/
-[4]:http://msdn.microsoft.com/en-us/library/windowsazure/jj156055
+- [Windows Azure Tools for Microsoft Visual Studio 2.2][2] or later
 
-> **Note:** This lab was designed for Windows 8.
+- Windows Azure PowerShell Cmdlets v0.7.1 (or higher)
+	- Follow the [Install Windows Azure PowerShell](<http://www.windowsazure.com/en-us/manage/install-and-configure-windows-powershell/#Install>) how-to guide to install the Cmdlets 
+
+- A Windows Azure subscription
+	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start developing and testing on Windows Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly Windows Azure credits at no charge.
+
+[1]: http://www.microsoft.com/visualstudio/
+[1]: http://www.visualstudio.com/downloads/download-visual-studio-vs
+[2]: http://www.microsoft.com/windowsazure/sdk/
+
+> **Note:** This lab was designed for Windows 8.1.
 
 <a name="Setup" />
 ### Setup ###
