@@ -84,50 +84,50 @@ Estimated time to complete this lab: **90 minutes**.
 <a name="Exercise1" />
 ### Exercise 1: Deploying an application using the Windows Azure Management Portal ###
 
-In this exercise, you deploy the myTODO application to Windows Azure using the Windows Azure Management Portal. To do this, you provision the required service components at the management portal, upload the application package to the staging environment and configure it. You then execute the application in this test environment to verify its operation. Once you are satisfied that it operates according to your expectations, you promote the application to production.
+In this exercise, you deploy the myTODO application to Windows Azure using the Windows Azure Management Portal. To do this, you will provision the required service components at the management portal, upload the application package to the staging environment and configure it. You will then execute the application in this test environment to verify its operation. Once you are satisfied that it operates according to your expectations, you will promote the application to production.
 
 <a name="Ex1Task1" />
-#### Task 1 – Creating a Storage Account and a Cloud Service ####
+#### Task 1 – Creating a Storage Account, a Cloud Service and a SQL Database ####
 
-The application you deploy in this exercise requires a Cloud Service and a Storage Account. In this task, you create a new storage account to allow the application to persist its data. In addition, you define a Cloud Service to host your web application.
+The application you deploy in this exercise requires a Cloud Service, a SQL Database and a Storage Account. In this task, you will create a new SQL Database  to allow the application to persist its data. In addition, you will define a Cloud Service to host your web application, and a Storage Account to store the diagnostic data collected by the application.
 
 1. Navigate to [http://manage.windowsazure.com](http://manage.windowsazure.com) using a Web browser and sign in using the Microsoft Account associated with your Windows Azure account.
 
-	![Signing in to the Windows Azure Management portal](./Images/signing-in-to-the-windows-azure-platform-mana.png?raw=true)
+	![Signing in to the Windows Azure Management portal](Images/signing-in-to-the-windows-azure-management-po.png?raw=true)
 
 	_Signing in to the Windows Azure Management portal_
 
-1. First, create an **Affinity Group** where your services will be deployed. In the Windows Azure menu, click **Networks**.
+1. First, create an **Affinity Group** where your services will be deployed. In the Windows Azure menu, click **Settings**.
 
-	![Networks](./Images/networks.png?raw=true "Networks")
+	![Select Settings](Images/select-settings.png?raw=true)
 
-	_Select Networks_
+	_Select Settings_
 
-1. In the **Networks** page, click **Affinity Groups**.
+1. In the **Settings** page, click **Affinity Groups**.
 
-	![Networks page](./Images/affinity-groups.png?raw=true "Networks page")
+	![Settings page](Images/settings-page.png?raw=true)
 
-	_Networks page_
+	_Settings page_
 
-1. Click **Create** in order to create a new **Affinity Group**.
+1. Click **Add** in order to create a new **Affinity Group**.
 
-	![Create Affinity Group](./Images/create-affinity-group.png?raw=true "Create Affinity Group")
+	![Add Affinity Group](Images/add-affinity-group.png?raw=true)
 
-	_Create Affinity Group_
+	_Add Affinity Group_
 
-1. In the **Create Affinity Group** dialog, enter a **Name** (e.g. _MyAffinityGroup_) and the **Region** for your new group. Click the **Tick** to continue.
+1. In the **Create Affinity Group** dialog box, enter a **Name** (e.g. _MyAffinityGroup_) and the **Region** for your new group. Click the **Tick** to continue.
 
-	![Affinity Group Details](./Images/affinity-group-details.png?raw=true "Affinity Group Details")
+	![Affinity Group details](Images/affinity-group-details.png?raw=true)
 
-	_Affinity Group Details_
+	_Affinity Group details_
 
 	>**Note:** The reason that you are creating a new affinity group is to deploy both the cloud service and storage account to the same location, thus ensuring high bandwidth and low latency between the application and the data it depends on.
 
-1. Now, you will create the **Storage Account** that the application will use to store its data. In the Windows Azure Management Portal, click **New** | **Data Services** | **Storage** | **Quick Create**.
+1. Now, you will create the **Storage Account** that the application will use to store the diagnostic data. In the Windows Azure Management Portal, click **New** | **Data Services** | **Storage** | **Quick Create**.
 
-1. Set a unique **URL**  (e.g. _storagemytodo_) and select the _Affinity Group_ you previously created. Click **Create Storage Account** to continue.
+1. Set a unique **URL**  (e.g. _storagemytodo_), enter a **Description** and select the _Affinity Group_ you previously created. Click **Create Storage Account** to continue.
 
-	![Creating a new storage account](./Images/creating-a-new-storage-account.png?raw=true)
+	![Creating a new storage account](Images/creating-a-new-storage-account.png?raw=true)
 
 	_Creating a new storage account_
 
@@ -135,15 +135,15 @@ The application you deploy in this exercise requires a Cloud Service and a Stora
 	>
 	> ![URL Validation](./Images/url-validation.png?raw=true)
 
-1. Wait until the Storage Account is created. Click your storage account and click **Manage Keys** at the bottom of the page in order to show the storage account's access keys.
+1. Wait until the storage account is created. Click your storage account and click **Manage Access Keys** at the bottom of the page in order to show the storage account's access keys.
 
-	![Manage Storage Account Keys](./Images/manage-storage-account-keys.png?raw=true "Manage Storage Account Keys")
+	![Manage Storage Account keys](Images/manage-storage-account-keys.png?raw=true)
 
-	_Manage Storage Account Keys_
+	_Manage Storage Account keys_
 
 1. Copy the **Storage account name**, and the **Primary access key** values. You will use these values later on to configure the application.
 
-	![Retrieving the storage access keys](./Images/retrieving-the-storage-access-keys.png?raw=true)
+	![Retrieving the storage access keys](Images/retrieving-the-storage-access-keys.png?raw=true)
 
 	_Retrieving the storage access keys_
 
@@ -153,7 +153,7 @@ The application you deploy in this exercise requires a Cloud Service and a Stora
 
 1.	Select a **URL** for your Cloud Service (e.g. _servicemytodo_) and the **Affinity Group** where you created the storage account. Click **Create Cloud Service** to continue. Windows Azure uses the URL value to generate the endpoint URLs for the cloud service.
 
-	![Creating a new Cloud Service](./Images/creating-a-new-cloud-service.png?raw=true "Creating a new Cloud Service")
+	![Creating a new Cloud Service](Images/creating-a-new-cloud-service.png?raw=true)
 
 	_Creating a new Cloud Service_
 
@@ -163,31 +163,39 @@ The application you deploy in this exercise requires a Cloud Service and a Stora
 	>
 	> By choosing the same affinity group you used for your storage account, you ensure that the Cloud Service is deployed to the same data center.
 
-1.	Wait until your Cloud Service is created to continue. Do not close the browser window, you will use the portal for the next task.
+1.	Wait until your cloud service is created to continue.
 
 	![Cloud Service Created](./Images/cloud-service-created.png?raw=true "Cloud Service Created")
 
 	_Cloud Service Created_
 
+1. Finally, create the **SQL Database** that the application will use to store its data. Click **New | Data Services | SQL Database | Quick Create**. 
+
+1. Enter a **Database Name** (e.g. _dbmytodo_), select **New SQL database server** in the **Server** drop-down list and select the same **Region** specified for the affinity defined you created previously. Finally, Enter a **Login Name** (e.g. SQLAdmin) and a **Password** for the database administrator.
+
+	![Creating a SQL Database](Images/creating-a-sql-database.png?raw=true)
+
+1. Wait until the database is created. Click your database and take note of the **Server** information under the **Connect to your database** section of the **Quick Start** page. You will use this value later on to configure the application.
+
+	![SQL Database server information](Images/sql-database-server-information.png?raw=true)
+
+1. Do not close the browser window, you will use the portal for the next task.
+
 <a name="Ex1Task2" />
 #### Task 2 – Publishing the Application to the Windows Azure Management Portal ####
 
-A Cloud Service is a service that hosts your code in the Windows Azure environment. It has two separate deployment slots: staging and production. The staging deployment slot allows you to test your service in the Windows Azure environment before you deploy it to production.
+A Cloud Service is a service that hosts your code in the Windows Azure environment. It has two separate deployment slots: **staging** and **production**. The staging deployment slot allows you to test your service in the Windows Azure environment before you deploy it to production.
 
-In this task, you create a service package for the myTODO application and then deploy it to the staging environment using the Windows Azure Management Portal.
+In this task, you will create a service package for the myTODO application and then deploy it to the staging environment using the Windows Azure Management Portal.
 
-1. Launch **Microsoft Visual Studio Express 2012 for Web** (or later) as Administrator.
+1. Launch **Microsoft Visual Studio Express 2013 for Web** (or greater) as Administrator.
 
-1. In the **File** menu, choose **Open Project** and browse to **Ex1-DeployingWithWAZPortal\Begin** in the **Source** folder of the lab. Select **MyTodo.sln** and click Open.
+1. In the **File** menu, select **Open Project** and browse to **Ex1-DeployingWithWAZPortal\Begin** in the **Source** folder of the lab. Select **MyTodo.sln** and click Open.
 
 	The solution contains the following projects:
 
-	|                          |   |
-	|--------------------------|---|
-	| MyTodo                   | A standard cloud service project configured to support a single web role named **MyTodo.WebUx**             |
-	| MyTodo.Data.WindowsAzure | A class library project that contains data contracts for the **MyTodo.WebUx** application for table storage |
-	| AspProviders             | An implementation of ASP.NET Membership, Role, and SessionState providers for Storage in Windows Azure      |
-	| MyTodo.WebUx             | A web role that hosts the MyTODO ASP.NET MVC application in Windows Azure                                   |
+	- **MyTodo**. A standard cloud service project configured to support a single web role named **MyTodo.WebUx**.
+	- **MyTodo.WebUx**. A web role that hosts the MyTODO ASP.NET MVC application in Windows Azure.
 
 1. Ensure that the **System.Web.Mvc** assembly is included in the service package that you deploy to Windows Azure.  To do this, expand the **References** node in **Solution Explorer** for the **MyTodo.WebUx** project, right-click the **System.Web.Mvc** assembly and select **Properties**.
 
@@ -199,29 +207,29 @@ In this task, you create a service package for the myTODO application and then d
 
 	>**Note:** In general, you need to set **Copy Local = True** for any assembly that is not installed by default in the Windows Azure VMs to ensure that it is deployed with your application. 
 
-1. Next, change the size of the virtual machine that will host the application. To do this, in **Solution Explorer**, expand the **Roles** node of the **MyTodo** project and then double-click the **MyTodo.WebUX** role to open its properties window. In the **Configuration** page, locate the **VM** Size setting under the **Instances** category and choose the **Extra small** size from the drop down list.
- 	
-	![Configuring the size of the virtual machine for the deployment](./Images/configuring-vm-depl-size.png?raw=true "Configuring the size of the virtual machine for the deployment")
+1. Next, change the size of the virtual machine that will host the application. To do this, in **Solution Explorer**, expand the **Roles** node of the **MyTodo** project and then double-click the **MyTodo.WebUX** role to open its properties window. In the **Configuration** page, locate the **VM** Size setting under the **Instances** category and select the **Extra small** size from the drop-down list.
+
+	![Configuring the size of the virtual machine for the deployment](Images/configuring-vm-depl-size.png?raw=true)
 
 	_Configuring the size of the virtual machine (VM) for the deployment_
 
 	>**Note:** When you create your service model, you can specify the size of the virtual machine (VM) to which to deploy instances of your role, depending on its resource requirements. The size of the VM determines the number of CPU cores, the memory capacity, the local file system size allocated to a running instance, and the network throughput.
 
-1. To configure the storage before deploying the service, open **ServiceConfiguration.Cloud.cscfg** file located in **MyTodo** service. Replace the placeholder labeled \[YOUR\_ACCOUNT\_NAME\] with the **Storage Account Name** that you chose when you configured the storage account in Task 1. Make sure to replace both instances of the placeholder, one for the _DataConnectionString_ and the second one for the _Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString_.
+1. To configure the storage account, open the **ServiceConfiguration.Cloud.cscfg** file located in the **MyTodo** project. Replace the placeholder labeled \[YOUR\_ACCOUNT\_NAME\] with the **Storage Account Name** that you chose when you configured the storage account in Task 1.
 
-1. Next, replace the placeholder labeled \[YOUR\_ACCOUNT\_KEY\] with the **Primary Access Key** value that you recorded earlier, when you created the storage account in Task 1. Again, replace both instances of the placeholder, one for each connection string.
+1. Next, replace the placeholder labeled \[YOUR\_ACCOUNT\_KEY\] with the **Primary Access Key** value that you recorded earlier, when you created the storage account in Task 1.
 
-	![Configuring the storage account connection strings](./Images/configuring-storage-account-connection.png?raw=true "Configuring the storage account connection strings")
+	![Configuring the storage account connection string](Images/configuring-storage-account-connection.png?raw=true)
 
-	_Configuring the storage account connection strings_
+	_Configuring the storage account connection string_
 
-1. Now, set the version of the Windows Azure Guest Operating System that should run your service on the virtual machine. To do this, edit the **osVersion** attribute from the **ServiceConfiguration** root element and set its value to _WA-GUEST-OS-3.0_201208-02_, as shown in the figure below.
+1. Now, set the version of the Windows Azure Guest Operating System that should run your service on the virtual machine. To do this, edit the **osVersion** attribute from the **ServiceConfiguration** root element and set its value to _WA-GUEST-OS-4.3_201312-01_, as shown in the figure below.
 
 	>**Note:** The value used for **osVersion** here is to illustrate that you can select which release of the guest OS runs your application.
 
-	![Configuring which version of the guest operating system runs the application in the VM](./Images/configuring-guestOS.png?raw=true "Configuring which version of the guest operating system runs the application in the VM")
+	![Configuring the version of the guest operating system that runs the application in the VM](Images/configuring-guestos.png?raw=true)
 
-	_Configuring which version of the guest operating system runs the application in the VM_
+	_Configuring the version of the guest operating system that runs the application in the VM_
 
 	>**Note:** Windows Azure runs a guest operating system into which your service application will be deployed. This guest operating system is regularly updated. While rare, there is some chance that updated guest operating system versions may introduce breaking changes in your application. By setting the **osVersion** attribute, you ensure that your application runs in a version of the Windows Azure guest operating system that is compatible with the version of the Windows Azure SDK with which you developed it. You may then take the time to test each new **osVersion** prior to running it in your production deployment.
 	
@@ -233,11 +241,21 @@ In this task, you create a service package for the myTODO application and then d
 
 1. Press **CTRL + S** to save the changes.
 
+1. Configure the connection string of the SQL Database to store the application data. To do this, open the **Web.config** file located in the **MyTodo.WebUx** project. Replace the placeholder labeled \[YOUR\_DATABASE\_SERVER\] with the **server information** that you recorded earlier, when you configured the SQL database in Task 1.
+
+1. Next, configure the placeholders labeled \[YOUR\_DATABASE\_NAME\], \[YOUR\_USER\_NAME\] and \[YOUR\_USER\_PASSWORD\] with the **database name**, the **login name** and the **login password** that you entered when you configured the SQL database in Task 1.
+
+	![Configuring the database connection string](Images/configuring-the-database-connection-string.png?raw=true)
+
+	_Configuring the database connection string_
+
+1. Press **CTRL + S** to save the changes.
+
 1. To create a service package, right-click the cloud service project and select **Package**. 
 
-1. In the **Package Windows Azure Application** dialog, ensure **Service configuration** value is set to _Cloud_. Then click **Package** and wait until Visual Studio creates it. Once the package is ready, a window showing the folder that contains the generated files should open. Do not close this window, you will use the packages later in this task.
+1. In the **Package Windows Azure Application** dialog box, ensure **Service configuration** value is set to _Cloud_. Then click **Package** and wait until Visual Studio creates it. Once the package is ready, a window showing the folder that contains the generated files should open. Do not close this window, you will use the package later in this task.
 
-	![Creating a service package in Visual Studio](./Images/creating-a-service-package.png?raw=true "Creating a service package in Visual Studio")
+	![Creating a service package in Visual Studio](Images/creating-a-service-package.png?raw=true)
 
 	_Creating a service package in Visual Studio_
 
@@ -245,13 +263,13 @@ In this task, you create a service package for the myTODO application and then d
 
 1. Make sure **Staging** tab is selected and click **Upload a new staging deployment**.
 
-	![Uploading the Application to Windows Azure](./Images/uploading-the-application-to-windows-azure.png?raw=true "Uploading the Application to Windows Azure")
+	![Uploading the application to Windows Azure](Images/uploading-the-application-to-windows-azure.png?raw=true)
 
 	_Uploading the Application to Windows Azure_
 
 	>**Note:** A Cloud Service is a service that runs your code in the Windows Azure environment. It has two separate deployment slots: staging and production. The staging deployment slot allows you to test your service in the Windows Azure environment before you deploy it to production.
 
-1.	In the **Upload a package** dialog, enter a label to identify the deployment at the **Deployment Name**; for example, use _MyTodo-v1_.
+1.	In the **Upload a package** dialog box, enter a label to identify the deployment at the **Deployment Name**; for example, use _MyTodo-v1_.
 
 	>**Note:** The management portal displays the label in its user interface for staging and production, which allows you to identify the version currently deployed in each environment.
 
@@ -259,15 +277,15 @@ In this task, you create a service package for the myTODO application and then d
 
 	>**Note:** The _.cspkg_ file is an archive file that contains the binaries and files required to run a service.
 
-1.	Now, under **Configuration** click **From Local** and select **ServiceConfiguration.cscfg** file within the same folder.
+1.	Now, under **Configuration** click **From Local** and select **ServiceConfiguration.Cloud.cscfg** file within the same folder.
 
 	>**Note:** The _.cscfg_ file contains configuration settings for the application, including the instance count and configuration for the web role, and the storage account settings that you modified previously.
 
 1.	Finally, check **Deploy even if one or more roles contain a single instace**. Then click the **Tick** to start the deployment.
 
-	![Configuring service package deployment](./Images/configuring-service-package-deployment.png?raw=true)
+	![Configuring the service package deployment](Images/configuring-service-package-deployment.png?raw=true)
 
-	_Configuring service package deployment_
+	_Configuring the service package deployment_
  
 1.	Notice that the package begins to upload and that the portal shows the status of the deployment to indicate its progress.
 
@@ -275,13 +293,13 @@ In this task, you create a service package for the myTODO application and then d
 
 	_Uploading a service package to the Windows Azure Management Portal_
 
-1. Wait until the deployment process finishes, which may take several minutes. At this point, you have already uploaded the package and it is in a **Ready** state. Notice that the portal assigned a **DNS name** to the deployment that includes a unique identifier. Shortly, you will access this URL to test the application and determine whether it operates correctly in the Windows Azure environment, but first you need to configure it.
+1. Wait until the deployment process finishes, which may take several minutes. At this point, you have already uploaded the package and you can view the deployment status on the dashboard. When the deployment reaches its **Running** state, the portal assignes a **DNS name** to the deployment that includes a unique identifier. Shortly, you will access this URL to test the application and determine whether it operates correctly in the Windows Azure environment, but first you need to configure it.
 
 	>**Note:** During deployment, Windows Azure analyzes the configuration file and copies the service to the correct number of machines, and starts all the instances. Load balancers, network devices and monitoring are also configured during this time.
- 	
-	![Package successfully deployed](./Images/package-successfully-deployed.png?raw=true "Package successfully deployed")
 
-	_Package successfully deployed_
+	![Application being deployed](Images/package-successfully-uploaded.png?raw=true)
+
+	_Application being deployed_
 
 <a name="Ex1Task3" />
 #### Task 3 – Configuring the Application to Increase Number of Instances ####
