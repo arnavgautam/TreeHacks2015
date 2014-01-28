@@ -9,7 +9,6 @@ using System.Web.Routing;
 using WebApi.Models;
 using System.Data.Entity;
 
-
 namespace WebApi
 {
     public class WebApiApplication : System.Web.HttpApplication

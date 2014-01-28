@@ -430,7 +430,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 1. In Solution Explorer, right-click the **WebApi** project and select **Build**.
 
-	> **Note:** If you build the entire solution you will get errors, because the Windows Store app client is still incomplete.
+	> **Note:** If you build the entire solution, including both projects, you will get errors, because the Windows Store app client is still incomplete.
 
 1. In Solution Explorer, right-click the **Controllers** folder of the Web API project and select **Add | New Scaffolded Item...** to open the **Add Scaffold** dialog box.
 
@@ -1081,7 +1081,7 @@ In this task you will create a **Windows Azure Notification Hub** using the **Wi
 
 	_Specifying your Notification Hub name_
 
-1. Wait until the new namespace is ready and click on it.
+1. Wait until the new namespace appears as **Active** and click on it.
 
 	![Selecting the new namespace](Images/selecting-the-new-namespace.png?raw=true "Selecting the new namespace")
 	
@@ -1099,7 +1099,13 @@ In this task you will create a **Windows Azure Notification Hub** using the **Wi
 
 	_Configuring the WNS credentials_
 
-1. Select the tab **Dashboard** at the top, and then click **Connection Information**. Take note of the two connection strings.
+1. Select the tab **Dashboard** at the top, and then click **View Connection String** in the **quick glance** section. 
+
+	![Viewing the connection strings](Images/viewing-the-connection-strings.png?raw=true "Viewing the connection strings")
+
+	_Viewing the connection strings_
+
+1. In the **Access connection information** dialog box, take note of the two connection strings.
 
 	![Taking note of the connection strings](Images/taking-note-of-the-connection-strings.png?raw=true "Taking note of the connection strings")
 
@@ -1168,6 +1174,8 @@ In this task you will use the Windows Azure Notification Hub created and configu
 1. Go to the **WebApi** solution and open the **Package Manager Console** from the **Tools | Library Package Manager** menu.
 
 1. Make sure that **WebApi** is selected as **Default project**.
+
+	![Making sure that WebApi is selected as Default project](Images/making-sure-that-webapi-is-selected-as-defaul.png?raw=true "Making sure that WebApi is selected as Default project")
 
 1. Add a reference to the Windows Azure Service Bus SDK with the **WindowsAzure.ServiceBus** NuGet package.
 
@@ -1263,7 +1271,7 @@ In this task you will register your application with the service and then regist
 	using Microsoft.WindowsAzure.Messaging;
 	````
 
-1. Add the following private method at the end of the class to retrieve the ChannelURI for the app from WNS, and then register that ChannelURI with your notification hub. Make sure to replace the **<hub name>** and **<connection string with listen access>** placeholders with the name of the notification hub (ex. _customer-manager-hub_) and its corresponding **DefaultListenSharedAccessSignature** obtained in the previous task.
+1. Add the following private method at the end of the class to retrieve the ChannelURI for the app from WNS, and then register that ChannelURI with your notification hub. Make sure to replace the **hub name** and **connection string with listen access** placeholders with the name of the notification hub (e.g. _customer-manager-hub_) and its corresponding **DefaultListenSharedAccessSignature** obtained in the previous task.
 
 	(Code Snippet - _BuildingWindows8Apps - Ex3 - RegisterChannel_)
 	<!-- mark:1-7 -->
@@ -1293,7 +1301,7 @@ In this task you will register your application with the service and then regist
 
 1. Run the Windows Store application.
 
-1. Create a new customer and notice the toast notification.
+1. Create a new customer ([Exercise 2 - Task 5](#Ex2Task5) instructs how to do this), and notice the toast notification.
 
     ![Toast notification](Images/toast-notification.png?raw=true "Toast notification")
 

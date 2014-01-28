@@ -5,6 +5,8 @@
 <a name="Overview" />
 ## Overview ##
 
+TODO: updated the overview.
+
 In this hands-on lab you will learn how to use **Windows Azure Active Directory** for implementing web single sign-on in an ASP.NET application. The instructions will focus on taking advantage of the directory tenant associated with your Windows Azure subscription, as that constitutes the obvious choice of identity providers for Line of Business (LoB) applications in your own organization. This lab will show you how to provision the same application in a Windows Azure AD tenant, and how to configure the application's sign-on settings to connect to that tenant. At the end of the walkthrough, you will have a functioning web application fully configured for organizational single sign-on.
 
 
@@ -26,8 +28,8 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Visual Studio Express 2013 for Web][1] or greater
-- [Identity and Access Tools for Visual Studio 2012][2]
-- [WCF Data Services 5.3 Tools][3]
+- TODO: Review if it is requiered [Identity and Access Tools for Visual Studio 2012][2]
+- TODO: Review if it is requiered [WCF Data Services 5.3 Tools][3]
 - A Windows Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
 	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
@@ -87,19 +89,19 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 1. Select **Active Directory** from the left pane.
 
-	![active-directory-menu-panel](Images/active-directory-menu-panel.png)
+	!["Accessing Windows Azure Active Directory"](Images/active-directory-menu-panel.png "Accessing Windows Azure Active Directory")
 
 	_Accessing Windows Azure Active Directory_
 
 1.	Click the **Add** button from the bottom toolbar.
 
-	![Add AD Menu](Images/add-ad-menu.png?raw=true)
+	![Adding a new Active Directory Tenant](Images/add-ad-menu.png?raw=true "Adding a new Active Directory Tenant")
 
 	_Adding a new Active Directory Tenant_
 
 1.	In the **Add directory** dialog box, make sure that **Create new directory** is selected under **Directory**. Enter a **Name**, type an **Domain Name** (must be unique) and select a **Country or Region**. Click the check button to continue.
 
-	![create a new directory](Images/create-a-new-directory.png?raw=true)
+	![Creating a New Directory](Images/create-a-new-directory.png?raw=true "Creating a New Directory")
 
 	_Creating a New Directory_
 
@@ -117,7 +119,7 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 1.	Wait until the Active Directory is created (its status should display **Active**).
 
-	![AD tenant created](Images/ad-tenant-created.png?raw=true)
+	![Active Directory Tenant Creation Completed](Images/ad-tenant-created.png?raw=true "Active Directory Tenant Creation Completed")
 
 	_Active Directory Tenant Creation Completed_
 
@@ -125,25 +127,25 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 1.	Click on the newly created directory entry and then click the Users tabs to display the user management UI. The directory tenant is initially empty, except for the Microsoft Account administering the Windows Azure subscription in which the new tenant was created.
 
-	![active directory user list](Images/active-directory-user-list.png?raw=true)
+	![Active Directory User list](Images/active-directory-user-list.png?raw=true "Active Directory User list")
 
 	_Active Directory User List_
 
 1. Now you will add a new user to the directory. Click the **Add User** button in the bottom bar.
 
-	![Add New User to Active Directory ](Images/add-new-user-to-active-directory.png?raw=true)
+	![Add New User to Active Directory](Images/add-new-user-to-active-directory.png?raw=true "Add New User to Active Directory")
 
 	_Adding a new user to Active Directory_
 
 1.	In the dialog box, keep the default option of **New user in your organization** and type a username (e.g.: _newusername_). Click **Next** to continue.
 
-	![filling new user name details](Images/filling-new-user-name-details.png?raw=true)
+	![filling new user name details](Images/filling-new-user-name-details.png?raw=true "Filling new user details")
 
 	_Filling new user details_
 
 1.	Enter the user profile data. Keep the **Role** option of **User**. Click **Next** to continue.
 
-	![Filling user profile information](Images/filling-user-profile-information.png?raw=true)
+	![Filling user profile information](Images/filling-user-profile-information.png?raw=true "Filling user profile information")
 
 	_Filling user profile information_
 
@@ -159,98 +161,255 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 	_Creating the new user_
 
-1. TBD: Create an admin account
+1. Now, will repeat the steps to add new admin user to the directory. Click the **Add User** button in the bottom bar.
+
+	![Add New User to Active Directory](Images/add-new-user-to-active-directory.png?raw=true "Add New User to Active Directory")
+
+	_Adding a new user to Active Directory_
+
+1.	In the dialog box, keep the default option of **New user in your organization** and type a username (e.g.: _admin_). Click **Next** to continue.
+
+	![Filling new admin user name details](Images/filling-new-admin-user-name-details.png?raw=true "Filling new admin user name details")
+
+	_Filling new admin user name details_
+
+1.	Enter the user profile data. This time, change the **Role** option of **Global Administrator**. You will need to provide an alternate email address. Click **Next** to continue.
+
+	![Filling admin user profile](Images/filling-admin-user-profile.png?raw=true "Filling admin user profile")
+
+	_Filling admin user profile_
+
+1.	In the **Get temporary password** step, click the **create** button.
+
+	![Creating a temporary password for the admin](Images/creating-a-temporary-password-for-the-admin.png?raw=true "Creating a temporary password for the admin")
+
+	_Creating a temporary password for the admin_
+
+1. Send the password in email as you will need to change the password. To do this, add your email in the **SEND PASSWORD IN EMAIL**. Click the check button to create the user.
+
+	![Sending the admin password by email](Images/sending-the-admin-password-by-email.png?raw=true "Sending the admin password by email")
+
+	_Sending the admin password by email_
+
+1. Once you get the email, take note of the temporary password and click the sign-in page link provided in the instructions.
+
+	![Temporary password email](Images/temporary-password-email.png?raw=true "Temporary password email")
+
+	_Temporary password email_
+
+1. Sign in with your temporal credentials.
+
+	![Singing in with your temporal credentials](Images/singing-in-with-your-temporal-credentials.png?raw=true "Singing in with your temporal credentials")
+
+	_Singing in with your temporal credentials_
+
+1. Finally, change your temporary password and click **submit**.
+
+	![Changing your temporary password](Images/changing-your-temporary-password.png?raw=true "Changing your temporary password")
+
+	_Changing your temporary password_
 
 	At this point we have everything we need for providing an authentication authority in our web SSO scenario: a directory tenant, a valid user and a valid admin in it.
 
 <a name="Ex1Task2" />
-#### Task 2 - Creating and Registering an MVC App in Active Directory Tenant ####
+#### Task 2 - Creating and configuring an MVC App with Organizational Accounts Authentication ####
 
-In this task, you will create a new MVC Application using **Visual Studio Express 2013 for Web** and you will register it in the Active Directory tenant you created in the previous task.
+In this task, you will create a new MVC Application using **Visual Studio Express 2013 for Web** and you will configure it to use **Organizational Accounts** as Authentication method using the Active Directory tenant you created in the previous task.
 
-1. Open **Visual Studio Express 2013 for 2013**.
+1. Open **Visual Studio Express 2013 for Web**.
 
 1. From the **File** menu, choose **New Project**.
 
-1. In the **New Project** dialog, expand **Visual C#** in the **Installed** list and select **Web**. Choose the **ASP.NET MVC 4 Web Application** template, set the **Name** of the project to _ExpenseReport_ and set a location for the solution. Click **OK** to create the project.
+1. In the **New Project** dialog, expand **Visual C#** in the **Installed** list and select **Web**. Choose the **ASP.NET Web Application** template, set the **Name** of the project to _ExpenseReport_ and set a location for the solution. Click **OK** to create the project.
 
-	![Creating a new MVC app](Images/creating-a-new-mvc-app.png?raw=true)
+	![Creating a new MVC app](Images/creating-a-new-mvc-app.png?raw=true "Creating a new MVC app")
 
-	_Creating a new MVC 4 Application in Visual Studio 2012_
+	_Creating a new MVC 5 Application_
 
-1. In the **New ASP.NET MVC 4 Project** window, select **Intranet Application**, make sure the view engine is set to **Razor**, and then click **OK**.
+1. In the **New ASP.NET Project - ExpenseReport** window, select **MVC** as template and then click **Change Authentication**.
 
-	![Selecting MVC Intranet Application](Images/selecting-mvc-intranet-application.png?raw=true)
+	![Selecting MVC template and the changing authentication method](Images/selecting-mvc-template-and-the-changing-authe.png?raw=true "Selecting MVC template and the changing authentication method")
 
-	_Selecting MVC 4 Intranet Application template_
+	_Selecting MVC template and the changing authentication method_
 
-1.	Select your project in the **Solution Explorer**, then in the **Properties** pane, switch **SSL Enabled** to _True_. Copy the **SSL URL**.
+1. In the **Change Authentication** dialog box, select **Organizational Accounts**, set the **Domain** to the one created in the previous tasks (e. g. _yourorganization.onmicrosoft.com_) and click **OK**.
 
-	![Switching Web App to use SSL](Images/switching-web-app-to-use-ssl.png?raw=true)
+	![Selecting Organizational Accounts as Authentication method](Images/selecting-organizational-accounts-as-authenti.png?raw=true "Selecting Organizational Accounts as Authentication method")
 
-	_Switching Web App to use SSL_
+	_Selecting Organizational Accounts as Authentication method_
 
-	> **Note:** Visual Studio configures your application to serve content through HTTP. However, that would not be suitable for establishing secure sessions, given that it would leave communications unprotected and allow potential attackers to steal cookies and tokens. This is not mandatory during the development phase, as Windows Azure will not strictly enforce use of HTTPS. It is always a good practice though.
+1. In the **Sign in** dialog box, use the credentials for the domain admin you created in the previous tasks (e. g. _admin@yourorganization.onmicrosoft.com_) and then click **Sign in**.
 
-1.	Right-click the project and choose **Properties**. Choose the **Web** tab on the left, scroll down to the **Use Local IIS Web server** option and paste the HTTPS URL in the **Project Url** field. Save settings (CTRL+S) and close the property tab.
+	![Signing in with the Domain Admininstrator credentials](Images/signing-in-with-the-domain-admininstrator-cre.png?raw=true "Signing in with the Domain Admininstrator credentials")
 
-	![setting local iis web server url](Images/setting-local-iis-web-server-url.png?raw=true)
-
-	_Setting the Local IIS Web Server URL_
-
-1.	Minimize Visual Studio and go back to the **Management Portal**. Go to your Active Directory tenant and click **Applications**. Click the **Add an app** link.
-
-	![add an app in ad](Images/add-an-app-in-ad.png?raw=true)
-
-	_Adding an Application to Active Directory_
+	_Signing in with the Domain Admininstrator credentials_
 
 	> **Note:** No application can take advantage of Windows Azure AD if they are not registered: this is both for security reasons (only apps that are approved by the administrator should be allowed) and practical considerations (interaction with Windows Azure AD entails the use of specific open protocols, which in turn require the knowledge of key parameters describing the app).
 
-1.	Enter the name of your application (e.g.: _Expense Report_) and select **Single Sign-on** for the type of access. Click **Next**.
+1. In the **New ASP.NET Project - ExpenseReport** window, note that the Authentication now is set to **Organizational Auth**. Click **OK** in order to create the project.
 
-	![Defining App Access Type](Images/defining-app-access-type.png?raw=true)
+	![Creating the MVC project](Images/creating-the-mvc-project.png?raw=true "Creating the MVC project")
 
-	_Defining Application Access Type_
-
-1.	Enter the SSL URL from the MVC Application in both fields **APP URL** and **APP ID URI**. Click the check button to complete the application registration.
-
-	![Entering App Url](Images/entering-app-url.png?raw=true)
-
-	_Entering Application URL_
-	
-
-	> **Note:** In this screen the Windows Azure Management Portal gathers important coordinates which the service needs to drive the sign-in protocol flow.
-	>
-	> * **APP URL:** This parameter represents the address of your web application. Windows Azure AD needs to know your application's address so that, after a user successfully authenticated on Windows Azure AD's pages, it can redirect the flow back to your application.
-	>
-	> * **APP ID URI:** this parameter represents the identifier of your web application. Windows Azure AD uses this value at sign-on time, to determine that the authentication request is meant to enable a user to access this particular application - among all the ones registered - so that the correct settings can be applied. The APP ID URI must be unique within the directory tenant. A good default value for it is the APP URL value itself, however with that strategy the uniqueness constraint is not always easy to respect: developing the app on local hosting environments such as IIS Express and the Windows Azure Fabric Emulator tend to produce a restricted range of addresses that will be reused by multiple developers or even multiple projects from the same developer.
-
-1.	You successfully registered the application within your Active Directory tenant. In the application dashboard, copy the **Federation Metadata Document URL** from the **Enable single sign-on with Windows Azure AD** section. You will use it in the following tasks.
-
-	![Copying Federation Metadata Url](Images/copying-federation-metadata-url.png?raw=true)
-
-	_Copying Federation Metadata URL_
+	_Creating the MVC project_
 
 <a name="Ex1Task3" />
-#### Task 3 - Connecting the application to Windows Azure Active Directory ####
+#### Task 3 - Exploring the generated MVC project ####
 
-In this task, you will run the Identity and Access configuration to set up your application with Windows Azure Active Directory. Visual Studio 2012 offers point and click tools which can help you to configure applications to use WS-Federation for web sign-on: you can use the tool's UI to provide few key information about the authority you want to trust for authentication, and the tool will emit the corresponding configuration entries.
+TBC
 
-1. Go back to Visual Studio, right-click the **ExpenseReport** project node and select **Identity and Access...**.
+1. Go to **Solution Explorer** and explore the generated project.
 
-	![identity and access menu](Images/identity-and-access-menu.png?raw=true)
+	![Exploring the ExpenseReport project in Solution Explorer](Images/exploring-the-expensereport-project-in-soluti.png?raw=true "Exploring the ExpenseReport project in Solution Explorer")
 
-	_Opening Identity and Access tools_
+	_Exploring the ExpenseReport project in Solution Explorer_
 
-1.	The tool lists various authority types you can use to outsource authentication. In this specific case, you will select **Business Identity Provider**. Paste the Federation Metadata URL you copied in the previous task in the **Enter the path to the STS metadata document** field. The APP ID URI will be already filled in the dialog. Press **OK** to continue.
+1.	Select the **ExpenseReport** project in the **Solution Explorer**, then in the **Properties** pane, note that **SSL Enabled** is set to _True_. 
 
-	![Configuring Business Identity Provider](Images/configuring-business-identity-provider.png?raw=true)
+	![ExpenseReport project properties](Images/expensereport-project-properties.png?raw=true "ExpenseReport project properties")
 
-	_Configuring the Business Identity Provider_
+	_ExpenseReport project properties_
 
-	> **Note:** As you paste in the textbox the path to the metadata document, the tool will display a warning about a certificate being invalid. That is due to the fact that the metadata document is signed with a self-signed certificate, and should not be cause for concern.
+1.	Run the application by pressing **F5**.
 
-1.	The tool auto generates entries in the Web.config file. This is all you need for taking advantage of Windows Azure AD for Web sign-on. Now, you will display the authenticated user information in the Home page of the application. Open **HomeController.cs** under the **Controllers** folder. 
+1. A security certificate warning will appear in your browser. This is a expected behavior, click **Continue to this website (not recommended)**.
+
+	![Browser displaying Security Certificate Warning](Images/ssl-certificate-error.png?raw=true "Browser displaying Security Certificate Warning")
+
+	_Browser displaying Security Certificate Warning_
+
+1. The URL address bar is replaced by the one of the authority, and the user is prompted to authenticate via the Windows Azure AD UI. Use the credentials from the user you created in a previous task.
+
+	![Windows Azure AD Login](Images/windows-azure-ad-login.png?raw=true)
+
+	_Logging in to the Application_
+
+1.	You might recall that when you created the user in your Windows Azure AD tenant the Management Portal assigned to it a temporary password. You have to authenticate using that password. However, given that such password was meant to be temporary, during this very first sign-in operation you will be asked to choose a proper user password before being able to move forward with the authentication flow. Once you'll be done with that, the normal sign-in flow to the app will be restored.
+
+	![Resetting AD password](Images/resetting-ad-password.png?raw=true)
+
+	_Typing New User Password_
+
+1. At the Home page, you can notice the username displayed at the top right of the page.
+
+	![ExpenseReport Home page](Images/expensereport-home-page.png?raw=true "ExpenseReport Home page")
+
+	_ExpenseReport Home page_
+
+1. Click the **Sign out** link located at the top right of the page.
+
+	![Signing out](Images/signing-out.png?raw=true "Signing out")
+	
+	_Signing out_
+
+1. You will be signed out and you will be presented with the SignOut view.
+
+	![Signed Out View](Images/signout-view.png?raw=true "Signed Out View")
+
+	_Signed Out View_
+
+1. Stop running the solution by pressing **Shift + F5**.
+
+1.	Minimize Visual Studio and go back to the **Management Portal**. Go to your Active Directory tenant and click **Applications**.
+
+1. Select the new **ExpenseReport** application in the **Applications** list.
+
+	![Selecting the ExpenseReport application](Images/selecting-the-expensereport-application.png?raw=true "Selecting the ExpenseReport application")
+
+	_Selecting the ExpenseReport application_
+
+1. TBC: see what is important to show in the portal (e.g. config section)
+
+1. Switch back to Visual Studio.
+
+1. Open **AccountController.cs** file and note the code of the **SignOut** method.
+
+	<!-- mark:3-14 -->
+	````C#
+    public class AccountController : Controller
+    {
+        public ActionResult SignOut()
+        {
+            WsFederationConfiguration config = FederatedAuthentication.FederationConfiguration.WsFederationConfiguration;
+
+            // Redirect to SignOutCallback after signing out.
+            string callbackUrl = Url.Action("SignOutCallback", "Account", routeValues: null, protocol: Request.Url.Scheme);
+            SignOutRequestMessage signoutMessage = new SignOutRequestMessage(new Uri(config.Issuer), callbackUrl);
+            signoutMessage.SetParameter("wtrealm", IdentityConfig.Realm ?? config.Realm);
+            FederatedAuthentication.SessionAuthenticationModule.SignOut();
+
+            return new RedirectResult(signoutMessage.WriteQueryString());
+        }
+
+        public ActionResult SignOutCallback()
+        {
+            if (Request.IsAuthenticated)
+            {
+                // Redirect to home page if the user is authenticated.
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
+        }
+    }
+	````
+
+	> **Note:** The sample application demonstrated here does not do much, but your real applications might allocate resources during a user's session. If that is the case, you can take advantage of the SAM's events SigningOut and SignedOut by adding corresponding event handlers in the Global.asax file to clean up whatever resources should be disposed upon closing a session.
+
+1.	The application is configured to handle authentication via blanket redirects. That means that, if you try to access this View after a successful sign out you will be immediately redirected to Windows Azure AD to sign in again. To avoid that behavior, the **\<location\>** element in the web.config  is used to create one exception to the authentication policy. Open **Web.config** and locate the **\<location path="Account"\>** tag.
+
+	<!-- mark:4-10 -->
+	````XML
+	<configuration>
+		...
+		</appSettings>
+		<location path="Account">
+			<system.web>
+				<authorization>
+					<allow users="*" />
+				</authorization>
+			</system.web>
+		</location>
+		<system.web>
+		...
+	</configuration>
+	````
+
+1.	Open the **_LoginPartial.cshtml** file located under **Views | Shared** folder.
+
+1. TBC: describe the following snippet.
+
+	<!-- mark:1,6,9,17 -->
+	````CSHTML
+	@if (Request.IsAuthenticated)
+	{
+		 <text>
+		 <ul class="nav navbar-nav navbar-right">
+			  <li class="navbar-text">
+					Hello, @User.Identity.Name!
+			  </li>
+			  <li>
+					@Html.ActionLink("Sign out", "SignOut", "Account")
+			  </li>
+		 </ul>
+		 </text>
+	}
+	else
+	{
+		 <ul class="nav navbar-nav navbar-right">
+			  <li>@Html.ActionLink("Sign in", "Index", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+		 </ul>
+	}
+	````
+
+1. TBC: See what more is important to show.
+
+<a name="Ex1Task4" />
+#### Task 4 - Displaying information about the authenticated user####
+
+TBC:
+Now, you will display the authenticated user information in the Home page of the application.
+
+1.	Open **HomeController.cs** under the **Controllers** folder. 
 
 1. Add the following directive at the top of the class.
 
@@ -260,7 +419,9 @@ In this task, you will run the Identity and Access configuration to set up your 
 
 1. Replace the **Index** method contents with the following code.
 
-	(Code Snippet - _Introduction to Windows Azure AD - Ex1 Querying ClaimsPrincipal_)
+	TODO: This code snippet needs to be reviewed
+
+	(Code Snippet - _IntroductionToWindowsAzureAD - Ex1 - QueryingClaimsPrincipal_)
 
 	<!-- mark:3-7 -->
 	````C#
@@ -284,17 +445,7 @@ In this task, you will run the Identity and Access configuration to set up your 
 
 	_Browser displaying Security Certificate Warning_
 
-1. The URL address bar is replaced by the one of the authority, and the user is prompted to authenticate via the Windows Azure AD UI. Use the credentials from the user you created in a previous task.
-
-	![Windows Azure AD Login](Images/windows-azure-ad-login.png?raw=true)
-
-	_Logging in to the Application_
-
-1.	You might recall that when you created the user in your Windows Azure AD tenant the Management Portal assigned to it a temporary password. You have to authenticate using that password. However, given that such password was meant to be temporary, during this very first sign-in operation you will be asked to choose a proper user password before being able to move forward with the authentication flow. Once you'll be done with that, the normal sign-in flow to the app will be restored.
-
-	![Resetting AD password](Images/resetting-ad-password.png?raw=true)
-
-	_Typing New User Password_
+1. Log in the application using the AD user credentials.
 
 1. At the Home page, you can notice the username displayed at the top right of the page and the user's first and last name displayed in the center of the page.
 
@@ -304,130 +455,12 @@ In this task, you will run the Identity and Access configuration to set up your 
 
 	At this point your application has all you need to demonstrate web sign-on with Windows Azure AD, however it is not complete yet. There are at least other two important features you will want to add: support for sign out and automatic refresh of the authority's protocol coordinates.
 
-<a name="Ex2Task4" />
-#### Task 4 - Adding Sign Out to the MVC App ####
+1. Stop running the solution by pressing **Shift + F5**.
 
-In this task, you will add a Sign Out Controller to the MVC app. The web sign-on protocols in use today often include provisions for performing distributed sign out operations. Those are flows in which not only the current application cancels its current user's session, but it also reaches out to the authority to signal that a sign out command should be propagated to all the other applications' sessions that might have been established by the same authority.
-
-1. In Visual Studio, right-click the **Controllers** folder, select **Add** and then **Controller**. Name it _SignOutController_, choose **Empty MVC Controller** as **Template** and click **Add**.
-
-	![Adding Sign Out Controller](Images/adding-sign-out-controller.png?raw=true)
-
-	_Adding a SignOutController to the project_
-
-1.	Right-click the **ExpenseReport** project node and select **Add Reference**. Select the **Assemblies** node from the left pane, type _system.identitymodel.services_ in the **Search Assemblies** field, and select the corresponding assembly from the main list. Press **OK**.
-
-1. Open **SignOutController.cs** file and add the following directives.
-
-	````C#
-	using System.IdentityModel.Services;
-	using System.IdentityModel.Services.Configuration;
-	````
-
-1.	Replace the contents of the **SignOutController** class with the following highlighted code.
-
-	(Code Snippet - _Introduction to Windows Azure AD - Ex1 SignOutController_)
-
-	<!-- mark:3-22 -->
-	````C#
-    public class SignOutControllerController : Controller
-    {
-        public ActionResult Index()
-        {
-            return View("SignOut");
-        }
-
-        public void SignOut()
-        {
-            WsFederationConfiguration fc =
-                   FederatedAuthentication.FederationConfiguration.WsFederationConfiguration;
-
-            string request = System.Web.HttpContext.Current.Request.Url.ToString();
-            string wreply = request.Substring(0, request.Length - 7);
-
-            SignOutRequestMessage soMessage =
-                            new SignOutRequestMessage(new Uri(fc.Issuer), wreply);
-            soMessage.SetParameter("wtrealm", fc.Realm);
-
-            FederatedAuthentication.SessionAuthenticationModule.SignOut();
-            Response.Redirect(soMessage.WriteQueryString());
-        }
-    }
-	````
-
-	> **Note:** The sample application demonstrated here does not do much, but your real applications might allocate resources during a user's session. If that is the case, you can take advantage of the SAM's events SigningOut and SignedOut by adding corresponding event handlers in the Global.asax file to clean up whatever resources should be disposed upon closing a session.
-
-1. Right-click on the **Views** folder, select **Add** and then **New Folder**. Name it **SignOut**. 
-
-1. Right-click the newly created **SignOut** folder, select **Add** and then **View**. Name it **SignOut** and leave the rest of the fields with the default values. Click **Add**.
-
-	![Adding SignOut View](Images/adding-signout-view.png?raw=true)
-
-	_Adding the SignOut View_
-
-1.	Replace the placeholder **\<h2\>** tag with the following.
-
-	````CSHTML
-	<h2>You have successfully signed out</h2>
-	````
-
-1.	You configured the application to handle authentication via blanket redirects. That means that, if you try to access this View after a successful sign out you will be immediately redirected to Windows Azure AD to sign in again! To avoid that behavior, you can use the **\<location\>** element in the web.config to create one exception to the authentication policy. Open **Web.config**, locate the first occurrence of the **\<location\>** tag and paste the following block just below it.
-
-	(Code Snippet - _Introduction to Windows Azure AD - Ex1 Location element_)
-
-	<!-- mark:10-16 -->
-	````XML
-	<configuration>
-		...
-	  <location path="FederationMetadata">   
-		 <system.web>
-			<authorization>
-			  <allow users="*" />
-			</authorization>
-		 </system.web>
-	  </location>
-	  <location path="SignOut">
-		 <system.web>
-			<authorization>
-			  <allow users="*" />
-			</authorization>
-		 </system.web>
-	  </location>
-	</configuration>
-	````
-
-1.	Open the **_Layout.cshtml** file located under **Views | Shared** folder.
-
-1. Locate the **\<section\>** with id _login_ and replace its contents with the following.
-	
-	(Code Snippet - _Introduction to Windows Azure AD - Ex1 Layout View_)
-
-	<!-- mark:2-9 -->
-	````CSHTML
-	<section id="login">
-		@if (Request.IsAuthenticated)
-		{  
-			<text> Hello, <span class="username">@User.Identity.Name</span>! 
-			@Html.ActionLink("Signout","SignOut", "SignOut")</text>
-		}
-		else {
-			<text>  You are not authenticated </text>
-		}
-	</section> 
-	````
-
-1. Press **F5** to run the application. Log in the application using the AD user credentials.
-
-1. In the **Home** page, click the **Signout** button located at the top right of the page.
-
-1. You will be signed out and you will be presented with the SignOut view.
-
-	![SignOut View](Images/signout-view.png?raw=true)
-
-	_Signed Out View_
-
-<a name="Ex2Task5" />
+<a name="Ex1Task5" />
 #### Task 5 - Adding Automatic Metadata Refresh ####
+
+TODO: this tasks needs to be reviewed.
 
 The **Identity and Access Tool** configured your application to accept tokens coming from your Windows Azure AD tenant of choice. In order to do so, it cached in the Web.config the necessary protocol coordinates for connecting to the intended Windows Azure AD endpoints. It is common security practice to regularly renew cryptographic keys, and Windows Azure AD signing keys are no exception: at fixed time intervals the old keys will be retired, and new ones will take their place in the issuer's signing logic and in your tenant's metadata document.
 
@@ -444,7 +477,7 @@ To minimize downtime, it is a good idea to add self-healing logic directly in th
 
 1. Add the following method at the bottom of the class.
 
-	(Code Snippet - _Introduction to Windows Azure AD - Ex1 Refresh Validation Settings_)
+	(Code Snippet - _IntroductionToWindowsAzureAD - Ex1 - RefreshValidationSettings_)
 
 	````C#
 	protected void RefreshValidationSettings()
@@ -475,6 +508,47 @@ To minimize downtime, it is a good idea to add self-healing logic directly in th
 	````
 
 	> **Note:** Calling **RefreshValidationSettings** from **Application_Start** guarantees that the Web.config will be modified in a safe time, whereas if you would do that later in the app's lifecycle you'd risk triggering a refresh.
+
+---
+
+## TODO: Additional information for Ex 1.
+
+1.	Enter the SSL URL from the MVC Application in both fields **APP URL** and **APP ID URI**. Click the check button to complete the application registration.
+
+	![Entering App Url](Images/entering-app-url.png?raw=true)
+
+	_Entering Application URL_
+	
+
+	> **Note:** In this screen the Windows Azure Management Portal gathers important coordinates which the service needs to drive the sign-in protocol flow.
+	>
+	> * **APP URL:** This parameter represents the address of your web application. Windows Azure AD needs to know your application's address so that, after a user successfully authenticated on Windows Azure AD's pages, it can redirect the flow back to your application.
+	>
+	> * **APP ID URI:** this parameter represents the identifier of your web application. Windows Azure AD uses this value at sign-on time, to determine that the authentication request is meant to enable a user to access this particular application - among all the ones registered - so that the correct settings can be applied. The APP ID URI must be unique within the directory tenant. A good default value for it is the APP URL value itself, however with that strategy the uniqueness constraint is not always easy to respect: developing the app on local hosting environments such as IIS Express and the Windows Azure Fabric Emulator tend to produce a restricted range of addresses that will be reused by multiple developers or even multiple projects from the same developer.
+
+1.	You successfully registered the application within your Active Directory tenant. In the application dashboard, copy the **Federation Metadata Document URL** from the **Enable single sign-on with Windows Azure AD** section. You will use it in the following tasks.
+
+	![Copying Federation Metadata Url](Images/copying-federation-metadata-url.png?raw=true)
+
+	_Copying Federation Metadata URL_
+
+<a name="Ex1Task3" />
+#### Task 3 - Connecting the application to Windows Azure Active Directory ####
+
+In this task, you will run the Identity and Access configuration to set up your application with Windows Azure Active Directory. Visual Studio 2012 offers point and click tools which can help you to configure applications to use WS-Federation for web sign-on: you can use the tool's UI to provide few key information about the authority you want to trust for authentication, and the tool will emit the corresponding configuration entries.
+
+The tool auto generates entries in the Web.config file. This is all you need for taking advantage of Windows Azure AD for Web sign-on.
+
+<a name="Ex1Task4" />
+#### Task 4 - Adding Sign Out to the MVC App ####
+
+In this task, you will add a Sign Out Controller to the MVC app. The web sign-on protocols in use today often include provisions for performing distributed sign out operations. Those are flows in which not only the current application cancels its current user's session, but it also reaches out to the authority to signal that a sign out command should be propagated to all the other applications' sessions that might have been established by the same authority.
+
+
+## TODO: End Additional information for Ex 1.
+
+---
+
 
 <a name="Exercise2"></a>
 ### Exercise 2: Using the Graph API to Query Windows Azure Active Directory ###
@@ -577,7 +651,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 1. In the **Solution Explorer**, expand the **Controllers** folder of the **ExpenseReport** project and open the **HomeController.cs**. Add the following assemblies to the file and then save it.
 
-	(Code Snippet - _Introduction to Windows Azure AD - Ex2 Home Controller References_)
+	(Code Snippet - _IntroductionToWindowsAzureAD - Ex2 - HomeControllerReferences_)
 
 	````C#
 	using System.Configuration;
@@ -589,7 +663,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 1. Add the following action method at the end of the **HomeController** class, which will retrieve the list of users from the Active Directory tenant using the Graph API Helper to obtain a JWT (JSON Web Token). This token is inserted in the Authorization header of subsequent requests from the Graph API.
 
-	(Code Snippet - _Introduction to Windows Azure AD - Ex2 Users Action Method_)
+	(Code Snippet - _IntroductionToWindowsAzureAD - Ex2 - UsersActionMethod_)
 
 	<!-- mark: 5-49 -->
 	````C#
@@ -655,7 +729,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 1. Replace the code of the **Users** view with the following block.
 
-	(Code Snippet - _Introduction to Windows Azure AD - Ex2 Users View_)
+	(Code Snippet - _IntroductionToWindowsAzureAD - Ex2 - UsersView_)
 
 	````CSHTML
 	@model IEnumerable<Microsoft.WindowsAzure.ActiveDirectory.User> 
