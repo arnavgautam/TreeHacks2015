@@ -1,38 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Services;
 using System.Linq;
 using System.Web;
-using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Configuration;
-using System.IdentityModel.Tokens;
 
 namespace ExpenseReport
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            IdentityConfig.ConfigureIdentity();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            RefreshValidationSettings();
         }
 
-        protected void RefreshValidationSettings()
+        void WSFederationAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
         {
-            string configPath = AppDomain.CurrentDomain.BaseDirectory + "\\" + "Web.config";
-            string metadataAddress =
-                          ConfigurationManager.AppSettings["ida:FederationMetadataLocation"];
-            ValidatingIssuerNameRegistry.WriteToConfig(metadataAddress, configPath);
+            if (!String.IsNullOrEmpty(IdentityConfig.Realm))
+            {
+                e.SignInRequestMessage.Realm = IdentityConfig.Realm;
+            }
         }
     }
 }
