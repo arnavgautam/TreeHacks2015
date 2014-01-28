@@ -1263,7 +1263,7 @@ In this task you will register your application with the service and then regist
 	using Microsoft.WindowsAzure.Messaging;
 	````
 
-1. Add the following private method at the end of the class to retrieve the ChannelURI for the app from WNS, and then register that ChannelURI with your notification hub. Make sure to replace the **<hub name>** and **<connection string with listen access>** placeholders with the name of the notification hub (ex. _customer-manager-hub_) and its corresponding **DefaultListenSharedAccessSignature** obtained in the previous task.
+1. Add the following private method at the end of the class to retrieve the ChannelURI for the app from WNS, and then register that ChannelURI with your notification hub. Make sure to replace the **hub name** and **connection string with listen access** placeholders with the name of the notification hub (e.g. _customer-manager-hub_) and its corresponding **DefaultListenSharedAccessSignature** obtained in the previous task.
 
 	(Code Snippet - _BuildingWindows8Apps - Ex3 - RegisterChannel_)
 	<!-- mark:1-7 -->
@@ -1293,7 +1293,7 @@ In this task you will register your application with the service and then regist
 
 1. Run the Windows Store application.
 
-1. Create a new customer and notice the toast notification.
+1. Create a new customer ([Exercise 2 - Task 5](#Ex2Task5) instructs how to do this), and notice the toast notification.
 
     ![Toast notification](Images/toast-notification.png?raw=true "Toast notification")
 
