@@ -639,8 +639,7 @@ You should be aware of this when using the cache in your own applications and co
 
 <a name="Exercise3" />
 ### Exercise 3: Caching common data patterns with WACEL ###
-This exercise will show you how to use  ....
-
+This exercise will show you how to use WACEL as a high-level data structure built on top a Windows Azure table. Then you will configure WACEL to use In-Role cache to cache the data.
 
 <a name="Ex3Task1" />
 #### Task 1 - Retrieving data from Azure Storage Tables using WACEL ####
@@ -881,8 +880,6 @@ In this task you will update the Web API Controller to include caching provided 
 	````C#
 	Table<Customer> table = new Table<Customer>("Company", "Id", CloudConfigurationManager.GetSetting("StorageClient"), "customers", new DataCache("customers"));
 	````
-	
-	>**Note:** TBC
 
 1. Now, in the **Solution Explorer**, expand the **Roles** folder and right click on the **CacheWorkerRole** and click on **properties**.
 
@@ -917,7 +914,29 @@ In this task you will update the Web API Controller to include caching provided 
 <a name="NextSteps" />
 ## Next Steps ##
 
-TBC
+To learn more about **Building Windows Azure Cloud Services with Cache Service** please refer to the following articles:
+
+**Technical Reference**
+
+This is a list of articles that expand on the technologies explained on this lab:
+
+- [Windows Azure Cache Extension Library - Codeplex](http://wacel.codeplex.com/): Codeplex site of the Windows Azure Cache Extension Library.
+
+- [Local Cache for Windows Azure Cache Service](	http://msdn.microsoft.com/en-us/library/windowsazure/dn386096.aspx): Local cache is a feature of Windows Azure Cache that improves performance by reducing network requests to the cache service. Cache stores objects in serialized form in a distributed in-memory cache. When an application requests an object from the cache, the serialized object is sent to the requesting application over the network. The application then deserializes the object for its use. To speed up the process of retrieving an object, enable local cache.
+
+- [Windows Azure Cache MSDN Reference](http://msdn.microsoft.com/en-us/library/windowsazure/gg278356): 
+Windows Azure Cache is a distributed, in-memory, scalable solution that enables you to build highly scalable and responsive applications by providing super-fast access to data. Cache increases performance by temporarily storing information from other backend sources. High performance is achieved by maintaining this cache in-memory in a distributed environment. For a Windows Azure solution, Cache can reduce the costs and increase the scalability of other storage services such as SQL Database or Azure storage. ASP.NET applications can use Cache for the common scenario of session state and output caching.
+
+**Development**
+
+This is a list of developer-oriented articles related to **Building Windows Azure Cloud Services with Cache Service**:
+
+
+- [How to Use Windows Azure Cache Service](	http://www.windowsazure.com/en-us/documentation/articles/cache-dotnet-how-to-use-service/?fb=es-es): This guide shows you how to get started using Windows Azure Cache Service (Preview). The samples are written in C# code and use the .NET API. The scenarios covered include creating and configuring a cache, configuring cache clients, adding and removing objects from the cache, storing ASP.NET session state in the cache, and enabling ASP.NET page output caching using the cache.
+
+- [Windows Azure Cache Service (Preview) API and Performance Sample](	http://code.msdn.microsoft.com/Windows-Azure-Cache-c3e80a1f): This sample has two purposes. First, it demonstrates the use of various Cache APIs. Second, it provides a way to compare performance between Cache Service (Preview) and Windows Azure SQL Database.
+
+- [How to Use In-Role Cache for Windows Azure Cache](http://www.windowsazure.com/en-us/manage/services/cache/net/how-to-in-role-cache/): This guide shows you how to get started using In-Role Cache for Windows Azure Cache. The samples are written in C# code and use the .NET API. The scenarios covered include configuring a cache cluster, configuring cache clients, adding and removing objects from the cache, storing ASP.NET session state in the cache, and enabling ASP.NET page output caching using the cache.
 
 ---
 
