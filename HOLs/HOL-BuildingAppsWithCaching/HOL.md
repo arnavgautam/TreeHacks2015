@@ -651,7 +651,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 1. Start **Microsoft Visual Studio 2013 Express for Web** as administrator.
 
-1. Open the **Begin** solution located at **Source\Ex2-CachingCommonDataPatternWithWACEL\Begin**.
+1. Open the **Begin** solution located at **Source\Ex3-CachingCommonDataPatternWithWACEL\Begin**.
 
 	>**Important:** Before you execute the solution, make sure that the startup project is set. For MVC projects, the start page must be left blank. To set the startup project, in **Solution Explorer**, right-click the **CloudShop.Azure** project and then select Set as StartUp Project. To set the start page, in **Solution Explorer**, right-click the **CloudShop** project and select **Properties**. In the **Properties** window, select the Web tab and in the **Start Action**, select **Specific Page**. Leave the value of this field blank.
 
@@ -665,12 +665,29 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 1. Open the **HomeController** and add the following code to return the View you added in the previous step.
 
+	(Code Snippet - _BuildingAppsWithCachingService - Ex3 - TableAction_)
+
 	<!-- mark:1-4 -->
 	````C#
 	public ActionResult Table()
 	{
 		return View();
 	}
+	````
+
+1. Now open **_Layout.cshtml** file located in the **Views/Shared** folder and add a new link to the View you have recently added after **Products** and **Checkout** links.
+
+	(Code Snippet - _BuildingAppsWithCachingService - Ex3 - TableActionLink_)
+
+	<!-- mark:5 -->
+	````HTML
+	<div class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+			<li>@Html.ActionLink("Products", "Index", "Home")</li>
+			<li>@Html.ActionLink("Checkout", "Checkout", "Home")</li>
+			<li>@Html.ActionLink("Customers", "Table", "Home")</li>
+		</ul>
+	</div>
 	````
 
 1. Open **Package Manager Console**. To do so, go to the **Tools** menu. Then go to the **Library Package Manager** and click on **Package Manager Console**.
@@ -694,6 +711,8 @@ In this task you will learn how to use WACEL as a high-level data structure used
 	_Add new item dialog box_
 
 1. Replace the **Customer** implementation with the following code
+
+	(Code Snippet - _BuildingAppsWithCachingService - Ex3 - CustomerClass_)
 
 	<!-- mark:1-19 -->
 	````C#
@@ -721,6 +740,8 @@ In this task you will learn how to use WACEL as a high-level data structure used
 1. Add another class called **TableViewModel** in the **Models** folder.
 
 1. Replace the **TableViewModel** class implementation with the following code.
+
+	(Code Snippet - _BuildingAppsWithCachingService - Ex3 - TableViewModelClass_)
 
 	<!-- mark:1-11 -->
 	````C#
@@ -756,7 +777,9 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 	_Specify Name for Item dialog box_
 
-1. Add the following namespace directives to the Web API controller.
+1. Add the following using directives to the Web API controller.
+
+	(Code Snippet - _BuildingAppsWithCachingService - Ex3 - UsingDirectives_)
 
 	<!-- mark:1-4 -->
 	````C#
@@ -768,6 +791,8 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 1. Add the following action to the **TableDataController** to retrieve the list of customers and the elapsed time of the call.
 	
+	(Code Snippet - _BuildingAppsWithCachingService - Ex3 - GetTableMethod_)
+
 	<!-- mark:1-16 -->
 	````C#
 	[HttpGet]
@@ -794,11 +819,19 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 	_WebRole properties_
 
-1. In the **Settings** tab, add a new setting named _StorageClient_. Set the type to _Connection String_ and set the value to _UseDevelopmentStorage=true_
+1. In the **Settings** tab, add a new setting named _StorageClient_. Set the type to _Connection String_ and click on the elipsis on the right side of the row.
 
-	![StorageClient setting](Images/storageclient-setting.png?raw=true "StorageClient setting")
+	![StorageClient settings](Images/storageclient-settings.png?raw=true "StorageClient settings")
 
-	_StorageClient setting_
+	_StorageClient settings_
+
+1. In the **Create Storage Connection String** dialog box, select **Manually entered credentials**, enter your _Account name_ and _Account key_ and click **OK**
+
+	![Create Storage Connection String dialog box](Images/create-storage-connection-string-dialog-box.png?raw=true "Create Storage Connection String dialog box")
+
+	_Create Storage Connection String dialog box_
+
+1. Press **Ctrl** + **S** to save the unsaved changes.
 
 1. Press **F5** to run the application.
 
@@ -825,18 +858,24 @@ In the next task you will update the solution to include caching included in WAC
 <a name="Ex3Task2" />
 #### Task 2 - Adding caching support to WACEL Cloud Tables ####
 
-In this task you will update the Web API to include caching provided by WACEL when querying the Customer table.
+WACEL provides prebuilt caching layers in front of popular cloud-based services such as Windows Azure Table Storage. It works with Windows Azure Cache service, Windows Azure In-Role Cache, Windows AppFabric Cache on Windows Server, as well as any cache clusters that support Memcache protocol. In other words, once written, your code will work on-premises, on cloud, and on your mobile devices as well.
+
+In this task you will update the Web API Controller to include caching provided by WACEL when querying the Customer table.
 
 1. Open the **TableDataController** located in the **Controllers** folder.
 
-1. Add the following namepsace directive to the top of the file.
+1. Add the following using directive to the top of the file.
 	
+	(Code Snippet - _BuildingAppsWithCachingService - Ex3 - CachingUsingDirective_)
+
 	<!-- mark:1 -->
 	````C#
 	using Microsoft.ApplicationServer.Caching;
 	````
 
 1. Update the **GetTable** method in order to add a new **DataCache** parameter to the **Table** constructor.
+
+	(Code Snippet - _BuildingAppsWithCachingService - Ex3 - DataCacheParameter_)
 
 	<!-- mark:1 -->
 	````C#
@@ -858,12 +897,16 @@ In this task you will update the Web API to include caching provided by WACEL wh
 	_Customers Named Cache_
 
 	>**Note:** The name must match the string you passed as argument to the DataCache in the Web API controller.
+	>
+	> The **Named Cache Settings** section contains settings that apply to named caches. Different caches may use different settings. To acquire a handle to a cache in code, you supply this name to the cache factory when you request a cache. In configuration files, you can reference this cache by using the cacheName attribute of a provider. By creating named caches for specific uses, you can keep data with different policies and requirements in the same cache cluster. The following table describes these settings.
+	>
+	> For more information, click [here](http://msdn.microsoft.com/en-us/library/windowsazure/jj131263.aspx).
 
-1. Press **F5** to run the application again.
+1. Press **F5** to start the application.
 
-1. Switch between **Company0** and **Company1** to retrieve the list of Customers from Company 1.
+1. Switch between **Company0** and **Company1** in the drop down list to retrieve the list of Customers from Company 1.
 
-1. Switch back to **Company0**. Notice how the **Elapsed time** has decressed. It decressed because we are using WACEL Caching implementation with In-Role Caching.
+1. Switch back to **Company0**. Notice how the **Elapsed time** has decreased. It decreased because we are using WACEL Caching implementation with In-Role Caching.
 
 	![Customers list with WACEL and caching](Images/customers-list-with-wacel-and-caching.png?raw=true "Customers list with WACEL and caching")
 
