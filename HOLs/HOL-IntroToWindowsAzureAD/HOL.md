@@ -26,8 +26,8 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Visual Studio Express 2013 for Web][1] or greater
-- [Identity and Access Tools for Visual Studio 2012][2]
-- [WCF Data Services 5.3 Tools][3]
+- TBC: [Identity and Access Tools for Visual Studio 2012][2]
+- TBC: [WCF Data Services 5.3 Tools][3]
 - A Windows Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
 	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
@@ -159,7 +159,53 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 	_Creating the new user_
 
-1. TBD: Create an admin account
+1. Now, will repeat the steps to add new admin user to the directory. Click the **Add User** button in the bottom bar.
+
+	![Add New User to Active Directory](Images/add-new-user-to-active-directory.png?raw=true "Add New User to Active Directory")
+
+	_Adding a new user to Active Directory_
+
+1.	In the dialog box, keep the default option of **New user in your organization** and type a username (e.g.: _admin_). Click **Next** to continue.
+
+	![Filling new admin user name details](Images/filling-new-admin-user-name-details.png?raw=true "Filling new admin user name details")
+
+	_Filling new admin user name details_
+
+1.	Enter the user profile data. This time, change the **Role** option of **Global Administrator**. You will need to provide an alternate email address. Click **Next** to continue.
+
+	![Filling admin user profile](Images/filling-admin-user-profile.png?raw=true "Filling admin user profile")
+
+	_Filling admin user profile_
+
+1.	In the **Get temporary password** step, click the **create** button.
+
+	![Creating a temporary password for the admin](Images/creating-a-temporary-password-for-the-admin.png?raw=true "Creating a temporary password for the admin")
+
+	_Creating a temporary password for the admin_
+
+1. Send the password in email as you will need to change the password. To do this, add your email in the **SEND PASSWORD IN EMAIL**. Click the check button to create the user.
+
+	![Sending the admin password by email](Images/sending-the-admin-password-by-email.png?raw=true "Sending the admin password by email")
+
+	_Sending the admin password by email_
+
+1. Once you get the email, take note of the temporary password and click the sign-in page link provided in the instructions.
+
+	![Temporary password email](Images/temporary-password-email.png?raw=true "Temporary password email")
+
+	_Temporary password email_
+
+1. Sign in with your temporal credentials.
+
+	![Singing in with your temporal credentials](Images/singing-in-with-your-temporal-credentials.png?raw=true "Singing in with your temporal credentials")
+
+	_Singing in with your temporal credentials_
+
+1. Finally, change your temporary password and click **submit**.
+
+	![Changing your temporary password](Images/changing-your-temporary-password.png?raw=true "Changing your temporary password")
+
+	_Changing your temporary password_
 
 	At this point we have everything we need for providing an authentication authority in our web SSO scenario: a directory tenant, a valid user and a valid admin in it.
 
