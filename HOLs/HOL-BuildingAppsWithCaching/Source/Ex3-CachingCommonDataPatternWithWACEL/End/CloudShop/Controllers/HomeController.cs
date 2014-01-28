@@ -46,21 +46,16 @@
             {
                 List<string> cart = this.Session["Cart"] as List<string> ?? new List<string>();
                 cart.Add(selectedItem);
-                Session["Cart"] = cart;
+                this.Session["Cart"] = cart;
             }
 
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
 
         public ActionResult Checkout()
         {
             var itemsInSession = this.Session["Cart"] as List<string> ?? new List<string>();
-            return View(itemsInSession);
-        }
-
-        public ActionResult Table()
-        {
-            return View();
+            return this.View(itemsInSession);
         }
 
         [HttpPost]
@@ -75,7 +70,7 @@
                 }
             }
 
-            return RedirectToAction("Checkout");
+            return this.RedirectToAction("Checkout");
         }
 
         public EmptyResult Recycle()
@@ -87,13 +82,18 @@
         public ActionResult EnableCache(bool enabled)
         {
             this.Session["EnableCache"] = enabled;
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
 
         public ActionResult EnableLocalCache(bool enabled)
         {
             this.Session["EnableLocalCache"] = enabled;
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
+        }
+
+        public ActionResult Table()
+        {
+            return View();
         }
     }
 }

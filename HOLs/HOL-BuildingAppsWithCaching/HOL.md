@@ -763,7 +763,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 	using CloudShop.Models;
 	using System.Diagnostics;
 	using Microsoft.Ted.Wacel;
-	using Microsoft.WindowsAzure
+	using Microsoft.WindowsAzure;
 	````
 
 1. Add the following action to the **TableDataController** to retrieve the list of customers and the elapsed time of the call.
@@ -771,7 +771,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 	<!-- mark:1-16 -->
 	````C#
 	[HttpGet]
-	public List<Customer> GetTable(string partition, string startId, string endId)
+	public TableViewModel GetTable(string partition, string startId, string endId)
 	{
 		Stopwatch stopWatch = new Stopwatch();
 		stopWatch.Start();
