@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlobsExplorer", "BlobsExplorer\BlobsExplorer.csproj", "{F8738D12-1E26-4001-B265-8B9FE0A0B92C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8738D12-1E26-4001-B265-8B9FE0A0B92C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8738D12-1E26-4001-B265-8B9FE0A0B92C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8738D12-1E26-4001-B265-8B9FE0A0B92C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8738D12-1E26-4001-B265-8B9FE0A0B92C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

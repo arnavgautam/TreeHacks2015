@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DependencyCheckerConfiguration version="2.0">
+	<title>Connecting a PaaS application to an IaaS Application</title>
+	<dependencies>
+		 <dependency
+			hint="vwdorvs11azurepack" 
+			name="Windows Azure SDK for .NET" 
+			helpLink="http://www.microsoft.com/windowsazure/sdk/"
+			type="WebPI" />
+    </dependencies>
+</DependencyCheckerConfiguration>

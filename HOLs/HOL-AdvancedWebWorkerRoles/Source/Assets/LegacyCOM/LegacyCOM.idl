@@ -1,0 +1,35 @@
+// LegacyCOM.idl : IDL source for LegacyCOM
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (LegacyCOM.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(B2E70AB3-7587-4740-AE3B-562059257B5A),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IHelper : IDispatch{
+	[id(1), helpstring("Returns a greeting message.")] HRESULT Greeting([in] BSTR name, [out,retval] BSTR* retval);
+};
+[
+	uuid(7B4A0894-C5C9-488F-B695-274F102E47DA),
+	version(1.0),
+]
+library LegacyCOMLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(85D5A85C-609C-4968-8B9E-CED6821D0C0D)		
+	]
+	coclass Helper
+	{
+		[default] interface IHelper;
+	};
+};
+

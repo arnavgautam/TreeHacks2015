@@ -1,0 +1,313 @@
+﻿@{
+    ViewBag.Title = "Service Bus Topics";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+            </p>
+        </div>
+    </section>
+}
+
+<fieldset>
+    <legend>Send Message</legend>
+    <label>
+        Topic</label>
+    <select id="sendMessageTopic">
+    </select>
+    @using (Html.BeginForm("SendMessage", "Home", FormMethod.Post, new { @id = "sendMessage" }))
+    {
+        <input type="text" name="message" id="messageToSend" /> 
+        <a name="send" id="send" href="#" onclick="javascript:doSubmit('sendMessage');">Send</a>
+        <div class="customProperties">
+            <input type="checkbox" name="isUrgent" id="isUrgent" />
+            <label>
+                Is Urgent</label>
+            <input type="checkbox" name="isImportant" id="isImportant" />
+            <label>
+                Mark as Important</label>
+        </div>
+    }
+    <div class="commentWrapper">
+        <label class="comment" id="sendMessageStatus">
+        </label>
+    </div>
+</fieldset>
+<fieldset class="center">
+    <legend>Topics</legend>
+    @using (Html.BeginForm("CreateTopic", "Home", FormMethod.Post, new { @id = "createTopic" }))
+    {
+        <input type="text" name="name" id="topicName" /> 
+        <a name="create" id="create" href="#" onclick="javascript:doSubmit('createTopic');">Create</a>
+    }
+    <div class="commentWrapper">
+        <label class="comment" id="createTopicStatus">
+        </label>
+    </div>
+    <div class="scrollDiv">
+        <ul class="mainul">
+        </ul>
+    </div> 
+</fieldset>
+<fieldset>
+    <legend>Receive Message</legend>
+    <label>
+        Topic</label>
+    <select id="retrieveMessageTopic">
+    </select>
+    <div class="inputWrapper">
+        <label>
+            Subsc</label>
+        <select id="retrieveMessageSubscription">
+        </select>
+    </div>
+    @using (Html.BeginForm("RetrieveMessage", "Home", FormMethod.Get, new { @id = "retrieveMessage" }))
+    {
+        <a name="retrieveMessage" href="#" onclick="javascript:doSubmit('retrieveMessage');">Retrieve First Message in Subscription</a>
+    }
+    <div id="message" style="display: none;">
+        <label>
+            Message Content</label>
+        <div id="messageBody">
+        </div>
+        <label>
+            BrokeredMessage Properties</label>
+        <div id="brokeredmessageproperties">
+            <table>
+            </table>
+        </div>
+        <label>
+            Message Properties</label>
+        <div id="properties">
+            <table>
+            </table>
+        </div>
+    </div>
+    <div id="noMessage" style="display: none;" class="commentWrapper">
+        <label class="comment">
+            No Messages in Subscription</label>
+    </div>
+</fieldset>
+<div class="clear">
+</div>
+<div class="viewSubscriptionFilters">
+    <ul>
+    </ul>
+</div>
+<script type="text/javascript">
+    var getTopicsUrl = "@Url.Action("Topics")";
+    var getSubscriptionsUrl = "@Url.Action("Subscriptions")";
+    var getTopicsSubscriptionsUrl = "@Url.Action("TopicsWithSubscriptions")";
+    var getFiltersUrl = "@Url.Action("Filters")";
+    $(document).ready(function () {
+        $(".loading").show();
+        $(".viewSubscriptionFilters").dialog({ autoOpen: false, title: "Subscription Title", minWidth: 420 });
+        loadTopics();
+
+        $("#sendMessage").submit(function (event) {
+            event.preventDefault();
+
+            var url = $(this).attr('action');
+            var topicName = $("#sendMessageTopic option:selected").val();
+            var message = $("#messageToSend").val();
+            var isUrgent = $("#isUrgent").is(':checked');
+            var isImportant = $("#isImportant").is(':checked');
+            enableLinks(false);
+            $(".loading").show();
+            $.post(url, { message: message, topicName: topicName, messageIsUrgent: isUrgent, messageIsImportant: isImportant })
+                .success(function (response) {
+                    renderSendMessageStatus(response);
+                    loadTopics();
+                })
+                .error(function (a, b, c) { renderSendMessageStatus(false); });
+        });
+
+        $("#createTopic").submit(function (event) {
+            event.preventDefault();
+            var url = $(this).attr('action');
+            var topicName = $("#topicName").val();
+            $(".loading").show();
+            enableLinks(false);
+            $.post(url, { topicName: topicName })
+                .success(function (response) { renderCreateTopicStatus(response); })
+                .error(function () { renderCreateTopicStatus(false); });
+        });
+
+        $("#retrieveMessage").submit(function (event) {
+            $("#noMessage").hide();
+            $("#message").hide();
+            event.preventDefault();
+            var url = $(this).attr('action');
+            var topicName = $("#retrieveMessageTopic option:selected").val();
+            var subscriptionName = $("#retrieveMessageSubscription option:selected").val();
+            $(".loading").show();
+            enableLinks(false);
+            $.get(url, { topicName: topicName, subscriptionName: subscriptionName })
+                .success(function (response) {
+                    renderMessage(response);
+                    loadTopics();
+                })
+                .error(function () { renderMessage(false); });
+        });
+    });
+
+    function renderSendMessageStatus(response) {
+        if (response) $("#sendMessageStatus").html("Message sent successfully!");
+        else $("#sendMessageStatus").html("An error occurred, please try again later.");
+        $(".loading").hide();
+        enableLinks(true);
+    }
+
+    function renderCreateTopicStatus(response) {
+        if (response) {
+            $("#createTopicStatus").html("Topic created successfully!");
+            loadTopics();
+        } else {
+            $("#createTopicStatus").html("An error occurred, please try again later.");
+            $(".loading").hide();
+        }
+        enableLinks(true);
+
+    }
+
+    function renderMessage(response) {
+        if (response) {
+            $("#messageBody").html("<p>" + response.Message + "</p>")
+            var properties = $("#properties table");
+
+            properties.children().remove();
+
+            for (var i = 0; i < response.Properties.length; i++) {
+                var item = response.Properties[i];
+                var trClass = (i % 2 == 0) ? '' : 'class="odd"';
+                properties.append('<tr ' + trClass + '><td>' + item.Key + '</td><td>' + item.Value + '</td></tr>');
+            }
+
+            var brokeredmsgproperties = $("#brokeredmessageproperties table");
+
+            brokeredmsgproperties.children().remove();
+
+            for (var i = 0; i < response.BrokeredMsgProperties.length; i++) {
+                var item = response.BrokeredMsgProperties[i];
+                var trClass = (i % 2 == 0) ? '' : 'class="odd"';
+                brokeredmsgproperties.append('<tr ' + trClass + '><td>' + item.Key + '</td><td>' + item.Value + '</td></tr>');
+            }
+
+            $("#message").show();
+        } else {
+            $("#noMessage").show();
+        }
+
+        enableLinks(true);
+        $(".loading").hide();
+    }
+
+    function getMessage(numberOfMessages) {
+        var message = numberOfMessages + " Messages";
+        if (numberOfMessages == "0") message = "No Messages";
+        if (numberOfMessages == "1") message = numberOfMessages + " Message";
+        return message;
+    }
+
+    function loadTopics() {
+        //Fill topic's list with topics and subscriptions
+        $.get(getTopicsSubscriptionsUrl).success(function (response) {
+            var ul = $(".scrollDiv > ul").empty();
+            var sendMsgCombo = $("#sendMessageTopic").empty();
+            var receiveMsgCombo = $("#retrieveMessageTopic").empty();
+
+            if (!response || response.length == 0) {
+                $("#send").attr("disabled", "disabled");
+                $("#retrieveMessage").attr("disabled", "disabled");
+            }
+            else {
+                enableLinks(true);
+            }
+
+            $.each(response, function (index, topic) {
+                receiveMsgCombo.append($("<option>").html(topic.Key).val(topic.Key));
+                sendMsgCombo.append($("<option>").html(topic.Key).val(topic.Key));
+
+                var topicItem = $("<li>").html(topic.Key);
+                if (topic.Value.length > 0) {
+                    var subscriptionsList = $("<ul>");
+                    for (var i = 0; i < topic.Value.length; i++) {
+                        var subscription = topic.Value[i];
+                        var subscriptionItem = $("<li>").html(subscription.Name);
+                        subscriptionItem.append('<div onClick="viewSubscriptionFilters(\'' + topic.Key + '\',\'' + subscription.Name + '\')" class="subscriptionFilters" ></div>');
+                        subscriptionItem.append($("<label>").html(getMessage(subscription.MessageCount)).css("float", "right"));
+                        subscriptionsList.append(subscriptionItem);
+                    }
+                    topicItem.append(subscriptionsList);
+                }
+                ul.append(topicItem);
+            });
+
+            //Add change methods to fill subscriptions
+            $("#retrieveMessageTopic").change(function () {
+                loadSubscriptions($("#retrieveMessageTopic option:selected").val());
+            });
+
+            if (response.length > 0) {
+                $("#retrieveMessageTopic").trigger("change");
+            }
+
+            $(".loading").hide();
+        });
+    }
+
+    function loadSubscriptions(selectedTopicName) {
+        $(".loading").show();
+        $.get(getSubscriptionsUrl, { topicName: selectedTopicName }).success(function (response) {
+            var receiveMsgSubscription = $("#retrieveMessageSubscription");
+
+            receiveMsgSubscription.children().remove();
+            for (var i = 0; i < response.length; i++) {
+                var item = response[i];
+                receiveMsgSubscription.append('<option value="' + item + '">' + item + '</option>');
+            }
+
+            $(".loading").hide();
+        });
+    }
+
+    function viewSubscriptionFilters(topicName, subscriptionName) {
+        $(".loading").show();
+        $.get(getFiltersUrl, { topicName: topicName, subscriptionName: subscriptionName })
+        .success(function (response) {
+            var ul = $(".viewSubscriptionFilters > ul");
+            ul.children().remove();
+            for (var i = 0; i < response.length; i++) {
+                var item = response[i];
+                ul.append('<li>Filter Expression: "' + item.Filter + '"</li>');
+                if (item.FilterAction) ul.append('<li>Filter Action: "' + item.Action + '"</li>');
+            }
+
+            $(".viewSubscriptionFilters").dialog('open');
+            $(".loading").hide();
+        });
+    }
+
+    function doSubmit(frm) {
+        $("#" + frm).submit();
+    }
+
+    function enableLinks(enable) {
+        if (enable) {
+            $("#send").removeAttr("disabled");
+            $("#retrieveMessage").removeAttr("disabled");
+            $("#createTopic").removeAttr("disabled");
+        }
+        else {
+            $("#send").attr("disabled", "disabled");
+            $("#retrieveMessage").attr("disabled", "disabled");
+            $("#createTopic").attr("disabled", "disabled");
+        }
+    }
+</script>

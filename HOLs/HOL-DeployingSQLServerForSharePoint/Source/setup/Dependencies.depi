@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DependencyCheckerConfiguration version="2.0">
+	<title>Configuring SQL Server 2012 for SharePoint in Windows Azure</title>
+	<dependencies>
+		<dependency 
+			hint="PowerShell2" 
+			name="Windows PowerShell 2.0" 
+			helpLink="http://microsoft.com/powershell/" 
+			disableSkip="false"
+			type="WebPI" />
+		<dependency
+			hint="WindowsAzurePowershell"
+			name="Windows Azure PowerShell"
+			helpLink=""
+			disableSkip="false"
+			type="WebPI" />   
+    </dependencies>
+</DependencyCheckerConfiguration>

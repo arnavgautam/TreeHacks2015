@@ -1,0 +1,234 @@
+﻿@{
+    ViewBag.Title = "Service Bus Queues";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+            </p>
+        </div>
+    </section>
+}
+<fieldset>
+    <legend>Send Message</legend>
+    <label>
+        Queue</label>
+    <select id="sendMessageQueue">
+    </select>
+    @using (Html.BeginForm("SendMessage", "Home", FormMethod.Post, new { @id = "sendMessage" }))
+    {
+        <input type="text" name="message" id="messageToSend" />    
+        <a id="send" href="#" onclick="javascript:doSubmit('sendMessage');">Send</a>
+    }
+    <div class="commentWrapper">
+        <label class="comment" id="sendMessageStatus">
+        </label>
+    </div>
+</fieldset>
+<fieldset class="center">
+    <legend>Queues</legend>
+    @using (Html.BeginForm("CreateQueue", "Home", FormMethod.Post, new { @id = "createQueue" }))
+    {
+        <input type="text" name="name" id="queueName" /> 
+        <a id="create" href="#" onclick="javascript:doSubmit('createQueue');">Create</a>
+    }
+    <div class="commentWrapper">
+        <label class="comment" id="createQueueStatus">
+        </label>
+    </div>
+    <ul>
+    </ul>
+</fieldset>
+<fieldset>
+    <legend>Receive Message</legend>
+    <label>
+        Queue</label>
+    <select id="retrieveMessageQueue">
+    </select>
+    @using (Html.BeginForm("RetrieveMessage", "Home", FormMethod.Get, new { @id = "retrieveMessage" }))
+    {
+        <a id="retrieve" href="#" onclick="javascript:doSubmit('retrieveMessage');">Retrieve First Message in Queue</a>
+    }
+    <div id="message" style="display: none;">
+        <label>
+            Message Content</label>
+        <div id="messageBody">
+        </div>
+        <label>
+            BrokeredMessage Properties</label>
+        <div id="brokeredmessageproperties">
+            <table>
+            </table>
+        </div>
+        <label>
+            Message Properties</label>
+        <div id="properties">
+            <table>
+            </table>
+        </div>
+    </div>
+    <div id="noMessage" style="display: none;" class="commentWrapper">
+        <label class="comment">
+            No Messages in Subscription</label>
+    </div>
+</fieldset>
+<div class="clear">
+</div>
+<script type="text/javascript">
+    var getQueuesUrl = '@Url.Action("Queues")';
+    var getMessageCountUrl = '@Url.Action("GetMessageCount")';
+
+    $(document).ready(function () {
+        loadQueues();
+
+        $("#sendMessage").submit(function (event) {
+            event.preventDefault();
+            var url = $(this).attr('action');
+            var queueName = $("#sendMessageQueue option:selected").val();
+            var message = $("#messageToSend").val();
+            $(".loading").show();
+            enableLinks(false);
+            $.post(url, { message: message, queueName: queueName })
+                    .success(function (response) {
+                        renderSendMessageStatus(response);
+                        updateMessageCountOf(queueName, response);
+                    })
+                    .error(function () { renderSendMessageStatus(false); });
+        });
+
+        $("#createQueue").submit(function (event) {
+            event.preventDefault();
+            var url = $(this).attr('action');
+            var queueName = $("#queueName").val();
+            $(".loading").show();
+            enableLinks(false);
+            $.post(url, { queueName: queueName })
+                    .success(function (response) { renderCreateQueueStatus(response); })
+                    .error(function () { renderCreateQueueStatus(false); });
+        });
+
+        $("#retrieveMessage").submit(function (event) {
+            $("#noMessage").hide();
+            $("#message").hide();
+            event.preventDefault();
+            var url = $(this).attr('action');
+            var queueName = $("#retrieveMessageQueue option:selected").val();
+            $(".loading").show();
+            enableLinks(false);
+            $.get(url, { queueName: queueName })
+                    .success(function (response) {
+                        renderMessage(response == null ? false : response.MessageInfo);
+                        updateMessageCountOf(queueName, response == null ? 0 : response.MessagesInQueue);
+                    })
+                    .error(function () { renderMessage(false); });
+        });
+    });
+
+    function renderSendMessageStatus(response) {
+        if (response) $("#sendMessageStatus").html("Message sent successfully!");
+        else $("#sendMessageStatus").html("An error occurred, please try again later.");
+        $(".loading").hide();
+        enableLinks(true);
+    }
+
+    function renderCreateQueueStatus(response) {
+        if (response) {
+            $("#createQueueStatus").html("Queue created successfully!");
+            loadQueues();
+        } else {
+            $("#createQueueStatus").html("An error occurred, please try again later.");
+        }
+        $(".loading").hide();
+        enableLinks(true);
+    }
+
+    function renderMessage(response) {
+        if (response) {
+            $("#messageBody").html("<p>" + response.Message + "</p>")
+            var properties = $("#properties table");
+
+            properties.children().remove();
+
+            for (var i = 0; i < response.Properties.length; i++) {
+                var item = response.Properties[i];
+                var trClass = (i % 2 == 0) ? '' : 'class="odd"';
+                properties.append('<tr ' + trClass + '><td>' + item.Key + '</td><td>' + item.Value + '</td></tr>');
+            }
+
+            var brokeredmsgproperties = $("#brokeredmessageproperties table");
+
+            brokeredmsgproperties.children().remove();
+
+            for (var i = 0; i < response.BrokeredMsgProperties.length; i++) {
+                var item = response.BrokeredMsgProperties[i];
+                var trClass = (i % 2 == 0) ? '' : 'class="odd"';
+                brokeredmsgproperties.append('<tr ' + trClass + '><td>' + item.Key + '</td><td>' + item.Value + '</td></tr>');
+            }
+
+            $("#message").show();
+        } else {
+            $("#noMessage").show();
+        }
+        $(".loading").hide();
+        enableLinks(true);
+    }
+
+    function updateMessageCountOf(queueName, numberOfMessages) {
+        var message = numberOfMessages + " Messages";
+        if (numberOfMessages == "0") message = "No Messages";
+        if (numberOfMessages == "1") message = numberOfMessages + " Message";
+        $("div.msgCountOf" + queueName.replace(/ /g, '') + " > label").html(message);
+    }
+
+    function loadQueues() {
+        $.get(getQueuesUrl).success(function (response) {
+            var ul = $("fieldset.center > ul");
+            var sendMsgCombo = $("#sendMessageQueue");
+            var receiveMsgCombo = $("#retrieveMessageQueue");
+
+            sendMsgCombo.children().remove();
+            receiveMsgCombo.children().remove();
+            ul.children().remove();
+
+            if (!response || response.length == 0) {
+                $("#send").attr("disabled", "disabled");
+                $("#retrieve").attr("disabled", "disabled");
+            }
+            else {
+                enableLinks(true);
+            }
+
+            for (var i = 0; i < response.length; i++) {
+                var item = response[i];
+                sendMsgCombo.append('<option value="' + item.Name + '">' + item.Name + '</option>');
+                receiveMsgCombo.append('<option value="' + item.Name + '">' + item.Name + '</option>');
+                ul.append('<li><label>' + item.Name + '</label><div class="msgCountOf' + item.Name.replace(/ /g, '') + '" style="float:right"><label>Messages</label></div></li>');
+                updateMessageCountOf(item.Name, item.Messages);
+            }
+        });
+
+        $(".loading").hide();
+    }
+
+    function doSubmit(frm) {
+        $("#" + frm).submit();
+    }
+
+    function enableLinks(linksEnabled) {
+        if (linksEnabled) {
+            $("#send").removeAttr("disabled");
+            $("#retrieve").removeAttr("disabled");
+            $("#create").removeAttr("disabled");
+        }
+        else {
+            $("#send").attr("disabled", "disabled");
+            $("#retrieve").attr("disabled", "disabled");
+            $("#create").attr("disabled", "disabled");
+        }
+    }
+</script>

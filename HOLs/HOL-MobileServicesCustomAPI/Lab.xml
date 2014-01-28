@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>MobileServicesCustomAPI</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+    <Technology>Windows Azure Mobile Services</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>Windows Azure Mobile Services enables you to define custom business logic that is run on the server. This logic is provided as JavaScript code that is stored and executed on the server. In Mobile Services, a server script is either registered to an insert, read, update, or delete operation on a given table or is assigned to a scheduled job. Server scripts have a main function along with optional helper functions. The signature of the main function depends on the whether the script is registered as a custom API, to a table operation, or to run as a scheduled job.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Creating a Windows Azure Mobile Service with a Custom API</Title>
+  <Version>1.0.1</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker>.\source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentType" Value="VS2012" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-MobileServicesCustomAPI" />
+  </CustomProperties>
+</Lab>

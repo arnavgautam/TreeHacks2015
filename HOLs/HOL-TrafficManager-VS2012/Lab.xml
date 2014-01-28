@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>TrafficManagerVS2012</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>Windows Azure Traffic Manager enables you to manage and distribute incoming traffic to your Windows Azure cloud services whether they are deployed in the same data center or in different centers across the world. In this hands-on lab, you will explore different load balancing policies available in Traffic Manager and how you can use them to enhance performance, increase availability, and balance traffic to your cloud services.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Windows Azure Traffic Manager - for Visual Studio 2012</Title>
+  <Version>1.0.2</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker>.\source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentTag" Value="1.7" />
+    <Property Name="ContentType" Value="VS2012" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-TrafficManager-VS2012/" />
+  </CustomProperties>
+</Lab>

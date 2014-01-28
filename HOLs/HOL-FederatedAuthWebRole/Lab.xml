@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>WindowsAzureAndPassiveFederation2010</Id>
+  <Technologies>
+    <Technology>Windows Identity Foundation</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name>vittorib</Name>
+  </Author>
+  <Description>This hands-on lab provides step-by-step guides for hosting in Windows Azure a Cloud Service accepting identities from an external identity provider: with the authentication functions being performed by an external identity provider, you are now free to focus on the business function of your application instead of worrying of low level details. As you will learn while you go through the lab, this is easily accomplished by taking advantage of Windows Identity Foundation (WIF) for enhancing your services.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Federated Authentication in a Windows Azure Cloud Service</Title>
+  <Version>3.1.2</Version>
+  <Source>.\source</Source>
+  <DependencyChecker>.\source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentType" Value="VS2010" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-FederatedAuthWebRole" />
+  </CustomProperties>
+</Lab>

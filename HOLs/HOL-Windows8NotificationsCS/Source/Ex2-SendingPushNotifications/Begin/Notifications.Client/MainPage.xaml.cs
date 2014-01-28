@@ -1,0 +1,156 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+using Windows.Networking.PushNotifications;
+using System.Threading.Tasks;
+using System.Net.Http;
+
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+
+namespace Notifications.Client
+{
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class MainPage : Page
+    {
+        private PushNotificationChannel _channel;
+
+        private const string K_SERVERURL = "http://[YOUR_SUBDOMAIN].azurewebsites.net/endpoints";
+        private const string K_PAYLOAD = "\"ApplicationId\":\"{0}\",\"ChannelUri\":\"{1}\",\"ExpirationTime\":\"{2}\",\"TileId\":\"{3}\",\"ClientId\":\"{4}\",\"UserId\":\"{5}\",\"DeviceType\":\"{6}\"";
+        private const string K_CONTENTTYPE = "application/json; charset=utf-8";
+        private const string _appId = "MyApp2";
+        private const string _tileId = "TileId1";
+        private const string _clientId = "MyClient1";
+        private const string _userId = "UserId1";
+        private const string _deviceType = "Windows 8 client";
+
+        public MainPage()
+        {
+            this.InitializeComponent();
+        }
+
+        /// <summary>
+        /// Invoked when this page is about to be displayed in a Frame.
+        /// </summary>
+        /// <param name="e">Event data that describes how this page was reached.  The Parameter
+        /// property is typically used to configure the page.</param>
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+
+        }
+
+        private async void btnRequestAndRegister_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatusMessage.Text = "";
+            await OpenNotificationsChannel();
+        }
+
+        private async void btnUnregister_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatusMessage.Text = "";
+            await CloseNotificationsChannel();
+        }
+
+        public async Task OpenNotificationsChannel()
+        {
+            UpdateStatusMessage("1. Requesting Channel from WNS: ");
+
+            try
+            {
+                //1. Request Channel from WNS
+                _channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
+
+                UpdateStatusMessage(string.Format("   Channel URI returned by WNS: {0}", _channel.Uri));
+                UpdateStatusMessage(string.Format("2. Attempting to registering channel URI with Notification App Server at {0}", K_SERVERURL));
+
+                //2. Register _channel with your app server
+                using (var client = new HttpClient())
+                {
+                    var payload = CreatePayload(_appId, _channel, _tileId, _clientId, _userId, _deviceType);
+                    var result = await client.PutAsync(K_SERVERURL, payload);
+
+                    if (result.StatusCode == System.Net.HttpStatusCode.Accepted)
+                        UpdateStatusMessage(string.Format("   Channel URI successfully sent to Notification App Server."));
+                    else
+                        UpdateStatusMessage(string.Format("   Could not send Channel URI to Notification App Server - {0}", result.StatusCode.ToString()));
+                }
+            }
+            catch (Exception ex)
+            {
+                UpdateStatusMessage(string.Format("   Error occured please see exception detail: {0}", ex.ToString()));
+            }
+        }
+
+        public async Task CloseNotificationsChannel()
+        {
+            if (_channel != null)
+            {
+                try
+                {
+                    UpdateStatusMessage("1. Deleting User Channel URI from server");
+
+                    //1. Remove channel from app server so it no longer sends notifications to this channel
+                    using (var client = new HttpClient())
+                    {
+                        var result = await client.DeleteAsync(string.Format("{0}/{1}/{2}/{3}", K_SERVERURL, _appId, _clientId, _tileId));
+
+                        if (result.StatusCode == System.Net.HttpStatusCode.Accepted)
+                            UpdateStatusMessage(string.Format("   Channel URI successfully deleted from Notification App Server."));
+                        else
+                            UpdateStatusMessage(string.Format("   Could not delete Channel from Notification App Server - {0}", result.StatusCode.ToString()));
+
+                    }
+
+                    UpdateStatusMessage(string.Format("2. Closing Channel"));
+
+                    //2. Close the channel 
+                    _channel.Close();
+                    _channel = null;
+
+                    UpdateStatusMessage(string.Format("   Channel successfully closed"));
+                }
+                catch (Exception ex)
+                {
+                    UpdateStatusMessage(string.Format("   Error occured please see exception detail: {0}", ex.ToString()));
+                }
+            }
+            else
+            {
+                UpdateStatusMessage("No channel is open.");
+            }
+
+        }
+
+        private void UpdateStatusMessage(string message)
+        {
+            txtStatusMessage.Text += message + Environment.NewLine;
+        }
+
+        private HttpContent CreatePayload(string appId, PushNotificationChannel channel, string tileId, string clientId, string userId, string deviceType)
+        {
+            var payload = string.Format(K_PAYLOAD,
+                appId,
+                channel.Uri,
+                channel.ExpirationTime.DateTime,
+                tileId,
+                clientId,
+                userId,
+                deviceType);
+            var content = new StringContent("{" + payload + "}");
+            content.Headers.Remove("Content-Type");
+            content.Headers.Add("Content-Type", K_CONTENTTYPE);
+            return content;
+        }
+    }
+}

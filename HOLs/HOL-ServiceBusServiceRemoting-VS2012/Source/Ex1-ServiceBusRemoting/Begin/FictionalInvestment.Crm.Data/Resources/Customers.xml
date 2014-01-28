@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Customer>
+    <Id>2387c5f5-0cc7-4791-bc19-0e5e238072c4</Id>
+    <Name>Coho</Name>
+    <Address>One Microsoft Way</Address>
+    <City>Redmond</City>
+    <Zip>WA</Zip>
+    <State>Washington</State>
+    <Country>USA</Country>
+    <Email>sales@coho.com</Email>
+    <Phone>555-2222</Phone>
+    <BankingEntity>FictionalInvestment</BankingEntity>
+  </Customer>
+  <Customer>
+    <Id>2cd387a7-a577-4973-a163-84cd3924fe60</Id>
+    <Name>Contoso</Name>
+    <Address>One Microsoft Way</Address>
+    <City>Redmond</City>
+    <Zip>WA</Zip>
+    <State>Washington</State>
+    <Country>USA</Country>
+    <Email>info@contoso.com</Email>
+    <Phone>555-3333</Phone>
+    <BankingEntity>FictionalInvestment</BankingEntity>
+  </Customer>
+  <Customer>
+    <Id>68670492-d17c-4675-927c-e603ade1c3a2</Id>
+    <Name>Fabrikam</Name>
+    <Address>One Microsoft Way</Address>
+    <City>Port Angeles</City>
+    <Zip>WA</Zip>
+    <State>Washington</State>
+    <Country>USA</Country>
+    <Email>info@fabrikam.com</Email>
+    <Phone>555-5555</Phone>
+    <BankingEntity>FictionalInvestment</BankingEntity>
+  </Customer>
+  <Customer>
+    <Id>10c028d4-d4b5-4a67-9dd7-adc0a2351869</Id>
+    <Name>Litware</Name>
+    <Address>One Microsoft Way</Address>
+    <City>Newport</City>
+    <Zip>WA</Zip>
+    <State>Washington</State>
+    <Country>USA</Country>
+    <Email>info@litware.com</Email>
+    <Phone>555-4444</Phone>
+    <BankingEntity>FictionalInvestment</BankingEntity>
+  </Customer>
+  <Customer>
+    <Id>dde20a98-708c-42fd-9b9c-267a059ce4ad</Id>
+    <Name>Northwind</Name>
+    <Address>One Microsoft Way</Address>
+    <City>Seattle</City>
+    <Zip>WA</Zip>
+    <State>Washington</State>
+    <Country>USA</Country>
+    <Email>info@northwind.com</Email>
+    <Phone>555-1111</Phone>
+    <BankingEntity>FictionalInvestment</BankingEntity>
+  </Customer>
+</ArrayOfCustomer>

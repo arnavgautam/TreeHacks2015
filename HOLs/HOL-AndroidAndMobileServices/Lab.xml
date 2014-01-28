@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>AndroidAndMobileServicesLab</Id>
+  <Technologies>
+    <Technology>Windows Azure Mobile Services</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>
+	In this hands-on lab you will learn how to add a cloud-based backend service to an Android app using Windows Azure Mobile Services. You will create both a new mobile service and a simple TodoList app that stores app data in the new mobile service. Also you will perform server side validation, send push notifications and add user authentication using Mobile Services features.
+  </Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Getting Started With Windows Azure Mobile Services and Android</Title>
+  <Version>1.0.1</Version>
+  <Source></Source>
+  <DependencyChecker></DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentType" Value="VS2012" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-AndroidAndMobileServices" />
+  </CustomProperties>
+</Lab>

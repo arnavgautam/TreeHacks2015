@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="WorldAppService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="1" osVersion="*" schemaVersion="2012-05.1.7">
+  <Role name="WorldApp">
+    <Instances count="2" />
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName=[YOUR_STORAGE_ACCOUNT_NAME];AccountKey=[YOUR_STORAGE_ACCOUNT_KEY]" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=[YOUR_STORAGE_ACCOUNT_NAME];AccountKey=[YOUR_STORAGE_ACCOUNT_KEY]" />
+      <Setting name="DnsTtl" value="30" />
+      <Setting name="HostedServiceRegion" value="[SERVICE REGION]" />
+      <Setting name="HostedServiceUrlPrefix" value="[SERVICE URL PREFIX]" />
+      <Setting name="HostedServiceBackgroundColor" value="[BACKGROUND COLOR]" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

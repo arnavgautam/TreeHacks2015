@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>ACSwithLocalSTS</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name>wwegner</Name>
+  </Author>
+  <Description>In this intermediate hands-on lab you will learn how to use the Access Control Service for managing trust relationships with multiple business identity providers. You will learn how to use ACS for establishing relationships and normalizing attributes without having to touch your application's source code. The lab will demonstrate how to configure ACS both via the Windows Azure Portal and the management API.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Access Control Service with local STS</Title>
+  <Version>1.0.2</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentType" Value="VS2010" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-ACSwithLocalSTS" />
+  </CustomProperties>
+</Lab>

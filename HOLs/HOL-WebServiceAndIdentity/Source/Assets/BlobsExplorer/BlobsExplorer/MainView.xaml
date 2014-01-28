@@ -1,0 +1,33 @@
+﻿<Window x:Class="BlobsExplorer.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Blobs Explorer" Height="140" Width="450">
+    <Grid Margin="5,5,5,5" Width="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        
+        <Label Grid.Row="0" Grid.Column="0" Content="Account Name" VerticalAlignment="Center" />
+        <TextBox Grid.Row="0" Grid.Column="1" Name="AccountNameTextBox" Width="150" HorizontalAlignment="Left" Height="25" />
+        <Label Grid.Row="1" Grid.Column="0" Content="Account Key" VerticalAlignment="Center" />
+        <TextBox Grid.Row="1" Grid.Column="1" Name="AccountKeyTextBox" Width="150" HorizontalAlignment="Left" Height="25" />
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Margin="5,5,5,5">
+            <Button Name="ConnectButton" Content="Connect" Width="70" Height="25" HorizontalAlignment="Left" Margin="2,0,0,0" Click="ConnectButton_Click" />
+            <Label Content="or" Margin="2,0,2,0" />
+            <Button Name="ConnectLocalButton" Content="Connect Local" Width="80" Height="25" HorizontalAlignment="Left" Margin="2,0,0,0" Click="ConnectLocalButton_Click" />
+        </StackPanel>
+        
+        <Label Grid.Row="3" Grid.Column="0" Content="Blob Container" VerticalAlignment="Center" />
+        <TextBox Text="svclog" Grid.Row="3" Grid.Column="1" Name="BlobContainerTextBox" Width="150" HorizontalAlignment="Left" Height="25" IsEnabled="False" />
+        <Button Name="DownloadButton" Grid.Row="3" Grid.Column="2" Content="Download" Width="70" Height="25" HorizontalAlignment="Left" Margin="7,5,5,5" Click="DownloadButton_Click" IsEnabled="False" />
+    </Grid>
+</Window>

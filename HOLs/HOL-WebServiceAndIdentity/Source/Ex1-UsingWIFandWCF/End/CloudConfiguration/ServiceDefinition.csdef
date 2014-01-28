@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="CloudConfiguration" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2012-05.1.7">
+  <WebRole name="RelyingParty">
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+          <Binding name="Endpoint1" endpointName="HttpIn" />
+          <Binding name="Endpoint1" endpointName="HttpsIn" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <Endpoints>
+      <InputEndpoint name="HttpIn" protocol="http" port="8000" />
+      <InputEndpoint name="HttpsIn" protocol="https" port="8443" certificate="{yourProjectName}.cloudapp.net" />
+    </Endpoints>
+    <Imports>
+      <Import moduleName="Diagnostics" />
+    </Imports>
+    <LocalResources>
+      <LocalStorage name="RelyingParty.svclog" sizeInMB="1000" cleanOnRoleRecycle="false" />
+    </LocalResources>
+    <Certificates>
+      <Certificate name="{yourProjectName}.cloudapp.net" storeLocation="LocalMachine" storeName="My" />
+    </Certificates>
+  </WebRole>
+</ServiceDefinition>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DependencyCheckerConfiguration version="2.0">
+	<title>Provisioning a Windows Azure Virtual Machine (PowerShell)</title>
+	<dependencies>
+		<dependency
+			hint="WindowsAzurePowershell"
+			name="Windows Azure PowerShell"
+			helpLink=""
+			disableSkip="false"
+			type="WebPI" />  
+    </dependencies>
+</DependencyCheckerConfiguration>

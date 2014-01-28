@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>ExploringWindowsAzureStorageVS2012</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>In this hands-on lab you will examine each of the foundation storage capabilities of Windows Azure-Blobs, Tables and Queues. You'll discover how to create storage accounts, how to upload and retrieve blobs and blob metadata, how to create, update and query tables, and how to create a simple service that uses a message queue for communication. Finally, you'll explore the use of Windows Azure Drives.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Exploring Windows Azure Storage - for Visual Studio 2012</Title>
+  <Version>1.0.1</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentTag" Value="1.8" />
+    <Property Name="ContentType" Value="VS2012" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-ExploringStorage-VS2012" />
+  </CustomProperties>
+</Lab>

@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<h2>Welcome</h2>
+<p>World Application is a global service hosted by several data centres across the world. Your request was serviced by a host located in the <strong>@Model.CurrentRegion</strong> region.</p>
+<table>
+    <tr>
+        <td class="fieldname">Application is hosted at:</td>
+        <td class="fieldvalue">@Model.HttpHost</td>
+    </tr>
+    <tr>
+        <td class="fieldname">Your IP address is:</td>
+        <td class="fieldvalue">@Model.ClientHostName</td>
+    </tr>
+    <tr>
+        <td class="fieldname">DNS host entry TTL:</td>
+        <td class="fieldvalue" id="ttl">&nbsp;</td>
+    </tr>
+</table>
+
+<p>Traffic Manager policies are not applied while the DNS host entry for the service is resolved from the cache. Wait until the TTL counter above expires before accessing the service again to evaluate the result of a policy. 
+Even after the TTL has expired, the browser caches DNS host entries for longer periods. To ensure that a cached entry is not used, close all browser windows currently open including this one. Alternatively, click <a href="/ConfigureBrowserDnsCache.reg">here</a> to download a registry script that shortens the lifetime of entries in the browser's DNS cache (Internet Explorer only).</p>
+<p><strong>IMPORTANT: </strong>This script makes permanent changes to Internet Explorer's configuration. It is recommended that you execute the script inside a remote desktop session connected to one of the hosted services in the application. To undo the script's changes, download and execute the script found <a href="/RestoreBrowserDnsCache.reg">here</a>.</p>
+
+<fieldset>
+    <legend>Hosted Service Status</legend>
+    <p>The following table shows the status of all available hosted services. Use the links under <strong>Manage Traffic</strong> to allow traffic to specific services.</p>
+    <table id="services">
+        <tr>
+            <th>Status</th>
+            <th>Region</th>
+            <th>Direct Link</th>
+            <th>Manage Traffic</th>
+            <th>Health Monitor Timeout</th>
+        </tr>
+        @foreach (var service in Model.HostedServices.Values)
+        {
+            var timeout = service.IsOnline ? 30 : 120;
+            var lastUpdate = Convert.ToInt32(DateTime.Now.ToUniversalTime().Subtract(service.Timestamp).TotalSeconds);
+            var isReady = lastUpdate > timeout;
+            
+        <tr>
+            <td class="@(service.IsOnline ? "online" : "offline")">@(service.IsOnline ? "Online" : "Offline")</td>
+            <td>@service.Region</td>
+            <td><a href="http://@(service.RowKey).cloudapp.net/">http://@(service.RowKey).cloudapp.net/</a></td>
+            <td>
+                @Html.ActionLink(service.IsOnline ? "Disable" : "Enable", "EnableTraffic", new { serviceUrlPrefix = service.RowKey, enabled = !service.IsOnline })
+            </td>
+            <td class="health @(isReady ? "" : "expired") @(service.IsOnline ? "isonline" : "")">
+                @(isReady ? "Ready" : lastUpdate.ToString() + " seconds")
+            </td>
+        </tr>
+        }
+    </table>
+</fieldset>
+
+@section Scripts {
+<script type="text/javascript">
+    $(document).ready(function () {
+        var ttl = @(Model.DnsTtl);
+        $('#ttl').text(ttl + ' seconds');
+        var timer = window.setInterval(function () {
+            if (ttl >= 0) {
+                $('#ttl').text(ttl + ' seconds');
+            }
+            else {
+                $('#ttl').addClass('expired').text('Expired');
+            }
+            --ttl;
+
+            $('.health').each(function(i) {
+                var val = parseInt($(this).text());
+                if (!isNaN(val)) {
+                    var timeout = $(this).hasClass('isonline') ? 30 : 120;
+                    if (val < timeout) {
+                        $(this).addClass('expired').text(++val + ' seconds');
+                    }
+                    else {
+                        $(this).removeClass('expired').text('Ready');
+                    }
+                }
+            });
+
+        }, 1000);
+    });
+</script>
+}

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DependencyCheckerConfiguration version="2.0">
+	<title>Windows Azure Web Sites and Virtual Machines using ASP.NET and SQL Server</title>
+	<dependencies>
+		<dependency  
+			hint="Microsoft Visual Studio 2010.*;10.0.30319"  
+			name="Microsoft Visual Studio 2010 SP1"  
+			description="Microsoft Visual Studio 2010" 
+			helpLink="wpi://vwd_rtw/"  
+			type="Uninstall" />
+		<dependency 
+			hint="ASP.NET MVC 4.*" 
+			name="Microsoft ASP.NET MVC 4" 
+			description="ASP.NET MVC 4 is a framework for building scalable, standards-based web applications using well-established design patterns and the power of ASP.NET and the .NET Framework." 
+			helpLink="http://www.asp.net/mvc/mvc4" 
+			type="Uninstall" />
+		<dependency
+			hint="WebToolsExtensionPublishingVS2010_Only_1_0"
+			name="Microsoft Web Publish for Visual Studio 2010 (June 2012)"
+			helpLink=""
+			type="WebPI" />
+	</dependencies>
+	<setupCommands>
+		<setup 
+			command="setup.cmd" 
+			name="Setup Script" 
+			description="Executing setup scripts..." />
+	</setupCommands>
+</DependencyCheckerConfiguration>

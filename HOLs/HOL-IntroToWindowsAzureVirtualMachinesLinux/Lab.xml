@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>IaaSDeployLinux</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name>mwasham</Name>
+  </Author>
+  <Description>In this hands-on lab you will learn how to use the Windows Azure IaaS platform to provision Linux based Virtual Machines in the cloud and manage it remotely.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Introduction to Windows Azure Virtual Machines (Linux)</Title>
+  <Version>1.1.0</Version>
+  <Source></Source>
+  <DependencyChecker></DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentType" Value="Scenario" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-IntroToWindowsAzureVirtualMachinesLinux" />
+  </CustomProperties>
+</Lab>

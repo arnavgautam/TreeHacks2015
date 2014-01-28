@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DependencyCheckerConfiguration version="2.0">
+	<title>Introduction to Windows Azure SQL Database</title>
+	<dependencies>
+		<dependency
+			hint="VWDOrVs2010SP1AzurePack"
+			name="Windows Azure SDK for .NET"
+			helpLink=""
+			disableSkip="false"
+			type="WebPI" />
+		<dependency
+			hint="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\110\Tools\Setup\SQL_SSMS_Adv.Version;11.0.2100.60"
+			name="SQL Server 2012 Management Studio"
+			description="SQL Server 2012 Management Studio"
+			helpLink="http://www.microsoft.com/en-us/download/details.aspx?id=29062"
+			disableSkip="false"
+			type="Registry" />
+    </dependencies>
+  <setupCommands>
+    <setup 
+		command="setup.cmd" 
+		name="Setup Script" 
+		description="Executing setup scripts..." />
+  </setupCommands>	
+</DependencyCheckerConfiguration>

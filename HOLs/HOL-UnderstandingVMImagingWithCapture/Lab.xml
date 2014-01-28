@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>UnderstandingVMImagingWithCapture</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Name></Name>
+  </Author>
+  <Description>In this hands-on lab you will walk through creating a new virtual machine that is customized with Web Server role enabled. You will then learn how to generalize it and save it as an image so that all new virtual machines provisioned from it will have Web Server role enabled by default.</Description>
+  <Document ConversionType="Html">HOL.md</Document>
+  <Title>Understanding Virtual Machine Imaging with Capture</Title>
+  <Version>2.0.0</Version>
+  <Source></Source>
+  <DependencyChecker></DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentType" Value="Scenario" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-UnderstandingVMImagingWithCapture/" />
+  </CustomProperties>
+</Lab>

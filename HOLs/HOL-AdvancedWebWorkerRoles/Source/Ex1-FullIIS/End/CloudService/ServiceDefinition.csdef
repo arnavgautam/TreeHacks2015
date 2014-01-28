@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="CloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2012-05.1.7">
+  <WebRole name="SampleWebApp">
+    <Sites>
+      <Site name="Fabrikam" physicalDirectory="..\SampleWebApp">
+        <Bindings>
+          <Binding name="HttpIn" endpointName="HttpIn" hostHeader="www.fabrikam.com" />
+        </Bindings>
+      </Site>
+      <Site name="Contoso" physicalDirectory="..\SampleWebApp">
+        <VirtualApplication name="CRM" physicalDirectory="..\..\..\Assets\CRM">
+          <VirtualDirectory name="Scripts" physicalDirectory="..\SampleWebApp\Scripts" />
+          <VirtualDirectory name="Styles" physicalDirectory="..\SampleWebApp\Styles" />
+        </VirtualApplication>
+        <Bindings>
+          <Binding name="HttpIn" endpointName="HttpIn" hostHeader="www.contoso.com" />
+        </Bindings>
+      </Site>
+      <Site name="Litware" physicalDirectory="..\SampleWebApp">
+        <VirtualApplication name="CRM" physicalDirectory="..\..\..\Assets\CRM">
+          <VirtualDirectory name="Scripts" physicalDirectory="..\SampleWebApp\Scripts" />
+          <VirtualDirectory name="Styles" physicalDirectory="..\SampleWebApp\Styles" />
+        </VirtualApplication>
+        <Bindings>
+          <Binding name="HttpIn" endpointName="HttpIn" hostHeader="www.litware.com" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <ConfigurationSettings></ConfigurationSettings>
+    <Endpoints>
+      <InputEndpoint name="HttpIn" protocol="http" port="80" />
+    </Endpoints>
+    <Imports>
+      <Import moduleName="Diagnostics" />
+    </Imports>
+  </WebRole>
+</ServiceDefinition>

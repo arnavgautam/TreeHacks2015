@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>Win8PushNotificationsAzureJS</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+    <Technology>Windows 8 Style UI apps</Technology>
+  </Technologies>
+  <Author>
+    <Name>.</Name>
+  </Author>
+  <Description>In this hands-on lab, you will learn how to deploy a version of the Windows Azure Toolkit for Windows 8 to Windows Azure and then utilize this deployment to send notifications to your client application via the Windows Push Notification Service (WNS).</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Sending Windows 8 Push Notifications using Windows Azure and the Windows Push Notification Service (JS)</Title>
+  <Version>1.3.3</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentType" Value="VS2012" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-Windows8NotificationsHTMLJS/" />
+  </CustomProperties>
+</Lab>

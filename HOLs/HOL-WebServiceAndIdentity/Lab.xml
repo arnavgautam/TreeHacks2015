@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>WebServicesandIdentityinWindowsAzure</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+    <Technology>Visual Studio</Technology>
+  </Technologies>
+  <Author>
+    <Name></Name>
+  </Author>
+  <Description>In this hands-on lab, you will learn how to use claims-based identity for handling authentication and access management for your WCF services hosted in Windows Azure.</Description>
+  <Document ConversionType="Html">HOL.md</Document>
+  <Title>Web Services and Identity in Windows Azure</Title>
+  <Version>1.0.3</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker>.\source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentTag" Value="1.7" />
+    <Property Name="ContentType" Value="VS2010" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-WebServiceAndIdentity" />
+  </CustomProperties>
+</Lab>

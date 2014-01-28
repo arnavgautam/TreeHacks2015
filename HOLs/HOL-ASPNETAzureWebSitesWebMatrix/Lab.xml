@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>ASPNETAppsWithWAZWebSitesAndWebMatrix2</Id>
+  <Author>
+    <Name></Name>
+  </Author>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+    <Technology>Microsoft WebMatrix</Technology>
+    <Technology>ASP.NET</Technology>
+  </Technologies>
+  <Description>In this hands-on lab you will learn how to use Microsoft WebMatrix 2 to build and publish web sites in Windows Azure. Following the exercises, you will create a new Web Site from the Windows Azure Management Portal and start to build your Web Site locally using WebMatrix. By using a WebMatrix out-of-the-box template, you will quickly create a photo gallery application and customize it by adding a Facebook Like button. Finally, you will publish the resulting web application to Windows Azure using WebMatrix built-in publishing support.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Building and Publishing Web Applications with Windows Azure Web Sites and WebMatrix 2</Title>
+  <Version>1.0.2</Version>
+  <Source></Source>
+  <DependencyChecker></DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentType" Value="OSS" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-ASPNETAzureWebSitesWebMatrix" />
+  </CustomProperties>
+</Lab>

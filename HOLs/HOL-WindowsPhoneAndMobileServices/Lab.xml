@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>WindowsPhoneAndMobileServices</Id>
+  <Technologies>
+    <Technology>Windows Azure Mobile Services</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>This hands-on lab demonstrates how you can leverage Visual Studio 2012 and Windows Azure Mobile Services to add structured storage, push notifications, and integrated authentication to your Windows Phone application.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Getting Started with Windows Azure Mobile Services and Windows Phone</Title>
+  <Version>1.0.0</Version>
+  <Source>.\source</Source>
+  <DependencyChecker>.\source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentType" Value="VS2012" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-WindowsPhoneAndMobileServices" />
+  </CustomProperties>
+</Lab>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>IaaSVMWebRoleVS2012</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Name>Windows Azure</Name>
+  </Author>
+  <Description>In this hands-on lab you will create a Virtual Machine with SQL Server installed using Windows Azure Management Portal. Then you will modify a sample Web application to connect to the SQL Server using a public endpoint.</Description>  
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Connecting a PaaS Application to an IaaS Application</Title>
+  <Version>1.0.1</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentTag" Value="1.8" />
+	<Property Name="ContentType" Value="VS2012" />
+	<Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-ConnectingApplications" />
+  </CustomProperties>   
+</Lab> 

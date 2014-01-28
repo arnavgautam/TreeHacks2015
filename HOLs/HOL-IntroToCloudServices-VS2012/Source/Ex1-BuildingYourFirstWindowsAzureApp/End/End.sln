@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "GuestBook", "GuestBook\GuestBook.ccproj", "{F56D353F-E4EA-450B-9A16-5B296CC6D3E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestBook_WebRole", "GuestBook_WebRole\GuestBook_WebRole.csproj", "{D4FF2F5B-BF47-444C-9993-5809C9E13151}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestBook_Data", "GuestBook_Data\GuestBook_Data.csproj", "{96BE60F2-F946-4D7D-8078-CE711BD80B55}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2EA514BA-9BD2-4C49-A69E-37C5247D3D64}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F56D353F-E4EA-450B-9A16-5B296CC6D3E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F56D353F-E4EA-450B-9A16-5B296CC6D3E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F56D353F-E4EA-450B-9A16-5B296CC6D3E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F56D353F-E4EA-450B-9A16-5B296CC6D3E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4FF2F5B-BF47-444C-9993-5809C9E13151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4FF2F5B-BF47-444C-9993-5809C9E13151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4FF2F5B-BF47-444C-9993-5809C9E13151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4FF2F5B-BF47-444C-9993-5809C9E13151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96BE60F2-F946-4D7D-8078-CE711BD80B55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96BE60F2-F946-4D7D-8078-CE711BD80B55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96BE60F2-F946-4D7D-8078-CE711BD80B55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96BE60F2-F946-4D7D-8078-CE711BD80B55}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

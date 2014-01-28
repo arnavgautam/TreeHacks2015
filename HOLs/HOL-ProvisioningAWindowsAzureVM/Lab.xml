@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+	<Id>ProvisioningAVM</Id>
+	<Author>
+		<Name>David Tesar</Name>
+	</Author>
+	<Description>In this lab you will provision your first Windows Azure Virtual Machine from the Windows Azure Management Portal.</Description>  
+	<Document ConversionType="Html">.\HOL.md</Document>
+	<Title>Provisioning a Windows Azure Virtual Machine</Title>
+	<Version>1.0.0</Version>
+	<CustomProperties>
+		<Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-ProvisioningAWindowsAzureVM" />
+	</CustomProperties>   
+</Lab>

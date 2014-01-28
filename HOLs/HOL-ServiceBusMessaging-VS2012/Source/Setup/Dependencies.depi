@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<DependencyCheckerConfiguration version="2.0">
+	<title>Service Bus Messaging</title>
+	<dependencies>
+		<dependency
+			hint="vwdorvs11azurepack" 
+			name="Windows Azure SDK for .NET" 
+			helpLink="http://www.microsoft.com/windowsazure/sdk/"
+			type="WebPI" />
+	</dependencies>
+	<setupCommands>
+		<setup 
+			command="setup.cmd" 
+			name="Setup Script" 
+			description="Executing setup scripts..." />
+	</setupCommands>
+</DependencyCheckerConfiguration>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="593c5e79-835a-44dd-8d0e-2d69dc419009" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://127.0.0.1:8443/WeatherService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WeatherService3.xsd" MetadataType="Schema" ID="9fe8838a-703e-49f5-82c9-5b3c9f7bdb8c" SourceId="1" SourceUrl="https://127.0.0.1:8443/WeatherService.svc?xsd=xsd0" />
+    <MetadataFile FileName="WeatherService31.xsd" MetadataType="Schema" ID="2821f4a6-fd54-45da-8d88-2c0fc837253b" SourceId="1" SourceUrl="https://127.0.0.1:8443/WeatherService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WeatherService32.xsd" MetadataType="Schema" ID="df146017-c02c-4687-8ef7-a6360a00d178" SourceId="1" SourceUrl="https://127.0.0.1:8443/WeatherService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WeatherService1.disco" MetadataType="Disco" ID="c3cdeec7-0ffa-42cb-ad32-49a8e4a90df8" SourceId="1" SourceUrl="https://127.0.0.1:8443/WeatherService.svc?disco" />
+    <MetadataFile FileName="WeatherService1.wsdl" MetadataType="Wsdl" ID="3c000e1f-a281-4aa7-8d4e-f42433e84a09" SourceId="1" SourceUrl="https://127.0.0.1:8443/WeatherService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

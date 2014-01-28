@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Web
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudShop", "CloudShop\CloudShop.csproj", "{0134C1D0-DAC4-4E8C-9D8F-6684246855FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{855BCA67-C2B7-4368-91E9-F7589699CEE2}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "CloudShop.Azure", "CloudShop.Azure\CloudShop.Azure.ccproj", "{B27C8FFF-4BBB-4A92-A3A3-66DDB6B158D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0134C1D0-DAC4-4E8C-9D8F-6684246855FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0134C1D0-DAC4-4E8C-9D8F-6684246855FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0134C1D0-DAC4-4E8C-9D8F-6684246855FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0134C1D0-DAC4-4E8C-9D8F-6684246855FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B27C8FFF-4BBB-4A92-A3A3-66DDB6B158D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B27C8FFF-4BBB-4A92-A3A3-66DDB6B158D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B27C8FFF-4BBB-4A92-A3A3-66DDB6B158D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B27C8FFF-4BBB-4A92-A3A3-66DDB6B158D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>MigratingASPNETAppsWithWindowsAzure</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name>wwegner</Name>
+  </Author>
+  <Description>In this lab, you will learn how to migrate ASP.NET applications (either MVC or Web Forms) to use the ASP.NET Azure Providers and enable the application to run in Windows Azure.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Migrating ASP.NET Applications to Windows Azure</Title>
+  <Version>3.1.3</Version>
+  <Source>.\source</Source>
+  <DependencyChecker>.\source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentTag" Value="1.8" />
+    <Property Name="ContentType" Value="VS2010" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-MigratingAspNetApps" />
+  </CustomProperties>
+</Lab>

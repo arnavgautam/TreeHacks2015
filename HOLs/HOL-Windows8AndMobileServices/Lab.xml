@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>BuildingWindows8AppsWithWindowsAzureMobileServices</Id>
+  <Technologies>
+    <Technology>Windows Azure Mobile Services</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>
+	The best apps need cloud services. Use this HOL to see how you can leverage Visual Studio 2012 and the new functionality in Windows Azure to add structured storage, integrated authentication and even Push Notifications in literally minutes to your Windows 8 Store app.
+  </Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Introduction to Building Windows Store Apps with Windows Azure Mobile Services</Title>
+  <Version>1.1.2</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentType" Value="VS2012" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-Windows8AndMobileServices" />
+  </CustomProperties>
+</Lab>

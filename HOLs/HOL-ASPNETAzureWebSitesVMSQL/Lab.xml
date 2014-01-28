@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>WebSitesAndVMsNetAndSQL</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+    <Technology>ASP.NET</Technology>
+    <Technology>SQL Server</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>In this hands-on lab you will learn how to create ASP.NET web applications that connect to virtual machines running in Windows Azure. First, you will create a virtual machine with SQL Server 2012 installed using the Windows Azure Management Portal and configure it to allow external connections. Then, you will create a simple ASP.NET MVC 4 web application using Entity Framework that accesses the database in the SQL Server virtual machine. The web application will take advantage of Full-Text Search features in SQL Server 2012 to search for contacts data.  You will complete the lab by deploying the application to Windows Azure Web Sites using Visual Studio.
+  </Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Windows Azure Web Sites and Virtual Machines using ASP.NET and SQL Server</Title>
+  <Version>1.0.4</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentType" Value="VS2010" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-ASPNETAzureWebSitesVMSQL" />
+  </CustomProperties>
+</Lab>

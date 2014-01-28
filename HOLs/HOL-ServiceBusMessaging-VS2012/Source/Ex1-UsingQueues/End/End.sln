@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{85351FDD-DBA1-430F-AB23-059622BE14C7}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "UsingQueues", "UsingQueues\UsingQueues.ccproj", "{ACE9DDF8-055C-4D0B-96E8-EE9645598309}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingQueues.Web", "UsingQueues.Web\UsingQueues.Web.csproj", "{0DE4AEB2-0898-4E42-83A4-020D36B83C43}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACE9DDF8-055C-4D0B-96E8-EE9645598309}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACE9DDF8-055C-4D0B-96E8-EE9645598309}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACE9DDF8-055C-4D0B-96E8-EE9645598309}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACE9DDF8-055C-4D0B-96E8-EE9645598309}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DE4AEB2-0898-4E42-83A4-020D36B83C43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DE4AEB2-0898-4E42-83A4-020D36B83C43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DE4AEB2-0898-4E42-83A4-020D36B83C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DE4AEB2-0898-4E42-83A4-020D36B83C43}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

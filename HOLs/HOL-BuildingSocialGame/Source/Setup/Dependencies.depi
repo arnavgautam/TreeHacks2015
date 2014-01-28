@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DependencyCheckerConfiguration version="2.0">
+	<title>Building a Social Game with Windows Azure</title>
+	<dependencies>
+		<dependency
+			hint="VWDOrVs2010SP1AzurePack"
+			name="Windows Azure SDK for .NET"
+			helpLink=""
+			disableSkip="false"
+			type="WebPI" />
+		
+		<dependency 
+			hint="ASP.NET MVC 4.*" 
+			name="Microsoft ASP.NET MVC 4" 
+			description="ASP.NET MVC 4 is a framework for building scalable, standards-based web applications using well-established design patterns and the power of ASP.NET and the .NET Framework." 
+			helpLink="http://www.asp.net/mvc/mvc4" 
+			type="Uninstall" />
+
+		<dependency 
+			hint="Windows Identity Foundation SDK 4.0;6.1.7600.16436" 
+			name="Windows Identity Foundation SDK 4.0" 
+			description="The Windows Identity Foundation SDK provides templates for use with Visual Studio and code samples. This download requires the Windows Identity Foundation runtime be present." 
+			helpLink="http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=4451" 
+			type="Uninstall" />
+			
+		<dependency 
+			hint="WIF" 
+			name="Windows Identity Foundation" 
+			helpLink="http://msdn.microsoft.com/en-us/security/aa570351" 
+			type="WebPI" /> 
+    </dependencies>
+  <setupCommands>
+    <setup 
+		command="Setup.cmd" 
+		name="Setup Script" 
+		description="Executing setup scripts..." />
+  </setupCommands>	
+</DependencyCheckerConfiguration>

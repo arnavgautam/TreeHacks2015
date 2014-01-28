@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CloudShop.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+        <meta name="viewport" content="width=device-width" />
+        <link href="/Styles/Site.css" rel="stylesheet" type="text/css" />
+        <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </head>
+    <body>
+    <form id="form1" runat="server">
+        <header>
+            <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">
+                <asp:HyperLink ID="HyperLink11" runat="server" Text="Cloud Shop" NavigateUrl="~/Store/Products.aspx" />
+                </p>
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    <asp:LoginView ID="LoginView1" runat="server">
+                        <AnonymousTemplate>
+                            <li class="first"><a href="../Account/Register.aspx?ReturnUrl=../Store/Products.aspx">Register</a></li>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <li class="first">User:<span class="identity"><%:Page.User.Identity.Name%></span></li>&nbsp;
+                            <li><asp:LoginStatus ID="LoginStatus1" runat="server" onloggedout="OnLoggedOut" /></li>                    
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </section>
+                <nav>
+                    <ul id="menu">
+                        <li class="first <%=Context.Handler.GetType().Name == "store_products_aspx" ? "active" : ""%>">
+                            <asp:HyperLink ID="HyperLink1" runat="server" Text="Products" NavigateUrl="~/Store/Products.aspx" />
+                        </li>
+                        <li class="<%=Context.Handler.GetType().Name == "store_checkout_aspx" ? "active" : ""%>">
+                            <asp:HyperLink ID="HyperLink2" runat="server" Text="Checkout" NavigateUrl="~/Store/Checkout.aspx" />
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        </header>
+        <div id="body">
+            <asp:ContentPlaceHolder ID="Featured" runat="server">
+            </asp:ContentPlaceHolder>
+            <section class="content-wrapper main-content clear-fix">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; <%= DateTime.Now.Year %> - My ASP.NET MVC Application</p>
+                </div>
+                <div class="float-right">
+                    <ul id="social">
+                        <li><a href="http://facebook.com" class="facebook">Facebook</a></li>
+                        <li><a href="http://twitter.com" class="twitter">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        
+        <asp:ContentPlaceHolder ID="Scripts" runat="server" />
+    </form>
+    </body>
+</html>

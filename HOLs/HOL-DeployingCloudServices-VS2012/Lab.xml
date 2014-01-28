@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>DeployingApplicationsinWindowsAzureVS2012</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name>wwegner</Name>
+  </Author>
+  <Description>In this hands-on lab you will learn how to deploy your Cloud Services in Windows Azure. The lab walks through the process using a simple application named myTODO, which is a simple list creation and management application built using ASP.NET MVC. The lab shows the steps required for provisioning the required components in the Windows Azure Management Portal, uploading the service package, and configuring the service. You will see how you can test your application in a staging environment and then promote it to production once you are satisfied that it is operating according to your expectations.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Deploying Cloud Services in Windows Azure VS2012</Title>
+  <Version>3.1.3</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentTag" Value="1.8" />
+    <Property Name="ContentType" Value="VS2012" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-DeployingCloudServices-VS2012" />
+  </CustomProperties>
+</Lab>

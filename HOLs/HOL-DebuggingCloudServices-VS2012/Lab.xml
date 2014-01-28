@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>DebuggingAppsVS2012</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>This hands-on lab is a step-by-step guide that is designed to help you debug a simple application by configuring a special trace listener that can write its output directly into a table in Windows Azure storage emulator. To produce diagnostic data, you instrument the application to write its trace information using standard methods in the System.Diagnostics namespace. Finally, you create a simple log viewer application that can retrieve and display the contents of the diagnostics table.</Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Debugging Applications in Windows Azure</Title>
+  <Version>2.0.1</Version>
+  <Source>.\source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="ContentTag" Value="1.8" />
+    <Property Name="ContentType" Value="VS2012" />
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-DebuggingCloudServices-VS2012" />
+  </CustomProperties>
+</Lab>

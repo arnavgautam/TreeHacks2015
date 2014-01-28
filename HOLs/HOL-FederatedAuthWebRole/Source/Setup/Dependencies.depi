@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DependencyCheckerConfiguration version="2.0">
+	<title>Federated Authentication in a Windows Azure Cloud Service</title>
+	<dependencies>
+		<dependency
+			hint="VWDOrVs2010SP1AzurePack"
+			name="Windows Azure SDK for .NET"
+			helpLink=""
+			disableSkip="false"
+			type="WebPI" />
+		<dependency 
+			hint="Windows Identity Foundation SDK 4.0;6.1.7600.16436" 
+			name="Windows Identity Foundation SDK 4.0" 
+			description="The Windows Identity Foundation SDK provides templates for use with Visual Studio and code samples. This download requires the Windows Identity Foundation runtime be present." 
+			helpLink="http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=4451" 
+			type="Uninstall" />
+		<dependency 
+			hint="HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows Identity Foundation\Setup\v3~.5.(Default),HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Identity Foundation\Setup\v3~.5.(Default);6.1.7600.0" 
+			name="Windows Identity Foundation Runtime" 
+			description="Windows Identity Foundation Runtime" 
+			helpLink="http://support.microsoft.com/kb/974405" 
+			type="Registry" />			
+	</dependencies>
+  <setupCommands>
+    <setup 
+		command="setup.cmd" 
+		name="Setup Script" 
+		description="Executing setup scripts..." />
+  </setupCommands>	
+</DependencyCheckerConfiguration>
+
+    

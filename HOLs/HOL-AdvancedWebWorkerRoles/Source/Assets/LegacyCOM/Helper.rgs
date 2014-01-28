@@ -1,0 +1,26 @@
+HKCR
+{
+	LegacyCOM.Helper.1 = s 'Helper Class'
+	{
+		CLSID = s '{85D5A85C-609C-4968-8B9E-CED6821D0C0D}'
+	}
+	LegacyCOM.Helper = s 'Helper Class'
+	{		
+		CurVer = s 'LegacyCOM.Helper.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {85D5A85C-609C-4968-8B9E-CED6821D0C0D} = s 'Helper Class'
+		{
+			ProgID = s 'LegacyCOM.Helper.1'
+			VersionIndependentProgID = s 'LegacyCOM.Helper'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{7B4A0894-C5C9-488F-B695-274F102E47DA}'
+			Version = s '1.0'
+		}
+	}
+}
