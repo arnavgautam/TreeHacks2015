@@ -1,0 +1,27 @@
+﻿<configuration>	
+
+   <!-- Source Blobs for this Demonstration. Do not change. -->
+   <blobsToCopy>
+     <url>http://dpedemoassetswest.blob.core.windows.net/demos/simpleaddemo/adosdisk.vhd</url>
+   </blobsToCopy>
+
+   <!-- Your Storage Account that the above blobs will be copied into -->
+   <storageAccount>
+     <name>[STORAGE ACCOUNT]</name>
+     <key>[STORAGE KEY]</key>
+     <container>[STORAGE CONTAINER]</container>
+   </storageAccount>
+
+   <!-- Name of the cloud service the Active Directory Domain Controller will be created in (MUST BE UNIQUE)-->
+   <!-- The cleanup script will delete this service and all VMs under it to reset the demo -->
+   <cloudServiceName1>[AD Member Server Cloud Service]</cloudServiceName1> 
+
+   <!-- Name of the cloud service the Active Directory Member Servers will be created in (MUST BE UNIQUE)-->
+   <!-- The cleanup script will delete this service and all VMs under it to reset the demo -->
+   <cloudServiceName2>[AD Member Server Cloud Service]</cloudServiceName2> 
+
+   <!-- Your subscription name as configured for PowerShell. --> 
+   <!-- Can be found by opening C:\Users\youruser\AppData\Roaming\Windows Azure Powershell\DefaultSubscriptionData.xml  -->
+   <subscriptionName>[SUBSCRIPTION NAME]</subscriptionName>
+
+</configuration>

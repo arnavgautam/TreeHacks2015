@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>ConnectingCloudServices</Id>
+  <Technologies>
+    <Technology>Windows Azure</Technology>
+  </Technologies>
+  <Author>
+    <Name>sklein</Name>
+    <Blog></Blog>
+    <Email></Email>
+  </Author>
+  <Description>This demonstration will show how to connect a traditional Windows Azure Web role to a virtual machine running SQL server using a virtual network.</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Connecting Cloud Services</Title>
+  <Version>1.1.2</Version>
+  <Source>Source</Source>
+  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-ConnectingCloudServices" />
+  </CustomProperties>
+</Demo>

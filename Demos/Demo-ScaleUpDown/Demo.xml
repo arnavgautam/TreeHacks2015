@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>ScaleUpDown</Id>
+  <Author>
+    <Name></Name>
+    <Blog></Blog>
+    <Email></Email>
+  </Author>
+  <Description>This demo shows how using some simple PowerShell scripts and a task scheduler job you can easily scale an application up or demand on a schedule.</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Scaling Up or Down</Title>
+  <Version>1.0.2</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker></DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-ScaleUpDown" />
+  </CustomProperties>
+</Demo>

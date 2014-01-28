@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>Demo-DeployingHybrid</Id>
+  <Author>
+    <Name>Michael Washam</Name>
+    <Blog>http://michaelwasham.com</Blog>
+    <Email>mwasham@microsoft.com</Email>
+  </Author>
+  <Description>This click through demo shows how you configuring a site to site virtual network with Windows Azure (Click Through)</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Deploying Hybrid</Title>
+  <Version>1.0.1</Version>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-DeployingHybrid" />
+  </CustomProperties>
+</Demo>

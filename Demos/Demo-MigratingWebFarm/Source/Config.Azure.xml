@@ -1,0 +1,31 @@
+﻿<configuration>	
+
+   <!-- Source Blobs for this Demonstration. Do not change. -->
+   <blobsToCopy>
+     <url>http://dpedemoassetswest.blob.core.windows.net/demos/migratingwebfarmdemo/iisvm1.vhd</url>
+     <url>http://dpedemoassetswest.blob.core.windows.net/demos/migratingwebfarmdemo/iisvm2.vhd</url>
+     <url>http://dpedemoassetswest.blob.core.windows.net/demos/migratingwebfarmdemo/sqlvm1.vhd</url>
+     <url>http://dpedemoassetswest.blob.core.windows.net/demos/migratingwebfarmdemo/AdventureWorks.bak</url>
+     <url>http://dpedemoassetswest.blob.core.windows.net/demos/migratingwebfarmdemo/azurestore.zip</url>
+   </blobsToCopy>
+
+   <!-- Your Storage Account that the above blobs will be copied into -->
+   <storageAccount>
+     <name>[STORAGE-ACCOUNT-NAME]</name>
+     <key>[STORAGE-KEY]</key>
+     <container>[STORAGE-CONTAINER]</container>
+   </storageAccount>
+
+   <!-- Name of the cloud service the web farm VMs created from the setup script will use (MUST BE UNIQUE)-->
+   <!-- The cleanup script will delete this service and all VMs under it to reset the demo -->
+   <cloudServiceName1>[CLOUD-SERVICE-NAME-1]</cloudServiceName1> 
+
+   <!-- Name of the cloud service the web farm VMs created during the PowerShell demo will use (MUST BE UNIQUE) --> 
+   <!-- The cleanup script will delete this service and all VMs under it to reset the demo -->
+   <cloudServiceName2>[CLOUD-SERVICE-NAME-2]</cloudServiceName2>
+
+   <!-- Your subscription name as configured for PowerShell. --> 
+   <!-- Can be found by opening C:\Users\youruser\AppData\Roaming\Windows Azure Powershell\DefaultSubscriptionData.xml  -->
+   <subscriptionName>[SUBSCRIPTION-NAME]</subscriptionName>
+
+</configuration>

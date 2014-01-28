@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>DeployingADDemo</Id>
+  <Author>
+    <Name>Michael Washam</Name>
+    <Blog>http://michaelwasham.com</Blog>
+    <Email>mwasham@microsoft.com</Email>
+  </Author>
+  <Description>This demo shows how you can deploy a domain controller in Windows Azure.</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Deploying Active Directory</Title>
+  <Version>1.0.3</Version>
+  <Source>.\Source</Source>
+  <DependencyChecker></DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-DeployingAD" />
+  </CustomProperties>
+</Demo>

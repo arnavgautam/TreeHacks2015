@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>ImagingVMs</Id>
+  <Author>
+    <Name></Name>
+    <Blog></Blog>
+    <Email></Email>
+  </Author>
+  <Description>In this demo, you will show how to generalize a customized Windows virtual machine and capture it as an image.</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Imaging Virtual Machines</Title>
+  <Version>1.0.2</Version>
+  <Source></Source>
+  <DependencyChecker></DependencyChecker>
+  <CustomProperties>
+    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-ImagingVMs" />
+  </CustomProperties>
+</Demo>

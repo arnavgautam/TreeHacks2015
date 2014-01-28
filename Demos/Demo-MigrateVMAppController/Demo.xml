@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>Demo-MigrateVMAppController</Id>
+  <Author>
+    <Name>Michael Washam</Name>
+    <Blog>http://michaelwasham.com</Blog>
+    <Email>mwasham@microsoft.com</Email>
+  </Author>
+  <Description>This demo shows how you can migrate a VM to the cloud using System Center AppController (Click Through)</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Migrating a Virtual Machine using AppController</Title>
+  <Version>1.0.1</Version>
+  <!-- <CustomProperties>    
+		<Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/Demo-MigrateVMAppController" />
+		</CustomProperties>  	-->
+</Demo>
