@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Table";
+}
+
+<br />
+<div id="customers">
+    <div class="row">
+        <label class="col-xs-1 control-label">Company</label>
+        <div class="col-xs-9">
+            <select class="form-control" data-bind="options:companies, value: company"></select>
+        </div>
+        <label>Elapsed Time: <span data-bind="text: elapsedTime"></span> ms</label>
+    </div>
+    <h3>Customers</h3>
+    <table class="customertable table table-striped table-hover">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Comment</td>
+                <td>Value</td>
+                <td>Contract Date</td>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach:customers">
+            <tr>
+                <td data-bind="text: id"></td>
+                <td data-bind="html: name"></td>
+                <td data-bind="html: comment" style="width:300px"></td>
+                <td data-bind="text: value" style="text-align:right"></td>
+                <td data-bind="html: contractDate"></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5" style="align-content:center">
+                    <table>
+                        <tr>
+                            <td><button class="btn btn-default" data-bind="click:previousPage">Previous Page</button></td>
+                            <td><input data-bind="value:currentPage" class="form-control"  /></td>
+                            <td><button class="btn btn-default" data-bind="click:nextPage">Next Page</button></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+@section scripts{
+    <script src="~/Scripts/knockout-3.0.0.js"></script>
+    <script>
+        function customerVM(id, name, company, value, comment, contractDate) {
+            var self = this;
+            self.id = id;
+            self.name = name;
+            self.company = company;
+            self.value = value;
+            self.comment = comment;
+            self.contractDate = contractDate;
+        };
+        function customersVM() {
+            var self = this;
+            self.customers = ko.observableArray([]);
+            self.company = ko.observable('Company0');
+            self.currentPage = ko.observable(1);
+            self.pageSize = 40;
+            self.companies = ko.observableArray(['Company0', 'Company1']);
+            self.elapsedTime = ko.observable(0);
+            self.refresh = function () {
+                $.getJSON("/api/TableData/GetTable?partition=" + self.company()
+                    + "&startId=" + padZeros((self.currentPage() - 1) * self.pageSize, 7)
+                    + "&endId=" + padZeros(self.currentPage() * self.pageSize - 1, 7), function (json) {
+                        self.customers.removeAll();
+                        $.each(json.Customers, function (key, val) {
+                            self.customers.push(new customerVM(val.Id, val.Name, val.Company, val.Value, val.Comment, val.ContractDate));
+                        });
+                        self.elapsedTime(json.ElapsedTime);
+                    });
+            };
+            self.previousPage = function () {
+                if (self.currentPage() > 1) {
+                    self.currentPage(self.currentPage() - 1);
+                }
+            };
+            self.nextPage = function () {
+                if (self.currentPage() < 1000000 / self.pageSize) {
+                    self.currentPage(parseInt(self.currentPage()) + 1);
+                }
+            };
+            self.currentPage.subscribe(function () {
+                self.refresh();
+            });
+            self.company.subscribe(function () {
+                self.refresh();
+            });
+        };
+        function padZeros(num, size) {
+            var s = "000000000" + num;
+            return s.substr(s.length - size);
+        };
+        var vm = new customersVM();
+        $(function () {
+            ko.applyBindings(vm, customers);
+            vm.refresh();
+        });
+    </script>
+}

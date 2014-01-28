@@ -5,7 +5,7 @@
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.Caching.ClientDiagnosticLevel" value="1" />
-      <Setting name="StorageClient" value="DefaultEndpointsProtocol=https;AccountName=testwacelstorage;AccountKey=hn7tWTOPQj1oWl9er+sJ3YClPFOWBlZtH04xw3NyxHcSpN+t353w0sQqe+boFdPIz2YaUMLXTWOVPeaJyyj7ZA==" />
+      <Setting name="StorageClient" value="UseDevelopmentStorage=true" />
     </ConfigurationSettings>
   </Role>
   <Role name="CacheWorkerRole">
@@ -16,7 +16,6 @@
       <Setting name="Microsoft.WindowsAzure.Plugins.Caching.DiagnosticLevel" value="1" />
       <Setting name="Microsoft.WindowsAzure.Plugins.Caching.CacheSizePercentage" value="" />
       <Setting name="Microsoft.WindowsAzure.Plugins.Caching.ConfigStoreConnectionString" value="UseDevelopmentStorage=true" />
-      <Setting name="Microsoft.WindowsAzure.Plugins.Caching.ClientDiagnosticLevel" value="1" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>
