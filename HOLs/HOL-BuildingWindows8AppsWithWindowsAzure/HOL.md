@@ -430,7 +430,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 
 1. In Solution Explorer, right-click the **WebApi** project and select **Build**.
 
-	> **Note:** If you build the entire solution you will get errors, because the Windows Store app client is still incomplete.
+	> **Note:** If you build the entire solution, including both projects, you will get errors, because the Windows Store app client is still incomplete.
 
 1. In Solution Explorer, right-click the **Controllers** folder of the Web API project and select **Add | New Scaffolded Item...** to open the **Add Scaffold** dialog box.
 
@@ -1081,7 +1081,7 @@ In this task you will create a **Windows Azure Notification Hub** using the **Wi
 
 	_Specifying your Notification Hub name_
 
-1. Wait until the new namespace is ready and click on it.
+1. Wait until the new namespace appears as **Active** and click on it.
 
 	![Selecting the new namespace](Images/selecting-the-new-namespace.png?raw=true "Selecting the new namespace")
 	
@@ -1099,7 +1099,13 @@ In this task you will create a **Windows Azure Notification Hub** using the **Wi
 
 	_Configuring the WNS credentials_
 
-1. Select the tab **Dashboard** at the top, and then click **Connection Information**. Take note of the two connection strings.
+1. Select the tab **Dashboard** at the top, and then click **View Connection String** in the **quick glance** section. 
+
+	![Viewing the connection strings](Images/viewing-the-connection-strings.png?raw=true "Viewing the connection strings")
+
+	_Viewing the connection strings_
+
+1. In the **Access connection information** dialog box, take note of the two connection strings.
 
 	![Taking note of the connection strings](Images/taking-note-of-the-connection-strings.png?raw=true "Taking note of the connection strings")
 
@@ -1168,6 +1174,8 @@ In this task you will use the Windows Azure Notification Hub created and configu
 1. Go to the **WebApi** solution and open the **Package Manager Console** from the **Tools | Library Package Manager** menu.
 
 1. Make sure that **WebApi** is selected as **Default project**.
+
+	![Making sure that WebApi is selected as Default project](Images/making-sure-that-webapi-is-selected-as-defaul.png?raw=true "Making sure that WebApi is selected as Default project")
 
 1. Add a reference to the Windows Azure Service Bus SDK with the **WindowsAzure.ServiceBus** NuGet package.
 
