@@ -6,7 +6,7 @@
 <a name="Overview" />
 ## Overview ##
 
-Windows Azure Cache Service provides a distributed, cost-effective in-memory cache for your Cloud Services. With Cache Service enabled on your Cloud Services roles, you can utilize spare memory on your service hosts as high performance cache to improve response time and system throughput. And because the cache hosts are collocated with your Cloud Service roles, you get optimal access time by avoiding external service calls. In this lab, you will learn how easy it is to enable Cache Service on your Cloud Services roles, and how to use Cache Service to provide high performance in-memory caching to your Cloud Services.
+Windows Azure Cache Service provides a distributed, cost-effective in-memory cache for your Cloud Services. With Cache Service enabled on your Cloud Services roles, you can utilize spare memory on your service hosts as high performance cache to improve response time and system throughput. And because the cache hosts are collocated with your Cloud Service roles, you get optimal access time by avoiding external service calls. In this lab, you will learn how easy it is to enable Cache Service on your Cloud Services roles, how to use Cache Service to provide high performance in-memory caching to your Cloud Services, and how to use WACEL as a high-level data structure built on top of Windows Azure Table Storage.
 
 <a name="Objectives" />
 ### Objectives ###

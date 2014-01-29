@@ -7,16 +7,16 @@
   <Author>
     <Blog></Blog>
     <Email></Email>
-    <Name>wwegner</Name>
+    <Name></Name>
   </Author>
-  <Description>In this hands-on lab you will learn how to easily enable Cache service on your Cloud Service roles utilizing free memory space on your virtual machines. You'll go through the process of setting up persistent session states as well as using in-memory cache to avoid repetitive database queries.  At last, you'll build an abstraction layer on top of different caching providers.</Description>
+  <Description>
+    In this hands-on lab you will learn how easy it is to enable Cache Service on your Cloud Services roles, how to use Cache Service to provide high performance in-memory caching to your Cloud Services, and how to use WACEL as a high-level data structure built on top of Windows Azure Table Storage.
+  </Description>
   <Document ConversionType="Html">.\HOL.md</Document>
   <Title>Building Windows Azure Cloud Services with Cache Service</Title>
   <Version>2.2.1</Version>
   <Source>.\Source</Source>
-  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
   <CustomProperties>
-    <Property Name="ContentType" Value="VS2012" />
-    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-BuildingAppsWithCaching" />
+    <Property Name="ContentType" Value="VS2013" />
   </CustomProperties>
 </Lab>
