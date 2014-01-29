@@ -13,25 +13,30 @@ Windows Azure Cache Service provides a distributed, cost-effective in-memory cac
 In this hands-on lab, you will learn how to:
 
 - Easily and quickly enable Cache service.
-- Use Cache Service for your Asp.Net session state.
+- Use Cache Service for your ASP.NET session state.
 - Cache reference data from Windows Azure SQL Database in Cache Service.
 - Create a reusable and extensible caching layer for your Cloud Services.
+- Use WACEL as a high-level layer on top of Windows Azure Table Storage.
 
-During this lab, you will explore how to use these features in a simple Asp.Net MVC4 application.
+During this lab, you will explore how to use these features in a simple ASP.NET MVC5 application.
 
-<a name="Prerequisites" />
+<a name="Prerequisites"></a>
 ### Prerequisites ###
 
 The following is required to complete this hands-on lab:
 
-- [Microsoft Visual Studio 2012 Express for Web][1] or higher
-- [Windows Azure Tools for Microsoft Visual Studio 2.0][2]
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Visual Studio Express 2013 for Web][1] or greater
+
+- [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)][2]
+
+- A Windows Azure subscription
+	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start developing and testing on Windows Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 
 [1]: http://www.microsoft.com/visualstudio/
-[2]: http://www.windowsazure.com/en-us/develop/downloads/
-[3]: http://aka.ms/WATK-FreeTrial
-[4]: http://www.microsoft.com/en-us/download/details.aspx?id=38188
+[2]: http://www.microsoft.com/windowsazure/sdk/
 
 <a name="Setup" />
 ### Setup ###
@@ -945,4 +950,4 @@ This is a list of developer-oriented articles related to **Building Windows Azur
 <a name="Summary" />
 ## Summary ##
 
-In this hands-on lab, you explored the use of the Windows Azure Cache Service. You saw how to configure session state to be cached across a cache cluster, allowing sessions to be preserved in the presence of restarts and across multiple role instances hosting the application. In addition, you learnt the basics of data caching with Windows Azure and in particular, how to cache the results of queries to a Windows Azure SQL Database. Finally, you looked at a reusable caching layer implementation that will allow you to add a caching layer to your applications in a very simple manner.
+In this hands-on lab, you explored the use of the Windows Azure Cache Service. You saw how to configure session state to be cached across a cache cluster, allowing sessions to be preserved in the presence of restarts and across multiple role instances hosting the application. In addition, you learnt the basics of data caching with Windows Azure and in particular, how to cache the results of queries to a Windows Azure SQL Database. Finally, you looked at WACEL, a high-level layer on top of Windows Azure Table Storage that allows you to add a caching layer to your applications in a very simple way.
