@@ -51,6 +51,8 @@ In order to run the exercises in this hands-on lab you need to set up your envir
 
 >_Windows Azure SQL Database setup_
 
+> The **Setup.cmd** script will also populate your Windows Azure Storage account with sample data, which you will use in Exercise 3 to make tests and analyze the efficiency of WACEL. If you don't have an account yet you can follow [this guide](http://www.windowsazure.com/en-us/documentation/articles/storage-create-storage-account/) in order to create one.
+
 
 <a name="CodeSnippets" />
 ### Using the Code Snippets ###
@@ -639,7 +641,7 @@ You should be aware of this when using the cache in your own applications and co
 
 <a name="Exercise3" />
 ### Exercise 3: Caching common data patterns with WACEL ###
-This exercise will show you how to use WACEL as a high-level data structure built on top a Windows Azure table. Then you will configure WACEL to use In-Role cache to cache the data.
+This exercise will show you how to use WACEL as a high-level data structure built on top a Windows Azure Table Storage. Then you will configure WACEL to use In-Role cache to cache the data.
 
 <a name="Ex3Task1" />
 #### Task 1 - Retrieving data from Azure Storage Tables using WACEL ####
