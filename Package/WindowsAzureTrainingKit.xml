@@ -34,7 +34,7 @@
     	<Lab>..\HOLs\HOL-ASPNETAzureWebSites</Lab>
         <Lab>..\HOLs\HOL-AutomatingVMManagementPS</Lab>
       	<!-- <Lab>..\HOLs\HOL-BuildingAppsWithCaching</Lab> -->
-    	<!-- <Lab>..\HOLs\HOL-BuildingWindows8AppsWithWindowsAzure</Lab> -->
+    	<Lab>..\HOLs\HOL-BuildingWindows8AppsWithWindowsAzure</Lab>
         <Lab>..\HOLs\HOL-DebuggingCloudServices</Lab>
         <Lab>..\HOLs\HOL-DeployingActiveDirectoryPS</Lab>
     	<Lab>..\HOLs\HOL-GettingStartedWindowsAzureStorage</Lab>
