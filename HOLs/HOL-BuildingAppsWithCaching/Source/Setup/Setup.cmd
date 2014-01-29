@@ -22,7 +22,7 @@ ECHO.
 CD "%~dp0"
 ECHO Generate Demo Data
 ECHO -------------------------------------------------------------------------------
-CALL .\Scripts\UploadDemoData.cmd
+CALL .\Scripts\ConfigureStorageAccount.cmd
 ECHO Done!
 ECHO.
 ECHO *******************************************************************************
