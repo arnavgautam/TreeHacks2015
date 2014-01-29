@@ -14,7 +14,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Data.Json;
 
-
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Win8Client
@@ -27,11 +26,6 @@ namespace Win8Client
         public MainPage()
         {
             this.InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            this.GetItems();
         }
 
         public async void GetItems()
@@ -57,5 +51,9 @@ namespace Win8Client
             }
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.GetItems();
+        }
     }
 }
