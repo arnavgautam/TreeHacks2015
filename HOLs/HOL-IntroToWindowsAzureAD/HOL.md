@@ -311,15 +311,164 @@ TBC
 
 1.	Minimize Visual Studio and go back to the **Management Portal**. Go to your Active Directory tenant and click **Applications**.
 
-1. Select the new **ExpenseReport** application in the **Applications** list.
+1. Click on the arrow next to the **ExpenseReport** application in the **Applications** list to go to the dashboard.
 
 	![Selecting the ExpenseReport application](Images/selecting-the-expensereport-application.png?raw=true "Selecting the ExpenseReport application")
 
 	_Selecting the ExpenseReport application_
 
-1. TBC: see what is important to show in the portal (e.g. config section)
+1.	In the application dashboard, you can get the necessary information to enable single sign-on with Windows Azure AD. You will then see were the **Federation Metadata Document URL** and **app ID URI** were configured in your MVC application.
+
+	![Application Dashboard](Images/application-dashboard.png?raw=true "Application Dashboard")
+
+	_Application dashboard_
+
+1. Switch to the **Configure** tab by clicking on the **Configure** button on the top of the page.
+
+	![Configure button](Images/configure-button.png?raw=true "Configure button")
+
+	_Configure button_
+
+1. In the **Properties** section, you can check the **SIGN-ON URL** which is the URL where users can sign in and use your app. You can also see the **CLIENT ID** which is the unique identifier for your app. 
+
+	![Properties section in Configure tab](Images/properties-group-in-configure-section.png?raw=true "Properties section in Configure tab")
+
+	_Properties section in Configure tab_
+
+	>**Note:** You will need to use the **CLIENT ID** if your app calls another service, such as the Windows Azure AD Graph API, to read or write data.
+
+1. In the **single sign-on** section you can find two important properties that are used in the Single sign-on flow. These properties are **APP ID URI:** and **REPLY URL:**.
+
+	![Single sign-on section in Configure tab](Images/single-sign-on-section-in-configure-tab.png?raw=true "Single sign-on section in Configure tab")
+
+	_Single sign-on section in Configure tab_
+
+	> **Note:** In this screen the Windows Azure Management Portal shows important coordinates which the service needs to drive the sign-in protocol flow.
+	>
+	> * **APP ID URI:** this parameter represents the identifier of your web application. Windows Azure AD uses this value at sign-on time, to determine that the authentication request is meant to enable a user to access this particular application - among all the ones registered - so that the correct settings can be applied. The APP ID URI must be unique within the directory tenant. A good default value for it is the APP URL value itself, however with that strategy the uniqueness constraint is not always easy to respect: developing the app on local hosting environments such as IIS Express and the Windows Azure Fabric Emulator tend to produce a restricted range of addresses that will be reused by multiple developers or even multiple projects from the same developer.
+	>
+	> * **REPLY URL:** This parameter represents the address of your web application. Windows Azure AD needs to know your application's address so that, after a user successfully authenticated on Windows Azure AD's pages, it can redirect the flow back to your application.
+
 
 1. Switch back to Visual Studio.
+
+1. Open the **Web.config** file in order to check the authentication configuration of your application.
+
+1. In the **AppSettings** section there are three new key: **ida:FederationMetadataLocation**, **ida:Realm** and **ida:AudienceUri**. Those values were configured with the Federation Metadata Document and the Aapp ID Uri of your application. The **IdentityConfig** class reads this values to configure identity when the application starts.
+
+	<!-- mark:6-8 -->
+	````XML
+	<appSettings>
+		<add key="webpages:Version" value="3.0.0.0" />
+		<add key="webpages:Enabled" value="false" />
+		<add key="ClientValidationEnabled" value="true" />
+		<add key="UnobtrusiveJavaScriptEnabled" value="true" />
+		<add key="ida:FederationMetadataLocation" value="https://login.windows.net/yourorganization.onmicrosoft.com/FederationMetadata/2007-06/FederationMetadata.xml" />
+		<add key="ida:Realm" value="https://yourorganization.onmicrosoft.com/ExpenseReport" />
+		<add key="ida:AudienceUri" value="https://yourorganization.onmicrosoft.com/ExpenseReport" />
+	</appSettings>
+	````
+
+1. The **identityConfiguration** element in **IdentityModel** section determines the behavior of the app during the authentication phase
+
+	<!-- mark:4-6 -->
+	````XML
+	<system.identityModel>
+		<identityConfiguration>
+			<issuerNameRegistry type="ExpenseReport.Utils.DatabaseIssuerNameRegistry, ExpenseReport" />
+			<audienceUris>
+				<add value="https://yourorganization.onmicrosoft.com/ExpenseReport" />
+			</audienceUris>
+			<securityTokenHandlers>
+				<add type="System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler, System.IdentityModel.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+				<remove type="System.IdentityModel.Tokens.SessionSecurityTokenHandler, System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+			</securityTokenHandlers>
+			<certificateValidation certificateValidationMode="None" />
+		</identityConfiguration>
+	</system.identityModel>
+	````
+
+1. The **federationConfiguration** element in  **system.identitymodel.services** section provides the coordinates that are necessary for driving WS-Federation flows: the address of the authority to be used for sign-on requests, the identifier of the app itself to be included in requests, and so on.
+
+	<!-- mark:4 -->
+	````XML
+	<system.identityModel.services>
+		<federationConfiguration>
+			<cookieHandler requireSsl="true" />
+			<wsFederation passiveRedirectEnabled="true" issuer="https://login.windows.net/yourorganization.onmicrosoft.com/wsfed" realm="https://yourorganization.onmicrosoft.com/ExpenseReport" requireHttps="true" />
+		</federationConfiguration>
+	</system.identityModel.services>
+	````
+
+1.	The application is configured to handle authentication via blanket redirects. That means that, if you try to access this View after a successful sign out you will be immediately redirected to Windows Azure AD to sign in again. To avoid that behavior, the **\<location\>** element in the web.config  is used to create one exception to the authentication policy. Open **Web.config** and locate the **\<location path="Account"\>** tag.
+
+	<!-- mark:4-10 -->
+	````XML
+	<configuration>
+		...
+		</appSettings>
+		<location path="Account">
+			<system.web>
+				<authorization>
+					<allow users="*" />
+				</authorization>
+			</system.web>
+		</location>
+		<system.web>
+		...
+	</configuration>
+	````
+
+1. Now open the **Global.axax.cs** file. There is a new method called **WSFederationAuthenticationModule_RedirectingToIdentityProvider**. It's invoked when the module is going to redirect the user to the identity provider. The method updates the **Realm** property of the **SignInRequestMessage** object with the one in the **IdentityConfig** class. The **IdentityConfig** class is configured in the **Application_Start** event.
+
+	<!-- mark:4,10-16 -->
+	````C#
+	protected void Application_Start()
+	{
+		AreaRegistration.RegisterAllAreas();
+		IdentityConfig.ConfigureIdentity();
+		FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+		RouteConfig.RegisterRoutes(RouteTable.Routes);
+		BundleConfig.RegisterBundles(BundleTable.Bundles);
+	}
+
+	void WSFederationAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
+	{
+		if (!String.IsNullOrEmpty(IdentityConfig.Realm))
+		{
+			 e.SignInRequestMessage.Realm = IdentityConfig.Realm;
+		}
+	}
+	````
+
+1. Open the **IdentityConfig.cs** file
+
+1. Your application accepts tokens coming from your Windows Azure AD tenant of choice. It is common security practice to regularly renew cryptographic keys, and Windows Azure AD signing keys are no exception: at fixed time intervals intervals the old keys will be retired, and new ones will take their place in the issuer's signing logic and in your tenant's metadata document. The **RefreshValidationSettings** method called in the **ConfigureIdentity** method saves the validation keys in a database by calling the **RefreshKeys** method of the **DatabaseIssuerNameRegistry** class.
+
+	<!-- mark:3,19-20 -->
+	````C#
+	public static void ConfigureIdentity()
+	{
+		RefreshValidationSettings();
+		// Set the realm for the application
+		Realm = ConfigurationManager.AppSettings["ida:realm"];
+
+		// Set the audienceUri for the application
+		AudienceUri = ConfigurationManager.AppSettings["ida:AudienceUri"];
+		if (!String.IsNullOrEmpty(AudienceUri))
+		{
+			UpdateAudienceUri();
+		}
+
+		AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Name;
+	}
+
+	public static void RefreshValidationSettings()
+	{
+		string metadataLocation = ConfigurationManager.AppSettings["ida:FederationMetadataLocation"];
+		DatabaseIssuerNameRegistry.RefreshKeys(metadataLocation);
+	}
+	````
 
 1. Open **AccountController.cs** file and note the code of the **SignOut** method.
 
@@ -355,28 +504,7 @@ TBC
 
 	> **Note:** The sample application demonstrated here does not do much, but your real applications might allocate resources during a user's session. If that is the case, you can take advantage of the SAM's events SigningOut and SignedOut by adding corresponding event handlers in the Global.asax file to clean up whatever resources should be disposed upon closing a session.
 
-1.	The application is configured to handle authentication via blanket redirects. That means that, if you try to access this View after a successful sign out you will be immediately redirected to Windows Azure AD to sign in again. To avoid that behavior, the **\<location\>** element in the web.config  is used to create one exception to the authentication policy. Open **Web.config** and locate the **\<location path="Account"\>** tag.
-
-	<!-- mark:4-10 -->
-	````XML
-	<configuration>
-		...
-		</appSettings>
-		<location path="Account">
-			<system.web>
-				<authorization>
-					<allow users="*" />
-				</authorization>
-			</system.web>
-		</location>
-		<system.web>
-		...
-	</configuration>
-	````
-
-1.	Open the **_LoginPartial.cshtml** file located under **Views | Shared** folder.
-
-1. TBC: describe the following snippet.
+1.	Open the **_LoginPartial.cshtml** file located under **Views | Shared** folder. The view is rendered in the layout of the page showing the User's name with the **Sign out** link if when authenticated or a link to the **Sign in** page.
 
 	<!-- mark:1,6,9,17 -->
 	````CSHTML
@@ -401,8 +529,6 @@ TBC
 	}
 	````
 
-1. TBC: See what more is important to show.
-
 <a name="Ex1Task4" />
 #### Task 4 - Displaying information about the authenticated user####
 
@@ -419,23 +545,35 @@ Now, you will display the authenticated user information in the Home page of the
 
 1. Replace the **Index** method contents with the following code.
 
-	TODO: This code snippet needs to be reviewed
-
 	(Code Snippet - _IntroductionToWindowsAzureAD - Ex1 - QueryingClaimsPrincipal_)
 
-	<!-- mark:3-7 -->
+	<!-- mark:3-5 -->
 	````C#
 	public ActionResult Index()
    {            
 		ClaimsPrincipal cp = ClaimsPrincipal.Current;
-		string fullname = string.Format("{0} {1}", cp.FindFirst(ClaimTypes.GivenName).Value,
-		cp.FindFirst(ClaimTypes.Surname).Value);
-		ViewBag.Message = string.Format("Dear {0}, welcome to the Expense Note App", fullname);
+		ViewBag.Message = string.Format("Dear \"{0}, {1}\", welcome to the Expense Note App", cp.FindFirst(ClaimTypes.Surname).Value, cp.FindFirst(ClaimTypes.GivenName).Value);
 		return View();
 	}
 	````
 
-	> **Note:** Starting from .NET 4.5, every identity in .NET is represented with a ClaimsPrincipal. In this case, the current ClaimsPrincipal has been constructed during the validation of an authentication token generated by Windows Azure AD and presented by the user at sign-on time.
+	> **Note:** Starting from .NET 4.5, every identity in .NET is represented with a **ClaimsPrincipal**. In this case, the current **ClaimsPrincipal** has been constructed during the validation of an authentication token generated by Windows Azure Active Directory and presented by the user at sign-on time.
+
+1. Open **index.cshtml** and replace the html with the following code to display the Message variable.
+
+	(Code Snippet - _IntroductionToWindowsAzureAD - Ex1 - DisplayMessageInIndexView_)
+
+	<!-- mark:1-8 -->
+	````HTML
+	@{
+		 ViewBag.Title = "Home Page";
+	}
+
+	<div class="jumbotron">
+		 <h1>ASP.NET</h1>
+		 <p class="lead">@ViewBag.Message</p>
+	</div>
+	````
 
 1.	Run the application by pressing **F5**.
 
@@ -445,93 +583,18 @@ Now, you will display the authenticated user information in the Home page of the
 
 	_Browser displaying Security Certificate Warning_
 
-1. Log in the application using the AD user credentials.
+1. Log in the application using the Active Directory user credentials.
 
 1. At the Home page, you can notice the username displayed at the top right of the page and the user's first and last name displayed in the center of the page.
 
-	![displaying ad user info](Images/displaying-ad-user-info.png?raw=true)
+	![Display User Name in Home Page](Images/displaying-ad-user-info.png?raw=true "Display User Name in Home Page")
 
 	_Displaying User Name in Home Page_
 
-	At this point your application has all you need to demonstrate web sign-on with Windows Azure AD, however it is not complete yet. There are at least other two important features you will want to add: support for sign out and automatic refresh of the authority's protocol coordinates.
-
-1. Stop running the solution by pressing **Shift + F5**.
-
-<a name="Ex1Task5" />
-#### Task 5 - Adding Automatic Metadata Refresh ####
-
-TODO: this tasks needs to be reviewed.
-
-The **Identity and Access Tool** configured your application to accept tokens coming from your Windows Azure AD tenant of choice. In order to do so, it cached in the Web.config the necessary protocol coordinates for connecting to the intended Windows Azure AD endpoints. It is common security practice to regularly renew cryptographic keys, and Windows Azure AD signing keys are no exception: at fixed time intervals the old keys will be retired, and new ones will take their place in the issuer's signing logic and in your tenant's metadata document.
-
-To minimize downtime, it is a good idea to add self-healing logic directly in the application so that you can consume the metadata document programmatically and react to key rolling without the need of operator's intervention.
-
-1. In Visual Studio, right-click the **ExpenseReport** project node and select **Add Reference**. Select the **Assemblies** node from the left pane and type _System.IdentityModel_ in the search box. Check the assembly and click **OK**.
-
-1.	Open **Global.asax** file and add the following directives.
-
-	````C#
-	using System.Configuration;
-	using System.IdentityModel.Tokens;
-	````
-
-1. Add the following method at the bottom of the class.
-
-	(Code Snippet - _IntroductionToWindowsAzureAD - Ex1 - RefreshValidationSettings_)
-
-	````C#
-	protected void RefreshValidationSettings()
-	{
-		 string configPath = AppDomain.CurrentDomain.BaseDirectory + "\\" + "Web.config";
-		 string metadataAddress = 
-							ConfigurationManager.AppSettings["ida:FederationMetadataLocation"];
-		 ValidatingIssuerNameRegistry.WriteToConfig(metadataAddress, configPath);
-	}
-	````
-
-	> **Note:** The **ValidatingIssuerNameRegistry** is the class used by the Identity and Access Tool to record information about which authorities are trusted, and what keys should be used to verify the tokens they issue. **WriteToConfig** is a static method that reads the issuer settings from a metadata document (in this case retrieved from config, where it was stored in the tool's first run, by the method's second line) and uses it to create or update the corresponding config section of the file at the path specified (constructed from the current **AppDomain** in the first line of the method).
-
-1.	Insert a call to the **RefreshValidationSettings** method at the end of the **Application_Start** method.
-	
-	<!-- mark:9 -->
-	````C#
-	protected void Application_Start()
-	{
-		 AreaRegistration.RegisterAllAreas();
-
-		 WebApiConfig.Register(GlobalConfiguration.Configuration);
-		 FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-		 RouteConfig.RegisterRoutes(RouteTable.Routes);
-		 BundleConfig.RegisterBundles(BundleTable.Bundles);
-		 RefreshValidationSettings();
-	}
-	````
-
-	> **Note:** Calling **RefreshValidationSettings** from **Application_Start** guarantees that the Web.config will be modified in a safe time, whereas if you would do that later in the app's lifecycle you'd risk triggering a refresh.
+1. Stop running the solution by pressing **Shift** + **F5**.
 
 ---
-
-## TODO: Additional information for Ex 1.
-
-1.	Enter the SSL URL from the MVC Application in both fields **APP URL** and **APP ID URI**. Click the check button to complete the application registration.
-
-	![Entering App Url](Images/entering-app-url.png?raw=true)
-
-	_Entering Application URL_
-	
-
-	> **Note:** In this screen the Windows Azure Management Portal gathers important coordinates which the service needs to drive the sign-in protocol flow.
-	>
-	> * **APP URL:** This parameter represents the address of your web application. Windows Azure AD needs to know your application's address so that, after a user successfully authenticated on Windows Azure AD's pages, it can redirect the flow back to your application.
-	>
-	> * **APP ID URI:** this parameter represents the identifier of your web application. Windows Azure AD uses this value at sign-on time, to determine that the authentication request is meant to enable a user to access this particular application - among all the ones registered - so that the correct settings can be applied. The APP ID URI must be unique within the directory tenant. A good default value for it is the APP URL value itself, however with that strategy the uniqueness constraint is not always easy to respect: developing the app on local hosting environments such as IIS Express and the Windows Azure Fabric Emulator tend to produce a restricted range of addresses that will be reused by multiple developers or even multiple projects from the same developer.
-
-1.	You successfully registered the application within your Active Directory tenant. In the application dashboard, copy the **Federation Metadata Document URL** from the **Enable single sign-on with Windows Azure AD** section. You will use it in the following tasks.
-
-	![Copying Federation Metadata Url](Images/copying-federation-metadata-url.png?raw=true)
-
-	_Copying Federation Metadata URL_
-
+## TODO: Start Additional information for Ex 1.
 <a name="Ex1Task3" />
 #### Task 3 - Connecting the application to Windows Azure Active Directory ####
 
@@ -547,7 +610,7 @@ In this task, you will add a Sign Out Controller to the MVC app. The web sign-on
 
 ## TODO: End Additional information for Ex 1.
 
----
+--- 
 
 
 <a name="Exercise2"></a>

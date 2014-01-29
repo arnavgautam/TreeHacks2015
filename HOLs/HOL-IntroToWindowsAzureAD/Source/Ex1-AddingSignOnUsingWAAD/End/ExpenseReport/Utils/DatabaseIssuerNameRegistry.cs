@@ -35,7 +35,6 @@ namespace ExpenseReport.Utils
         public static void RefreshKeys(string metadataLocation)
         {
             IssuingAuthority issuingAuthority = ValidatingIssuerNameRegistry.GetIssuingAuthority(metadataLocation);
-
             bool newKeys = false;
             foreach (string thumbprint in issuingAuthority.Thumbprints)
             {
@@ -45,7 +44,7 @@ namespace ExpenseReport.Utils
                     break;
                 }
             }
-
+            
             if (newKeys)
             {
                 using (TenantDbContext context = new TenantDbContext())
