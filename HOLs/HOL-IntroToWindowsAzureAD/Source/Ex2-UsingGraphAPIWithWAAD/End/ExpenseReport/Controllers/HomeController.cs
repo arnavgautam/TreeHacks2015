@@ -17,17 +17,13 @@ namespace ExpenseReport.Controllers
         public ActionResult Index()
         {
             ClaimsPrincipal cp = ClaimsPrincipal.Current;
-            string fullname =
-                   string.Format("{0} {1}", cp.FindFirst(ClaimTypes.GivenName).Value,
-                   cp.FindFirst(ClaimTypes.Surname).Value);
-            ViewBag.Message = string.Format("Dear {0}, welcome to the Expense Note App",
-                              fullname);
+            ViewBag.Message = string.Format("Dear \"{0}, {1}\", welcome to the Expense Note App", cp.FindFirst(ClaimTypes.Surname).Value, cp.FindFirst(ClaimTypes.GivenName).Value);
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
@@ -44,13 +40,9 @@ namespace ExpenseReport.Controllers
             //get the tenantName
             string tenantName = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/tenantid").Value;
 
-
-
             // retrieve the clientId and password values from the Web.config file
             string clientId = ConfigurationManager.AppSettings["ClientId"];
             string password = ConfigurationManager.AppSettings["Password"];
-
-
 
             // get a token using the helper
             AADJWTToken token = DirectoryDataServiceAuthorizationHelper.GetAuthorizationToken(tenantName, clientId, password);
@@ -65,7 +57,6 @@ namespace ExpenseReport.Controllers
             response = users.Execute() as QueryOperationResponse<User>;
             List<User> userList = response.ToList();
             ViewBag.userList = userList;
-
 
             //  For subsequent Graph Calls, the existing token should be used.
             //  The following checks to see if the existing token is expired or about to expire in 2 mins
@@ -87,8 +78,8 @@ namespace ExpenseReport.Controllers
             List<TenantDetail> tenantInfo = responseTenantQuery.ToList();
             ViewBag.OtherMessage = "User List from tenant: " + tenantInfo[0].displayName;
 
-
             return View(userList);
         }
+
     }
 }

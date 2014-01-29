@@ -12,17 +12,13 @@ namespace ExpenseReport.Controllers
         public ActionResult Index()
         {
             ClaimsPrincipal cp = ClaimsPrincipal.Current;
-            string fullname =
-                   string.Format("{0} {1}", cp.FindFirst(ClaimTypes.GivenName).Value,
-                   cp.FindFirst(ClaimTypes.Surname).Value);
-            ViewBag.Message = string.Format("Dear {0}, welcome to the Expense Note App",
-                              fullname);
+            ViewBag.Message = string.Format("Dear \"{0}, {1}\", welcome to the Expense Note App", cp.FindFirst(ClaimTypes.Surname).Value, cp.FindFirst(ClaimTypes.GivenName).Value);
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
