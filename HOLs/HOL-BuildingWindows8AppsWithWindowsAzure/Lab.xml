@@ -11,14 +11,12 @@
     <Email></Email>
     <Name></Name>
   </Author>
-  <Description>In this hands-on lab you will learn how to combine the fluency of Windows 8 applications with the power of Windows Azure: From a Windows 8 Style UI application, you will consume an ASP.NET MVC 4 Web API service published in Windows Azure Web Sites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app to send toast notifications from your service to all the registered clients.</Description>
+  <Description>In this hands-on lab you will learn how to combine the fluency of Windows 8 applications with the power of Windows Azure: from a Windows Store application, you will consume an ASP.NET Web API service published in Windows Azure Web Sites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app using Windows Azure Notification Hubs to send toast notifications from your service to all the registered clients.</Description>
   <Document ConversionType="Html">.\HOL.md</Document>
   <Title>Building Windows 8 Applications using Windows Azure Web Sites</Title>
-  <Version>1.2.1</Version>
+  <Version>1.3.0</Version>
   <Source>.\Source</Source>
-  <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
   <CustomProperties>
-    <Property Name="ContentType" Value="VS2012" />
-    <Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-BuildingWindows8AppsWithWindowsAzure" />
+    <Property Name="ContentType" Value="VS2013" />
   </CustomProperties>
 </Lab>
