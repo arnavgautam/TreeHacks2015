@@ -593,26 +593,6 @@ Now, you will display the authenticated user information in the Home page of the
 
 1. Stop running the solution by pressing **Shift** + **F5**.
 
----
-## TODO: Start Additional information for Ex 1.
-<a name="Ex1Task3" />
-#### Task 3 - Connecting the application to Windows Azure Active Directory ####
-
-In this task, you will run the Identity and Access configuration to set up your application with Windows Azure Active Directory. Visual Studio 2012 offers point and click tools which can help you to configure applications to use WS-Federation for web sign-on: you can use the tool's UI to provide few key information about the authority you want to trust for authentication, and the tool will emit the corresponding configuration entries.
-
-The tool auto generates entries in the Web.config file. This is all you need for taking advantage of Windows Azure AD for Web sign-on.
-
-<a name="Ex1Task4" />
-#### Task 4 - Adding Sign Out to the MVC App ####
-
-In this task, you will add a Sign Out Controller to the MVC app. The web sign-on protocols in use today often include provisions for performing distributed sign out operations. Those are flows in which not only the current application cancels its current user's session, but it also reaches out to the authority to signal that a sign out command should be propagated to all the other applications' sessions that might have been established by the same authority.
-
-
-## TODO: End Additional information for Ex 1.
-
---- 
-
-
 <a name="Exercise2"></a>
 ### Exercise 2: Using the Graph API to Query Windows Azure Active Directory ###
 
