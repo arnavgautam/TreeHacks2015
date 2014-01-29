@@ -80,12 +80,12 @@ while ($true)
 
 ### ENTITIES INSERTION ###
 
-for ($i=0; $i -lt 10000; $i++)
+for ($i=0; $i -lt 4; $i++)
 {
     $batchOperation = New-Object Microsoft.WindowsAzure.Storage.Table.TableBatchOperation
     for ($j=0; $j -lt 100; $j++)
     {
-        $index = ($i - ($i % 2)) * 100 + $j * 2 + ($i % 2) + 1;
+        $index = [math]::floor($i / 2) * 100 + $j * 2 + ($i % 2) + 1
         $customer = New-Object Customer
         $customer.Company = "Company" + ($i % 2).ToString()
         $customer.PartitionKey = $customer.Company
@@ -94,7 +94,7 @@ for ($i=0; $i -lt 10000; $i++)
         $customer.Name = "Customer " + $index.ToString()
         $customer.Value = (Get-Random -minimum 0 -maximum 99999) / 10.0
         $customer.Comment = "This is customer " + $index.ToString()
-        $customer.ContractDate = (Get-Date).AddSeconds(1)
+        $customer.ContractDate = Get-Date
 
         $batchOperation.InsertOrReplace($customer);
     }

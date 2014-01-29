@@ -6,32 +6,37 @@
 <a name="Overview" />
 ## Overview ##
 
-Windows Azure Cache Service provides a distributed, cost-effective in-memory cache for your Cloud Services. With Cache Service enabled on your Cloud Services roles, you can utilize spare memory on your service hosts as high performance cache to improve response time and system throughput. And because the cache hosts are collocated with your Cloud Service roles, you get optimal access time by avoiding external service calls. In this lab, you will learn how easy it is to enable Cache Service on your Cloud Services roles, and how to use Cache Service to provide high performance in-memory caching to your Cloud Services.
+Windows Azure Cache Service provides a distributed, cost-effective in-memory cache for your Cloud Services. With Cache Service enabled on your Cloud Services roles, you can utilize spare memory on your service hosts as high performance cache to improve response time and system throughput. And because the cache hosts are collocated with your Cloud Service roles, you get optimal access time by avoiding external service calls. In this lab, you will learn how easy it is to enable Cache Service on your Cloud Services roles, how to use Cache Service to provide high performance in-memory caching to your Cloud Services, and how to use WACEL as a high-level data structure built on top of Windows Azure Table Storage.
 
 <a name="Objectives" />
 ### Objectives ###
 In this hands-on lab, you will learn how to:
 
 - Easily and quickly enable Cache service.
-- Use Cache Service for your Asp.Net session state.
+- Use Cache Service for your ASP.NET session state.
 - Cache reference data from Windows Azure SQL Database in Cache Service.
 - Create a reusable and extensible caching layer for your Cloud Services.
+- Use WACEL as a high-level layer on top of Windows Azure Table Storage.
 
-During this lab, you will explore how to use these features in a simple Asp.Net MVC4 application.
+During this lab, you will explore how to use these features in a simple ASP.NET MVC5 application.
 
-<a name="Prerequisites" />
+<a name="Prerequisites"></a>
 ### Prerequisites ###
 
 The following is required to complete this hands-on lab:
 
-- [Microsoft Visual Studio 2012 Express for Web][1] or higher
-- [Windows Azure Tools for Microsoft Visual Studio 2.0][2]
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Visual Studio Express 2013 for Web][1] or greater
+
+- [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)][2]
+
+- A Windows Azure subscription
+	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start developing and testing on Windows Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 
 [1]: http://www.microsoft.com/visualstudio/
-[2]: http://www.windowsazure.com/en-us/develop/downloads/
-[3]: http://aka.ms/WATK-FreeTrial
-[4]: http://www.microsoft.com/en-us/download/details.aspx?id=38188
+[2]: http://www.microsoft.com/windowsazure/sdk/
 
 <a name="Setup" />
 ### Setup ###
@@ -50,6 +55,8 @@ In order to run the exercises in this hands-on lab you need to set up your envir
 >![SQL database setup](Images/sql-database-setup.png?raw=true "Windows Azure SQL Database setup")
 
 >_Windows Azure SQL Database setup_
+
+> The **Setup.cmd** script will also populate your Windows Azure Storage account with sample data, which you will use in Exercise 3 to make tests and analyze the efficiency of WACEL. If you don't have an account yet you can follow [this guide](http://www.windowsazure.com/en-us/documentation/articles/storage-create-storage-account/) in order to create one.
 
 
 <a name="CodeSnippets" />
@@ -639,7 +646,7 @@ You should be aware of this when using the cache in your own applications and co
 
 <a name="Exercise3" />
 ### Exercise 3: Caching common data patterns with WACEL ###
-This exercise will show you how to use WACEL as a high-level data structure built on top a Windows Azure table. Then you will configure WACEL to use In-Role cache to cache the data.
+This exercise will show you how to use WACEL as a high-level data structure built on top a Windows Azure Table Storage. Then you will configure WACEL to use In-Role cache to cache the data.
 
 <a name="Ex3Task1" />
 #### Task 1 - Retrieving data from Azure Storage Tables using WACEL ####
@@ -943,4 +950,4 @@ This is a list of developer-oriented articles related to **Building Windows Azur
 <a name="Summary" />
 ## Summary ##
 
-In this hands-on lab, you explored the use of the Windows Azure Cache Service. You saw how to configure session state to be cached across a cache cluster, allowing sessions to be preserved in the presence of restarts and across multiple role instances hosting the application. In addition, you learnt the basics of data caching with Windows Azure and in particular, how to cache the results of queries to a Windows Azure SQL Database. Finally, you looked at a reusable caching layer implementation that will allow you to add a caching layer to your applications in a very simple manner.
+In this hands-on lab, you explored the use of the Windows Azure Cache Service. You saw how to configure session state to be cached across a cache cluster, allowing sessions to be preserved in the presence of restarts and across multiple role instances hosting the application. In addition, you learnt the basics of data caching with Windows Azure and in particular, how to cache the results of queries to a Windows Azure SQL Database. Finally, you looked at WACEL, a high-level layer on top of Windows Azure Table Storage that allows you to add a caching layer to your applications in a very simple way.
