@@ -1,4 +1,4 @@
-﻿# Building and Publishing ASP.NET Applications with Windows Azure Web Sites and Visual Studio 2012 #
+﻿# Building and Publishing ASP.NET Applications with Windows Azure Web Sites #
 
 ## Hands-on Lab ##
 
@@ -23,4 +23,4 @@ In the **Source** folder, you will find the source code for the lab, as well as 
 
 ### Get Started ###
 
-In order to run the solutions of the exercises provided by this lab, you will first need to configure your environment and install any necessary prerequisites such as runtimes, components, or libraries. For your ease, you can download and run the dependency checker [here] (http://contentinstaller.blob.core.windows.net/dependency-checker/DC.exe) to automatically check and install all the requirements.  Each lab also includes setup instructions for getting started.
+In order to run the solutions of the exercises provided by this lab, you will first need to configure your environment and install any necessary prerequisites such as runtimes, components, or libraries. Each lab  includes setup instructions for getting started.
