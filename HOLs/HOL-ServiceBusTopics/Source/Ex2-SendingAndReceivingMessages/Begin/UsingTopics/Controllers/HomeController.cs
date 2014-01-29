@@ -6,7 +6,6 @@
     using System.Web.Mvc;
     using Microsoft.ServiceBus;
     using Microsoft.WindowsAzure.ServiceRuntime;
-    using UsingTopics.Models;
 
     public class HomeController : Controller
     {
