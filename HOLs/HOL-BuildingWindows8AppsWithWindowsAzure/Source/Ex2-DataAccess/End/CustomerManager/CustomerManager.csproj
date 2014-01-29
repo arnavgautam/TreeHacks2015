@@ -106,6 +106,9 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\WebApi\Models\Customer.cs">
+      <Link>DataModel\Customer.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -113,7 +116,6 @@
     <Compile Include="Common\LoadStateEventArgs.cs" />
     <Compile Include="Common\SaveStateEventArgs.cs" />
     <Compile Include="Common\SuspensionManagerException.cs" />
-    <Compile Include="DataModel\Customer.cs" />
     <Compile Include="DataModel\CustomersWebApiClient.cs" />
     <Compile Include="GroupedCustomersPage.xaml.cs">
       <DependentUpon>GroupedCustomersPage.xaml</DependentUpon>
