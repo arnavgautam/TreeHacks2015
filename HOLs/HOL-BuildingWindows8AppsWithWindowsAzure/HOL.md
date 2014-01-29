@@ -361,7 +361,7 @@ In this task you will create a blank Windows Store application that will consume
 
 1. Make sure the Windows Store application is the startup project and press **F5** to run the solution. 
 
-	You will see that the values retrieved from the service are listed in the List Box
+	You will see that the values retrieved from the service are listed in the List Box.
 
 	![Basic service output](Images/basic-service-output.png?raw=true "basic service output")
 
@@ -668,7 +668,7 @@ In this task you will publish the updated Web API service in Windows Azure Web S
 
 	_Navigating to the Settings Page_
 
-	> **Note:** If you started from Exercise 2, you may want to see [Exercise 1 - Task 3](#Ex1Task3) to configure the Web site profile and connetion settings.
+	> **Note:** If you started from Exercise 2, you may want to see [Exercise 1 - Task 3](#Ex1Task3) to configure the Web site profile and connection settings.
 
 1. In the **Settings** page, under the **Databases** section, if the **CustomerContext** section is not expanded, click the down arrow in the **CustomerContext** textbox, and select the SQL database shown in the drop-down list.
 
@@ -713,7 +713,7 @@ This is a client Windows Store application that displays customers. It is based 
 	- _CustomerDetailPage:_ Shows customer's details
 	- _NewCustomerPage:_ Adds a new customer
 
-1. Expand the **ViewModels** folder and open **GroupedCustomersViewModel.cs**. 
+1. Expand the **ViewModel** folder and open **GroupedCustomersViewModel.cs**. 
 
 	The XAML pages of this solution are bound against ViewModels classes that retrieve and prepare the necessary data that will be displayed.
 	
