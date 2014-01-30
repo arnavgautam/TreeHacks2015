@@ -51,16 +51,7 @@ The following is required to complete this hands-on lab:
 
 > **Note:** This lab was designed for Windows 8.1.
 
-<a name="Setup" />
-### Setup ###
-
-In order to execute the exercises in this hands-on lab you need to set up your environment.
-
-1. Open a Windows Explorer window and browse to the lab’s **Source** folder.
-2. Execute the **Setup.cmd** file with administrator privileges to launch the setup process that will configure your environment.
-3. If the User Account Control dialog is shown, confirm the action to proceed.
-
-> **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.
+> When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.
 
 ---
 
@@ -723,9 +714,9 @@ Then, you will use these credentials to publish the myTODO application directly 
 	
 	_Deployment Common Settings_
 
-1. Click **Advanced Settings** tab. Update the **Deployment Label** to _MyTodo_ and select the check box labeled **Append date and time** to identify the deployment in the Developer Portal UI.
+1. Click the **Advanced Settings** tab. Update the **Deployment Label** to _MyTodo_ and select the check box labeled **Append date and time** to identify the deployment in the Developer Portal UI.
 
-1. Like with the cloud services, the dialog populates the drop-down list labeled **Storage account** with all the storage services that you have configured in your Windows Azure account. To publish a service, Visual Studio first uploads the service package to storage in Windows Azure, and then publish the service from there. Select the storage service that you wish to use for this purpose and click **Next**.
+1. Like with the cloud services, the drop-down list labeled **Storage account** is populated with all the storage services that you have configured in your Windows Azure account. To publish a service, Visual Studio first uploads the service package to storage in Windows Azure, and then publish the service from there. Select the storage service that you wish to use for this purpose and click **Next**.
  
 	![Deployment Advanced Settings](Images/deployment-advanced-settings.png?raw=true)e)
 	
@@ -757,7 +748,7 @@ Then, you will use these credentials to publish the myTODO application directly 
 
 	_Viewing summary information in the Windows Azure activity log_
 
-1. To view detailed information about the deployment operation in progress, double-click the green arrow on the left side of the activity log entry.
+1. To view detailed information about the deployment operation in progress, click the arrow on the left side of the activity log entry.
 Notice that the additional information provided includes the deployment slot, **Production** or **Staging**, the **Website URL**, the **Deployment ID**, and a **History** log that shows state changes, including the time when each change occurred. 
 
 	![Viewing detailed information about a deployment operation](Images/detailed-deployment-information.png?raw=true)
@@ -779,30 +770,30 @@ Notice that the additional information provided includes the deployment slot, **
 <a name="Exercise4" />
 ### Exercise 4: Securing Windows Azure with SSL ###
 
-In this exercise, you enable SSL to secure the myTODO application. This involves creating a self-signed certificate for server authentication and uploading it to the Windows Azure portal. With the certificate in place, you add a new HTTPS endpoint to the service model and assign the certificate to this endpoint.  You complete the exercise by deploying the application to Windows Azure one more time and then access it using its HTTPS endpoint.
+In this exercise, you will enable SSL to secure the myTODO application. This involves creating a self-signed certificate for server authentication and uploading it to the Windows Azure portal. With the certificate in place, you will add a new HTTPS endpoint to the service model and assign the certificate to this endpoint. You will complete the exercise by deploying the application to Windows Azure one more time and then access it using its HTTPS endpoint.
 
 <a name="Ex4Task1" />
 #### Task 1 – Adding an HTTPS Endpoint to the Application ####
 
-In this task, you update the service model of MyTODO to add an HTTPS endpoint and then you test the application in the compute emulator.
+In this task, you will update the service model of MyTODO to add an HTTPS endpoint and then you test the application in the compute emulator.
 
-1. If it is not already open, launch **Microsoft Visual Studio Express 2012 for Web** (or later) as Administrator.
+1. If it is not already open, launch **Microsoft Visual Studio Express 2013 for Web** (or greater) as Administrator.
 
 1. In the **File** menu, choose **Open Project** and browse to **Ex4-SecuringAppWithSSL\Begin** in the **Source** folder of the lab. Select **MyTodo.sln** and click Open.
 
-1. Expand the **Roles** node in the **MyTodo** project, and then double-click the **MyTodo.WebUx** role to open its properties window.
+1. In **Solution Explorer**, expand the **Roles** node in the **MyTodo** project, and then double-click the **MyTodo.WebUx** role to open its properties window.
 
-1. Switch to the **Endpoints** tab and select the **HTTPS** option, fill Public Port with the value 443 and leave the **Name** field unchanged. Do not choose an SSL certificate at this time; you will do so later in the exercise.
+1. Switch to the **Endpoints** tab. In the existing endpoint entry, set the **Protocol** field to _HTTPS_, enter the _443_ value for the **Public Port** field and leave the **Name** field unchanged. Do not set the SSL certificate at this time; you will do that later in the exercise.
 
-	![Adding an HTTP endpoint to the application](./Images/adding-http-endpoint.png?raw=true "Adding an HTTP endpoint to the application")
+	![Adding an HTTPs endpoint to the application](Images/adding-https-endpoint.png?raw=true)
 
-	_Adding an HTTP endpoint to the application_
+	_Adding an HTTPs endpoint to the application_
 
-1. Now, choose the HTTPS endpoint as the one to use when you launch the application in the browser when you are debugging it. To do this, right-click the **MyTodo.WebUx** role in the **MyTodo** project, point to **Launch in Browser**, and ensure that only **HTTPS** is selected.
+1. Now, select the HTTPS endpoint as the one to use when you launch the application in the browser when you are debugging it. To do this, right-click the **MyTodo.WebUx** role in the **MyTodo** project, point to **Launch in Browser**, and ensure that only **HTTPS** is selected.
 
-	![Choosing the endpoint used to debug the application](./Images/choosing-debug-endpoint.png?raw=true "Choosing the endpoint used to debug the application")
+	![Selecting the endpoint used to debug the application](Images/selecting-debug-endpoint.png?raw=true)
 
-	_Choosing the endpoint used to debug the application_
+	_Selecting the endpoint used to debug the application_
 
 1. You will now test the application locally. Press **F5** to build and launch the application in the compute emulator. Notice that the browser indicates that there is a problem with the certificate. Ignore the warning and click **Continue to this website**.
 
@@ -833,17 +824,17 @@ In this task, you update the service model of MyTODO to add an HTTPS endpoint an
 <a name="Ex4Task2" />
 #### Task 2 – Creating a Self-Signed Certificate ####
 
-In this task, you create a self-signed certificate that you can upload to the Windows Azure Developer Portal to configure an SSL endpoint for your application.
+In this task, you will create a self-signed certificate that you can upload to the Windows Azure Developer Portal to configure an SSL endpoint for your application.
 
 >**Note:** if you are unable to use Internet Information Services (IIS) Manager in your environment, you may skip this task. Instead, you can find a self-signed certificate that you can use among the lab’s resources.
 
->To install the certificate, open Windows Explorer, browse to **Assets** in the **Source** folder of the lab and then double-click the **MyTodoCertificate.pfx** file to install the certificate using the **Certificate Import Wizard**. Use "password1" (without the quotation marks) as the password. Use default values for all other options.
+>To install the certificate, open Windows Explorer, browse to **Assets** in the **Source** folder of the lab and then double-click the **MyTodoCertificate.pfx** file to install the certificate using the **Certificate Import Wizard**. Select **Local Machine** as the store location and use "password1" (without the quotation marks) as the password. Use default values for all other options.
 
 >**Important:** You should only use this certificate to complete the steps in the exercise. Do not use the certificate in your production deployments.
 
 1. Start Internet Information Services Manager. To do this, click the Windows button and type "iis" in the search box and then click **Internet Information Services (IIS) Manager** in the list of installed programs.
 
-	![Launching Internet Information Services (IIS) Manager](./Images/iis-manager-launch.png?raw=true "Launching Internet Information Services \(IIS\) Manager")
+	![Launching Internet Information Services (IIS) Manager](Images/iis-manager-launch.png?raw=true)
 	
 	_Launching Internet Information Services (IIS) Manager_
 
@@ -859,7 +850,7 @@ In this task, you create a self-signed certificate that you can upload to the Wi
 
 	_Creating a self-signed certificate in the Internet Information Services (IIS) Manager_
 
-1. In the **Specify Friendly Name** page of the **Create Self-Signed Certificate** wizard, enter a name to identify your certificate —this can be any name, for example, **MyTodoCertificate**—, Leave and then click **OK**.
+1. In the **Specify Friendly Name** page of the **Create Self-Signed Certificate** wizard, enter a name to identify your certificate —this can be any name, for example, **MyTodoCertificate**—, and then click **OK**.
  
 	![Specifying a name for the certificate](./Images/iis-specifying-certificate-name.png?raw=true "Specifying a name for the certificate")
 	
@@ -871,7 +862,7 @@ In this task, you create a self-signed certificate that you can upload to the Wi
 
 	_Server certificates page showing the new self-signed certificate_
 
-1. In the **Export Certificate** dialog, enter the name of a file in which to store the certificate for exporting, type a password and confirm it, and then click **OK**. Make a record of the password. You will require it later on, when you upload the certificate to the portal.
+1. In the **Export Certificate** dialog box, enter the name of a file in which to store the certificate for exporting, type a password and confirm it, and then click **OK**. Make a record of the password. You will require it later on, when you upload the certificate to the portal.
 
 	![Exporting the certificate to a file](./Images/iis-exporting-certificate.png?raw=true)
 
@@ -880,7 +871,7 @@ In this task, you create a self-signed certificate that you can upload to the Wi
 <a name="Ex4Task3" />
 #### Task 3 – Adding the Certificate to the Service Model of the Application ####
 
-Previously, when you tested SSL access to the application in your local environment, you were able to do so without specifying a certificate by taking advantage of the certificate managed by the compute emulator. In this task, you configure the application to use the self-signed certificate that you created in Internet Information Services (ISS) Manager.
+Previously, when you tested SSL access to the application in your local environment, you were able to do so without specifying a certificate by taking advantage of the certificate managed by the compute emulator. In this task, you will configure the application to use the self-signed certificate that you created in Internet Information Services (ISS) Manager.
 
 1. Switch back to Visual Studio. If you closed the project, you will need to reopen it from **Ex4-SecuringAppWithSSL\Begin** in the **Source** folder of the lab.
 
@@ -888,7 +879,7 @@ Previously, when you tested SSL access to the application in your local environm
 
 1. In the **Certificates** page, click **Add Certificate**. Complete the **Name** field with a value that identifies the certificate that you are adding, for example, use _SSL_. Ensure that the **Store Location** is set to _LocalMachine_ and the **Store Name** is set to _My_ and then click the button labeled with an ellipsis, to the right of the **Thumbprint** column.
 
-	![Adding a certificate for the service](./Images/adding-certificate.png?raw=true "Adding a certificate for the service")
+	![Adding a certificate for the service](Images/adding-certificate.png?raw=true)
 
 	_Adding a certificate for the service_
 
@@ -900,13 +891,13 @@ Previously, when you tested SSL access to the application in your local environm
 
 1. Notice that the dialog populates the **Thumbprint** column with the corresponding value from the certificate.
 
-	![Adding a certificate to the service model of the application](./Images/adding-certificate-service-model.png?raw=true "Adding a certificate to the service model of the application")
+	![Adding a certificate to the service model of the application](Images/adding-certificate-service-model.png?raw=true)
 
 	_Adding a certificate to the service model of the application_
 
 1. Now, switch to the **Endpoints** tab and, in the **HTTPS** input endpoints section, expand the **SSL certificate name** drop down list and select the certificate that you added to the service in the previous step.
 
-	![Choosing a certificate to use for the HTTPS endpoint](./Images/choosing-certificate-https-endpoint.png?raw=true "Choosing a certificate to use for the HTTPS endpoint")
+	![Choosing a certificate to use for the HTTPS endpoint](Images/choosing-certificate-https-endpoint.png?raw=true)
 
 	_Choosing a certificate to use for the HTTPS endpoint_
 
@@ -915,34 +906,34 @@ Previously, when you tested SSL access to the application in your local environm
 <a name="Ex4Task4" />
 #### Task 4 – Uploading the Certificate to the Windows Azure Management Portal ####
 
-In this task, you upload the self-signed certificate created in the previous step to the Windows Azure Management Portal.
+In this task, you will upload the self-signed certificate created previously to the Windows Azure Management Portal.
 
 1. Navigate to [http://manage.windowsazure.com](http://manage.windowsazure.com) using a Web browser and sign in using your Microsoft account.
 
-1. In the **Cloud Services** page, click your cloud service's **name** to go to the service's **Dashboard**.
+1. In the **Cloud Services** page, click your cloud service's **name** to go to the service's **Quick Start** page.
 
 1. Click **Certificates** and then **Upload a certificate**.
 
-	![Adding a new Certificate](./Images/adding-a-new-certificate.png?raw=true "Adding a new Certificate")
+	![Adding a new certificate](Images/adding-a-new-certificate.png?raw=true)
 
 	_Adding a new Certificate_
 
 1. In the **Upload Certificate** dialog, click **Browse**, and then navigate to the location where you stored the certificate exported in the previous task. Enter the password specified when you exported the certificate, confirm it and then click the **Tick**.
 
-	![Creating a certificate for the service](./Images/creating-certificate-service.png?raw=true "Creating a certificate for the service")
+	![Creating a certificate for the service](Images/creating-certificate-service.png?raw=true)
 
 	_Creating a certificate for the service_
 
 <a name="Ex4Task5" />
 #### Task 5 - Verification ####
 
-In this task, you deploy the application to Windows Azure and access its HTTPS endpoint to verify that your enabled SSL successfully.
+In this task, you will deploy the application to Windows Azure and access its HTTPS endpoint to verify that your enabled SSL successfully.
 
 1. Switch back to Visual Studio. If you closed the project, you will need to reopen it from **Ex4-SecuringAppWithSSL\Begin** in the **Source** folder of the lab.
 
 1. In **Solution Explorer**, expand the **Roles** node in the **MyTodo** project, double-click the **MyTodo.WebUx** role to open its properties window, and then switch to the **Settings** tab.
 
-1. Configure the storage account connection strings. To do this, expand the **Roles** node in the **MyTodo** project and double-click the **MyTodo.WebUX** role. In the role properties window, select the **Settings** tab, select the _DataConnectionString_ setting, ensure that the **Type** is set to Connection String, and then click the button labeled with an ellipsis.
+1. Configure the storage account connection strings. To do this, expand the **Roles** node in the **MyTodo** project and double-click the **MyTodo.WebUX** role. In the role properties window, select the **Settings** tab and select _Cloud_ from the **Service Configuration** drop-down list. Then select the _Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString_ setting, ensure that the **Type** is set to _Connection String_, and then click the button labeled with an ellipsis.
 
 	![Defining storage account connection settings](./Images/defining-connection-settings.png?raw=true "Defining storage account connection settings")
 
@@ -956,13 +947,21 @@ In this task, you deploy the application to Windows Azure and access its HTTPS e
 
 	>**Note:** This information is available in the **Dashboard** section of your storage account in the Windows Azure Management Portal. You used the same settings in Exercise 1, when you deployed and configured the application. 
 
-1. Repeat the previous steps to configure the _Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString_ setting using the same account information.
+1. Press **CTRL + S** to save the changes.
+
+1. Next, open the **Web.config** file located in the **MyTodo.WebUx** project. Replace the placeholders with the **SQL Database server**, **database name**, **login name** and **login password** of your SQL database.
+
+	![Configuring the database connection string](Images/configuring-the-database-connection-string.png?raw=true)
+
+	_Configuring the database connection string_
+
+1. Press **CTRL + S** to save the changes.
 
 1. Publish and deploy the application once again to the Windows Azure environment using your preferred method, by choosing among the Windows Azure Developer Portal, the Windows Azure Service Management PowerShell Cmdlets, or the Windows Azure Tools for Visual Studio. Refer to Exercises 1, 2, and 3 for instructions on how to carry out the deployment with any of these methods.
 
 	>**Note:** The service configuration now specifies an additional endpoint for HTTPS, therefore, you cannot simply upgrade the current deployment and instead, you need to re-deploy the application. This is mandatory whenever you change the topology of the service.
 
-1. Once you have deployed the application, start it and wait until its status is shown as **Ready** (or the deployment is shown as **Completed** when deploying with Visual Studio).
+1. Once you have deployed the application, wait until its status is shown as **Running** (or the deployment is shown as **Completed** when deploying with Visual Studio).
 
 1. Now, browse to the HTTPS endpoint (e.g. _https://servicemytodo.cloudapp.net_). Once again, you will observe a certificate error because the certificate authority for the self-signed certificate is not trusted. You may ignore this error.
 
@@ -1034,7 +1033,7 @@ TBC
 <a name="Summary" />
 ## Summary ##
 
-By completing this hands-on lab, you learnt how to create a storage account and a cloud service at the Windows Azure Management Portal. Using the management portal, you deployed a service package that contained the application binaries, configured its storage and defined the number of instances to run. 
+By completing this hands-on lab, you learnt how to create a storage account, a SQL database and a cloud service at the Windows Azure Management Portal. Using the management portal, you deployed a service package that contained the application binaries, configured its storage and defined the number of instances to run. 
 
 You also saw how to achieve this programmatically using the Service Management API and in particular, how to use the Windows Azure Service Management cmdlets to deploy, update, and manage applications using Windows PowerShell.
 
