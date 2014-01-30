@@ -52,11 +52,11 @@ In order to run the exercises in this hands-on lab you need to set up your envir
 
 > Remember to configure the firewall setting of your Windows Azure SQL Database account. You can enable a list of IP addresses that can access your Windows Azure SQL Database Server. The firewall will deny all connections by default, so **be sure to configure your allow list** so you can connect to the database. Changes to your firewall settings can take a few moments to become effective. For more information, see [How to Create and Configure a SQL Database](http://www.windowsazure.com/en-us/documentation/articles/sql-database-create-configure).
 
+> The **Setup.cmd** script will also populate a table in your Windows Azure Storage account with sample data, which you will use in Exercise 3. In order to get a storage account, see [How To Create a Storage Account](http://www.windowsazure.com/en-us/documentation/articles/storage-create-storage-account/).
+
 >![SQL database setup](Images/sql-database-setup.png?raw=true "Windows Azure SQL Database setup")
 
 >_Windows Azure SQL Database setup_
-
-> The **Setup.cmd** script will also populate your Windows Azure Storage account with sample data, which you will use in Exercise 3 to make tests and analyze the efficiency of WACEL. If you don't have an account yet you can follow [this guide](http://www.windowsazure.com/en-us/documentation/articles/storage-create-storage-account/) in order to create one.
 
 
 <a name="CodeSnippets" />
@@ -950,4 +950,4 @@ This is a list of developer-oriented articles related to **Building Windows Azur
 <a name="Summary" />
 ## Summary ##
 
-In this hands-on lab, you explored the use of the Windows Azure Cache Service. You saw how to configure session state to be cached across a cache cluster, allowing sessions to be preserved in the presence of restarts and across multiple role instances hosting the application. In addition, you learnt the basics of data caching with Windows Azure and in particular, how to cache the results of queries to a Windows Azure SQL Database. Finally, you looked at WACEL, a high-level layer on top of Windows Azure Table Storage that allows you to add a caching layer to your applications in a very simple way.
+In this hands-on lab, you explored the use of the Windows Azure Cache Service. You saw how to configure session state to be cached across a cache cluster, allowing sessions to be preserved in the presence of restarts and across multiple role instances hosting the application. In addition, you learnt the basics of data caching with Windows Azure and in particular, how to cache the results of queries to a Windows Azure SQL Database. Finally, you looked at WACEL, a high-level layer on top of Windows Azure Table Storage that transparently integrates with Windows Azure Cache.
