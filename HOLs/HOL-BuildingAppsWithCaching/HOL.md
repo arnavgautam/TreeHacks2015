@@ -52,7 +52,7 @@ In order to run the exercises in this hands-on lab you need to set up your envir
 
 > Remember to configure the firewall setting of your Windows Azure SQL Database account. You can enable a list of IP addresses that can access your Windows Azure SQL Database Server. The firewall will deny all connections by default, so **be sure to configure your allow list** so you can connect to the database. Changes to your firewall settings can take a few moments to become effective. For more information, see [How to Create and Configure a SQL Database](http://www.windowsazure.com/en-us/documentation/articles/sql-database-create-configure).
 
-> The **Setup.cmd** script will also populate your Windows Azure Storage account with sample data, which you will use in Exercise 3 to make tests and analyze the efficiency of WACEL. If you don't have an account yet you can follow [this guide](http://www.windowsazure.com/en-us/documentation/articles/storage-create-storage-account/) in order to create one.
+> The **Setup.cmd** script will also populate a table in your Windows Azure Storage account with sample data, which you will use in Exercise 3. In order to get a storage account, see [How To Create a Storage Account](http://www.windowsazure.com/en-us/documentation/articles/storage-create-storage-account/).
 
 >![SQL database setup](Images/sql-database-setup.png?raw=true "Windows Azure SQL Database setup")
 
