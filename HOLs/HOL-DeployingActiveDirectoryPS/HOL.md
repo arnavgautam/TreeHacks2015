@@ -232,12 +232,14 @@ You have just created a base virtual machine, attached the necessary data disk, 
 1. In the PowerShell remote session from the previous exercise, type the following command to install the Active Directory role and features:
 
 	````PowerShell
-	Add-WindowsFeature -Name AD-Domain-Services  -IncludeManagementTools
+	Install-WindowsFeature -Name AD-Domain-Services  -IncludeManagementTools
 	````
 
 	![Adding the AD feature](./Images/adding-the-ad-feature.png?raw=true "Adding the AD feature")
 
 	_Windows is installing the Active Directory Domain Services role_
+
+	> **Note:** This lab assumes you are using Windows Server 2012 or higher. If using Windows Server 2008 you will need to use the **Add-WindowsFeature** command instead of **Install-WindowsFeature**. For more information see [Add-WindowsFeature](http://technet.microsoft.com/en-us/library/ee662309.aspx).
 
 <a name="Ex2Task2" /></a>
 #### Task 2 - Configuring the Active Directory Domain Services Role ####
