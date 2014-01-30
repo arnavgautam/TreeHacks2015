@@ -11,12 +11,21 @@ param (
 
 ### TYPES DEFINITION AND ASSEMBLIES IMPORTING ###
 
-$ref1 = "C:\Program Files\Microsoft SDKs\Windows Azure\.NET SDK\v2.2\ref\Microsoft.WindowsAzure.Storage.dll"
-$ref2 = "C:\Program Files\Microsoft SDKs\Windows Azure\.NET SDK\v2.2\ref\Microsoft.WindowsAzure.StorageClient.dll"
-
-if (-not(Test-Path $ref1) -or -not(Test-Path $ref2))
+try
 {
-    throw "Windows Azure Storage SDK 2.2 wasn't found. Please check you have installed the correct dependencies."
+    $key = 'HKLM:\SOFTWARE\Microsoft\Microsoft SDKs\ServiceHosting'
+    $registryProperty = Get-ChildItem $key -ErrorAction Stop | Sort CreationTime -Descending | Select -First 1 | Get-ItemProperty -ErrorAction Stop
+    $fullVersion = ($registryProperty | Select FullVersion).FullVersion
+    $installPath = ($registryProperty | Select InstallPath).InstallPath
+
+    if ($fullVersion -lt "2.2.0000.0") { throw }
+    $ref1 = "${installPath}ref\Microsoft.WindowsAzure.Storage.dll"
+    $ref2 = "${installPath}ref\Microsoft.WindowsAzure.StorageClient.dll"
+    if (-not(Test-Path $ref1) -or -not(Test-Path $ref2)) { throw }
+}
+catch
+{
+    throw "The Windows Azure Storage Client Library could not be found. Please make sure you have installed Windows Azure SDK for .NET 2.2 or later"
 }
 
 Add-Type -Path $ref1

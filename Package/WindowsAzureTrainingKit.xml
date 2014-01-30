@@ -37,6 +37,7 @@
         <Lab>..\HOLs\HOL-BuildingWindows8AppsWithWindowsAzure</Lab>
         <Lab>..\HOLs\HOL-DebuggingCloudServices</Lab>
         <Lab>..\HOLs\HOL-DeployingActiveDirectoryPS</Lab>
+		<Lab>..\HOLs\HOL-DeployingCloudServices</Lab>
         <Lab>..\HOLs\HOL-GettingStartedWindowsAzureStorage</Lab>
         <!-- <Lab>..\HOLs\HOL-IntroToWindowsAzureAD</Lab> -->
         <Lab>..\HOLs\HOL-IntroToWindowsAzureMediaServices</Lab>
@@ -44,69 +45,11 @@
         <Lab>..\HOLs\HOL-ServiceBusTopics</Lab>
         <Lab>..\HOLs\HOL-UnderstandingVMImagingWithCapturePS</Lab>
       </Labs>
-      <!-- <Demos>
-        <Demo>..\Demos\Demo-AndroidAndMobileServices</Demo>
-	<Demo>..\Demos\Demo-BuildClips</Demo>
-	<Demo>..\Demos\Demo-BuildingRealWorldCloudApps</Demo>
-        <Demo>..\Demos\Demo-CloudSurvey</Demo>
-        <Demo>..\Demos\Demo-ContosoExpenseReporting</Demo>
-	<Demo>..\Demos\Demo-EventBuddy</Demo>
-	<Demo>..\Demos\Demo-EventBuddy-iOS</Demo>
-        <Demo>..\Demos\Demo-Geolocation-Android-Client</Demo>
-        <Demo>..\Demos\Demo-Geolocation-iOS-Client</Demo>
-        <Demo>..\Demos\Demo-Geolocation-PHP-Service</Demo>
-        <Demo>..\Demos\Demo-HelloASP</Demo>
-        <Demo>..\Demos\Demo-HelloWorldWSCS</Demo>
-        <Demo>..\Demos\Demo-iOSandMobileServices</Demo>
-        <Demo>..\Demos\Demo-SBMessageMe</Demo>
-        <Demo>..\Demos\Demo-ServiceBusRelay</Demo>
-        <Demo>..\Demos\Demo-TwitterReader</Demo>
-        <Demo>..\Demos\Demo-UrlShortener-Android-Client</Demo>
-        <Demo>..\Demos\Demo-UrlShortener-iOS-Client</Demo>
-        <Demo>..\Demos\Demo-UrlShortener-PHP</Demo>
-        <Demo>..\Demos\Demo-WeatherService</Demo>
-        <Demo>..\Demos\Demo-Windows8AndMobileServices</Demo>
-        <Demo>..\Demos\Demo-WindowsPhoneAndMobileServices</Demo>
-      </Demos> -->
-      <!-- <Presentations>
-        <Presentation>..\Decks\PRESENTATION-BuildingAppsWithIaaSAndPaaS</Presentation>
-        <Presentation>..\Decks\PRESENTATION-BuildingDeviceCloudApps</Presentation>
-        <Presentation>..\Decks\PRESENTATION-CloudServiceLifecycle</Presentation>
-        <Presentation>..\Decks\PRESENTATION-DeliveringWindows8PushNotifications</Presentation>
-        <Presentation>..\Decks\PRESENTATION-DeployingActiveDirectory</Presentation>
-        <Presentation>..\Decks\PRESENTATION-DeployingSharePointOnVMs</Presentation>
-        <Presentation>..\Decks\PRESENTATION-DeployingSQLServerOnVMs</Presentation>
-        <Presentation>..\Decks\PRESENTATION-DevCamps-CloudServices</Presentation>
-        <Presentation>..\Decks\PRESENTATION-DevCamps-Data</Presentation>
-        <Presentation>..\Decks\PRESENTATION-DevCamps-Keynote</Presentation>
-        <Presentation>..\Decks\PRESENTATION-DevCamps-VirtualMachines</Presentation>
-        <Presentation>..\Decks\PRESENTATION-DevCamps-WebSites</Presentation>
-        <Presentation>..\Decks\PRESENTATION-DevCamps-Windows8AndWindowsAzureWebSites</Presentation>
-        <Presentation>..\Decks\PRESENTATION-DevCamps-WindowsPhoneAndWindowsAzure</Presentation>
-        <Presentation>..\Decks\PRESENTATION-HadoopOnWindowsAzure</Presentation>
-        <Presentation>..\Decks\PRESENTATION-IdentityAndAccessControl</Presentation>
-        <Presentation>..\Decks\PRESENTATION-LinuxVirtualMachines</Presentation>
-        <Presentation>..\Decks\PRESENTATION-ManagingVMsPowerShell</Presentation>
-        <Presentation>..\Decks\PRESENTATION-MigratingAppsAndWorkloads</Presentation>
-        <Presentation>..\Decks\PRESENTATION-ScalableGlobalAndHighlyAvailableApps</Presentation>
-        <Presentation>..\Decks\PRESENTATION-SecurityandIdentity</Presentation>
-        <Presentation>..\Decks\PRESENTATION-SQLDatabase</Presentation>
-        <Presentation>..\Decks\PRESENTATION-SQLDatabaseMigration</Presentation>
-        <Presentation>..\Decks\PRESENTATION-SQLDataSync</Presentation>
-        <Presentation>..\Decks\PRESENTATION-SQLFederation</Presentation>
-        <Presentation>..\Decks\PRESENTATION-SQLReporting</Presentation>
-        <Presentation>..\Decks\PRESENTATION-VirtualMachinesOverview</Presentation>
-        <Presentation>..\Decks\PRESENTATION-VirtualNetworks</Presentation>
-        <Presentation>..\Decks\PRESENTATION-Windows8AndWindowsAzureWebSites</Presentation>
-        <Presentation>..\Decks\PRESENTATION-WindowsAzureCloudServices</Presentation>
-        <Presentation>..\Decks\PRESENTATION-WindowsAzureHDInsight</Presentation>
-        <Presentation>..\Decks\PRESENTATION-WindowsAzureITProOverview</Presentation>
-        <Presentation>..\Decks\PRESENTATION-WindowsAzureOverview</Presentation>
-        <Presentation>..\Decks\PRESENTATION-WindowsAzureServiceBus</Presentation>
-        <Presentation>..\Decks\PRESENTATION-WindowsAzureStorage</Presentation>
-        <Presentation>..\Decks\PRESENTATION-WindowsAzureVirtualMachines</Presentation>
-        <Presentation>..\Decks\PRESENTATION-WindowsAzureWebSites</Presentation>
-      </Presentations> -->
+	  <Demos>
+		<Demo>..\Demos\Demo-BuildingRealWorldCloudApps</Demo>
+      </Demos>
+	  <Presentations>
+	  </Presentations>
     </Unit>
   </Units>
   <CustomProperties>
