@@ -28,18 +28,13 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Visual Studio Express 2013 for Web][1] or greater
-- TODO: Review if it is requiered [Identity and Access Tools for Visual Studio 2012][2]
-- TODO: Review if it is requiered [WCF Data Services 5.3 Tools][3]
 - A Windows Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
 	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
 	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
 	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 
-
 [1]:http://www.microsoft.com/visualstudio/
-[2]: http://visualstudiogallery.msdn.microsoft.com/e21bf653-dfe1-4d81-b3d3-795cb104066e
-[3]:http://www.microsoft.com/en-us/download/details.aspx?id=35840
 
 <a name="Setup"/>
 ### Setup ###
@@ -105,15 +100,15 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 	_Creating a New Directory_
 
-	> **Note:** This dialog gathers essential information needed to create a directory tenant for you.
+	> **Note:** This dialog box gathers essential information needed to create a directory tenant for you.
 	>
-	> * **Organization Name**: This field is required, and its value will be used as a moniker whenever there's the need to display the company name. 
+	> * **Name**: This field is required, and its value will be used as a moniker whenever there's the need to display the company name. 
 	>
 	> * **Domain Name**: This field represents a critical piece of information: it is the part of the directory tenant domain name that is specific to your tenant, what distinguishes it from every other directory tenant. 
 	>
-	> 		At creation, every directory tenant is identified by a domain of the form <tenantname>.onmicrosoft.com. That domain is used in the UPN of all the directory users and in general wherever it is necessary to identify your directory tenant. After creation it is possible to register additional domains that you own. For more information, see domain management.
+	>		At creation, every directory tenant is identified by a domain of the form <tenantname>.onmicrosoft.com. That domain is used in the UPN of all the directory users and in general wherever it is necessary to identify your directory tenant. After creation it is possible to register additional domains that you own. For more information, see domain management.
 	>
-	> * **The Domain Name must be unique**: the UI validation logic will help you to pick a unique value. It is recommended that you choose a handle which refers to your company, as that will help users and partners as they interact with the directory tenant.
+	> 		The domain name must be unique. The UI validation logic will help you to pick a unique value. It is recommended that you choose a handle which refers to your company, as that will help users and partners as they interact with the directory tenant.
 	>
 	> * **Country or Region**: The value selected in this dropdown will determine where your tenant will be created. Given that the directory will store sensitive information, please do take into account the normative about privacy of the country in which your company operates. 
 
@@ -125,7 +120,7 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 	> **Note:** When a directory tenant is created, it is configured to store users and credentials in the cloud. If you want to integrate your directory tenant with your on-premises deployment of Windows Server Active Directory, you can find detailed instructions [here](http://technet.microsoft.com/library/jj151781.aspx).
 
-1.	Click on the newly created directory entry and then click the Users tabs to display the user management UI. The directory tenant is initially empty, except for the Microsoft Account administering the Windows Azure subscription in which the new tenant was created.
+1.	Click on the newly created directory entry and then click the **Users** tab to display the user management UI. The directory tenant is initially empty, except for the Microsoft Account administering the Windows Azure subscription in which the new tenant was created.
 
 	![Active Directory User list](Images/active-directory-user-list.png?raw=true "Active Directory User list")
 
@@ -149,19 +144,19 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 	_Filling user profile information_
 
-1.	The Management Portal generates a temporary password, which will have to be used at the time of the first login. At that time the user will be forced to change password. Click the **create** button.
+1.	The Windows Azure Management Portal generates a temporary password, which will have to be used at the time of the first login. At that time the user will be forced to change password. Click the **create** button.
 
 	![Creating a temporary password](Images/creating-a-temporary-password.png?raw=true "Creating a temporary password")
 
 	_Creating a temporary password_
 
-1. Take note of the temporary password, as you will need it in the following tasks. Click the check button to create the user.
+1. Take note of the temporary password, as you will need it in the following tasks. Click the **check** button to create the user.
 
 	![Creating the new user](Images/creating-the-new-user.png?raw=true "Creating the new user")
 
 	_Creating the new user_
 
-1. Now, will repeat the steps to add new admin user to the directory. Click the **Add User** button in the bottom bar.
+1. Now, will repeat the steps to add new _admin_ user to the directory. Click the **Add User** button in the bottom bar.
 
 	![Add New User to Active Directory](Images/add-new-user-to-active-directory.png?raw=true "Add New User to Active Directory")
 
@@ -283,7 +278,7 @@ In this task you will explore the code generated by Visual Studio to enable Sing
 
 	_Logging in to the Application_
 
-1.	You might recall that when you created the user in your Windows Azure AD tenant the Management Portal assigned to it a temporary password. You have to authenticate using that password. However, given that such password was meant to be temporary, during this very first sign-in operation you will be asked to choose a proper user password before being able to move forward with the authentication flow. Once you'll be done with that, the normal sign-in flow to the app will be restored.
+1.	You might recall that when you created the user in your Windows Azure AD tenant the Windows Azure Management Portal assigned to it a temporary password. You have to authenticate using that password. However, given that such password was meant to be temporary, during this very first sign-in operation you will be asked to choose a proper user password before being able to move forward with the authentication flow. Once you'll be done with that, the normal sign-in flow to the app will be restored.
 
 	![Resetting AD password](Images/resetting-ad-password.png?raw=true)
 
@@ -309,7 +304,7 @@ In this task you will explore the code generated by Visual Studio to enable Sing
 
 1. Stop running the solution by pressing **Shift + F5**.
 
-1.	Minimize Visual Studio and go back to the **Management Portal**. Go to your Active Directory tenant and click **Applications**.
+1.	Minimize Visual Studio and go back to the **Windows Azure Management Portal**. Go to your Active Directory tenant and click on **Applications** tab.
 
 1. Click on the arrow next to the **ExpenseReport** application in the **Applications** list to go to the dashboard.
 
@@ -329,7 +324,7 @@ In this task you will explore the code generated by Visual Studio to enable Sing
 
 	_Configure button_
 
-1. In the **Properties** section, you can check the **SIGN-ON URL** which is the URL where users can sign in and use your app. You can also see the **CLIENT ID** which is the unique identifier for your app. 
+1. In the **Properties** section, you can check the **SIGN-ON URL** which is the URL where users can sign in and use your app. You can also see the **CLIENT ID** which is the unique identifier for your app. You will use the **CLIENT ID** property in the next exercise. 
 
 	![Properties section in Configure tab](Images/properties-group-in-configure-section.png?raw=true "Properties section in Configure tab")
 
