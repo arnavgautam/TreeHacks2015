@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceDefinition name="MyTodo" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2012-10.1.8">
-  <WebRole name="MyTodo.WebUx" vmsize="ExtraSmall">
+<ServiceDefinition name="MyTodo" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2013-10.2.2">
+  <WebRole name="MyTodo.WebUx" vmsize="Small">
     <Sites>
       <Site name="Web">
         <Bindings>
@@ -14,9 +14,5 @@
     <Imports>
       <Import moduleName="Diagnostics" />
     </Imports>
-    <ConfigurationSettings>
-      <Setting name="DataConnectionString" />
-      <Setting name="InitialListsBlobUrl" />
-    </ConfigurationSettings>
   </WebRole>
 </ServiceDefinition>
