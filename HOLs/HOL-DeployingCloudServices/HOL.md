@@ -271,7 +271,7 @@ In this task, you will create a service package for the myTODO application and t
 
 	>**Note:** The _.cscfg_ file contains configuration settings for the application, including the instance count and configuration for the web role, and the storage account settings that you modified previously.
 
-1.	Finally, check **Deploy even if one or more roles contain a single instace**. Then click the **Tick** to start the deployment.
+1.	Finally, check **Deploy even if one or more roles contain a single instance**. Then click the **Tick** to start the deployment.
 
 	![Configuring the service package deployment](Images/configuring-service-package-deployment.png?raw=true)
 
@@ -283,7 +283,7 @@ In this task, you will create a service package for the myTODO application and t
 
 	_Uploading a service package to the Windows Azure Management Portal_
 
-1. Wait until the deployment process finishes, which may take several minutes. At this point, you have already uploaded the package and you can view the deployment status on the dashboard. When the deployment reaches its **Running** state, the portal assignes a **DNS name** to the deployment that includes a unique identifier. Shortly, you will access this URL to test the application and determine whether it operates correctly in the Windows Azure environment, but first you need to configure it.
+1. Wait until the deployment process finishes, which may take several minutes. At this point, you have already uploaded the package and you can view the deployment status on the dashboard. When the deployment reaches its **Running** state, the portal assigns a **DNS name** to the deployment that includes a unique identifier. Shortly, you will access this URL to test the application and determine whether it operates correctly in the Windows Azure environment, but first you need to configure it.
 
 	>**Note:** During deployment, Windows Azure analyzes the configuration file and copies the service to the correct number of machines, and starts all the instances. Load balancers, network devices and monitoring are also configured during this time.
 
@@ -692,7 +692,7 @@ Then, you will use these credentials to publish the myTODO application directly 
 
 	_Import Subscription_
 
-1. In the **Import Windows Azure Subscriptions** dialog box, click **Browse...**, locate the the publish-settings file you dowloaded in the previous exercise, select it and click **Open**. Then click **Import**.
+1. In the **Import Windows Azure Subscriptions** dialog box, click **Browse...**, locate the publish-settings file you downloaded in the previous exercise, select it and click **Open**. Then click **Import**.
 
 	> **Note:** It is recommended that you delete the publish-settings file after you import those settings. Because the management certificate includes security credentials, it should not be accessed by unauthorized users. If you need information about your subscriptions, you can get it from the Windows Azure Management Portal or the Microsoft Online Services Customer Portal.
 
@@ -775,7 +775,7 @@ In this exercise, you will enable SSL to secure the myTODO application. This inv
 <a name="Ex4Task1" />
 #### Task 1 – Adding an HTTPS Endpoint to the Application ####
 
-In this task, you will update the service model of MyTODO to add an HTTPS endpoint and then you test the application in the compute emulator.
+In this task, you will update the service model of myTODO to add an HTTPS endpoint and then you test the application in the compute emulator.
 
 1. If it is not already open, launch **Microsoft Visual Studio Express 2013 for Web** (or greater) as Administrator.
 
@@ -1026,7 +1026,29 @@ As an example, this task briefly shows how you set up an alias using Microsoft D
 <a name="NextSteps" />
 ## Next Steps ##
 
-TBC
+To learn more about deploying Cloud Services in Windows Azure, please refer to the following articles:
+
+**Technical Reference**
+
+This is a list of articles that expand on the technologies explained on this lab:
+
+- [Use the Windows Azure SDK Tools to Package, Run, and Deploy an Application] (http://msdn.microsoft.com/en-us/library/windowsazure/gg433055.aspx): explores the tools in the Windows Azure SDK to run, test, debug, and fine-tune your application before you deploy it as a cloud service to Windows Azure.
+
+- [How to Monitor Cloud Services](http://www.windowsazure.com/en-us/documentation/articles/cloud-services-how-to-monitor/): explains how to monitor key performance metrics for your cloud services in the Windows Azure Management Portal.
+
+- [Debugging Cloud Services](http://msdn.microsoft.com/en-us/library/windowsazure/ee405479.aspx): explores the different techniques provided by the Windows Azure Tools for Microsoft Visual Studio and the Windows Azure SDK to debug a Windows Azure application.
+
+- [Set Up a Remote Desktop Connection for a Role in Windows Azure](http://msdn.microsoft.com/en-us/library/windowsazure/hh124107.aspx): after you create a cloud service that is running your application, you can remotely access a role instance to configure settings in the virtual machine or troubleshoot issues.
+
+- [Run Startup Tasks in Windows Azure](http://msdn.microsoft.com/en-us/library/windowsazure/hh180155.aspx): you can use startup tasks to perform operations before a role starts. Operations that you might want to perform include installing a component, registering COM components, setting registry keys, or starting a long running process.
+
+- [Configure an SSL Certificate on an HTTPS Endpoint](http://msdn.microsoft.com/en-us/library/windowsazure/ff795779.aspx): enumerates the steps to add an HTTPS endpoint to a role in your Windows Azure service and associate it with an SSL certificate.
+
+**Development**
+
+This is a list of developer-oriented articles related to deploying Cloud Services in Windows Azure:
+
+- [Windows Azure Management Cmdlets Reference](http://msdn.microsoft.com/en-us/library/windowsazure/dn495240.aspx): describes the cmdlet in the .7.1 version of the Windows Azure PowerShell module. Windows Azure PowerShell is the module for Windows PowerShell that you can use to control and automate the deployment and management of your workloads in Windows Azure.
 
 ---
 
