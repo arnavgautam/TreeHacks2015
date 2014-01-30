@@ -25,7 +25,7 @@ try
 }
 catch
 {
-    throw "Windows Azure Storage SDK wasn't found. Please check you have installed the dependencies."
+    throw "The Windows Azure Storage Client Library could not be found. Please make sure you have installed Windows Azure SDK for .NET 2.2 or later"
 }
 
 Add-Type -Path $ref1
