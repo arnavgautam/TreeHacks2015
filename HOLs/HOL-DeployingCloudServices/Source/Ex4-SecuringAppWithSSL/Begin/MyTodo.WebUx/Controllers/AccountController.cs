@@ -1,320 +1,526 @@
 ﻿namespace MyTodo.WebUx.Controllers
 {
     using System;
-    using System.Globalization;
+    using System.Collections.Generic;
     using System.Linq;
-    using System.Security.Principal;
-    using System.Web.Mvc;
-    using System.Web.Security;
-    using Authentication;
-    using Models;
-    using Properties;
+    using System.Net.Http;
+    using System.Security.Claims;
+    using System.Security.Cryptography;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Http;
+    using System.Web.Http.ModelBinding;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.Owin.Security;
+    using Microsoft.Owin.Security.Cookies;
+    using Microsoft.Owin.Security.OAuth;
+    using MyTodo.WebUx.Models;
+    using MyTodo.WebUx.Providers;
+    using MyTodo.WebUx.Results;
 
-    [HandleError]
-    public class AccountController : Controller
+    [Authorize]
+    [RoutePrefix("api/Account")]
+    public class AccountController : ApiController
     {
-        // This constructor is used by the MVC framework to instantiate the controller using
-        // the default forms authentication and membership providers.
+        private const string LocalLoginProvider = "Local";
+
         public AccountController()
-            : this(null, null, null)
+            : this(Startup.UserManagerFactory(), Startup.OAuthOptions.AccessTokenFormat)
         {
         }
 
-        // This constructor is not used by the MVC framework but is instead provided for ease
-        // of unit testing this type. See the comments at the end of this file for more
-        // information.
-        public AccountController(IFormsAuthentication formsAuth, IMembershipService membershipService, TaskRepository taskRepository)
+        public AccountController(
+            UserManager<IdentityUser> userManager,
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
-            this.FormsAuth = formsAuth ?? new FormsAuthenticationService();
-            this.MembershipService = membershipService ?? new AccountMembershipService();
-            this.TaskRepository = taskRepository ?? new TaskRepository();
+            this.UserManager = userManager;
+            this.AccessTokenFormat = accessTokenFormat;
         }
 
-        public IFormsAuthentication FormsAuth { get; private set; }
+        public UserManager<IdentityUser> UserManager { get; private set; }
 
-        public IMembershipService MembershipService { get; private set; }
+        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
-        public TaskRepository TaskRepository { get; private set; }
-
-        public ActionResult LogIn()
+        private IAuthenticationManager Authentication
         {
-            return View();
+            get { return Request.GetOwinContext().Authentication; }
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
-            Justification = "Needs to take same parameter type as Controller.Redirect()")]
-        public ActionResult LogIn(string userName, string password, bool rememberMe, string returnUrl)
+        // GET api/Account/UserInfo
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [Route("UserInfo")]
+        public UserInfoViewModel GetUserInfo()
         {
-            if (!this.ValidateLogIn(userName, password))
+            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
+
+            return new UserInfoViewModel
             {
-                return View();
+                UserName = User.Identity.GetUserName(),
+                HasRegistered = externalLogin == null,
+                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
+            };
+        }
+
+        // POST api/Account/Logout
+        [Route("Logout")]
+        public IHttpActionResult Logout()
+        {
+            this.Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            return this.Ok();
+        }
+
+        // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
+        [Route("ManageInfo")]
+        public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
+        {
+            IdentityUser user = await this.UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            if (user == null)
+            {
+                return null;
             }
 
-            this.FormsAuth.SignIn(userName, rememberMe);
-            if (!string.IsNullOrEmpty(returnUrl))
+            List<UserLoginInfoViewModel> logins = new List<UserLoginInfoViewModel>();
+
+            foreach (IdentityUserLogin linkedAccount in user.Logins)
             {
-                return Redirect(returnUrl);
+                logins.Add(new UserLoginInfoViewModel
+                {
+                    LoginProvider = linkedAccount.LoginProvider,
+                    ProviderKey = linkedAccount.ProviderKey
+                });
+            }
+
+            if (user.PasswordHash != null)
+            {
+                logins.Add(new UserLoginInfoViewModel
+                {
+                    LoginProvider = LocalLoginProvider,
+                    ProviderKey = user.UserName,
+                });
+            }
+
+            return new ManageInfoViewModel
+            {
+                LocalLoginProvider = LocalLoginProvider,
+                UserName = user.UserName,
+                Logins = logins,
+                ExternalLoginProviders = this.GetExternalLogins(returnUrl, generateState)
+            };
+        }
+
+        // POST api/Account/ChangePassword
+        [Route("ChangePassword")]
+        public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            IdentityResult result = await this.UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            IHttpActionResult errorResult = this.GetErrorResult(result);
+
+            if (errorResult != null)
+            {
+                return errorResult;
+            }
+
+            return this.Ok();
+        }
+
+        // POST api/Account/SetPassword
+        [Route("SetPassword")]
+        public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            IdentityResult result = await this.UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+            IHttpActionResult errorResult = this.GetErrorResult(result);
+
+            if (errorResult != null)
+            {
+                return errorResult;
+            }
+
+            return this.Ok();
+        }
+
+        // POST api/Account/AddExternalLogin
+        [Route("AddExternalLogin")]
+        public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            this.Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+
+            AuthenticationTicket ticket = this.AccessTokenFormat.Unprotect(model.ExternalAccessToken);
+
+            if (ticket == null || ticket.Identity == null || (ticket.Properties != null
+                && ticket.Properties.ExpiresUtc.HasValue
+                && ticket.Properties.ExpiresUtc.Value < DateTimeOffset.UtcNow))
+            {
+                return this.BadRequest("External login failure.");
+            }
+
+            ExternalLoginData externalData = ExternalLoginData.FromIdentity(ticket.Identity);
+
+            if (externalData == null)
+            {
+                return this.BadRequest("The external login is already associated with an account.");
+            }
+
+            IdentityResult result = await this.UserManager.AddLoginAsync(
+                User.Identity.GetUserId(),
+                new UserLoginInfo(externalData.LoginProvider, externalData.ProviderKey));
+
+            IHttpActionResult errorResult = this.GetErrorResult(result);
+
+            if (errorResult != null)
+            {
+                return errorResult;
+            }
+
+            return this.Ok();
+        }
+
+        // POST api/Account/RemoveLogin
+        [Route("RemoveLogin")]
+        public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            IdentityResult result;
+
+            if (model.LoginProvider == LocalLoginProvider)
+            {
+                result = await this.UserManager.RemovePasswordAsync(User.Identity.GetUserId());
             }
             else
             {
-                return RedirectToAction("Index", "Task");
+                result = await this.UserManager.RemoveLoginAsync(
+                    User.Identity.GetUserId(),
+                    new UserLoginInfo(model.LoginProvider, model.ProviderKey));
             }
-        }
 
-        public ActionResult LogOff()
-        {
-            this.FormsAuth.SignOut();
+            IHttpActionResult errorResult = this.GetErrorResult(result);
 
-            return RedirectToAction("Index", "Task");
-        }
-
-        public ActionResult Register()
-        {
-            this.ViewData["PasswordLength"] = this.MembershipService.MinPasswordLength;
-
-            return View();
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Register(string userName, string email, string password, string confirmPassword)
-        {
-            this.ViewData["PasswordLength"] = this.MembershipService.MinPasswordLength;
-
-            // we are only letting a single user register on this site (ever)
-            if (!Roles.RoleExists("Owner"))
+            if (errorResult != null)
             {
-                if (this.ValidateRegistration(userName, email, password, confirmPassword))
-                {
-                    // Attempt to register the user
-                    MembershipCreateStatus createStatus = this.MembershipService.CreateUser(userName, password, email);
+                return errorResult;
+            }
 
-                    if (createStatus == MembershipCreateStatus.Success)
-                    {
-                        // Provision the user role and tables.
-                        Roles.CreateRole("Owner");
-                        Roles.AddUserToRole(userName, "Owner");
+            return this.Ok();
+        }
 
-                        this.TaskRepository.CreateTables();
+        // GET api/Account/ExternalLogin
+        [OverrideAuthentication]
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
+        [AllowAnonymous]
+        [Route("ExternalLogin", Name = "ExternalLogin")]
+        public async Task<IHttpActionResult> GetExternalLogin(string provider, string error = null)
+        {
+            if (error != null)
+            {
+                return this.Redirect(Url.Content("~/") + "#error=" + Uri.EscapeDataString(error));
+            }
 
-                        this.FormsAuth.SignIn(userName, false /* createPersistentCookie */);
+            if (!User.Identity.IsAuthenticated)
+            {
+                return new ChallengeResult(provider, this);
+            }
 
-                        // Provision the Public Lists
-                        this.CreateInitialLists();
+            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
-                        return RedirectToAction("Index", "Task");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("_FORM", ErrorCodeToString(createStatus));
-                    }
-                }
+            if (externalLogin == null)
+            {
+                return this.InternalServerError();
+            }
+
+            if (externalLogin.LoginProvider != provider)
+            {
+                this.Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                return new ChallengeResult(provider, this);
+            }
+
+            IdentityUser user = await this.UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
+
+            bool hasRegistered = user != null;
+
+            if (hasRegistered)
+            {
+                this.Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                ClaimsIdentity oauthIdentity = await this.UserManager.CreateIdentityAsync(
+                    user,
+                    OAuthDefaults.AuthenticationType);
+                ClaimsIdentity cookieIdentity = await this.UserManager.CreateIdentityAsync(
+                    user,
+                    CookieAuthenticationDefaults.AuthenticationType);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                this.Authentication.SignIn(properties, oauthIdentity, cookieIdentity);
             }
             else
             {
-                ModelState.AddModelError("_FORM", "The Owner has already registered");
+                IEnumerable<Claim> claims = externalLogin.GetClaims();
+                ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
+                this.Authentication.SignIn(identity);
             }
 
-            // If we got this far, something failed, redisplay form
-            return View();
+            return this.Ok();
         }
 
-        [Authorize]
-        public ActionResult Profile()
+        // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
+        [AllowAnonymous]
+        [Route("ExternalLogins")]
+        public IEnumerable<ExternalLoginViewModel> GetExternalLogins(string returnUrl, bool generateState = false)
         {
-            this.ViewData["PasswordLength"] = this.MembershipService.MinPasswordLength;
+            IEnumerable<AuthenticationDescription> descriptions = this.Authentication.GetExternalAuthenticationTypes();
+            List<ExternalLoginViewModel> logins = new List<ExternalLoginViewModel>();
 
-            return View();
-        }
+            string state;
 
-        [AcceptVerbs(HttpVerbs.Post), Authorize]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
-            Justification = "Exceptions result in password not being changed.")]
-        public ActionResult Profile(string currentPassword, string newPassword, string confirmPassword)
-        {
-            this.ViewData["PasswordLength"] = this.MembershipService.MinPasswordLength;
-
-            if (!this.ValidateChangePassword(currentPassword, newPassword, confirmPassword))
+            if (generateState)
             {
-                return View();
+                const int StrengthInBits = 256;
+                state = RandomOAuthStateGenerator.Generate(StrengthInBits);
+            }
+            else
+            {
+                state = null;
             }
 
-            try
+            foreach (AuthenticationDescription description in descriptions)
             {
-                if (!string.IsNullOrEmpty(newPassword))
+                ExternalLoginViewModel login = new ExternalLoginViewModel
                 {
-                    if (!this.MembershipService.ChangePassword(User.Identity.Name, currentPassword, newPassword))
+                    Name = description.Caption,
+                    Url = Url.Route(
+                    "ExternalLogin",
+                    new
                     {
-                        ModelState.AddModelError("_FORM", "The current password is incorrect or the new password is invalid.");
-                        return this.View();
+                        provider = description.AuthenticationType,
+                        response_type = "token",
+                        client_id = Startup.PublicClientId,
+                        redirect_uri = new Uri(Request.RequestUri, returnUrl).AbsoluteUri,
+                        state = state
+                    }),
+                    State = state
+                };
+                logins.Add(login);
+            }
+
+            return logins;
+        }
+
+        // POST api/Account/Register
+        [AllowAnonymous]
+        [Route("Register")]
+        public async Task<IHttpActionResult> Register(RegisterBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            IdentityUser user = new IdentityUser
+            {
+                UserName = model.UserName
+            };
+
+            IdentityResult result = await this.UserManager.CreateAsync(user, model.Password);
+            IHttpActionResult errorResult = this.GetErrorResult(result);
+
+            if (errorResult != null)
+            {
+                return errorResult;
+            }
+
+            InitiateDatabaseForNewUser(model.UserName);
+
+            return this.Ok();
+        }
+
+        // POST api/Account/RegisterExternal
+        [OverrideAuthentication]
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [Route("RegisterExternal")]
+        public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
+
+            if (externalLogin == null)
+            {
+                return this.InternalServerError();
+            }
+
+            IdentityUser user = new IdentityUser
+            {
+                UserName = model.UserName
+            };
+            user.Logins.Add(new IdentityUserLogin
+            {
+                LoginProvider = externalLogin.LoginProvider,
+                ProviderKey = externalLogin.ProviderKey
+            });
+            IdentityResult result = await this.UserManager.CreateAsync(user);
+            IHttpActionResult errorResult = this.GetErrorResult(result);
+
+            if (errorResult != null)
+            {
+                return errorResult;
+            }
+
+            InitiateDatabaseForNewUser(model.UserName);
+
+            return this.Ok();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.UserManager.Dispose();
+            }
+
+            base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// Initiate a new todo list for new user
+        /// </summary>
+        /// <param name="userName"></param>
+        private static void InitiateDatabaseForNewUser(string userName)
+        {
+            TodoItemContext db = new TodoItemContext();
+            TodoList todoList = new TodoList();
+            todoList.UserId = userName;
+            todoList.Title = "My Todo List #1";
+            todoList.Todos = new List<TodoItem>();
+            db.TodoLists.Add(todoList);
+            db.SaveChanges();
+
+            todoList.Todos.Add(new TodoItem() { Title = "Todo item #1", TodoListId = todoList.TodoListId, IsDone = false });
+            todoList.Todos.Add(new TodoItem() { Title = "Todo item #2", TodoListId = todoList.TodoListId, IsDone = false });
+            db.SaveChanges();
+        }
+
+        #region Helpers
+
+        private IHttpActionResult GetErrorResult(IdentityResult result)
+        {
+            if (result == null)
+            {
+                return this.InternalServerError();
+            }
+
+            if (!result.Succeeded)
+            {
+                if (result.Errors != null)
+                {
+                    foreach (string error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error);
                     }
                 }
 
-                return this.View("ProfileUpdateSuccess");
-            }
-            catch
-            {
-                ModelState.AddModelError("_FORM", "The current password is incorrect or the new password is invalid.");
-                return View();
-            }
-        }
-
-        public ActionResult ProfileUpdateSuccess()
-        {
-            return View();
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            if (filterContext.HttpContext.User.Identity is WindowsIdentity)
-            {
-                throw new InvalidOperationException("Windows authentication is not supported.");
-            }
-        }
-
-        protected void CreateInitialLists()
-        {
-            var document = this.TaskRepository.RetrieveInitialLists();
-
-            if (document.Nodes().Count() == 0)
-            {
-                return;
-            }
-
-            var todoController = new TodoController();
-            todoController.ControllerContext = this.ControllerContext;
-
-            foreach (var taskList in document.Descendants("TaskList"))
-            {
-                var taskListName = taskList.Element("Name").Value;
-                var taskListIsPublic = bool.Parse(taskList.Element("IsPublic").Value);
-
-                var createdTaskList = this.TaskRepository.CreateList(taskListName, taskListIsPublic);
-
-                if (createdTaskList == null || string.IsNullOrEmpty(createdTaskList.ListId))
+                if (ModelState.IsValid)
                 {
-                    return;
+                    // No ModelState errors are available to send, so just return an empty BadRequest.
+                    return this.BadRequest();
                 }
 
-                foreach (var task in taskList.Descendants("Task"))
-                {
-                    var newTask = new Task
-                    {
-                        ListId = createdTaskList.ListId,
-                        Subject = task.Element("Subject").Value,
-                        DueDate = string.IsNullOrEmpty(task.Element("DueDate").Value) ? DateTime.MaxValue : DateTime.Parse(task.Element("DueDate").Value, CultureInfo.InvariantCulture),
-                        IsComplete = bool.Parse(task.Element("IsComplete").Value)
-                    };
-
-                    todoController.CreateTask(newTask);
-                }
+                return this.BadRequest(this.ModelState);
             }
+
+            return null;
         }
 
-        // Validation Methods
-        private static string ErrorCodeToString(MembershipCreateStatus createStatus)
+        private static class RandomOAuthStateGenerator
         {
-            // See http://msdn.microsoft.com/en-us/library/system.web.security.membershipcreatestatus.aspx for
-            // a full list of status codes.
-            switch (createStatus)
+            private static RandomNumberGenerator random = new RNGCryptoServiceProvider();
+
+            public static string Generate(int strengthInBits)
             {
-                case MembershipCreateStatus.DuplicateUserName:
-                    return "Username already exists. Please enter a different user name.";
+                const int BitsPerByte = 8;
 
-                case MembershipCreateStatus.DuplicateEmail:
-                    return "A username for that e-mail address already exists. Please enter a different e-mail address.";
-
-                case MembershipCreateStatus.InvalidPassword:
-                    return "The password provided is invalid. Please enter a valid password value.";
-
-                case MembershipCreateStatus.InvalidEmail:
-                    return "The e-mail address provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidAnswer:
-                    return "The password retrieval answer provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidQuestion:
-                    return "The password retrieval question provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidUserName:
-                    return "The user name provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.ProviderError:
-                    return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-
-                case MembershipCreateStatus.UserRejected:
-                    return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-
-                default:
-                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-            }
-        }
-
-        private bool ValidateChangePassword(string currentPassword, string newPassword, string confirmPassword)
-        {
-            if (!string.IsNullOrEmpty(currentPassword))
-            {
-                if (newPassword == null || newPassword.Length < this.MembershipService.MinPasswordLength)
+                if (strengthInBits % BitsPerByte != 0)
                 {
-                    ModelState.AddModelError(
-                        "newPassword",
-                        string.Format(CultureInfo.CurrentCulture, "You must specify a new password of {0} or more characters.", this.MembershipService.MinPasswordLength));
+                    throw new ArgumentException("strengthInBits must be evenly divisible by 8.", "strengthInBits");
                 }
 
-                if (!string.Equals(newPassword, confirmPassword, StringComparison.Ordinal))
+                int strengthInBytes = strengthInBits / BitsPerByte;
+
+                byte[] data = new byte[strengthInBytes];
+                random.GetBytes(data);
+                return HttpServerUtility.UrlTokenEncode(data);
+            }
+        }
+
+        private class ExternalLoginData
+        {
+            public string LoginProvider { get; set; }
+
+            public string ProviderKey { get; set; }
+
+            public string UserName { get; set; }
+
+            public static ExternalLoginData FromIdentity(ClaimsIdentity identity)
+            {
+                if (identity == null)
                 {
-                    ModelState.AddModelError("_FORM", "The new password and confirmation password do not match.");
+                    return null;
                 }
+
+                Claim providerKeyClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
+
+                if (providerKeyClaim == null || string.IsNullOrEmpty(providerKeyClaim.Issuer)
+                    || string.IsNullOrEmpty(providerKeyClaim.Value))
+                {
+                    return null;
+                }
+
+                if (providerKeyClaim.Issuer == ClaimsIdentity.DefaultIssuer)
+                {
+                    return null;
+                }
+
+                return new ExternalLoginData
+                {
+                    LoginProvider = providerKeyClaim.Issuer,
+                    ProviderKey = providerKeyClaim.Value,
+                    UserName = identity.FindFirstValue(ClaimTypes.Name)
+                };
             }
 
-            return ModelState.IsValid;
+            public IList<Claim> GetClaims()
+            {
+                IList<Claim> claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, this.ProviderKey, null, this.LoginProvider));
+
+                if (this.UserName != null)
+                {
+                    claims.Add(new Claim(ClaimTypes.Name, this.UserName, null, this.LoginProvider));
+                }
+
+                return claims;
+            }
         }
 
-        private bool ValidateLogIn(string userName, string password)
-        {
-            if (string.IsNullOrEmpty(userName))
-            {
-                ModelState.AddModelError("username", "You must specify a username.");
-            }
-
-            if (string.IsNullOrEmpty(password))
-            {
-                ModelState.AddModelError("password", "You must specify a password.");
-            }
-
-            if (!this.MembershipService.ValidateUser(userName, password))
-            {
-                ModelState.AddModelError("_FORM", "The username or password provided is incorrect.");
-            }
-
-            return ModelState.IsValid;
-        }
-
-        private bool ValidateRegistration(string userName, string email, string password, string confirmPassword)
-        {
-            if (string.IsNullOrEmpty(userName))
-            {
-                ModelState.AddModelError("username", "You must specify a username.");
-            }
-
-            if (string.IsNullOrEmpty(email))
-            {
-                ModelState.AddModelError("email", "You must specify an email address.");
-            }
-
-            if (password == null || password.Length < this.MembershipService.MinPasswordLength)
-            {
-                ModelState.AddModelError(
-                    "password",
-                    string.Format(CultureInfo.CurrentCulture, "You must specify a password of {0} or more characters.", this.MembershipService.MinPasswordLength));
-            }
-
-            if (!string.Equals(password, confirmPassword, StringComparison.Ordinal))
-            {
-                ModelState.AddModelError("_FORM", "The new password and confirmation password do not match.");
-            }
-
-            return ModelState.IsValid;
-        }
+        #endregion
     }
 }
