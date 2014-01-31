@@ -1,6 +1,6 @@
 ﻿<!-- ko with: home -->
 <p class="error" data-bind="text: error"></p>
-<button class="btn btn-primary" data-bind="click: addTodoList">Add Todo list</button>
+<button class="btn btn-primary" data-bind="click: addTodoList"><span class="glyphicon glyphicon-plus"></span> Add Todo list</button>
 
 <section id="lists" data-bind="foreach: todoLists, visible: todoLists().length > 0">
     <article class="todoList">

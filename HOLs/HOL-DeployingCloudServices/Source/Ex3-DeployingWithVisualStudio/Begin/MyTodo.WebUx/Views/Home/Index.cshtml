@@ -40,21 +40,23 @@
             </div>
         </div>
 
-        <div data-bind="foreach: errors" class="padding-error">
-            <p class="text-danger" data-bind="text: $data"></p>
+        <div class="container">
+            <div data-bind="foreach: errors" class="padding-error">
+                <p class="text-danger" data-bind="text: $data"></p>
+            </div>
+
+            <div data-bind="visible: loading">Loading...</div>
+
+            @Html.Partial("_Home")
+            @Html.Partial("_Login")
+            @Html.Partial("_Register")
+            @Html.Partial("_RegisterExternal")
+            @Html.Partial("_Manage")
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - myTODO (Deployed with Visual Studio)</p>
+            </footer>
         </div>
-
-        <div data-bind="visible: loading">Loading...</div>
-
-        @Html.Partial("_Home")
-        @Html.Partial("_Login")
-        @Html.Partial("_Register")
-        @Html.Partial("_RegisterExternal")
-        @Html.Partial("_Manage")
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - myTODO (Deployed with Visual Studio)</p>
-        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
