@@ -5,10 +5,7 @@
 <a name="Overview" />
 ## Overview ##
 
-TODO: updated the overview.
-
-In this hands-on lab you will learn how to use **Windows Azure Active Directory** for implementing web single sign-on in an ASP.NET application. The instructions will focus on taking advantage of the directory tenant associated with your Windows Azure subscription, as that constitutes the obvious choice of identity providers for Line of Business (LoB) applications in your own organization. This lab will show you how to provision the same application in a Windows Azure AD tenant, and how to configure the application's sign-on settings to connect to that tenant. At the end of the walkthrough, you will have a functioning web application fully configured for organizational single sign-on.
-
+In this hands-on lab you will learn how to use **Windows Azure Active Directory** for implementing web single sign-on in an ASP.NET application. The instructions will focus on taking advantage of the directory tenant associated with your Windows Azure subscription, as that constitutes the obvious choice of identity providers for Line of Business (LoB) applications in your own organization. This lab will show you how to create an application with single sign-on enabled with Windows Azure Active Directory using the new Organizational Accounts authentication template that comes with MVC. Then you will explore all the configuration set in the application and in Windows Azure that made single sign-on possible. At the end of the lab, you will use the Graph RESTFull API to query Active Directory data and display it in the application.
 
 ![Windows Azure AD Architecture Overview](Images/windows-azure-ad-architecture-overview.png?raw=true)
 
@@ -19,7 +16,7 @@ In this hands-on lab, you will learn how to:
 
 * Create a new Windows Azure Active Directory tenant.
 * Provision an MVC application in the AD tenant.
-* Configure application's sign-on and sign-out settings.
+* Explore the configuration of the application Authentication.
 * Query Active Directory data using Graph AD API.
 
 <a name="Prerequisites" />
@@ -649,13 +646,25 @@ In this task you will add the Graph API Helper to your MVC app. This helper is a
 
 1. If not already open, start **Visual Studio 2013** and continue with the solution obtained from the previous exercise. Alternatively, you can open the **Begin.sln** solution from the **Source\Ex2-UsingGraphAPIWithWAAD\Begin** folder of this lab.
 
-	> **Note:** If you opened the **Begin.sln** solution, you need to **enable SSL** from the properties of the ExpenseReport project; update the **project URL** in the **Web** tab of the ExpenseReport project properties in the _Use Local IIS Web server_ section with the SSL URL obtained from the previous step; update the **App URL** of the configured application in the Windows Azure Management Portal with the SSL URL obtained from the first step; and Run the **Identity and Access** wizard over the ExpenseReport project selecting the **Use a business identity provider** and updating the **Federation Metadata URL** placeholder with the one located in the configured application in the Windows Azure Management Portal and the **APP ID URI** placeholder with the value obtained from the first step. Also, in the **Web.config** file, update the _[YOUR-APP-ID-URL]_ placeholder in the federation configuration element with the URL obtained from the first step. For more information, check [Task 2](#Ex1Task2) and [Task 3](#Ex1Task3) from exercise 1.
+	> **Note:** If you opened the **Begin.sln** solution, you need to **enable SSL** from the properties of the ExpenseReport project; update the **project URL** in the **Web** tab of the ExpenseReport project properties in the _Use Local IIS Web server_ section with the SSL URL obtained from the previous step; update the **App URL** of the configured application in the Windows Azure Management Portal with the SSL URL obtained from the first step. 
+	>
+	>In the **Web.config** file, update the following placeholders:
+	>
+	>* The _[APP-ID-URI]_ placeholder from the **audienceUris** in the **system.identityModel** section with your **App ID URI**.
+	>* The _[APP-ID-URI]_ placeholder from the **realm** attribute from the **federationConfiguration** element in the  **system.identityModel.services** section with your **App ID URI**
+	>* The _[YOUR-DIRECTORY-NAME]_ placeholder from the **issuer** attribute from the **federationConfiguration** element in the  **system.identityModel.services** section  with your directory name (without spaces)
+	>* The _[FEDERATION METADATA DOCUMENT]_ placeholder for the  **ida:FederationMetadataLocation** key in the **AppSettings** 
+	>* The _[APP-ID-URI]_ placeholder for the  **ida:Realm** key in the **AppSettings** 
+	>* The _[APP-ID-URI]_ placeholder for the  **ida:AudienceUri** key in the **AppSettings** 
+	>* The _[YOUR-CLIENT-ID]_ placeholder for the  **ClientId** key in the **AppSettings** 
+	>* The _[YOUR-APPLICATION-KEY-VALUE]_ placeholder for the  **Password** key in the **AppSettings** 
+
 
 1. To add the Graph API Helper to the single sign-on project, right-click the solution, click **Add | Existing Project**.
 
 1. From the **Add Existing Project** dialog, navigate to the folder where you downloaded the Graph API Helper and open the **Microsoft.WindowsAzure.ActiveDirectory.GraphHelper.csproj** project file.
 
-1. Open the Web.config file of the **ExpenseReport** project. Add the following key values to the appSettings section. Make sure you update the _[YOUR-CLIENT-ID]_ placeholder with the **Client ID** value obtained from the **Configure** tab of your application in the Windows Azure Management Portal and the _[YOUR-APPLICATION-KEY-VALUE]_ placeholder with the key that you generated in the previous task.
+1. Open the **Web.config** file of the **ExpenseReport** project. Add the following key values to the appSettings section. Make sure you update the _[YOUR-CLIENT-ID]_ placeholder with the **Client ID** value obtained from the **Configure** tab of your application in the Windows Azure Management Portal and the _[YOUR-APPLICATION-KEY-VALUE]_ placeholder with the key that you generated in the previous task.
 
 	<!-- mark:2-3 -->
 	````XML
@@ -767,7 +776,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 	> **Note:** It is recommended that the JWT token is cached by the application for subsequent calls – in this block, the JWT token expiration is checked before making a second Graph API call. If the token is expired, then a new token is acquired. If a call to the Graph API is made with an expired token, the following error response will be returned, and the client should request a new token.
 
-1. Now you will add a new view to display the list of users retrieved from the Active Directory tenant. To do this, expand the **Views** folder of the **ExpenseReport** project, right-click the **Home** folder and select **Add | View**. In the **Add View** dialog, set the view name to _Users_ and click **Add**.
+1. Now you will add a new view to display the list of users retrieved from the Active Directory tenant. To do this, expand the **Views** folder of the **ExpenseReport** project, right-click the **Home** folder and select **Add | View**. In the **Add View** dialog box, set the view name to _Users_ and click **Add**.
 
 	![Adding Users View](Images/adding-users-view.png?raw=true "Adding Users View")
 
@@ -860,5 +869,5 @@ By completing this hands-on lab you have learned how to:
 
 * Create a new Windows Azure Active Directory tenant.
 * Provision an MVC application in the AD tenant.
-* Configure application's sign-on and sign-out settings.
+* Explore the configuration of the application Authentication.
 * Query Active Directory data using Graph AD API.
