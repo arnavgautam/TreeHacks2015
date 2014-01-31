@@ -151,7 +151,7 @@ In this task, you will add a new worker role that serves as a dedicated cache ho
 
 1. Select **FILE | Save All** or press **Ctrl + Shift + S** to save all changes.
 
-	>**Note:** When you add a new **Cache Worker Role** project, some files in the **Windows Azure Cloud Service** project, including _ServiceDefinition.csdef_ are modified but left in an unsaved state. You have to manually save those changes to avoid conflicts in the next task.
+	>**Note:** When you add the new **Cache Worker Role** project, some files within the solution are modified but not saved to disk. Make sure to save all changes before continuing with the next task.
 
 <a name="Ex1Task3" />
 #### Task 3 - Configuring Session State Using Windows Azure Cache service ####
