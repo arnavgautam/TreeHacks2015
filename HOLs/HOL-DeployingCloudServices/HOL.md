@@ -7,7 +7,7 @@
 
 In this hands-on lab, you will learn how to deploy your first application in Windows Azure. The lab walks through the process using myTODO, a simple list creation and management application built using ASP.NET MVC. The lab shows the steps required for provisioning the required components in the Windows Azure Management Portal, uploading the service package, and configuring the service. You will see how you can test your application in a staging environment and then promote it to production once you are satisfied that it is operating according to your expectations.
 
-![The myTODO application running in Windows Azure](./Images/mytodo.png?raw=true "The myTODO application running in Windows Azure")
+![The myTODO application running in Windows Azure](Images/mytodo.png?raw=true)
 
 _The myTODO application running in Windows Azure_
 
@@ -346,27 +346,27 @@ In this task, you run the application in the staging environment and access its 
 
 	>**Note:** The address URL is shown as _\<guid\>.cloudapp.net_, where \<_guid_\> is some random identifier. This is different from the address where the application will run once it is in production. Although the application executes in a staging area that is separate from the production environment, there is no actual physical difference between staging and production – it is simply a matter of where the load balancer is connected.
 
-1. Click **Start** to prepare the application for first time use, which requires you to create a new account.
+1. Click **Register** to create a local account.
 
-	![Application running in the staging environment](./Images/application-running-staging.png?raw=true "Application running in the staging environment")
+	![Application running in the staging environment](Images/application-running-staging.png?raw=true)
 
 	_Application running in the staging environment_
 
 1. Complete the account details by entering a user name, email address, and password and then click **Register**. 
 
-	>**Note:**  Account information is stored in the storage account created earlier. Data is not shared between to do lists.
+	>**Note:**  Account information is stored in the SQL database created earlier. Data is not shared between to-do lists.
 
-	![Application ready to be used](./Images/application-new-account.png?raw=true "Application ready to be used")
+	![Creating a new account](Images/application-new-account.png?raw=true)
 
 	_Creating a new account_
 
-1. Next, the application enumerates the lists that you have currently defined. Since this is your first use, no lists should appear.
+1. Next, the application enumerates the lists that you have currently defined. A sample todo list is provided by default for new users.
 
-	![Application ready to be used](./Images/application-ready.png?raw=true "Application ready to be used")
+	![Application ready to be used](Images/application-ready.png?raw=true)
 
 	_Application ready to be used_
 
-1. If you wish to explore the application, create a new TODO list and enter some items. 
+1. If you wish to explore the application, update the existing to-do list, or create a new to-do list and enter some items.
 
 <a name="Ex1Task5" />
 #### Task 5 – Promoting the Application to Production ####
@@ -375,7 +375,7 @@ Now that you have verified that the service is working correctly in the staging 
 
 1. In the **Cloud Services** page, click your MyTodo service **name**. Then click **Dashboard** and select **Staging**. Finally, click **Swap** from the bottom menu.
 
-	![Promoting the application to the production slot](./Images/promoting-app-prod.png?raw=true "Promoting the application to the production slot")
+	![Promoting the application to the production slot](Images/promoting-app-prod.png?raw=true)
 
 	_Promoting the application to the production slot_
 
@@ -387,7 +387,7 @@ Now that you have verified that the service is working correctly in the staging 
 
 1. Once the transition finishes, switch to **Production** tab and click the **Site URL** link to open the production site in a browser window and notice the URL in the address bar.
  
-	![Application running in the production environment](./Images/application-running-production.png?raw=true "Application running in the production environment")
+	![Application running in the production environment](Images/application-running-production.png?raw=true)
 
 	_Application running in the production environment_
 
@@ -611,7 +611,7 @@ Now that you have deployed your updated solution to Window Azure, you are ready 
 
 1. In your Cloud Service **Dashboard** page within the management portal, click the **Web Site URL** link to open the production site in a browser window. Notice the footer of the page. It should reflect the updated text that you entered in the last task.
 
-	![New deployment showing the updated footer text](./Images/new-deployment.png?raw=true "New deployment showing the updated footer text")
+	![New deployment showing the updated footer text](Images/new-deployment.png?raw=true)
 
 	_New deployment showing the updated footer text_
 
@@ -760,7 +760,7 @@ Notice that the additional information provided includes the deployment slot, **
 
 1. Once the deployment operation is complete, in the **Windows Azure Activity Log**, click the **Website URL** link for the completed operation to open the application in your browser and ensure that it is working properly. Notice the legend in the copyright at the bottom of the page indicating that this is the version that you deployed with Visual Studio.
 
-	![Running the application deployed with Visual Studio](./Images/running-deployment.png?raw=true "Running the application deployed with Visual Studio")
+	![Running the application deployed with Visual Studio](Images/running-deployment.png?raw=true)
 
 	_Running the application deployed with Visual Studio_
 
@@ -810,7 +810,7 @@ In this task, you will update the service model of myTODO to add an HTTPS endpoi
 
 1. After you access the home page, notice that the address bar shows that you are now accessing the HTTPS endpoint.
 
-	![Accessing the HTTPS endpoint in the compute emulator](./Images/accessing-endpoints.png?raw=true "Accessing the HTTPS endpoint in the compute emulator")
+	![Accessing the HTTPS endpoint in the compute emulator](Images/accessing-endpoints.png?raw=true)
 
 	_Accessing the HTTPS endpoint in the compute emulator_
 
@@ -972,7 +972,7 @@ In this task, you will deploy the application to Windows Azure and access its HT
 
 1. Now, browse to the HTTPS endpoint (e.g. _https://servicemytodo.cloudapp.net_). Once again, you will observe a certificate error because the certificate authority for the self-signed certificate is not trusted. You may ignore this error.
 
-	![Accessing the HTTPS endpoint in Windows Azure](./Images/accessing-https-endpoint.png?raw=true "Accessing the HTTPS endpoint in Windows Azure")
+	![Accessing the HTTPS endpoint in Windows Azure](Images/accessing-https-endpoint.png?raw=true)
 
 	_Accessing the HTTPS endpoint in Windows Azure_
 
