@@ -11,6 +11,7 @@
     box-shadow: 10px 10px 9px rgba(0, 0, 0, 0.22);
     background-color: #ffc;
     vertical-align: top;
+    line-height:1em;
 }
 
     .todoList:before {
@@ -25,6 +26,7 @@
 
     .todoList header {
         z-index: auto;
+        margin-top:4px;
     }
 
     .todoList header input {
@@ -32,13 +34,17 @@
         background: none;
         text-align: center;
         width: 95%;
-        font-size: 1.8em;
+        font-size: 1.7em;
     }
 
     .todoList ul {
         list-style: none;
         padding: 0 0 0 12px;
         margin: 0;
+    }
+
+    .todoList ul li {
+        margin: 2px 0;
     }
 
     .todoList ul li:first-child {
