@@ -1,6 +1,6 @@
 ﻿<!-- ko with: home -->
 <p class="error" data-bind="text: error"></p>
-<button data-bind="click: addTodoList">Add Todo list</button>
+<button class="btn btn-primary" data-bind="click: addTodoList">Add Todo list</button>
 
 <section id="lists" data-bind="foreach: todoLists, visible: todoLists().length > 0">
     <article class="todoList">
@@ -10,13 +10,13 @@
             </form>
         </header>
 
-        <a href="#" class="deletelist" data-bind="click: $parent.deleteTodoList">X</a>
+        <a href="#" class="deletelist" data-bind="click: $parent.deleteTodoList"><span class="glyphicon glyphicon-remove"></span></a>
 
         <ul data-bind="foreach: todos">
             <li>
                 <input type="checkbox" data-bind="checked: isDone" />
                 <input class="todoItemInput" type="text" data-bind="value: title, disable: isDone, blurOnEnter: true" />
-                <a href="#" data-bind="click: $parent.deleteTodo">X</a>
+                <a href="#" data-bind="click: $parent.deleteTodo"><span class="glyphicon glyphicon-remove"></span></a>
                 <p class="error" data-bind="visible: errorMessage, text: errorMessage"></p>
             </li>
         </ul>

@@ -27,12 +27,6 @@
         z-index: auto;
     }
 
-    .todoList header input, .todoList header input:focus,
-    .todoList ul input, .todoList ul input:focus, .addTodo {
-        font-family: 'Bradley Hand ITC';
-        outline: none;
-    }
-
     .todoList header input {
         border: none;
         background: none;
@@ -45,6 +39,10 @@
         list-style: none;
         padding: 0 0 0 12px;
         margin: 0;
+    }
+
+    .todoList ul li:first-child {
+        padding-top: 10px;
     }
 
     .addTodo {
@@ -73,6 +71,7 @@
 
         .todoList a.deletelist {
             position: absolute;
+            font: 1em verdana;
             top: -5px;
             right: -10px;
             background: silver;
@@ -81,7 +80,6 @@
             -webkit-border-radius: 20px;
             border-radius: 20px;
             text-decoration: none;
-            font-weight: bold;
             width: 20px;
             height: 20px;
             display: inline-block;
