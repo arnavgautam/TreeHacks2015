@@ -5,7 +5,7 @@
 <a name="Overview"></a>
 ## Overview ##
 
-**Windows Azure Service Bus Messaging** contains a brand-new set of cloud-based, message-oriented-middleware technologies including a fully-featured **Service Bus queue** with support for arbitrary content types, rich message properties, correlation, reliable binary transfer, and grouping. Another important feature is **Service Bus topics** which provide a set of publish-and-subscribe capabilities and are based on the same backend infrastructure as **Service Bus queues**. A **topic** consists of a sequential message store just like a **queue**, but allows for many concurrent and durable **subscriptions** that can independently yield copies of the published messages to consumers. Each **subscription** can define a set of rules with simple expressions that specify which messages from the published sequence are selected into the subscription.
+**Windows Azure Service Bus Messaging** contains a brand-new set of cloud-based, message-oriented middleware technologies including a fully-featured **Service Bus queue** with support for arbitrary content types, rich message properties, correlation, reliable binary transfer, and grouping. Another important feature is **Service Bus topics** which provide a set of publish-and-subscribe capabilities and are based on the same backend infrastructure as **Service Bus queues**. A **topic** consists of a sequential message store just like a **queue**, but allows for many concurrent and durable **subscriptions** that can independently yield copies of the published messages to consumers. Each **subscription** can define a set of rules with simple expressions that specify which messages from the published sequence are selected into the subscription.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -30,9 +30,9 @@ You must have the following items to complete this lab:
 
 - A Windows Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
-	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start developing and testing on Windows Azure.
 	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
-	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly Windows Azure credits at no charge.
 
 [1]: http://www.microsoft.com/visualstudio/
 [2]: http://www.microsoft.com/windowsazure/sdk/
@@ -41,20 +41,21 @@ You must have the following items to complete this lab:
 
 <a name="Setup"></a>
 ### Setup ###
-In order to execute the exercises in this hands-on lab you need to set up your environment.
+
+In order to execute the exercises in this hands-on lab, you will need to set up your environment.
 
 1. Open a Windows Explorer window and browse to the lab's **Source** folder.
 
 1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment and install the Visual Studio Code Snippets for this lab.
 
-1. If the User Account Control dialog is shown, confirm the action to proceed.
+1. If the User Account Control dialog box is shown, confirm the action to proceed.
  
 > **Note:** Make sure you have checked all the dependencies for this lab before running the setup.
 
 <a name="UsingCodeSnippets"></a>
 ### Using the Code Snippets ###
 
-Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of that code is provided as Visual Studio Code Snippets, which you can use from within Visual Studio 2013 to avoid having to add it manually.
+Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of this code is provided as Visual Studio Code Snippets, which you can access from within Visual Studio 2013 to avoid having to add it manually.
 
 ---
 
@@ -67,9 +68,9 @@ This hands-on lab includes the following exercises:
 1. [Sending and Receiving Messages](#Exercise2)
 1. [Using a Subscription Rule Filter Expression and Rule Filter Actions](#Exercise3)
 
-Estimated time to complete this lab: **40 minutes**.
+Estimated time to complete this lab: **40 minutes**
 
-> **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.
+> **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
 
 <a name="Exercise1"></a>
 ### Exercise 1: Creating a Topic and Adding Subscriptions ###
@@ -95,7 +96,7 @@ To work with Service Bus topics and subscriptions, you first need to create a Wi
  
 	_Creating a new namespace_
 
-1. In the **Create A Namespace** dialog box, enter a name for your service **Namespace** and select a **Region** for your service to run in. Service names must be globally unique as they are hosted in the cloud and accessible by whomever you decide to grant access.
+1. In the **Create A Namespace** dialog box, enter a name for your service **Namespace** and select a **Region** for your service to run in. Service names must be globally unique as they are hosted in the cloud and accessible by those to whom you grant access.
 
  	![Create A Namespace Dialog Box](Images/create-a-namespace-dialog-box.png?raw=true)
  
@@ -103,7 +104,7 @@ To work with Service Bus topics and subscriptions, you first need to create a Wi
 
 	> **Note:** It can take a few minutes while your service is provisioned.
 
-1. Once the namespace is active, select the service's row and click **Connection Information** within the bottom menu.
+1. Once the namespace is active, select the service's row and click **Connection Information** in the bottom menu.
 
 	![Connection information](Images/connection-information.png?raw=true)
 
@@ -117,7 +118,7 @@ To work with Service Bus topics and subscriptions, you first need to create a Wi
 
 You have now created a new Windows Azure Service Bus namespace for this hands-on lab. To sign in at any time, simply navigate to the Windows Azure Management Portal, click **Sign In** and provide your **Microsoft Account** credentials.
 
-> **Note:** In this lab you will learn how to create and make use of Service Bus topics and subscriptions from Visual Studio and from an ASP.NET MVC application. You can also create topics and subscriptions from the Windows Azure Management Portal, for more information see [How to Manage Service Bus Messaging Entities](http://www.windowsazure.com/en-us/documentation/articles/service-bus-manage-message-entities/).
+> **Note:** In this lab you will learn how to create and make use of Service Bus topics and subscriptions from both Visual Studio and an ASP.NET MVC application. You can also create topics and subscriptions from the Windows Azure Management Portal; for more information see [How to Manage Service Bus Messaging Entities](http://www.windowsazure.com/en-us/documentation/articles/service-bus-manage-message-entities/).
 
 <a name="Ex1Task2"></a>
 #### Task 2 - Creating a Topic and Adding Subscriptions in Visual Studio ####
@@ -166,7 +167,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 1. The new subscription should be added to your topic.
 
-	> **Note:** You can also use the Windows Azure Tools for Microsoft Visual Studio to send and receive test messages, as well as to define subscription rules. In the next exercises, you will learn how to perform those operations from code by using the **WindowsAzure.ServiceBus** NuGet package.
+	> **Note:** You can also use the Windows Azure Tools for Microsoft Visual Studio to send and receive test messages, as well as to define subscription rules. In the upcoming exercises, you will learn how to perform those operations from code by using the **WindowsAzure.ServiceBus** NuGet package.
 
 	![New subscription created](Images/new-subscription-created.png?raw=true)
 
@@ -193,7 +194,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
  
     _Launching the Service Configuration editor_
 
-1. In the **Settings** tab, set _namespaceName_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to the ones you previously copied from the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
+1. In the **Settings** tab, set the _namespaceName_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to those you previously copied from the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
 
 	![Updating settings to the UsingTopics web role](Images/updating-settings-to-the-usingtopics-web-role.png?raw=true)
 
@@ -286,7 +287,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 #### Task 4 - Verification ####
 You will now launch the updated application in the Windows Azure compute emulator to verify that you can create a topic with subscriptions.
 
-1. In **Visual Studio**, configure the cloud project **UsingTopics.Azure** as the StartUp Project. To do this, in **Solution Explorer** right-click the **UsingTopics.Azure** project node and then select **Set as StartUp Project**.
+1. In **Visual Studio**, configure the cloud project **UsingTopics.Azure** as the StartUp Project. To do this, in **Solution Explorer** right-click on **UsingTopics.Azure** and then select **Set as StartUp Project**.
 
 	![Configuring StartUp project](Images/configuring-startup-project.png?raw=true)
 
@@ -485,7 +486,7 @@ You will now run the application again to verify that you can send messages to a
 
 1. In **Visual Studio**, press **F5** to run the application.
 
-1. Select the previously created topic. In the **Send a message section**, type _This is a test message_ in the **Message** textbox and click **Send**.
+1. Select the previously created topic. In the **Send a message** section, type _This is a test message_ in the **Message** textbox and click **Send**.
 
 	![Sending a message](Images/sending-a-message.png?raw=true)
 

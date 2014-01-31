@@ -1,5 +1,6 @@
 ﻿namespace MyTodo.WebUx.Models
 {
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -18,6 +19,7 @@
         [ForeignKey("TodoList")]
         public int TodoListId { get; set; }
 
+        [JsonIgnore]
         public virtual TodoList TodoList { get; set; }
     }
 }

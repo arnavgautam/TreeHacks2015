@@ -52,3 +52,5 @@ coverage
 *.InstallLog
 
 entry.xml
+*.mdf
+*.ldf
