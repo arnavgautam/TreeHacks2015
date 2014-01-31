@@ -663,6 +663,8 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 	>**Important:** Before you execute the solution, make sure that the startup project is set. For MVC projects, the start page must be left blank. To set the startup project, in **Solution Explorer**, right-click the **CloudShop.Azure** project and then select Set as StartUp Project. To set the start page, in **Solution Explorer**, right-click the **CloudShop** project and select **Properties**. In the **Properties** window, select the Web tab and in the **Start Action**, select **Specific Page**. Leave the value of this field blank.
 
+1. Build the solution in order to download and install the NuGet package dependencies. To do this, click **Build** | **Build Solution** or press **Ctrl + Shift + B**.
+
 1. Right click in the **Home** folder inside **Views** in the **CloudShop** project and select **Add** | **Existing Item...**.
 
 	![Add existing item](Images/add-existing-item.png?raw=true "Add existing item")	
