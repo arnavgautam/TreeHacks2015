@@ -2,7 +2,7 @@
 setlocal
 CD /d "%~dp0"
 
-::Test If script has Admin Priviledges/is elevated
+::Test If script has Admin Privileges/is elevated
 REG QUERY "HKU\S-1-5-19"
 IF %ERRORLEVEL% NEQ 0 (
     ECHO Please run this script as an administrator
@@ -13,7 +13,7 @@ cls
 echo Setup Options
 echo =============
 echo.
-echo 1. Execute setup scripts only.
+echo 1. Execute setup scripts.
 echo.
 echo 2. Exit.
 echo.
