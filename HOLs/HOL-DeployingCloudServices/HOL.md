@@ -859,7 +859,7 @@ In this task, you will create a self-signed certificate that you can upload to t
 
 	_Server certificates page showing the new self-signed certificate_
 
-1. In the **Export Certificate** dialog box, enter the name of a file in which to store the certificate for exporting, type a password and confirm it, and then click **OK**. Make a record of the password. You will require it later on, when you upload the certificate to the portal.
+1. In the **Export Certificate** dialog box, enter the name of a file in which to store the certificate for exporting, type a password and confirm it, and then click **OK**. Take a note of the password. You will require it later on, when you upload the certificate to the portal.
 
 	![Exporting the certificate to a file](./Images/iis-exporting-certificate.png?raw=true)
 
