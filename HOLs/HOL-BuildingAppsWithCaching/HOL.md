@@ -151,9 +151,9 @@ In this task, you will add a new worker role that serves as a dedicated cache ho
 
 1. Select **File | Save All** from the menu or press **Ctrl + Shift + S** to save all changes.
 
-	>**Note:** When you add a new **Cache Worker Role** project, some files including _CloudShop.Azure/ServiceDefinition.csdef_ are left modified but in an unsaved state. You have to manually save those changes to avoid conflicts in the next task.
-
+	>**Note:** When you add the new **Cache Worker Role** project, some files within the solution are modified but not saved to disk. Make sure to save all changes before continuing with the next task.
 <a name="Ex1Task3" />
+
 #### Task 3 - Configuring Session State Using Windows Azure Cache service ####
 
 In this task, you will change the Session State provider to take advantage of the Windows Azure Cache as the storage mechanism. This requires adding the appropriate assemblies to the **CloudShop** project and then updating the corresponding configuration in the **Web.config** file. 
