@@ -93,7 +93,7 @@ In this task, you will run the Cloud Shop application in the compute emulator us
 1. Start **Microsoft Visual Studio Express 2013 for Web** as administrator.
 1. Open the **Begin** solution located at **Source\\Ex1-CacheSessionState\\Begin**.
 
-	>**Important:** 	Before you execute the solution, make sure that the startup project is set. For MVC projects, the start page must be left blank.
+	>**Note:** Before you execute the solution, make sure that the startup project is set. For MVC projects, the start page must be left blank.
 
 	>To set the startup project, in **Solution Explorer**, right-click the **CloudShop.Azure** project and select **Set as StartUp Project**.
 	
@@ -125,7 +125,7 @@ In this task, you will run the Cloud Shop application in the compute emulator us
 
 1. Click on the **Recycle** button. This forces the web role to be recycled. Once you click on the button, the **Products** page will turn blank.
 
-1. In the **Compute Emulator**, observe how the web role is recycled by the emulator:
+1. In the **Compute Emulator**, observe how the web role is recycled by the emulator.
 
 	![Suspending the service role instance](Images/suspending-the-service-role-instance.png?raw=true "Suspending the service role instance")
 
@@ -143,17 +143,17 @@ In this task, you will run the Cloud Shop application in the compute emulator us
 #### Task 2 - Adding a dedicated caching role ####
 In this task, you will add a new worker role that serves as a dedicated cache host. All other web roles and worker roles in the Cloud Service will be able to access the Cache service hosted by this role. You can set up multiple dedicated worker roles within your Cloud Service. In addition, you can also enable Cache service on any of the existing roles and allocate certain percentage of virtual machine memory to be used as cache. 
 
-1. In solution explorer, expand the **CloudShop.Azure** node, and then right-click on **Roles**. Then, select **Add** | **New Worker Role Project...**.
+1. In the **Solution Explorer**, expand the **CloudShop.Azure** node and  right-click on **Roles**. Then, select **Add** | **New Worker Role Project...**.
 
 1. In the **Add New .NET Framework 4.5 Role Project** dialog box, select **Cache Worker Role** template. Name the role as **CacheWorkerRole**, and then click **Add**.
 
 	>**Note:** All Cache hosts in your Cloud Service share their runtime states via a Windows Azure Blob Storage. By default, a cache worker role is configured to use development storage. You can change this setting in the **Caching** tab on the role property page. 
 
-1. Select **FILE | Save All** or press **Ctrl + Shift + S** to save all changes.
+1. Select **File | Save All** from the menu or press **Ctrl + Shift + S** to save all changes.
 
 	>**Note:** When you add the new **Cache Worker Role** project, some files within the solution are modified but not saved to disk. Make sure to save all changes before continuing with the next task.
-
 <a name="Ex1Task3" />
+
 #### Task 3 - Configuring Session State Using Windows Azure Cache service ####
 
 In this task, you will change the Session State provider to take advantage of the Windows Azure Cache as the storage mechanism. This requires adding the appropriate assemblies to the **CloudShop** project and then updating the corresponding configuration in the **Web.config** file. 
@@ -212,7 +212,7 @@ In this task, you will change the Session State provider to take advantage of th
 
 1. Navigate back to **Products** page and click on the **Recycle** button.
 
-1. Observe the web role getting recycled in **Show Compute Emulator UI**. 
+1. In the **Compute Emulator**, observe how the web role is recycled by the emulator.
 
 1. Go back to the browser, remove */Home/Recycle* from the address bar, and press **Enter** to reload the site. The **Products** page should load correctly.
 
@@ -235,14 +235,16 @@ During the exercise, you will update the data access code with a trivial impleme
 To make use of Windows Azure Caching, you first need to create a **DataCacheFactory** object. This object determines the cache cluster connection information, which is set programmatically or by reading settings from the configuration file. Typically, you create an instance of the factory class and use it for the lifetime of the application. To store data in the cache, you request a **DataCache** instance from the **DataCacheFactory** and then use it to add or retrieve items from the cache.
 In this task you will update the data access code to cache the result of queries to Windows Azure SQL Database using Windows Azure Caching. 
 
-1. Start **Microsoft Visual Studio 2013 Express for Web** as administrator.
+1. Start **Microsoft Visual Studio Express 2013 for Web** as administrator.
 1. Open the **Begin** solution located at **Source\\Ex2-CachingData\\Begin**.
 
-	>**Important:** Before you execute the solution, make sure that the startup project is set. For MVC projects, the start page must be left blank. 
-	> To set the startup project, in **Solution Explorer**, right-click the **CloudShop.Azure** project and then select **Set as StartUp Project**. 
-	> To set the start page, in **Solution Explorer**, right-click the **CloudShop** project and select **Properties**. In the **Properties** window, select the **Web** tab and in the **Start Action**, select **Specific Page**. Leave the value of this field blank.
+	>**Note:** Before you execute the solution, make sure that the startup project is set. For MVC projects, the start page must be left blank.
 
-1. In the **Web.config** file, update the _NorthwindEntities_ connection string to point to your database. Replace **[YOUR-SQL-DATABASE-SERVER-ADDRESS]**, **[SQL-DATABASE-USERNAME]**, and **[SQL-DATABASE-PASSWORD]** with the Windows Azure SQL Database server name, administrator username and administrator password that you registered at the portal and used for creating the database during setup.
+	>To set the startup project, in **Solution Explorer**, right-click the **CloudShop.Azure** project and select **Set as StartUp Project**.
+	
+	>To set the start page, in **Solution Explorer**, right-click the **CloudShop** project and select **Properties**. In the **Properties** window, select the **Web** tab and in the **Start Action** section, select **Specific Page**. Leave the value of this field blank.
+
+1. In the **Web.config** file located in the root folder of the **CloudShop** project, update the _NorthwindEntities_ connection string to point to your database. Replace **[YOUR-SQL-DATABASE-SERVER-ADDRESS]**, **[SQL-DATABASE-USERNAME]**, and **[SQL-DATABASE-PASSWORD]** with the Windows Azure SQL Database server name, administrator username and administrator password that you registered at the portal and used for creating the database during setup.
 
 	> **Note:** 	Make sure that you followed the instructions of the setup section to create a copy of the Northwind2 database in your own Windows Azure SQL Database account and configure your Windows Azure SQL Database firewall settings.
 
@@ -283,7 +285,7 @@ In this task you will update the data access code to cache the result of queries
 
 	> **Note:** The **DataCacheFactory** member is declared as static and is used throughout the lifetime of the application.
 
-1. Locate the **GetProducts** method and insert the following (highlighted) code at the very beginning.
+1. Locate the **GetProducts** method and insert the following highlighted code at the very beginning.
 	
 	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - GetProductsReadCache_)
 	<!--mark: 6-28-->
@@ -330,7 +332,7 @@ In this task you will update the data access code to cache the result of queries
 
 	>**Note:** The inserted code uses the **DataCacheFactory** object to return an instance of the default cache object and then attempts to retrieve an item from this cache using a key with the value "_products_". If the cache contains an object with the requested key, it inserts a new entry to indicate that the list was retrieved from the cache and then returns it. The code treats temporary failures from the Windows Azure Caching service as a cache miss so that it can retrieve the item from its data source instead.
 
-1. Next, add the following (highlighted) code block to the **GetProducts** method, immediately before the line that returns the **products** list at the end of the method.
+1. Add the following highlighted code to the **GetProducts** method, immediately before the line that returns the **products** list at the end of the method.
 
 	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - GetProductsWriteCache_)
 	<!-- mark:12-17 -->
@@ -366,7 +368,7 @@ In this task you will update the data access code to cache the result of queries
 
 In this task, you will update the application to allow control of the use of the cache from the UI and to display the time required to retrieve catalog data, allowing you to compare the latency of retrieving data from the cache and the time required to access the data source.
 
-1. Open the **HomeController.cs** file in the **Controllers** folder and add the **System.Diagnostics** using directive at the top of the file.
+1. Open the **HomeController.cs** file in the **Controllers** folder of the **CloudShop** project and add the following using directive.
 	
 	<!-- mark:1 -->
 	````C#
@@ -407,7 +409,7 @@ In this task, you will update the application to allow control of the use of the
 	}
 	````
 
-1. In the same method, locate the code that creates a new **IndexViewModel** instance and replace the **model** initialization with the following (highlighted) code block.
+1. In the same method, locate the code that creates a new **IndexViewModel** instance and replace the **model** initialization with the following highlighted code.
 
 	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - IndexViewModelInitialization_)
 	<!--mark: 22-25-->
@@ -445,10 +447,10 @@ In this task, you will update the application to allow control of the use of the
 	}
 	````
 
-	>**Note:** The data added to the view model provide the time taken to load the product catalog from the repository, a flag to indicate whether the cache is enabled, and an identifier for the catalog object returned by the call to **GetProducts**. The view displays the object ID to allow you to determine whether the instance returned by the call to the repository has changed. This feature will be used later in the exercise when you enable the local cache.
+	>**Note:** The data added to the view model provides the time taken to load the product catalog from the repository, a flag to indicate whether the cache is enabled, and an identifier for the catalog object returned by the call to **GetProducts**. The view displays the object ID to allow you to determine whether the instance returned by the call to the repository has changed. This feature will be used later in the exercise when you enable the local cache.
 
 
-1. Add a new action method to the **HomeController** to enable or disable the cache from the UI of the application.
+1. Add a new action method to the **HomeController** class to enable or disable the cache from the UI of the application.
 
 	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - EnableCacheMethod_)
 	<!--mark: 4-8-->
@@ -468,7 +470,7 @@ In this task, you will update the application to allow control of the use of the
 
 	>**Note:** Ideally, you should test the code in Windows Azure. When you execute the application in the compute emulator, consider that accessing the Windows Azure SQL Database data source and the Windows Azure Caching require executing requests to resources located outside the bounds of your own network. Depending on your geographic location, both requests may exhibit a relatively high latency, which may overshadow the difference between the cached and non-cached scenarios. Once you deploy the application to Windows Azure, it is co-located in the same data center as the Windows Azure Caching service in Windows Azure SQL Database. As the latency is much lower, the results should be more significant.
 
-1. When you start the application, the cache is initially disabled. Refresh the page and notice the elapsed time displayed under the **Cache settings for Cloud Shop** section that indicates the time required to retrieve the product catalog. Also that the first item in the list indicates that the application retrieved the product catalog from the data source.
+1. When you start the application, the cache is initially disabled. Refresh the page and notice the elapsed time displayed under the **Cache settings for Cloud Shop** section that indicates the time required to retrieve the product catalog. Also notice the first item in the list, that indicates that the application retrieved the product catalog from the data source.
 
 	>**Note:** You may need to refresh the page several times to obtain a stable reading. The value shown for the first request may be greater because ASP.NET needs to compile the page.
 
@@ -639,7 +641,7 @@ When using Windows Azure Cache Service, you have the option of using a local cac
 
 	_Using the local cache_
 
-1. Observe that, each time you refresh the page, the **Object ID** shown above the product catalog remains constant indicating that the repository now returns the same object each time.
+1. Observe that, each time you refresh the page, the **Object ID** remains constant, indicating that the repository now returns the same object each time.
 
 	>**Note:** 	This is an important aspect to consider. Previously, with the local cache disabled, changing an object retrieved from the cache had no effect on the cached data and subsequent fetches always returned a fresh copy. Once you enable the local cache, it stores references to in-memory objects and any changes to the object directly affect the cached data. 
 You should be aware of this when using the cache in your own applications and consider that, after changing a cached object and later retrieving the same object from the cache, it may or may not include these changes depending on whether it is returned by the local or remote cache.
