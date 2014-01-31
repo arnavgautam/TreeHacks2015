@@ -710,7 +710,6 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 	````C#
 	using System.Configuration;
-	using System.Security.Claims;
 	using System.Data.Services.Client;
 	using Microsoft.WindowsAzure.ActiveDirectory;
 	using Microsoft.WindowsAzure.ActiveDirectory.GraphHelper;
@@ -720,7 +719,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 	(Code Snippet - _IntroductionToWindowsAzureAD - Ex2 - UsersActionMethod_)
 
-	<!-- mark: 5-49 -->
+	<!-- mark: 5-46 -->
 	````C#
 	public class HomeController : Controller
 	{
@@ -742,7 +741,6 @@ In this task you will update the **HomeController** of your MVC app to query the
 			DirectoryDataService graphService = new DirectoryDataService(tenantName, token);
 
 			//  get Users
-			//
 			var users = graphService.users;
 			QueryOperationResponse<User> response;
 			response = users.Execute() as QueryOperationResponse<User>;
@@ -752,7 +750,6 @@ In this task you will update the **HomeController** of your MVC app to query the
 			//  For subsequent Graph Calls, the existing token should be used.
 			//  The following checks to see if the existing token is expired or about to expire in 2 mins
 			//  if true, then get a new token and refresh the graphService
-			//
 			int tokenMins = 2;
 			if (token.IsExpired || token.WillExpireIn(tokenMins))
 			{
@@ -762,7 +759,6 @@ In this task you will update the **HomeController** of your MVC app to query the
 			}
 
 			//  get tenant information
-			//
 			var tenant = graphService.tenantDetails;
 			QueryOperationResponse<TenantDetail> responseTenantQuery;
 			responseTenantQuery = tenant.Execute() as QueryOperationResponse<TenantDetail>;
@@ -858,7 +854,27 @@ In this task you will update the **HomeController** of your MVC app to query the
 <a name="NextSteps" />
 ## Next Steps ##
 
-TBC
+To learn more about **Introduction to Windows Azure Active Directory** please refer to the following articles:
+
+**Technical Reference**
+
+This is a list of articles that expand on the technologies explained on this lab:
+
+- [Directory integration](http://technet.microsoft.com/library/jj573653): If your organization uses an on-premises directory service, you can integrate it with your Windows Azure Active Directory (Windows Azure AD) tenant to simplify your cloud-based administrative tasks and even provide your users with a more streamlined sign-in experience.
+
+- [​Introducing Single Sign-on and Active Directory Integration](http://channel9.msdn.com/Events/Visual-Studio/Launch-2013/WC116/): (Video) In this article you will see how the SSO configuration and end-user experience that WAAD offers and how to integrate WAAD into applications developed with Visual Studio 2013.
+
+- [Manage Windows Azure AD using Windows PowerShell](http://technet.microsoft.com/en-us/library/jj151815.aspx): As an administrator, you can use the Windows Azure Active Directory Module for Windows PowerShell cmdlets to accomplish many Windows Azure AD tenant-based administrative tasks such as user management, domain management and for configuring single sign-on. This topic includes information about how to install these cmdlets for use with your tenant.
+
+- [Windows Azure Identity](http://www.windowsazure.com/en-us/documentation/articles/fundamentals-identity/): Managing identity is just as important in the public cloud is it is on premises. To help with this, Windows Azure supports several different cloud identity technologies.
+
+**Development**
+
+This is a list of developer-oriented articles related to **Introduction to Windows Azure Active Directory**:
+
+- [Using the Graph API to Query Windows Azure AD](http://msdn.microsoft.com/library/windowsazure/dn151791.aspx): This document explains how to configure a Microsoft .NET application to use the Windows Azure Active Directory Graph API to access data from a Windows Azure AD tenant directory.
+
+- [Securing a Windows Store Application and REST Web Service Using Windows Azure AD (Preview)](http://msdn.microsoft.com/en-us/library/windowsazure/dn169448.aspx): This document will show you how to create a simple web API resource and a Windows Store client application using the Windows Azure Authentication Library and Windows Azure AD.
 
 ---
 
