@@ -149,7 +149,9 @@ In this task, you will add a new worker role that serves as a dedicated cache ho
 
 	>**Note:** All Cache hosts in your Cloud Service share their runtime states via a Windows Azure Blob Storage. By default, a cache worker role is configured to use development storage. You can change this setting in the **Caching** tab on the role property page. 
 
-1. Press **Ctrl + Shift + S** to save all the changes.
+1. Select **FILE | Save All** or press **Ctrl + Shift + S** to save all changes.
+
+	>**Note:** When you add a new **Cache Worker Role** project, some files including _CloudShop.Azure/ServiceDefinition.csdef_ are left modified but in an unsaved state. You have to manually save those changes to avoid conflicts in the next task.
 
 <a name="Ex1Task3" />
 #### Task 3 - Configuring Session State Using Windows Azure Cache service ####
@@ -161,7 +163,7 @@ In this task, you will change the Session State provider to take advantage of th
 1. Make sure that **CloudShop** is selected in the **Default project** drop-down list, and type the following command to install the Nuget package for Cache service.
  
 	````PowerShell
-	Install-package Microsoft.WindowsAzure.Caching
+	Install-Package Microsoft.WindowsAzure.Caching
 	````
    
 1. Open the **Web.config** file located in the root folder of the **CloudShop** project.

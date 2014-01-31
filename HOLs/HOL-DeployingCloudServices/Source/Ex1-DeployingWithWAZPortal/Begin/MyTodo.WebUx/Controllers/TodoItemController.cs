@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Http.Description;
-using MyTodo.WebUx.Models;
-
-namespace MyTodo.WebUx.Controllers
+﻿namespace MyTodo.WebUx.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+    using System.Web.Http.Description;
+    using MyTodo.WebUx.Models;
+
     public class TodoItemController : ApiController
     {
         private TodoItemContext db = new TodoItemContext();
@@ -22,25 +22,25 @@ namespace MyTodo.WebUx.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             if (id != todoitem.TodoItemId)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
 
-            db.Entry(todoitem).State = EntityState.Modified;
+            this.db.Entry(todoitem).State = EntityState.Modified;
 
             try
             {
-                await db.SaveChangesAsync();
+                await this.db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TodoItemExists(id))
+                if (!this.TodoItemExists(id))
                 {
-                    return NotFound();
+                    return this.NotFound();
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace MyTodo.WebUx.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return this.StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST api/TodoItem
@@ -57,43 +57,44 @@ namespace MyTodo.WebUx.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
-            db.TodoItems.Add(todoitem);
-            await db.SaveChangesAsync();
+            this.db.TodoItems.Add(todoitem);
+            await this.db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = todoitem.TodoItemId }, todoitem);
+            return this.CreatedAtRoute("DefaultApi", new { id = todoitem.TodoItemId }, todoitem);
         }
 
         // DELETE api/TodoItem/5
         [ResponseType(typeof(TodoItem))]
         public async Task<IHttpActionResult> DeleteTodoItem(int id)
         {
-            TodoItem todoitem = await db.TodoItems.FindAsync(id);
+            TodoItem todoitem = await this.db.TodoItems.FindAsync(id);
             if (todoitem == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
-            db.TodoItems.Remove(todoitem);
-            await db.SaveChangesAsync();
+            this.db.TodoItems.Remove(todoitem);
+            await this.db.SaveChangesAsync();
 
-            return Ok(todoitem);
+            return this.Ok(todoitem);
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
         private bool TodoItemExists(int id)
         {
-            return db.TodoItems.Count(e => e.TodoItemId == id) > 0;
+            return this.db.TodoItems.Count(e => e.TodoItemId == id) > 0;
         }
     }
 }

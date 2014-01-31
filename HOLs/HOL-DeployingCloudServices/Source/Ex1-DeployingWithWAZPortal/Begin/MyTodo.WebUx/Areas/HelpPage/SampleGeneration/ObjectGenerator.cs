@@ -1,20 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-
 namespace MyTodo.WebUx.Areas.HelpPage
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Linq;
+    using System.Reflection;
+
     /// <summary>
     /// This class will create an object of a given type and populate it with sample data.
     /// </summary>
     public class ObjectGenerator
     {
         private const int DefaultCollectionSize = 3;
-        private readonly SimpleTypeObjectGenerator SimpleObjectGenerator = new SimpleTypeObjectGenerator();
+        private readonly SimpleTypeObjectGenerator simpleObjectGenerator = new SimpleTypeObjectGenerator();
 
         /// <summary>
         /// Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
@@ -32,73 +32,7 @@ namespace MyTodo.WebUx.Areas.HelpPage
         /// <returns>An object of the given type.</returns>
         public object GenerateObject(Type type)
         {
-            return GenerateObject(type, new Dictionary<Type, object>());
-        }
-
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Here we just want to return null if anything goes wrong.")]
-        private object GenerateObject(Type type, Dictionary<Type, object> createdObjectReferences)
-        {
-            try
-            {
-                if (SimpleTypeObjectGenerator.CanGenerateObject(type))
-                {
-                    return SimpleObjectGenerator.GenerateObject(type);
-                }
-
-                if (type.IsArray)
-                {
-                    return GenerateArray(type, DefaultCollectionSize, createdObjectReferences);
-                }
-
-                if (type.IsGenericType)
-                {
-                    return GenerateGenericType(type, DefaultCollectionSize, createdObjectReferences);
-                }
-
-                if (type == typeof(IDictionary))
-                {
-                    return GenerateDictionary(typeof(Hashtable), DefaultCollectionSize, createdObjectReferences);
-                }
-
-                if (typeof(IDictionary).IsAssignableFrom(type))
-                {
-                    return GenerateDictionary(type, DefaultCollectionSize, createdObjectReferences);
-                }
-
-                if (type == typeof(IList) ||
-                    type == typeof(IEnumerable) ||
-                    type == typeof(ICollection))
-                {
-                    return GenerateCollection(typeof(ArrayList), DefaultCollectionSize, createdObjectReferences);
-                }
-
-                if (typeof(IList).IsAssignableFrom(type))
-                {
-                    return GenerateCollection(type, DefaultCollectionSize, createdObjectReferences);
-                }
-
-                if (type == typeof(IQueryable))
-                {
-                    return GenerateQueryable(type, DefaultCollectionSize, createdObjectReferences);
-                }
-
-                if (type.IsEnum)
-                {
-                    return GenerateEnum(type);
-                }
-
-                if (type.IsPublic || type.IsNestedPublic)
-                {
-                    return GenerateComplexObject(type, createdObjectReferences);
-                }
-            }
-            catch
-            {
-                // Returns null if anything fails
-                return null;
-            }
-
-            return null;
+            return this.GenerateObject(type, new Dictionary<Type, object>());
         }
 
         private static object GenerateGenericType(Type type, int collectionSize, Dictionary<Type, object> createdObjectReferences)
@@ -176,10 +110,12 @@ namespace MyTodo.WebUx.Areas.HelpPage
                 parameterValues[i] = objectGenerator.GenerateObject(genericArgs[i], createdObjectReferences);
                 failedToCreateTuple &= parameterValues[i] == null;
             }
+
             if (failedToCreateTuple)
             {
                 return null;
             }
+
             object result = Activator.CreateInstance(type, parameterValues);
             return result;
         }
@@ -209,6 +145,7 @@ namespace MyTodo.WebUx.Areas.HelpPage
                 // Failed to create key and values
                 return null;
             }
+
             object result = Activator.CreateInstance(keyValuePairType, keyObject, valueObject);
             return result;
         }
@@ -276,6 +213,7 @@ namespace MyTodo.WebUx.Areas.HelpPage
             {
                 return possibleValues.GetValue(0);
             }
+
             return null;
         }
 
@@ -292,10 +230,12 @@ namespace MyTodo.WebUx.Areas.HelpPage
             {
                 list = GenerateArray(typeof(object[]), size, createdObjectReferences);
             }
+
             if (list == null)
             {
                 return null;
             }
+
             if (isGeneric)
             {
                 Type argumentType = typeof(IEnumerable<>).MakeGenericType(queryableType.GetGenericArguments());
@@ -362,6 +302,7 @@ namespace MyTodo.WebUx.Areas.HelpPage
 
                 result = defaultCtor.Invoke(new object[0]);
             }
+
             createdObjectReferences.Add(type, result);
             SetPublicProperties(type, result, createdObjectReferences);
             SetPublicFields(type, result, createdObjectReferences);
@@ -393,54 +334,76 @@ namespace MyTodo.WebUx.Areas.HelpPage
             }
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Here we just want to return null if anything goes wrong.")]
+        private object GenerateObject(Type type, Dictionary<Type, object> createdObjectReferences)
+        {
+            try
+            {
+                if (SimpleTypeObjectGenerator.CanGenerateObject(type))
+                {
+                    return this.simpleObjectGenerator.GenerateObject(type);
+                }
+
+                if (type.IsArray)
+                {
+                    return GenerateArray(type, DefaultCollectionSize, createdObjectReferences);
+                }
+
+                if (type.IsGenericType)
+                {
+                    return GenerateGenericType(type, DefaultCollectionSize, createdObjectReferences);
+                }
+
+                if (type == typeof(IDictionary))
+                {
+                    return GenerateDictionary(typeof(Hashtable), DefaultCollectionSize, createdObjectReferences);
+                }
+
+                if (typeof(IDictionary).IsAssignableFrom(type))
+                {
+                    return GenerateDictionary(type, DefaultCollectionSize, createdObjectReferences);
+                }
+
+                if (type == typeof(IList) ||
+                    type == typeof(IEnumerable) ||
+                    type == typeof(ICollection))
+                {
+                    return GenerateCollection(typeof(ArrayList), DefaultCollectionSize, createdObjectReferences);
+                }
+
+                if (typeof(IList).IsAssignableFrom(type))
+                {
+                    return GenerateCollection(type, DefaultCollectionSize, createdObjectReferences);
+                }
+
+                if (type == typeof(IQueryable))
+                {
+                    return GenerateQueryable(type, DefaultCollectionSize, createdObjectReferences);
+                }
+
+                if (type.IsEnum)
+                {
+                    return GenerateEnum(type);
+                }
+
+                if (type.IsPublic || type.IsNestedPublic)
+                {
+                    return GenerateComplexObject(type, createdObjectReferences);
+                }
+            }
+            catch
+            {
+                // Returns null if anything fails
+                return null;
+            }
+
+            return null;
+        }
+
         private class SimpleTypeObjectGenerator
         {
-            private long _index = 0;
             private static readonly Dictionary<Type, Func<long, object>> DefaultGenerators = InitializeGenerators();
-
-            [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "These are simple type factories and cannot be split up.")]
-            private static Dictionary<Type, Func<long, object>> InitializeGenerators()
-            {
-                return new Dictionary<Type, Func<long, object>>
-                {
-                    { typeof(Boolean), index => true },
-                    { typeof(Byte), index => (Byte)64 },
-                    { typeof(Char), index => (Char)65 },
-                    { typeof(DateTime), index => DateTime.Now },
-                    { typeof(DateTimeOffset), index => new DateTimeOffset(DateTime.Now) },
-                    { typeof(DBNull), index => DBNull.Value },
-                    { typeof(Decimal), index => (Decimal)index },
-                    { typeof(Double), index => (Double)(index + 0.1) },
-                    { typeof(Guid), index => Guid.NewGuid() },
-                    { typeof(Int16), index => (Int16)(index % Int16.MaxValue) },
-                    { typeof(Int32), index => (Int32)(index % Int32.MaxValue) },
-                    { typeof(Int64), index => (Int64)index },
-                    { typeof(Object), index => new object() },
-                    { typeof(SByte), index => (SByte)64 },
-                    { typeof(Single), index => (Single)(index + 0.1) },
-                    { 
-                        typeof(String), index =>
-                        {
-                            return String.Format(CultureInfo.CurrentCulture, "sample string {0}", index);
-                        }
-                    },
-                    { 
-                        typeof(TimeSpan), index =>
-                        {
-                            return TimeSpan.FromTicks(1234567);
-                        }
-                    },
-                    { typeof(UInt16), index => (UInt16)(index % UInt16.MaxValue) },
-                    { typeof(UInt32), index => (UInt32)(index % UInt32.MaxValue) },
-                    { typeof(UInt64), index => (UInt64)index },
-                    { 
-                        typeof(Uri), index =>
-                        {
-                            return new Uri(String.Format(CultureInfo.CurrentCulture, "http://webapihelppage{0}.com", index));
-                        }
-                    },
-                };
-            }
+            private long index = 0;
 
             public static bool CanGenerateObject(Type type)
             {
@@ -449,7 +412,51 @@ namespace MyTodo.WebUx.Areas.HelpPage
 
             public object GenerateObject(Type type)
             {
-                return DefaultGenerators[type](++_index);
+                return DefaultGenerators[type](++this.index);
+            }
+
+            [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "These are simple type factories and cannot be split up.")]
+            private static Dictionary<Type, Func<long, object>> InitializeGenerators()
+            {
+                return new Dictionary<Type, Func<long, object>>
+                {
+                    { typeof(bool), index => true },
+                    { typeof(byte), index => (byte)64 },
+                    { typeof(char), index => (char)65 },
+                    { typeof(DateTime), index => DateTime.Now },
+                    { typeof(DateTimeOffset), index => new DateTimeOffset(DateTime.Now) },
+                    { typeof(DBNull), index => DBNull.Value },
+                    { typeof(decimal), index => (decimal)index },
+                    { typeof(double), index => (double)(index + 0.1) },
+                    { typeof(Guid), index => Guid.NewGuid() },
+                    { typeof(short), index => (short)(index % short.MaxValue) },
+                    { typeof(int), index => (int)(index % int.MaxValue) },
+                    { typeof(long), index => (long)index },
+                    { typeof(object), index => new object() },
+                    { typeof(sbyte), index => (sbyte)64 },
+                    { typeof(float), index => (float)(index + 0.1) },
+                    { 
+                        typeof(string), index =>
+                        {
+                            return string.Format(CultureInfo.CurrentCulture, "sample string {0}", index);
+                        }
+                    },
+                    { 
+                        typeof(TimeSpan), index =>
+                        {
+                            return TimeSpan.FromTicks(1234567);
+                        }
+                    },
+                    { typeof(ushort), index => (ushort)(index % ushort.MaxValue) },
+                    { typeof(uint), index => (uint)(index % uint.MaxValue) },
+                    { typeof(ulong), index => (ulong)index },
+                    { 
+                        typeof(Uri), index =>
+                        {
+                            return new Uri(string.Format(CultureInfo.CurrentCulture, "http://webapihelppage{0}.com", index));
+                        }
+                    },
+                };
             }
         }
     }

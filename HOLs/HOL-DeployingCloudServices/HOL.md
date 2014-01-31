@@ -949,11 +949,21 @@ In this task, you will deploy the application to Windows Azure and access its HT
 
 1. Press **CTRL + S** to save the changes.
 
-1. Next, open the **Web.config** file located in the **MyTodo.WebUx** project. Replace the placeholders with the **SQL Database server**, **database name**, **login name** and **login password** of your SQL database.
+1. Next, open the **Web.config** file located in the **MyTodo.WebUx** project. Update the _DefaultConnection_ entry with the following highlighted code, replacing the placeholders with the **SQL Database server**, **database name**, **login name** and **login password** of your SQL database.
 
-	![Configuring the database connection string](Images/configuring-the-database-connection-string.png?raw=true)
-
-	_Configuring the database connection string_
+	<!--mark: 3-8-->
+	````XML
+	...
+	<connectionStrings>
+		<add name="DefaultConnection" providerName="System.Data.SqlClient"
+			connectionString="Server=tcp:[YOUR_DATABASE_SERVER];
+			Database=[YOUR_DATABASE_NAME];User ID=[YOUR_USER_NAME];
+			Password=[YOUR_USER_PASSWORD];
+			Trusted_Connection=False;
+			Encrypt=True;Connection Timeout=30;" />
+	</connectionStrings>
+	...
+````
 
 1. Press **CTRL + S** to save the changes.
 
