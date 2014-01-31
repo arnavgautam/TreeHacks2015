@@ -552,20 +552,17 @@ In this task, you use the Windows Azure PowerShell cmdlets to upgrade an existin
 
 1. Go back to Microsoft Visual Studio. 
 
-1. Open the layout view of the application for editing. To do this, in **Solution Explorer**, double-click **_Layout.cshtml** in the **Views\Shared** folder of the **MyTodo.WebUx** project. Switch to source mode.
+1. Open the layout view of the application for editing. To do this, in **Solution Explorer**, double-click **Index.cshtml** in the **Views\Home** folder of the **MyTodo.WebUx** project.
 
 1. Insert a new caption in the footer area of the page. Go to the bottom of the layout view and update the copyright notice with the text "(_Deployed with the PowerShell CmdLets_)" as shown below.
 
-	<!-- mark:6 -->
+	<!-- mark:4 -->
 	````HTML
 	...
-		 <div class="container body-content">
-			  @RenderBody()
-			  <hr />
-			  <footer>
-					<p>&copy; @DateTime.Now.Year Microsoft Corporation. All rights reserved (Deployed with the PowerShell CmdLets)</p>
-			  </footer>
-		 </div>
+	<hr />
+	<footer>
+		<p>&copy; @DateTime.Now.Year - myTODO (Deployed with the PowerShell CmdLets)</p>
+	</footer>
 	...
 	````
 
