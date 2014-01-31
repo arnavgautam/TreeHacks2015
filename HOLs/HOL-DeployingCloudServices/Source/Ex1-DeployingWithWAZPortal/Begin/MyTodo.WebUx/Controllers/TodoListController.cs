@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Http.Description;
-using MyTodo.WebUx.Models;
-
-namespace MyTodo.WebUx.Controllers
+﻿namespace MyTodo.WebUx.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+    using System.Web.Http.Description;
+    using MyTodo.WebUx.Models;
+
     public class TodoListController : ApiController
     {
         private TodoItemContext db = new TodoItemContext();
@@ -20,7 +20,7 @@ namespace MyTodo.WebUx.Controllers
         // GET api/TodoList
         public IQueryable<TodoList> GetTodoLists()
         {
-            return db.TodoLists.Include("Todos")
+            return this.db.TodoLists.Include("Todos")
                 .Where(u => u.UserId == User.Identity.Name)
                 .OrderByDescending(u => u.TodoListId);
         }
@@ -29,10 +29,10 @@ namespace MyTodo.WebUx.Controllers
         [ResponseType(typeof(TodoList))]
         public async Task<IHttpActionResult> GetTodoList(int id)
         {
-            TodoList todolist = await db.TodoLists.FindAsync(id);
+            TodoList todolist = await this.db.TodoLists.FindAsync(id);
             if (todolist == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             if (todolist.UserId != User.Identity.Name)
@@ -41,7 +41,7 @@ namespace MyTodo.WebUx.Controllers
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.Unauthorized));
             }
 
-            return Ok(todolist);
+            return this.Ok(todolist);
         }
 
         // PUT api/TodoList/5
@@ -49,25 +49,25 @@ namespace MyTodo.WebUx.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             if (id != todolist.TodoListId)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
 
-            db.Entry(todolist).State = EntityState.Modified;
+            this.db.Entry(todolist).State = EntityState.Modified;
 
             try
             {
-                await db.SaveChangesAsync();
+                await this.db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TodoListExists(id))
+                if (!this.TodoListExists(id))
                 {
-                    return NotFound();
+                    return this.NotFound();
                 }
                 else
                 {
@@ -75,7 +75,7 @@ namespace MyTodo.WebUx.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return this.StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST api/TodoList
@@ -84,44 +84,45 @@ namespace MyTodo.WebUx.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             todolist.UserId = User.Identity.Name;
-            db.TodoLists.Add(todolist);
-            await db.SaveChangesAsync();
+            this.db.TodoLists.Add(todolist);
+            await this.db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = todolist.TodoListId }, todolist);
+            return this.CreatedAtRoute("DefaultApi", new { id = todolist.TodoListId }, todolist);
         }
 
         // DELETE api/TodoList/5
         [ResponseType(typeof(TodoList))]
         public async Task<IHttpActionResult> DeleteTodoList(int id)
         {
-            TodoList todolist = await db.TodoLists.FindAsync(id);
+            TodoList todolist = await this.db.TodoLists.FindAsync(id);
             if (todolist == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
-            db.TodoLists.Remove(todolist);
-            await db.SaveChangesAsync();
+            this.db.TodoLists.Remove(todolist);
+            await this.db.SaveChangesAsync();
 
-            return Ok(todolist);
+            return this.Ok(todolist);
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
         private bool TodoListExists(int id)
         {
-            return db.TodoLists.Count(e => e.TodoListId == id) > 0;
+            return this.db.TodoLists.Count(e => e.TodoListId == id) > 0;
         }
     }
 }

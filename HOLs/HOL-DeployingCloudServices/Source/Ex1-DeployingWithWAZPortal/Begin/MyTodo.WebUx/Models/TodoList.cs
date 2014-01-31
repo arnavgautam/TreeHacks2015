@@ -1,8 +1,8 @@
 ﻿namespace MyTodo.WebUx.Models
 {
-    using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Todo list entity

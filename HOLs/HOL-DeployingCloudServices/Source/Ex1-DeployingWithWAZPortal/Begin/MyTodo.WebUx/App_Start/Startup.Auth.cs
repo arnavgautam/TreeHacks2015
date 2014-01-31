@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
-using Owin;
-using MyTodo.WebUx.Providers;
-
-namespace MyTodo.WebUx
+﻿namespace MyTodo.WebUx
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.Owin;
+    using Microsoft.Owin.Security.Cookies;
+    using Microsoft.Owin.Security.OAuth;
+    using MyTodo.WebUx.Providers;
+    using Owin;
+
     public partial class Startup
     {
         static Startup()
@@ -47,19 +47,19 @@ namespace MyTodo.WebUx
             app.UseOAuthBearerTokens(OAuthOptions);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            ////app.UseMicrosoftAccountAuthentication(
+            ////    clientId: "",
+            ////    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //    consumerKey: "",
-            //    consumerSecret: "");
+            ////app.UseTwitterAuthentication(
+            ////    consumerKey: "",
+            ////    consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
+            ////app.UseFacebookAuthentication(
+            ////    appId: "",
+            ////    appSecret: "");
 
-            //app.UseGoogleAuthentication();
+            ////app.UseGoogleAuthentication();
         }
     }
 }

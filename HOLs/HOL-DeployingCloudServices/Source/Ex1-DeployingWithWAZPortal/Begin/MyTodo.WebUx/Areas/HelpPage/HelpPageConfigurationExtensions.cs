@@ -1,16 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Web.Http;
-using System.Web.Http.Description;
-using MyTodo.WebUx.Areas.HelpPage.Models;
-
 namespace MyTodo.WebUx.Areas.HelpPage
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Linq;
+    using System.Net.Http.Headers;
+    using System.Web.Http;
+    using System.Web.Http.Description;
+    using MyTodo.WebUx.Areas.HelpPage.Models;
+
     public static class HelpPageConfigurationExtensions
     {
         private const string ApiModelPrefix = "MS_HelpPageApiModel_";
@@ -195,7 +195,7 @@ namespace MyTodo.WebUx.Areas.HelpPage
             if (!config.Properties.TryGetValue(modelId, out model))
             {
                 Collection<ApiDescription> apiDescriptions = config.Services.GetApiExplorer().ApiDescriptions;
-                ApiDescription apiDescription = apiDescriptions.FirstOrDefault(api => String.Equals(api.GetFriendlyId(), apiDescriptionId, StringComparison.OrdinalIgnoreCase));
+                ApiDescription apiDescription = apiDescriptions.FirstOrDefault(api => string.Equals(api.GetFriendlyId(), apiDescriptionId, StringComparison.OrdinalIgnoreCase));
                 if (apiDescription != null)
                 {
                     HelpPageSampleGenerator sampleGenerator = config.GetHelpPageSampleGenerator();
@@ -229,7 +229,7 @@ namespace MyTodo.WebUx.Areas.HelpPage
             }
             catch (Exception e)
             {
-                apiModel.ErrorMessages.Add(String.Format(CultureInfo.CurrentCulture, "An exception has occurred while generating the sample. Exception Message: {0}", e.Message));
+                apiModel.ErrorMessages.Add(string.Format(CultureInfo.CurrentCulture, "An exception has occurred while generating the sample. Exception Message: {0}", e.Message));
             }
 
             return apiModel;

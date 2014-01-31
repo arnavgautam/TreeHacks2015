@@ -1,22 +1,22 @@
-using System;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Web.Http.Controllers;
-using System.Web.Http.Description;
-using System.Xml.XPath;
-
 namespace MyTodo.WebUx.Areas.HelpPage
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using System.Reflection;
+    using System.Web.Http.Controllers;
+    using System.Web.Http.Description;
+    using System.Xml.XPath;
+
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
     /// </summary>
     public class XmlDocumentationProvider : IDocumentationProvider
-    {
-        private XPathNavigator _documentNavigator;
+    {      
         private const string TypeExpression = "/doc/members/member[@name='T:{0}']";
         private const string MethodExpression = "/doc/members/member[@name='M:{0}']";
         private const string ParameterExpression = "param[@name='{0}']";
+        private XPathNavigator documentNavigator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlDocumentationProvider"/> class.
@@ -28,19 +28,20 @@ namespace MyTodo.WebUx.Areas.HelpPage
             {
                 throw new ArgumentNullException("documentPath");
             }
+
             XPathDocument xpath = new XPathDocument(documentPath);
-            _documentNavigator = xpath.CreateNavigator();
+            this.documentNavigator = xpath.CreateNavigator();
         }
 
         public string GetDocumentation(HttpControllerDescriptor controllerDescriptor)
         {
-            XPathNavigator typeNode = GetTypeNode(controllerDescriptor);
+            XPathNavigator typeNode = this.GetTypeNode(controllerDescriptor);
             return GetTagValue(typeNode, "summary");
         }
 
         public virtual string GetDocumentation(HttpActionDescriptor actionDescriptor)
         {
-            XPathNavigator methodNode = GetMethodNode(actionDescriptor);
+            XPathNavigator methodNode = this.GetMethodNode(actionDescriptor);
             return GetTagValue(methodNode, "summary");
         }
 
@@ -49,11 +50,11 @@ namespace MyTodo.WebUx.Areas.HelpPage
             ReflectedHttpParameterDescriptor reflectedParameterDescriptor = parameterDescriptor as ReflectedHttpParameterDescriptor;
             if (reflectedParameterDescriptor != null)
             {
-                XPathNavigator methodNode = GetMethodNode(reflectedParameterDescriptor.ActionDescriptor);
+                XPathNavigator methodNode = this.GetMethodNode(reflectedParameterDescriptor.ActionDescriptor);
                 if (methodNode != null)
                 {
                     string parameterName = reflectedParameterDescriptor.ParameterInfo.Name;
-                    XPathNavigator parameterNode = methodNode.SelectSingleNode(String.Format(CultureInfo.InvariantCulture, ParameterExpression, parameterName));
+                    XPathNavigator parameterNode = methodNode.SelectSingleNode(string.Format(CultureInfo.InvariantCulture, ParameterExpression, parameterName));
                     if (parameterNode != null)
                     {
                         return parameterNode.Value.Trim();
@@ -66,30 +67,18 @@ namespace MyTodo.WebUx.Areas.HelpPage
 
         public string GetResponseDocumentation(HttpActionDescriptor actionDescriptor)
         {
-            XPathNavigator methodNode = GetMethodNode(actionDescriptor);
+            XPathNavigator methodNode = this.GetMethodNode(actionDescriptor);
             return GetTagValue(methodNode, "returns");
-        }
-
-        private XPathNavigator GetMethodNode(HttpActionDescriptor actionDescriptor)
-        {
-            ReflectedHttpActionDescriptor reflectedActionDescriptor = actionDescriptor as ReflectedHttpActionDescriptor;
-            if (reflectedActionDescriptor != null)
-            {
-                string selectExpression = String.Format(CultureInfo.InvariantCulture, MethodExpression, GetMemberName(reflectedActionDescriptor.MethodInfo));
-                return _documentNavigator.SelectSingleNode(selectExpression);
-            }
-
-            return null;
         }
 
         private static string GetMemberName(MethodInfo method)
         {
-            string name = String.Format(CultureInfo.InvariantCulture, "{0}.{1}", method.DeclaringType.FullName, method.Name);
+            string name = string.Format(CultureInfo.InvariantCulture, "{0}.{1}", method.DeclaringType.FullName, method.Name);
             ParameterInfo[] parameters = method.GetParameters();
             if (parameters.Length != 0)
             {
                 string[] parameterTypeNames = parameters.Select(param => GetTypeName(param.ParameterType)).ToArray();
-                name += String.Format(CultureInfo.InvariantCulture, "({0})", String.Join(",", parameterTypeNames));
+                name += string.Format(CultureInfo.InvariantCulture, "({0})", string.Join(",", parameterTypeNames));
             }
 
             return name;
@@ -121,10 +110,22 @@ namespace MyTodo.WebUx.Areas.HelpPage
                 // Trim the generic parameter counts from the name
                 typeName = typeName.Substring(0, typeName.IndexOf('`'));
                 string[] argumentTypeNames = genericArguments.Select(t => GetTypeName(t)).ToArray();
-                return String.Format(CultureInfo.InvariantCulture, "{0}{{{1}}}", typeName, String.Join(",", argumentTypeNames));
+                return string.Format(CultureInfo.InvariantCulture, "{0}{{{1}}}", typeName, string.Join(",", argumentTypeNames));
             }
 
             return type.FullName;
+        }
+
+        private XPathNavigator GetMethodNode(HttpActionDescriptor actionDescriptor)
+        {
+            ReflectedHttpActionDescriptor reflectedActionDescriptor = actionDescriptor as ReflectedHttpActionDescriptor;
+            if (reflectedActionDescriptor != null)
+            {
+                string selectExpression = string.Format(CultureInfo.InvariantCulture, MethodExpression, GetMemberName(reflectedActionDescriptor.MethodInfo));
+                return this.documentNavigator.SelectSingleNode(selectExpression);
+            }
+
+            return null;
         }
 
         private XPathNavigator GetTypeNode(HttpControllerDescriptor controllerDescriptor)
@@ -136,8 +137,9 @@ namespace MyTodo.WebUx.Areas.HelpPage
                 // Changing the nested type name from OuterType+InnerType to OuterType.InnerType to match the XML documentation syntax.
                 controllerTypeName = controllerTypeName.Replace("+", ".");
             }
-            string selectExpression = String.Format(CultureInfo.InvariantCulture, TypeExpression, controllerTypeName);
-            return _documentNavigator.SelectSingleNode(selectExpression);
+
+            string selectExpression = string.Format(CultureInfo.InvariantCulture, TypeExpression, controllerTypeName);
+            return this.documentNavigator.SelectSingleNode(selectExpression);
         }
     }
 }

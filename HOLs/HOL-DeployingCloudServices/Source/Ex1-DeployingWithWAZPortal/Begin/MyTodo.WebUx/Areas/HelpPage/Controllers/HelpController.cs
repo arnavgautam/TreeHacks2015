@@ -1,10 +1,10 @@
-using System;
-using System.Web.Http;
-using System.Web.Mvc;
-using MyTodo.WebUx.Areas.HelpPage.Models;
-
 namespace MyTodo.WebUx.Areas.HelpPage.Controllers
 {
+    using System;
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using MyTodo.WebUx.Areas.HelpPage.Models;
+
     /// <summary>
     /// The controller that will handle requests for the help page.
     /// </summary>
@@ -17,29 +17,29 @@ namespace MyTodo.WebUx.Areas.HelpPage.Controllers
 
         public HelpController(HttpConfiguration config)
         {
-            Configuration = config;
+            this.Configuration = config;
         }
 
         public HttpConfiguration Configuration { get; private set; }
 
         public ActionResult Index()
         {
-            ViewBag.DocumentationProvider = Configuration.Services.GetDocumentationProvider();
-            return View(Configuration.Services.GetApiExplorer().ApiDescriptions);
+            ViewBag.DocumentationProvider = this.Configuration.Services.GetDocumentationProvider();
+            return this.View(this.Configuration.Services.GetApiExplorer().ApiDescriptions);
         }
 
         public ActionResult Api(string apiId)
         {
-            if (!String.IsNullOrEmpty(apiId))
+            if (!string.IsNullOrEmpty(apiId))
             {
-                HelpPageApiModel apiModel = Configuration.GetHelpPageApiModel(apiId);
+                HelpPageApiModel apiModel = this.Configuration.GetHelpPageApiModel(apiId);
                 if (apiModel != null)
                 {
-                    return View(apiModel);
+                    return this.View(apiModel);
                 }
             }
 
-            return View("Error");
+            return this.View("Error");
         }
     }
 }

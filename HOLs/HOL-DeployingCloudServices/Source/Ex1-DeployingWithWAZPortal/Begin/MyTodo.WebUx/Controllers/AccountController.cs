@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Http;
-using System.Web.Http.ModelBinding;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
-using MyTodo.WebUx.Models;
-using MyTodo.WebUx.Providers;
-using MyTodo.WebUx.Results;
-
-namespace MyTodo.WebUx.Controllers
+﻿namespace MyTodo.WebUx.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Security.Claims;
+    using System.Security.Cryptography;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Http;
+    using System.Web.Http.ModelBinding;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.Owin.Security;
+    using Microsoft.Owin.Security.Cookies;
+    using Microsoft.Owin.Security.OAuth;
+    using MyTodo.WebUx.Models;
+    using MyTodo.WebUx.Providers;
+    using MyTodo.WebUx.Results;
+
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
@@ -30,15 +30,22 @@ namespace MyTodo.WebUx.Controllers
         {
         }
 
-        public AccountController(UserManager<IdentityUser> userManager,
+        public AccountController(
+            UserManager<IdentityUser> userManager,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
-            UserManager = userManager;
-            AccessTokenFormat = accessTokenFormat;
+            this.UserManager = userManager;
+            this.AccessTokenFormat = accessTokenFormat;
         }
 
         public UserManager<IdentityUser> UserManager { get; private set; }
+
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
+
+        private IAuthenticationManager Authentication
+        {
+            get { return Request.GetOwinContext().Authentication; }
+        }
 
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
@@ -59,15 +66,15 @@ namespace MyTodo.WebUx.Controllers
         [Route("Logout")]
         public IHttpActionResult Logout()
         {
-            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
-            return Ok();
+            this.Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            return this.Ok();
         }
 
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
         [Route("ManageInfo")]
         public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
         {
-            IdentityUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            IdentityUser user = await this.UserManager.FindByIdAsync(User.Identity.GetUserId());
 
             if (user == null)
             {
@@ -99,7 +106,7 @@ namespace MyTodo.WebUx.Controllers
                 LocalLoginProvider = LocalLoginProvider,
                 UserName = user.UserName,
                 Logins = logins,
-                ExternalLoginProviders = GetExternalLogins(returnUrl, generateState)
+                ExternalLoginProviders = this.GetExternalLogins(returnUrl, generateState)
             };
         }
 
@@ -109,19 +116,18 @@ namespace MyTodo.WebUx.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
-                model.NewPassword);
-            IHttpActionResult errorResult = GetErrorResult(result);
+            IdentityResult result = await this.UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            IHttpActionResult errorResult = this.GetErrorResult(result);
 
             if (errorResult != null)
             {
                 return errorResult;
             }
 
-            return Ok();
+            return this.Ok();
         }
 
         // POST api/Account/SetPassword
@@ -130,18 +136,18 @@ namespace MyTodo.WebUx.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
-            IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
-            IHttpActionResult errorResult = GetErrorResult(result);
+            IdentityResult result = await this.UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+            IHttpActionResult errorResult = this.GetErrorResult(result);
 
             if (errorResult != null)
             {
                 return errorResult;
             }
 
-            return Ok();
+            return this.Ok();
         }
 
         // POST api/Account/AddExternalLogin
@@ -150,38 +156,39 @@ namespace MyTodo.WebUx.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
-            Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            this.Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
 
-            AuthenticationTicket ticket = AccessTokenFormat.Unprotect(model.ExternalAccessToken);
+            AuthenticationTicket ticket = this.AccessTokenFormat.Unprotect(model.ExternalAccessToken);
 
             if (ticket == null || ticket.Identity == null || (ticket.Properties != null
                 && ticket.Properties.ExpiresUtc.HasValue
                 && ticket.Properties.ExpiresUtc.Value < DateTimeOffset.UtcNow))
             {
-                return BadRequest("External login failure.");
+                return this.BadRequest("External login failure.");
             }
 
             ExternalLoginData externalData = ExternalLoginData.FromIdentity(ticket.Identity);
 
             if (externalData == null)
             {
-                return BadRequest("The external login is already associated with an account.");
+                return this.BadRequest("The external login is already associated with an account.");
             }
 
-            IdentityResult result = await UserManager.AddLoginAsync(User.Identity.GetUserId(),
+            IdentityResult result = await this.UserManager.AddLoginAsync(
+                User.Identity.GetUserId(),
                 new UserLoginInfo(externalData.LoginProvider, externalData.ProviderKey));
 
-            IHttpActionResult errorResult = GetErrorResult(result);
+            IHttpActionResult errorResult = this.GetErrorResult(result);
 
             if (errorResult != null)
             {
                 return errorResult;
             }
 
-            return Ok();
+            return this.Ok();
         }
 
         // POST api/Account/RemoveLogin
@@ -190,29 +197,30 @@ namespace MyTodo.WebUx.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             IdentityResult result;
 
             if (model.LoginProvider == LocalLoginProvider)
             {
-                result = await UserManager.RemovePasswordAsync(User.Identity.GetUserId());
+                result = await this.UserManager.RemovePasswordAsync(User.Identity.GetUserId());
             }
             else
             {
-                result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(),
+                result = await this.UserManager.RemoveLoginAsync(
+                    User.Identity.GetUserId(),
                     new UserLoginInfo(model.LoginProvider, model.ProviderKey));
             }
 
-            IHttpActionResult errorResult = GetErrorResult(result);
+            IHttpActionResult errorResult = this.GetErrorResult(result);
 
             if (errorResult != null)
             {
                 return errorResult;
             }
 
-            return Ok();
+            return this.Ok();
         }
 
         // GET api/Account/ExternalLogin
@@ -224,7 +232,7 @@ namespace MyTodo.WebUx.Controllers
         {
             if (error != null)
             {
-                return Redirect(Url.Content("~/") + "#error=" + Uri.EscapeDataString(error));
+                return this.Redirect(Url.Content("~/") + "#error=" + Uri.EscapeDataString(error));
             }
 
             if (!User.Identity.IsAuthenticated)
@@ -236,38 +244,39 @@ namespace MyTodo.WebUx.Controllers
 
             if (externalLogin == null)
             {
-                return InternalServerError();
+                return this.InternalServerError();
             }
 
             if (externalLogin.LoginProvider != provider)
             {
-                Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                this.Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
                 return new ChallengeResult(provider, this);
             }
 
-            IdentityUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
-                externalLogin.ProviderKey));
+            IdentityUser user = await this.UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
 
             bool hasRegistered = user != null;
 
             if (hasRegistered)
             {
-                Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                ClaimsIdentity oAuthIdentity = await UserManager.CreateIdentityAsync(user,
+                this.Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                ClaimsIdentity oauthIdentity = await this.UserManager.CreateIdentityAsync(
+                    user,
                     OAuthDefaults.AuthenticationType);
-                ClaimsIdentity cookieIdentity = await UserManager.CreateIdentityAsync(user,
+                ClaimsIdentity cookieIdentity = await this.UserManager.CreateIdentityAsync(
+                    user,
                     CookieAuthenticationDefaults.AuthenticationType);
                 AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
-                Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
+                this.Authentication.SignIn(properties, oauthIdentity, cookieIdentity);
             }
             else
             {
                 IEnumerable<Claim> claims = externalLogin.GetClaims();
                 ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
-                Authentication.SignIn(identity);
+                this.Authentication.SignIn(identity);
             }
 
-            return Ok();
+            return this.Ok();
         }
 
         // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
@@ -275,15 +284,15 @@ namespace MyTodo.WebUx.Controllers
         [Route("ExternalLogins")]
         public IEnumerable<ExternalLoginViewModel> GetExternalLogins(string returnUrl, bool generateState = false)
         {
-            IEnumerable<AuthenticationDescription> descriptions = Authentication.GetExternalAuthenticationTypes();
+            IEnumerable<AuthenticationDescription> descriptions = this.Authentication.GetExternalAuthenticationTypes();
             List<ExternalLoginViewModel> logins = new List<ExternalLoginViewModel>();
 
             string state;
 
             if (generateState)
             {
-                const int strengthInBits = 256;
-                state = RandomOAuthStateGenerator.Generate(strengthInBits);
+                const int StrengthInBits = 256;
+                state = RandomOAuthStateGenerator.Generate(StrengthInBits);
             }
             else
             {
@@ -295,7 +304,9 @@ namespace MyTodo.WebUx.Controllers
                 ExternalLoginViewModel login = new ExternalLoginViewModel
                 {
                     Name = description.Caption,
-                    Url = Url.Route("ExternalLogin", new
+                    Url = Url.Route(
+                    "ExternalLogin",
+                    new
                     {
                         provider = description.AuthenticationType,
                         response_type = "token",
@@ -318,7 +329,7 @@ namespace MyTodo.WebUx.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             IdentityUser user = new IdentityUser
@@ -326,8 +337,8 @@ namespace MyTodo.WebUx.Controllers
                 UserName = model.UserName
             };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-            IHttpActionResult errorResult = GetErrorResult(result);
+            IdentityResult result = await this.UserManager.CreateAsync(user, model.Password);
+            IHttpActionResult errorResult = this.GetErrorResult(result);
 
             if (errorResult != null)
             {
@@ -336,7 +347,7 @@ namespace MyTodo.WebUx.Controllers
 
             InitiateDatabaseForNewUser(model.UserName);
 
-            return Ok();
+            return this.Ok();
         }
 
         // POST api/Account/RegisterExternal
@@ -347,14 +358,14 @@ namespace MyTodo.WebUx.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
             if (externalLogin == null)
             {
-                return InternalServerError();
+                return this.InternalServerError();
             }
 
             IdentityUser user = new IdentityUser
@@ -366,8 +377,8 @@ namespace MyTodo.WebUx.Controllers
                 LoginProvider = externalLogin.LoginProvider,
                 ProviderKey = externalLogin.ProviderKey
             });
-            IdentityResult result = await UserManager.CreateAsync(user);
-            IHttpActionResult errorResult = GetErrorResult(result);
+            IdentityResult result = await this.UserManager.CreateAsync(user);
+            IHttpActionResult errorResult = this.GetErrorResult(result);
 
             if (errorResult != null)
             {
@@ -376,19 +387,18 @@ namespace MyTodo.WebUx.Controllers
 
             InitiateDatabaseForNewUser(model.UserName);
 
-            return Ok();
+            return this.Ok();
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                UserManager.Dispose();
+                this.UserManager.Dispose();
             }
 
             base.Dispose(disposing);
         }
-
 
         /// <summary>
         /// Initiate a new todo list for new user
@@ -411,16 +421,11 @@ namespace MyTodo.WebUx.Controllers
 
         #region Helpers
 
-        private IAuthenticationManager Authentication
-        {
-            get { return Request.GetOwinContext().Authentication; }
-        }
-
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {
             if (result == null)
             {
-                return InternalServerError();
+                return this.InternalServerError();
             }
 
             if (!result.Succeeded)
@@ -429,40 +434,50 @@ namespace MyTodo.WebUx.Controllers
                 {
                     foreach (string error in result.Errors)
                     {
-                        ModelState.AddModelError("", error);
+                        ModelState.AddModelError(string.Empty, error);
                     }
                 }
 
                 if (ModelState.IsValid)
                 {
                     // No ModelState errors are available to send, so just return an empty BadRequest.
-                    return BadRequest();
+                    return this.BadRequest();
                 }
 
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             return null;
         }
 
+        private static class RandomOAuthStateGenerator
+        {
+            private static RandomNumberGenerator random = new RNGCryptoServiceProvider();
+
+            public static string Generate(int strengthInBits)
+            {
+                const int BitsPerByte = 8;
+
+                if (strengthInBits % BitsPerByte != 0)
+                {
+                    throw new ArgumentException("strengthInBits must be evenly divisible by 8.", "strengthInBits");
+                }
+
+                int strengthInBytes = strengthInBits / BitsPerByte;
+
+                byte[] data = new byte[strengthInBytes];
+                random.GetBytes(data);
+                return HttpServerUtility.UrlTokenEncode(data);
+            }
+        }
+
         private class ExternalLoginData
         {
             public string LoginProvider { get; set; }
+
             public string ProviderKey { get; set; }
+
             public string UserName { get; set; }
-
-            public IList<Claim> GetClaims()
-            {
-                IList<Claim> claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, ProviderKey, null, LoginProvider));
-
-                if (UserName != null)
-                {
-                    claims.Add(new Claim(ClaimTypes.Name, UserName, null, LoginProvider));
-                }
-
-                return claims;
-            }
 
             public static ExternalLoginData FromIdentity(ClaimsIdentity identity)
             {
@@ -473,8 +488,8 @@ namespace MyTodo.WebUx.Controllers
 
                 Claim providerKeyClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
 
-                if (providerKeyClaim == null || String.IsNullOrEmpty(providerKeyClaim.Issuer)
-                    || String.IsNullOrEmpty(providerKeyClaim.Value))
+                if (providerKeyClaim == null || string.IsNullOrEmpty(providerKeyClaim.Issuer)
+                    || string.IsNullOrEmpty(providerKeyClaim.Value))
                 {
                     return null;
                 }
@@ -491,26 +506,18 @@ namespace MyTodo.WebUx.Controllers
                     UserName = identity.FindFirstValue(ClaimTypes.Name)
                 };
             }
-        }
 
-        private static class RandomOAuthStateGenerator
-        {
-            private static RandomNumberGenerator _random = new RNGCryptoServiceProvider();
-
-            public static string Generate(int strengthInBits)
+            public IList<Claim> GetClaims()
             {
-                const int bitsPerByte = 8;
+                IList<Claim> claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, this.ProviderKey, null, this.LoginProvider));
 
-                if (strengthInBits % bitsPerByte != 0)
+                if (this.UserName != null)
                 {
-                    throw new ArgumentException("strengthInBits must be evenly divisible by 8.", "strengthInBits");
+                    claims.Add(new Claim(ClaimTypes.Name, this.UserName, null, this.LoginProvider));
                 }
 
-                int strengthInBytes = strengthInBits / bitsPerByte;
-
-                byte[] data = new byte[strengthInBytes];
-                _random.GetBytes(data);
-                return HttpServerUtility.UrlTokenEncode(data);
+                return claims;
             }
         }
 
