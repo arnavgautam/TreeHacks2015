@@ -710,7 +710,6 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 	````C#
 	using System.Configuration;
-	using System.Security.Claims;
 	using System.Data.Services.Client;
 	using Microsoft.WindowsAzure.ActiveDirectory;
 	using Microsoft.WindowsAzure.ActiveDirectory.GraphHelper;
@@ -720,7 +719,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 	(Code Snippet - _IntroductionToWindowsAzureAD - Ex2 - UsersActionMethod_)
 
-	<!-- mark: 5-49 -->
+	<!-- mark: 5-46 -->
 	````C#
 	public class HomeController : Controller
 	{
@@ -742,7 +741,6 @@ In this task you will update the **HomeController** of your MVC app to query the
 			DirectoryDataService graphService = new DirectoryDataService(tenantName, token);
 
 			//  get Users
-			//
 			var users = graphService.users;
 			QueryOperationResponse<User> response;
 			response = users.Execute() as QueryOperationResponse<User>;
@@ -752,7 +750,6 @@ In this task you will update the **HomeController** of your MVC app to query the
 			//  For subsequent Graph Calls, the existing token should be used.
 			//  The following checks to see if the existing token is expired or about to expire in 2 mins
 			//  if true, then get a new token and refresh the graphService
-			//
 			int tokenMins = 2;
 			if (token.IsExpired || token.WillExpireIn(tokenMins))
 			{
@@ -762,7 +759,6 @@ In this task you will update the **HomeController** of your MVC app to query the
 			}
 
 			//  get tenant information
-			//
 			var tenant = graphService.tenantDetails;
 			QueryOperationResponse<TenantDetail> responseTenantQuery;
 			responseTenantQuery = tenant.Execute() as QueryOperationResponse<TenantDetail>;
