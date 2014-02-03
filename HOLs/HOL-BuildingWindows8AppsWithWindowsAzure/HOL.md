@@ -24,8 +24,8 @@ In this hands-on lab, you will learn how to:
 
 The following is required to complete this hands-on lab:
 
-- [Visual Studio Express 2013 for Web][1] or greater
-- [Visual Studio Express 2013 for Windows][2] or greater
+- [Visual Studio Express 2013 for Web][1] or greater, including [Visual Studio 2013 Update 1][2]
+- [Visual Studio Express 2013 for Windows][3] or greater
 - A Windows Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
 	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start developing and testing on Windows Azure.
@@ -34,7 +34,8 @@ The following is required to complete this hands-on lab:
 
 
 [1]:http://www.microsoft.com/visualstudio/
-[2]:http://www.microsoft.com/visualstudio/
+[2]:http://support.microsoft.com/kb/2911573
+[3]:http://www.microsoft.com/visualstudio/
 
 <a name="Setup"/>
 ### Setup ###
