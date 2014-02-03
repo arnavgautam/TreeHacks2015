@@ -125,7 +125,7 @@ In this task, you will run the Cloud Shop application in the compute emulator us
 
 1. Click on the **Recycle** button. This forces the web role to be recycled. Once you click on the button, the **Products** page will turn blank.
 
-1. Open the **Compute Emulator**. To do so, right-click the Windows Azure icon tray and select **Show Compute Emulator UI**.
+1. Open the **Compute Emulator**. To do so, right-click the Windows Azure icon in the notification area and select **Show Compute Emulator UI**.
 
 	![Windows Azure Tray Icon](Images/windows-azure-tray-icon.png?raw=true "Windows Azure Tray Icon")
 
@@ -484,7 +484,7 @@ In this task, you will update the application to allow control of the use of the
 
 1. Observe the **Object ID** indicator under **Cache Settings** and notice how it changes every time you refresh the page indicating that the repository returns a different object for each call.
 
-1. Now, click the **Enable** button in **Enable Cache** and wait for the page to refresh. Notice that the first item in the list indicates that it was still necessary for the application to retrieve the product catalog from the data source because the information has yet to be cached.
+1. Click the **Enable Cache** button and wait for the page to refresh. Notice that the first item in the list indicates that it was still necessary for the application to retrieve the product catalog from the data source because the information has yet to be cached.
 
 1. Click **Products**, or refresh the page in the browser. This time, the application retrieves the product data from Windows Azure Cache Service and the elapsed time should be lower. Confirm that the first item in the list indicates that the source of the information is the cache.
 
