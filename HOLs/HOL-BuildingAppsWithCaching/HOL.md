@@ -72,9 +72,9 @@ Throughout the lab document, you will be instructed to insert code blocks. For y
 ## Exercises ##
 This hands-on lab includes the following exercises:
 
-1. [Enable Cache service for Session State](#Exercise1)
+1. [Enable Cache Service for Session State](#Exercise1)
 1. [Caching Data with Windows Azure Caching](#Exercise2)
-1. [Caching common data patterns with WACEL](#Exercise3)
+1. [Caching Common Data Patterns with WACEL](#Exercise3)
 
 Estimated time to complete this lab: **60 minutes**.
 
@@ -652,25 +652,25 @@ You should be aware of this when using the cache in your own applications and co
 1. Wait for at least 30 seconds and then refresh the page one more time. Notice that the elapsed time is back to its original value and that the object ID has changed, showing that the cached item has expired and been purged from the cache due to the expiration policy set on the object when it was stored.
 
 <a name="Exercise3" />
-### Exercise 3: Caching common data patterns with WACEL ###
+### Exercise 3: Caching Common Data Patterns with WACEL ###
 This exercise will show you how to use WACEL as a high-level data structure built on top a Windows Azure Table Storage. Then you will configure WACEL to use In-Role cache to cache the data.
 
 <a name="Ex3Task1" />
-#### Task 1 - Retrieving data from Azure Storage Tables using WACEL ####
+#### Task 1 - Retrieving Data from Azure Storage Tables using WACEL ####
 
-In this task you will learn how to use WACEL as a high-level data structure used on top of Windows Azure Table. To do so, you will first add a new View to the application that shows a list of customers from a Company.
+In this task you will learn how to use WACEL as a high-level data structure used on top of Windows Azure Table Storage. To do so, you will first add a new View to the application that shows a list of customers from a Company.
 
->**Note:** WACEL provides implementation of high-level data structures that can be shared among your services and application. For more information, browse [http://wacel.codeplex.com/](http://wacel.codeplex.com/)
+>**Note:** WACEL provides implementation of high-level data structures that can be shared among your services and application. For more information, you can browse [http://wacel.codeplex.com/](http://wacel.codeplex.com/)
 
-1. Start **Microsoft Visual Studio 2013 Express for Web** as administrator.
+1. Open **Visual Studio Express 2013 for Web** as administrator.
 
 1. Open the **Begin** solution located at **Source\Ex3-CachingCommonDataPatternWithWACEL\Begin**.
 
-	>**Important:** Before you execute the solution, make sure that the startup project is set. For MVC projects, the start page must be left blank. To set the startup project, in **Solution Explorer**, right-click the **CloudShop.Azure** project and then select Set as StartUp Project. To set the start page, in **Solution Explorer**, right-click the **CloudShop** project and select **Properties**. In the **Properties** window, select the Web tab and in the **Start Action**, select **Specific Page**. Leave the value of this field blank.
+	>**Important:** Before you execute the solution, make sure that the startup project is set. For MVC projects, the start page must be left blank. To set the startup project, in **Solution Explorer**, right-click the **CloudShop.Azure** project and then select **Set as StartUp Project**. To set the start page, in **Solution Explorer**, right-click the **CloudShop** project and select **Properties**. In the **Properties** window, select the **Web** tab and in the **Start Action**, select **Specific Page**. Leave the value of this field blank.
 
-1. Build the solution in order to download and install the NuGet package dependencies. To do this, click **Build** | **Build Solution** or press **Ctrl + Shift + B**.
+1. Build the solution in order to download and install the NuGet package dependencies. To do this, right-click the solution and click **Build Solution** or press **Ctrl + Shift + B**.
 
-1. Right click in the **Home** folder inside **Views** in the **CloudShop** project and select **Add** | **Existing Item...**.
+1. In the **CloudShop** project, right-click in the **Home** folder inside **Views** folder and select **Add** | **Existing Item...**.
 
 	![Add existing item](Images/add-existing-item.png?raw=true "Add existing item")	
 
@@ -678,7 +678,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 1. Select the file **Table.cshtml** located in the **Assets** folder of the lab.
 
-1. Open the **HomeController** and add the following code to return the View you added in the previous step.
+1. Open the **HomeController.cs** file located in the **Controllers** folder and add the following code to return the View you added in the previous step.
 
 	(Code Snippet - _BuildingAppsWithCachingService - Ex3 - TableAction_)
 
@@ -707,25 +707,29 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 1. Open **Package Manager Console**. To do so, go to the **Tools** menu. Then go to the **Library Package Manager** and click on **Package Manager Console**.
 
-1. Execute _Install-Package WACEL_ to install **Windows Azure Cache Extension Library (WACEL)** dependency to the project. Make sure that **CloudShop** project is set as default project.
+1. Set **CloudShop** as the default project, and execute the following command to install the **Windows Azure Cache Extension Library (WACEL)** dependency to the project.
+
+	````PowerShell
+	Install-Package WACEL
+	````
 	
 	![WACEL nuget installed](Images/wacel-nuget-installed.png?raw=true "WACEL nuget installed")
 
 	_WACEL nuget installed_
 
-1. Right click in the **Models** folder and go to **Add** | **Class...**.
+1. Right-click in the **Models** folder and select **Add** | **Class...**.
 
 	![Add class](Images/add-class.png?raw=true "Add class")
 	
 	_Add class_
 
-1. Name it _Customer.cs_ and click **OK**.
+1. Name it _Customer.cs_ and click **Add**.
 
 	![Add new item dialog box](Images/add-new-item-dialog-box.png?raw=true "Add new item dialog box")
 
 	_Add new item dialog box_
 
-1. Replace the **Customer** implementation with the following code
+1. Replace the **Customer** implementation with the following code.
 
 	(Code Snippet - _BuildingAppsWithCachingService - Ex3 - CustomerClass_)
 
@@ -773,24 +777,23 @@ In this task you will learn how to use WACEL as a high-level data structure used
 	}
 	````
 
-1. Right click in the **Controllers** folder and go to **Add | Controller...**.
+1. Right-click in the **Controllers** folder and go to **Add | Controller...**.
 
 	![Add Web API Controller](Images/add-web-api-controller.png?raw=true "Add Web API Controller")
 
 	_Add Web API controller_
 
-1. In the **Add Scaffold** dialog box, select **Web API 2 Controller - Empty** and then click **Add**
+1. In the **Add Scaffold** dialog box, select **Web API 2 Controller - Empty** and then click **Add**.
 
 	![Add Scaffold dialog box](Images/add-scaffold-dialog-box.png?raw=true "Add Scaffold dialog box")
 
 	_Add Scaffold dialog box_
 	
-
-1. In the **Specify Name for Item** dialog box, set the name of the controller to _TableDataController_ and click **OK**.
+1. In the **Add Controller** dialog box, set the name of the controller to _TableDataController_ and click **Add**.
 
 	![Specify Name for Item dialog box](Images/specify-name-for-item-dialog-box.png?raw=true "Specify Name for Item dialog box")
 
-	_Specify Name for Item dialog box_
+	_Add Controller dialog box_
 
 1. Add the following using directives to the Web API controller.
 
@@ -828,7 +831,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 	}
 	````
 
-1. Now, in the **Solution Explorer**, expand the **Roles** folder, right click on **CloudShop** and select **Properties**.
+1. In **Solution Explorer**, expand the **Roles** folder of the **CloudShop.Azure** project, right-click on **CloudShop** and select **Properties**.
 
 	![WebRole properties](Images/webrole-properties.png?raw=true "WebRole properties")
 
@@ -840,7 +843,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 	_StorageClient settings_
 
-1. In the **Create Storage Connection String** dialog box, select **Manually entered credentials**, enter your _Account name_ and _Account key_ and click **OK**
+1. In the **Create Storage Connection String** dialog box, select **Manually entered credentials**, enter your _Account name_ and _Account key_ and click **OK**.
 
 	![Create Storage Connection String dialog box](Images/create-storage-connection-string-dialog-box.png?raw=true "Create Storage Connection String dialog box")
 
@@ -850,7 +853,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 1. Press **F5** to run the application.
 
-1. Click on the **Customers** link on the Top bar.
+1. Click on the **Customers** link on the top bar.
 
 	![Customers link](Images/customers-link.png?raw=true "Customers link")
 
@@ -862,7 +865,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 	_Customer list using WACEL without caching_
 
-1. Switch from **Company0** to **Company1** in the drop down list in order to show the Customers from Company 1
+1. Switch from **Company0** to **Company1** in the drop-down list in order to show the customers from **Company1**.
 
 	![Customer list from Company 1](Images/customer-list-from-company-1.png?raw=true "Customer list from Company 1")
 
@@ -879,7 +882,7 @@ WACEL provides prebuilt caching layers in front of popular cloud-based services 
 
 In this task you will update the Web API Controller to include caching provided by WACEL when querying the Customer table.
 
-1. Open the **TableDataController** located in the **Controllers** folder.
+1. Open the **TableDataController.cs** file located in the **Controllers** folder.
 
 1. Add the following using directive to the top of the file.
 	
@@ -899,13 +902,13 @@ In this task you will update the Web API Controller to include caching provided 
 	Table<Customer> table = new Table<Customer>("Company", "Id", CloudConfigurationManager.GetSetting("StorageClient"), "customers", new DataCache("customers"));
 	````
 
-1. Now, in the **Solution Explorer**, expand the **Roles** folder and right click on the **CacheWorkerRole** and click on **properties**.
+1. In **Solution Explorer**, expand the **Roles** folder of the **CloudShop.Azure** project. Right-click on **CacheWorkerRole** and click **Properties**.
 
 	![CacheWorkerRole properties](Images/cacheworkerrole-properties.png?raw=true "CacheWorkerRole properties")
 
 	_CacheWorkerRole properties_
 	
-1. In the **Caching** tab, add a new **Named Cache** called _customers_
+1. In the **Caching** tab, add a new **Named Cache** called _customers_.
 	
 	![Customers Named Cache](Images/customers-named-cache.png?raw=true "Customers Named Cache")
 
@@ -919,9 +922,11 @@ In this task you will update the Web API Controller to include caching provided 
 
 1. Press **F5** to start the application.
 
-1. Switch between **Company0** and **Company1** in the drop down list to retrieve the list of Customers from Company 1.
+1. Click on the **Customers** link on the top bar.
 
-1. Switch back to **Company0**. Notice how the **Elapsed time** has decreased thanks to WACEL Caching implementation with In-Role Caching.
+1. Switch between **Company0** and **Company1** in the drop-down list to retrieve the list of Customers from Company 1.
+
+1. Switch back to **Company0**. Notice how the **Elapsed Time** has decreased thanks to WACEL Caching implementation with In-Role Caching.
 
 	![Customers list with WACEL and caching](Images/customers-list-with-wacel-and-caching.png?raw=true "Customers list with WACEL and caching")
 
