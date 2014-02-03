@@ -858,21 +858,21 @@ To learn more about **Windows Azure Active Directory** please refer to the follo
 
 This is a list of articles that expand on the technologies explained on this lab:
 
-- [Directory integration](http://technet.microsoft.com/library/jj573653): If your organization uses an on-premises directory service, you can integrate it with your Windows Azure Active Directory (Windows Azure AD) tenant to simplify your cloud-based administrative tasks and even provide your users with a more streamlined sign-in experience.
+- [Directory integration](http://aka.ms/Oe9k89): If your organization uses an on-premises directory service, you can integrate it with your Windows Azure Active Directory (Windows Azure AD) tenant to simplify your cloud-based administrative tasks and even provide your users with a more streamlined sign-in experience.
 
-- [​Introducing Single Sign-on and Active Directory Integration](http://channel9.msdn.com/Events/Visual-Studio/Launch-2013/WC116/): (Video) In this article you will see how the SSO configuration and end-user experience that WAAD offers and how to integrate WAAD into applications developed with Visual Studio 2013.
+- [Introducing Single Sign-on and Active Directory Integration (Video)](http://aka.ms/Uhh5bm): In this video you will see how the SSO configuration and end-user experience that WAAD offers and how to integrate WAAD into applications developed with Visual Studio 2013.
 
-- [Manage Windows Azure AD using Windows PowerShell](http://technet.microsoft.com/en-us/library/jj151815.aspx): As an administrator, you can use the Windows Azure Active Directory Module for Windows PowerShell cmdlets to accomplish many Windows Azure AD tenant-based administrative tasks such as user management, domain management and for configuring single sign-on. This topic includes information about how to install these cmdlets for use with your tenant.
+- [Manage Windows Azure AD using Windows PowerShell](http://aka.ms/Xfpfmr): As an administrator, you can use the Windows Azure Active Directory Module for Windows PowerShell cmdlets to accomplish many Windows Azure AD tenant-based administrative tasks such as user management, domain management and for configuring single sign-on. This topic includes information about how to install these cmdlets for use with your tenant.
 
-- [Windows Azure Identity](http://www.windowsazure.com/en-us/documentation/articles/fundamentals-identity/): Managing identity is just as important in the public cloud is it is on premises. To help with this, Windows Azure supports several different cloud identity technologies.
+- [Windows Azure Identity](http://aka.ms/S14yvq): Managing identity is just as important in the public cloud is it is on premises. To help with this, Windows Azure supports several different cloud identity technologies.
 
 **Development**
 
 This is a list of developer-oriented articles related to **Windows Azure Active Directory**:
 
-- [Using the Graph API to Query Windows Azure AD](http://msdn.microsoft.com/library/windowsazure/dn151791.aspx): This document explains how to configure a Microsoft .NET application to use the Windows Azure Active Directory Graph API to access data from a Windows Azure AD tenant directory.
+- [Using the Graph API to Query Windows Azure AD](http://aka.ms/Pk9n2r): This document explains how to configure a Microsoft .NET application to use the Windows Azure Active Directory Graph API to access data from a Windows Azure AD tenant directory.
 
-- [Securing a Windows Store Application and REST Web Service Using Windows Azure AD (Preview)](http://msdn.microsoft.com/en-us/library/windowsazure/dn169448.aspx): This document will show you how to create a simple web API resource and a Windows Store client application using the Windows Azure Authentication Library and Windows Azure AD.
+- [Securing a Windows Store Application and REST Web Service Using Windows Azure AD (Preview)](http://aka.ms/t5ejfa): This document will show you how to create a simple web API resource and a Windows Store client application using the Windows Azure Authentication Library and Windows Azure AD.
 
 ---
 
