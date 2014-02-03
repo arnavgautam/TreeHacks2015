@@ -1037,25 +1037,25 @@ To learn more about deploying Cloud Services in Windows Azure, please refer to t
 
 **Technical Reference**
 
-This is a list of articles that expand on the technologies explained on this lab:
+This is a list of articles that expand on the technologies explained in this lab:
 
-- [Use the Windows Azure SDK Tools to Package, Run, and Deploy an Application] (http://msdn.microsoft.com/en-us/library/windowsazure/gg433055.aspx): explores the tools in the Windows Azure SDK to run, test, debug, and fine-tune your application before you deploy it as a cloud service to Windows Azure.
+- [Use the Windows Azure SDK Tools to Package, Run, and Deploy an Application](http://aka.ms/Jb4mkm): explores the tools in the Windows Azure SDK to run, test, debug, and fine-tune your application before you deploy it as a cloud service to Windows Azure.
 
-- [How to Monitor Cloud Services](http://www.windowsazure.com/en-us/documentation/articles/cloud-services-how-to-monitor/): explains how to monitor key performance metrics for your cloud services in the Windows Azure Management Portal.
+- [How to Monitor Cloud Services](http://aka.ms/Ifhdz0): explains how to monitor key performance metrics for your cloud services in the Windows Azure Management Portal.
 
-- [Debugging Cloud Services](http://msdn.microsoft.com/en-us/library/windowsazure/ee405479.aspx): explores the different techniques provided by the Windows Azure Tools for Microsoft Visual Studio and the Windows Azure SDK to debug a Windows Azure application.
+- [Debugging Cloud Services](http://aka.ms/Leav14): explores the different techniques provided by the Windows Azure Tools for Microsoft Visual Studio and the Windows Azure SDK to debug a Windows Azure application.
 
-- [Set Up a Remote Desktop Connection for a Role in Windows Azure](http://msdn.microsoft.com/en-us/library/windowsazure/hh124107.aspx): after you create a cloud service that is running your application, you can remotely access a role instance to configure settings in the virtual machine or troubleshoot issues.
+- [Set Up a Remote Desktop Connection for a Role in Windows Azure](http://aka.ms/Hy6l4h): after you create a cloud service that is running your application, you can remotely access a role instance to configure settings in the virtual machine or troubleshoot issues.
 
-- [Run Startup Tasks in Windows Azure](http://msdn.microsoft.com/en-us/library/windowsazure/hh180155.aspx): you can use startup tasks to perform operations before a role starts. Operations that you might want to perform include installing a component, registering COM components, setting registry keys, or starting a long running process.
+- [Run Startup Tasks in Windows Azure](http://aka.ms/Aoxmbq): you can use startup tasks to perform operations before a role starts. Operations that you might want to perform include installing a component, registering COM components, setting registry keys, or starting a long running process.
 
-- [Configure an SSL Certificate on an HTTPS Endpoint](http://msdn.microsoft.com/en-us/library/windowsazure/ff795779.aspx): enumerates the steps to add an HTTPS endpoint to a role in your Windows Azure service and associate it with an SSL certificate.
+- [Configure an SSL Certificate on an HTTPS Endpoint](http://aka.ms/Tydm1x): enumerates the steps to add an HTTPS endpoint to a role in your Windows Azure service and associate it with an SSL certificate.
 
 **Development**
 
 This is a list of developer-oriented articles related to deploying Cloud Services in Windows Azure:
 
-- [Windows Azure Management Cmdlets Reference](http://msdn.microsoft.com/en-us/library/windowsazure/dn495240.aspx): describes the cmdlet in the .7.1 version of the Windows Azure PowerShell module. Windows Azure PowerShell is the module for Windows PowerShell that you can use to control and automate the deployment and management of your workloads in Windows Azure.
+- [Windows Azure Management Cmdlets Reference](http://aka.ms/G9j3a3): describes the cmdlet in the .7.1 version of the Windows Azure PowerShell module. Windows Azure PowerShell is the module for Windows PowerShell that you can use to control and automate the deployment and management of your workloads in Windows Azure.
 
 ---
 
