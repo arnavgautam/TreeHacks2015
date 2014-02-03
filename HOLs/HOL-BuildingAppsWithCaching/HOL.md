@@ -125,7 +125,13 @@ In this task, you will run the Cloud Shop application in the compute emulator us
 
 1. Click on the **Recycle** button. This forces the web role to be recycled. Once you click on the button, the **Products** page will turn blank.
 
-1. In the **Compute Emulator**, observe how the web role is recycled by the emulator.
+1. Open the **Compute Emulator**. To do so, right-click the Windows Azure icon tray and select **Show Compute Emulator UI**.
+
+	![Windows Azure Tray Icon](Images/windows-azure-tray-icon.png?raw=true "Windows Azure Tray Icon")
+
+	_Windows Azure Tray Icon_
+
+1. Select the web role instance and observe how it is recycled by the emulator.
 
 	![Suspending the service role instance](Images/suspending-the-service-role-instance.png?raw=true "Suspending the service role instance")
 
@@ -167,7 +173,7 @@ In this task, you will change the Session State provider to take advantage of th
 	````
    
 1. Open the **Web.config** file located in the root folder of the **CloudShop** project.
-1. In the **dataCacheClient** tag, change the identifier from **[cache cluster role name]** to **CacheWorkerRole**.
+1. In the **dataCacheClient** tag, change the identifier from **[Cache role name or Service Endpoint]** to **CacheWorkerRole**.
 
 	<!--mark: 3-->
 	```` XML
@@ -382,7 +388,6 @@ In this task, you will update the application to allow control of the use of the
 	````C#
 	public class HomeController : Controller
 	{
-		...                       
 		public ActionResult Index()
 		{
 			bool enableCache = (bool)this.Session["EnableCache"];
@@ -416,7 +421,6 @@ In this task, you will update the application to allow control of the use of the
 	````C#
 	public class HomeController : Controller
 	{
-		...                       
 		public ActionResult Index()
 		{
 			bool enableCache = (bool)this.Session["EnableCache"];
@@ -478,7 +482,7 @@ In this task, you will update the application to allow control of the use of the
 
 	_Running the application without the cache_
 
-1. Observe the **Object ID** indicator shown above the product catalog and notice how it changes every time you refresh the page indicating that the repository returns a different object for each call.
+1. Observe the **Object ID** indicator under **Cache Settings** and notice how it changes every time you refresh the page indicating that the repository returns a different object for each call.
 
 1. Now, click the **Enable** button in **Enable Cache** and wait for the page to refresh. Notice that the first item in the list indicates that it was still necessary for the application to retrieve the product catalog from the data source because the information has yet to be cached.
 
