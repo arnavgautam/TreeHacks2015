@@ -5,7 +5,7 @@
 <a name="Overview" />
 ## Overview ##
 
-In this hands-on lab, you will learn how to deploy your first application in Windows Azure. The lab walks through the process using myTODO, a simple list creation and management application built using ASP.NET MVC. The lab shows the steps required for provisioning the required components in the Windows Azure Management Portal, uploading the service package, and configuring the service. You will see how you can test your application in a staging environment and then promote it to production once you are satisfied that it is operating according to your expectations.
+In this hands-on lab, you will learn how to deploy your first application in Windows Azure. The lab walks through the process using myTODO, a simple list creation and management application built using ASP.NET MVC. The lab shows the steps required for provisioning the required components in the Windows Azure Management Portal, uploading the service package, and configuring the cloud service. You will see how you can test your application in a staging environment and then promote it to production once you are satisfied that it is operating according to your expectations.
 
 ![The myTODO application running in Windows Azure](Images/mytodo.png?raw=true)
 
@@ -77,7 +77,7 @@ Estimated time to complete this lab: **90 minutes**.
 In this exercise, you deploy the myTODO application to Windows Azure using the Windows Azure Management Portal. To do this, you will provision the required service components at the management portal, upload the application package to the staging environment and configure it. You will then execute the application in this test environment to verify its operation. Once you are satisfied that it operates according to your expectations, you will promote the application to production.
 
 <a name="Ex1Task1" />
-#### Task 1 – Creating a Storage Account, a Cloud Service and a SQL Database ####
+#### Task 1 - Creating a Storage Account, a Cloud Service and a SQL Database ####
 
 The application you deploy in this exercise requires a Cloud Service, a SQL Database and a Storage Account. In this task, you will create a new SQL Database  to allow the application to persist its data. In addition, you will define a Cloud Service to host your web application, and a Storage Account to store the diagnostic data collected by the application.
 
@@ -87,7 +87,7 @@ The application you deploy in this exercise requires a Cloud Service, a SQL Data
 
 	_Signing in to the Windows Azure Management portal_
 
-1. First, create an **Affinity Group** where your services will be deployed. In the Windows Azure menu, click **Settings**.
+1. First, create an **Affinity Group** where your services will be deployed. In the Windows Azure Management Portal menu, click **Settings**.
 
 	![Select Settings](Images/select-settings.png?raw=true)
 
@@ -99,13 +99,13 @@ The application you deploy in this exercise requires a Cloud Service, a SQL Data
 
 	_Settings page_
 
-1. Click **Add** in order to create a new **Affinity Group**.
+1. Click **Add** button in order to create a new **Affinity Group**.
 
 	![Add Affinity Group](Images/add-affinity-group.png?raw=true)
 
 	_Add Affinity Group_
 
-1. In the **Create Affinity Group** dialog box, enter a **Name** (e.g. _MyAffinityGroup_) and the **Region** for your new group. Click the **Tick** to continue.
+1. In the **Create Affinity Group** dialog box, enter a **Name** (e.g. _MyAffinityGroup_) a **Description** and the **Region** for your new group. Click the **Tick** button to continue.
 
 	![Affinity Group details](Images/affinity-group-details.png?raw=true)
 
@@ -115,7 +115,7 @@ The application you deploy in this exercise requires a Cloud Service, a SQL Data
 
 1. Now, you will create the **Storage Account** that the application will use to store the diagnostic data. In the Windows Azure Management Portal, click **New** | **Data Services** | **Storage** | **Quick Create**.
 
-1. Set a unique **URL**  (e.g. _storagemytodo_), enter a **Description** and select the _Affinity Group_ you previously created. Click **Create Storage Account** to continue.
+1. Set a unique **URL**  (e.g. _storagemytodo_) and select the _Affinity Group_ you previously created. Click **Create Storage Account** button to continue.
 
 	![Creating a new storage account](Images/creating-a-new-storage-account.png?raw=true)
 
@@ -125,7 +125,7 @@ The application you deploy in this exercise requires a Cloud Service, a SQL Data
 	>
 	> ![URL Validation](./Images/url-validation.png?raw=true)
 
-1. Wait until the storage account is created. Click your storage account and click **Manage Access Keys** at the bottom of the page in order to show the storage account's access keys.
+1. Wait until the storage account is created. Select your storage account and click **Manage Access Keys** at the bottom of the page in order to show the storage account's access keys.
 
 	![Manage Storage Account keys](Images/manage-storage-account-keys.png?raw=true)
 
@@ -172,7 +172,7 @@ The application you deploy in this exercise requires a Cloud Service, a SQL Data
 1. Do not close the browser window, you will use the portal for the next task.
 
 <a name="Ex1Task2" />
-#### Task 2 – Publishing the Application to the Windows Azure Management Portal ####
+#### Task 2 - Publishing the Application to the Windows Azure Management Portal ####
 
 A Cloud Service is a service that hosts your code in the Windows Azure environment. It has two separate deployment slots: **staging** and **production**. The staging deployment slot allows you to test your service in the Windows Azure environment before you deploy it to production.
 
@@ -180,12 +180,20 @@ In this task, you will create a service package for the myTODO application and t
 
 1. Launch **Microsoft Visual Studio Express 2013 for Web** (or greater) as Administrator.
 
-1. In the **File** menu, select **Open Project** and browse to **Ex1-DeployingWithWAZPortal\Begin** in the **Source** folder of the lab. Select **MyTodo.sln** and click Open.
+1. In the **File** menu, select **Open Project** and browse to **Ex1-DeployingWithWAZPortal\Begin** in the **Source** folder of the lab. Select **MyTodo.sln** and click **Open**.
 
 	The solution contains the following projects:
 
 	- **MyTodo**. A standard cloud service project configured to support a single web role named **MyTodo.WebUx**.
 	- **MyTodo.WebUx**. A web role that hosts the myTODO ASP.NET MVC application in Windows Azure.
+
+1. Build the solution in order to download and install the NuGet package dependencies. To do this, click **Build** | **Build Solution** or press **Ctrl** + **Shift** + **B**.
+
+	>**Note:** NuGet is a Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects that use the .NET Framework.
+	>
+	> When you install the package, NuGet copies files to your solution and automatically makes whatever changes are needed, such as adding references and changing your _App.config_ or _Web.config_ files. If you decide to remove the library, NuGet removes files and reverses whatever changes it made in your project so that no clutter is left.
+	>
+	>For more information about NuGet, visit [http://nuget.org/](http://nuget.org/).
 
 1. Ensure that the **System.Web.Mvc** assembly is included in the service package that you deploy to Windows Azure.  To do this, expand the **References** node in **Solution Explorer** for the **MyTodo.WebUx** project, right-click the **System.Web.Mvc** assembly and select **Properties**.
 
@@ -249,7 +257,9 @@ In this task, you will create a service package for the myTODO application and t
 
 	_Creating a service package in Visual Studio_
 
-1.	At the portal, locate the Cloud Service you previously created and click its name in order to go to the **Dashboard** page.
+1.	At the portal, locate the Cloud Service you previously created and click its name in order to go to the **Quick Start** page.
+
+1. Click on the **Dasbboard** tab to navigate to the dashboard view.
 
 1. Make sure **Staging** tab is selected and click **Upload a new staging deployment**.
 
@@ -263,15 +273,15 @@ In this task, you will create a service package for the myTODO application and t
 
 	>**Note:** The management portal displays the label in its user interface for staging and production, which allows you to identify the version currently deployed in each environment.
 
-1.	Under **Package** click **From Local**, navigate to the folder where Visual Studio generated the package in the prior steps and then select **MyTodo.cspkg**.
+1.	Under **Package** click **From Local** button, navigate to the folder where Visual Studio generated the package in the prior steps and then select **MyTodo.cspkg** file.
 
 	>**Note:** The _.cspkg_ file is an archive file that contains the binaries and files required to run a service.
 
-1.	Now, under **Configuration** click **From Local** and select **ServiceConfiguration.Cloud.cscfg** file within the same folder.
+1.	Now, under **Configuration** click **From Local** button and select **ServiceConfiguration.Cloud.cscfg** file within the same folder.
 
 	>**Note:** The _.cscfg_ file contains configuration settings for the application, including the instance count and configuration for the web role, and the storage account settings that you modified previously.
 
-1.	Finally, check **Deploy even if one or more roles contain a single instance**. Then click the **Tick** to start the deployment.
+1.	Finally, check **Deploy even if one or more roles contain a single instance**. Then click the **Tick** button to start the deployment.
 
 	![Configuring the service package deployment](Images/configuring-service-package-deployment.png?raw=true)
 
@@ -373,13 +383,13 @@ In this task, you run the application in the staging environment and access its 
 
 Now that you have verified that the service is working correctly in the staging environment, you are ready to promote it to final production.  When you deploy the application to production, Windows Azure reconfigures its load balancers so that the application is available at its production URL.
 
-1. In the **Cloud Services** page, click your MyTodo service **name**. Then click **Dashboard** and select **Staging**. Finally, click **Swap** from the bottom menu.
+1. In the **Cloud Services** page, click your MyTodo service **name**. Then click in the **Dashboard** tab and select **Staging**. Finally, click **Swap** button from the bottom menu.
 
 	![Promoting the application to the production slot](Images/promoting-app-prod.png?raw=true)
 
 	_Promoting the application to the production slot_
 
-1. In the **VIP Swap** dialog, click **Yes** to swap the deployments between staging and production.
+1. In the **VIP Swap** dialog box, click **Yes** to swap the deployments between staging and production.
 
 	![Promoting the application to the production deployment](Images/promoting-app-deploy.png?raw=true)
 	
@@ -472,7 +482,7 @@ In this task, you will configure the application using your SQL database and sto
 
 1. In the **File** menu, choose **Open Project** and browse to **Ex2-DeployingWithPowerShell\Begin** in the **Source** folder of the lab. Select **MyTodo.sln** and click Open.
 
-	> **Note:** Alternatively, you may continue with the solution that you completed during Exercise 1.
+	> **Note:** Alternatively, you may continue with the solution that you completed during Exercise 1. You can dismiss this task if you selected to continue with the solution from Exercise 1.
 
 1. Configure the storage account connection strings. To do this, expand the **Roles** node in the **MyTodo** project and double-click the **MyTodo.WebUX** role. In the role properties window, select the **Settings** tab and select _Cloud_ from the **Service Configuration** drop-down list. Then select the _Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString_ setting, ensure that the **Type** is set to _Connection String_, and then click the button labeled with an ellipsis.
 
