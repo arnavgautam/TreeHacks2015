@@ -384,7 +384,7 @@ In this task, you will update the application to allow control of the use of the
 1. Find the **Index** action, locate the lines that instantiate a new **ProductsRepository** and call its **GetProducts** method, and replace them with the highlighted code, as shown below.
 
 	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - GetProductsLatency_)
-	<!-- mark:6-13 -->
+	<!-- mark:5-12 -->
 	````C#
 	public class HomeController : Controller
 	{
@@ -417,7 +417,7 @@ In this task, you will update the application to allow control of the use of the
 1. In the same method, locate the code that creates a new **IndexViewModel** instance and replace the **model** initialization with the following highlighted code.
 
 	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - IndexViewModelInitialization_)
-	<!--mark: 22-25-->
+	<!--mark: 21-24-->
 	````C#
 	public class HomeController : Controller
 	{
@@ -548,11 +548,10 @@ When using Windows Azure Cache Service, you have the option of using a local cac
 1. Open the **HomeController.cs** file in the **Controllers** folder and find the **Index** action. Locate the code that instantiates a new **ProductsRepository** and replace those lines with the following highlighted code:
 
 	(Code Snippet - _BuildingAppsWithCachingService - Ex2 - ProductsRepositoryLocalCache_)
-	<!--mark: 7-10-->
+	<!--mark: 6-9-->
 	````C#
 	public class HomeController : Controller
 	{
-		...                       
 		public ActionResult Index()
 		{
 			bool enableCache = (bool)this.Session["EnableCache"];
