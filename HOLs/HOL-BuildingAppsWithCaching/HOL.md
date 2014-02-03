@@ -72,7 +72,8 @@ Throughout the lab document, you will be instructed to insert code blocks. For y
 ## Exercises ##
 This hands-on lab includes the following exercises:
 
-1. [Enabling Cache Service for Session State](#Exercise1)1. [Caching Data with Windows Azure Caching](#Exercise2)
+1. [Enabling Cache Service for Session State](#Exercise1)
+1. [Caching Data with Windows Azure Caching](#Exercise2)
 1. [Caching Common Data Patterns with WACEL](#Exercise3)
 
 Estimated time to complete this lab: **60 minutes**
@@ -669,13 +670,13 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 1. Build the solution in order to download and install the NuGet package dependencies. To do this, right-click the solution and click **Build Solution** or press **Ctrl + Shift + B**.
 
-1. In the **CloudShop** project, right-click in the **Home** folder inside **Views** folder and select **Add** | **Existing Item...**.
+1. Right-click the **Home** folder inside **Views** in the **CloudShop** project and select **Add** | **Existing Item...**.
 
 	![Add existing item](Images/add-existing-item.png?raw=true "Add existing item")	
 
 	_Add existing item_
 
-1. Select the file **Table.cshtml** located in the **Assets** folder of the lab.
+1. Select the **Table.cshtml** file located in the **Assets** folder of the lab.
 
 1. Open the **HomeController.cs** file located in the **Controllers** folder and add the following code to return the View you added in the previous step.
 
@@ -689,7 +690,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 	}
 	````
 
-1. Now open **_Layout.cshtml** file located in the **Views/Shared** folder and add a new link to the View you have recently added after **Products** and **Checkout** links.
+1. Open the **_Layout.cshtml** file located in the **Views/Shared** folder and add a new link to the View you recently added after the **Products** and **Checkout** links.
 
 	(Code Snippet - _BuildingAppsWithCachingService - Ex3 - TableActionLink_)
 
@@ -716,7 +717,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 	_WACEL nuget installed_
 
-1. Right-click in the **Models** folder and select **Add** | **Class...**.
+1. Right-click the **Models** folder and select **Add | Class...**.
 
 	![Add class](Images/add-class.png?raw=true "Add class")
 	
@@ -776,7 +777,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 	}
 	````
 
-1. Right-click in the **Controllers** folder and go to **Add | Controller...**.
+1. Right-click the **Controllers** folder and go to **Add | Controller...**.
 
 	![Add Web API Controller](Images/add-web-api-controller.png?raw=true "Add Web API Controller")
 
@@ -836,7 +837,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 	_WebRole properties_
 
-1. In the **Settings** tab, add a new setting named _StorageClient_. Set the type to _Connection String_ and click on the ellipsis on the right side of the row.
+1. In the **Settings** tab, add a new setting named _StorageClient_. Set the type to _Connection String_ and click the ellipsis on the right side of the row.
 
 	![StorageClient settings](Images/storageclient-settings.png?raw=true "StorageClient settings")
 
@@ -852,7 +853,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 
 1. Press **F5** to run the application.
 
-1. Click on the **Customers** link on the top bar.
+1. Click the **Customers** link on the top bar.
 
 	![Customers link](Images/customers-link.png?raw=true "Customers link")
 
@@ -875,9 +876,9 @@ In this task you will learn how to use WACEL as a high-level data structure used
 In the next task you will update the solution to enable caching using WACEL.
 
 <a name="Ex3Task2" />
-#### Task 2 - Adding caching support to WACEL Cloud Tables ####
+#### Task 2 - Adding Caching Support to WACEL Cloud Tables ####
 
-WACEL provides prebuilt caching layers in front of popular cloud-based services such as Windows Azure Table Storage. It works with Windows Azure Cache service, Windows Azure In-Role Cache, Windows AppFabric Cache on Windows Server, as well as any cache clusters that support Memcache protocol. In other words, once written, your code will work on-premises, on cloud, and on your mobile devices as well.
+WACEL provides prebuilt caching layers in front of popular cloud-based services such as Windows Azure Table Storage. It works with Windows Azure Cache service, Windows Azure In-Role Cache, Windows AppFabric Cache on Windows Server, as well as any cache clusters that support Memcache protocol. In other words, once written, your code will work on-premises, in the cloud, and on your mobile devices.
 
 In this task you will update the Web API Controller to include caching provided by WACEL when querying the Customer table.
 
@@ -901,7 +902,7 @@ In this task you will update the Web API Controller to include caching provided 
 	Table<Customer> table = new Table<Customer>("Company", "Id", CloudConfigurationManager.GetSetting("StorageClient"), "customers", new DataCache("customers"));
 	````
 
-1. In **Solution Explorer**, expand the **Roles** folder of the **CloudShop.Azure** project. Right-click on **CacheWorkerRole** and click **Properties**.
+1. In **Solution Explorer**, expand the **Roles** folder of the **CloudShop.Azure** project. Right-click on **CacheWorkerRole** and select **Properties**.
 
 	![CacheWorkerRole properties](Images/cacheworkerrole-properties.png?raw=true "CacheWorkerRole properties")
 
@@ -919,13 +920,13 @@ In this task you will update the Web API Controller to include caching provided 
 	>
 	> For more information, click [here](http://msdn.microsoft.com/en-us/library/windowsazure/jj131263.aspx).
 
-1. Press **F5** to start the application.
+1. Press **F5** to run the application.
 
 1. Click on the **Customers** link on the top bar.
 
 1. Switch between **Company0** and **Company1** in the drop-down list to retrieve the list of Customers from Company 1.
 
-1. Switch back to **Company0**. Notice how the **Elapsed Time** has decreased thanks to WACEL Caching implementation with In-Role Caching.
+1. Switch back to **Company0**. Notice how the **Elapsed Time** has decreased. This is because we are using WACEL Caching implementation with In-Role Caching.
 
 	![Customers list with WACEL and caching](Images/customers-list-with-wacel-and-caching.png?raw=true "Customers list with WACEL and caching")
 
