@@ -936,29 +936,29 @@ To learn more about **Building Windows Azure Cloud Services with Cache Service**
 
 **Technical Reference**
 
-This is a list of articles that expand on the technologies explained on this lab:
+This is a list of articles that expand on the technologies explained in this lab:
 
-- [Windows Azure Cache Extension Library - Codeplex](http://wacel.codeplex.com/): Codeplex site of the Windows Azure Cache Extension Library.
+- [Windows Azure Cache Extension Library - Codeplex](http://aka.ms/Gkbdxg): Codeplex site of the Windows Azure Cache Extension Library.
 
-- [Local Cache for Windows Azure Cache Service](	http://msdn.microsoft.com/en-us/library/windowsazure/dn386096.aspx): Local cache is a feature of Windows Azure Cache that improves performance by reducing network requests to the cache service. Cache stores objects in serialized form in a distributed in-memory cache. When an application requests an object from the cache, the serialized object is sent to the requesting application over the network. The application then deserializes the object for its use. To speed up the process of retrieving an object, enable local cache.
+- [Local Cache for Windows Azure Cache Service](http://aka.ms/Utp2gq): Local cache is a feature of Windows Azure Cache that improves performance by reducing network requests to the cache service. Cache stores objects in serialized form in a distributed in-memory cache. When an application requests an object from the cache, the serialized object is sent to the requesting application over the network. The application then deserializes the object for its use. To speed up the process of retrieving an object, enable local cache.
 
-- [Windows Azure Cache MSDN Reference](http://msdn.microsoft.com/en-us/library/windowsazure/gg278356): 
-Windows Azure Cache is a distributed, in-memory, scalable solution that enables you to build highly scalable and responsive applications by providing super-fast access to data. Cache increases performance by temporarily storing information from other backend sources. High performance is achieved by maintaining this cache in-memory in a distributed environment. For a Windows Azure solution, Cache can reduce the costs and increase the scalability of other storage services such as SQL Database or Azure storage. ASP.NET applications can use Cache for the common scenario of session state and output caching.
+- [Windows Azure Cache MSDN Reference](http://aka.ms/Y7ucsm): 
+Windows Azure Cache is a distributed, in-memory, scalable solution that enables you to build highly scalable and responsive applications by providing super-fast access to data. Cache increases performance by temporarily storing information from other backend sources. High performance is achieved by maintaining this cache in-memory in a distributed environment. For a Windows Azure solution, Cache can reduce the costs and increase the scalability of other storage services such as SQL Database or Azure Storage. ASP.NET applications can use Cache for common scenariod like session state and output caching.
 
 **Development**
 
 This is a list of developer-oriented articles related to **Building Windows Azure Cloud Services with Cache Service**:
 
 
-- [How to Use Windows Azure Cache Service](	http://www.windowsazure.com/en-us/documentation/articles/cache-dotnet-how-to-use-service/?fb=es-es): This guide shows you how to get started using Windows Azure Cache Service (Preview). The samples are written in C# code and use the .NET API. The scenarios covered include creating and configuring a cache, configuring cache clients, adding and removing objects from the cache, storing ASP.NET session state in the cache, and enabling ASP.NET page output caching using the cache.
+- [How to Use Windows Azure Cache Service](	http://aka.ms/Sfo41l): This guide shows you how to get started using Windows Azure Cache Service (Preview). The samples are written in C# code and use the .NET API. The scenarios covered include creating and configuring a cache, configuring cache clients, adding and removing objects from the cache, storing ASP.NET session state in the cache, and enabling ASP.NET page output caching using the cache.
 
-- [Windows Azure Cache Service (Preview) API and Performance Sample](	http://code.msdn.microsoft.com/Windows-Azure-Cache-c3e80a1f): This sample has two purposes. First, it demonstrates the use of various Cache APIs. Second, it provides a way to compare performance between Cache Service (Preview) and Windows Azure SQL Database.
+- [Windows Azure Cache Service (Preview) API and Performance Sample](http://aka.ms/P966cb): This sample has two purposes. First, it demonstrates the use of various Cache APIs. Second, it provides a way to compare performance between Cache Service (Preview) and Windows Azure SQL Database.
 
-- [How to Use In-Role Cache for Windows Azure Cache](http://www.windowsazure.com/en-us/manage/services/cache/net/how-to-in-role-cache/): This guide shows you how to get started using In-Role Cache for Windows Azure Cache. The samples are written in C# code and use the .NET API. The scenarios covered include configuring a cache cluster, configuring cache clients, adding and removing objects from the cache, storing ASP.NET session state in the cache, and enabling ASP.NET page output caching using the cache.
+- [How to Use In-Role Cache for Windows Azure Cache](http://aka.ms/Yohmfy): This guide shows you how to get started using In-Role Cache for Windows Azure Cache. The samples are written in C# code and use the .NET API. The scenarios covered include configuring a cache cluster, configuring cache clients, adding and removing objects from the cache, storing ASP.NET session state in the cache, and enabling ASP.NET page output caching using the cache.
 
 ---
 
 <a name="Summary" />
 ## Summary ##
 
-In this hands-on lab, you explored the use of the Windows Azure Cache Service. You saw how to configure session state to be cached across a cache cluster, allowing sessions to be preserved in the presence of restarts and across multiple role instances hosting the application. In addition, you learnt the basics of data caching with Windows Azure and in particular, how to cache the results of queries to a Windows Azure SQL Database. Finally, you looked at WACEL, a high-level layer on top of Windows Azure Table Storage that transparently integrates with Windows Azure Cache.
+In this hands-on lab, you have explored the use of the Windows Azure Cache Service. You saw how to configure session state to be cached across a cache cluster, allowing sessions to be preserved in the presence of restarts and across multiple role instances hosting the application. In addition, you learned the basics of data caching with Windows Azure and in particular, how to cache the results of queries to a Windows Azure SQL Database. Finally, you looked at WACEL, a high-level layer on top of Windows Azure Table Storage that transparently integrates with Windows Azure Cache.
