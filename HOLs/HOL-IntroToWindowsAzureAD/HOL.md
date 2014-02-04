@@ -5,10 +5,7 @@
 <a name="Overview" />
 ## Overview ##
 
-TODO: updated the overview.
-
-In this hands-on lab you will learn how to use **Windows Azure Active Directory** for implementing web single sign-on in an ASP.NET application. The instructions will focus on taking advantage of the directory tenant associated with your Windows Azure subscription, as that constitutes the obvious choice of identity providers for Line of Business (LoB) applications in your own organization. This lab will show you how to provision the same application in a Windows Azure AD tenant, and how to configure the application's sign-on settings to connect to that tenant. At the end of the walkthrough, you will have a functioning web application fully configured for organizational single sign-on.
-
+In this hands-on lab you will learn how to use **Windows Azure Active Directory** for implementing web single sign-on in an ASP.NET application. The instructions will focus on taking advantage of the directory tenant associated with your Windows Azure subscription, as that constitutes the obvious choice of identity providers for Line of Business (LoB) applications in your own organization. This lab will show you how to create an application with single sign-on enabled with Windows Azure Active Directory using the new Organizational Accounts authentication template that comes with MVC. Then you will explore all the configuration set in the application and in Windows Azure that made single sign-on possible. At the end of the lab, you will use the Graph RESTful API to query Active Directory data and display it in the application.
 
 ![Windows Azure AD Architecture Overview](Images/windows-azure-ad-architecture-overview.png?raw=true)
 
@@ -19,7 +16,7 @@ In this hands-on lab, you will learn how to:
 
 * Create a new Windows Azure Active Directory tenant.
 * Provision an MVC application in the AD tenant.
-* Configure application's sign-on and sign-out settings.
+* Explore the configuration of the application Authentication.
 * Query Active Directory data using Graph AD API.
 
 <a name="Prerequisites" />
@@ -28,18 +25,13 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Visual Studio Express 2013 for Web][1] or greater
-- TODO: Review if it is requiered [Identity and Access Tools for Visual Studio 2012][2]
-- TODO: Review if it is requiered [WCF Data Services 5.3 Tools][3]
 - A Windows Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
 	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
 	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
 	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
 
-
 [1]:http://www.microsoft.com/visualstudio/
-[2]: http://visualstudiogallery.msdn.microsoft.com/e21bf653-dfe1-4d81-b3d3-795cb104066e
-[3]:http://www.microsoft.com/en-us/download/details.aspx?id=35840
 
 <a name="Setup"/>
 ### Setup ###
@@ -83,9 +75,9 @@ In the first exercise you will learn how to provision a new **Windows Azure AD**
 <a name="Ex1Task1" />
 #### Task 1 - Creating a New Directory Tenant ####
 
-In this task, you will provision a new Windows Azure Active Directory Tenant from the Management Portal.
+In this task, you will provision a new Windows Azure Active Directory Tenant from Windows Azure Management Portal.
 
-1. Navigate to [https://manage.windowsazure.com](https://manage.windowsazure.com) using a web browser and sign in using the Microsoft Account associated with your Windows Azure account.
+1. Navigate to [Windows Azure Management Portal](https://manage.windowsazure.com) using a web browser and sign in using the Microsoft Account associated with your Windows Azure account.
 
 1. Select **Active Directory** from the left pane.
 
@@ -99,21 +91,21 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 	_Adding a new Active Directory Tenant_
 
-1.	In the **Add directory** dialog box, make sure that **Create new directory** is selected under **Directory**. Enter a **Name**, type an **Domain Name** (must be unique) and select a **Country or Region**. Click the check button to continue.
+1.	In the **Add directory** dialog box, make sure that **Create new directory** is selected under **Directory**. Enter a **Name**, type a **Domain Name** (must be unique) and select a **Country or Region**. Click the check button to continue.
 
 	![Creating a New Directory](Images/create-a-new-directory.png?raw=true "Creating a New Directory")
 
 	_Creating a New Directory_
 
-	> **Note:** This dialog gathers essential information needed to create a directory tenant for you.
+	> **Note:** This dialog box gathers essential information needed to create a directory tenant for you.
 	>
-	> * **Organization Name**: This field is required, and its value will be used as a moniker whenever there's the need to display the company name. 
+	> * **Name**: This field is required, and its value will be used as a moniker whenever there's the need to display the company name. 
 	>
 	> * **Domain Name**: This field represents a critical piece of information: it is the part of the directory tenant domain name that is specific to your tenant, what distinguishes it from every other directory tenant. 
 	>
-	> 		At creation, every directory tenant is identified by a domain of the form <tenantname>.onmicrosoft.com. That domain is used in the UPN of all the directory users and in general wherever it is necessary to identify your directory tenant. After creation it is possible to register additional domains that you own. For more information, see domain management.
+	>		At creation, every directory tenant is identified by a domain of the form <tenantname>.onmicrosoft.com. That domain is used in the UPN of all the directory users and in general wherever it is necessary to identify your directory tenant. After creation it is possible to register additional domains that you own. For more information, see domain management.
 	>
-	> * **The Domain Name must be unique**: the UI validation logic will help you to pick a unique value. It is recommended that you choose a handle which refers to your company, as that will help users and partners as they interact with the directory tenant.
+	> 		The domain name must be unique. The UI validation logic will help you to pick a unique value. It is recommended that you choose a handle which refers to your company, as that will help users and partners as they interact with the directory tenant.
 	>
 	> * **Country or Region**: The value selected in this dropdown will determine where your tenant will be created. Given that the directory will store sensitive information, please do take into account the normative about privacy of the country in which your company operates. 
 
@@ -123,9 +115,9 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 	_Active Directory Tenant Creation Completed_
 
-	> **Note:** When a directory tenant is created, it is configured to store users and credentials in the cloud. If you want to integrate your directory tenant with your on-premises deployment of Windows Server Active Directory, you can find detailed instructions [here](http://technet.microsoft.com/library/jj151781.aspx).
+	> **Note:** When a directory tenant is created, it is configured to store users and credentials in the cloud. If you want to integrate your directory tenant with your on-premises deployment of Windows Server Active Directory, you can find detailed instructions in [Directory integration](http://technet.microsoft.com/library/jj151781.aspx).
 
-1.	Click on the newly created directory entry and then click the Users tabs to display the user management UI. The directory tenant is initially empty, except for the Microsoft Account administering the Windows Azure subscription in which the new tenant was created.
+1.	Click on the newly created directory entry and then click the **Users** tab to display the user management UI. The directory tenant is initially empty, except for the Microsoft Account administering the Windows Azure subscription in which the new tenant was created.
 
 	![Active Directory User list](Images/active-directory-user-list.png?raw=true "Active Directory User list")
 
@@ -149,19 +141,19 @@ In this task, you will provision a new Windows Azure Active Directory Tenant fro
 
 	_Filling user profile information_
 
-1.	The Management Portal generates a temporary password, which will have to be used at the time of the first login. At that time the user will be forced to change password. Click the **create** button.
+1.	The Windows Azure Management Portal generates a temporary password, which will have to be used at the time of the first login. At that time the user will be forced to change password. Click the **create** button.
 
 	![Creating a temporary password](Images/creating-a-temporary-password.png?raw=true "Creating a temporary password")
 
 	_Creating a temporary password_
 
-1. Take note of the temporary password, as you will need it in the following tasks. Click the check button to create the user.
+1. Take note of the temporary password, as you will need it in the following tasks. Click the **check** button to create the user.
 
 	![Creating the new user](Images/creating-the-new-user.png?raw=true "Creating the new user")
 
 	_Creating the new user_
 
-1. Now, will repeat the steps to add new admin user to the directory. Click the **Add User** button in the bottom bar.
+1. Now, will repeat the steps to add new _admin_ user to the directory. Click the **Add User** button in the bottom bar.
 
 	![Add New User to Active Directory](Images/add-new-user-to-active-directory.png?raw=true "Add New User to Active Directory")
 
@@ -218,7 +210,7 @@ In this task, you will create a new MVC Application using **Visual Studio Expres
 
 1. Open **Visual Studio Express 2013 for Web**.
 
-1. From the **File** menu, choose **New Project**.
+1. From the **FILE** menu, choose **New Project...**.
 
 1. In the **New Project** dialog, expand **Visual C#** in the **Installed** list and select **Web**. Choose the **ASP.NET Web Application** template, set the **Name** of the project to _ExpenseReport_ and set a location for the solution. Click **OK** to create the project.
 
@@ -255,9 +247,9 @@ In this task, you will create a new MVC Application using **Visual Studio Expres
 <a name="Ex1Task3" />
 #### Task 3 - Exploring the generated MVC project ####
 
-TBC
+In this task you will explore the code generated by Visual Studio to enable Single Sign-on with Windows Azure Active Directory. You will start by running the solution as is and access the application with the account you created in **Task 1**. Then you will go to the Windows Azure Management Portal to check that the application was created and you will go through the most relevant configuration settings in the application. Finally you will go through all the code and configuration involved in enabling Single Sign-On.
 
-1. Go to **Solution Explorer** and explore the generated project.
+1. Go to **Solution Explorer** and explore the generated project. Notice that the solution has the common MVC structure with some configuration already set.
 
 	![Exploring the ExpenseReport project in Solution Explorer](Images/exploring-the-expensereport-project-in-soluti.png?raw=true "Exploring the ExpenseReport project in Solution Explorer")
 
@@ -271,7 +263,7 @@ TBC
 
 1.	Run the application by pressing **F5**.
 
-1. A security certificate warning will appear in your browser. This is a expected behavior, click **Continue to this website (not recommended)**.
+1. A security certificate warning will appear in your browser, this is expected behavior. Click **Continue to this website (not recommended)**.
 
 	![Browser displaying Security Certificate Warning](Images/ssl-certificate-error.png?raw=true "Browser displaying Security Certificate Warning")
 
@@ -283,7 +275,7 @@ TBC
 
 	_Logging in to the Application_
 
-1.	You might recall that when you created the user in your Windows Azure AD tenant the Management Portal assigned to it a temporary password. You have to authenticate using that password. However, given that such password was meant to be temporary, during this very first sign-in operation you will be asked to choose a proper user password before being able to move forward with the authentication flow. Once you'll be done with that, the normal sign-in flow to the app will be restored.
+1.	You might recall that when you created the user in your Windows Azure AD tenant you were given a temporary password. You have to authenticate using that password. However, given that such password was meant to be temporary, during this very first sign-in operation you will be asked to choose a proper user password before being able to move forward with the authentication flow. Once you do that, the normal sign-in flow to the app will be restored.
 
 	![Resetting AD password](Images/resetting-ad-password.png?raw=true)
 
@@ -307,9 +299,9 @@ TBC
 
 	_Signed Out View_
 
-1. Stop running the solution by pressing **Shift + F5**.
+1. Switch back to Visual Studio and stop the solution by pressing **Shift** + **F5**.
 
-1.	Minimize Visual Studio and go back to the **Management Portal**. Go to your Active Directory tenant and click **Applications**.
+1.	Minimize Visual Studio and go back to the **Windows Azure Management Portal**. Go to your Active Directory tenant and click on **Applications** tab.
 
 1. Click on the arrow next to the **ExpenseReport** application in the **Applications** list to go to the dashboard.
 
@@ -317,7 +309,7 @@ TBC
 
 	_Selecting the ExpenseReport application_
 
-1.	In the application dashboard, you can get the necessary information to enable single sign-on with Windows Azure AD. You will then see were the **Federation Metadata Document URL** and **app ID URI** were configured in your MVC application.
+1.	In the application dashboard you can get the necessary information to enable single sign-on with Windows Azure AD. You will then see where the **Federation Metadata Document URL** and **App ID URI** were configured by the MVC new project assistant.
 
 	![Application Dashboard](Images/application-dashboard.png?raw=true "Application Dashboard")
 
@@ -329,32 +321,29 @@ TBC
 
 	_Configure button_
 
-1. In the **Properties** section, you can check the **SIGN-ON URL** which is the URL where users can sign in and use your app. You can also see the **CLIENT ID** which is the unique identifier for your app. 
+1. In the **Properties** section, you can check the **SIGN-ON URL** which is the URL where users can sign in and use your app. You can also see the **CLIENT ID** which is the unique identifier for your app. You will use the **CLIENT ID** property in the next exercise. 
 
 	![Properties section in Configure tab](Images/properties-group-in-configure-section.png?raw=true "Properties section in Configure tab")
 
 	_Properties section in Configure tab_
 
-	>**Note:** You will need to use the **CLIENT ID** if your app calls another service, such as the Windows Azure AD Graph API, to read or write data.
+	>**Note:** You need to use the **CLIENT ID** if your app calls another service, such as the Windows Azure AD Graph API, to read or write data.
 
-1. In the **single sign-on** section you can find two important properties that are used in the Single sign-on flow. These properties are **APP ID URI:** and **REPLY URL:**.
+1. The **single sign-on** section shows important properties that the service needs to drive the sign-in protocol flow. The required properties are the **APP ID URI** and **REPLY URL**.
+	
+	The **APP ID URI** represents the identifier of your web application. Windows Azure AD uses this value at sign-on time, to determine that the authentication request is meant to enable a user to access this particular application -among all that are hosted- so that the correct settings can be applied. The **APP ID URI** must be unique within the directory tenant. A good default value for it is the APP URL value itself, however, with that strategy the uniqueness constraint is not always easy to respect: developing the app on local hosting environments such as IIS Express and the Windows Azure Fabric Emulator tend to produce a restricted range of addresses that will be reused by multiple developers or even multiple projects from the same developer.
+
+	The **REPLY URL** represents the address of your web application. Windows Azure AD needs to know your application's address so that, after a user successfully authenticated on Windows Azure AD's pages, it can redirect the flow back to your application.
 
 	![Single sign-on section in Configure tab](Images/single-sign-on-section-in-configure-tab.png?raw=true "Single sign-on section in Configure tab")
 
 	_Single sign-on section in Configure tab_
 
-	> **Note:** In this screen the Windows Azure Management Portal shows important coordinates which the service needs to drive the sign-in protocol flow.
-	>
-	> * **APP ID URI:** this parameter represents the identifier of your web application. Windows Azure AD uses this value at sign-on time, to determine that the authentication request is meant to enable a user to access this particular application - among all the ones registered - so that the correct settings can be applied. The APP ID URI must be unique within the directory tenant. A good default value for it is the APP URL value itself, however with that strategy the uniqueness constraint is not always easy to respect: developing the app on local hosting environments such as IIS Express and the Windows Azure Fabric Emulator tend to produce a restricted range of addresses that will be reused by multiple developers or even multiple projects from the same developer.
-	>
-	> * **REPLY URL:** This parameter represents the address of your web application. Windows Azure AD needs to know your application's address so that, after a user successfully authenticated on Windows Azure AD's pages, it can redirect the flow back to your application.
-
-
 1. Switch back to Visual Studio.
 
-1. Open the **Web.config** file in order to check the authentication configuration of your application.
+1. Open the **Web.config** file to check the authentication configuration of your application.
 
-1. In the **AppSettings** section there are three new key: **ida:FederationMetadataLocation**, **ida:Realm** and **ida:AudienceUri**. Those values were configured with the Federation Metadata Document and the Aapp ID Uri of your application. The **IdentityConfig** class reads this values to configure identity when the application starts.
+1. In the **appSettings** section there are three new keys: **ida:FederationMetadataLocation**, **ida:Realm** and **ida:AudienceUri**. Those values were configured with the Federation Metadata Document and the App ID Uri of your application. The **IdentityConfig** class reads this values to configure identity when the application starts.
 
 	<!-- mark:6-8 -->
 	````XML
@@ -369,7 +358,7 @@ TBC
 	</appSettings>
 	````
 
-1. The **identityConfiguration** element in **IdentityModel** section determines the behavior of the app during the authentication phase
+1. The **identityConfiguration** element in **system.identityModel** section of the **Web.config** determines the behavior of the application during the authentication phase.
 
 	<!-- mark:4-6 -->
 	````XML
@@ -388,7 +377,7 @@ TBC
 	</system.identityModel>
 	````
 
-1. The **federationConfiguration** element in  **system.identitymodel.services** section provides the coordinates that are necessary for driving WS-Federation flows: the address of the authority to be used for sign-on requests, the identifier of the app itself to be included in requests, and so on.
+1. The **federationConfiguration** element in  **system.identitymodel.services** section provides the necessary data for driving WS-Federation flows: the address of the authority to be used for sign-on requests, the identifier of the app itself to be included in requests, and so on.
 
 	<!-- mark:4 -->
 	````XML
@@ -400,7 +389,7 @@ TBC
 	</system.identityModel.services>
 	````
 
-1.	The application is configured to handle authentication via blanket redirects. That means that, if you try to access this View after a successful sign out you will be immediately redirected to Windows Azure AD to sign in again. To avoid that behavior, the **\<location\>** element in the web.config  is used to create one exception to the authentication policy. Open **Web.config** and locate the **\<location path="Account"\>** tag.
+1.	The application is configured to handle authentication via blanket redirects. That means that, if you try to access this View after a successful sign out you will be immediately redirected to Windows Azure AD to sign in again. To avoid that behavior, the **\<location\>** element in the **Web.config**  is used to create one exception to the authentication policy.
 
 	<!-- mark:4-10 -->
 	````XML
@@ -419,7 +408,7 @@ TBC
 	</configuration>
 	````
 
-1. Now open the **Global.axax.cs** file. There is a new method called **WSFederationAuthenticationModule_RedirectingToIdentityProvider**. It's invoked when the module is going to redirect the user to the identity provider. The method updates the **Realm** property of the **SignInRequestMessage** object with the one in the **IdentityConfig** class. The **IdentityConfig** class is configured in the **Application_Start** event.
+1. Now open the **Global.axax.cs** file. There is a new method called **WSFederationAuthenticationModule_RedirectingToIdentityProvider**. It is invoked when the module is going to redirect the user to the identity provider. The method updates the **Realm** property of the **SignInRequestMessage** object with the one in the **IdentityConfig** class. The **IdentityConfig** class is configured previously in the **Application_Start** event.
 
 	<!-- mark:4,10-16 -->
 	````C#
@@ -441,9 +430,9 @@ TBC
 	}
 	````
 
-1. Open the **IdentityConfig.cs** file
+1. Open the **IdentityConfig.cs** file located in the **App_Start** folder.
 
-1. Your application accepts tokens coming from your Windows Azure AD tenant of choice. It is common security practice to regularly renew cryptographic keys, and Windows Azure AD signing keys are no exception: at fixed time intervals intervals the old keys will be retired, and new ones will take their place in the issuer's signing logic and in your tenant's metadata document. The **RefreshValidationSettings** method called in the **ConfigureIdentity** method saves the validation keys in a database by calling the **RefreshKeys** method of the **DatabaseIssuerNameRegistry** class.
+1. Your application accepts tokens coming from your Windows Azure AD tenant of choice. It is a common security practice to regularly renew cryptographic keys, and Windows Azure AD signing keys are no exception: at fixed time intervals the old keys will be retired, and new ones will take their place in the issuer's signing logic and in your tenant's metadata document. The **RefreshValidationSettings** method called in the **ConfigureIdentity** method saves the validation keys in a database by calling the **RefreshKeys** method of the **DatabaseIssuerNameRegistry** class.
 
 	<!-- mark:3,19-20 -->
 	````C#
@@ -470,7 +459,7 @@ TBC
 	}
 	````
 
-1. Open **AccountController.cs** file and note the code of the **SignOut** method.
+1. Open **AccountController.cs** file located in the **Controllers** folder and note the code of the **SignOut** method.
 
 	<!-- mark:3-14 -->
 	````C#
@@ -502,9 +491,7 @@ TBC
     }
 	````
 
-	> **Note:** The sample application demonstrated here does not do much, but your real applications might allocate resources during a user's session. If that is the case, you can take advantage of the SAM's events SigningOut and SignedOut by adding corresponding event handlers in the Global.asax file to clean up whatever resources should be disposed upon closing a session.
-
-1.	Open the **_LoginPartial.cshtml** file located under **Views | Shared** folder. The view is rendered in the layout of the page showing the User's name with the **Sign out** link if when authenticated or a link to the **Sign in** page.
+1.	Open the **_LoginPartial.cshtml** file located under **Views | Shared** folder. This view is rendered in the page navbar and shows the User's name with the **Sign out** link when authenticated or a link to the **Sign in** page.
 
 	<!-- mark:1,6,9,17 -->
 	````CSHTML
@@ -530,12 +517,11 @@ TBC
 	````
 
 <a name="Ex1Task4" />
-#### Task 4 - Displaying information about the authenticated user####
+#### Task 4 - Displaying information of the authenticated user####
 
-TBC:
-Now, you will display the authenticated user information in the Home page of the application.
+In this task you will display the authenticated user information in the Home page of the application. You will use the **ClaimsPrincipal** class to get the **Claims** of the current user and display them in the Home page.
 
-1.	Open **HomeController.cs** under the **Controllers** folder. 
+1.	Open **HomeController.cs** file located in the **Controllers** folder. 
 
 1. Add the following directive at the top of the class.
 
@@ -543,7 +529,7 @@ Now, you will display the authenticated user information in the Home page of the
 	using System.Security.Claims;
 	````
 
-1. Replace the **Index** method contents with the following code.
+1. Replace the **Index** method content with the following code.
 
 	(Code Snippet - _IntroductionToWindowsAzureAD - Ex1 - QueryingClaimsPrincipal_)
 
@@ -559,7 +545,7 @@ Now, you will display the authenticated user information in the Home page of the
 
 	> **Note:** Starting from .NET 4.5, every identity in .NET is represented with a **ClaimsPrincipal**. In this case, the current **ClaimsPrincipal** has been constructed during the validation of an authentication token generated by Windows Azure Active Directory and presented by the user at sign-on time.
 
-1. Open **index.cshtml** and replace the html with the following code to display the Message variable.
+1. Open **Index.cshtml** file located under **Views** | **Shared** folder and replace the content with the following code to display the **Message** property from the **ViewBag**.
 
 	(Code Snippet - _IntroductionToWindowsAzureAD - Ex1 - DisplayMessageInIndexView_)
 
@@ -577,13 +563,13 @@ Now, you will display the authenticated user information in the Home page of the
 
 1.	Run the application by pressing **F5**.
 
-1. A security certificate warning will appear in your browser. This is a expected behavior, click **Continue to this website (not recommended)**.
+1. A security certificate warning will appear in your browser, this is expected behavior. Click **Continue to this website (not recommended)**.
 
 	![SSL Certificate error](Images/ssl-certificate-error.png?raw=true)
 
 	_Browser displaying Security Certificate Warning_
 
-1. Log in the application using the Active Directory user credentials.
+1. Log in to the application using the Active Directory user credentials.
 
 1. At the Home page, you can notice the username displayed at the top right of the page and the user's first and last name displayed in the center of the page.
 
@@ -591,27 +577,35 @@ Now, you will display the authenticated user information in the Home page of the
 
 	_Displaying User Name in Home Page_
 
-1. Stop running the solution by pressing **Shift** + **F5**.
+1. Switch back to Visual Studio and stop the solution by pressing **Shift** + **F5**.
 
 <a name="Exercise2"></a>
 ### Exercise 2: Using the Graph API to Query Windows Azure Active Directory ###
 
-This exercise builds upon the previous one and will show how to add capability to read directory data using the **Windows Azure AD Graph API**. The Graph API is a new RESTful API that allows applications to access customers' Windows Azure directory data.
+This exercise builds upon the previous one and will show how to add capability to read directory data using the **Windows Azure AD Graph API**. The Graph API is a new RESTful API that allows applications to access customers' data in Windows Azure directory.
 
 <a name="Ex2Task1" />
 #### Task 1 - Configuring Application Authorization and Authentication for the Graph API ####
 
 In this task you will update the application configuration in the Management Portal to enable the MVC application to authenticate and be authorized to call the Graph API. With authorization, you configure your app permissions to allow read/write access to the directory. With authentication, you get an Application Key, which is your application's password and will be used to authenticate your application to the Graph API.
 
-1. Log on to the [Windows Azure Management Portal](https://manage.windowsazure.com), select **Active Directory** from the left pane and click the application name you created in the previous exercise.
+1. Log on to the [Windows Azure Management Portal](https://manage.windowsazure.com), select **Active Directory** from the left pane.
 
-	![Selecting Application Name](Images/selecting-application-name.png?raw=true)
+1. In the list of directories, click on the directory you created in the previous Exercise.
+
+	![Your organization directory](Images/your-organization-directory.png?raw=true "Your organization directory")
+
+	_Your organization directory_
+
+1. Click on the **Applications** tab to display the list of applications and click in the application arrow you created in the previous exercise to go to its dashboard.
+
+	![Selecting Application Name](Images/selecting-application-name.png?raw=true "Selecting Application Name")
 
 	_Selecting Application Name_
 
 1. Click **Manage Access** on the bottom toolbar.
 
-	![Manage Access Button](Images/manage-access-button.png?raw=true)
+	![Manage Access Button](Images/manage-access-button.png?raw=true "Manage Access Button")
 
 	_Manage Access Button_
 
@@ -621,7 +615,7 @@ In this task you will update the application configuration in the Management Por
 
 	_Changing the Directory Access for the App_
 
-1. On the **Directory access required by this app** screen, select the radio button next to **SINGLE SIGN-ON, READ DIRECTORY DATA**, and then click the check button in the bottom right-hand corner of the screen to save your changes.
+1. On the **Directory access required by this app** screen, select the radio button next to **SINGLE SIGN-ON, READ DIRECTORY DATA**, and then click the check button in the bottom-right corner of the screen to save your changes.
 
 	![Selecting Directory Access for the App](Images/selecting-directory-access-for-the-app.png?raw=true)
 
@@ -633,7 +627,7 @@ In this task you will update the application configuration in the Management Por
 
 	_Configuring Key for Read and Write_
 
-1. In the **Configure** page, under the **Keys** section, add a key by selecting the key's lifespan (default 1 year), and then click **Save** at the bottom of the screen. This will generate a key value that is your application's password and will be used in the application configuration.
+1. In the **CONFIGURE** page, under the **keys** section, add a key by selecting the key's lifespan, and then click **SAVE** at the bottom of the screen. This will generate a key value that is your application's password and will be used in the application configuration.
 
 	> **Note:** The key value is displayed after key creation, but cannot be retrieved later. Therefore, you should immediately copy the key value and store it in a secure place for your future reference. Also, your application can have multiple keys. For example, you may want one or more for testing and production.
 
@@ -644,19 +638,31 @@ In this task you will update the application configuration in the Management Por
 <a name="Ex2Task2" />
 #### Task 2 - Including Graph API Helper in MVC App ####
 
-In this task you will add the Graph API Helper to your MVC app. This helper is a  class project that includes a library and classes that facilitate authenticating to and calling the Graph API.
+In this task you will add the Graph API Helper to your MVC app. This helper is a  class project that includes a library and classes that ease authenticating to and calling the Graph API.
 
-1. Download the **Graph API Helper** project from http://go.microsoft.com/fwlink/?LinkID=290812.
+1. Download the **Graph API Helper** project from http://go.microsoft.com/fwlink/?LinkID=290812 and extract its contents to a known location.
 
-1. If not already open, start **Visual Studio 2012 Professional or Ultimate** and continue with the solution obtained from the previous exercise. Alternatively, you can open the **Begin.sln** solution from the **Source\Ex2-UsingGraphAPIWithWAAD\Begin** folder of this lab.
+1. If not already open, start **Visual Studio 2013** and continue with the solution obtained from the previous exercise. Alternatively, you can open the **Begin.sln** solution from the **Source\Ex2-UsingGraphAPIWithWAAD\Begin** folder of this lab.
 
-	> **Note:** If you opened the **Begin.sln** solution, you need to **enable SSL** from the properties of the ExpenseReport project; update the **project URL** in the **Web** tab of the ExpenseReport project properties in the _Use Local IIS Web server_ section with the SSL URL obtained from the previous step; update the **App URL** of the configured application in the Windows Azure Management Portal with the SSL URL obtained from the first step; and Run the **Identity and Access** wizard over the ExpenseReport project selecting the **Use a business identity provider** and updating the **Federation Metadata URL** placeholder with the one located in the configured application in the Windows Azure Management Portal and the **APP ID URI** placeholder with the value obtained from the first step. Also, in the **Web.config** file, update the _[YOUR-APP-ID-URL]_ placeholder in the federation configuration element with the URL obtained from the first step. For more information, check [Task 2](#Ex1Task2) and [Task 3](#Ex1Task3) from exercise 1.
+	> **Note:** If you opened the **Begin.sln** solution, you need to **enable SSL** from the properties of the ExpenseReport project; update the **project URL** in the **Web** tab of the ExpenseReport project properties in the _Use Local IIS Web server_ section with the SSL URL obtained from the previous step; update the **App URL** of the configured application in the Windows Azure Management Portal with the SSL URL obtained from the first step. 
+	>
+	>In the **Web.config** file, update the following placeholders:
+	>
+	>* The _[APP-ID-URI]_ placeholder from the **audienceUris** in the **system.identityModel** section with your **App ID URI**.
+	>* The _[APP-ID-URI]_ placeholder from the **realm** attribute from the **federationConfiguration** element in the  **system.identityModel.services** section with your **App ID URI**
+	>* The _[YOUR-DIRECTORY-NAME]_ placeholder from the **issuer** attribute from the **federationConfiguration** element in the  **system.identityModel.services** section  with your directory name (without spaces)
+	>* The _[FEDERATION METADATA DOCUMENT]_ placeholder for the  **ida:FederationMetadataLocation** key in the **AppSettings** 
+	>* The _[APP-ID-URI]_ placeholder for the  **ida:Realm** key in the **AppSettings** 
+	>* The _[APP-ID-URI]_ placeholder for the  **ida:AudienceUri** key in the **AppSettings** 
+	>* The _[YOUR-CLIENT-ID]_ placeholder for the  **ClientId** key in the **AppSettings** 
+	>* The _[YOUR-APPLICATION-KEY-VALUE]_ placeholder for the  **Password** key in the **AppSettings** 
 
-1. To add the Graph API Helper to the single sign-on project, right-click the solution, click **Add | Existing Project**.
 
-1. From the **Add Existing Project** dialog, navigate to the folder where you downloaded the Graph API Helper and open the **Microsoft.WindowsAzure.ActiveDirectory.GraphHelper.csproj** project file.
+1. To add the Graph API Helper to the single sign-on project, right-click the solution, click **Add | Existing Project...**.
 
-1. Open the Web.config file of the **ExpenseReport** project. Add the following key values to the appSettings section. Make sure you update the _[YOUR-CLIENT-ID]_ placeholder with the **Client ID** value obtained from the **Configure** tab of your application in the Windows Azure Management Portal and the _[YOUR-APPLICATION-KEY-VALUE]_ placeholder with the key that you generated in the previous task.
+1. From the **Add Existing Project** dialog, navigate to the folder where you extracted the Graph API Helper and open the **Microsoft.WindowsAzure.ActiveDirectory.GraphHelper.csproj** project file.
+
+1. Open the **Web.config** file of the **ExpenseReport** project. Add the following key values to the **appSettings** section. Make sure you update the _[YOUR-CLIENT-ID]_ placeholder with the **Client ID** value obtained from the **Configure** tab of your application in the Windows Azure Management Portal and the _[YOUR-APPLICATION-KEY-VALUE]_ placeholder with the key that you generated in the previous task.
 
 	<!-- mark:2-3 -->
 	````XML
@@ -669,23 +675,27 @@ In this task you will add the Graph API Helper to your MVC app. This helper is a
 
 1. Save the **Web.config** file after making the changes.
 
-1. In the next steps, you will update the **Microsoft.Data.Edm**, **Microsoft.Data.OData** and **System.Spatial** references from version _5.2.0_ to version _5.3.0_. From the **ExpenseReport** project, expand the **References** folder and delete the **Microsoft.Data.Edm**, **Microsoft.Data.OData** and **System.Spatial** references.
+1. Open the **Package Manager Console** by clicking **View | Other Windows | Package Manager Console**.
 
-	> **Note:** This is necessary because the Graph API Helper is using a newer version (5.3.0) of those assemblies.
+1. In the console, type the following command to download and install the **Microsoft Data Services Client** NuGet package and its dependencies. Make sure that **ExpenseReport** is set as Default project.
 
-1. Right-click the **References** folder of the **ExpenseReport** project and click **Add Reference**.
+	````Nuget
+	Install-Package Microsoft.Data.Services.Client -Version 5.3.0
+	````
 
-1. On the **Reference Manager** dialog, click **Extensions** from the left menu, then select the **Microsoft.Data.Edm**, **Microsoft.Data.OData**, **System.Spatial** and the **Microsoft.Data.Services.Client** version 5.3.0.0 assemblies.
+	![Package Manager Console](Images/package-manager-console.png?raw=true "Package Manager Console")
 
-	![Microsoft Data References](Images/microsoft-data-references.png?raw=true)
+	_Package Manager Console_
 
-	_Microsoft Data References_
+1. In the **ExpenseReport** project, right-click in the **References** folder and click **Add Reference...**.
 
-1. In the same **Reference Manager** dialog, expand the **Solution** menu on the left and then select the checkbox for the **Microsoft.WindowsAzure.ActiveDirectory.GraphHelper**. Click **OK** to add the references.
+1. In the **Reference Manager** dialog box, expand the **Solution** menu on the left and then select the checkbox for the **Microsoft.WindowsAzure.ActiveDirectory.GraphHelper**. Click **OK** to add the references.
 
 	![Graph API Helper Reference](Images/graph-api-helper-reference.png?raw=true)
 
 	_Graph API Helper Reference_
+
+1. Press **Ctrl** + **Shift** + **S** to save all the unsaved changes.
 
 <a name="Ex2Task3" />
 #### Task 3 - Displaying Active Directory Query Data ####
@@ -698,7 +708,6 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 	````C#
 	using System.Configuration;
-	using System.Security.Claims;
 	using System.Data.Services.Client;
 	using Microsoft.WindowsAzure.ActiveDirectory;
 	using Microsoft.WindowsAzure.ActiveDirectory.GraphHelper;
@@ -708,7 +717,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 	(Code Snippet - _IntroductionToWindowsAzureAD - Ex2 - UsersActionMethod_)
 
-	<!-- mark: 5-49 -->
+	<!-- mark: 5-46 -->
 	````C#
 	public class HomeController : Controller
 	{
@@ -730,7 +739,6 @@ In this task you will update the **HomeController** of your MVC app to query the
 			DirectoryDataService graphService = new DirectoryDataService(tenantName, token);
 
 			//  get Users
-			//
 			var users = graphService.users;
 			QueryOperationResponse<User> response;
 			response = users.Execute() as QueryOperationResponse<User>;
@@ -740,7 +748,6 @@ In this task you will update the **HomeController** of your MVC app to query the
 			//  For subsequent Graph Calls, the existing token should be used.
 			//  The following checks to see if the existing token is expired or about to expire in 2 mins
 			//  if true, then get a new token and refresh the graphService
-			//
 			int tokenMins = 2;
 			if (token.IsExpired || token.WillExpireIn(tokenMins))
 			{
@@ -750,7 +757,6 @@ In this task you will update the **HomeController** of your MVC app to query the
 			}
 
 			//  get tenant information
-			//
 			var tenant = graphService.tenantDetails;
 			QueryOperationResponse<TenantDetail> responseTenantQuery;
 			responseTenantQuery = tenant.Execute() as QueryOperationResponse<TenantDetail>;
@@ -762,11 +768,11 @@ In this task you will update the **HomeController** of your MVC app to query the
 	}
 	````
 
-	> **Note:** It is recommended that the JWT token is cached by the application for subsequent calls – in this block, the JWT token expiration is checked before making a second Graph API call. If the token is expired, then a new token is acquired. If a call to the Graph API is made with an expired token, the following error response will be returned, and the client should request a new token.
+	> **Note:** It is recommended that the JWT token is cached by the application for subsequent calls – in this block, the JWT token expiration is checked before making a second Graph API call. If the token is expired, then a new token is acquired. If a call to the Graph API is made with an expired token, an error response will be returned, and the client should request a new token.
 
-1. Now you will add a new view to display the list of users retrieved from the Active Directory tenant. To do this, expand the **Views** folder of the **ExpenseReport** project, right-click the **Home** folder and select **Add | View**. In the **Add View** dialog, set the view name to _Users_ and click **Add**.
+1. Now you will add a new view to display the list of users retrieved from the Active Directory tenant. To do this, expand the **Views** folder of the **ExpenseReport** project, right-click the **Home** folder and select **Add | View...**. In the **Add View** dialog box, set the view name to _Users_ and click **Add**.
 
-	![Adding Users View](Images/adding-users-view.png?raw=true)
+	![Adding Users View](Images/adding-users-view.png?raw=true "Adding Users View")
 
 	_Adding Users View_
 
@@ -782,7 +788,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 	<h1>@ViewBag.Message</h1>
 	<h2>@ViewBag.OtherMessage</h2>
-	<table>
+	<table class="table table-striped">
 		 <tr>
 			  <th>
 					DisplayName
@@ -790,7 +796,6 @@ In this task you will update the **HomeController** of your MVC app to query the
 			  <th>
 					UPN
 			  </th>
-			  <th></th>
 		 </tr>
 
 	@if (User.Identity.IsAuthenticated)
@@ -814,14 +819,15 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 	<!-- mark:6 -->
 	````CSHTML
-	<nav>
-		<ul id="menu">
-			 <li>@Html.ActionLink("Home", "Index", "Home")</li>
-			 <li>@Html.ActionLink("About", "About", "Home")</li>
-			 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-			 <li>@Html.ActionLink("Users", "Users", "Home")</li>
+	<div class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+			<li>@Html.ActionLink("Home", "Index", "Home")</li>
+			<li>@Html.ActionLink("About", "About", "Home")</li>
+			<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+			<li>@Html.ActionLink("Users", "Users", "Home")</li>
 		</ul>
-	</nav>
+		@Html.Partial("_LoginPartial")
+	</div>
 	````
 
 <a name="Ex2Task4"></a>
@@ -831,13 +837,13 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 1. Once you have successfully authenticated using your credentials, select the **Users** tab from the top right menu.
 
-	![Users Action Link](Images/users-action-link.png?raw=true)
+	![Users Action Link](Images/users-action-link.png?raw=true "Users Action Link")
 
 	_Users Action Link_
 
 1. You should see the _Users_ view displaying the list of users from the Active Directory tenant.
 
-	![Displaying Users From AD Tenant](Images/displaying-users-from-ad-tenant.png?raw=true)
+	![Displaying Users from AD Tenant](Images/displaying-users-from-ad-tenant.png?raw=true "DisplayingUsers from AD Tenant")
 
 	_Displaying Users From AD Tenant_
 
@@ -846,16 +852,36 @@ In this task you will update the **HomeController** of your MVC app to query the
 <a name="NextSteps" />
 ## Next Steps ##
 
-TBC
+To learn more about **Windows Azure Active Directory** please refer to the following articles:
+
+**Technical Reference**
+
+This is a list of articles that expand on the technologies explained on this lab:
+
+- [Directory integration](http://aka.ms/Oe9k89): If your organization uses an on-premises directory service, you can integrate it with your Windows Azure Active Directory (Windows Azure AD) tenant to simplify your cloud-based administrative tasks and even provide your users with a more streamlined sign-in experience.
+
+- [Introducing Single Sign-on and Active Directory Integration (Video)](http://aka.ms/Uhh5bm): In this video you will see how the SSO configuration and end-user experience that WAAD offers and how to integrate WAAD into applications developed with Visual Studio 2013.
+
+- [Manage Windows Azure AD using Windows PowerShell](http://aka.ms/Xfpfmr): As an administrator, you can use the Windows Azure Active Directory Module for Windows PowerShell cmdlets to accomplish many Windows Azure AD tenant-based administrative tasks such as user management, domain management and for configuring single sign-on. This topic includes information about how to install these cmdlets for use with your tenant.
+
+- [Windows Azure Identity](http://aka.ms/S14yvq): Managing identity is just as important in the public cloud is it is on premises. To help with this, Windows Azure supports several different cloud identity technologies.
+
+**Development**
+
+This is a list of developer-oriented articles related to **Windows Azure Active Directory**:
+
+- [Using the Graph API to Query Windows Azure AD](http://aka.ms/Pk9n2r): This document explains how to configure a Microsoft .NET application to use the Windows Azure Active Directory Graph API to access data from a Windows Azure AD tenant directory.
+
+- [Securing a Windows Store Application and REST Web Service Using Windows Azure AD (Preview)](http://aka.ms/t5ejfa): This document will show you how to create a simple web API resource and a Windows Store client application using the Windows Azure Authentication Library and Windows Azure AD.
 
 ---
 
 <a name="summary" />
 ## Summary ##
 
-By completing this hands-on lab you have learned how to:
+By completing this hands-on lab you learned how to:
 
 * Create a new Windows Azure Active Directory tenant.
 * Provision an MVC application in the AD tenant.
-* Configure application's sign-on and sign-out settings.
+* Explore the configuration of the application Authentication.
 * Query Active Directory data using Graph AD API.

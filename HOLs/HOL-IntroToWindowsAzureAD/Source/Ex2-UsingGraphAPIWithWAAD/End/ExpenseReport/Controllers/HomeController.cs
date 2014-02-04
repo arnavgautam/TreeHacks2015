@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Security.Claims;
 using System.Configuration;
-using System.Security.Claims;
 using System.Data.Services.Client;
 using Microsoft.WindowsAzure.ActiveDirectory;
 using Microsoft.WindowsAzure.ActiveDirectory.GraphHelper;
@@ -37,7 +36,7 @@ namespace ExpenseReport.Controllers
 
         public ActionResult Users()
         {
-            //get the tenantName
+            // get the tenantName
             string tenantName = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/tenantid").Value;
 
             // retrieve the clientId and password values from the Web.config file
@@ -50,18 +49,16 @@ namespace ExpenseReport.Controllers
             // initialize a graphService instance using the token acquired from previous step
             DirectoryDataService graphService = new DirectoryDataService(tenantName, token);
 
-            //  get Users
-            //
+            // get Users
             var users = graphService.users;
             QueryOperationResponse<User> response;
             response = users.Execute() as QueryOperationResponse<User>;
             List<User> userList = response.ToList();
             ViewBag.userList = userList;
 
-            //  For subsequent Graph Calls, the existing token should be used.
-            //  The following checks to see if the existing token is expired or about to expire in 2 mins
-            //  if true, then get a new token and refresh the graphService
-            //
+            // For subsequent Graph Calls, the existing token should be used.
+            // The following checks to see if the existing token is expired or about to expire in 2 mins
+            // if true, then get a new token and refresh the graphService
             int tokenMins = 2;
             if (token.IsExpired || token.WillExpireIn(tokenMins))
             {
@@ -70,8 +67,7 @@ namespace ExpenseReport.Controllers
                 graphService = new DirectoryDataService(tenantName, token);
             }
 
-            //  get tenant information
-            //
+            // get tenant information
             var tenant = graphService.tenantDetails;
             QueryOperationResponse<TenantDetail> responseTenantQuery;
             responseTenantQuery = tenant.Execute() as QueryOperationResponse<TenantDetail>;
@@ -80,6 +76,5 @@ namespace ExpenseReport.Controllers
 
             return View(userList);
         }
-
     }
 }

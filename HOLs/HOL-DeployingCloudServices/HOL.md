@@ -5,9 +5,9 @@
 <a name="Overview" />
 ## Overview ##
 
-In this hands-on lab, you will learn how to deploy your first application in Windows Azure. The lab walks through the process using myTODO, a simple list creation and management application built using ASP.NET MVC. The lab shows the steps required for provisioning the required components in the Windows Azure Management Portal, uploading the service package, and configuring the service. You will see how you can test your application in a staging environment and then promote it to production once you are satisfied that it is operating according to your expectations.
+In this hands-on lab, you will learn how to deploy your first application in Windows Azure. The lab walks through the process using myTODO, a simple list creation and management application built using ASP.NET MVC. The lab shows the steps required for provisioning the required components in the Windows Azure Management Portal, uploading the service package, and configuring the cloud service. You will see how you can test your application in a staging environment and then promote it to production once you are satisfied that it is operating according to your expectations.
 
-![The myTODO application running in Windows Azure](./Images/mytodo.png?raw=true "The myTODO application running in Windows Azure")
+![The myTODO application running in Windows Azure](Images/mytodo.png?raw=true)
 
 _The myTODO application running in Windows Azure_
 
@@ -37,8 +37,7 @@ The following is required to complete this hands-on lab:
 
 - [Windows Azure Tools for Microsoft Visual Studio 2.2][2] or later
 
-- Windows Azure PowerShell Cmdlets v0.7.1 (or higher)
-	- Follow the [Install Windows Azure PowerShell](<http://www.windowsazure.com/en-us/manage/install-and-configure-windows-powershell/#Install>) how-to guide to install the Cmdlets 
+- [Windows Azure PowerShell Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj156055)
 
 - A Windows Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
@@ -52,16 +51,7 @@ The following is required to complete this hands-on lab:
 
 > **Note:** This lab was designed for Windows 8.1.
 
-<a name="Setup" />
-### Setup ###
-
-In order to execute the exercises in this hands-on lab you need to set up your environment.
-
-1. Open a Windows Explorer window and browse to the lab’s **Source** folder.
-2. Execute the **Setup.cmd** file with administrator privileges to launch the setup process that will configure your environment.
-3. If the User Account Control dialog is shown, confirm the action to proceed.
-
-> **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.
+> When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.
 
 ---
 
@@ -87,7 +77,7 @@ Estimated time to complete this lab: **90 minutes**.
 In this exercise, you deploy the myTODO application to Windows Azure using the Windows Azure Management Portal. To do this, you will provision the required service components at the management portal, upload the application package to the staging environment and configure it. You will then execute the application in this test environment to verify its operation. Once you are satisfied that it operates according to your expectations, you will promote the application to production.
 
 <a name="Ex1Task1" />
-#### Task 1 – Creating a Storage Account, a Cloud Service and a SQL Database ####
+#### Task 1 - Creating a Storage Account, a Cloud Service and a SQL Database ####
 
 The application you deploy in this exercise requires a Cloud Service, a SQL Database and a Storage Account. In this task, you will create a new SQL Database  to allow the application to persist its data. In addition, you will define a Cloud Service to host your web application, and a Storage Account to store the diagnostic data collected by the application.
 
@@ -97,7 +87,7 @@ The application you deploy in this exercise requires a Cloud Service, a SQL Data
 
 	_Signing in to the Windows Azure Management portal_
 
-1. First, create an **Affinity Group** where your services will be deployed. In the Windows Azure menu, click **Settings**.
+1. First, create an **Affinity Group** where your services will be deployed. In the Windows Azure Management Portal menu, click **Settings**.
 
 	![Select Settings](Images/select-settings.png?raw=true)
 
@@ -109,13 +99,13 @@ The application you deploy in this exercise requires a Cloud Service, a SQL Data
 
 	_Settings page_
 
-1. Click **Add** in order to create a new **Affinity Group**.
+1. Click **Add** button in order to create a new **Affinity Group**.
 
 	![Add Affinity Group](Images/add-affinity-group.png?raw=true)
 
 	_Add Affinity Group_
 
-1. In the **Create Affinity Group** dialog box, enter a **Name** (e.g. _MyAffinityGroup_) and the **Region** for your new group. Click the **Tick** to continue.
+1. In the **Create Affinity Group** dialog box, enter a **Name** (e.g. _MyAffinityGroup_) a **Description** and the **Region** for your new group. Click the **Tick** button to continue.
 
 	![Affinity Group details](Images/affinity-group-details.png?raw=true)
 
@@ -125,7 +115,7 @@ The application you deploy in this exercise requires a Cloud Service, a SQL Data
 
 1. Now, you will create the **Storage Account** that the application will use to store the diagnostic data. In the Windows Azure Management Portal, click **New** | **Data Services** | **Storage** | **Quick Create**.
 
-1. Set a unique **URL**  (e.g. _storagemytodo_), enter a **Description** and select the _Affinity Group_ you previously created. Click **Create Storage Account** to continue.
+1. Set a unique **URL**  (e.g. _storagemytodo_) and select the _Affinity Group_ you previously created. Click **Create Storage Account** button to continue.
 
 	![Creating a new storage account](Images/creating-a-new-storage-account.png?raw=true)
 
@@ -135,7 +125,7 @@ The application you deploy in this exercise requires a Cloud Service, a SQL Data
 	>
 	> ![URL Validation](./Images/url-validation.png?raw=true)
 
-1. Wait until the storage account is created. Click your storage account and click **Manage Access Keys** at the bottom of the page in order to show the storage account's access keys.
+1. Wait until the storage account is created. Select your storage account and click **Manage Access Keys** at the bottom of the page in order to show the storage account's access keys.
 
 	![Manage Storage Account keys](Images/manage-storage-account-keys.png?raw=true)
 
@@ -151,7 +141,7 @@ The application you deploy in this exercise requires a Cloud Service, a SQL Data
 
 1. Next, create the **Cloud Service** that executes the application code. Click **New** | **Compute** | **Cloud Service** | **Quick Create**.
 
-1.	Select a **URL** for your Cloud Service (e.g. _servicemytodo_) and the **Affinity Group** where you created the storage account. Click **Create Cloud Service** to continue. Windows Azure uses the URL value to generate the endpoint URLs for the cloud service.
+1.	Select a **URL** for your cloud service (e.g. _servicemytodo_) and the **Affinity Group** where you created the storage account. Click **Create Cloud Service** to continue. Windows Azure uses the URL value to generate the endpoint URLs for the cloud service.
 
 	![Creating a new Cloud Service](Images/creating-a-new-cloud-service.png?raw=true)
 
@@ -161,7 +151,7 @@ The application you deploy in this exercise requires a Cloud Service, a SQL Data
 	>
 	>![URL prefix validation](./Images/url-prefix-validation.png?raw=true)
 	>
-	> By choosing the same affinity group you used for your storage account, you ensure that the Cloud Service is deployed to the same data center.
+	> By choosing the same affinity group you used for your storage account, you ensure that the cloud service is deployed to the same data center.
 
 1.	Wait until your cloud service is created to continue.
 
@@ -171,18 +161,18 @@ The application you deploy in this exercise requires a Cloud Service, a SQL Data
 
 1. Finally, create the **SQL Database** that the application will use to store its data. Click **New | Data Services | SQL Database | Quick Create**. 
 
-1. Enter a **Database Name** (e.g. _dbmytodo_), select **New SQL database server** in the **Server** drop-down list and select the same **Region** specified for the affinity defined you created previously. Finally, Enter a **Login Name** (e.g. SQLAdmin) and a **Password** for the database administrator.
+1. Enter a **Database Name** (e.g. _dbmytodo_), select **New SQL database server** in the **Server** drop-down list and select the same **Region** specified for the affinity you created previously. Finally, Enter a **Login Name** (e.g. _SQLAdmin_) and a **Password** for the database administrator.
 
 	![Creating a SQL Database](Images/creating-a-sql-database.png?raw=true)
 
-1. Wait until the database is created. Click your database and take note of the **Server** information under the **Connect to your database** section of the **Quick Start** page. You will use this value later on to configure the application.
+1. Wait until the database is created. Go to the **SQL Databases** page and click your database to go to the **Quick Start** page. Take note of the **Server** information under the **Connect to your database** section. You will use this value later on to configure the application.
 
 	![SQL Database server information](Images/sql-database-server-information.png?raw=true)
 
 1. Do not close the browser window, you will use the portal for the next task.
 
 <a name="Ex1Task2" />
-#### Task 2 – Publishing the Application to the Windows Azure Management Portal ####
+#### Task 2 - Publishing the Application to the Windows Azure Management Portal ####
 
 A Cloud Service is a service that hosts your code in the Windows Azure environment. It has two separate deployment slots: **staging** and **production**. The staging deployment slot allows you to test your service in the Windows Azure environment before you deploy it to production.
 
@@ -190,12 +180,20 @@ In this task, you will create a service package for the myTODO application and t
 
 1. Launch **Microsoft Visual Studio Express 2013 for Web** (or greater) as Administrator.
 
-1. In the **File** menu, select **Open Project** and browse to **Ex1-DeployingWithWAZPortal\Begin** in the **Source** folder of the lab. Select **MyTodo.sln** and click Open.
+1. In the **File** menu, select **Open Project** and browse to **Ex1-DeployingWithWAZPortal\Begin** in the **Source** folder of the lab. Select **MyTodo.sln** and click **Open**.
 
 	The solution contains the following projects:
 
 	- **MyTodo**. A standard cloud service project configured to support a single web role named **MyTodo.WebUx**.
-	- **MyTodo.WebUx**. A web role that hosts the MyTODO ASP.NET MVC application in Windows Azure.
+	- **MyTodo.WebUx**. A web role that hosts the myTODO ASP.NET MVC application in Windows Azure.
+
+1. Build the solution in order to download and install the NuGet package dependencies. To do this, click **Build** | **Build Solution** or press **Ctrl** + **Shift** + **B**.
+
+	>**Note:** NuGet is a Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects that use the .NET Framework.
+	>
+	> When you install the package, NuGet copies files to your solution and automatically makes whatever changes are needed, such as adding references and changing your _App.config_ or _Web.config_ files. If you decide to remove the library, NuGet removes files and reverses whatever changes it made in your project so that no clutter is left.
+	>
+	>For more information about NuGet, visit [http://nuget.org/](http://nuget.org/).
 
 1. Ensure that the **System.Web.Mvc** assembly is included in the service package that you deploy to Windows Azure.  To do this, expand the **References** node in **Solution Explorer** for the **MyTodo.WebUx** project, right-click the **System.Web.Mvc** assembly and select **Properties**.
 
@@ -223,7 +221,7 @@ In this task, you will create a service package for the myTODO application and t
 
 	_Configuring the storage account connection string_
 
-1. Now, set the version of the Windows Azure Guest Operating System that should run your service on the virtual machine. To do this, edit the **osVersion** attribute from the **ServiceConfiguration** root element and set its value to _WA-GUEST-OS-4.3_201312-01_, as shown in the figure below.
+1. Now, set the version of the Windows Azure Guest Operating System that should run your service on the virtual machine. To do this, edit the **osVersion** attribute from the **ServiceConfiguration** root element and set its value to _WA-GUEST-OS-3.10_201312-01_, as shown in the figure below.
 
 	>**Note:** The value used for **osVersion** here is to illustrate that you can select which release of the guest OS runs your application.
 
@@ -241,7 +239,7 @@ In this task, you will create a service package for the myTODO application and t
 
 1. Press **CTRL + S** to save the changes.
 
-1. Configure the connection string of the SQL Database to store the application data. To do this, open the **Web.config** file located in the **MyTodo.WebUx** project. Replace the placeholder labeled \[YOUR\_DATABASE\_SERVER\] with the **server information** that you recorded earlier, when you configured the SQL database in Task 1.
+1. Configure the connection string of the SQL Database to store the application data. To do this, open the **Web.config** file located in the **MyTodo.WebUx** project. Replace the placeholder labeled \[YOUR\_DATABASE\_SERVER\] with the **SQL Database server** information that you recorded earlier, when you configured the SQL database in Task 1.
 
 1. Next, configure the placeholders labeled \[YOUR\_DATABASE\_NAME\], \[YOUR\_USER\_NAME\] and \[YOUR\_USER\_PASSWORD\] with the **database name**, the **login name** and the **login password** that you entered when you configured the SQL database in Task 1.
 
@@ -253,13 +251,15 @@ In this task, you will create a service package for the myTODO application and t
 
 1. To create a service package, right-click the cloud service project and select **Package**. 
 
-1. In the **Package Windows Azure Application** dialog box, ensure **Service configuration** value is set to _Cloud_. Then click **Package** and wait until Visual Studio creates it. Once the package is ready, a window showing the folder that contains the generated files should open. Do not close this window, you will use the package later in this task.
+1. In the **Package Windows Azure Application** dialog box, ensure that **Service configuration** value is set to _Cloud_. Then click **Package** and wait until Visual Studio creates it. Once the package is ready, a window showing the folder that contains the generated files should open. Do not close this window, you will use the package later in this task.
 
 	![Creating a service package in Visual Studio](Images/creating-a-service-package.png?raw=true)
 
 	_Creating a service package in Visual Studio_
 
-1.	At the portal, locate the Cloud Service you previously created and click its name in order to go to the **Dashboard** page.
+1.	At the portal, locate the Cloud Service you previously created and click its name in order to go to the **Quick Start** page.
+
+1. Click on the **Dasbboard** tab to navigate to the dashboard view.
 
 1. Make sure **Staging** tab is selected and click **Upload a new staging deployment**.
 
@@ -273,15 +273,15 @@ In this task, you will create a service package for the myTODO application and t
 
 	>**Note:** The management portal displays the label in its user interface for staging and production, which allows you to identify the version currently deployed in each environment.
 
-1.	Under **Package** click **From Local**, navigate to the folder where Visual Studio generated the package in the prior steps and then select **MyTodo.cspkg**.
+1.	Under **Package** click **From Local** button, navigate to the folder where Visual Studio generated the package in the prior steps and then select **MyTodo.cspkg** file.
 
 	>**Note:** The _.cspkg_ file is an archive file that contains the binaries and files required to run a service.
 
-1.	Now, under **Configuration** click **From Local** and select **ServiceConfiguration.Cloud.cscfg** file within the same folder.
+1.	Now, under **Configuration** click **From Local** button and select **ServiceConfiguration.Cloud.cscfg** file within the same folder.
 
 	>**Note:** The _.cscfg_ file contains configuration settings for the application, including the instance count and configuration for the web role, and the storage account settings that you modified previously.
 
-1.	Finally, check **Deploy even if one or more roles contain a single instace**. Then click the **Tick** to start the deployment.
+1.	Finally, check **Deploy even if one or more roles contain a single instance**. Then click the **Tick** button to start the deployment.
 
 	![Configuring the service package deployment](Images/configuring-service-package-deployment.png?raw=true)
 
@@ -293,7 +293,7 @@ In this task, you will create a service package for the myTODO application and t
 
 	_Uploading a service package to the Windows Azure Management Portal_
 
-1. Wait until the deployment process finishes, which may take several minutes. At this point, you have already uploaded the package and you can view the deployment status on the dashboard. When the deployment reaches its **Running** state, the portal assignes a **DNS name** to the deployment that includes a unique identifier. Shortly, you will access this URL to test the application and determine whether it operates correctly in the Windows Azure environment, but first you need to configure it.
+1. Wait until the deployment process finishes, which may take several minutes. At this point, you have already uploaded the package and you can view the deployment status on the dashboard. When the deployment reaches its **Running** state, the portal assigns a **DNS name** to the deployment that includes a unique identifier. Shortly, you will access this URL to test the application and determine whether it operates correctly in the Windows Azure environment, but first you need to configure it.
 
 	>**Note:** During deployment, Windows Azure analyzes the configuration file and copies the service to the correct number of machines, and starts all the instances. Load balancers, network devices and monitoring are also configured during this time.
 
@@ -304,9 +304,9 @@ In this task, you will create a service package for the myTODO application and t
 <a name="Ex1Task3" />
 #### Task 3 – Configuring the Application to Increase Number of Instances ####
 
-Before you can test the deployed application, you need to configure it. In this task, you change the service configuration already deployed to increase the number of instances.
+Before you can test the deployed application, you need to configure it. In this task, you change the service configuration already deployed to manually increase the number of instances.
 
-1. In the **Windows Azure Management Portal**, go to **Cloud Services** page and click your **MyTodo** service name to open the service **Dashboard**.
+1. In the **Windows Azure Management Portal**, go to the **Cloud Services** page and click your **MyTodo** service name to open the service **Quick Start** page.
  
 	![Configuring application settings](./Images/configuring-app-settings.png?raw=true "Configuring application settings")
 
@@ -314,9 +314,20 @@ Before you can test the deployed application, you need to configure it. In this 
 
 1. Click **Scale** in order to increase the number of roles your application has.
 
+1. Make sure that the **Scale by Metric** option of the **MyTodo.WebUx** role is set to **None**.
+
+	> **Note:** You can also configure your cloud service to automatically increase or decrease the number of role instances based on the **average CPU usage** of each instance, or the **number of queue messages** each instance should support. For more details, see [Automatically scale an application running Web Roles, Worker Roles, or Virtual Machines](http://www.windowsazure.com/en-us/documentation/articles/cloud-services-how-to-scale#autoscale).
+
+	> Additionally, you can schedule automatic scaling of your application by configuring schedules for different times. For more details, see [Schedule the scaling of your application](http://www.windowsazure.com/en-us/documentation/articles/cloud-services-how-to-scale#schedule).
+
+
+	![Scale by Metric option disabled](Images/scale-by-metric-option-disabled.png?raw=true)
+	
+	_Scale by Metric option disabled_
+
 1. In the **Scale** page, make sure **Staging** tab is selected and update the number of roles to _2_.
 
-	![Scaling Cloud Service](./Images/scaling-cloud-service.png?raw=true "Scaling Cloud Service")
+	![Scaling cloud service](Images/scaling-cloud-service.png?raw=true)
 
 	_Scaling Cloud Service_
  
@@ -330,7 +341,7 @@ Before you can test the deployed application, you need to configure it. In this 
 
 	_Updating the number of role instances_
 
-	>**Note:** The portal displays a legend "Scale in progress..." while the settings are applied.
+	>**Note:** The portal displays a "Changing the scale settings..." message while the settings are applied.
 
 <a name="Ex1Task4" />
 #### Task 4 – Testing the Application in the Staging Environment ####
@@ -339,67 +350,65 @@ In this task, you run the application in the staging environment and access its 
 
 1. In the **Cloud Services** page, go to your MyTodo service **Dashboard** and then click the **Site URL** link.
 
-	![Running the application in the staging environment](./Images/running-app-staging.png?raw=true "Running the application in the staging environment")
+	![Running the application in the staging environment](Images/running-app-staging.png?raw=true)
 
 	_Running the application in the staging environment_
 
 	>**Note:** The address URL is shown as _\<guid\>.cloudapp.net_, where \<_guid_\> is some random identifier. This is different from the address where the application will run once it is in production. Although the application executes in a staging area that is separate from the production environment, there is no actual physical difference between staging and production – it is simply a matter of where the load balancer is connected.
-	
-	>**Note:** In the future, you will be able to have multiple “virtual” areas, for test, QA, pre-production, etc... 
 
-1. Click **Start** to prepare the application for first time use, which requires you to create a new account.
+1. Click **Register** to create a local account.
 
-	![Application running in the staging environment](./Images/application-running-staging.png?raw=true "Application running in the staging environment")
+	![Application running in the staging environment](Images/application-running-staging.png?raw=true)
 
 	_Application running in the staging environment_
 
 1. Complete the account details by entering a user name, email address, and password and then click **Register**. 
 
-	>**Note:**  Account information is stored in the storage account created earlier. Data is not shared between to do lists.
+	>**Note:**  Account information is stored in the SQL database created earlier. Data is not shared between to-do lists.
 
-	![Application ready to be used](./Images/application-new-account.png?raw=true "Application ready to be used")
+	![Creating a new account](Images/application-new-account.png?raw=true)
 
 	_Creating a new account_
 
-1. Next, the application enumerates the lists that you have currently defined. Since this is your first use, no lists should appear.
+1. Next, the application enumerates the lists that you have currently defined. A sample todo list is provided by default for new users.
 
-	![Application ready to be used](./Images/application-ready.png?raw=true "Application ready to be used")
+	![Application ready to be used](Images/application-ready.png?raw=true)
 
 	_Application ready to be used_
 
-1. If you wish to explore the application, create a new TODO list and enter some items. 
+1. If you wish to explore the application, update the existing to-do list, or create a new to-do list and enter some items.
 
 <a name="Ex1Task5" />
 #### Task 5 – Promoting the Application to Production ####
 
 Now that you have verified that the service is working correctly in the staging environment, you are ready to promote it to final production.  When you deploy the application to production, Windows Azure reconfigures its load balancers so that the application is available at its production URL.
 
-1. In **Cloud Services** page, click your MyTodo service **name** to open the **Dashboard**. Then click **Swap** within the bottom menu.
+1. In the **Cloud Services** page, click your MyTodo service **name**. Then click in the **Dashboard** tab and select **Staging**. Finally, click **Swap** button from the bottom menu.
 
-	![Promoting the application to the production slot](./Images/promoting-app-prod.png?raw=true "Promoting the application to the production slot")
+	![Promoting the application to the production slot](Images/promoting-app-prod.png?raw=true)
 
 	_Promoting the application to the production slot_
 
-1. In the **VIP Swap** dialog, click **Yes** to swap the deployments between staging and production.
- 
-	![Promoting the application to the production deployment](./Images/promoting-app-deploy.png?raw=true "Promoting the application to the production deployment")
+1. In the **VIP Swap** dialog box, click **Yes** to swap the deployments between staging and production.
+
+	![Promoting the application to the production deployment](Images/promoting-app-deploy.png?raw=true)
 	
 	_Promoting the application to the production deployment_
 
-1. Once the Transition finishes, switch to **Production** tab and click the **Site URL** link to open the production site in a browser window and notice the URL in the address bar.
+1. Once the transition finishes, switch to **Production** tab and click the **Site URL** link to open the production site in a browser window and notice the URL in the address bar.
  
-	![Application running in the production environment](./Images/application-running-production.png?raw=true "Application running in the production environment")
+	![Application running in the production environment](Images/application-running-production.png?raw=true)
 
 	_Application running in the production environment_
 
 	>**Note:** If you visit the production site shortly after its promotion, the DNS name might not be ready. If you encounter a DNS error (404), wait a few minutes and try again. Keep in mind that Windows Azure creates DNS name entries dynamically and that the changes might take few minutes to propagate.
 
-	>**Note:** Even when a deployment is in a suspended state, Windows Azure still needs to allocate a virtual machine (VM) for each instance and charge you for it. Once you have completed testing the application, you need to remove the deployment from Windows Azure to avoid an unnecessary expense. To remove a running deployment, go to your Cloud Service **Dashboard** page, select the deployment slot where the service is currently hosted, staging or production, and then click **Stop** on the bottom menu. Once the service has stopped, click **Delete** to remove it.
+	>**Note:** Even when a deployment is in a suspended state, Windows Azure still needs to allocate a virtual machine (VM) for each instance and charge you for it. Once you have completed testing the application, you need to remove the deployment from Windows Azure to avoid an unnecessary expense. To remove a running deployment, go to your cloud service **Dashboard** page, select the deployment slot where the service is currently hosted, staging or production, and then click **Stop** on the bottom menu. Once the service has stopped, click **Delete** to remove it.
 
 <a name="Exercise2" />
 ### Exercise 2: Using PowerShell to manage Windows Azure Applications ####
 
-Typically, during its lifetime, an application undergoes changes that require it to be re-deployed. In the previous exercise, you saw how to use the Windows Azure Management Portal to deploy applications. As an alternative, the Service Management API provides programmatic access to much of the functionality available through the Management Portal. Using the Service Management API, you can manage your storage accounts and cloud services, your service deployments, and your affinity groups.
+Typically, during its lifetime, an application undergoes changes that require it to be re-deployed. In the previous exercise, you saw how to use the Windows Azure Management Portal to deploy applications. As an alternative, the Service Management API provides programmatic access to much of the functionality available through the Management Portal. Using the Service Management API, you can manage your storage accounts, SQL databases and cloud services, your service deployments, and your affinity groups.
 
 The Windows Azure Service Management PowerShell Cmdlets wrap the Windows Azure Service Management API. These cmdlets make it simple to automate the deployment, upgrade, and scaling of your Windows Azure application. By pipelining commands, you compose complex scripts that use the output of one command as the input to another.
 
@@ -409,18 +418,6 @@ In this exercise, you will learn how to deploy and upgrade a Windows Azure appli
 #### Task 1 - Downloading and Importing a Publish-settings File ####
 
 In this task, you will log on to the Windows Azure Portal and download the publish-settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription to use in your development environment. Then, you will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
-
-1.	Open an Internet Explorer browser and go to <https://windows.azure.com/download/publishprofile.aspx>.
-
-1.	Sign in using the Microsoft account associated with your Windows Azure account.
-
-1.	**Save** the publish-settings file to your local machine.
-
-	![Downloading publish-settings file](./Images/downloading-publish-settings-file.png?raw=true 'Downloading publish-settings file')
-
-	_Downloading publish-settings file_
-
-	> **Note:** The download page shows you how to import the publish-settings file using Visual Studio Publish box. This lab will show you both approaches, how to import it using the Windows Azure PowerShell Cmdlets or using Visual Studio Publish box.
 
 1. Run **Windows Azure PowerShell** as Administrator.
 
@@ -439,6 +436,20 @@ In this task, you will log on to the Windows Azure Portal and download the publi
 	> - _Unrestricted_ - No restrictions; all Windows PowerShell scripts can be run.
 	>
 	> For more information about Execution Policies refer to this TechNet article: <http://technet.microsoft.com/en-us/library/ee176961.aspx>
+
+1. Execute the following command to download the subscription information. This command will open a web page on the Windows Azure Management Portal.
+
+	````PowerShell
+	Get-AzurePublishSettingsFile
+	````
+
+1. Sign in using the Microsoft Account associated with your Windows Azure account.
+
+1.	**Save** the Publish Settings file to your local machine.
+
+	![Downloading publish-settings file](Images/downloading-publish-settings-file.png?raw=true "Downloading publish-settings file")
+
+	_Downloading Publish Settings file_
 
 1.	The following script imports your publish-settings file and persists this information for later use. You will use these values during the lab to manage your Windows Azure Subscription. Replace the placeholder with your publish-setting file’s path and execute the script.
 
@@ -465,31 +476,39 @@ In this task, you will log on to the Windows Azure Portal and download the publi
 <a name="Ex2Task2" />
 #### Task 2 – Configuring the Application ####
 
-In this task, you will configure the application using your Storage account information and generate a package to publish it using Windows Azure PowerShell CmdLets.
+In this task, you will configure the application using your SQL database and storage account information and generate a package to publish it using Windows Azure PowerShell CmdLets.
 
-1. If it is not already open, launch **Microsoft Visual Studio Express 2012 for Web** (or later) as Administrator.
+1. If it is not already open, launch **Microsoft Visual Studio Express 2013 for Web** (or greater) as Administrator.
 
 1. In the **File** menu, choose **Open Project** and browse to **Ex2-DeployingWithPowerShell\Begin** in the **Source** folder of the lab. Select **MyTodo.sln** and click Open.
 
-	> **Note:** Alternatively, you may continue with the solution that you completed during Exercise 1.
+	> **Note:** Alternatively, you may continue with the solution that you completed during Exercise 1. You can dismiss this task if you selected to continue with the solution from Exercise 1.
 
-1. Configure the storage account connection strings. To do this, expand the **Roles** node in the **MyTodo** project and double-click the **MyTodo.WebUX** role. In the role properties window, select the **Settings** tab, select the _DataConnectionString_ setting, ensure that the **Type** is set to Connection String, and then click the button labeled with an ellipsis.
+1. Configure the storage account connection strings. To do this, expand the **Roles** node in the **MyTodo** project and double-click the **MyTodo.WebUX** role. In the role properties window, select the **Settings** tab and select _Cloud_ from the **Service Configuration** drop-down list. Then select the _Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString_ setting, ensure that the **Type** is set to _Connection String_, and then click the button labeled with an ellipsis.
 
-	![Defining storage account connection settings](./Images/defining-connection-settings.png?raw=true "Defining storage account connection settings")
+	![Defining storage account connection settings](Images/defining-connection-settings.png?raw=true)
 
 	_Defining storage account connection settings_
 
-1. In the **Storage Account Connection String** dialog, select the **Manually entered credentials** option. Complete your storage **Account Name** and storage **Account Key** and click **OK**.
+1. In the **Create Storage Connection String** dialog box, select the **Manually entered credentials** option. Enter your storage **Account Name** and storage **Account Key** and click **OK**.
  
 	![Configuring the storage account name and account key](./Images/defining-connection-settings-2.png?raw=true "Configuring the storage account name and account key")
 	
 	_Configuring the storage account name and account key_
 
-	>**Note:** This information is available in the **Dashboard** section of your storage account in the Windows Azure Management Portal. You used the same settings in Exercise 1, when you deployed and configured the application. In that instance, because you were running the application in Windows Azure, you updated the configuration at the Management Portal. 
+	>**Note:** This information is available in the **Dashboard** section of your storage account in the Windows Azure Management Portal. You used the same settings in Exercise 1, when you deployed and configured the application. 
 
-1. Repeat the previous steps to configure the _Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString_ setting using the same account information.
+1. Press **CTRL + S** to save your changes. 
 
-1. To create a service package, right-click the cloud service project and select **Package**. In the **Package Windows Azure Application** dialog, click **Package** and then wait until Visual Studio creates it. Once the package is ready, Visual Studio opens a window showing the folder that contains the generated files.
+1. Next, open the **Web.config** file located in the **MyTodo.WebUx** project. Replace the placeholders with the **SQL Database server**, **database name**, **login name** and **login password** of your SQL database.
+
+	![Configuring the database connection string](Images/configuring-the-database-connection-string.png?raw=true)
+
+	_Configuring the database connection string_
+
+1. Press **CTRL + S** to save the changes.
+
+1. To create a service package, right-click the cloud service project and select **Package**. In the **Package Windows Azure Application** dialog, ensure that **Service configuration** value is set to _Cloud_. Click **Package** and then wait until Visual Studio creates it. Once the package is ready, Visual Studio opens a window showing the folder that contains the generated files.
 
 <a name="Ex2Task3" />
 #### Task 3 – Uploading a Service Package Using Windows PowerShell ####
@@ -520,8 +539,6 @@ In the previous exercise, you uploaded the service package for the myTODO applic
 
 	>**Note:** The command shown above uses the **New-AzureDeployment** cmdlet to upload a service package and create a new deployment in the staging environment. It assigns a "MyTodo-v2" label to identify this deployment.
 
-	>**Important:** The **New-AzureDeployment** cmdlet assumes that the compute service and storage service names are the same. If this is not the case, specify an additional parameter -**StorageServicename \<YOUR_SERVICE_NAME_LOWER_CASE\>**, replacing the placeholder with the name of the storage service name.
-
 1. Press **ENTER** to execute the command and wait until the **New-AzureDeployment** command finishes.
 
 	![Deploying a new service package to Windows Azure using PowerShell](./Images/command-line-deploying-powershell.png?raw=true "Deploying a new service package to Windows Azure using PowerShell")
@@ -541,26 +558,25 @@ In the previous exercise, you uploaded the service package for the myTODO applic
 <a name="Ex2Task4" />
 #### Task 4 – Upgrading a Deployment Using Windows PowerShell ####
 
-In this task, you use the Windows Azure PowerShell cmdlets to upgrade an existing deployment. First, you change the original solution by making minor changes to its source code to produce an updated version of the application. Next, you build the application and create a new service package that contains the updated binaries. Finally, using the management cmdlets, you re-deploy the package to Windows Azure. 
+In this task, you use the Windows Azure PowerShell cmdlets to upgrade an existing deployment. First, you will change the original solution by making minor changes to its source code to produce an updated version of the application. Next, you will build the application and create a new service package that contains the updated binaries. Finally, you will re-deploy the package to Windows Azure using the management cmdlets. 
 
 1. Go back to Microsoft Visual Studio. 
 
-1. Open the layout view of the application for editing. To do this, in **Solution Explorer**, double-click **_Layout.cshtml** in the **Views\Shared** folder of the **MyTodo.WebUx** project. Switch to source mode.
+1. Open the layout view of the application for editing. To do this, in **Solution Explorer**, double-click **Index.cshtml** in the **Views\Home** folder of the **MyTodo.WebUx** project.
 
 1. Insert a new caption in the footer area of the page. Go to the bottom of the layout view and update the copyright notice with the text "(_Deployed with the PowerShell CmdLets_)" as shown below.
 
-	<!-- mark:5 -->
+	<!-- mark:4 -->
 	````HTML
 	...
-        <div id="footer">
-            <hr />
-            <p class="copyright">
-                &copy; 2012 Microsoft Corporation. All rights reserved. (Deployed with the PowerShell CmdLets)</p>
-        </div>
+	<hr />
+	<footer>
+		<p>&copy; @DateTime.Now.Year - myTODO (Deployed with the PowerShell CmdLets)</p>
+	</footer>
 	...
 	````
 
-1. Generate a new service package. To do this, in **Solution Explorer**, right-click the cloud service project and select **Package**. In the **Package Windows Azure Application** dialog, click **Package** and then wait until Visual Studio creates it. Once the package is ready, Visual Studio opens a window showing the folder that contains the generated files. 
+1. Generate a new service package. To do this, in **Solution Explorer**, right-click the cloud service project and select **Package**. In the **Package Windows Azure Application** dialog, ensure that **Service configuration** value is set to _Cloud_. Click **Package** and then wait until Visual Studio creates it. Once the package is ready, Visual Studio opens a window showing the folder that contains the generated files. 
 
 1. Switch to the PowerShell console and enter the command shown below, specifying the settings that apply to your service account where indicated by the placeholder parameters. Do **not** execute the command yet.
 
@@ -576,7 +592,7 @@ In this task, you use the Windows Azure PowerShell cmdlets to upgrade an existin
 
 	>> Set-AzureDeployment -Upgrade -ServiceName $serviceName -Package $packageLocation -Configuration $configurationLocation -Slot 'Staging' -Label $deploymentLabel 
 
-1. Press **ENTER** to execute the command. Wait until the deployment process finishes, which may take several minutes. When the operation ends, it displays a message with the outcome of the operation; if the deployment completed without errors, you will see the message "Succeeded".
+1. Press **ENTER** to execute the command. Wait until the deployment process finishes, which may take several minutes. When the operation ends, it displays a message with the outcome of the operation; if the deployment completes without errors, you will see the "Succeeded" message.
 
 	![PowerShell console showing the status of the package deployment operation](./Images/command-line-powershell-status.png?raw=true "PowerShell console showing the status of the package deployment operation")
 
@@ -605,7 +621,7 @@ Now that you have deployed your updated solution to Window Azure, you are ready 
 
 1. In your Cloud Service **Dashboard** page within the management portal, click the **Web Site URL** link to open the production site in a browser window. Notice the footer of the page. It should reflect the updated text that you entered in the last task.
 
-	![New deployment showing the updated footer text](./Images/new-deployment.png?raw=true "New deployment showing the updated footer text")
+	![New deployment showing the updated footer text](Images/new-deployment.png?raw=true)
 
 	_New deployment showing the updated footer text_
 
@@ -620,7 +636,7 @@ The first time you publish a service to Windows Azure using Visual Studio, you n
 
 Once you set up your account information in Visual Studio, you can publish your current solution in the background with only a few mouse clicks.
 
-In this exercise, you set up the credentials to authenticate with the Windows Azure Management Service and then publish the MyTodo application from Visual Studio.
+In this exercise, you will set up the credentials to authenticate with the Windows Azure Management Service and then publish the myTODO application from Visual Studio.
 
 
 <a name="Ex3Task1" />
@@ -628,9 +644,9 @@ In this exercise, you set up the credentials to authenticate with the Windows Az
 
 When you publish your service using Visual Studio, the Windows Azure Tools upload the service package and then automatically start it. You will not have a chance to update the configuration settings before the service starts. Therefore, you must configure all the necessary settings before you publish the service.
 
-In this task, you update the storage connection strings to point to your Storage Account.
+In this task, you will update the storage connection strings to point to your SQL database and your storage account.
 
-1. If it is not already open, launch **Microsoft Visual Studio Express 2012 for Web** (or later) as Administrator.
+1. If it is not already open, launch **Microsoft Visual Studio Express 2013 for Web** (or greater) as Administrator.
 
 1. In the **File** menu, choose **Open Project** and browse to **Ex3-DeployingWithVisualStudio\Begin** in the **Source** folder of the lab. Select **MyTodo.sln** and click Open.
 
@@ -638,68 +654,92 @@ In this task, you update the storage connection strings to point to your Storage
 
 1. In **Solution Explorer**, expand the **Roles** node in the **MyTodo** project, double-click the **MyTodo.WebUx** role to open its properties window, and then switch to the **Settings** tab.
 
-1. Configure the storage account connection strings. To do this, expand the **Roles** node in the **MyTodo** project and double-click the **MyTodo.WebUX** role. In the role properties window, select the **Settings** tab, select the _DataConnectionString_ setting, ensure that the **Type** is set to Connection String, and then click the button labeled with an ellipsis.
+1. Configure the storage account connection strings. To do this, expand the **Roles** node in the **MyTodo** project and double-click the **MyTodo.WebUX** role. In the role properties window, select the **Settings** tab and select _Cloud_ from the **Service Configuration** drop-down list. Then select the _Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString_ setting, ensure that the **Type** is set to _Connection String_, and then click the button labeled with an ellipsis.
 
 	![Defining storage account connection settings](./Images/defining-connection-settings.png?raw=true "Defining storage account connection settings")
 
 	_Defining storage account connection settings_
 
-1. In the **Storage Account Connection String** dialog, select the **Manually entered credentials** option. Complete your storage **Account Name** and storage **Account Key** and click **OK**.
+1. In the **Create Storage Account Connection String** dialog box, select the **Manually entered credentials** option. Complete your storage **Account Name** and storage **Account Key** and click **OK**.
 
 	![Configuring the storage account name and account key](./Images/defining-connection-settings-2.png?raw=true "Configuring the storage account name and account key")
 
 	_Configuring the storage account name and account key_
 
-	>**Note:** This information is available in the **Dashboard** section of your storage account in the Windows Azure Management Portal. You used the same settings in Exercise 1, when you deployed and configured the application. In that instance, because you were running the application in Windows Azure, you updated the configuration at the Management Portal. 
-
-1. Repeat the previous steps to configure the _Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString_ setting using the same account information.
+	>**Note:** This information is available in the **Dashboard** section of your storage account in the Windows Azure Management Portal. You used the same settings in Exercise 1, when you deployed and configured the application. 
 
 1. Press **CTRL + S** to save your changes. 
+
+1. Next, open the **Web.config** file located in the **MyTodo.WebUx** project. Replace the placeholders with the **SQL Database server**, **database name**, **login name** and **login password** of your SQL database.
+
+	![Configuring the database connection string](Images/configuring-the-database-connection-string.png?raw=true)
+
+	_Configuring the database connection string_
+
+1. Press **CTRL + S** to save the changes.
 
 <a name="Ex3Task2" />
 #### Task 2 – Publishing a Service with the Windows Azure Tools ####
 
 In this task, you will configure a set of credentials that provide access to your Windows Azure account. Visual Studio saves this information and allows you to reuse the credentials whenever you need to publish a service, without requiring you to enter your credentials again.
 
-Then, you will use these credentials to publish the MyTODO application directly from Visual Studio.
+Then, you will use these credentials to publish the myTODO application directly from Visual Studio.
 
 1. In **Solution Explorer**, right-click the **MyTodo** cloud project and select **Publish**.
 
-1. In the **Publish Windows Azure Application** dialog, click **Import**.
+1. In the **Publish Windows Azure Application** dialog box, click the subscription drop-down list and select **Manage...**.
 
-1. Browse to the PublishSettings file you dowloaded in the previous exercise, select it and click **Open**.
+	![Manage subscriptions](Images/manage-subscriptions.png?raw=true)
 
-1. Back in the **Publish Windows Azure Application** dialog, select the subscription created from the _PublishSettings_ file and click **Next**.
+	_Manage subscriptions_
+
+1. In the **Manage Windows Azure Subscriptions** dialog box, select the **Certificates** tab and click **Import...**.
+
+	![Import Subscription](Images/import-subscription.png?raw=true)
+
+	_Import Subscription_
+
+1. In the **Import Windows Azure Subscriptions** dialog box, click **Browse...**, locate the publish-settings file you downloaded in the previous exercise, select it and click **Open**. Then click **Import**.
+
+	> **Note:** It is recommended that you delete the publish-settings file after you import those settings. Because the management certificate includes security credentials, it should not be accessed by unauthorized users. If you need information about your subscriptions, you can get it from the Windows Azure Management Portal or the Microsoft Online Services Customer Portal.
+
+	![Select and import subscription file](Images/import-subscription-2.png?raw=true)
+
+	_Select and import subscription file_
+
+1. Click **Close**. Back in the **Publish Windows Azure Application** dialog box, select the subscription created from the publish-settings file and click **Next**.
  
-	![Signing In](./Images/waz-sign-in.png?raw=true "Signing In")
+	![Signing in](Images/waz-sign-in.png?raw=true)
 	
-	_Signing In_
+	_Signing in_
 
-1. In the **Common Settings** tab, notice that the dialog populates the drop down list labeled **Cloud Service** with the information for all the services configured in your Windows Azure account. Select the cloud service in this list where you wish to deploy the application.
+1. In the **Common Settings** tab, notice that the dialog populates the drop-down list labeled **Cloud Service** with the information for all the services configured in your Windows Azure account. Select the cloud service in this list where you wish to deploy the application.
 
-1. Make sure the **Environment** is set to _Production_ and the **Build Configuration** to _Release_. Also, set the **Service Configuration** with _default_ value.
+1. Make sure the **Environment** is set to _Production_ and the **Build Configuration** to _Release_. Also, set the **Service Configuration** to _Cloud_.
  
-	![Deployment Common Settings](./Images/deployment-common-settings.png?raw=true "Deployment Common Settings")
+	![Deployment Common Settings](Images/deployment-common-settings.png?raw=true)
 	
 	_Deployment Common Settings_
 
-1. Click **Advanced Settings** tab. Update the **Deployment Label** to _MyTodo_ and check the check box labeled **Append date and time** to identify the deployment in the Developer Portal UI.
+1. Click the **Advanced Settings** tab. Update the **Deployment Label** to _MyTodo_ and select the check box labeled **Append date and time** to identify the deployment in the Developer Portal UI.
 
-1. Like with the Cloud Services, the dialog populates the drop down list labeled **Storage account** with all the storage services that you have configured in your Windows Azure account. To publish a service, Visual Studio first uploads the service package to storage in Windows Azure, and then publish the service from there. Select the storage service that you wish to use for this purpose and click **Next**.
+1. Like with the cloud services, the drop-down list labeled **Storage account** is populated with all the storage services that you have configured in your Windows Azure account. To publish a service, Visual Studio first uploads the service package to storage in Windows Azure, and then publish the service from there. Select the storage service that you wish to use for this purpose and click **Next**.
  
-	![Deployment Advanced Settings](./Images/deployment-advanced-settings.png?raw=true "Deployment Advanced Settings")
+	![Deployment Advanced Settings](Images/deployment-advanced-settings.png?raw=true)e)
 	
 	_Deployment Advanced Settings_
 
-	>**Note:** Although this is not covered in this lab, the IntelliTrace option enables you to capture detailed trace logs of your running service in the cloud that you can download to your desktop to perform historical debugging. This can be invaluable when troubleshooting issues that occur during role start up. Note that IntelliTrace requires the .NET Framework 4 and it is only available in Visual Studio Ultimate edition.
+	>**Note:** The **Enable Remote Debugger for all roles** option allows you to attach the Visual Studio debugger to a running cloud service in Windows Azure. The remote debugging feature is available in Visual Studio Professional edition (or greater).
+
+	> The Ultimate edition of Visual Studio provides an option to enable **IntelliTrace**. With IntelliTrace, you can capture detailed trace logs of your running service in the cloud that you can download to your desktop to perform historical debugging. This can be invaluable when troubleshooting issues that occur during role start up.
 
 1. Review the Summary information. If everything is OK, click **Publish** to start the deployment process.
 
-	![Starting Deployment](./Images/start-deployment.png?raw=true "Starting Deployment")
+	![Starting Deployment](Images/start-deployment.png?raw=true)
 
 	_Starting Deployment_
 
-	>**Note:** At the top of the dialog, you will find a Target Profile drop down list. Once you configured your deployment settings, you can save them as a new profile and use it later without having to complete all the fields again.
+	>**Note:** At the top of the dialog box, you will find a Target Profile drop down list. Once you configured your deployment settings, you can save them as a new profile and use it later without having to complete all the fields again.
 
 1. If the slot that you chose is already occupied by a previous deployment, Visual Studio warns you and asks for confirmation before it replaces it. Click **Replace** if you are certain that the current deployment is no longer needed and can be overwritten. Otherwise, click **Cancel** and repeat the operation choosing a different deployment slot.
 
@@ -711,56 +751,56 @@ Then, you will use these credentials to publish the MyTODO application directly 
 
 1. By default, the log shows a descriptive message and a progress bar to indicate the status of the deployment operation. 
 
-	![Viewing summary information in the Windows Azure activity log](./Images/waz-activity-summary.png?raw=true "Viewing summary information in the Windows Azure activity log")
+	![Viewing summary information in the Windows Azure activity log](Images/waz-activity-summary.png?raw=true)
 
 	_Viewing summary information in the Windows Azure activity log_
 
-1. To view detailed information about the deployment operation in progress, double-click the green arrow on the left side of the activity log entry.
+1. To view detailed information about the deployment operation in progress, click the arrow on the left side of the activity log entry.
 Notice that the additional information provided includes the deployment slot, **Production** or **Staging**, the **Website URL**, the **Deployment ID**, and a **History** log that shows state changes, including the time when each change occurred. 
 
-	![Viewing detailed information about a deployment operation](./Images/detailed-deployment-information.png?raw=true "Viewing detailed information about a deployment operation")
+	![Viewing detailed information about a deployment operation](Images/detailed-deployment-information.png?raw=true)
 
 	_Viewing detailed information about a deployment operation_
 
 1. Wait for the deployment operation to complete, which may take several minutes. While this is happening, you can examine the **History** panel on the right side to determine the status of the deployment. For a successful deployment, it should resemble the following sequence.
 
-	![Deployment operation history log](./Images/deployment-operation-log.png?raw=true "Deployment operation history log")
+	![Deployment operation history log](Images/deployment-operation-log.png?raw=true)
 
 	_Deployment operation history log_
 
-1. Once the deployment operation is complete, in the **Windows Azure Activity Log**, click the **Website URL** link for the completed operation to open the application in your browser and ensure that it is working properly. Notice the legend in the copyright notice at the bottom of the page indicating that this is the version that you deployed with Visual Studio.
+1. Once the deployment operation is complete, in the **Windows Azure Activity Log**, click the **Website URL** link for the completed operation to open the application in your browser and ensure that it is working properly. Notice the legend in the copyright at the bottom of the page indicating that this is the version that you deployed with Visual Studio.
 
-	![Running the application deployed with Visual Studio](./Images/running-deployment.png?raw=true "Running the application deployed with Visual Studio")
+	![Running the application deployed with Visual Studio](Images/running-deployment.png?raw=true)
 
 	_Running the application deployed with Visual Studio_
 
 <a name="Exercise4" />
 ### Exercise 4: Securing Windows Azure with SSL ###
 
-In this exercise, you enable SSL to secure the myTODO application. This involves creating a self-signed certificate for server authentication and uploading it to the Windows Azure portal. With the certificate in place, you add a new HTTPS endpoint to the service model and assign the certificate to this endpoint.  You complete the exercise by deploying the application to Windows Azure one more time and then access it using its HTTPS endpoint.
+In this exercise, you will enable SSL to secure the myTODO application. This involves creating a self-signed certificate for server authentication and uploading it to the Windows Azure portal. With the certificate in place, you will add a new HTTPS endpoint to the service model and assign the certificate to this endpoint. You will complete the exercise by deploying the application to Windows Azure one more time and then access it using its HTTPS endpoint.
 
 <a name="Ex4Task1" />
 #### Task 1 – Adding an HTTPS Endpoint to the Application ####
 
-In this task, you update the service model of MyTODO to add an HTTPS endpoint and then you test the application in the compute emulator.
+In this task, you will update the service model of myTODO to add an HTTPS endpoint and then you test the application in the compute emulator.
 
-1. If it is not already open, launch **Microsoft Visual Studio Express 2012 for Web** (or later) as Administrator.
+1. If it is not already open, launch **Microsoft Visual Studio Express 2013 for Web** (or greater) as Administrator.
 
 1. In the **File** menu, choose **Open Project** and browse to **Ex4-SecuringAppWithSSL\Begin** in the **Source** folder of the lab. Select **MyTodo.sln** and click Open.
 
-1. Expand the **Roles** node in the **MyTodo** project, and then double-click the **MyTodo.WebUx** role to open its properties window.
+1. In **Solution Explorer**, expand the **Roles** node in the **MyTodo** project, and then double-click the **MyTodo.WebUx** role to open its properties window.
 
-1. Switch to the **Endpoints** tab and select the **HTTPS** option, fill Public Port with the value 443 and leave the **Name** field unchanged. Do not choose an SSL certificate at this time; you will do so later in the exercise.
+1. Switch to the **Endpoints** tab. In the existing endpoint entry, set the **Protocol** field to _HTTPS_, enter the _443_ value for the **Public Port** field and leave the **Name** field unchanged. Do not set the SSL certificate at this time; you will do that later in the exercise.
 
-	![Adding an HTTP endpoint to the application](./Images/adding-http-endpoint.png?raw=true "Adding an HTTP endpoint to the application")
+	![Adding an HTTPs endpoint to the application](Images/adding-https-endpoint.png?raw=true)
 
-	_Adding an HTTP endpoint to the application_
+	_Adding an HTTPs endpoint to the application_
 
-1. Now, choose the HTTPS endpoint as the one to use when you launch the application in the browser when you are debugging it. To do this, right-click the **MyTodo.WebUx** role in the **MyTodo** project, point to **Launch in Browser**, and ensure that only **HTTPS** is selected.
+1. Now, select the HTTPS endpoint as the one to use when you launch the application in the browser when you are debugging it. To do this, right-click the **MyTodo.WebUx** role in the **MyTodo** project, point to **Launch in Browser**, and ensure that only **HTTPS** is selected.
 
-	![Choosing the endpoint used to debug the application](./Images/choosing-debug-endpoint.png?raw=true "Choosing the endpoint used to debug the application")
+	![Selecting the endpoint used to debug the application](Images/selecting-debug-endpoint.png?raw=true)
 
-	_Choosing the endpoint used to debug the application_
+	_Selecting the endpoint used to debug the application_
 
 1. You will now test the application locally. Press **F5** to build and launch the application in the compute emulator. Notice that the browser indicates that there is a problem with the certificate. Ignore the warning and click **Continue to this website**.
 
@@ -780,7 +820,7 @@ In this task, you update the service model of MyTODO to add an HTTPS endpoint an
 
 1. After you access the home page, notice that the address bar shows that you are now accessing the HTTPS endpoint.
 
-	![Accessing the HTTPS endpoint in the compute emulator](./Images/accessing-endpoints.png?raw=true "Accessing the HTTPS endpoint in the compute emulator")
+	![Accessing the HTTPS endpoint in the compute emulator](Images/accessing-endpoints.png?raw=true)
 
 	_Accessing the HTTPS endpoint in the compute emulator_
 
@@ -791,17 +831,17 @@ In this task, you update the service model of MyTODO to add an HTTPS endpoint an
 <a name="Ex4Task2" />
 #### Task 2 – Creating a Self-Signed Certificate ####
 
-In this task, you create a self-signed certificate that you can upload to the Windows Azure Developer Portal to configure an SSL endpoint for your application.
+In this task, you will create a self-signed certificate that you can upload to the Windows Azure Developer Portal to configure an SSL endpoint for your application.
 
 >**Note:** if you are unable to use Internet Information Services (IIS) Manager in your environment, you may skip this task. Instead, you can find a self-signed certificate that you can use among the lab’s resources.
 
->To install the certificate, open Windows Explorer, browse to **Assets** in the **Source** folder of the lab and then double-click the **MyTodoCertificate.pfx** file to install the certificate using the **Certificate Import Wizard**. Use "password1" (without the quotation marks) as the password. Use default values for all other options.
+>To install the certificate, open Windows Explorer, browse to **Assets** in the **Source** folder of the lab and then double-click the **MyTodoCertificate.pfx** file to install the certificate using the **Certificate Import Wizard**. Select **Local Machine** as the store location and use "password1" (without the quotation marks) as the password. Use default values for all other options.
 
 >**Important:** You should only use this certificate to complete the steps in the exercise. Do not use the certificate in your production deployments.
 
 1. Start Internet Information Services Manager. To do this, click the Windows button and type "iis" in the search box and then click **Internet Information Services (IIS) Manager** in the list of installed programs.
 
-	![Launching Internet Information Services (IIS) Manager](./Images/iis-manager-launch.png?raw=true "Launching Internet Information Services \(IIS\) Manager")
+	![Launching Internet Information Services (IIS) Manager](Images/iis-manager-launch.png?raw=true)
 	
 	_Launching Internet Information Services (IIS) Manager_
 
@@ -817,7 +857,7 @@ In this task, you create a self-signed certificate that you can upload to the Wi
 
 	_Creating a self-signed certificate in the Internet Information Services (IIS) Manager_
 
-1. In the **Specify Friendly Name** page of the **Create Self-Signed Certificate** wizard, enter a name to identify your certificate —this can be any name, for example, **MyTodoCertificate**—, Leave and then click **OK**.
+1. In the **Specify Friendly Name** page of the **Create Self-Signed Certificate** wizard, enter a name to identify your certificate —this can be any name, for example, **MyTodoCertificate**—, and then click **OK**.
  
 	![Specifying a name for the certificate](./Images/iis-specifying-certificate-name.png?raw=true "Specifying a name for the certificate")
 	
@@ -829,7 +869,7 @@ In this task, you create a self-signed certificate that you can upload to the Wi
 
 	_Server certificates page showing the new self-signed certificate_
 
-1. In the **Export Certificate** dialog, enter the name of a file in which to store the certificate for exporting, type a password and confirm it, and then click **OK**. Make a record of the password. You will require it later on, when you upload the certificate to the portal.
+1. In the **Export Certificate** dialog box, enter the name of a file in which to store the certificate for exporting, type a password and confirm it, and then click **OK**. Take a note of the password. You will require it later on, when you upload the certificate to the portal.
 
 	![Exporting the certificate to a file](./Images/iis-exporting-certificate.png?raw=true)
 
@@ -838,7 +878,7 @@ In this task, you create a self-signed certificate that you can upload to the Wi
 <a name="Ex4Task3" />
 #### Task 3 – Adding the Certificate to the Service Model of the Application ####
 
-Previously, when you tested SSL access to the application in your local environment, you were able to do so without specifying a certificate by taking advantage of the certificate managed by the compute emulator. In this task, you configure the application to use the self-signed certificate that you created in Internet Information Services (ISS) Manager.
+Previously, when you tested SSL access to the application in your local environment, you were able to do so without specifying a certificate by taking advantage of the certificate managed by the compute emulator. In this task, you will configure the application to use the self-signed certificate that you created in Internet Information Services (ISS) Manager.
 
 1. Switch back to Visual Studio. If you closed the project, you will need to reopen it from **Ex4-SecuringAppWithSSL\Begin** in the **Source** folder of the lab.
 
@@ -846,7 +886,7 @@ Previously, when you tested SSL access to the application in your local environm
 
 1. In the **Certificates** page, click **Add Certificate**. Complete the **Name** field with a value that identifies the certificate that you are adding, for example, use _SSL_. Ensure that the **Store Location** is set to _LocalMachine_ and the **Store Name** is set to _My_ and then click the button labeled with an ellipsis, to the right of the **Thumbprint** column.
 
-	![Adding a certificate for the service](./Images/adding-certificate.png?raw=true "Adding a certificate for the service")
+	![Adding a certificate for the service](Images/adding-certificate.png?raw=true)
 
 	_Adding a certificate for the service_
 
@@ -858,13 +898,13 @@ Previously, when you tested SSL access to the application in your local environm
 
 1. Notice that the dialog populates the **Thumbprint** column with the corresponding value from the certificate.
 
-	![Adding a certificate to the service model of the application](./Images/adding-certificate-service-model.png?raw=true "Adding a certificate to the service model of the application")
+	![Adding a certificate to the service model of the application](Images/adding-certificate-service-model.png?raw=true)
 
 	_Adding a certificate to the service model of the application_
 
 1. Now, switch to the **Endpoints** tab and, in the **HTTPS** input endpoints section, expand the **SSL certificate name** drop down list and select the certificate that you added to the service in the previous step.
 
-	![Choosing a certificate to use for the HTTPS endpoint](./Images/choosing-certificate-https-endpoint.png?raw=true "Choosing a certificate to use for the HTTPS endpoint")
+	![Choosing a certificate to use for the HTTPS endpoint](Images/choosing-certificate-https-endpoint.png?raw=true)
 
 	_Choosing a certificate to use for the HTTPS endpoint_
 
@@ -873,34 +913,34 @@ Previously, when you tested SSL access to the application in your local environm
 <a name="Ex4Task4" />
 #### Task 4 – Uploading the Certificate to the Windows Azure Management Portal ####
 
-In this task, you upload the self-signed certificate created in the previous step to the Windows Azure Management Portal.
+In this task, you will upload the self-signed certificate created previously to the Windows Azure Management Portal.
 
 1. Navigate to [http://manage.windowsazure.com](http://manage.windowsazure.com) using a Web browser and sign in using your Microsoft account.
 
-1. In the **Cloud Services** page, click your cloud service's **name** to go to the service's **Dashboard**.
+1. In the **Cloud Services** page, click your cloud service's **name** to go to the service's **Quick Start** page.
 
 1. Click **Certificates** and then **Upload a certificate**.
 
-	![Adding a new Certificate](./Images/adding-a-new-certificate.png?raw=true "Adding a new Certificate")
+	![Adding a new certificate](Images/adding-a-new-certificate.png?raw=true)
 
 	_Adding a new Certificate_
 
 1. In the **Upload Certificate** dialog, click **Browse**, and then navigate to the location where you stored the certificate exported in the previous task. Enter the password specified when you exported the certificate, confirm it and then click the **Tick**.
 
-	![Creating a certificate for the service](./Images/creating-certificate-service.png?raw=true "Creating a certificate for the service")
+	![Creating a certificate for the service](Images/creating-certificate-service.png?raw=true)
 
 	_Creating a certificate for the service_
 
 <a name="Ex4Task5" />
 #### Task 5 - Verification ####
 
-In this task, you deploy the application to Windows Azure and access its HTTPS endpoint to verify that your enabled SSL successfully.
+In this task, you will deploy the application to Windows Azure and access its HTTPS endpoint to verify that your enabled SSL successfully.
 
 1. Switch back to Visual Studio. If you closed the project, you will need to reopen it from **Ex4-SecuringAppWithSSL\Begin** in the **Source** folder of the lab.
 
 1. In **Solution Explorer**, expand the **Roles** node in the **MyTodo** project, double-click the **MyTodo.WebUx** role to open its properties window, and then switch to the **Settings** tab.
 
-1. Configure the storage account connection strings. To do this, expand the **Roles** node in the **MyTodo** project and double-click the **MyTodo.WebUX** role. In the role properties window, select the **Settings** tab, select the _DataConnectionString_ setting, ensure that the **Type** is set to Connection String, and then click the button labeled with an ellipsis.
+1. Configure the storage account connection strings. To do this, expand the **Roles** node in the **MyTodo** project and double-click the **MyTodo.WebUX** role. In the role properties window, select the **Settings** tab and select _Cloud_ from the **Service Configuration** drop-down list. Then select the _Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString_ setting, ensure that the **Type** is set to _Connection String_, and then click the button labeled with an ellipsis.
 
 	![Defining storage account connection settings](./Images/defining-connection-settings.png?raw=true "Defining storage account connection settings")
 
@@ -912,19 +952,37 @@ In this task, you deploy the application to Windows Azure and access its HTTPS e
 
 	_Configuring the storage account name and account key_
 
-	>**Note:** This information is available in the **Dashboard** section of your storage account in the Windows Azure Management Portal. You used the same settings in Exercise 1, when you deployed and configured the application. In that instance, because you were running the application in Windows Azure, you updated the configuration at the Management Portal. 
+	>**Note:** This information is available in the **Dashboard** section of your storage account in the Windows Azure Management Portal. You used the same settings in Exercise 1, when you deployed and configured the application. 
 
-1. Repeat the previous steps to configure the _Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString_ setting using the same account information.
+1. Press **CTRL + S** to save the changes.
+
+1. Next, open the **Web.config** file located in the **MyTodo.WebUx** project. Update the _DefaultConnection_ entry with the following highlighted code, replacing the placeholders with the **SQL Database server**, **database name**, **login name** and **login password** of your SQL database.
+
+	<!--mark: 3-8-->
+	````XML
+	...
+	<connectionStrings>
+		<add name="DefaultConnection" providerName="System.Data.SqlClient"
+			connectionString="Server=tcp:[YOUR_DATABASE_SERVER];
+			Database=[YOUR_DATABASE_NAME];User ID=[YOUR_USER_NAME];
+			Password=[YOUR_USER_PASSWORD];
+			Trusted_Connection=False;
+			Encrypt=True;Connection Timeout=30;" />
+	</connectionStrings>
+	...
+````
+
+1. Press **CTRL + S** to save the changes.
 
 1. Publish and deploy the application once again to the Windows Azure environment using your preferred method, by choosing among the Windows Azure Developer Portal, the Windows Azure Service Management PowerShell Cmdlets, or the Windows Azure Tools for Visual Studio. Refer to Exercises 1, 2, and 3 for instructions on how to carry out the deployment with any of these methods.
 
 	>**Note:** The service configuration now specifies an additional endpoint for HTTPS, therefore, you cannot simply upgrade the current deployment and instead, you need to re-deploy the application. This is mandatory whenever you change the topology of the service.
 
-1. Once you have deployed the application, start it and wait until its status is shown as **Ready** (or the deployment is shown as **Completed** when deploying with Visual Studio).
+1. Once you have deployed the application, wait until its status is shown as **Running** (or the deployment is shown as **Completed** when deploying with Visual Studio).
 
 1. Now, browse to the HTTPS endpoint (e.g. _https://servicemytodo.cloudapp.net_). Once again, you will observe a certificate error because the certificate authority for the self-signed certificate is not trusted. You may ignore this error.
 
-	![Accessing the HTTPS endpoint in Windows Azure](./Images/accessing-https-endpoint.png?raw=true "Accessing the HTTPS endpoint in Windows Azure")
+	![Accessing the HTTPS endpoint in Windows Azure](Images/accessing-https-endpoint.png?raw=true)
 
 	_Accessing the HTTPS endpoint in Windows Azure_
 
@@ -985,14 +1043,36 @@ As an example, this task briefly shows how you set up an alias using Microsoft D
 <a name="NextSteps" />
 ## Next Steps ##
 
-TBC
+To learn more about deploying Cloud Services in Windows Azure, please refer to the following articles:
+
+**Technical Reference**
+
+This is a list of articles that expand on the technologies explained in this lab:
+
+- [Use the Windows Azure SDK Tools to Package, Run, and Deploy an Application](http://aka.ms/Jb4mkm): explores the tools in the Windows Azure SDK to run, test, debug, and fine-tune your application before you deploy it as a cloud service to Windows Azure.
+
+- [How to Monitor Cloud Services](http://aka.ms/Ifhdz0): explains how to monitor key performance metrics for your cloud services in the Windows Azure Management Portal.
+
+- [Debugging Cloud Services](http://aka.ms/Leav14): explores the different techniques provided by the Windows Azure Tools for Microsoft Visual Studio and the Windows Azure SDK to debug a Windows Azure application.
+
+- [Set Up a Remote Desktop Connection for a Role in Windows Azure](http://aka.ms/Hy6l4h): after you create a cloud service that is running your application, you can remotely access a role instance to configure settings in the virtual machine or troubleshoot issues.
+
+- [Run Startup Tasks in Windows Azure](http://aka.ms/Aoxmbq): you can use startup tasks to perform operations before a role starts. Operations that you might want to perform include installing a component, registering COM components, setting registry keys, or starting a long running process.
+
+- [Configure an SSL Certificate on an HTTPS Endpoint](http://aka.ms/Tydm1x): enumerates the steps to add an HTTPS endpoint to a role in your Windows Azure service and associate it with an SSL certificate.
+
+**Development**
+
+This is a list of developer-oriented articles related to deploying Cloud Services in Windows Azure:
+
+- [Windows Azure Management Cmdlets Reference](http://aka.ms/G9j3a3): describes the cmdlet in the .7.1 version of the Windows Azure PowerShell module. Windows Azure PowerShell is the module for Windows PowerShell that you can use to control and automate the deployment and management of your workloads in Windows Azure.
 
 ---
 
 <a name="Summary" />
 ## Summary ##
 
-By completing this hands-on lab, you learnt how to create a storage account and a cloud service at the Windows Azure Management Portal. Using the management portal, you deployed a service package that contained the application binaries, configured its storage and defined the number of instances to run. 
+By completing this hands-on lab, you learnt how to create a storage account, a SQL database and a cloud service at the Windows Azure Management Portal. Using the management portal, you deployed a service package that contained the application binaries, configured its storage and defined the number of instances to run. 
 
 You also saw how to achieve this programmatically using the Service Management API and in particular, how to use the Windows Azure Service Management cmdlets to deploy, update, and manage applications using Windows PowerShell.
 

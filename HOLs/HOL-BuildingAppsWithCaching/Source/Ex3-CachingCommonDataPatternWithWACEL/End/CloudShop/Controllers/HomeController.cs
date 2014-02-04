@@ -93,7 +93,7 @@
 
         public ActionResult Table()
         {
-            return View();
+            return this.View();
         }
     }
 }

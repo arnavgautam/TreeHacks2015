@@ -1,1 +1,4 @@
-To run the provided End solution you need to create a self signed certificate and replace the settings placeholders with your Azure account as described in the lab document in the Exercise 4.
+Before deploying to Windows Azure, you need to perform the following:
+- Create a self signed certificate and configure the certificate in the cloud service as described in Exercise 4 of the lab document
+- Update the "DiagnosticsConnectionString" from the "ServiceConfiguration.Cloud.cscfg" file with valid Storage Account values
+- Update the "DefaultConnection" connection string entry from the "Web.config" file with a valid SQL Database connection string
