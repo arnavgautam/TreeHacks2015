@@ -791,7 +791,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 	
 1. In the **Add Controller** dialog box, set the name of the controller to _TableDataController_ and click **Add**.
 
-	![Specify Name for Item dialog box](Images/specify-name-for-item-dialog-box.png?raw=true "Specify Name for Item dialog box")
+	![Add Controller dialog box](Images/add-controller-dialog-box.png?raw=true "Specify Name for Item dialog box")
 
 	_Add Controller dialog box_
 
@@ -807,7 +807,7 @@ In this task you will learn how to use WACEL as a high-level data structure used
 	using Microsoft.WindowsAzure;
 	````
 
-1. Add the following action to the **TableDataController** to retrieve the list of customers and the elapsed time of the call.
+1. Add the following action method to the **TableDataController** to retrieve the list of customers and the elapsed time of the call.
 	
 	(Code Snippet - _BuildingAppsWithCachingService - Ex3 - GetTableMethod_)
 
