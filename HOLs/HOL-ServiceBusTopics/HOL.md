@@ -5,7 +5,7 @@
 <a name="Overview"></a>
 ## Overview ##
 
-**Windows Azure Service Bus Messaging** contains a brand-new set of cloud-based, message-oriented middleware technologies including a fully-featured **Service Bus queue** with support for arbitrary content types, rich message properties, correlation, reliable binary transfer, and grouping. Another important feature is **Service Bus topics** which provide a set of publish-and-subscribe capabilities and are based on the same backend infrastructure as **Service Bus queues**. A **topic** consists of a sequential message store just like a **queue**, but allows for many concurrent and durable **subscriptions** that can independently yield copies of the published messages to consumers. Each **subscription** can define a set of rules with simple expressions that specify which messages from the published sequence are selected into the subscription.
+**Windows Azure Service Bus Messaging** contains a brand-new set of cloud-based, message-oriented middleware technologies including a fully-featured **Service Bus queue** with support for arbitrary content types, rich message properties, correlation, reliable binary transfer, and grouping. Another important feature is **Service Bus topics** which provide a set of publish-and-subscribe capabilities and are based on the same backend infrastructure as **Service Bus queues**. A **topic** consists of a sequential message store just like a **queue** but allows for many concurrent and durable **subscriptions** that can independently yield copies of the published messages to consumers. Each **subscription** can define a set of rules with simple expressions that specify which messages from the published sequence are selected into the subscription.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -84,19 +84,19 @@ To work with Service Bus topics and subscriptions, you first need to create a Wi
 
 1. Navigate to [Windows Azure Management Portal](http://manage.windowsazure.com). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
 
-1. Click **Service Bus** within the left pane.
+1. Click **Service Bus** in the left pane.
 
 	![Configuring Windows Azure Service Bus](Images/configuring-windows-azure-service-bus.png?raw=true)
  
 	_Configuring Windows Azure Service Bus_
 
-1. Create a Service Namespace. A service namespace provides an application boundary for each application exposed through the Service Bus and is used to construct Service Bus endpoints for the application. To create a service namespace, click **Create** on the bottom bar. 
+1. Create a Service Namespace. A service namespace provides an application boundary for each application exposed through the Service Bus and is used to construct Service Bus endpoints for the application. To create a service namespace, click **Create** in the bottom bar. 
 
  	![Creating a new namespace](Images/creating-a-new-namespace.png?raw=true)
  
 	_Creating a new namespace_
 
-1. In the **Create A Namespace** dialog box, enter a name for your service **Namespace** and select a **Region** for your service to run in. Service names must be globally unique as they are hosted in the cloud and accessible by those to whom you grant access.
+1. In the **Create A Namespace** dialog box, enter a name for your service **Namespace** and select a **Region** for your service to run in. Service names must be globally unique since they are hosted in the cloud and available to anyone who has been granted access.
 
  	![Create A Namespace Dialog Box](Images/create-a-namespace-dialog-box.png?raw=true)
  
@@ -104,7 +104,7 @@ To work with Service Bus topics and subscriptions, you first need to create a Wi
 
 	> **Note:** It can take a few minutes while your service is provisioned.
 
-1. Once the namespace is active, select the service's row and click **Connection Information** in the bottom menu.
+1. Once the namespace is active, select the service's row and click **Connection Information** in the bottom bar.
 
 	![Connection information](Images/connection-information.png?raw=true)
 
@@ -123,7 +123,7 @@ You have now created a new Windows Azure Service Bus namespace for this hands-on
 <a name="Ex1Task2"></a>
 #### Task 2 - Creating a Topic and Adding Subscriptions in Visual Studio ####
 
-The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including topics and subscriptions. In this task, you will use Server Explorer to connect to the Service Bus namespace you created previously, create a topic and add a subscription to it.
+Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including topics and subscriptions. In this task, you will use Server Explorer to connect to the Service Bus namespace you created previously, create a topic and add a subscription to it.
 
 1. Open **Visual Studio 2013 Express for Web** (or greater) as Administrator.
 
@@ -137,7 +137,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 1. In the **Add Connection** dialog box, make sure the **Windows Azure Service Bus** option is selected. Enter the **Namespace name**, the **Issuer Name** and the **Issuer Key** using the values obtained in the previous task. Finally, click **OK**.
 
-	> **Note:** Alternatively, you can select the **Use connection string** checkbox and provide the service bus connection string.
+	> **Note:** Alternatively, you can select the **Use connection string** check box and provide the service bus connection string.
 
 	![Add Connection dialog box](Images/add-connection-dialog-box.png?raw=true)
 
@@ -149,7 +149,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 	_Creating new topic_
 
-1. In the New Topic dialog box, enter a name for the service bus topic in the **Name** textbox. Leave the default options and click **Save**.
+1. In the New Topic dialog box, enter a name for the service bus topic in the **Name** textbox. Leave the default options selected and click **Save**.
 
 	![New Topic dialog box](Images/new-topic-dialog-box.png?raw=true)
 
@@ -161,13 +161,13 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 	_Creating new subscription_
 
-1. In the **New Subscription** dialog box, enter a name for the subscription in the **Name** textbox. Leave the default options and click **Save**.
+1. In the **New Subscription** dialog box, enter a name for the subscription in the **Name** textbox. Leave the default options selected and click **Save**.
 
 	![New Subscription dialog box](Images/new-subscription-dialog-box.png?raw=true)
 
 1. The new subscription should be added to your topic.
 
-	> **Note:** You can also use the Windows Azure Tools for Microsoft Visual Studio to send and receive test messages, as well as to define subscription rules. In the upcoming exercises, you will learn how to perform those operations from code by using the **WindowsAzure.ServiceBus** NuGet package.
+	> **Note:** You can also use Windows Azure Tools for Microsoft Visual Studio to send and receive test messages, as well as to define subscription rules. In the upcoming exercises, you will learn how to perform these operations from code by using the **WindowsAzure.ServiceBus** NuGet package.
 
 	![New subscription created](Images/new-subscription-created.png?raw=true)
 
@@ -176,7 +176,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 <a name="Ex1Task3"></a>
 #### Task 3 - Creating a Topic and Adding Subscriptions Programmatically ####
 
-In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceManager** class to create a new topic and add several subscriptions to it. For this, first you will add the necessary configurations to connect to your Service Bus namespace.
+In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceManager** class to create a new topic and add several subscriptions to it. First, you will add the necessary configurations to connect to your Service Bus namespace.
 
 1. In **Visual Studio**, open the **Begin.sln** solution file from **Source\Ex1-CreatingATopicAndAddingSubscriptions\Begin\**.
 
@@ -204,7 +204,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to **Windows Azure Service Bus** from your application. In **Solution Explorer**, right-click the **UsingTopics** project node and select **Add | Reference...**.
 
-1. In the **Reference Manager** dialog box, check the **System.Runtime.Serialization** assembly. Then, select the **Extensions** assemblies from the left pane, check **Microsoft.ServiceBus** and ensure **Microsoft.WindowsAzure.ServiceRuntime** is checked as well. Click **OK** to add the references.
+1. In the **Reference Manager** dialog box, select the **System.Runtime.Serialization** assembly. Then, select the **Extensions** assemblies from the left pane, select **Microsoft.ServiceBus** and ensure **Microsoft.WindowsAzure.ServiceRuntime** is selected as well. Click **OK** to add the references.
 
 1. Open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
@@ -216,7 +216,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 	using Microsoft.ServiceBus;
 	using Microsoft.WindowsAzure.ServiceRuntime;
 	````
-1. Add the following property to the **HomeController** class to enable the communication with the Service Bus Namespace service.
+1. Add the following property to the **HomeController** class to enable communication with the Service Bus Namespace service.
 
 	(Code Snippet - _Service Bus Topics - Ex01 - NamespaceManager Property_ - CS)
 	<!-- mark:1-1 -->
@@ -258,7 +258,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 	}
 	````
 
-1. The UI requires a way to retrieve the names of the existing topics, as well as the subscriptions of a given topic. Add the following code at the end of the **HomeController** class to retrieve the topics and subscriptions data to the view.
+1. The UI requires a way to retrieve the names of the existing topics, as well as the subscriptions of a given topic. Add the following code at the end of the **HomeController** class to retrieve the topic and subscription data from the view.
 
 	(Code Snippet - _Service Bus Topics - Ex01 - Get Topics and Subscriptions_ - CS)
 
@@ -287,7 +287,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 #### Task 4 - Verification ####
 You will now launch the updated application in the Windows Azure compute emulator to verify that you can create a topic with subscriptions.
 
-1. In **Visual Studio**, configure the cloud project **UsingTopics.Azure** as the StartUp Project. To do this, in **Solution Explorer** right-click on **UsingTopics.Azure** and then select **Set as StartUp Project**.
+1. In **Visual Studio**, configure the cloud project **UsingTopics.Azure** as the StartUp Project. To do this, in **Solution Explorer** right-click **UsingTopics.Azure** and then select **Set as StartUp Project**.
 
 	![Configuring StartUp project](Images/configuring-startup-project.png?raw=true)
 
@@ -311,7 +311,7 @@ You will now launch the updated application in the Windows Azure compute emulato
 
 	_Topic created_
 
-1. Select the new topic from the topic list. The application will retrieve the subscriptions associated to the topic from Service Bus.
+1. Select the new topic from the topic list. The application will retrieve the subscriptions associated with the topic from Service Bus.
 
 	![Retrieving topic subscriptions](Images/retrieving-topic-subscriptions.png?raw=true)
 
@@ -400,7 +400,7 @@ In this task, you will send messages to a Service Bus topic. You can send any se
 	}
 	````
 
-1. Next, you will create a **CustomMessage,** add it to the **BrokeredMessage** and then you will set the _Urgent_ and _Important_ properties with the values you receive from the UI. Finally, you will use the **TopicClient** to send the message to the topic. Add the following method at the end of the **HomeController** class.
+1. Next, you will create a **CustomMessage,** add it to the **BrokeredMessage** and set the _Urgent_ and _Important_ properties with the values you receive from the UI. Finally, you will use the **TopicClient** to send the message to the topic. Add the following method at the end of the **HomeController** class.
 
 	(Code Snippet - _Service Bus Topics - Ex02 - SendMessage_ - CS)
 	<!-- mark:1-18 -->
@@ -430,7 +430,7 @@ In this task, you will send messages to a Service Bus topic. You can send any se
 <a name="Ex2Task2"></a>
 #### Task 2 - Receiving Messages ####
 
-In the previous task, you instantiate a **TopicClient** in order to send messages to a topic. In this task you will learn how to use the **SubscriptionClient** to receive messages from a subscription and explore the properties inside the received message.
+In the previous task, you instantiated a **TopicClient** in order to send messages to a topic. In this task you will learn how to use the **SubscriptionClient** to receive messages from a subscription and explore the properties inside the received message.
 
 1. If not already opened, open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
@@ -476,7 +476,7 @@ In the previous task, you instantiate a **TopicClient** in order to send message
 	}
 	````
 
-	> **Note:** In this code you are also adding additional information of the message that you will show in the UI.
+	> **Note:** In this code you are also adding additional information from the message that you will show in the UI.
 
 1. Press **CTRL + S** to save the changes to the Controller class.
 
@@ -492,7 +492,7 @@ You will now run the application again to verify that you can send messages to a
 
 	_Sending a message_
 
-1. Check that the message arrived to the **AllMessages** subscription. You should see that the message counter of the subscription is incremented to **1**.
+1. Check that the message arrived to the **AllMessages** subscription. Notice that the message counter of the subscription has changed to **1**.
 
 	![Message arrived to subscription](Images/message-arrived-to-subscription.png?raw=true)
 
@@ -515,7 +515,7 @@ You will now run the application again to verify that you can send messages to a
 <a name="Exercise3"></a>
 ### Exercise 3: Using a Subscription Rule Filter Expression and Rule Filter Actions ###
 
-In this exercise, you will apply filters on subscriptions to retrieve only the messages relevant to that subscription. When you send a message to a topic, all the subscriptions verify if the message has a match with its own subscription rules. If there is a match, the subscription will contain a virtual copy of the message. This is useful to avoid sending multiple messages to different subscriptions. Sending a single message to a topic will distribute along different subscriptions by checking **rule expressions**. Additionally, you will learn how to apply **filter actions** to subscriptions to modify the **BrokeredMessage** properties of the messages that match a custom rule.
+In this exercise, you will apply filters to subscriptions to retrieve only the messages relevant to that subscription. When you send a message to a topic, all the subscriptions verify if the message has a match with its own subscription rules. If there is a match, the subscription will contain a virtual copy of the message. This is useful to avoid sending multiple messages to different subscriptions. Sending a single message to a topic will distribute along different subscriptions by checking **rule expressions**. Additionally, you will learn how to apply **filter actions** to subscriptions to modify the **BrokeredMessage** properties of the messages that match a custom rule.
 
 <a name="Ex3Task1"></a>
 #### Task 1 - Using a Subscription Rule Filter Expression ####
@@ -549,7 +549,7 @@ In this exercise, you will apply filters on subscriptions to retrieve only the m
 <a name="Ex3Task2"></a>
 #### Task 2 - Using a Subscription Rule Filter Action ####
 
-Additionally to rule filter expressions, you can use **rule filter actions.** With this, you can modify the properties of a **BrokeredMessage** that matches the specified rule. You will create a new subscription named _HighPriorityMessages_ containing a custom rule filter action. All messages that match the rule _Urgent = '1'_ will be sent to that subscription with the **Priority** property set to _High_.
+In addition to rule filter expressions, you can use **rule filter actions.** With this, you can modify the properties of a **BrokeredMessage** that match a specified rule. You will create a new subscription named _HighPriorityMessages_ containing a custom rule filter action. All messages that match the rule _Urgent = '1'_ will be sent to that subscription with the **Priority** property set to _High_.
 
 > **Note:** Both filter expressions and filter actions use the properties declared in the **BrokeredMessage** dictionary named **Properties**. These rules won't apply on custom objects inside the body of the **BrokeredMessage.**
 
@@ -620,19 +620,19 @@ You will now run the updated application one more time to verify that each messa
 
 1. In the **Create a Topic** section, enter _topicwithrules_ for the topic name, and click **Create**.
 
-1. Select the previously created topic from the topic list. In the **Send a message section**, type _This is an urgent message_ in the **Message** textbox, select the **Urgent** checkbox and click **Send**.
+1. Select the previously created topic from the topic list. In the **Send a message section**, type _This is an urgent message_ in the **Message** textbox, select **Urgent** and click **Send**.
  
  	![Sending an urgent message to the topic](Images/sending-an-urgent-message-to-the-topic.png?raw=true)
  
 	_Sending an urgent message to the topic_
 
-1. Check that the message is received only by the **UrgentMessages** and the **AllMessages** subscriptions. Alternatively, you can select each subscription and click **Receive** to verify that the message is retrieved.
+1. Check that the message is received only by the **UrgentMessages** and **AllMessages** subscriptions. Alternatively, you can select each subscription and click **Receive** to verify that the message is retrieved.
 
 	![Urgent message arriving to UrgentMessages and AllMessages subscriptions](Images/urgent-message-arriving.png?raw=true)
 
 	_Urgent message arriving to UrgentMessages and AllMessages subscriptions_
 
-1. Send another message to the topic, but this time, unselect the **Urgent** checkbox and select the **Mark as Important** checkbox.
+1. Send another message to the topic, but this time, clear the **Urgent** check box and select **Mark as Important**.
 
  	![Sending an important message to the topic](Images/sending-an-important-message-to-the-topic.png?raw=true)
  
@@ -653,11 +653,11 @@ To learn more about **Service Bus Topics** and **Service Bus Messaging** please 
 
 **Technical Reference**
 
-This is a list of articles that expand on the technologies explained on this lab:
+This is a list of articles that expand on the technologies explained in this lab:
 
 - [An Introduction to Service Bus Topics article on the AppFabrik Team Blog](http://aka.ms/Qfzy2g): provides an introduction to the publish/subscribe capabilities offered by Service Bus Topics.
 
-- [Service Bus Queues, Topics, and Subscriptions](http://aka.ms/Jed5rg): the new release of the Windows Azure Service Bus adds a set of cloud-based, message-oriented-middleware technologies including reliable message queuing and durable publish/subscribe messaging. These “brokered” messaging capabilities can be thought of as asynchronous, or decoupled messaging features that support publish-subscribe, temporal decoupling, and load balancing scenarios using the Service Bus messaging fabric. 
+- [Service Bus Queues, Topics, and Subscriptions](http://aka.ms/Jed5rg): the new release of the Windows Azure Service Bus adds a set of cloud-based, message-oriented middleware technologies including reliable message queuing and durable publish/subscribe messaging. These “brokered” messaging capabilities can be thought of as asynchronous or decoupled messaging features that support publish/subscribe, temporal decoupling, and load balancing scenarios using the Service Bus messaging fabric. 
 
 - [Partitioned Service Bus Queues and Topics](http://aka.ms/Sy2ssi): whereas a conventional queue or topic is handled by a single message broker and stored in one messaging store, a partitioned queue or topic is handled by multiple message brokers and stored in multiple messaging stores. This means that the overall throughput of a partitioned queue or topic is no longer limited by the performance of a single message broker or messaging store
 
@@ -667,7 +667,7 @@ This is a list of articles that expand on the technologies explained on this lab
 
 This is a list of developer-oriented articles related to **Service Bus Topics**:
 
-- [How to Use Service Bus Topics/Subscriptions](http://aka.ms/Hz4ja5): will show you how to use Service Bus topics and subscriptions. The samples are written in C# and use the .NET API.
+- [How to Use Service Bus Topics/Subscriptions](http://aka.ms/Hz4ja5): will show you how to use Service Bus topics and subscriptions. The samples are written in C# and use .NET API.
 
 - [Creating Applications that Use Service Bus Topics and Subscriptions](http://aka.ms/U0fsy9): offers an introduction to the publish/subscribe capabilities offered by Service Bus topics.
 
