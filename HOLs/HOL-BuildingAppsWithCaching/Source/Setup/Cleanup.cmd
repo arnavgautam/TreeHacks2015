@@ -9,6 +9,8 @@ for /f "tokens=2,*" %%a in ('reg query "HKEY_CURRENT_USER\Software\Microsoft\Win
 
 DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\Visual C#\My Code Snippets\BuildingAppsWithCachingServiceEx*.snippet" 2>NUL
 DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\XML\My Xml Snippets\BuildingAppsWithCachingServiceEx*.snippet" 2>NUL
+DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\Visual Web Developer\My CSS Snippets\BuildingAppsWithCachingServiceEx*.snippet" 2>NUL
+DEL "%MyDocuments%\Visual Studio 2013\Code Snippets\Visual Web Developer\My HTML Snippets\BuildingAppsWithCachingServiceEx*.snippet" 2>NUL
 
 echo Lab Code Snippets have been removed!
 PAUSE
