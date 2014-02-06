@@ -14,6 +14,7 @@ echo Setup Options
 echo =============
 echo.
 echo 1. Execute setup scripts.
+echo    WARNING: The setup could fail and the Hands-on Lab might not work properly if you don't have all the prerequisites installed.
 echo.
 echo 2. Exit.
 echo.
