@@ -14,7 +14,7 @@ In this hands-on lab, you will learn how to:
 
 - Customize and generalize a virtual machine
 - Save the image to the image library
-- Provision New Virtual Machines based off of the image
+- Provision new virtual machines based on the image
 
 <a name="Prerequisites" />
 ### Prerequisites ###
@@ -136,7 +136,7 @@ In this exercise you will customize the virtual machine by enabling the Web Serv
 1. Run the following command to list all the service names of your subscription.
 
 	````PowerShell
-	Get-AzureService | Select ServiceName
+	Get-AzureService | select ServiceName
 	````
 	>**Note:** You should see in the list the service name corresponding to the virtual machine.
 
@@ -148,7 +148,7 @@ In this exercise you will customize the virtual machine by enabling the Web Serv
 	$dnsName = (Get-AzureVM -ServiceName $cloudSvcName -Name $vmname).DNSName.split('/')[2]
 	````
 
-1. Now execute the following command to obtain the public port of the remote PowerShell endpoint created when the virtual machine was provisioned.
+1. Run the following command to obtain the public port of the remote PowerShell endpoint created when the virtual machine was provisioned.
 
 	````PowerShell
 	$winRmHTTPsPort = (Get-AzureVM -ServiceName $cloudSvcName -Name $vmname | Get-AzureEndpoint -Name "WinRmHTTPs").Port
@@ -195,7 +195,7 @@ The System Preparation (Sysprep) tool is used to change Windows images from a sp
 
 1. The Sysprep utility will run in the background. Type _exit_ to leave the remote session.
 
-	>**Note:** When running _exit_ command you might get an access denied error. This is because sysprep is already running. Ignore the error and continue.
+	>**Note:** When running the _exit_ command you might get an **access denied** message. This is because sysprep is already running. Ignore the error and continue.
 
 <a name="Exercise2" />
 ### Exercise 2: Saving an Image in the Image Library ###
@@ -236,7 +236,7 @@ In this exercise you are going to create a new virtual machine using the image y
 1. The following command will return the current list of all operating systems in the gallery. Do not proceed after this step if **custombaseimg** does not appear in the return value.
 
 	````PowerShell
-	Get-AzureVMImage | Select ImageName
+	Get-AzureVMImage | select ImageName
 	````
 
 	![Get-AzureVMImage Cmdlet Output](Images/get-azurevmimage-cmdlet-output.png?raw=true)
@@ -276,9 +276,6 @@ In this exercise you are going to create a new virtual machine using the image y
 
 1. Open a web browser and navigate to the DNS address obtained in the previous step.
 
-
-
-
 	![IIS default web page](Images/ie-iis.png?raw=true)
 
 	_IIS default web page_
@@ -304,7 +301,7 @@ This is a list of articles that expand on the technologies explained in this lab
 
 - [How to use PowerShell to set up a SQL Server virtual machine in Windows Azure](http://aka.ms/ehtolo): In this tutorial, you can learn how to create multiple SQL Server virtual machines in the same Cloud Service by using the PowerShell cmdlets.
 
-- [Add a Virtual Machine to a Virtual Network](http://aka.ms/pej5x8): This tutorial walks you through the steps to create a Windows Azure storage account and virtual machine (VM) to add to a virtual network.
+- [Add a Virtual Machine to a Virtual Network](http://aka.ms/pej5x8): This tutorial walks you through the steps to create a Windows Azure storage account and virtual machine to add to a virtual network.
 
 - [Windows Azure Virtual Networks](http://aka.ms/tj1lj3): Windows Azure Virtual Network provides you with the capability to extend your network into Windows Azure and treat deployments in Windows as a natural extension of your on-premises network.
 
