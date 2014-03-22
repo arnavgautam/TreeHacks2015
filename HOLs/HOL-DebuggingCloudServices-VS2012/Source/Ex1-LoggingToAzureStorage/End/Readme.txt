@@ -1,1 +1,0 @@
-Before runing the End solution please make sure you set **FabrikamInsuranceService** as StartUp Project.
