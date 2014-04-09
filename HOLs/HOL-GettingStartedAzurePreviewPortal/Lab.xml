@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>GettingStartedAzurePreviewPortal</Id>
+  <Technologies>
+    <Technology>TBC</Technology>
+  </Technologies>
+  <Author>
+    <Blog></Blog>
+    <Email></Email>
+    <Name></Name>
+  </Author>
+  <Description>
+    In this hands-on lab ...
+  </Description>
+  <Document ConversionType="Html">.\HOL.md</Document>
+  <Title>Getting Started with the Azure Preview Portal</Title>
+  <Version>1.0.0</Version>
+  <Source>.\Source</Source>
+  <CustomProperties>
+    <Property Name="ContentType" Value="VS2013" />
+  </CustomProperties>
+</Lab>
