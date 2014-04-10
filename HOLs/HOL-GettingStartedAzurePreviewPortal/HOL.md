@@ -6,39 +6,33 @@
 <a name="Overview" />
 ## Overview ##
 
-TBC
+The new Azure Preview portal is an all-in-one, work-anywhere experience. Now you can manage websites, databases, and Visual Studio Online team projects in a reimagined UX you personalize around your work. This unified hub radically simplifies building, deploying, and managing your cloud resources. Imagine a single easy-to-use console built just for you —your team, your projects. Now craft your very own best-in-class toolset by adding fully integrated capabilities from Microsoft, partners, and the open source community. Organize your portal to custom-fit your work, and your workstyle. Stay on top of the things that matter most by pinning them to your **Startboard**. Resize parts to show more or less data. Drill in for all the details. And see insights (and opportunities) across apps and resources. New components include the following:
+
+* **Simplified Resource Management**. Rather than managing standalone resources such as Microsoft Azure Web Sites, Visual Studio Projects or databases, customers can now create, manage and analyze their entire application as a single resource group in a unified, customized experience, greatly reducing complexity while enabling scale. Today, the new Azure Manager is also being released through the latest Azure SDK for customers to automate their deployment and management from any client or device. 
+
+* **Integrated billing**. A new integrated billing experience enables developers and IT pros to take control of their costs and optimize their resources for maximum business advantage.
+
+* **Gallery**. A rich gallery of application and services from Microsoft and the open source community, this integrated marketplace of free and paid services enables customers to leverage the ecosystem to be more agile and productive.
+
+* **Visual Studio Online**. Microsoft announced key enhancements through the Microsoft Azure Preview Portal, available Thursday. This includes Team Projects supporting greater agility for application lifecycle management and the lightweight editor code-named “Monaco” for modifying and committing Web project code changes without leaving Azure. Also included is Application Insights, an analytics solution that collects telemetry data such as availability, performance and usage information to track an application’s health. Visual Studio integration enables developers to surface this data from new applications with a single click.
 
 <a name="Objectives" />
 ### Objectives ###
 In this hands-on lab, you will learn how to:
 
-- TBC
+- Create a **Web Site + DB**
+- Set up continuous integration using Team Project
+- Customize and organize your Startboard
+- [Optional] Create a new Resource Group using Azure Resource Manager (PowerShell)
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
 
 The following is required to complete this hands-on lab:
 
-- [Visual Studio Express 2013 for Web][1] or greater
+- [Visual Studio 2013 Ultimate][1]
 
 [1]: http://www.microsoft.com/visualstudio/
-
-<a name="Setup" />
-### Setup ###
-In order to run the exercises in this hands-on lab, you will need to set up your environment first.
-
-1. Open a Windows Explorer window and browse to the lab's **Source** folder.
-1. Right-click on **Setup.cmd** and select **Run as administrator** to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.
-1. If the User Account Control dialog is shown, confirm the action to proceed.
-
-> **Note:** Make sure you have checked all the dependencies for this lab before running the setup.
-
-<a name="CodeSnippets" />
-### Using the Code Snippets ###
-
-Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of this code is provided as Visual Studio Code Snippets, which you can access from within Visual Studio 2013 to avoid having to add it manually. 
-
->**Note**: Each exercise is accompanied by a starting solution located in the **Begin** folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and may not  work until you have completed the exercise. Inside the source code for an exercise, you will also find an **End** folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
 
 ---
 
@@ -46,22 +40,18 @@ Throughout the lab document, you will be instructed to insert code blocks. For y
 ## Exercises ##
 This hands-on lab includes the following exercises:
 
-1. [A](#Exercise1)
-1. [B](#Exercise2)
+1. [Creating a Web Site + DB](#Exercise1)
+1. [Setting Up Continuous Integration using Team Project](#Exercise2)
+1. [[Optional] Creating a Resource Group using Azure Resource Manager](#Exercise3)
 
-Estimated time to complete this lab: **[TBC] minutes**
+Estimated time to complete this lab: **30 minutes**
 
 >**Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
 
 <a name="Exercise1" />
-### Exercise 1: A ###
+### Exercise 1: Creating a Web Site + DB ###
 
-In this exercise, ...
-
-<a name="Ex1Task1" />
-#### Task 1 – A ####
-
-In this task 
+In this exercise...
 
 1. Open **Visual Studio Express 2013 for Web** .
 
@@ -71,7 +61,6 @@ In this task
 
 <a name="Ex3Task1" />
 #### Task 1 - Downloading Resource Group Tempalte ####
-
 
 1. Open Azure Powershell console.
 
