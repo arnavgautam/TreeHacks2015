@@ -49,12 +49,115 @@ Estimated time to complete this lab: **30 minutes**
 >**Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
 
 <a name="Exercise1" />
-### Exercise 1: Creating a Web Site + DB ###
+### Exercise 1: Creating a Web Site + SQL ###
 
-In this exercise...
+Historically, managing a resource (a user-managed entity such as a database server, database or web site,) in Microsoft Azure required you to perform operations against one resource at a time. If you had a complex application made up of multiple resources, management of this application became a complex task. In the Microsoft Azure preview portal you can create resource groups to manage all your resources in an application together. Resource group is a new concept in Azure that serves as the lifecycle boundary for every resource contained within it. 
 
-1. Open **Visual Studio Express 2013 for Web** .
+In this exercise, you will learn how to create a new Web Site and a SQL Server using the Azure Preview portal.
 
+<a name="Ex1Task1" />
+#### Task 1 – Creating a Website + SQL ####
+
+In this task, you will login to the Azure Preview portal and create a new Web Site and SQL Server.
+
+1. Open a browser and navigate to http://portal.azure.com. Log in using your credentials.
+
+1. The first thing you will see is the **Startboard**. This is your home page, where you can see dynamic data and all the details you care about your resources. You can customize it as you see fit.
+
+	> **Note:** You can right click on the tiles of the startboard to customize it. You can pin or unpin tiles and change their size.
+	
+	![Startboard](Images/startboard.png?raw=true)
+	
+	_Your Home Page: The Startboard_
+
+1. On the left side, you will see the **Hub Menu**. This is your navigation menu to access all of your resources and options. Click the **New** button at the bottom of the **Hub Menu**.
+
+	![Creating a new resource](Images/creating-a-new-resource.png?raw=true)
+	
+	_Creating a new resource_
+
+1. A panel is displayed with different options. You can choose one of the options to create a new resource. In this case, you will select **Website + SQL**.
+
+	![Selecting Website + SQL](Images/selecting-website-sql.png?raw=true)
+	
+	_Selecting Website + SQL_
+	
+	A _blade_ is opened. Blades are your entry point to discover insights, perform actions, and build applications. This particular _blade_ collects input from you to create a new **Website + SQL**.
+
+	> **Note:** For more information about _blades_, you can click the **Tour** tile on your **Startboard**. On the **Tour** blade, scroll down to the bottom and click **Learn more**. A new blade is opened with further information. You can continue the **Tour** to learn the basics of Blades, Commands, Lenses and more.
+	
+	> ![Tour](Images/tour.png?raw=true)
+
+1. When you are create an application that consists of a few resources working together (like in this example, a Website + SQL) it is always created in its own resource group, so you can manage the lifecycle of all related assets using the resource group. Choose a name for the **Resource Group**, for example _MyResourceGroup_, and click the **Website** option.
+
+	> **Note:** Resources group names can only contain letters, numbers, periods, underscores and dashes.
+
+	![New Resource Group](Images/new-resource-group.png?raw=true)
+		
+	_New Resource Group_
+
+1. Another blade is opened which displays the options to create a new **Website**. Select an URL for your Website, for example _mynewazurewebsite_. Take into account that this name must be unique. Click the **Web Hosting Plan** option.
+
+	![Changing the Web Hosting Plan](Images/changing-the-web-hosting-plan.png?raw=true)
+	
+	_Changing the Web Hosting Plan_
+
+1. In the _Choose your pricing tier_ blade, choose the hosting plan that fits your needs and click **Select**. Web hosting plans represent a set of features and capacity that you can share across your web sites. Web hosting plans support a few pricing tiers (e.g. Free, Shared, Basic, and Standard) where each tier has its own capabilities. There are a couple of difference between these tiers. Plans in the Free and Shared tier provide sites with a shared infrastructure, meaning that your sites share resources with other customers' sites. Web hosting plans in the Basic and Standard tier provider sites with a dedicated infrastructure, meaning that only the site or sites you choose to associate with this plan will be running on those resources. At this tier you can configure your web hosting plan to use one or more virtual machine instances.
+
+	> **Note:** For all tiers except 'Shared' you pay one price for the web hosting plan based on the tier and your chosen capacity and there is no additional charge for each site that uses the plan. Shared web hosting plans are different. Due to the nature of the shared infrastructure you are charged separately for each site in the plan. 
+	
+	![Selecting a Web Hosting Plan](Images/selecting-a-web-hosting-plan.png?raw=true)
+	
+	_Selecting a Web Hosting Plan_
+
+1. Click **OK** to go back to the **Website** blade. You can change or leave the default location for the Website. Click **OK** to go to the previous blade.
+
+1. Click **Database** to change the settings for your new database.
+
+	![Changing your database settings](Images/changing-your-database-settings.png?raw=true)
+
+	_Changing your database settings_
+
+1. Set a name for the database, e.g. _mywebsite-db_, and click the **Server** option.
+
+	![Database Settings](Images/database-settings.png?raw=true)	
+	
+	_Database Settings_
+
+
+1. Enter the **server admin login** and a **password**. Click **OK** to go back to the Database blade and click **OK** to close it.
+	
+	![Configuring the Database Server](Images/configuring-the-database-server.png?raw=true)
+
+	_Configuring the Database Server_
+	
+1. Now you are ready to create your resource group. Click **Create**.
+
+	![Configured Resource Group](Images/configured-resource-group.png?raw=true)
+	
+	_Configured Resource Group_
+
+1. You can see when the new resource group is created by accessing the **Notifications**. On the **Hub Menu**, click **Notifications**.
+
+	![Notifications](Images/notifications.png?raw=true)
+	
+	_Notifications_
+	
+1. Once completed, you can click the notification to open the resource group blade.
+
+	![Created Resource Group Notification](Images/created-resource-group-notification.png?raw=true)
+	
+	_Created Resource Group Notification_
+
+1. You created your new resoure group, which includes a Website and SQL Server database.
+
+	![New Resource Group Blade](Images/new-resource-group-blade.png?raw=true)
+	
+	_New Resource Group Blade_
+
+<a name="Exercise2" />
+### Exercise 2 :  ###
+	
 <a name="Exercise3" />
 ### Exercise 3 : Creating Azure Environments using Azure Resource Manager ###
 
