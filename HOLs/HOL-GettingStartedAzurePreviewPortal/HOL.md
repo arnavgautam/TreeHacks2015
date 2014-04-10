@@ -62,6 +62,7 @@ In this exercise...
 <a name="Ex3Task1" />
 #### Task 1 - Downloading Resource Group Tempalte ####
 
+In this task you will......
 1. Open Azure Powershell console.
 
 1. Execute the following command to change from the _Azure_ module to the _Azure Resource Manager_ module.
@@ -74,7 +75,7 @@ In this exercise...
 	
 	_Switch-AzureMode command_
 	
-	 >**Note**: The AzureResourceManager module, introduced in Azure PowerShell version 0.8.0, lets you manage your resources in an entirely new way. Instead of creating individual resources and trying to use them together, begin by imagining the service you want to create, such as a web portal, a blog, a photo gallery, a commerce site, or a wiki.
+	 >**Note**: The **AzureResourceManager** module, introduced in Azure PowerShell version 0.8.0, lets you manage your resources in an entirely new way. Instead of creating individual resources and trying to use them together, begin by imagining the service you want to create, such as a web portal, a blog, a photo gallery, a commerce site, or a wiki.
 
 	>Select a resource group template for the service, including one of dozens in the Azure template gallery, or create your own. Each template provides a model of a complex service, complete with the resources that you need to support the service. Then use the template to create a resource group and its resources, and deploy and manage the related resources as a unit.
 
@@ -88,7 +89,7 @@ In this exercise...
 	Add-AzureAccount
 	````
 
-1. Enter your credentials and click sign-in
+1. In the **Sign-in to Windows Azure** dialog box, eter your **Microoft Account** and **Password** and click sign-in
 
 	![Sign in to Windows Azure dialog box](Images/sign-in-to-windows-azure-dialog-box.png?raw=true "Sign in to Windows Azure dialog box")
 	
@@ -100,6 +101,8 @@ In this exercise...
 	
 	_Add-AzureAccount command_
 	
+	>**Note**: The **Set-AzureSubscription** cmdlet configures common settings including subscription ID, management certificate, and custom endpoints. The settings are stored in a subscription data file in the user’s profile or in a user specified file. Multiple subscription data sets are supported and identified by a subscription name. To select a subscription and make it current, use the Select-AzureSubscription cmdlet. 
+	
 1. Execute the following command to get a list of resources from the group gallery templates
 
 	````PowerShell	
@@ -108,46 +111,76 @@ In this exercise...
 
 	>**Note**: A resource group template is a JSON string that defines a resource group for a complex entity, such as a web portal, a blog, a photo gallery, a commerce site, or a wiki. The template defines the resources that are typically needed for the entity, such as web sites, database servers, databases and storage accounts, and includes parameters for user-defined values, such as the names and properties of the resources. To create a resource group with a template, just identify the template and provide values for its parameters.
 
-1. Use the following command to review the gallery template and it's properties.
+1. You can review the gallery template and its properties, such as icons and screenshots. Use the **Get-AzureResourceGroupGalleryTemplate** command to review the **Microsoft.WebSiteSQLDatabase.0.1.0-preview1** template and it's properties.
 
 	````PowerShell
-	Get-AzureResourceGroupGalleryTemplate -IdentityMicrosoft.WebSiteSQLDatabase.0.1.0-preview1	
+	Get-AzureResourceGroupGalleryTemplate -Identity Microsoft.WebSiteSQLDatabase.0.1.0-preview1	
 	````
 
 	![Get-AzureRourceGroupGalleryTemplate](Images/get-azurerourcegroupgallerytemplate.png?raw=true "Get-AzureRourceGroupGalleryTemplate")
 	
 	_Get-AzureRourceGroupGalleryTemplate command_
 	
-1. Download the simple web site creation template.
+1.  To save a gallery template as a JSON file, use the **Save-AzureResourceGroupGalleryTemplate** cmdlet. Download the  **Microsoft.WebSiteSQLDatabase.0.1.0-preview1** template executing the following command.
 
 	````PowerShell
-	Save-AzureResourceGroupGalleryTemplate -Identity Microsoft.WebSiteSQLDatabase.0.1.0-preview1 -Path G:\Azure\Templates	
+	Save-AzureResourceGroupGalleryTemplate -Identity Microsoft.WebSiteSQLDatabase.0.1.0-preview1 -Path [FILE-PATH]	
 	````
 	![Save-AzureResourceGroupGalleryTeamplate](Images/save-azureresourcegroupgalleryteamplate.png?raw=true "Save-AzureResourceGroupGalleryTeamplate")
 	
 	_Save-AzureResourceGroupGalleryTeamplate command_
-	
-	>**Note**: The Save-AzureResourceGroupGalleryTemplate cmdlet to save the Microsoft.PhotoGallery.0.1.0-preview1 gallery template as a JSON file in the path that you specify.
 
-TODO:  Introduce some sections of the file and insert some field values
-	
+1. Open the File Explorer in the path were you saved the template and check that the file was correctly saved.
+
 <a name="anchor-name-here" />
 #### Task 2 - Creating a Resource Group from a Custom Template ####
 
 In this task you will update the JSON file from the Simple website template and use the Azure cmdlets to create the new Resource Group in Microsoft Azure.
 
-1. Open the JSON file you downloaded in the previous task in Visual Studio and locate the **resources** section with **name** _paramters('database')_
+1. Open the JSON file you downloaded in the previous task in Visual Studio and locate the **parameters** section.
 
-	![Resources section in template.json file](Images/resources-section-in-templatejson-file.png?raw=true "Resources section in template.json file")
+1. You will create your custom template by updating the websites with SQL Database template to use the site name parameter with the _\_db_ prefix as the database name. To do so, remove tha parameter _databaseName_ as it is no longer required.
+
+1. Locate the **resources** section with type _databases_ and replace the **name** propery with the following code
+
+	<!-- mark:4 -->
+	````JSON
+	...
+	resources": [
+        {
+          "name": "[concat(parameters('siteName'), '_db')]",
+          "type": "databases",
+          "location": "[parameters('serverLocation')]",
+          ...
+        },
+	...
+	````
+1. Locate the **resource** section with **type** _config_ and replace the **ConnectionString** property with the following
+
+	<!-- mark:12 -->
+	````JSON
+	"resources": [
+        {
+          "apiVersion": "2014-04-01",
+          "type": "config",
+          "name": "web",
+          "dependsOn": [
+            "[concat('Microsoft.Web/Sites/', parameters('siteName'))]"
+          ],
+          "properties": {
+            "connectionStrings": [
+              {
+                "ConnectionString": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]",
+                "Name": "DefaultConnection",
+                "Type": 2
+              }
+            ]
+          }
+        }
+	````
+
+	>**Note**: Notice that we only replaced the **parameters('databaseName')** with **parameters('siteName'), '_db'** in the connection string.
 	
-	_Resources section in template.json file_
-
-1. Update the properties of the resource to create a Business edition with maxSizeBytes of 10 GB. The properties section should look like the one below.
-
-	![Properties section update in template.json](Images/properties-section-update-in-templatejson.png?raw=true "Properties section update in template.json")
-	
-	_Properties section update in template.json_
-
 1. Save the file and switch back to Azure PowerShell.
 
 1. Switch to **AzureMode** using the following command
@@ -177,7 +210,7 @@ In this task you will update the JSON file from the Simple website template and 
 	> **Note**: When you enter the command, you are prompted for the missing mandatory parameter, administratorLoginPassword. And, when you type the password, the secure string value is obscured. This strategy eliminates the risk of providing a password in plain text.
 	
 1. Enter the **administratorLoginPassword** and press **Enter**.
-	
+
 	![New-AzureResourceGroup](Images/new-azureresourcegroup.png?raw=true "New-AzureResourceGroup")
 	
 	_New-AzureResourceGroup command_
