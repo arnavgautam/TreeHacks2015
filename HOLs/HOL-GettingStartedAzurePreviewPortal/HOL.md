@@ -161,11 +161,15 @@ In this task, you will login to the Azure Preview portal and create a new Web Si
 <a name="Exercise3" />
 ### Exercise 3 : Creating Azure Environments using Azure Resource Manager ###
 
+Azure Resource Manager introduces an entirely new way of thinking about your Azure resources. Instead of creating and managing individual resources, you begin by imagining a complex service, such as a blog, a photo gallery, a SharePoint portal, or a wiki. You use a template -- a resource model of the service -- to create a resource group with the resources that you need to support the service. Then, you can manage and deploy that resource group as a logical unit.
+
+In this exercise, you learn how to use Azure PowerShell with Resource Manager for Microsoft Azure. You will go through the process of downloading, updating and creating a resource group for an Web site with a SQL database.
 
 <a name="Ex3Task1" />
 #### Task 1 - Downloading Resource Group Tempalte ####
 
-In this task you will......
+In this task you will you will use Azure PowerShell for Azure Resources to list the available templates from the gallery and then download one JSON template for creating a Web site and a SQL Database.
+
 1. Open Azure Powershell console.
 
 1. Execute the following command to change from the _Azure_ module to the _Azure Resource Manager_ module.
@@ -349,8 +353,6 @@ In this task you will update the JSON file from the Simple website template and 
 	![Delete button](Images/delete-button.png?raw=true "Delete button")
 	
 	_Delete button_
-
-
 
 ---
 
