@@ -31,7 +31,7 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Visual Studio 2013 Ultimate][1]
-- [Windows Azure PowerShell][2]
+- [Azure PowerShell][2]
 
 [1]: http://www.microsoft.com/visualstudio/
 [2]: http://go.microsoft.com/fwlink/p/?linkid=320376&amp;clcid=0x409
