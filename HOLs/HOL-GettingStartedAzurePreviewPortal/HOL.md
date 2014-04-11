@@ -156,7 +156,163 @@ In this task, you will login to the Azure Preview portal and create a new Web Si
 	_New Resource Group Blade_
 
 <a name="Exercise2" />
-### Exercise 2 :  ###
+### Exercise 2 :  Creating a team project and using Continuous Deployment
+
+In this exercise you will create a new a new Team Project, and enable continuous integration in the project. Therefore when you commit any changes to the project repository, an automatic deployment will be fired. Additionally, you will see how to update the code from within the portal and commit those changes, triggering an automatic build.
+
+<a name="Ex2Task1" />
+#### Task 1 - Creating a team project ####
+
+In this task you will learn how to create a **Team Project** using the new Azure Portal.
+
+1. In the Azure Portal, click **New** and select **Team Project**.
+  
+	![Creating a new Team Project](Images/creating-a-new-team-project.png?raw=true)
+ 
+1. In the **New Team Project** blade, enter a name for the Team Project.
+
+	![New Team Project Blade](Images/new-team-project-blade.png?raw=true)
+ 
+1. Click the **Version Control** tab to see the different options you have. 
+
+	![Checking the Version Control options](Images/checking-the-version-control-options.png?raw=true)
+
+1. Select **GIT** and click **Select**. Additionally, you can check the available **Process Template** options.
+
+1. Click in the **Account** tab, and the click **Create New**. Enter the name for the new visualstudio.com account. Click **OK** to confirm the settings.
+ 
+	![Creating a new Visual Studio Online Account](Images/creating-a-new-visual-studio-online-account.png?raw=true)
+
+1. Enter the name for the new _.visualstudio.com_ account. For example, _MyTestTeamProject_. Click **OK** to confirm the account, and then click **Create** to create the team project.
+ 
+1. Wait till the new **Team Project** is created. You will see the summary of it.
+ 
+	![The Team Project is Created](Images/the-team-project-is-created.png?raw=true)
+
+<a name="Ex2Task2" />
+#### Task 2 - Enabling Continuous Integration ####
+
+In this task, ...
+
+1. In the Azure portal, click your pinned team project, and scroll down the blade to see the **Set up Continuous Deployment** part. Click it.
+ 
+	![Setting Up Continuous Deployment](Images/setting-up-continuous-deployment.png?raw=true)
+
+1. Click the **Website** tab and choose the website you created in a previous exercise. Click **Select** to continue.
+
+	![Selecting the Website to Deploy](Images/selecting-the-website-to-deploy.png?raw=true)
+ 
+1. In the **Repository** tab, select your repository and click **Select**.
+
+	![Selecting a Repository](Images/selecting-a-repository.png?raw=true)
+ 
+1. Lastly, in the **Branch** tab make sure that the **default** branch is selected and click **Select**.
+
+	![The deployment is configured](Images/the-deployment-is-configured.png?raw=true)
+ 
+1. Click create in the **Set up deployment** blade.
+
+	Notice the message that says that a build will begin after code is added to your project.
+ 
+1. Click the **Add code to your repository** part.
+ 
+	![Adding code to your repository](Images/adding-code-to-your-repository.png?raw=true)
+
+1. Click the **Clone** command. You will get information about how to clone your repository.
+ 
+	![Getting Information on how to clone the repository](Images/getting-information-on-how-to-clone-the-repos.png?raw=true)
+
+1. Go back to the **Team Project** blade and click the **Open in Visual Studio** part. This will add the team project automatically to Visual Studio.
+
+1. In Team Explorer double-click the added team project, and click **Clone** Repository.
+
+1. You can modify the local path of your repository to the folder of your choice. Click **Clone**.
+
+	![Cloning Your Repository](Images/cloning-your-repository.png?raw=true)
+ 
+1. Once the repository is cloned successfully, at the bottom of the **Team Explorer** pane, click **New** in the Solutions section.
+
+	![Creating a New Solution in Source Control](Images/creating-a-new-solution-in-source-control.png?raw=true)
+ 
+1. Select **Visual C# / Web / ASP.NET Web Application**. Enter _MyTestWebApplication_ as the Solution Name, and click **OK**. Notice that the **Add to Source Control** option is selected by default.
+
+	![Creating a new Project](Images/creating-a-new-project.png?raw=true)
+ 
+1. Select **MVC** in the **New ASP.NET Project** dialog, and click **OK**.
+
+	![Selecting the ASP.NET Project type](Images/selecting-the-aspnet-project-type.png?raw=true)
+ 
+1. Your project will be created. Press **CTRL+SHIFT+B** to build it.
+
+1. In the **Team Explorer** pane, click **Changes**.
+Enter a commit message and verify that all the solutions files are included in the commit. Click Commit.
+ 
+	![Commiting the Changes](Images/commiting-the-changes.png?raw=true)
+
+1. Once the commit is created locally, click **Sync** to share these changes with the server.
+ 
+1. In **Unsynced Commits**, you will see the list of local commits that will be uploaded to the server. Click the **Sync** button to do so. 
+
+	![Syncing the changes in the server](Images/syncing-the-changes-in-the-server.png?raw=true)
+
+1. When the syncing is complete, go to the Azure portal. Open your team project part. After some time you will see that the commit you made is automatically deployed.
+
+	![Checking the status of the team project](Images/checking-the-status-of-the-team-project.png?raw=true)
+ 
+1. Click the **Latest Build** part. This will display details of the automatic deploy.
+
+	![Latest build Details](Images/latest-build-details.png?raw=true)
+
+1. In this blade, click the **Browse** command, to go to the deployed website.
+ 
+	![Browsing the deployed Site](Images/browsing-the-deployed-site.png?raw=true)
+
+<a name="Ex2Task3" />
+#### Task 3 - Updating the code from the Azure Portal ####
+
+In this task, ...
+
+1. In the Azure Portal, click your pinned Team Project.
+
+1. In the team project blade, click the Branches part, where the commits are shown.
+
+1. In the **Repository** blade, click the **Code** part.
+
+	![Editing the Code of the Team Project](Images/editing-the-code-of-the-team-project.png?raw=true)
+
+1. In the code blade, browse to _MyTestWebApplication\MyTestWebApplication\Views\Home\Index.cshtml_ file.
+
+	![editing a file](Images/editing-a-file.png?raw=true)
+ 
+	Notice that the code of the file will be displayed in a new blade.
+
+1. Click **Edit** to modify the code online. Update the line where the **H1** tags are, replacing _“ASP.NET”_ with _“My Updated App from the portal”_.
+ 
+	![The edited Index file](Images/the-edited-index-file.png?raw=true)
+
+1. Click the **Commit** command, to commit your changes.
+In the **Commit** blade, enter a comment and click **OK**.
+ 
+	![Commiting the Changes from the portal](Images/commiting-the-changes-from-the-portal.png?raw=true)
+
+1. Go back to the **Team Project** blade and note that an additional commit has been generated when we edited the code from the portal.
+
+	![New commit generated](Images/new-commit-generated.png?raw=true)
+ 
+1. In the **Build Definitions** part, you can see the progress of the build that was triggered due to the commit.
+ 
+	![Build Definitions blade](Images/build-definitions-blade.png?raw=true)
+
+1. In the **Latest Build** part, click the link of the deployed website to open it.
+
+	![Opening the website details blade](Images/opening-the-website-details-blade.png?raw=true)
+ 
+1. In the **Website** blade, click the **Browse** command to open the WebSite.
+ 
+	![The updated website](Images/the-updated-website.png?raw=true)
+
+	Notice that the Page has been updated.
+
 	
 <a name="Exercise3" />
 ### Exercise 3 : Creating Azure Environments using Azure Resource Manager ###
