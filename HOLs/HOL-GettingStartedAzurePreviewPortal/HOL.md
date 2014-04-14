@@ -380,7 +380,7 @@ In the **Commit** blade, enter a comment and click **OK**.
 <a name="Exercise3" />
 ### Exercise 3 : Creating Azure Environments using Azure Resource Manager ###
 
-Azure Resource Manager introduces an entirely new way of thinking about your Azure resources. Instead of creating and managing individual resources, you begin by imagining a complex service, such as a blog, a photo gallery, a SharePoint portal, or a wiki. You use a template -- a resource model of the service -- to create a resource group with the resources that you need to support the service. Then, you can manage and deploy that resource group as a logical unit.
+**Azure Resource Manager** introduces an entirely new way of thinking about your Azure resources. Instead of creating and managing individual resources, you begin by imagining a complex service, such as a blog, a photo gallery, a SharePoint portal, or a wiki. You use a template -- a resource model of the service -- to create a resource group with the resources that you need to support the service. Then, you can manage and deploy that resource group as a logical unit.
 
 In this exercise, you learn how to use Azure PowerShell with Resource Manager for Microsoft Azure. You will go through the process of downloading, updating and creating a resource group for a Web site with a SQL database.
 
@@ -427,9 +427,9 @@ In this task you will you will use Azure PowerShell for Azure Resources to list 
 	
 	_Add-AzureAccount command_
 	
-	>**Note**: The **Set-AzureSubscription** cmdlet configures common settings including subscription ID, management certificate, and custom endpoints. The settings are stored in a subscription data file in the user’s profile or in a user specified file. Multiple subscription data sets are supported and identified by a subscription name. To select a subscription and make it current, use the Select-AzureSubscription cmdlet. 
+	>**Note**: The **Set-AzureSubscription** cmdlet configures common settings including subscription ID, management certificate, and custom endpoints. The settings are stored in a subscription data file in the user’s profile or in a user specified file. Multiple subscription data sets are supported and identified by a subscription name. To select a subscription and make it current, use the **Select-AzureSubscription** cmdlet. 
 	
-1. Execute the following command to get a list of resources from the group gallery templates.
+1. Execute the following command to get the list of resources from the group gallery templates.
 
 	````PowerShell	
 	Get-AzureResourceGroupGalleryTemplate
@@ -447,7 +447,7 @@ In this task you will you will use Azure PowerShell for Azure Resources to list 
 	
 	_Get-AzureRourceGroupGalleryTemplate command_
 	
-1.  To save a gallery template as a JSON file, use the **Save-AzureResourceGroupGalleryTemplate** cmdlet. Download the **Microsoft.WebSiteSQLDatabase.0.1.0-preview1** template executing the following command.
+1.  To save a gallery template as a JSON file, use the **Save-AzureResourceGroupGalleryTemplate** cmdlet. Download the **Microsoft.WebSiteSQLDatabase.0.1.0-preview1** template executing the following command replacing the _[FILE-PATH]_ placeholder.
 
 	````PowerShell
 	Save-AzureResourceGroupGalleryTemplate -Identity Microsoft.WebSiteSQLDatabase.0.1.0-preview1 -Path [FILE-PATH]	
@@ -532,14 +532,16 @@ In this task you will update the JSON file from the Simple website template and 
 	````PowerShell
 	New-AzureResourceGroup -Location [LOCATION] -Name [RESOURCE-GROUP-NAME] -TemplateFile [JSON-File-Path]  –StorageAccountName [STORAGEACCOUNT] -siteName [WEBSITENAME] -hostingPlanName TestPlan -siteLocation "North Europe" -serverName [SERVERNAME] -serverLocation "West US" -administratorLogin Admin01 -databaseName [DATABASENAME] -Verbose
 	````
-
-	> **Note**: When you enter the command, you are prompted for the missing mandatory parameter, **administratorLoginPassword**. And, when you type the password, the secure string value is obscured. This strategy eliminates the risk of providing a password in plain text.
 	
-1. Enter the **administratorLoginPassword** and press **Enter**.
+	>**Dynamic Template Parameters**: To get the parameters, type a minus sign (-) to indicate a parameter name and then press the **TAB** key. Or, type the first few letters of a parameter name, such as siteName and then press the TAB key.
+	
+1. When you enter the command, you are prompted for the missing mandatory parameter **administratorLoginPassword**. Enter the **administratorLoginPassword** and press **Enter**.
 
 	![New-AzureResourceGroup](Images/new-azureresourcegroup.png?raw=true "New-AzureResourceGroup")
 	
 	_New-AzureResourceGroup command_
+	
+	>**Note**: Notice that when you type the password, the secure string value is obscured. This strategy eliminates the risk of providing a password in plain text.
 	
 1. Open Internet Explorer and browse the [Azure Portal](http://azure.portal.com)
 
@@ -567,11 +569,17 @@ In this task you will update the JSON file from the Simple website template and 
 	
 	_Custom Resource Group_
 	
-1. Click the delete button in the resource group to delete it.
+1. Click the **DELETE** button in the resource group to delete it.
 
 	![Delete button](Images/delete-button.png?raw=true "Delete button")
 	
 	_Delete button_
+
+1. In the delete confirmation blade, enter the resource group name and click delete.
+
+	![Delete confirmation blade](Images/delete-confirmation-blade.png?raw=true "Delete confirmation blade")
+	
+	_Delete confirmation blade_
 
 ---
 
