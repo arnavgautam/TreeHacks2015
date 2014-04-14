@@ -543,9 +543,9 @@ In this task you will update the JSON file from the Simple website template and 
 	
 	>**Note**: Notice that when you type the password, the secure string value is obscured. This strategy eliminates the risk of providing a password in plain text.
 	
-1. Open Internet Explorer and browse the [Azure Portal](http://azure.portal.com)
+1. Open Internet Explorer and browse to the [Azure Portal](http://azure.portal.com)
 
-1. Click the **Browse** button from the menu on the left side of the window.
+1. Click the **Browse** button from the Hub Menu on the left side of the window.
 
 	![Browse button](Images/browse-button.png?raw=true "Browse button")
 	
@@ -557,7 +557,7 @@ In this task you will update the JSON file from the Simple website template and 
 	
 	_Resource groups_
 	
-1. Notice that in the Resource groups pane, there is a list of resource. Check that your resource group was created.
+1. Notice that in the Resource groups pane, there is a list of resources. Check that your resource group was created.
 
 	![Resources groups list](Images/resources-groups-list.png?raw=true "Resources groups list")
 	
@@ -586,4 +586,4 @@ In this task you will update the JSON file from the Simple website template and 
 <a name="Summary" />
 ## Summary ##
 
-In this hands-on lab, ...
+The new Azure Preview portal paints an exciting look at the future of DevOps. This is a first-of-its-kind experience which brings together all of the individual resources, people, and lifecycle stages of your application into a unified portal. In this Hands-on lab, you learned how to create a new resource group by building a Website and a SQL Server. Then you set up continuous depoyment using **Team Project** and edited the source code of the Website using Visual Studio Online. At the end of this lab, you learned how to create a custom Resource Group using **Azure Resource Manager** (via Azure PowerShell).
