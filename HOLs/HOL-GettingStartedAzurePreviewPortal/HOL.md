@@ -6,7 +6,11 @@
 <a name="Overview" />
 ## Overview ##
 
-The new Azure Preview portal is an all-in-one, work-anywhere experience. Now you can manage websites, databases, and Visual Studio Online team projects in a reimagined UX you personalize around your work. This unified hub radically simplifies building, deploying, and managing your cloud resources. Imagine a single easy-to-use console built just for you —your team, your projects. Now craft your very own best-in-class toolset by adding fully integrated capabilities from Microsoft, partners, and the open source community. Organize your portal to custom-fit your work, and your workstyle. Stay on top of the things that matter most by pinning them to your **Startboard**. Resize parts to show more or less data. Drill in for all the details. And see insights (and opportunities) across apps and resources. New components include the following:
+The new Azure Preview portal is an all-in-one, work-anywhere experience. Now you can manage websites, databases, and Visual Studio Online team projects in a reimagined UX you personalize around your work. It was built from the ground up to put your _applications_ at the center of the experience. 
+
+This unified hub radically simplifies building, deploying, and managing your cloud resources. Imagine a single easy-to-use console built just for you —your team, your projects. It brings together all of the cloud resources, team members, and lifecycle stages of your application and provides you with a centralized place to plan, develop, test, provision, deploy, scale, and monitor those applications. This approach can help teams embrace a DevOps culture by bringing both development and operations capabilities and perspectives together in a meaningful way.
+
+The new portal allows each user to transform the portal home page (called the _Startboard_) into their own customized dashboard. Stay on top of the things that matter most by pinning them to your **Startboard**. Resize parts to show more or less data. Drill in for all the details. And see insights (and opportunities) across apps and resources. New components include the following:
 
 * **Simplified Resource Management**. Rather than managing standalone resources such as Microsoft Azure Web Sites, Visual Studio Projects or databases, customers can now create, manage and analyze their entire application as a single resource group in a unified, customized experience, greatly reducing complexity while enabling scale. Today, the new Azure Manager is also being released through the latest Azure SDK for customers to automate their deployment and management from any client or device. 
 
@@ -51,7 +55,7 @@ Estimated time to complete this lab: **30 minutes**
 <a name="Exercise1" />
 ### Exercise 1: Creating a Web Site + SQL ###
 
-Historically, managing a resource (a user-managed entity such as a database server, database or web site,) in Microsoft Azure required you to perform operations against one resource at a time. If you had a complex application made up of multiple resources, management of this application became a complex task. In the Microsoft Azure preview portal you can create resource groups to manage all your resources in an application together. Resource group is a new concept in Azure that serves as the lifecycle boundary for every resource contained within it. 
+Historically, managing a resource (a user-managed entity such as a database server, database or web site,) in Microsoft Azure required you to perform operations against one resource at a time. When developing for the cloud today, we are oftentimes managing _individual resources_ (databases, storage, cloud services, virtual machines, and so on). It’s left up to us as cloud developers and IT professionals to piece these resources together in some meaningful way and manage them over time. In the Microsoft Azure Preview portal was designed to bring together all of the individual resources of an application into a consolidated view. Resource group is a new concept in Azure that serves as the lifecycle boundary for every resource contained within it. 
 
 In this exercise, you will learn how to create a new Web Site and a SQL Server using the Azure Preview portal.
 
