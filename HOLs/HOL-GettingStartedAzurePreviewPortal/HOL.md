@@ -162,7 +162,7 @@ In this task, you will login to the Azure Preview portal and create a new Web Si
 	_New Resource Group Blade_
 
 <a name="Exercise2" />
-### Exercise 2 :  Creating a team project and using Continuous Deployment
+### Exercise 2 :  Publishing Azure Web Sites using Team Projects
 
 In this exercise you will create a new a new Team Project, and enable continuous integration in the project. Therefore when you commit any changes to the project repository, an automatic deployment will be fired. Additionally, you will see how to update the code from within the portal and commit those changes, triggering an automatic build.
 
@@ -191,7 +191,7 @@ In this task you will learn how to create a **Team Project** using the new Azure
 
 1. Select **GIT** and click **Select**. Additionally, you can check the available **Process Template** options.
 
-	> **Note:** The process templates define the set of work item types, queries and reports that you will use to plan an track your project. The available **Process Templates** are: Scrum 2013, Agile 2013, and CMMI 2013.
+	> **Note:** The process templates define the set of work item types, queries and reports that you will use to plan an track your project. The available **Process Templates** are: _Scrum 2013_, _Agile 2013_, and _CMMI 2013_.
 
 1. Click the **Account** tab, and the click **Create New**. Enter the name for the new _visualstudio.com_ account. Click **OK** to confirm the settings.
  
@@ -207,6 +207,10 @@ In this task you will learn how to create a **Team Project** using the new Azure
 	
 	_The Team Project is Created_
 
+	> **Note:** The summary part is a Resouce Map. The Resource Map is a visualization of a **Resource Group**, which is a model where the relationship between resources is stored, along with other important information. For this application, you can see the relationship between the team project, and the Visual Studio Online account.
+
+	> **Note:** If you want to add users to the team project, in the **Team Project** blade, click the **Users** part for more information on how to add them. Basically, to add people you have to sync your user accounts or simply add them one by one. Then assign users to you team project.
+	
 <a name="Ex2Task2" />
 #### Task 2 - Enabling Continuous Integration ####
 
@@ -229,16 +233,18 @@ In this task, you will set up continuous deployment in your Team Project. Then y
 	![Selecting a Repository](Images/selecting-a-repository.png?raw=true)
 
 	_Selecting a Repository_
+	
+	> **Note:** The repositories that are listed here are the ones created in the selected Visual Studio Online account.
  
 1. Lastly, in the **Branch** tab make sure that the **default** branch is selected and click **Select**.
 	
-1. Click create in the **Set up deployment** blade.
+1. Click **Create** in the **Set up deployment** blade.
 
 	![The deployment is configured](Images/the-deployment-is-configured.png?raw=true)
  
 	_The deployment is configured_
 	
-	Notice the message that says that a build will begin after code is added to your project.
+	> **Note:**	Notice the message that says that a build will begin after code is added to your project.
  
 1. Click the **Add code to your repository** part, to open the **Repository** part.
  
@@ -270,7 +276,9 @@ In this task, you will set up continuous deployment in your Team Project. Then y
 	
 	_Creating a New Solution in Source Control_
  
-1. Select **Visual C# / Web / ASP.NET Web Application** in the **New Project** dialog. Enter _MyTestWebApplication_ as the Solution Name, and click **OK**. Notice that the **Add to Source Control** option is selected by default.
+1. Select **Visual C# / Web / ASP.NET Web Application** in the **New Project** dialog. Enter _MyTestWebApplication_ as the solution **Name**, and click **OK**.
+
+	> **Note:** Notice that the **Add to Source Control** option is selected by default.
 
 	![Creating a new Project](Images/creating-a-new-project.png?raw=true)
 	
@@ -299,7 +307,7 @@ Enter a commit message and verify that all the solutions files are included in t
 	
 	_Syncing the changes in the server_
 
-1. When the syncing is complete, go to the Azure portal. Open your pinned team project part. After some time you will see that the commit you made is automatically deployed.
+1. When the syncing is complete, go to the Azure portal. Open your pinned team project part. Within one minute, you will see that your commit has been automatically deployed.
 
 	![Checking the status of the team project](Images/checking-the-status-of-the-team-project.png?raw=true)
 	
@@ -338,7 +346,7 @@ In this task, you will modify your code from the Azure Portal and then commit th
 	
 	_Editing a file_
  
-	Notice that the code of the file will be displayed in a new blade.
+	> **Note:**	 Notice that the code of the file will be displayed in a new blade.
 
 1. Click **Edit** to modify the code online. Update the line where the **H1** tags are, replacing _“ASP.NET”_ with _“My Updated App from the portal”_.
  
@@ -346,8 +354,7 @@ In this task, you will modify your code from the Azure Portal and then commit th
 	
 	_The edited Index file_
 
-1. Click the **Commit** command, to commit your changes.
-In the **Commit** blade, enter a comment and click **OK**.
+1. Click the **Commit** command, to commit your changes. In the **Commit** blade, enter a comment and click **OK**.
  
 	![Committing the Changes from the portal](Images/commiting-the-changes-from-the-portal.png?raw=true)
 	
@@ -376,6 +383,8 @@ In the **Commit** blade, enter a comment and click **OK**.
 	![The updated website](Images/the-updated-website.png?raw=true)
 	
 	_The Updated Website_
+	
+	> **Note:**	You will see that the changes made in the previous steps are impacted in the live site. If you try to browse to the site while the changes are being deployed, you will still see the previous deployment.
 	
 <a name="Exercise3" />
 ### Exercise 3 : Creating Azure Environments using Azure Resource Manager ###
