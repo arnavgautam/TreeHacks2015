@@ -10,7 +10,7 @@
     <Name></Name>
   </Author>
   <Description>
-    In this hands-on lab ...
+    In this Hands-on lab, you will learn how to create a new resource group by building a Website and a SQL Server. Then you set up continuous deployment using Team Project and edited the source code of the Website using Visual Studio Online. At the end of this lab, you will learn how to create a custom Resource Group using Azure Resource Manager (via Azure PowerShell).
   </Description>
   <Document ConversionType="Html">.\HOL.md</Document>
   <Title>Getting Started with the Azure Preview Portal</Title>
