@@ -472,7 +472,7 @@ In this task you will update the JSON file from the Simple website template and 
 
 1. Open the JSON file you downloaded in the previous task in Visual Studio and locate the **parameters** section.
 
-1. You will create your custom template by updating the websites with SQL Database template to use the site name parameter with the _\_db_ prefix as the database name. You will remove the _databaseName_ parameter as it is no longer required.
+1. You will create your custom template by updating the websites with SQL Database template to use the site name parameter with the _\_db_ prefix as the database name. Remove the _databaseName_ parameter as it is no longer required.
 
 1. Locate the **resources** section with type _databases_ and replace the **name** property with the following code.
 
@@ -525,19 +525,19 @@ In this task you will update the JSON file from the Simple website template and 
 1. Replace the _[STORAGE NAME]_ placeholder and execute the following command to create a new storage account. Make sure that the storage name you selected is unique.
 
 	````PowerShell
-	New-AzureStorageAcount -StorageAccountName [STORAGE NAME] -Location "West US"
+	New-AzureStorageAccount -StorageAccountName [STORAGE NAME] -Location "West US"
 	````
 
 1. Switch back to **AzureResourceManager** mode using the following command.
 
 	````PowerShell
-	SwitchMode AzureResourceManager
+	Switch-AzureMode AzureResourceManager
 	````
 	
 1. Replace the placeholders and execute the following command to create a new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you have created in the previous step.
 
 	````PowerShell
-	New-AzureResourceGroup -Location [LOCATION] -Name [RESOURCE-GROUP-NAME] -TemplateFile [JSON-File-Path]  –StorageAccountName [STORAGEACCOUNT] -siteName [WEBSITENAME] -hostingPlanName TestPlan -siteLocation "North Europe" -serverName [SERVERNAME] -serverLocation "West US" -administratorLogin Admin01 -databaseName [DATABASENAME] -Verbose
+	New-AzureResourceGroup -Location [LOCATION] -Name [RESOURCE-GROUP-NAME] -TemplateFile [JSON-File-Path]  –StorageAccountName [STORAGEACCOUNT] -siteName [WEBSITENAME] -hostingPlanName TestPlan -siteLocation "North Europe" -serverName [SERVERNAME] -serverLocation "West US" -administratorLogin Admin01 -Verbose
 	````
 	
 	>**Dynamic Template Parameters:** To get the parameters, type a minus sign (-) to indicate a parameter name and then press the **TAB** key. Or, type the first few letters of a parameter name, such as siteName and then press the TAB key.
@@ -570,7 +570,7 @@ In this task you will update the JSON file from the Simple website template and 
 	
 	_Resources groups list_
 
-1. Navigate to the Resource Group and check that there is a website and a SQL database with the namesyou defined in PowerShell.
+1. Navigate to the Resource Group and check that there is a website and a SQL database with the names you defined in PowerShell.
 
 	![Custom Resource Group](Images/custom-resource-group.png?raw=true "Custom Resource Group")
 	
