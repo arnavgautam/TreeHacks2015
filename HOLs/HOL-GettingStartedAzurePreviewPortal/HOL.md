@@ -394,7 +394,7 @@ In this exercise, you learn how to use Azure PowerShell with Resource Manager fo
 <a name="Ex3Task1" />
 #### Task 1 - Downloading Resource Group Template ####
 
-In this task you will you will use Azure PowerShell for Azure Resources to list the available templates from the gallery and then download one JSON template to create a Web site and a SQL Database.
+In this task you will use Azure PowerShell for Azure Resources to list the available templates from the gallery and then download one JSON template to create a Web site and a SQL Database.
 
 1. Open Azure PowerShell console.
 
