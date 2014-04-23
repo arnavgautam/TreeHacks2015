@@ -287,7 +287,7 @@ In this task you will add child resources to the resources you have created in t
 
 1. Locate the SQL Server resource in the **resources** section.
 
-	````JSON
+	````JavaScript
 	{
 		"name": "[parameters('serverName')]",
 		"type": "Microsoft.Sql/servers",
@@ -303,7 +303,7 @@ In this task you will add child resources to the resources you have created in t
 1. Add a new property to the resource called **resources**. The resources properties is a list of resources inside the service.
 
 	<!-- mark:10-13 -->
-	````JSON
+	````JavaScript
 	{
 		"name": "[parameters('serverName')]",
 		"type": "Microsoft.Sql/servers",
@@ -322,7 +322,7 @@ In this task you will add child resources to the resources you have created in t
 1. Add a new resource in the resources property you have just defined to create a database inside the SQL Server. The resource should look like below
 
 	<!-- mark:12-15 -->
-	````JSON
+	````JavaScript
 	{
 		"name": "[parameters('serverName')]",
 		"type": "Microsoft.Sql/servers",
@@ -348,7 +348,7 @@ In this task you will add child resources to the resources you have created in t
 1. To allow the Azure services, you need to add a firewall rule to allow Azure IPs 0.0.0.0. To do so, add the following highlighted resource to the SQL Server resource.
 
 	<!-- mark:24-33 -->
-	````JSON
+	````JavaScript
 	...
 	"resources": [
 		{
@@ -392,7 +392,7 @@ In this task you will add child resources to the resources you have created in t
 1. Now you will add some configuration properties to the database to define the **edition** of the SQL Database, the collation and the maximum size.
 
 	<!-- mark:16-20 -->
-	````JSON
+	````JavaScript
 	{
 		"name": "[parameters('serverName')]",
 		"type": "Microsoft.Sql/servers",
@@ -429,7 +429,7 @@ In this task you will add child resources to the resources you have created in t
 1. Locate the website resource in the **resoruces** section. Add a new **resources** property inside the website.
 
 	<!-- mark:10-12 -->
-	````JSON
+	````JavaScript
 	{
 		"apiVersion": "2014-04-01",
 		"name": "[parameters('siteName')]",
@@ -445,9 +445,10 @@ In this task you will add child resources to the resources you have created in t
 	}
 	````
 
-1. Add a new resource in the **resources** property you have just defined to create a config inside the Website. The resource should look like below
+1. Add a new resource in the **resources** property you have just defined to create a config inside the Website. The resource should look like below.
+
 	<!-- mark:12-14 -->
-	````JSON
+	````JavaScript
 	{
 		"apiVersion": "2014-04-01",
 		"name": "[parameters('siteName')]",
@@ -468,9 +469,8 @@ In this task you will add child resources to the resources you have created in t
 	````
 1. In the **config** resource add a new property to called **connectionstring** which will have the connection string to the database you have included in the previous step.
 
-
 	<!-- mark:15-23 -->
-	````JSON
+	````JavaScript
 	{
 		"apiVersion": "2014-04-01",
 		"name": "[parameters('siteName')]",
@@ -519,7 +519,7 @@ In this task you will learn how to set depenednency between resources by setting
 1. Add a new property named **depenedsOn** to explicitly declare a dependency from the database to the SQL Server.
 	
 	<!-- mark:16-18 -->
-	````JSON
+	````JavaScript
 	{
 		"name": "[parameters('serverName')]",
 		"type": "Microsoft.Sql/servers",
@@ -548,19 +548,47 @@ In this task you will learn how to set depenednency between resources by setting
 	}
 	````
 
-1. 
+1. Add the following highlighted line to the **dependsOn** property to set the dependency to the SQL Server.
 
 
 	<!-- mark:4 -->
-	````JSON
+	````JavaScript
 	...
 	"apiVersion": "2.0",
 	"dependsOn": [
 		"[concat('Microsoft.Sql/servers/', parameters('serverName'))]"
 	],
 	...
-	
 	````
+	
+1. Locate the config resource in the website
+
+1. Add a new property named **depenedsOn** to explicitly declare a dependency from the config resource to the webiste.
+
+	<!-- mark:6-8 -->
+	````JavaScript
+	"resources": [
+		{
+			"apiVersion": "2014-04-01",
+			"type": "config",
+			"name": "web",
+			"dependsOn": [
+				"[concat('Microsoft.Web/Sites/', parameters('siteName'))]"
+			],
+			"properties": {
+				"connectionStrings": [
+					{
+					"ConnectionString": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]",
+					"Name": "DefaultConnection",
+					"Type": 2
+					}
+				]
+			}
+		}
+	]
+	````
+	
+1. TODO Verification	
 	
 <a name="Exercise3" />
 ### Exercise 3 : Firewall Rules, Alerts and Autoscale Settings ###
