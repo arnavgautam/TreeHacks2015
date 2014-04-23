@@ -225,7 +225,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 12. Replace the _[STORAGE NAME]_ placeholder and execute the following command to create a new storage account. Make sure that the storage name you selected is unique.
 
 	````PowerShell
-	New-AzureStorageAcount -StorageAccountName [STORAGE NAME] -Location "East US"
+	New-AzureStorageAccount -StorageAccountName [STORAGE NAME] -Location "East US"
 	````
 
 13. Switch mode to **AzureResourceManager** using the following command.
@@ -240,15 +240,22 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 	New-AzureResourceGroup -Location [LOCATION] -Name [RESOURCE-GROUP-NAME] -TemplateFile [JSON-File-Path]  –StorageAccountName [STORAGEACCOUNT] -Verbose
 	````
 
+	![New-AzureResourceGroup command](Images/new-azureresourcegroup-command.png?raw=true "New-AzureResourceGroup command")
+	
+	_New-AzureResourceGroup command_
+	
 15. Open Internet Explorer and browse to the [Azure Portal](http://azure.portal.com)
 
 16. Click the **Browse** button from the Hub Menu on the left side of the window.
 
 17. In the **Browse** menu, click **Resource groups**.
 
-18. Notice that in the Resource groups pane, there is a list of resources. Check that your resource group was created.
+18. Notice that in the Resource groups pane, there is a list of resources. Check that your resource group was created. Navigate to the Resource Group and check that there is the website with the names you defined in the template.
 
-19. Navigate to the Resource Group and check that there is the website with the names you defined in the template.
+	![Resource Group in the azure portal](Images/resource-group-in-the-azure-portal.png?raw=true "Resource Group in the azure portal")
+	
+	_Resource Group in the azure portal_
+	
 
 <a name="Ex1Task2" />
 #### Task 2 – Understanding the Parameters Section ####
