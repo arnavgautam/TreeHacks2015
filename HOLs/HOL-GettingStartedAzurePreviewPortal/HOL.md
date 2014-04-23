@@ -18,13 +18,13 @@ The new portal allows each user to transform the portal home page (called the _S
 
 * **Gallery**. A rich gallery of application and services from Microsoft and the open source community, this integrated marketplace of free and paid services enables customers to leverage the ecosystem to be more agile and productive.
 
-* **Visual Studio Online**. Microsoft announced key enhancements through the Microsoft Azure Preview Portal, available Thursday. This includes Team Projects supporting greater agility for application lifecycle management and the lightweight editor code-named “Monaco” for modifying and committing Web project code changes without leaving Azure. Also included is Application Insights, an analytics solution that collects telemetry data such as availability, performance and usage information to track an application’s health. Visual Studio integration enables developers to surface this data from new applications with a single click.
+* **Visual Studio Online**. Microsoft announced key enhancements through the Microsoft Azure Preview Portal. This includes Team Projects supporting greater agility for application lifecycle management and the lightweight editor code-named “Monaco” for modifying and committing Web project code changes without leaving Azure. Also included is Application Insights, an analytics solution that collects telemetry data such as availability, performance and usage information to track an application’s health. Visual Studio integration enables developers to surface this data from new applications with a single click.
 
 <a name="Objectives" />
 ### Objectives ###
 In this hands-on lab, you will learn how to:
 
-- Create a **Web Site + DB**
+- Create a **Web Site + SQL**
 - Set up continuous integration using Team Project
 - Customize and organize your Startboard
 - [Optional] Create a new Resource Group using Azure Resource Manager (PowerShell)
@@ -46,7 +46,7 @@ The following is required to complete this hands-on lab:
 ## Exercises ##
 This hands-on lab includes the following exercises:
 
-1. [Creating a Web Site + DB](#Exercise1)
+1. [Creating a Web Site + SQL](#Exercise1)
 1. [Setting Up Continuous Integration using Team Project](#Exercise2)
 1. [[Optional] Creating a Resource Group using Azure Resource Manager](#Exercise3)
 
@@ -64,9 +64,9 @@ In this exercise, you will learn how to create a new Web Site and a SQL Server u
 <a name="Ex1Task1" />
 #### Task 1 – Creating a Website + SQL ####
 
-In this task, you will login to the Azure Preview portal and create a new Web Site and SQL Server.
+In this task, you will login to the Azure Preview portal and create a new Web Site and SQL Server.[
 
-1. Open a browser and browse to http://portal.azure.com. Log in using your credentials.
+1. Open a browser and browse to http://portal.azure.com and log in using your credentials.
 
 1. The first thing you will see is the **Startboard**. This is your home page, where you can see dynamic data from your resources and all the details you care about. You can customize it as you see fit.
 
@@ -94,7 +94,7 @@ In this task, you will login to the Azure Preview portal and create a new Web Si
 	
 	> ![Tour](Images/tour.png?raw=true)
 
-1. When you create an application that consists of several resources working together (like in this example, a Website + SQL), it is always created in its own resource group, so that you can manage the lifecycle of all related assets. Choose a name for the **Resource Group**, for example _MyResourceGroup_, and click the **Website** option.
+1. When you create an application that consists of several resources working together (like in this example, a Website + SQL), it is always created in its own resource group so that you can manage the lifecycle of all related assets. Coose a name for the **Resource Group**, for example _MyResourceGroup_, and click the **Website** option.
 
 	> **Note:** Resource group names can only contain letters, numbers, periods, underscores and dashes.
 
@@ -108,7 +108,7 @@ In this task, you will login to the Azure Preview portal and create a new Web Si
 	
 	_Changing the Web Hosting Plan_
 
-1. In the _Choose your pricing tier_ blade, choose the hosting plan that fits your needs and click **Select**. Web hosting plans represent a set of features and capacity that you can share across your Websites. Web hosting plans support several pricing tiers (e.g. Free, Shared, Basic, and Standard), each with its own capabilities. There are a couple of differences among these tiers. Plans in the Free and Shared tier provide sites with a shared infrastructure, meaning that your sites share resources with other customers' sites. Web hosting plans in the Basic and Standard tiers provider sites with a dedicated infrastructure, meaning that only the site or sites you choose to associate with this plan will be running on those resources. In this tier you can configure your web hosting plan to use one or more virtual machine instances.
+1. In the _Choose your pricing tier_ blade, choose the hosting plan that fits your needs and click **Select**. Web hosting plans represent a set of features and capacity that you can share across your Websites. Web hosting plans support several pricing tiers (e.g. Free, Shared, Basic and Standard), each with its own capabilities. There are a couple of differences among these tiers. Plans in the Free and Shared tier provide sites with a shared infrastructure, meaning that your sites share resources with other customers' sites. Web hosting plans in the Basic and Standard tiers provider sites with a dedicated infrastructure, meaning that only the site or sites you choose to associate with this plan will be running on those resources. In this tier you can configure your web hosting plan to use one or more virtual machine instances.
 
 	> **Note:** For all tiers (except 'Shared') you pay one price for the web hosting plan based on the tier and your chosen capacity with no additional charge for each site that uses the plan. Shared web hosting plans are different; due to the nature of the shared infrastructure, you are charged separately for each site in the plan. 
 	
@@ -444,7 +444,7 @@ In this task you will use Azure PowerShell for Azure Resources to list the avail
 
 	>**Note**: A resource group template is a JSON string that defines a resource group for a complex entity, such as a web portal, a blog, a photo gallery, a commerce site, or a wiki. The template defines the resources that are typically needed for the entity, such as Websites, database servers, databases and storage accounts, and includes parameters for user-defined values, such as the names and properties of the resources. To create a resource group with a template, just identify the template and provide values for its parameters.
 
-1. You can review the gallery template and its properties, including icons and screenshots. Use the **Get-AzureResourceGroupGalleryTemplate** command to review the **Microsoft.WebSiteSQLDatabase.0.1.0-preview1** template and its properties.
+1. You can review the gallery template and its properties, including icons and screenshots. Use the **Get-AzureResourceGroupGalleryTemplate** command to review the **Microsoft.WebSiteSQLDatabase.{version}-preview** template and its properties. Replace {version} with the number listed on your screen (e.g.: 0.1.0).
 
 	````PowerShell
 	Get-AzureResourceGroupGalleryTemplate -Identity Microsoft.WebSiteSQLDatabase.0.1.0-preview1	
@@ -454,10 +454,10 @@ In this task you will use Azure PowerShell for Azure Resources to list the avail
 	
 	_Get-AzureRourceGroupGalleryTemplate command_
 	
-1.  To save a gallery template as a JSON file, use the **Save-AzureResourceGroupGalleryTemplate** cmdlet. Download the **Microsoft.WebSiteSQLDatabase.0.1.0-preview1** template executing the following command replacing the _[FILE-PATH]_ placeholder.
+1.  To save a gallery template as a JSON file, use the **Save-AzureResourceGroupGalleryTemplate** cmdlet. Download the **Microsoft.WebSiteSQLDatabase.{version}-preview** template executing the following command replacing the _[FILE-PATH]_ placeholder. Remember to replace {version} with the number of your chosen template (e.g.: 0.1.0).
 
 	````PowerShell
-	Save-AzureResourceGroupGalleryTemplate -Identity Microsoft.WebSiteSQLDatabase.0.1.0-preview1 -Path [FILE-PATH]	
+	Save-AzureResourceGroupGalleryTemplate -Identity Microsoft.WebSiteSQLDatabase.0.1.0-preview -Path [FILE-PATH]	
 	````
 	![Save-AzureResourceGroupGalleryTeamplate](Images/save-azureresourcegroupgalleryteamplate.png?raw=true "Save-AzureResourceGroupGalleryTeamplate")
 	
