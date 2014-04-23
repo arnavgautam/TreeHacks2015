@@ -51,7 +51,7 @@ At a glance, the following is the Top-level Template structure.
 
 ````JavaScript
 {
-    "$schema": "<http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2014-01-01>",
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
     "contentVersion" : "1.0",
     "parameters": { 
       // name/value pairs representing the template inputs
@@ -119,7 +119,21 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 > The _properties_ property is a bag containing name/value pairs. Every resource can have a section with properties. These are the settings that describe or configure the resource. 
 
-1. Open your preferred text editor and copy & paste the Top-level Template Structure located in the Introduction of this exercise.
+1. Open your preferred text editor and paste the following Top-level Template Structure.
+
+    ````JavaScript
+    {
+      "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+      "contentVersion" : "1.0",
+      "parameters": { 
+      },
+      "variables": {
+      },
+      "resources": 
+      [
+      ],
+    }
+    ````
 
 2. You will create your custom template by adding  a website resource. To do this, locate the **resources** section, and below the comment add the following code. This code will add a very simple website to your resource group. Before adding the code, replace every _\<Your-Site-Name\>_ tag with a name of your choice, for example: _MyTestWebSite_.
 
@@ -150,23 +164,24 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 5. The following code will create a **Hosting Plan** that will be used in the creation of the website. Replace the _\<Your-Hosting-Plan-Name\>_ tag with the name choose in the previous step and paste this code in the resource sections of your template. Preferably, paste it before the Website resource.
 	
 	````JavaScript
-    	{
-      	"apiVersion": "2014-04-01",
-      	"name": "<Your-Hosting-Plan-Name>",
-      	"type": "Microsoft.Web/serverFarms",
-      	"location": "<Your-Location>",
-      	"properties": {
-        	"name": "<Your-Hosting-Plan-Name>",
-        	"sku": "Free",
-        	"workerSize": "0",
-        	"numberOfWorkers": 1
-      	},
+    {
+        "apiVersion": "2014-04-01",
+        "name": "<Your-Hosting-Plan-Name>",
+        "type": "Microsoft.Web/serverFarms",
+        "location": "<Your-Location>",
+        "properties": {
+          "name": "<Your-Hosting-Plan-Name>",
+          "sku": "Free",
+          "workerSize": "0",
+          "numberOfWorkers": 1
+        }
+	},
 	````
 
 6. As you may have noticed, the Hosting Plan resource needs to be created before the creation of the Website. This means that the Website depends on the Hosting Plan. Add the **dependsOn** property in the Website resource to indicate this dependency. The property is highlighted in the following code.
 
-	<!-- mark:6-8 -->
-	````JavaScript
+    <!-- mark:6-8 -->
+    ````JavaScript
     {
         "apiVersion": "2014-04-01",
         "name": "<YourSiteName>",
@@ -178,8 +193,9 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
         "properties": {
         "name": "<Your-Site-Name>",
         "serverFarm": "<Your-Hosting-Plan-Name>"
-     	},
-	````
+     	}
+    },
+    ````
 
 7. Add a new resource to the list, this time a SQL Server. To do this, add the following code in the resource section.
 
@@ -237,7 +253,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 <a name="Ex1Task2" />
 #### Task 2 – Understanding the Parameters Section ####
 
-In this task, you will .....
+In this task, you will learn how to use parameters in your templates. Using parameters make
 
 1. ....
 
