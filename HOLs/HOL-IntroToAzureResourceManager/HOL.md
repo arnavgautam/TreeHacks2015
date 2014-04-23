@@ -52,7 +52,6 @@ At a glance, the following is the Top-level Template structure.
 ````JavaScript
 {
     "$schema": "<http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2014-01-01>",
-    "location" : "<location>",
     "contentVersion" : "1.0",
     "parameters": { 
       // name/value pairs representing the template inputs
@@ -61,11 +60,6 @@ At a glance, the following is the Top-level Template structure.
       // arbitrary JSON data used for constants and metadata
       // a JSON dictionary
       // Can be complex values like JSON arrays and objects
-    },
-    "tags":
-    {
-      // JSON name/value pairs that will be attached as runtime metadata
-      // to the resourcegroup
     },
     "resources": 
     [
@@ -127,48 +121,49 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 1. Open your preferred text editor and copy & paste the Top-level Template Structure located in the Introduction of this exercise.
 
-2. In the **location** property, replace the _\<location\>_ value with _EastUs_.
-
-3. You will create your custom template by adding resources websites with SQL Database template to use the site name parameter with the __db_ prefix as the database name. Remove the _databaseName_ parameter as it is no longer required.
-
-4. Locate the **resources** section, and below the comment add the following code. This code will add a very simple website to your resource group. Before adding the code, replace every _\<YourWebSite\>_ tag with a name of your choice, for example: _MyTestWebSite_.
+2. You will create your custom template by adding  a website resource. To do this, locate the **resources** section, and below the comment add the following code. This code will add a very simple website to your resource group. Before adding the code, replace every _\<Your-Site-Name\>_ tag with a name of your choice, for example: _MyTestWebSite_.
 
 	> **Note:** Take into account that Azure Websites names must be unique. Therefore you must choose a name that has not been taken yet. To avoid duplication you can append a random number to the end or your desired name.
-
+	
+	<!-- mark:2-11 -->
 	````JavaScript
-	...
 	"resources": [
-      	{
+        {
       	"apiVersion": "2014-04-01",
-      	"name": "<YourSiteName>",
+      	"name": "<Your-Site-Name>",
       	"type": "Microsoft.Web/Sites",
-      	"location": "EastUs",
+      	"location": "<Your-Location>",
       	"properties": {
-        	"name": "<YourSiteName>",
-        	"serverFarm": "<YourHostingPlanName>"
-      	},
+        	"name": "<Your-Site-Name>",
+        	"serverFarm": "<Your-Hosting-Plan-Name>"
+            }
+        },
 	],
-	...
 	````
-5. Choose a name for your hosting plan name, and replace the  _\<YourHostingPlanName\>_ tag with the choosen name in the code created in the previous step.
+	
+3. In the **location** property of the resource, replace the _\<Your-Location\>_ value with _East Us_ or another Datacenter location.
 
-6. The following code will create a **Hosting Plan** that will be used in the creation of the website. Replace the _\<YourHostingPlanName\>_ tag with the name choose in the previous step and paste this code in the resource sections of your template.
+	> Take note of the location you will use here, as it is recommended, but not mandatory, that all the other resources of the resource group are hosted in the same location.
+
+4. Choose a name for your hosting plan name, and replace the  _\<Your-Hosting-Plan-Name\>_ tag with the choosen name in the code created in the previous step.
+
+5. The following code will create a **Hosting Plan** that will be used in the creation of the website. Replace the _\<Your-Hosting-Plan-Name\>_ tag with the name choose in the previous step and paste this code in the resource sections of your template. Preferably, paste it before the Website resource.
 	
 	````JavaScript
     	{
       	"apiVersion": "2014-04-01",
-      	"name": "<YourHostingPlanName>",
+      	"name": "<Your-Hosting-Plan-Name>",
       	"type": "Microsoft.Web/serverFarms",
-      	"location": "EastUs",
+      	"location": "<Your-Location>",
       	"properties": {
-        	"name": "<YourHostingPlanName>",
+        	"name": "<Your-Hosting-Plan-Name>",
         	"sku": "Free",
         	"workerSize": "0",
         	"numberOfWorkers": 1
-      	}
+      	},
 	````
 
-7. As you may have noticed, the Hosting Plan resource needs to be created before the creation of the Website. This means that the Website depends on the Hosting Plan. Add the **dependsOn** property in the Website resource to indicate this dependency. The property is highlighted in the following code.
+6. As you may have noticed, the Hosting Plan resource needs to be created before the creation of the Website. This means that the Website depends on the Hosting Plan. Add the **dependsOn** property in the Website resource to indicate this dependency. The property is highlighted in the following code.
 
 	<!-- mark:6-8 -->
 	````JavaScript
@@ -176,46 +171,68 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
         "apiVersion": "2014-04-01",
         "name": "<YourSiteName>",
         "type": "Microsoft.Web/Sites",
-        "location": "EastUs",
+        "location": "<Your-Location>",
         "dependsOn": [
             "Microsoft.Web/serverFarms/<YourHostingPlanName>"
         ],
         "properties": {
-        "name": "<YourSiteName>",
-        "serverFarm": "<YourHostingPlanName>"
+        "name": "<Your-Site-Name>",
+        "serverFarm": "<Your-Hosting-Plan-Name>"
      	},
 	````
+
+7. Add a new resource to the list, this time a SQL Server. To do this, add the following code in the resource section.
+
+    ````JavaScript
+    {
+      "name": "<Your-Server-Name>",
+      "type": "Microsoft.Sql/servers",
+      "location": "<Your-Location>",
+      "apiVersion": "2.0",
+      "properties": {
+        "administratorLogin": "<Admin-User>",
+        "administratorLoginPassword": "<Admin-Password>"
+      }
+    }
+````
+
+8. Replace the _\<Your-Server-Name\>_ placeholder with a name for your SQL Server.
+
+	> **Note:** Keep in mind that the SQL Server name must be all lowercase, you can use numbers, and the hypen symbol.
+
+9. Replace the _\<Your-Location\>_ placehodlder with the location you used in the previous resources. Also, replace the _\<Admin-User\>_ and _\<Admin-Password\>_ placeholders with your preferred credentials for this server.
 	
-8. Save the template file locally with a **.json** extension. For example, _myTemplate.json_
+10. Save the template file locally with a **.json** extension. For example, _myTemplate.json_
 
-9. Open Azure PowerShell.
+11. Open Azure PowerShell.
 
-10. Replace the _[STORAGE NAME]_ placeholder and execute the following command to create a new storage account. Make sure that the storage name you selected is unique.
+12. Replace the _[STORAGE NAME]_ placeholder and execute the following command to create a new storage account. Make sure that the storage name you selected is unique.
 
 	````PowerShell
 	New-AzureStorageAcount -StorageAccountName [STORAGE NAME] -Location "East US"
 	````
 
-11. Switch mode to **AzureResourceManager** using the following command.
+13. Switch mode to **AzureResourceManager** using the following command.
 
 	````PowerShell
 	SwitchMode AzureResourceManager
 	````
 
-12. Replace the placeholders and execute the following command to create your new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you have created in the previous step.
+14. Replace the placeholders and execute the following command to create your new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you have created in the previous step.
 
 	````PowerShell
 	New-AzureResourceGroup -Location [LOCATION] -Name [RESOURCE-GROUP-NAME] -TemplateFile [JSON-File-Path]  –StorageAccountName [STORAGEACCOUNT] -Verbose
+	````
 
-13. Open Internet Explorer and browse to the [Azure Portal](http://azure.portal.com)
+15. Open Internet Explorer and browse to the [Azure Portal](http://azure.portal.com)
 
-14. Click the **Browse** button from the Hub Menu on the left side of the window.
+16. Click the **Browse** button from the Hub Menu on the left side of the window.
 
-15. In the **Browse** menu, click on **Resource groups**.
+17. In the **Browse** menu, click **Resource groups**.
 
-16. Notice that in the Resource groups pane, there is a list of resources. Check that your resource group was created.
+18. Notice that in the Resource groups pane, there is a list of resources. Check that your resource group was created.
 
-17. Navigate to the Resource Group and check that there is the website with the names you defined in the template.
+19. Navigate to the Resource Group and check that there is the website with the names you defined in the template.
 
 <a name="Ex1Task2" />
 #### Task 2 – Understanding the Parameters Section ####
