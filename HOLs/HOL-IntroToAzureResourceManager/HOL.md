@@ -344,6 +344,50 @@ In this task you will add child resources to the resources you have created in t
 	````
 
 	>**Note**: The resoruce you have just added defines a new database in the same location as the server which is specified when executing the command. The name of the databse is defined with the name of the site with the __db_ prefix.
+
+1. To allow the Azure services, you need to add a firewall rule to allow Azure IPs 0.0.0.0. To do so, add the following highlighted resource to the SQL Server resource.
+
+	<!-- mark:24-33 -->
+	````JSON
+	...
+	"resources": [
+		{
+			"name": "[parameters('serverName')]",
+			"type": "Microsoft.Sql/servers",
+			"location": "[parameters('serverLocation')]",
+			"apiVersion": "2.0",
+			"properties": {
+				"administratorLogin": "[parameters('administratorLogin')]",
+				"administratorLoginPassword": "[parameters('administratorLoginPassword')]"
+			},
+			"resources": [
+				{
+					"name": "[concat(parameters('siteName'), '_db')]",
+					"type": "databases",
+					"location": "[parameters('serverLocation')]",
+					"apiVersion": "2.0",
+					"properties": {
+						"edition": "Web",
+						"collation": "[parameters('collation')]",
+						"maxSizeBytes": "1073741824"
+					}
+				}
+				,{
+					"apiVersion": "2.0",
+					"location": "[parameters('serverLocation')]",
+					"name": "AllowAllWindowsAzureIps",
+					"properties": {
+						"endIpAddress": "0.0.0.0",
+						"startIpAddress": "0.0.0.0"
+					},
+					"type": "firewallrules"
+				}
+			]
+		},
+	...
+	````
+
+
 	
 1. Now you will add some configuration properties to the database to define the **edition** of the SQL Database, the collation and the maximum size.
 
