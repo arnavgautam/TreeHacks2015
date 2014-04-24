@@ -131,7 +131,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
       },
       "resources": 
       [
-      ],
+      ]
     }
     ````
 
