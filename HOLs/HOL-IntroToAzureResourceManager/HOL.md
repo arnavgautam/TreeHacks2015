@@ -253,23 +253,50 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 <a name="Ex1Task2" />
 #### Task 2 – Understanding the Parameters Section ####
 
-In this task, you will learn how to use parameters in your templates. Using parameters make
+In this task, you will learn how to use parameters in your templates. Using parameters makes changing some repetitive values easier. It also allows you to create templates that contains values that should be prompted to the user, for example, resource names or even credentials that can be masked when entered.
 
-1. ....
+Parameters are defined in the **parameters** section of the Top-level template, using the following pattern.
 
-<a name="Ex1Task3" />
-#### Task 3 – Understanding the Tags Section ####
+````JavaScript
+    "<Parameter-Name>": {
+      "type": "<Parameter-Type>",
+      "allowedValues": [
+        "0",
+        "1",
+        "2"
+      ],
+      "defaultValue": "0"
+    },
+````
 
-In this task, you will .....
+Then to use a defined resource in the template, you specify it in the following way.
 
-1. ....
+````JavaScript
+[parameters("Parameter-Name")]
+````
 
-<a name="Ex1Task4" />
-#### Task 4 – Understanding the Variables Section ####
+1. Open the template that you created in the previous exercise.
 
-In this task, you will .....
+2. Let's parametrize the name of the resources. Start with the Website name. To do this, in the parameters section of the template, define the following parameter.
 
-1. ....
+	<!-- mark:2-4 -->
+	````JavaScript
+    "parameters": {
+      "siteName": {
+        "type": "string"
+      },
+    }
+	````
+
+3. Now, locate the two instances where you hardcoded the name of the site, and replace them with the following code.
+
+    ````JavaScript
+    [parameters("siteName")]
+    ````
+    
+    > **Note:** You should make two replacements.
+    
+    
 
 <a name="Exercise2" />
 ### Exercise 2 : Advanced Template Configuration  ###
