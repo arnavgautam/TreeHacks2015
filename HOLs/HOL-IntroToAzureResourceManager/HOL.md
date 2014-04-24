@@ -478,7 +478,8 @@ Then to use a defined resource in the template, you specify it in the following 
 	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN] -sku Standard
 	````
 
-	<IMAGEN>
+	![The PowerShell script is running](Images/the-powershell-script-is-running.png?raw=true "The PowerShell script is running")
+	
 	_The PowerShell script is running_
 	
 	> **Note:** When writing the command in PowerShell if you press the _TAB_ key after specifying the Template file, the parameters defined in it will be listed.
@@ -487,7 +488,8 @@ Then to use a defined resource in the template, you specify it in the following 
 
 15. The **administratorLoginPassword** was not specified in the previous command, as this parameter will be prompted to the user.
 
-	<IMAGEN>
+	![The Administrator Login Password is prompted to the user and the input is masked](Images/the-administrator-login-password-is-prompted.png?raw=true "The Administrator Login Password is prompted to the user and the input is masked")
+	
 	_The Administrator Login Password is prompted to the user and the input is masked_
 
 	> **Note:** If you use the same values as the ones used in the first task, the resources will not be created again. However if you change some properties in the script, the affected resources will be updated. For example, when we run the template in previous steps we updated the **sku** property, in this case if everything but this property remains the same, only that resource will be updated.
