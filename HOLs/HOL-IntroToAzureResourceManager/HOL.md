@@ -218,7 +218,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 9. Replace the _\<Your-Location\>_ placehodlder with the location you used in the previous resources. Also, replace the _\<Admin-User\>_ and _\<Admin-Password\>_ placeholders with your preferred credentials for this server.
 	
-10. Save the template file locally with a **.json** extension. For example, _myTemplate.json_
+10. Save the template file locally with a **.json** extension. For example, _myTemplate.json_.
 
 11. Open Azure PowerShell.
 
@@ -419,8 +419,79 @@ Then to use a defined resource in the template, you specify it in the following 
       }
     ````
 
-9. 
+9. There are some parameters that may accept only a set of values. You can specify this, and also if there is a default value when defining the parameter. Let's do this with the **sku** and **workerSize** values of the hosting plan resource. Add te following parameter definition in the parameters section.
+
+    ````JavaScript
+    "sku": {
+      "type": "string",
+      "allowedValues": [
+        "Free",
+        "Shared",
+        "Basic",
+        "Standard"
+      ],
+      "defaultValue": "Free"
+    },
+    "workerSize": {
+      "type": "string",
+      "allowedValues": [
+        "0",
+        "1",
+        "2"
+      ],
+      "defaultValue": "0"
+    },
+    ````
     
+	> **Note:** The **allowedValues** property is used to specify the values that are valid for the parameter, and the **defaultValue** property defines the value that will be used when the parameter is not specified. Specifying a default value, means that the parameter is optional.
+	
+10. In the template, locate the hosting plan resource and replace the hardcoded **sku** and **workerSize** values with the parameter reference. This is shown in the following code.
+    <!-- mark:8-9 -->
+    ````JavaScript
+    {
+      "apiVersion": "2014-04-01",
+      "name": "[parameters('hostingPlanName')]",
+      "type": "Microsoft.Web/serverFarms",
+      "location": "[parameters('siteLocation')]",
+      "properties": {
+        "name": "[parameters('hostingPlanName')]",
+        "sku": "[parameters('sku')]",
+        "workerSize": "[parameters('workerSize')]",
+        "numberOfWorkers": 1
+      }
+    },
+    ````
+
+11. Save the template file.
+
+12. Open Azure PowerShell.
+
+13. Switch mode to **AzureResourceManager**, if you are not already in this mode, using the following command.
+
+	````PowerShell
+	SwitchMode AzureResourceManager
+	````
+
+14. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise. Notice that we forced the sku parameter to be _Standard_.
+
+	````PowerShell
+	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN] -sku Standard
+	````
+
+	<IMAGEN>
+	_The PowerShell script is running_
+	
+	> **Note:** When writing the command in PowerShell if you press the _TAB_ key after specifying the Template file, the parameters defined in it will be listed.
+
+	> **Note:** Notice that the **sku** property was changed to use the _Standard_ value. This is required for the following exercises and may incur in costs in your subscriptions.
+
+15. The **administratorLoginPassword** was not specified in the previous command, as this parameter will be prompted to the user.
+
+	<IMAGEN>
+	_The Administrator Login Password is prompted to the user and the input is masked_
+
+	> **Note:** If you use the same values as the ones used in the first task, the resources will not be created again. However if you change some properties in the script, the affected resources will be updated. For example, when we run the template in previous steps we updated the **sku** property, in this case if everything but this property remains the same, only that resource will be updated.
+
 <a name="Exercise2" />
 ### Exercise 2 : Advanced Template Configuration  ###
 
