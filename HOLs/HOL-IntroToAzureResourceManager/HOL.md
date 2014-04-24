@@ -625,31 +625,148 @@ In this task you will learn how to set depenednency between resources by setting
 1. TODO Verification	
 	
 <a name="Exercise3" />
-### Exercise 3 : Firewall Rules, Alerts and Autoscale Settings ###
+### Exercise 3: Configuring Alerts, Autoscale Settings and Web Deploy ###
 
-INTRO..........
+This Exercise...
 
 <a name="Ex3Task1" />
-#### Task 1 - Configuring Firewall Rules ####
+#### Task 1 - Configuring Alerts ####
 
-In this task you will ...
+In this task you will add a new **Alert** as a new resource in the JSON template. You can configure different types of alerts depending on the metric you want to be notified with. For example, in this task you will create a new alert that will send you an email when a threshold of 2000 Requests (or greater) is reached. 
 
-1. Open Azure PowerShell console.
+1. You can optionally continue editing the JSON template file you have been using in the previous exercises or open the **template.json** file located in the **Source\Ex3-Configurations\Begin** folder.
 
+1. Add the following resource at the end of the template.
+
+	````JavaScript
+	{
+		"apiVersion": "2014-04",
+		"name": "[concat('Requests-', parameters('siteName'))]",
+		"type": "microsoft.insights/alertrules",
+		"location": "East US",                        
+		"dependsOn": [
+			  "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+			],
+		"properties": {
+			
+		}
+	}
+	````
+
+	As you can see, this section is using a parameter to set up a dynamic name for the rule. In this case it is appending the _siteName_ parameter to the text "Requests-". The resulting alert name would be something similar to "Requests-MyAzureWebsite". The resource is of type **microsoft.insights/alertrules** and it has a single dependency to the Website that you created in the first exercise.
+	
+1. This alert needs a rule to define the conditions to send a notification email to the Service owner and co-admins of the Azure account. You will define a new condition where the metric "Requests" must not exceed a value of 2000 requests in a time frame of 15 minutes. Paste the following highlighted code block inside the **properties** property.
+
+	<!-- mark:10-22 -->
+	````JavaScript
+	{
+		"apiVersion": "2014-04",
+		"name": "[concat('Requests-', parameters('siteName'))]",
+		"type": "microsoft.insights/alertrules",
+		"location": "East US",                        
+		"dependsOn": [
+			  "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+			],
+		"properties": {
+			"name": "[concat('Requests-', parameters('siteName'))]",
+			"description": "[concat(parameters('siteName'), ' requests threshold exceeded.')]",
+			"isEnabled": true,
+			"condition": {
+				"odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition",
+				"dataSource": {
+					"odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource",
+					"resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('siteName'))]",
+					"metricName": "Requests"
+				},
+				"threshold": 2000.0,
+				"windowSize": "PT15M"
+			},			
+		}
+	}
+	````
+
+	 To trigger a notification the alert must meet the condition settings. Inside the **condition** property for this example, you are configuring the following values:
+	 
+	 - **odata.type**: This condition use a **ThresholdRuleCondition** which requires a value to meet the condition.
+	 - **dataSource**: Inside this property you have 3 more properties to configure. The **metricName** is the type of metric that the alert will be watching. In this case you are using **Requests** but you can choose a different one. For example, to listen for HTTP 500 error codes, you need to set the **metricName** value to **Http5xx**. Additionally, you need to set the **resourceUri** which will identify the Website that the alert is currently watching.
+	 - **threshold**: This value is related to the **metricName** you specified. In this example, we are using a value of 2000 for the **Requests** metric.
+	 - **windowSize**: This property is the time span to monitor the metric data specified in the **dataSource** property. In this code block, you are using a period of time of 15 minutes.
+
+1. Now that you have the alert condition set, you need to set an **action**. You can configure the alert to send an email to the service administrator and co-admins, including additional emails if you want. To do this, add the following highlighted code block to the resource.
+
+	<!-- mark:23-27 -->
+	````JavaScript
+	{
+		"apiVersion": "2014-04",
+		"name": "[concat('Requests-', parameters('siteName'))]",
+		"type": "microsoft.insights/alertrules",
+		"location": "East US",                        
+		"dependsOn": [
+			  "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+			],
+		"properties": {
+			"name": "[concat('Requests-', parameters('siteName'))]",
+			"description": "[concat(parameters('siteName'), ' requests threshold exceeded.')]",
+			"isEnabled": true,
+			"condition": {
+				"odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition",
+				"dataSource": {
+					"odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource",
+					"resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('siteName'))]",
+					"metricName": "Requests"
+				},
+				"threshold": 2000.0,
+				"windowSize": "PT15M"
+			},
+			"action": {
+				"odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction",
+				"sendToServiceOwners": true,
+				"customEmails": []
+			}
+		}
+	}	
+	````
+
+	To send an email to the service owner and co-admins set the property **sendToServiceOwners** to **true**. To add additional emails, write them inside the **customEmails** array.
+
+1. Save the template and go back to **PowerShell**.
+
+1. Run the **New-AzureResourceGroup** Cmdlet and wait until the Resource Group is updated. Once completed, open the Azure Preview portal.
+
+1. Click the **Browse** button in the **Hub Menu** and select **Resource Groups**. Select the resource group you created in the first exercise.
+
+1. In the **Resource Map**, select the website.
+
+1. In the Website blade, scroll-down to the **Operations** part and select **Alert Rules**.
+
+1. You will see the alert you created in the list. Select the rule to display its properties. Check that the settings match the ones you specified in your template.
+	
 <a name="Ex3Task2" />
-#### Task 2 - Enabling Autoscaling ####
+#### Task 2 - Configuring Autoscaling Settings ####
 
-In this task you will ...
+In this task you will add an **Autoscaling setting** to your hosting plan. With this setting you can automatically define a rule to scale-up your Website when the CPU metric is above 80% and a scale-down rule that will decrease the number of instances when the CPU hits below 60%.
 
-1. Open Azure PowerShell console.
+1. Add the following resource to the template.
 
-<a name="Ex3Task3" />
-#### Task 3 - Setting up Alerts ####
+	````JavaScript
+	{
+		"apiVersion": "2014-04",
+		"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
+		"type": "microsoft.insights/autoscalesettings",
+		"location": "East US",		
+		"dependsOn": [
+			"[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+		],
+		"properties": {			
+			"enabled": true,
+			"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
+			"targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+		}
+	}
+	````
 
-In this task you will ...
-
-1. Open Azure PowerShell console.
-
+	This resource depends on the server farm of the Hostin Plan configured for this resource group.
+1. 
 ---
 
 <a name="Summary" />
