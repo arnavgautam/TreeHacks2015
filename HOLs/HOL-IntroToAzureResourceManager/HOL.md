@@ -225,7 +225,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 12. Replace the _[STORAGE NAME]_ placeholder and execute the following command to create a new storage account. Make sure that the storage name you selected is unique.
 
 	````PowerShell
-	New-AzureStorageAcount -StorageAccountName [STORAGE NAME] -Location "East US"
+	New-AzureStorageAccount -StorageAccountName [STORAGE NAME] -Location "East US"
 	````
 
 13. Switch mode to **AzureResourceManager** using the following command.
@@ -240,15 +240,22 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 	New-AzureResourceGroup -Location [LOCATION] -Name [RESOURCE-GROUP-NAME] -TemplateFile [JSON-File-Path]  –StorageAccountName [STORAGEACCOUNT] -Verbose
 	````
 
+	![New-AzureResourceGroup command](Images/new-azureresourcegroup-command.png?raw=true "New-AzureResourceGroup command")
+	
+	_New-AzureResourceGroup command_
+	
 15. Open Internet Explorer and browse to the [Azure Portal](http://azure.portal.com)
 
 16. Click the **Browse** button from the Hub Menu on the left side of the window.
 
 17. In the **Browse** menu, click **Resource groups**.
 
-18. Notice that in the Resource groups pane, there is a list of resources. Check that your resource group was created.
+18. Notice that in the Resource groups pane, there is a list of resources. Check that your resource group was created. Navigate to the Resource Group and check that there is the website with the names you defined in the template.
 
-19. Navigate to the Resource Group and check that there is the website with the names you defined in the template.
+	![Resource Group in the azure portal](Images/resource-group-in-the-azure-portal.png?raw=true "Resource Group in the azure portal")
+	
+	_Resource Group in the azure portal_
+	
 
 <a name="Ex1Task2" />
 #### Task 2 – Understanding the Parameters Section ####
@@ -314,7 +321,7 @@ In this task you will add child resources to the resources you have created in t
 
 1. Locate the SQL Server resource in the **resources** section.
 
-	````JSON
+	````JavaScript
 	{
 		"name": "[parameters('serverName')]",
 		"type": "Microsoft.Sql/servers",
@@ -330,7 +337,7 @@ In this task you will add child resources to the resources you have created in t
 1. Add a new property to the resource called **resources**. The resources properties is a list of resources inside the service.
 
 	<!-- mark:10-13 -->
-	````JSON
+	````JavaScript
 	{
 		"name": "[parameters('serverName')]",
 		"type": "Microsoft.Sql/servers",
@@ -349,7 +356,7 @@ In this task you will add child resources to the resources you have created in t
 1. Add a new resource in the resources property you have just defined to create a database inside the SQL Server. The resource should look like below
 
 	<!-- mark:12-15 -->
-	````JSON
+	````JavaScript
 	{
 		"name": "[parameters('serverName')]",
 		"type": "Microsoft.Sql/servers",
@@ -371,11 +378,55 @@ In this task you will add child resources to the resources you have created in t
 	````
 
 	>**Note**: The resoruce you have just added defines a new database in the same location as the server which is specified when executing the command. The name of the databse is defined with the name of the site with the __db_ prefix.
+
+1. To allow the Azure services, you need to add a firewall rule to allow Azure IPs 0.0.0.0. To do so, add the following highlighted resource to the SQL Server resource.
+
+	<!-- mark:24-33 -->
+	````JavaScript
+	...
+	"resources": [
+		{
+			"name": "[parameters('serverName')]",
+			"type": "Microsoft.Sql/servers",
+			"location": "[parameters('serverLocation')]",
+			"apiVersion": "2.0",
+			"properties": {
+				"administratorLogin": "[parameters('administratorLogin')]",
+				"administratorLoginPassword": "[parameters('administratorLoginPassword')]"
+			},
+			"resources": [
+				{
+					"name": "[concat(parameters('siteName'), '_db')]",
+					"type": "databases",
+					"location": "[parameters('serverLocation')]",
+					"apiVersion": "2.0",
+					"properties": {
+						"edition": "Web",
+						"collation": "[parameters('collation')]",
+						"maxSizeBytes": "1073741824"
+					}
+				}
+				,{
+					"apiVersion": "2.0",
+					"location": "[parameters('serverLocation')]",
+					"name": "AllowAllWindowsAzureIps",
+					"properties": {
+						"endIpAddress": "0.0.0.0",
+						"startIpAddress": "0.0.0.0"
+					},
+					"type": "firewallrules"
+				}
+			]
+		},
+	...
+	````
+
+
 	
 1. Now you will add some configuration properties to the database to define the **edition** of the SQL Database, the collation and the maximum size.
 
 	<!-- mark:16-20 -->
-	````JSON
+	````JavaScript
 	{
 		"name": "[parameters('serverName')]",
 		"type": "Microsoft.Sql/servers",
@@ -412,7 +463,7 @@ In this task you will add child resources to the resources you have created in t
 1. Locate the website resource in the **resoruces** section. Add a new **resources** property inside the website.
 
 	<!-- mark:10-12 -->
-	````JSON
+	````JavaScript
 	{
 		"apiVersion": "2014-04-01",
 		"name": "[parameters('siteName')]",
@@ -428,9 +479,10 @@ In this task you will add child resources to the resources you have created in t
 	}
 	````
 
-1. Add a new resource in the **resources** property you have just defined to create a config inside the Website. The resource should look like below
+1. Add a new resource in the **resources** property you have just defined to create a config inside the Website. The resource should look like below.
+
 	<!-- mark:12-14 -->
-	````JSON
+	````JavaScript
 	{
 		"apiVersion": "2014-04-01",
 		"name": "[parameters('siteName')]",
@@ -451,9 +503,8 @@ In this task you will add child resources to the resources you have created in t
 	````
 1. In the **config** resource add a new property to called **connectionstring** which will have the connection string to the database you have included in the previous step.
 
-
 	<!-- mark:15-23 -->
-	````JSON
+	````JavaScript
 	{
 		"apiVersion": "2014-04-01",
 		"name": "[parameters('siteName')]",
@@ -502,7 +553,7 @@ In this task you will learn how to set depenednency between resources by setting
 1. Add a new property named **depenedsOn** to explicitly declare a dependency from the database to the SQL Server.
 	
 	<!-- mark:16-18 -->
-	````JSON
+	````JavaScript
 	{
 		"name": "[parameters('serverName')]",
 		"type": "Microsoft.Sql/servers",
@@ -531,19 +582,47 @@ In this task you will learn how to set depenednency between resources by setting
 	}
 	````
 
-1. 
+1. Add the following highlighted line to the **dependsOn** property to set the dependency to the SQL Server.
 
 
 	<!-- mark:4 -->
-	````JSON
+	````JavaScript
 	...
 	"apiVersion": "2.0",
 	"dependsOn": [
 		"[concat('Microsoft.Sql/servers/', parameters('serverName'))]"
 	],
 	...
-	
 	````
+	
+1. Locate the config resource in the website
+
+1. Add a new property named **depenedsOn** to explicitly declare a dependency from the config resource to the webiste.
+
+	<!-- mark:6-8 -->
+	````JavaScript
+	"resources": [
+		{
+			"apiVersion": "2014-04-01",
+			"type": "config",
+			"name": "web",
+			"dependsOn": [
+				"[concat('Microsoft.Web/Sites/', parameters('siteName'))]"
+			],
+			"properties": {
+				"connectionStrings": [
+					{
+					"ConnectionString": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]",
+					"Name": "DefaultConnection",
+					"Type": 2
+					}
+				]
+			}
+		}
+	]
+	````
+	
+1. TODO Verification	
 	
 <a name="Exercise3" />
 ### Exercise 3 : Firewall Rules, Alerts and Autoscale Settings ###
