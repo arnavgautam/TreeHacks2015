@@ -268,11 +268,11 @@ Parameters are defined in the **parameters** section of the Top-level template, 
     "<Parameter-Name>": {
       "type": "<Parameter-Type>",
       "allowedValues": [
-        "0",
-        "1",
-        "2"
+        "value1",
+        "value2",
+        "value3"
       ],
-      "defaultValue": "0"
+      "defaultValue": "value0"
     },
 ````
 
@@ -298,13 +298,129 @@ Then to use a defined resource in the template, you specify it in the following 
 3. Now, locate the two instances where you hardcoded the name of the site, and replace them with the following code.
 
     ````JavaScript
-    [parameters("siteName")]
+    [parameters('siteName')]
     ````
     
     > **Note:** You should make two replacements.
     
+    > **Note:** As this parameter is of string type, it is recommended that you use simple quotes when specifying the parameter name to escape the double quotes that define the whole string.
     
+4. Continue defining the following simple string parameters. Simple string parameters can be used for the hosting plan name, the site location, the server name, server location, and the administration login.
 
+	<!-- mark:5-19 -->
+	````JavaScript
+    "parameters": {
+      "siteName": {
+        "type": "string"
+      },
+      "hostingPlanName": {
+        "type": "string"
+      },
+      "siteLocation": {
+        "type": "string"
+      },
+      "serverName": {
+        "type": "string"
+      },
+      "serverLocation": {
+        "type": "string"
+      },
+      "administratorLogin": {
+        "type": "string"
+      },
+    }
+	````
+
+5. Replace all the hardcoded values for the paramerters defined in the previous step with calls to the parameter values. Your resulting template should look like the following code, in which the replacements are highlighted.
+
+    <!-- mark:5,7,9,19,25,29,31,34 -->
+    ````JavaScript
+    "resources": 
+    [
+    {
+      "apiVersion": "2014-04-01",
+      "name": "[parameters('hostingPlanName')]",
+      "type": "Microsoft.Web/serverFarms",
+      "location": "[parameters('siteLocation')]",
+      "properties": {
+        "name": "[parameters('hostingPlanName')]",
+        "sku": "Free",
+        "workerSize": "0",
+        "numberOfWorkers": 1
+      }
+    },
+    {
+      "apiVersion": "2014-04-01",
+      "name": "[parameters('siteName')]",
+      "type": "Microsoft.Web/Sites",
+      "location": "[parameters('siteLocation')]",
+      "dependsOn": [
+         "Microsoft.Web/serverFarms/MyHostingPlan"
+      ],
+      "properties": {
+        "name": "[parameters('siteName')]",
+        "serverFarm": "[parameters('hostingPlanName')]"
+      }
+    },
+    {
+      "name": "[parameters('serverName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[parameters('serverLocation')]",
+      "apiVersion": "2.0",
+      "properties": {
+        "administratorLogin": "[parameters('administratorLogin')]",
+        "administratorLoginPassword": "Passw0rd!"
+      }
+    }
+    ],
+    ````
+    
+6. Look at the definition of the Website resource, and locate the **dependsOn** property. Notice that the value uses a predefined part (_Microsoft.Web/serverFarms/_) and then the value that you chose for the hosting plan name. For these cases, you can use the **concat** operator: [concat('value1', 'value2')]. Use this operator to append the hosting plan name parameter to the fixed path, as shown in the following code.
+
+    <!-- mark:7 -->
+    ````JavaScript
+    {
+      "apiVersion": "2014-04-01",
+      "name": "[parameters('siteName')]",
+      "type": "Microsoft.Web/Sites",
+      "location": "[parameters('siteLocation')]",
+      "dependsOn": [
+         "[concat('Microsoft.Web/serverFarms/', parameters('hostingPlanName'))]"
+      ],
+      "properties": {
+        "name": "[parameters('siteName')]",
+        "serverFarm": "[parameters('hostingPlanName')]"
+      }
+    },
+    ````
+
+    > **Note:** As the **concat** operator already uses brackets (**[]**), you do not need to use them when specifying the parameter.
+    
+7. You may have notice that altough the administrator login password is a string, we did not create a parameter for it, as it is not recommended to enter the passwords or sensitive information in plain text when executing the template. For this reason, there is a special type: **secureString**, which will mask the user input. First, define the following parameter in the parameters section.
+
+    ````JavaScript
+    "administratorLoginPassword": {
+      "type": "securestring"
+    },
+    ````
+
+8. Now replace the hardcoded password with the parameter usage expression, as shown in the following code.
+
+    <!-- mark:8 -->
+    ````JavaScript
+        {
+      "name": "[parameters('serverName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[parameters('serverLocation')]",
+      "apiVersion": "2.0",
+      "properties": {
+        "administratorLogin": "[parameters('administratorLogin')]",
+        "administratorLoginPassword": "[parameters('administratorLoginPassword')]"
+      }
+    ````
+
+9. 
+    
 <a name="Exercise2" />
 ### Exercise 2 : Advanced Template Configuration  ###
 
