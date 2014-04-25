@@ -804,9 +804,9 @@ In this task you will add child resources to the resources you have created in t
 	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN] -sku Standard
 	````
 	
-	![Creating the databas and configuring the website](Images/creating-the-databas-and-configuring-the-webs.png?raw=true "Creating the databas and configuring the website")
+	![Creating the database and configuring the website](Images/creating-the-databas-and-configuring-the-webs.png?raw=true "Creating the databas and configuring the website")
 	
-	_Creating the databas and configuring the website_
+	_Creating the database and configuring the website_
 	
 
 <a name="Ex2Task2" />
@@ -819,14 +819,14 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 1. Add the following resource at the end of the template.
 
 	````JavaScript
-	{
+	,{
 		"apiVersion": "2014-04",
 		"name": "[concat('Requests-', parameters('siteName'))]",
 		"type": "microsoft.insights/alertrules",
-		"location": "East US",                        
+		"location": "[parameters('siteLocation')]",                        
 		"dependsOn": [
-				"[concat('Microsoft.Web/sites/', parameters('siteName'))]"
-			],
+			"[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+		],
 		"properties": {
 			
 		}
@@ -843,10 +843,10 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 		"apiVersion": "2014-04",
 		"name": "[concat('Requests-', parameters('siteName'))]",
 		"type": "microsoft.insights/alertrules",
-		"location": "East US",                        
+		"location": "[parameters('siteLocation')]",                        
 		"dependsOn": [
-			  "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
-			],
+			"[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+		],
 		"properties": {
 			"name": "[concat('Requests-', parameters('siteName'))]",
 			"description": "[concat(parameters('siteName'), ' requests threshold exceeded.')]",
@@ -860,7 +860,7 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 				},
 				"threshold": 2000.0,
 				"windowSize": "PT15M"
-			},			
+			},
 		}
 	}
 	````
@@ -880,10 +880,10 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 		"apiVersion": "2014-04",
 		"name": "[concat('Requests-', parameters('siteName'))]",
 		"type": "microsoft.insights/alertrules",
-		"location": "East US",                        
+		"location": "[parameters('siteLocation')]",                        
 		"dependsOn": [
-			  "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
-			],
+			"[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+		],
 		"properties": {
 			"name": "[concat('Requests-', parameters('siteName'))]",
 			"description": "[concat(parameters('siteName'), ' requests threshold exceeded.')]",
@@ -913,14 +913,26 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 
 1. Run the **New-AzureResourceGroup** Cmdlet and wait until the Resource Group is updated. Once completed, open the Azure Preview portal.
 
+	![Alert rule created](Images/alert-rule-created.png?raw=true "Alert rule created")
+	
+	_Alert rule created_
+
 1. Click the **Browse** button in the **Hub Menu** and select **Resource Groups**. Select the resource group you created in the first exercise.
 
 1. In the **Resource Map**, select the website.
 
 1. In the Website blade, scroll-down to the **Operations** part and select **Alert Rules**.
 
+	![Alert rules in website blade](Images/alert-rules-in-website-blade.png?raw=true "Alert rules in website blade")
+	
+	_Alert rules in website blade_
+
 1. You will see the alert you created in the list. Select the rule to display its properties. Check that the settings match the ones you specified in your template.
 	
+	![Alert created in the portal](Images/alert-created-in-the-portal.png?raw=true "Alert created in the portal")
+	
+	_Alert created in the portal_
+
 <a name="Ex2Task3" />
 #### Task 3 - Configuring Autoscaling Settings ####
 

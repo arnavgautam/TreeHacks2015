@@ -118,5 +118,34 @@
                 "type": "firewallrules"
             }
         ]
+    }, {
+        "apiVersion": "2014-04",
+        "name": "[concat('Requests-', parameters('siteName'))]",
+        "type": "microsoft.insights/alertrules",
+        "location": "[parameters('siteLocation')]",                        
+        "dependsOn": [
+            "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+        ],
+        "properties": {
+		    "name": "[concat('Requests-', parameters('siteName'))]",
+		    "description": "[concat(parameters('siteName'), ' requests threshold exceeded.')]",
+		    "isEnabled": true,
+		    "condition": {
+			    "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition",
+			    "dataSource": {
+				    "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource",
+				    "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('siteName'))]",
+				    "metricName": "Requests"
+			    },
+			    "threshold": 2000.0,
+			    "windowSize": "PT15M"
+		    },			
+        "action": {
+            "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction",
+            "sendToServiceOwners": true,
+            "customEmails": []
+        }
+
+        }
     }]
 }
