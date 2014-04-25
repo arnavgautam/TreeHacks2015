@@ -140,12 +140,72 @@
 			    "threshold": 2000.0,
 			    "windowSize": "PT15M"
 		    },			
-        "action": {
-            "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction",
-            "sendToServiceOwners": true,
-            "customEmails": []
+            "action": {
+                "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction",
+                "sendToServiceOwners": true,
+                "customEmails": []
+            }
         }
-
-        }
-    }]
+    },{
+		"apiVersion": "2014-04",
+		"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
+		"type": "microsoft.insights/autoscalesettings",
+		"location": "[parameters('siteLocation')]",		
+		"dependsOn": [
+			"[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+		],
+		"properties": {			
+			"enabled": true,
+			"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
+			"targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+            "profiles": [
+                {
+                    "name": "Default",
+                    "capacity": {
+                        "minimum": "2",
+						"maximum": "4",
+						"default": "2"
+                    },
+                    "rules": [
+                        {
+                            "metricTrigger": {
+                                "metricName": "CpuPercentage",
+                                "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                                "timeGrain": "PT1M",
+                                "statistic": "Average",
+                                "timeWindow": "PT10M",
+                                "timeAggregation": "Average",
+                                "operator": "GreaterThan",
+                                "threshold": 80.0
+                            },
+                            "scaleAction": {
+                                "direction": "Increase",
+                                "type": "ChangeCount",
+                                "value": "1",
+                                "cooldown": "PT10M"
+                            }
+                        },
+                        {
+                            "metricTrigger": {
+                                "metricName": "CpuPercentage",
+                                "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                                "timeGrain": "PT1M",
+                                "statistic": "Average",
+                                "timeWindow": "PT1H",
+                                "timeAggregation": "Average",
+                                "operator": "LessThan",
+                                "threshold": 60.0
+                            },
+                            "scaleAction": {
+                                "direction": "Decrease",
+                                "type": "ChangeCount",
+                                "value": "1",
+                                "cooldown": "PT1H"
+                            }
+                        }
+                    ]
+                }
+            ]
+		}
+	}]
 }

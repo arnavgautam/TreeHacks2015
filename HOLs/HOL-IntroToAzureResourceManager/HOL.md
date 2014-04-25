@@ -944,11 +944,11 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 
 	<!-- mark:1-14 -->
 	````JavaScript
-	{
+	,{
 		"apiVersion": "2014-04",
 		"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
 		"type": "microsoft.insights/autoscalesettings",
-		"location": "East US",		
+		"location": "[parameters('siteLocation')]",		
 		"dependsOn": [
 			"[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
 		],
@@ -964,13 +964,13 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 	
 1. First you will add the **profiles** property, which stablishes the minimum and maximum number of instances to perform the autoscaling. In this case, you will set a minimum of 2 instances and a maximum value of 4. The default number of instances that the website will start is 2.
 
-	<!-- mark:13-21 -->
+	<!-- mark:13-22 -->
 	````JavaScript
 	{
 		"apiVersion": "2014-04",
 		"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
 		"type": "microsoft.insights/autoscalesettings",
-		"location": "East US",		
+		"location": "[parameters('siteLocation')]",		
 		"dependsOn": [
 			"[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
 		],
@@ -982,10 +982,11 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 				{
 					"name": "Default",
 					"capacity": {
-					"minimum": "1",
-					"maximum": "2",
-					"default": "1"
-				},
+						"minimum": "2",
+						"maximum": "4",
+						"default": "2"
+					},
+				}
 			]
 		}
 	}	
@@ -1011,30 +1012,31 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 				{
 					"name": "Default",
 					"capacity": {
-					"minimum": "1",
-					"maximum": "2",
-					"default": "1"
-				},
-				"rules": [
-					{
-						"metricTrigger": {
-							"metricName": "CpuPercentage",
-							"metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
-							"timeGrain": "PT1M",
-							"statistic": "Average",
-							"timeWindow": "PT10M",
-							"timeAggregation": "Average",
-							"operator": "GreaterThan",
-							"threshold": 80.0
-						},
-						"scaleAction": {
-							"direction": "Increase",
-							"type": "ChangeCount",
-							"value": "1",
-							"cooldown": "PT10M"
-						}
+						"minimum": "2",
+						"maximum": "4",
+						"default": "2"
 					},
-				]				
+					"rules": [
+						{
+							"metricTrigger": {
+								"metricName": "CpuPercentage",
+								"metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+								"timeGrain": "PT1M",
+								"statistic": "Average",
+								"timeWindow": "PT10M",
+								"timeAggregation": "Average",
+								"operator": "GreaterThan",
+								"threshold": 80.0
+							},
+							"scaleAction": {
+								"direction": "Increase",
+								"type": "ChangeCount",
+								"value": "1",
+								"cooldown": "PT10M"
+							}
+						},
+					]
+				}
 			]
 		}
 	}
@@ -1064,48 +1066,49 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 				{
 					"name": "Default",
 					"capacity": {
-					"minimum": "1",
-					"maximum": "2",
-					"default": "1"
-				},
-				"rules": [
-					{
-						"metricTrigger": {
-							"metricName": "CpuPercentage",
-							"metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
-							"timeGrain": "PT1M",
-							"statistic": "Average",
-							"timeWindow": "PT10M",
-							"timeAggregation": "Average",
-							"operator": "GreaterThan",
-							"threshold": 80.0
-						},
-						"scaleAction": {
-							"direction": "Increase",
-							"type": "ChangeCount",
-							"value": "1",
-							"cooldown": "PT10M"
-						}
+						"minimum": "2",
+						"maximum": "4",
+						"default": "2"
 					},
-					{
-						"metricTrigger": {
-							"metricName": "CpuPercentage",
-							"metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
-							"timeGrain": "PT1M",
-							"statistic": "Average",
-							"timeWindow": "PT1H",
-							"timeAggregation": "Average",
-							"operator": "LessThan",
-							"threshold": 60.0
+					"rules": [
+						{
+							"metricTrigger": {
+								"metricName": "CpuPercentage",
+								"metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+								"timeGrain": "PT1M",
+								"statistic": "Average",
+								"timeWindow": "PT10M",
+								"timeAggregation": "Average",
+								"operator": "GreaterThan",
+								"threshold": 80.0
+							},
+							"scaleAction": {
+								"direction": "Increase",
+								"type": "ChangeCount",
+								"value": "1",
+								"cooldown": "PT10M"
+							}
 						},
-						"scaleAction": {
-							"direction": "Decrease",
-							"type": "ChangeCount",
-							"value": "1",
-							"cooldown": "PT1H"
+						{
+							"metricTrigger": {
+								"metricName": "CpuPercentage",
+								"metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+								"timeGrain": "PT1M",
+								"statistic": "Average",
+								"timeWindow": "PT1H",
+								"timeAggregation": "Average",
+								"operator": "LessThan",
+								"threshold": 60.0
+							},
+							"scaleAction": {
+								"direction": "Decrease",
+								"type": "ChangeCount",
+								"value": "1",
+								"cooldown": "PT1H"
+							}
 						}
-					}					
-				]				
+					]
+				}
 			]
 		}
 	}	
@@ -1117,12 +1120,26 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 
 1. Run the **New-AzureResourceGroup** Cmdlet. Set the **sku** value to **standard**. Once completed, open the Azure Preview portal.
 
+	![Autoscaling rule created](Images/autoscaling-rule-created.png?raw=true "Autoscaling rule created")
+	
+	_Autoscaling rule created_
+
 1. Click the **Browse** button in the **Hub Menu** and select **Resource Groups**. Select the resource group you created in the first exercise.
 
 1. In the **Resource Map**, select the website.
 
 1. In the Website blade, scroll-down to the **Usage** part and select **Scale**. You will see the autoscale setting you specified in the template.
 
+	![Scale part in website blade ](Images/scale-part-in-website-blade.png?raw=true "Scale part in website blade ")
+	
+	_Scale part in website blade _
+
+1. Notice that the **Instance Renge** is between _2_ and _4_.
+
+	![Scale blade](Images/scale-blade.png?raw=true "Scale blade")
+
+	_Scale blade_
+	
 ---
 
 <a name="Summary" />
