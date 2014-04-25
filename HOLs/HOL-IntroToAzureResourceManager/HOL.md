@@ -231,7 +231,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 13. Switch mode to **AzureResourceManager** using the following command.
 
 	````PowerShell
-	SwitchMode AzureResourceManager
+	Switch-AzureMode AzureResourceManager
 	````
 
 14. Replace the placeholders and execute the following command to create your new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you have created in the previous step.
@@ -462,15 +462,7 @@ Then to use a defined resource in the template, you specify it in the following 
     },
     ````
 
-11. Save the template file.
-
-12. Open Azure PowerShell.
-
-13. Switch mode to **AzureResourceManager**, if you are not already in this mode, using the following command.
-
-	````PowerShell
-	SwitchMode AzureResourceManager
-	````
+11. Save the template file and switch back to PowerShell.
 
 14. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise. Notice that we forced the sku parameter to be _Standard_.
 
