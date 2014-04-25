@@ -926,8 +926,11 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 
 In this task you will add an **Autoscaling setting** to your hosting plan. With this setting you can automatically define a rule to scale-up your Website when the CPU metric is above 80% and a scale-down rule that will decrease the number of instances when the CPU hits below 60%.
 
+> **Note:** In order to enable the autoscale setting, the pricing tier of the Hosting Plan must be set to **Standard**. When updating the Resource Group using PowerShell you need to set the **sku** parameter to _Standard_.
+
 1. Add the following resource to the template.
 
+	<!-- mark:1-14 -->
 	````JavaScript
 	{
 		"apiVersion": "2014-04",
@@ -940,13 +943,174 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 		"properties": {			
 			"enabled": true,
 			"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
-			"targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+			"targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
 		}
 	}
 	````
 
-	This resource depends on the server farm of the Hostin Plan configured for this resource group.
-1. 
+	> **Note:** Take notice of the **dependsOn** property. The autoscale setting resource depends on the **Hosting Plan** configured for the server farm.
+	
+1. First you will add the **profiles** property, which stablishes the minimum and maximum number of instances to perform the autoscaling. In this case, you will set a minimum of 2 instances and a maximum value of 4. The default number of instances that the website will start is 2.
+
+	<!-- mark:13-21 -->
+	````JavaScript
+	{
+		"apiVersion": "2014-04",
+		"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
+		"type": "microsoft.insights/autoscalesettings",
+		"location": "East US",		
+		"dependsOn": [
+			"[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+		],
+		"properties": {			
+			"enabled": true,
+			"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
+			"targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+			"profiles": [
+				{
+					"name": "Default",
+					"capacity": {
+					"minimum": "1",
+					"maximum": "2",
+					"default": "1"
+				},
+			]
+		}
+	}	
+	````
+
+1. Now, add a scale-up rule that will increase the number of instances when the CPU threshold is greater than 80%. To do this, add the **rules** property inside **profiles**.
+
+	<!-- mark:21-39 -->
+	````JavaScript
+	{
+		"apiVersion": "2014-04",
+		"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
+		"type": "microsoft.insights/autoscalesettings",
+		"location": "East US",		
+		"dependsOn": [
+			"[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+		],
+		"properties": {			
+			"enabled": true,
+			"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
+			"targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+			"profiles": [
+				{
+					"name": "Default",
+					"capacity": {
+					"minimum": "1",
+					"maximum": "2",
+					"default": "1"
+				},
+				"rules": [
+					{
+						"metricTrigger": {
+							"metricName": "CpuPercentage",
+							"metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+							"timeGrain": "PT1M",
+							"statistic": "Average",
+							"timeWindow": "PT10M",
+							"timeAggregation": "Average",
+							"operator": "GreaterThan",
+							"threshold": 80.0
+						},
+						"scaleAction": {
+							"direction": "Increase",
+							"type": "ChangeCount",
+							"value": "1",
+							"cooldown": "PT10M"
+						}
+					},
+				]				
+			]
+		}
+	}
+	````
+	
+	Inside the **rules** property you define the different scale-up and scale-down rules you need to autoscale your Website. Each rule is composed of 2 properties: **metricTrigger** and **scaleAction**. In a **metricTrigger** you are defining a _CpuPercentage_ metric, with a threshold of _80_ and using the operator _GreaterThan_. The **timeWindow** property is set to 10 minutes, i.e. every 10 minutes the rule will verify that the CPU percentage average did not exceed the 80% threshold. If it does, it will execute the action specified in the **scaleAction** property.
+	
+	The **scaleAction** property is defined by its direction. As this is a _scale-up_ rule, the direction value is **Increase**. The action will increase a single instance each time is invoked with a cooldown period of 10 minutes (it will not execute again before that period of time).
+	
+1. To add a scale-down rule you need to add a new rule to the **rules** property, but in this case you need to set the **direction** to **Decrease**. Additionally, you will define a rule that will execute only when the CPU average percentage is below 60%.
+
+	<!-- mark:40-57 -->
+	````JavaScript
+	{
+		"apiVersion": "2014-04",
+		"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
+		"type": "microsoft.insights/autoscalesettings",
+		"location": "East US",		
+		"dependsOn": [
+			"[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+		],
+		"properties": {			
+			"enabled": true,
+			"name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
+			"targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+			"profiles": [
+				{
+					"name": "Default",
+					"capacity": {
+					"minimum": "1",
+					"maximum": "2",
+					"default": "1"
+				},
+				"rules": [
+					{
+						"metricTrigger": {
+							"metricName": "CpuPercentage",
+							"metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+							"timeGrain": "PT1M",
+							"statistic": "Average",
+							"timeWindow": "PT10M",
+							"timeAggregation": "Average",
+							"operator": "GreaterThan",
+							"threshold": 80.0
+						},
+						"scaleAction": {
+							"direction": "Increase",
+							"type": "ChangeCount",
+							"value": "1",
+							"cooldown": "PT10M"
+						}
+					},
+					{
+						"metricTrigger": {
+							"metricName": "CpuPercentage",
+							"metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+							"timeGrain": "PT1M",
+							"statistic": "Average",
+							"timeWindow": "PT1H",
+							"timeAggregation": "Average",
+							"operator": "LessThan",
+							"threshold": 60.0
+						},
+						"scaleAction": {
+							"direction": "Decrease",
+							"type": "ChangeCount",
+							"value": "1",
+							"cooldown": "PT1H"
+						}
+					}					
+				]				
+			]
+		}
+	}	
+	````
+
+	> **Note:** Another difference when comparing with the scale-up rule is that the time period to scale-down an instance is 1 hour.
+
+1. Save the template and go back to **PowerShell**.
+
+1. Run the **New-AzureResourceGroup** Cmdlet. Set the **sku** value to **standard**. Once completed, open the Azure Preview portal.
+
+1. Click the **Browse** button in the **Hub Menu** and select **Resource Groups**. Select the resource group you created in the first exercise.
+
+1. In the **Resource Map**, select the website.
+
+1. In the Website blade, scroll-down to the **Usage** part and select **Scale**. You will see the autoscale setting you specified in the template.
+
 ---
 
 <a name="Summary" />
