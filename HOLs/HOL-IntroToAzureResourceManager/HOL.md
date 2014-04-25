@@ -105,7 +105,7 @@ At a glance, the following is the Top-level Template structure.
 
 3. Open the Json file just created in _Visual Studio 2013 Update 2_.
 
-4. In the **parameters** section, create a new paramerter named _paramName_ as shown in the following code.
+4. In the **parameters** section, create a new parameter named _paramName_ as shown in the following code.
 
     <!-- mark:5-7 -->
     ````JavaScript
@@ -129,7 +129,7 @@ At a glance, the following is the Top-level Template structure.
 
 	![Visual Studio 2013 Update 2 providing Intellisense](Images/visual-studio-2013-update-2-providing-intelli.png?raw=true)
 	
-	_Visual Studio 2013 Update 2 providing Intellisense for the ARM template_
+	_Visual Studio 2013 Update 2 providing IntelliSense for the ARM template_
 
 <a name="Ex1Task2" />
 #### Task 2 – Understanding the Resources Section ####
@@ -194,7 +194,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 	> Take note of the location you will use here, as it is recommended, but not mandatory, that all the other resources of the resource group are hosted in the same location.
 
-3. Choose a name for your hosting plan name, and replace the  _\<Your-Hosting-Plan-Name\>_ tag with the choosen name in the code created in the previous step.
+3. Choose a name for your hosting plan name, and replace the  _\<Your-Hosting-Plan-Name\>_ tag with the chosen name in the code created in the previous step.
 
 4. The following code will create a **Hosting Plan** that will be used in the creation of the website. Replace the _\<Your-Hosting-Plan-Name\>_ tag with the name choose in the previous step and paste this code in the resource sections of your template. Preferably, paste it before the Website resource.
 	
@@ -249,9 +249,9 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 7. Replace the _\<Your-Server-Name\>_ placeholder with a name for your SQL Server.
 
-	> **Note:** Keep in mind that the SQL Server name must be all lowercase, you can use numbers, and the hypen symbol.
+	> **Note:** Keep in mind that the SQL Server name must be all lowercase, you can use numbers, and the hyphen symbol.
 
-8. Replace the _\<Your-Location\>_ placehodlder with the location you used in the previous resources. Also, replace the _\<Admin-User\>_ and _\<Admin-Password\>_ placeholders with your preferred credentials for this server.
+8. Replace the _\<Your-Location\>_ placeholder with the location you used in the previous resources. Also, replace the _\<Admin-User\>_ and _\<Admin-Password\>_ placeholders with your preferred credentials for this server.
 	
 9. Save the template file.
 
@@ -366,7 +366,7 @@ Then to use a defined resource in the template, you specify it in the following 
     }
 	````
 
-5. Replace all the hardcoded values for the paramerters defined in the previous step with calls to the parameter values. Your resulting template should look like the following code, in which the replacements are highlighted.
+5. Replace all the hardcoded values for the parameters defined in the previous step with calls to the parameter values. Your resulting template should look like the following code, in which the replacements are highlighted.
 
     <!-- mark:5,7,9,19,25,29,31,34 -->
     ````JavaScript
@@ -431,7 +431,7 @@ Then to use a defined resource in the template, you specify it in the following 
 
     > **Note:** As the **concat** operator already uses brackets (**[]**), you do not need to use them when specifying the parameter.
     
-7. You may have notice that altough the administrator login password is a string, we did not create a parameter for it, as it is not recommended to enter the passwords or sensitive information in plain text when executing the template. For this reason, there is a special type: **secureString**, which will mask the user input. First, define the following parameter in the parameters section.
+7. You may have notice that although the administrator login password is a string, we did not create a parameter for it, as it is not recommended to enter the passwords or sensitive information in plain text when executing the template. For this reason, there is a special type: **secureString**, which will mask the user input. First, define the following parameter in the parameters section.
 
     ````JavaScript
     "administratorLoginPassword": {
@@ -454,7 +454,7 @@ Then to use a defined resource in the template, you specify it in the following 
       }
     ````
 
-9. There are some parameters that may accept only a set of values. You can specify this, and also if there is a default value when defining the parameter. Let's do this with the **sku** and **workerSize** values of the hosting plan resource. Add te following parameter definition in the parameters section.
+9. There are some parameters that may accept only a set of values. You can specify this, and also if there is a default value when defining the parameter. Let's do this with the **sku** and **workerSize** values of the hosting plan resource. Add the following parameter definition in the parameters section.
 
     ````JavaScript
     "sku": {
@@ -499,7 +499,7 @@ Then to use a defined resource in the template, you specify it in the following 
 
 11. Save the template file and switch back to PowerShell.
 
-14. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise. Notice that we forced the sku parameter to be _Standard_.
+14. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise. Notice that we forced the **sku** parameter to be _Standard_.
 
 	````PowerShell
 	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN] -sku Standard
@@ -524,12 +524,12 @@ Then to use a defined resource in the template, you specify it in the following 
 <a name="Exercise2" />
 ### Exercise 2 : Advanced Template Configuration  ###
 
-In this exercise you will ...
+In this exercise you will dig deeper into more options that the ARM template provides to define your resources and some custom options. You will learn how to create nested resources, how to configure alerts based on your resource metrics, and even how to autoscale your resourced based on some of this metrics.
 
 <a name="Ex2Task1" />
 #### Task 1 - Nested Resources  ####
 
-Inside the Resource section, each resource can have a list of resources that are part of this service. The resource allows 5 levels deep of resources an a total ammount of 100 resources.
+Inside the Resource section, each resource can have a list of resources that are part of this service. The resource allows 5 levels deep of resources and a total amount of 100 resources.
 
 In this task you will add child resources to the resources you have created in the previous exercise. You will create a database in the SQL Server you have created and then you will create a configuration in the WebSite to reference the database.
 
@@ -593,7 +593,7 @@ In this task you will add child resources to the resources you have created in t
 	},
 	````
 
-	>**Note**: The resoruce you have just added defines a new database in the same location as the server which is specified when executing the command. The name of the databse is defined with the name of the site with the __db_ prefix.
+	>**Note**: The resource you have just added defines a new database in the same location as the server which is specified when executing the command. The name of the database is defined with the name of the site with the __db_ prefix.
 	
 1. Now you will add some configuration properties to the database to define the **edition** of the SQL Database, the collation and the maximum size.
 
@@ -674,7 +674,7 @@ In this task you will add child resources to the resources you have created in t
 
 1. Now, you will add a configuration resource in the website and add a connection string to the database you have created.
 
-1. Locate the website resource in the **resoruces** section. Add a new **resources** property inside the website.
+1. Locate the website resource in the **resources** section. Add a new **resources** property inside the website.
 
 	<!-- mark:10-12 -->
 	````JavaScript
@@ -747,14 +747,14 @@ In this task you will add child resources to the resources you have created in t
 	}
 	````
 
-	>**Note**: Notice that the connection string value is the combination of various strings and properties, which include the **serverName**, **siteName**, **administratorLogin** and **administratorPassowrd** parameters.
+	>**Note**: Notice that the connection string value is the combination of various strings and properties, which include the **serverName**, **siteName**, **administratorLogin** and **administratorPassoword** parameters.
 
 
 	The Template Engine will read the template, evaluate the dependencies between resources and construct a graph that it will use determine the order of deployment. When there are not dependencies between resources, the orchestrator will try to deploy the resources in parallel. Dependencies can be found by looking at where one resource gets values from another resource via Resource Expressions. 
 
 	Sometimes there are dependencies that are not obvious from these references. There's a property in the resource template were the user can explicitly declare a dependency. The property is called **dependsOn**.
 
-1. Locate the database resource inside the SQL Server resource and add the **depenedsOn** property to explicitly declare a dependency from the database to the SQL Server.
+1. Locate the database resource inside the SQL Server resource and add the **dependsOn** property to explicitly declare a dependency from the database to the SQL Server.
 	
 	<!-- mark:16-18 -->
 	````JavaScript
@@ -798,7 +798,7 @@ In this task you will add child resources to the resources you have created in t
 	...
 	````
 	
-1. Locate the config resource in the website and add the **depenedsOn** property to explicitly declare a dependency from the config resource to the webiste.
+1. Locate the config resource in the website and add the **dependsOn** property to explicitly declare a dependency from the config resource to the Website.
 
 	<!-- mark:6-8 -->
 	````JavaScript
@@ -989,7 +989,7 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 
 	> **Note:** Take notice of the **dependsOn** property. The autoscale setting resource depends on the **Hosting Plan** configured for the server farm.
 	
-1. First you will add the **profiles** property, which stablishes the minimum and maximum number of instances to perform the autoscaling. In this case, you will set a minimum of 2 instances and a maximum value of 4. The default number of instances that the website will start is 2.
+1. First you will add the **profiles** property, which establishes the minimum and maximum number of instances to perform the autoscaling. In this case, you will set a minimum of 2 instances and a maximum value of 4. The default number of instances that the website will start is 2.
 
 	<!-- mark:13-22 -->
 	````JavaScript
@@ -1161,7 +1161,7 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 	
 	_Scale part in website blade _
 
-1. Notice that the **Instance Renge** is between _2_ and _4_.
+1. Notice that the **Instance Range** is between _2_ and _4_.
 
 	![Scale blade](Images/scale-blade.png?raw=true "Scale blade")
 
@@ -1172,4 +1172,4 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 <a name="Summary" />
 ## Summary ##
 
-Summary
+In this Hands-on Lab you learned about the ARM template language, how to define resources, its dependencies and how to configure alerts and autoscale your resources based on defined metrics. 
