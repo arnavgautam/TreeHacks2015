@@ -544,7 +544,7 @@ In this task you will add child resources to the resources you have created in t
 
 1. Add a new resource in the resources property you have just defined to create a database inside the SQL Server. The resource should look like below
 
-	<!-- mark:12-15 -->
+	<!-- mark:11-16 -->
 	````JavaScript
 	{
 		"name": "[parameters('serverName')]",
@@ -567,7 +567,42 @@ In this task you will add child resources to the resources you have created in t
 	````
 
 	>**Note**: The resoruce you have just added defines a new database in the same location as the server which is specified when executing the command. The name of the databse is defined with the name of the site with the __db_ prefix.
+	
+1. Now you will add some configuration properties to the database to define the **edition** of the SQL Database, the collation and the maximum size.
 
+	<!-- mark:16-20 -->
+	````JavaScript
+	{
+		"name": "[parameters('serverName')]",
+		"type": "Microsoft.Sql/servers",
+		"location": "[parameters('serverLocation')]",
+		"apiVersion": "2.0",
+		"properties": {
+			"administratorLogin": "[parameters('administratorLogin')]",
+			"administratorLoginPassword": "[parameters('administratorLoginPassword')]"
+		},
+		"resources": [
+			{
+				"name": "[concat(parameters('siteName'), '_db')]",
+				"type": "databases",
+				"location": "[parameters('serverLocation')]",
+				"apiVersion": "2.0",
+				"properties": {
+					"edition": "Web",
+					"collation": "SQL_Latin1_General_CP1_CI_AS",
+					"maxSizeBytes": "1073741824"
+				}
+			}
+		]
+	}
+	````
+
+
+	>**Note**: **Collations** define rules that sort and compare data. Make a thoughtful choice of collation, based on application needs, at the time you create your database. Note that a collation cannot be changed after database creation. The default collation is **SQL_Latin1_General_CP1_CI_AS**: Latin dictionary, code page 1 (CP1), case-insensitive (CI), and accent-sensitive (AS).
+	
+	> Use the **Max Size** property to specify an upper limit for the database size. Insert and update transactions that exceed the upper limit will be rejected because the database will be in read-only mode. Changing the **Max Size** property of a database does not directly affect the charges incurred for the database. Charges are based on actual size.
+
+	
 1. To allow the Azure services, you need to add a firewall rule to allow Azure IPs 0.0.0.0. To do so, add the following highlighted resource to the SQL Server resource.
 
 	<!-- mark:24-33 -->
@@ -610,43 +645,6 @@ In this task you will add child resources to the resources you have created in t
 	...
 	````
 
-
-	
-1. Now you will add some configuration properties to the database to define the **edition** of the SQL Database, the collation and the maximum size.
-
-	<!-- mark:16-20 -->
-	````JavaScript
-	{
-		"name": "[parameters('serverName')]",
-		"type": "Microsoft.Sql/servers",
-		"location": "[parameters('serverLocation')]",
-		"apiVersion": "2.0",
-		"properties": {
-			"administratorLogin": "[parameters('administratorLogin')]",
-			"administratorLoginPassword": "[parameters('administratorLoginPassword')]"
-		},
-		"resources": [
-			{
-				"name": "[concat(parameters('siteName'), '_db')]",
-				"type": "databases",
-				"location": "[parameters('serverLocation')]",
-				"apiVersion": "2.0",
-				"properties": {
-					"edition": "Web",
-					"collation": "SQL_Latin1_General_CP1_CI_AS",
-					"maxSizeBytes": "1073741824"
-				}
-			}
-		]
-	}
-	````
-
-
-
-	>**Note**: **Collations** define rules that sort and compare data. Make a thoughtful choice of collation, based on application needs, at the time you create your database. Note that a collation cannot be changed after database creation. The default collation is **SQL_Latin1_General_CP1_CI_AS**: Latin dictionary, code page 1 (CP1), case-insensitive (CI), and accent-sensitive (AS).
-	
-	> Use the **Max Size** property to specify an upper limit for the database size. Insert and update transactions that exceed the upper limit will be rejected because the database will be in read-only mode. Changing the **Max Size** property of a database does not directly affect the charges incurred for the database. Charges are based on actual size.
-
 1. Now, you will add a configuration resource in the website and add a connection string to the database you have created.
 
 1. Locate the website resource in the **resoruces** section. Add a new **resources** property inside the website.
@@ -670,7 +668,7 @@ In this task you will add child resources to the resources you have created in t
 
 1. Add a new resource in the **resources** property you have just defined to create a config inside the Website. The resource should look like below.
 
-	<!-- mark:12-14 -->
+	<!-- mark:11-15 -->
 	````JavaScript
 	{
 		"apiVersion": "2014-04-01",
@@ -690,7 +688,7 @@ In this task you will add child resources to the resources you have created in t
 		]
 	}
 	````
-1. In the **config** resource add a new property to called **connectionstring** which will have the connection string to the database you have included in the previous step.
+1. In the **config** resource add a new property called **connectionstring** which will have the connection string to the database you have included in the previous step.
 
 	<!-- mark:15-23 -->
 	````JavaScript
@@ -724,22 +722,12 @@ In this task you will add child resources to the resources you have created in t
 
 	>**Note**: Notice that the connection string value is the combination of various strings and properties, which include the **serverName**, **siteName**, **administratorLogin** and **administratorPassowrd** parameters.
 
-1. Save the file and switch back to Azure PowerShell
 
-1. TODO: Verification (check if we 
+	The Template Engine will read the template, evaluate the dependencies between resources and construct a graph that it will use determine the order of deployment. When there are not dependencies between resources, the orchestrator will try to deploy the resources in parallel. Dependencies can be found by looking at where one resource gets values from another resource via Resource Expressions. 
 
-<a name="Ex2Task2" />
-#### Task 2 - Adding Dependencies  ####
+	Sometimes there are dependencies that are not obvious from these references. There's a property in the resource template were the user can explicitly declare a dependency. The property is called **dependsOn**.
 
-The Template Engine will read the template, evaluate the dependencies between resources and construct a graph that it will use determine the order of deployment. When there are not dependencies between resources, the orchestrator will try to deploy the resources in parallel. Dependencies can be found by looking at where one resource gets values from another resource via Resource Expressions. 
-
-Sometimes there are dependencies that are not obvious from these references. There's a property in the resource template were the user can explicitly declare a dependency. The property is called **dependsOn**.
-
-In this task you will learn how to set depenednency between resources by setting the **dependsOn** property in a resource.
-
-1. Locate the database resource inside the SQL Server resource.
-
-1. Add a new property named **depenedsOn** to explicitly declare a dependency from the database to the SQL Server.
+1. Locate the database resource inside the SQL Server resource and add the **depenedsOn** property to explicitly declare a dependency from the database to the SQL Server.
 	
 	<!-- mark:16-18 -->
 	````JavaScript
@@ -773,7 +761,6 @@ In this task you will learn how to set depenednency between resources by setting
 
 1. Add the following highlighted line to the **dependsOn** property to set the dependency to the SQL Server.
 
-
 	<!-- mark:4 -->
 	````JavaScript
 	...
@@ -784,9 +771,7 @@ In this task you will learn how to set depenednency between resources by setting
 	...
 	````
 	
-1. Locate the config resource in the website
-
-1. Add a new property named **depenedsOn** to explicitly declare a dependency from the config resource to the webiste.
+1. Locate the config resource in the website and add the **depenedsOn** property to explicitly declare a dependency from the config resource to the webiste.
 
 	<!-- mark:6-8 -->
 	````JavaScript
@@ -811,15 +796,21 @@ In this task you will learn how to set depenednency between resources by setting
 	]
 	````
 	
-1. TODO Verification	
+1. Save the template file and switch back to PowerShell	
+
+14. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise. Notice that we forced the sku parameter to be _Standard_.
+
+	````PowerShell
+	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN] -sku Standard
+	````
 	
-<a name="Exercise3" />
-### Exercise 3: Configuring Alerts, Autoscale Settings and Web Deploy ###
+	![Creating the databas and configuring the website](Images/creating-the-databas-and-configuring-the-webs.png?raw=true "Creating the databas and configuring the website")
+	
+	_Creating the databas and configuring the website_
+	
 
-This Exercise...
-
-<a name="Ex3Task1" />
-#### Task 1 - Configuring Alerts ####
+<a name="Ex2Task2" />
+#### Task 2 - Configuring Alerts ####
 
 In this task you will add a new **Alert** as a new resource in the JSON template. You can configure different types of alerts depending on the metric you want to be notified with. For example, in this task you will create a new alert that will send you an email when a threshold of 2000 Requests (or greater) is reached. 
 
@@ -834,7 +825,7 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 		"type": "microsoft.insights/alertrules",
 		"location": "East US",                        
 		"dependsOn": [
-			  "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+				"[concat('Microsoft.Web/sites/', parameters('siteName'))]"
 			],
 		"properties": {
 			
@@ -930,8 +921,8 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 
 1. You will see the alert you created in the list. Select the rule to display its properties. Check that the settings match the ones you specified in your template.
 	
-<a name="Ex3Task2" />
-#### Task 2 - Configuring Autoscaling Settings ####
+<a name="Ex2Task3" />
+#### Task 3 - Configuring Autoscaling Settings ####
 
 In this task you will add an **Autoscaling setting** to your hosting plan. With this setting you can automatically define a rule to scale-up your Website when the CPU metric is above 80% and a scale-down rule that will decrease the number of instances when the CPU hits below 60%.
 
