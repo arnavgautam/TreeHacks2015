@@ -6,14 +6,14 @@
 <a name="Overview" />
 ## Overview ##
 
-A growing expectation of any cloud offering is the ability to automate the deployment and management of infrastructure components, like virtual machines, networks, storage, and databases - and enable customers to build and manage higher level applications on top of these in a rich DevOps friendly way. The Azure Resource Manager, provides a **Language** (Cloud Service Template Language) that allows a declarative, parameterized description (a **Template**) of a set of related resources, so that they may be deployed and managed as a unit. The Templates are text-based (JSON), making it easy to use them with source code control systems like TFS and Git.
+A growing expectation of any cloud offering is the ability to automate the deployment and management of infrastructure components, like virtual machines, networks, storage, and databases - and enable customers to build and manage higher level applications on top of these in a rich DevOps friendly way. The Azure Resource Manager, provides a **Language** (Azure Resource Manager Template Language) that allows a declarative, parameterized description (a **Template**) of a set of related resources, so that they may be deployed and managed as a unit. The Templates are text-based (JSON), making it easy to use them with source code control systems like TFS and Git.
 
 <a name="Objectives" />
 ### Objectives ###
 In this hands-on lab, you will learn how to:
 
 - Create a new Resource Group using Azure Resource Manager
-- Use every section of the Top-level Template Structure
+- Use the different sections of the Top-level Template Structure
 - Create more advanced templates
 - Configure Firewall Rules, Alerts, and Autoscaling
 
@@ -34,7 +34,7 @@ The following is required to complete this hands-on lab:
 ## Exercises ##
 This hands-on lab includes the following exercises:
 
-1. [Getting familiar with the Cloud Service Manager Top-level Template Structure](#Exercise1)
+1. [Getting familiar with the Azure Resource Manager Top-level Template Structure](#Exercise1)
 1. [Advanced Template Configuration](#Exercise2)
 1. [Firewall Rules, Alerts and Autoscale Settings](#Exercise3)
 
@@ -43,9 +43,16 @@ Estimated time to complete this lab: **XX minutes**
 >**Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
 
 <a name="Exercise1" />
-### Exercise 1: Getting familiar with the Cloud Service Manager Top-level Template Structure ###
+### Exercise 1: Getting familiar with the Azure Resource Manager Top-level Template Structure ###
 
-In this exercise you will learn about the CSM Top-level Template structure, you will explore the different sections of it, learning about its usage, and how to construct them. 
+In this exercise you will learn about the ARM Template Language, its Top-level Template structure, and you will explore the different sections of it, learning about its usage, and how to construct them. 
+
+<a name="Ex1Task1" />
+#### Task 1 – Introduction to the ARM Template Language ####
+
+In this exercise you will learn about the ARM Template Language and its Top-level Template structure.
+
+This **Language** allows a declarative, parameterized description of a set of related resources, so that they may be deployed and managed as a unit. There is a service that reads these Templates and orchestrates the creation of the resources they describe. Tools like _Visual Studio 2013 Update 2_ can read and write these Templates and even provide IntelliSense. The Templates are text-based (JSON), making it easy to use them with source code control systems like TFS and Git.
 
 At a glance, the following is the Top-level Template structure.
 
@@ -78,12 +85,56 @@ At a glance, the following is the Top-level Template structure.
 }
 ````
 
-In the following tasks you will examine the most important sections of this template structure. These are Resources, Parameters, Tags, and Variables. 
+1. Open your preferred text editor and paste the following Top-level Template Structure. You will use this, to start constructing yout template 
 
-<a name="Ex1Task1" />
-#### Task 1 – Understanding the Resources Section ####
+    ````JavaScript
+    {
+      "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+      "contentVersion" : "1.0",
+      "parameters": { 
+      },
+      "variables": {
+      },
+      "resources": 
+      [
+      ]
+    }
+    ````
+    
+2. Save the template file locally with a **.json** extension. For example, _myTemplate.json_.
 
-In this task, you will learn about the Resource section, which is ued for defining all the resources that will be in your resource group.
+3. Open the Json file just created in _Visual Studio 2013 Update 2_.
+
+4. In the **parameters** section, create a new paramerter named _paramName_ as shown in the following code.
+
+    <!-- mark:5-7 -->
+    ````JavaScript
+    {
+      "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+      "contentVersion" : "1.0",
+      "parameters": { 
+          "paramName" : {
+	  
+          }
+      },
+      "variables": {
+      },
+      "resources": 
+      [
+      ]
+    }
+    ````
+
+5. Inside the curly brackets of the _paramName_ parameter, type **t** and wait for Visual Studio to provide you with IntelliSense options. You can also press **CTRL + D** to force Visual Studio to display IntelliSense options.
+
+	![Visual Studio 2013 Update 2 providing Intellisense](Images/visual-studio-2013-update-2-providing-intelli.png?raw=true)
+	
+	_Visual Studio 2013 Update 2 providing Intellisense for the ARM template_
+
+<a name="Ex1Task2" />
+#### Task 2 – Understanding the Resources Section ####
+
+In this task, you will learn about the Resource section, which is used for defining all the resources that will be in your resource group.
 
 The **Resources** collection contains a JSON array of **Resource** objects. Each Resource object has the following top-level structure.
 
@@ -119,23 +170,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 > The _properties_ property is a bag containing name/value pairs. Every resource can have a section with properties. These are the settings that describe or configure the resource. 
 
-1. Open your preferred text editor and paste the following Top-level Template Structure.
-
-    ````JavaScript
-    {
-      "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
-      "contentVersion" : "1.0",
-      "parameters": { 
-      },
-      "variables": {
-      },
-      "resources": 
-      [
-      ]
-    }
-    ````
-
-2. You will create your custom template by adding  a website resource. To do this, locate the **resources** section, and below the comment add the following code. This code will add a very simple website to your resource group. Before adding the code, replace every _\<Your-Site-Name\>_ tag with a name of your choice, for example: _MyTestWebSite_.
+1. You will create your custom template by adding  a website resource. To do this, locate the **resources** section, and below the comment add the following code. This code will add a very simple website to your resource group. Before adding the code, replace every _\<Your-Site-Name\>_ tag with a name of your choice, for example: _MyTestWebSite_.
 
 	> **Note:** Take into account that Azure Websites names must be unique. Therefore you must choose a name that has not been taken yet. To avoid duplication you can append a random number to the end or your desired name.
 	
@@ -155,13 +190,13 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 	],
 	````
 	
-3. In the **location** property of the resource, replace the _\<Your-Location\>_ value with _East Us_ or another Datacenter location.
+2. In the **location** property of the resource, replace the _\<Your-Location\>_ value with _East Us_ or another Datacenter location.
 
 	> Take note of the location you will use here, as it is recommended, but not mandatory, that all the other resources of the resource group are hosted in the same location.
 
-4. Choose a name for your hosting plan name, and replace the  _\<Your-Hosting-Plan-Name\>_ tag with the choosen name in the code created in the previous step.
+3. Choose a name for your hosting plan name, and replace the  _\<Your-Hosting-Plan-Name\>_ tag with the choosen name in the code created in the previous step.
 
-5. The following code will create a **Hosting Plan** that will be used in the creation of the website. Replace the _\<Your-Hosting-Plan-Name\>_ tag with the name choose in the previous step and paste this code in the resource sections of your template. Preferably, paste it before the Website resource.
+4. The following code will create a **Hosting Plan** that will be used in the creation of the website. Replace the _\<Your-Hosting-Plan-Name\>_ tag with the name choose in the previous step and paste this code in the resource sections of your template. Preferably, paste it before the Website resource.
 	
 	````JavaScript
     {
@@ -178,7 +213,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 	},
 	````
 
-6. As you may have noticed, the Hosting Plan resource needs to be created before the creation of the Website. This means that the Website depends on the Hosting Plan. Add the **dependsOn** property in the Website resource to indicate this dependency. The property is highlighted in the following code.
+5. As you may have noticed, the Hosting Plan resource needs to be created before the creation of the Website. This means that the Website depends on the Hosting Plan. Add the **dependsOn** property in the Website resource to indicate this dependency. The property is highlighted in the following code.
 
     <!-- mark:6-8 -->
     ````JavaScript
@@ -197,7 +232,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
     },
     ````
 
-7. Add a new resource to the list, this time a SQL Server. To do this, add the following code in the resource section.
+6. Add a new resource to the list, this time a SQL Server. To do this, add the following code in the resource section.
 
     ````JavaScript
     {
@@ -212,29 +247,29 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
     }
 ````
 
-8. Replace the _\<Your-Server-Name\>_ placeholder with a name for your SQL Server.
+7. Replace the _\<Your-Server-Name\>_ placeholder with a name for your SQL Server.
 
 	> **Note:** Keep in mind that the SQL Server name must be all lowercase, you can use numbers, and the hypen symbol.
 
-9. Replace the _\<Your-Location\>_ placehodlder with the location you used in the previous resources. Also, replace the _\<Admin-User\>_ and _\<Admin-Password\>_ placeholders with your preferred credentials for this server.
+8. Replace the _\<Your-Location\>_ placehodlder with the location you used in the previous resources. Also, replace the _\<Admin-User\>_ and _\<Admin-Password\>_ placeholders with your preferred credentials for this server.
 	
-10. Save the template file locally with a **.json** extension. For example, _myTemplate.json_.
+9. Save the template file.
 
-11. Open Azure PowerShell.
+10. Open Azure PowerShell.
 
-12. Replace the _[STORAGE NAME]_ placeholder and execute the following command to create a new storage account. Make sure that the storage name you selected is unique.
+11. Replace the _[STORAGE NAME]_ placeholder and execute the following command to create a new storage account. Make sure that the storage name you selected is unique.
 
 	````PowerShell
 	New-AzureStorageAccount -StorageAccountName [STORAGE NAME] -Location "East US"
 	````
 
-13. Switch mode to **AzureResourceManager** using the following command.
+12. Switch mode to **AzureResourceManager** using the following command.
 
 	````PowerShell
 	SwitchMode AzureResourceManager
 	````
 
-14. Replace the placeholders and execute the following command to create your new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you have created in the previous step.
+13. Replace the placeholders and execute the following command to create your new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you have created in the previous step.
 
 	````PowerShell
 	New-AzureResourceGroup -Location [LOCATION] -Name [RESOURCE-GROUP-NAME] -TemplateFile [JSON-File-Path]  –StorageAccountName [STORAGEACCOUNT] -Verbose
@@ -244,21 +279,21 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 	
 	_New-AzureResourceGroup command_
 	
-15. Open Internet Explorer and browse to the [Azure Portal](http://azure.portal.com)
+14. Open Internet Explorer and browse to the [Azure Portal](http://azure.portal.com)
 
-16. Click the **Browse** button from the Hub Menu on the left side of the window.
+15. Click the **Browse** button from the Hub Menu on the left side of the window.
 
-17. In the **Browse** menu, click **Resource groups**.
+16. In the **Browse** menu, click **Resource groups**.
 
-18. Notice that in the Resource groups pane, there is a list of resources. Check that your resource group was created. Navigate to the Resource Group and check that there is the website with the names you defined in the template.
+17. Notice that in the Resource groups pane, there is a list of resources. Check that your resource group was created. Navigate to the Resource Group and check that there is the website with the names you defined in the template.
 
 	![Resource Group in the azure portal](Images/resource-group-in-the-azure-portal.png?raw=true "Resource Group in the azure portal")
 	
 	_Resource Group in the azure portal_
 	
 
-<a name="Ex1Task2" />
-#### Task 2 – Understanding the Parameters Section ####
+<a name="Ex1Task3" />
+#### Task 3 – Understanding the Parameters Section ####
 
 In this task, you will learn how to use parameters in your templates. Using parameters makes changing some repetitive values easier. It also allows you to create templates that contains values that should be prompted to the user, for example, resource names or even credentials that can be masked when entered.
 
