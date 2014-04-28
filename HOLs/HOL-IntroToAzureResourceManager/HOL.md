@@ -36,21 +36,21 @@ This hands-on lab includes the following exercises:
 
 1. [Getting familiar with the Azure Resource Manager Top-level Template Structure](#Exercise1)
 1. [Advanced Template Configuration](#Exercise2)
-1. [Firewall Rules, Alerts and Autoscale Settings](#Exercise3)
+1. [Cleaning Up Your Resources](#Exercise3)
 
-Estimated time to complete this lab: **XX minutes**
+Estimated time to complete this lab: **45 minutes**
 
 >**Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
 
 <a name="Exercise1" />
 ### Exercise 1: Getting familiar with the Azure Resource Manager Top-level Template Structure ###
 
-In this exercise you will learn about the ARM Template Language, its Top-level Template structure, and you will explore the different sections of it, learning about its usage, and how to construct them. 
+In this exercise you will learn about the **Azure Resource Manager** (ARM) Template Language, its Top-level Template structure, and you will explore the different sections of it, learning about its usage, and how to construct them. 
 
 <a name="Ex1Task1" />
 #### Task 1 – Introduction to the ARM Template Language ####
 
-In this exercise you will learn about the ARM Template Language and its Top-level Template structure.
+In this task you will learn about the **ARM** Template Language and its Top-level Template structure.
 
 This **Language** allows a declarative, parameterized description of a set of related resources, so that they may be deployed and managed as a unit. There is a service that reads these Templates and orchestrates the creation of the resources they describe. Tools like _Visual Studio 2013 Update 2_ can read and write these Templates and even provide IntelliSense. The Templates are text-based (JSON), making it easy to use them with source code control systems like TFS and Git.
 
@@ -85,7 +85,7 @@ At a glance, the following is the Top-level Template structure.
 }
 ````
 
-1. Open your preferred text editor and paste the following Top-level Template Structure. You will use this, to start constructing yout template 
+1. Open your preferred text editor and paste the following Top-level Template Structure. You will use this, to start constructing your own template.
 
     ````JavaScript
     {
@@ -103,7 +103,7 @@ At a glance, the following is the Top-level Template structure.
     
 2. Save the template file locally with a **.json** extension. For example, _myTemplate.json_.
 
-3. Open the Json file just created in _Visual Studio 2013 Update 2_.
+3. Open the JSON file you just created in _Visual Studio 2013 Update 2_.
 
 4. In the **parameters** section, create a new parameter named _paramName_ as shown in the following code.
 
@@ -183,7 +183,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 > The _properties_ property is a bag containing name/value pairs. Every resource can have a section with properties. These are the settings that describe or configure the resource. 
 
-1. You will create your custom template by adding  a website resource. To do this, locate the **resources** section, and below the comment add the following code. This code will add a very simple website to your resource group. Before adding the code, replace every _\<Your-Site-Name\>_ tag with a name of your choice, for example: _MyTestWebSite_.
+1. You will create your custom template by adding  a website resource. To do this, locate the **resources** section, and below the comment add the following code. This code will add a very simple website to your resource group. Before adding the code, replace every _\<Your-Site-Name\>_ tag with a name of your choice, for example: _MyTestWebSite_, and every _\<Your-Location\>_ with the location of your choice (e.g.: _East US_).
 
 	> **Note:** Take into account that Azure Websites names must be unique. Therefore you must choose a name that has not been taken yet. To avoid duplication you can append a random number to the end or your desired name.
 	
@@ -209,7 +209,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 3. Choose a name for your hosting plan name, and replace the  _\<Your-Hosting-Plan-Name\>_ tag with the chosen name in the code created in the previous step.
 
-4. The following code will create a **Hosting Plan** that will be used in the creation of the website. Replace the _\<Your-Hosting-Plan-Name\>_ tag with the name choose in the previous step and paste this code in the resource sections of your template. Preferably, paste it before the Website resource.
+4. The following code will create a **Hosting Plan** that will be used in the creation of the website. Replace the _\<Your-Hosting-Plan-Name\>_ tag with the name choosen in the previous step and paste this code in the resource sections of your template. Preferably, paste it before the Website resource.
 	
 	````JavaScript
     {
@@ -245,7 +245,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
     },
     ````
 
-6. Add a new resource to the list, this time a SQL Server. To do this, add the following code in the resource section.
+6. Add a new resource to the list, this time a **SQL Server**. To do this, add the following code in the resource section.
 
     ````JavaScript
     {
@@ -268,20 +268,24 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 	
 9. Save the template file.
 
-10. Open Azure PowerShell.
+10. Open **Azure PowerShell**.
 
 11. Replace the _[STORAGE NAME]_ placeholder and execute the following command to create a new storage account. Make sure that the storage name you selected is unique.
+
+	> **Note:** You can skip this step if you prefer to use an already existing storage account of your own instead of creating a new one.
 
 	````PowerShell
 	New-AzureStorageAccount -StorageAccountName [STORAGE NAME] -Location "East US"
 	````
 
-12. Switch mode to **AzureResourceManager** using the following command.
+12. Switch mode to **AzureResourceManager** using the following command. In this mode, you will have access to the Cmdlets related to **Azure Resource Manager**.
 
 	````PowerShell
 	Switch-AzureMode AzureResourceManager
 	````
 
+	> **Note:** You can switch back to the Azure module executing _Switch-AzureMode -Name AzureServiceManagement_.
+	
 13. Replace the placeholders and execute the following command to create your new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you have created in the previous step.
 
 	````PowerShell
@@ -298,17 +302,16 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 16. In the **Browse** menu, click **Resource groups**.
 
-17. Notice that in the Resource groups pane, there is a list of resources. Check that your resource group was created. Navigate to the Resource Group and check that there is the website with the names you defined in the template.
+17. Notice that in the **Resource** groups pane, there is a list of resources. Check that your resource group was created. Navigate to the Resource Group and check that there is a website with the names you defined in the template.
 
 	![Resource Group in the azure portal](Images/resource-group-in-the-azure-portal.png?raw=true "Resource Group in the azure portal")
 	
 	_Resource Group in the azure portal_
-	
 
 <a name="Ex1Task3" />
 #### Task 3 – Understanding the Parameters Section ####
 
-In this task, you will learn how to use parameters in your templates. Using parameters makes changing some repetitive values easier. It also allows you to create templates that contains values that should be prompted to the user, for example, resource names or even credentials that can be masked when entered.
+In this task, you will learn how to use parameters in your templates. Using parameters makes changing repetitive values easier. It also allows you to create templates that contains values that should be prompted to the user, for example, resource names or even credentials that can be masked when entered.
 
 Parameters are defined in the **parameters** section of the Top-level template, using the following pattern.
 
@@ -510,7 +513,7 @@ Then to use a defined resource in the template, you specify it in the following 
     },
     ````
 
-11. Save the template file and switch back to PowerShell.
+11. Save the template file and switch back to **PowerShell**.
 
 14. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise. Notice that we forced the **sku** parameter to be _Standard_.
 
@@ -537,7 +540,7 @@ Then to use a defined resource in the template, you specify it in the following 
 <a name="Exercise2" />
 ### Exercise 2 : Advanced Template Configuration  ###
 
-In this exercise you will dig deeper into more options that the ARM template provides to define your resources and some custom options. You will learn how to create nested resources, how to configure alerts based on your resource metrics, and even how to autoscale your resourced based on some of this metrics.
+In this exercise you will dig deeper into more options that the **ARM** template provides to define your resources and some custom options. You will learn how to create nested resources, how to configure alerts based on your resource metrics, and even how to autoscale your resourced based on these metrics.
 
 <a name="Ex2Task1" />
 #### Task 1 - Nested Resources  ####
@@ -546,9 +549,9 @@ Inside the Resource section, each resource can have a list of resources that are
 
 In this task you will add child resources to the resources you have created in the previous exercise. You will create a database in the SQL Server you have created and then you will create a configuration in the WebSite to reference the database.
 
-1. If not already opened, open the custom JSON you started creating in Exercise 1. 
+1. If not already opened, open the custom JSON you started creating in Exercise 1.
 
-1. Locate the SQL Server resource in the **resources** section.
+1. Locate the **SQL Server** resource in the **resources** section.
 
 	````JavaScript
 	{
@@ -563,7 +566,7 @@ In this task you will add child resources to the resources you have created in t
 	}
 	````
 
-1. Add a new property to the resource called **resources**. The resources properties is a list of resources inside the service.
+1. Add a new property to the resource called **resources**. The **resources** property is a list of resources inside the service.
 
 	<!-- mark:10-13 -->
 	````JavaScript
@@ -582,7 +585,7 @@ In this task you will add child resources to the resources you have created in t
 	}
 	````
 
-1. Add a new resource in the resources property you have just defined to create a database inside the SQL Server. The resource should look like below
+1. Add a new resource in the **resources** property you have just defined to create a database inside the SQL Server. The resource should look like the following:
 
 	<!-- mark:11-16 -->
 	````JavaScript
@@ -608,7 +611,7 @@ In this task you will add child resources to the resources you have created in t
 
 	>**Note**: The resource you have just added defines a new database in the same location as the server which is specified when executing the command. The name of the database is defined with the name of the site with the __db_ prefix.
 	
-1. Now you will add some configuration properties to the database to define the **edition** of the SQL Database, the collation and the maximum size.
+1. Now you will add some configuration properties to the database to define the **edition** of the SQL Database, the **collation** and the **maximum size**.
 
 	<!-- mark:16-20 -->
 	````JavaScript
@@ -762,8 +765,7 @@ In this task you will add child resources to the resources you have created in t
 
 	>**Note**: Notice that the connection string value is the combination of various strings and properties, which include the **serverName**, **siteName**, **administratorLogin** and **administratorPassoword** parameters.
 
-
-	The Template Engine will read the template, evaluate the dependencies between resources and construct a graph that it will use determine the order of deployment. When there are not dependencies between resources, the orchestrator will try to deploy the resources in parallel. Dependencies can be found by looking at where one resource gets values from another resource via Resource Expressions. 
+	The **Template Engine** will read the template, evaluate the dependencies between resources and construct a graph that it will use determine the order of deployment. When there are not dependencies between resources, the orchestrator will try to deploy the resources in parallel. Dependencies can be found by looking at where one resource gets values from another resource via Resource Expressions. 
 
 	Sometimes there are dependencies that are not obvious from these references. There's a property in the resource template were the user can explicitly declare a dependency. The property is called **dependsOn**.
 
@@ -836,9 +838,9 @@ In this task you will add child resources to the resources you have created in t
 	]
 	````
 	
-1. Save the template file and switch back to PowerShell	
+1. Save the template file and switch back to **PowerShell**.
 
-14. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise. Notice that we forced the sku parameter to be _Standard_.
+14. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise. Notice that we forced the **sku** parameter to be _Standard_.
 
 	````PowerShell
 	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN] -sku Standard
@@ -852,9 +854,9 @@ In this task you will add child resources to the resources you have created in t
 <a name="Ex2Task2" />
 #### Task 2 - Configuring Alerts ####
 
-In this task you will add a new **Alert** as a new resource in the JSON template. You can configure different types of alerts depending on the metric you want to be notified with. For example, in this task you will create a new alert that will send you an email when a threshold of 2000 Requests (or greater) is reached. 
+In this task you will add a new **Alert** as a new resource in the JSON template. You can configure different types of alerts depending on the metric you want to be notified with. For example, in this task you will create a new alert that will send you an email when a threshold of 2000 Requests (or greater) is reached for your website.
 
-1. You can optionally continue editing the JSON template file you have been using in the previous exercises or open the **template.json** file located in the **Source\Ex3-Configurations\Begin** folder.
+1. Edit the JSON template file you created in the previous exercises.
 
 1. Add the following resource at the end of the template.
 
@@ -905,7 +907,7 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 	}
 	````
 
-	 To trigger a notification the alert must meet the condition settings. Inside the **condition** property for this example, you are configuring the following values:
+	 To trigger a notification, the alert must meet the condition settings. Inside the **condition** property for this example, you are configuring the following values:
 	 
 	 - **odata.type**: This condition use a **ThresholdRuleCondition** which requires a value to meet the condition.
 	 - **dataSource**: Inside this property you have 3 more properties to configure. The **metricName** is the type of metric that the alert will be watching. In this case you are using **Requests** but you can choose a different one. For example, to listen for HTTP 500 error codes, you need to set the **metricName** value to **Http5xx**. Additionally, you need to set the **resourceUri** which will identify the Website that the alert is currently watching.
@@ -1226,9 +1228,85 @@ In this task you will learn about deleting resources and deleting resource group
 6. Show resources list in a resource group and show that the resource was deleted 
 7. Delete resource group (<http://msdn.microsoft.com/en-us/library/dn654585.aspx>)
 
+	
+<a name="Ex2Task4" />
+#### Task 4 - Configuring MSDeploy ####
+
+In this task you will ...
+
+1. In Azure PowerShell, navigate to the **Source/Assets** folder of the lab
+
+1. Execute the following command to change from **Azure Resource Manager** to **Azure Service Management** mode.
+
+	````PowerShell
+	Switch-AzureMode AzureServiceManagement
+	````
+
+1. Replace the _[STORAGE-ACCOUNT-NAME]_ placeholder with the Account you created in the previous exercise and execute the following script to create a packages container in your storage account and update the zip file named **mywebsite** to the storage account.
+	
+	````PowerShell
+	$storageAccountName = "[STORAGE-ACOUNT-NAME]"
+	$fqName = ".\mywebsite.zip"
+	$fileName = "mydeployedwebsite.zip"
+	$ContainerName = "package"
+	$storageAccountKey = Get-AzureStorageKey $storageAccountName | %{ $_.Primary }
+	$context = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey $storageAccountKey
+	New-AzureStorageContainer $ContainerName -Permission Container -Context $context
+	Set-AzureStorageBlobContent -Blob $fileName  -Container $ContainerName -File $fqName -Context $context -Force
+	````
+	
+	![Uploaded zip file to blob storage](Images/uploaded-zip-file-to-blob-storage.png?raw=true "Uploaded zip file to blob storage")
+	
+	_Uploaded zip file to blob storage_
+	
+1. Once the zip file is uploaded, replace the _[STORAGE-FILE-URL]_ placeholder with the url of the file in Blob storage in the following snippet and add **MSDeploy** extension to the website resources after the **config** resource.
+
+	<!-- mark:1-17 -->
+	````JavaScript
+	{
+	"apiVersion": "01-01-2014",
+	"name": "MSDeploy",
+	"type": "Extensions",
+	"dependsOn": [
+		"[concat('Microsoft.Web/Sites/', parameters('siteName'))]",
+		"[concat('Microsoft.Sql/servers/', parameters('serverName'), '/databases/', parameters('siteName'), '_db')]"
+	],
+	"properties": {
+			"packageUri": "[STORAGE-FILE-URL]",
+			"dbType": "SQL",
+			"connectionString": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]",
+			"setParameters": {
+				"AppPath": "[parameters('siteName')]"
+			}
+		}
+	}
+	````
+	
+	>**Note** The storage URL should look like the following. HTTP://[ACCOUNT-NAME].blob.core.windows.net/[CONTAINER]/[FILENAME]. If you left the variables as the script  bellow, _[CONTAINER]_ should be **package** and _[FILENAME]_ should be **mydeployedwebsite.zip**.
+
+1. Save the template and go back to **PowerShell**.
+
+1. Run the **New-AzureResourceGroup** Cmdlet and wait until the Resource Group is updated. Once completed, open Internet Explorer.
+
+	![New-AzureResourceGroup command with MSDeploy task added](Images/new-azureresourcegroup-command-with-msdeploy.png?raw=true "New-AzureResourceGroup command with MSDeploy task added")
+	
+	_New-AzureResourceGroup command with MSDeploy task added_
+
+1. Navigate to **HTTP://[YOUR-SITE-NAME].azurewebsites.net** where _[YOUR-SITE-NAME]_ is the same name you set in the command.
+
+	![HTTP://[YOUR-SITE-NAME].azurewebsites.net](Images/httpyour-siteazurewebsitesnet.png?raw=true "HTTP://[your-site].azurewebsites.net")
+	
+	_HTTP://[YOUR-SITE-NAME].azurewebsites.net_
+
+
+
 ---
 
 <a name="Summary" />
 ## Summary ##
 
-In this Hands-on Lab you learned about the ARM template language, how to define resources, its dependencies and how to configure alerts and autoscale your resources based on defined metrics. 
+In this Hands-on Lab you learned about **Azure Resource Manager** (ARM) and the ARM template language to define resources and its dependencies. You learned how to parameterize the template, add dependencies, configure alerts and autoscaling settings to your resources.
+
+Additionally, you learned how to remove specific resources from a **Resource Group** and how to delete an entire **Resource Group** using the Azure PowerShell Cmdlets.
+
+

@@ -80,7 +80,23 @@
                     "Type": 2
                 }]
             }
-        }]
+        }, {
+	            "apiVersion": "01-01-2014",
+	            "name": "MSDeploy",
+	            "type": "Extensions",
+	            "dependsOn": [
+		            "[concat('Microsoft.Web/Sites/', parameters('siteName'))]",
+		            "[concat('Microsoft.Sql/servers/', parameters('serverName'), '/databases/', parameters('siteName'), '_db')]"
+	            ],
+	            "properties": {
+			            "packageUri": "[STORAGE-FILE-URL]",
+			            "dbType": "SQL",
+			            "connectionString": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]",
+			            "setParameters": {
+				            "AppPath": "[parameters('siteName')]"
+			            }
+		            }
+	            }]
     },
     {
         "name": "[parameters('serverName')]",
