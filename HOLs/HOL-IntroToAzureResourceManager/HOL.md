@@ -130,6 +130,19 @@ At a glance, the following is the Top-level Template structure.
 	![Visual Studio 2013 Update 2 providing Intellisense](Images/visual-studio-2013-update-2-providing-intelli.png?raw=true)
 	
 	_Visual Studio 2013 Update 2 providing IntelliSense for the ARM template_
+	
+	> **Note:** ARM provides a gallery of already created templates. These templates are useful for the most common resource groups scenarios, such as _Websites with SQL_. To get the list of available templates in the gallery use the following Azure PowerShell command while you are in _AzureResourceManager_ Azure mode.
+
+	````PowerShell	
+	Get-AzureResourceGroupGalleryTemplate
+	````
+	> Using the **-Identity** switch you can review a gallery template and its properties, including icons and screenshots.	
+	> To save a template from the gallery, you can use the **Save-AzureResourceGroupGalleryTemplate** command, specifying the template name and the path where the file will be saved.
+	
+	````PowerShell
+	Save-AzureResourceGroupGalleryTemplate -Identity [TEMPLATE-NAME] -Path [FILE-PATH]	
+	````
+
 
 <a name="Ex1Task2" />
 #### Task 2 – Understanding the Resources Section ####
@@ -1166,7 +1179,53 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 	![Scale blade](Images/scale-blade.png?raw=true "Scale blade")
 
 	_Scale blade_
-	
+
+<a name="Exercise3" />
+### Exercise 3 : Cleaning up Resources using ARM  ###
+
+In this exercise you will learn how to delete resources and resource groups. You will learn this by deleting the resource group that was created in the previous exercises.
+
+<a name="Ex3Task1" />
+#### Task 1 - Removing Resources and Resource Groups  ####
+
+In this task you will learn about deleting resources and deleting resource groups using Azure PowerShell.
+
+1. Open Azure Powershell if it is not already opened.
+
+2. Ensure that your Powershell session is in _AzureResourceManager_ mode. If not, execute the following command to enter in this mode.
+
+	````PowerShell
+	Switch-AzureMode AzureResourceManager
+	````
+
+3. Use the following command to list all the available resource groups. 
+
+	````PowerShell
+	Get-AzureResourceGroup
+	```` 
+
+4. From the list of resource groups in your suscription, choose the one created in the previous exercises and execute the following command that will list all the resources of that resource group. Without parameters, **Get-AzureResource** gets all resources in your Azure subscription
+
+	````PowerShell
+	Get-AzureResource -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME]
+	```` 
+
+5. Choose one resource from the list of resources that will be deleted, for example the Website. To get more information about the chosen resouce, specify the name of it. When you use the **Name** parameter to get a particular resource, the **ResourceGroupName**, **ResourceType**, and **APIVersion** parameters are required.
+
+	````PowerShell
+	Get-AzureResource -Name [YOUR-AZURE-RESOURCE-NAME] -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME] -ResourceType "Microsoft.Web/sites" -ApiVersion 2014-04-01
+	```` 
+
+4. Show how to show a particular resource 
+5. Delete the selected resource. To delete a resource from the resource group, use the **Remove-AzureResource** cmdlet. This cmdlet deletes the resource, but does not delete the resource group.
+
+	````PowerShell
+	Remove-AzureResource -Name [YOUR-AZURE-RESOURCE-NAME] -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME]
+	```` 
+ 
+6. Show resources list in a resource group and show that the resource was deleted 
+7. Delete resource group (<http://msdn.microsoft.com/en-us/library/dn654585.aspx>)
+
 ---
 
 <a name="Summary" />
