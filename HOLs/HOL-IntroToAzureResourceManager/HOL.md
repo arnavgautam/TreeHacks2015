@@ -1167,6 +1167,78 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 
 	_Scale blade_
 	
+	
+<a name="Ex2Task4" />
+#### Task 4 - Configuring MSDeploy ####
+
+In this task you will ...
+
+1. In Azure PowerShell, navigate to the **Source/Assets** folder of the lab
+
+1. Execute the following command to change from **Azure Resource Manager** to **Azure Service Management** mode.
+
+	````PowerShell
+	Switch-AzureMode AzureServiceManagement
+	````
+
+1. Replace the _[STORAGE-ACCOUNT-NAME]_ placeholder with the Account you created in the previous exercise and execute the following script to create a packages container in your storage account and update the zip file named **mywebsite** to the storage account.
+	
+	````PowerShell
+	$storageAccountName = "[STORAGE-ACOUNT-NAME]"
+	$fqName = ".\mywebsite.zip"
+	$fileName = "mydeployedwebsite.zip"
+	$ContainerName = "package"
+	$storageAccountKey = Get-AzureStorageKey $storageAccountName | %{ $_.Primary }
+	$context = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey $storageAccountKey
+	New-AzureStorageContainer $ContainerName -Permission Container -Context $context
+	Set-AzureStorageBlobContent -Blob $fileName  -Container $ContainerName -File $fqName -Context $context -Force
+	````
+	
+	![Uploaded zip file to blob storage](Images/uploaded-zip-file-to-blob-storage.png?raw=true "Uploaded zip file to blob storage")
+	
+	_Uploaded zip file to blob storage_
+	
+1. Once the zip file is uploaded, replace the _[STORAGE-FILE-URL]_ placeholder with the url of the file in Blob storage in the following snippet and add **MSDeploy** extension to the website resources after the **config** resource.
+
+	<!-- mark:1-17 -->
+	````JavaScript
+	{
+	"apiVersion": "01-01-2014",
+	"name": "MSDeploy",
+	"type": "Extensions",
+	"dependsOn": [
+		"[concat('Microsoft.Web/Sites/', parameters('siteName'))]",
+		"[concat('Microsoft.Sql/servers/', parameters('serverName'), '/databases/', parameters('siteName'), '_db')]"
+	],
+	"properties": {
+			"packageUri": "[STORAGE-FILE-URL]",
+			"dbType": "SQL",
+			"connectionString": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]",
+			"setParameters": {
+				"AppPath": "[parameters('siteName')]"
+			}
+		}
+	}
+	````
+	
+	>**Note** The storage URL should look like the following. HTTP://[ACCOUNT-NAME].blob.core.windows.net/[CONTAINER]/[FILENAME]. If you left the variables as the script  bellow, _[CONTAINER]_ should be **package** and _[FILENAME]_ should be **mydeployedwebsite.zip**.
+
+1. Save the template and go back to **PowerShell**.
+
+1. Run the **New-AzureResourceGroup** Cmdlet and wait until the Resource Group is updated. Once completed, open Internet Explorer.
+
+	![New-AzureResourceGroup command with MSDeploy task added](Images/new-azureresourcegroup-command-with-msdeploy.png?raw=true "New-AzureResourceGroup command with MSDeploy task added")
+	
+	_New-AzureResourceGroup command with MSDeploy task added_
+
+1. Navigate to **HTTP://[YOUR-SITE-NAME].azurewebsites.net** where _[YOUR-SITE-NAME]_ is the same name you set in the command.
+
+	![HTTP://[YOUR-SITE-NAME].azurewebsites.net](Images/httpyour-siteazurewebsitesnet.png?raw=true "HTTP://[your-site].azurewebsites.net")
+	
+	_HTTP://[YOUR-SITE-NAME].azurewebsites.net_
+
+
+
 ---
 
 <a name="Summary" />
