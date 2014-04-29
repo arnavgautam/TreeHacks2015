@@ -1181,53 +1181,6 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 	![Scale blade](Images/scale-blade.png?raw=true "Scale blade")
 
 	_Scale blade_
-
-<a name="Exercise3" />
-### Exercise 3 : Cleaning up Resources using ARM  ###
-
-In this exercise you will learn how to delete resources and resource groups. You will learn this by deleting the resource group that was created in the previous exercises.
-
-<a name="Ex3Task1" />
-#### Task 1 - Removing Resources and Resource Groups  ####
-
-In this task you will learn about deleting resources and deleting resource groups using Azure PowerShell.
-
-1. Open Azure Powershell if it is not already opened.
-
-2. Ensure that your Powershell session is in _AzureResourceManager_ mode. If not, execute the following command to enter in this mode.
-
-	````PowerShell
-	Switch-AzureMode AzureResourceManager
-	````
-
-3. Use the following command to list all the available resource groups. 
-
-	````PowerShell
-	Get-AzureResourceGroup
-	```` 
-
-4. From the list of resource groups in your suscription, choose the one created in the previous exercises and execute the following command that will list all the resources of that resource group. Without parameters, **Get-AzureResource** gets all resources in your Azure subscription
-
-	````PowerShell
-	Get-AzureResource -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME]
-	```` 
-
-5. Choose one resource from the list of resources that will be deleted, for example the Website. To get more information about the chosen resouce, specify the name of it. When you use the **Name** parameter to get a particular resource, the **ResourceGroupName**, **ResourceType**, and **APIVersion** parameters are required.
-
-	````PowerShell
-	Get-AzureResource -Name [YOUR-AZURE-RESOURCE-NAME] -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME] -ResourceType "Microsoft.Web/sites" -ApiVersion 2014-04-01
-	```` 
-
-4. Show how to show a particular resource 
-5. Delete the selected resource. To delete a resource from the resource group, use the **Remove-AzureResource** cmdlet. This cmdlet deletes the resource, but does not delete the resource group.
-
-	````PowerShell
-	Remove-AzureResource -Name [YOUR-AZURE-RESOURCE-NAME] -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME]
-	```` 
- 
-6. Show resources list in a resource group and show that the resource was deleted 
-7. Delete resource group (<http://msdn.microsoft.com/en-us/library/dn654585.aspx>)
-
 	
 <a name="Ex2Task4" />
 #### Task 4 - Configuring MSDeploy ####
@@ -1299,6 +1252,72 @@ In this task you will ...
 	_HTTP://[YOUR-SITE-NAME].azurewebsites.net_
 
 
+<a name="Exercise3" />
+### Exercise 3 : Cleaning up Resources using ARM  ###
+
+In this exercise you will learn how to delete resources and resource groups. You will learn this by deleting the resource group that was created in the previous exercises.
+
+<a name="Ex3Task1" />
+#### Task 1 - Removing Resources and Resource Groups  ####
+
+In this task you will learn about deleting resources and deleting resource groups using Azure PowerShell.
+
+1. Open Azure Powershell if it is not already opened.
+
+2. Ensure that your Powershell session is in _AzureResourceManager_ mode. If not, execute the following command to enter in this mode.
+
+	````PowerShell
+	Switch-AzureMode AzureResourceManager
+	````
+
+3. Use the following command to list all the available resource groups. 
+
+	````PowerShell
+	Get-AzureResourceGroup
+	```` 
+
+4. From the list of resource groups in your suscription, choose the one created in the previous exercises and execute the following command that will list all the resources of that resource group. Without parameters, **Get-AzureResource** gets all resources in your Azure subscription
+
+	````PowerShell
+	Get-AzureResource -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME]
+	```` 
+
+5. Choose one resource from the list of resources that will be deleted, for example the Website. To get more information about the chosen resouce, specify the name of it. When you use the **Name** parameter to get a particular resource, the **ResourceGroupName**, **ResourceType**, and **APIVersion** parameters are required.
+
+	````PowerShell
+	Get-AzureResource -Name [YOUR-AZURE-RESOURCE-NAME] -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME] -ResourceType "Microsoft.Web/sites" -ApiVersion 2014-04-01
+	```` 
+	
+6. Delete the selected resource. To delete a resource from the resource group, use the **Remove-AzureResource** cmdlet. This cmdlet deletes the resource, but does not delete the resource group.
+
+	````PowerShell
+	Remove-AzureResource -Name [YOUR-AZURE-RESOURCE-NAME] -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME] -ResourceType Microsoft.web/sites -ApiVersion 2014-04-01
+	```` 
+	
+	> **Note:** By default, **Remove-AzureResource** prompts you for confirmation. To suppress the prompt, use the **Force** parameter.
+
+ 
+7. Type **'Y'** and press **Enter** to confirm the deletion.
+
+8. List all the resources from your resource group to verify that the specified resource was deleted. To do that, use the following command.
+
+	````PowerShell
+	Get-AzureResource -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME]
+	```` 
+
+9. The **Remove-AzureResourceGroup** cmdlet deletes a resource group and its resources from your subscription. By default, **Remove-AzureResourceGroup** prompts you for confirmation. To suppress the prompt, use the **Force** parameter. Delete the resource group by using the following command.
+
+	````PowerShell
+	Get-AzureResource -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME]
+	```` 
+	
+10. Type **'Y'** and press **Enter** to confirm the deletion.
+
+11. You can verify that the resource group was successfully deleted by listing all the resource groups by using the following command. Notice that the the deleted resource group is no longer in your suscription.
+
+	````PowerShell
+	Get-AzureResourceGroup
+	```` 
 
 ---
 
