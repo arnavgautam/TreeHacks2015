@@ -1186,7 +1186,7 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 <a name="Ex2Task4" />
 #### Task 4 - Configuring MSDeploy ####
 
-In this task you will ...
+In this task you will learn how to deploy a Website as part of the ARM template. 
 
 1. In Azure PowerShell, navigate to the **Source/Assets** folder of the lab
 
@@ -1215,7 +1215,7 @@ In this task you will ...
 	
 1. Once the zip file is uploaded, replace the _[STORAGE-FILE-URL]_ placeholder with the url of the file in Blob storage in the following snippet and add **MSDeploy** extension to the website resources after the **config** resource.
 
-	<!-- mark:1-17 -->
+	<!-- mark:1-18 -->
 	````JavaScript
 	{
 	"apiVersion": "01-01-2014",
@@ -1229,8 +1229,9 @@ In this task you will ...
 			"packageUri": "[STORAGE-FILE-URL]",
 			"dbType": "SQL",
 			"connectionString": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]",
-			"setParameters": {
-				"AppPath": "[parameters('siteName')]"
+			"setParameters": "setParameters": {
+				"Application Path": "[parameters('siteName')]",
+				"Connection String": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]"
 			}
 		}
 	}
@@ -1248,7 +1249,7 @@ In this task you will ...
 
 1. Navigate to **HTTP://[YOUR-SITE-NAME].azurewebsites.net** where _[YOUR-SITE-NAME]_ is the same name you set in the command.
 
-	![HTTP://[YOUR-SITE-NAME].azurewebsites.net](Images/httpyour-siteazurewebsitesnet.png?raw=true "HTTP://[your-site].azurewebsites.net")
+	![HTTP://[YOUR-SITE].azurewebsites.net](Images/httpyour-siteazurewebsitesnet.png?raw=true "HTTP://[YOUR-SITE].azurewebsites.net")
 	
 	_HTTP://[YOUR-SITE-NAME].azurewebsites.net_
 
