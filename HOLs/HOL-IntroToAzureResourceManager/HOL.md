@@ -36,7 +36,7 @@ This hands-on lab includes the following exercises:
 
 1. [Getting familiar with the Azure Resource Manager Top-level Template Structure](#Exercise1)
 1. [Advanced Template Configuration](#Exercise2)
-1. [Cleaning Up Your Resources](#Exercise3)
+1. [Cleaning up Resources using ARM ](#Exercise3)
 
 Estimated time to complete this lab: **45 minutes**
 
@@ -58,47 +58,47 @@ At a glance, the following is the Top-level Template structure.
 
 ````JavaScript
 {
-    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
-    "contentVersion" : "1.0",
-    "parameters": { 
-      // name/value pairs representing the template inputs
-    },
-    "variables": {
-      // arbitrary JSON data used for constants and metadata
-      // a JSON dictionary
-      // Can be complex values like JSON arrays and objects
-    },
-    "resources": 
-    [
-    // An array of JSON nodes representing resources
-      {
-        // A Resource
-      },
-      {
-        // Another Resource
-      }
-    ],
-    "outputs": {
-      // JSON declaration of output of the template
-      // exact format below
-    }    
+	"$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+	"contentVersion" : "1.0",
+	"parameters": { 
+		/ name/value pairs representing the template inputs
+	},
+	"variables": {
+		// arbitrary JSON data used for constants and metadata
+		// a JSON dictionary
+		// Can be complex values like JSON arrays and objects
+	},
+	"resources": 
+	[
+		// An array of JSON nodes representing resources
+	      {
+			// A Resource
+		},
+		{
+			// Another Resource
+		}
+	],
+	"outputs": {
+		// JSON declaration of output of the template
+		// exact format below
+	}    
 }
 ````
 
 1. Open your preferred text editor and paste the following Top-level Template Structure. You will use this, to start constructing your own template.
 
-    ````JavaScript
-    {
-      "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
-      "contentVersion" : "1.0",
-      "parameters": { 
-      },
-      "variables": {
-      },
-      "resources": 
-      [
-      ]
-    }
+	````JavaScript
+	{
+		"$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+		"contentVersion" : "1.0",
+		"parameters": { 
+	},
+	"variables": {
+	},
+	"resources": 
+	[
+	]
+	}
     ````
     
 2. Save the template file locally with a **.json** extension. For example, _myTemplate.json_.
@@ -109,21 +109,20 @@ At a glance, the following is the Top-level Template structure.
 
     <!-- mark:5-7 -->
     ````JavaScript
-    {
-      "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
-      "contentVersion" : "1.0",
-      "parameters": { 
-          "paramName" : {
-	  
-          }
-      },
-      "variables": {
-      },
-      "resources": 
-      [
-      ]
-    }
-    ````
+	{
+		"$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+		"contentVersion" : "1.0",
+		"parameters": { 
+			"paramName" : {
+			}
+		},
+		"variables": {
+		},
+		"resources": 
+		[
+		]
+	}
+	````
 
 5. Inside the curly brackets of the _paramName_ parameter, type **t** and wait for Visual Studio to provide you with IntelliSense options. You can also press **CTRL + D** to force Visual Studio to display IntelliSense options.
 
@@ -143,7 +142,6 @@ At a glance, the following is the Top-level Template structure.
 	Save-AzureResourceGroupGalleryTemplate -Identity [TEMPLATE-NAME] -Path [FILE-PATH]	
 	````
 
-
 <a name="Ex1Task2" />
 #### Task 2 – Understanding the Resources Section ####
 
@@ -153,21 +151,21 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 ````JavaScript
 {
-    "name": "<resourcename>",
-    "type": "<ResourceProviderNamespace/ResourceTypeName>",
-    "location": "<location>",
-    "dependsOn": 
-    [
-        // JSON array of resourcename strings
-    ],
-    "tags":
-    {
-        // JSON name/value pairs that will be attached as runtime metadata
-    },
-    "properties":
-    {
-        // Settings for the resource, defined by the Resource Provider
-    },
+	"name": "<resourcename>",
+	"type": "<ResourceProviderNamespace/ResourceTypeName>",
+	"location": "<location>",
+	"dependsOn": 
+	[
+		// JSON array of resourcename strings
+	],
+	"tags":
+	{
+		// JSON name/value pairs that will be attached as runtime metadata
+	},
+	"properties":
+	{
+		// Settings for the resource, defined by the Resource Provider
+	},
 }
 ````
 
@@ -190,16 +188,16 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 	<!-- mark:2-11 -->
 	````JavaScript
 	"resources": [
-        {
-      	"apiVersion": "2014-04-01",
-      	"name": "<Your-Site-Name>",
-      	"type": "Microsoft.Web/Sites",
-      	"location": "<Your-Location>",
-      	"properties": {
-        	"name": "<Your-Site-Name>",
-        	"serverFarm": "<Your-Hosting-Plan-Name>"
-            }
-        },
+		{
+			"apiVersion": "2014-04-01",
+			"name": "<Your-Site-Name>",
+			"type": "Microsoft.Web/Sites",
+			"location": "<Your-Location>",
+			"properties": {
+				"name": "<Your-Site-Name>",
+				"serverFarm": "<Your-Hosting-Plan-Name>"
+			}
+		},
 	],
 	````
 	
@@ -212,53 +210,53 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 4. The following code will create a **Hosting Plan** that will be used in the creation of the website. Replace the _\<Your-Hosting-Plan-Name\>_ tag with the name choosen in the previous step and paste this code in the resource sections of your template. Preferably, paste it before the Website resource.
 	
 	````JavaScript
-    {
-        "apiVersion": "2014-04-01",
-        "name": "<Your-Hosting-Plan-Name>",
-        "type": "Microsoft.Web/serverFarms",
-        "location": "<Your-Location>",
-        "properties": {
-          "name": "<Your-Hosting-Plan-Name>",
-          "sku": "Free",
-          "workerSize": "0",
-          "numberOfWorkers": 1
-        }
+	{
+		"apiVersion": "2014-04-01",
+		"name": "<Your-Hosting-Plan-Name>",
+		"type": "Microsoft.Web/serverFarms",
+		"location": "<Your-Location>",
+		"properties": {
+			  "name": "<Your-Hosting-Plan-Name>",
+			  "sku": "Free",
+			  "workerSize": "0",
+			  "numberOfWorkers": 1
+		}
 	},
 	````
 
 5. As you may have noticed, the Hosting Plan resource needs to be created before the creation of the Website. This means that the Website depends on the Hosting Plan. Add the **dependsOn** property in the Website resource to indicate this dependency. The property is highlighted in the following code.
 
     <!-- mark:6-8 -->
-    ````JavaScript
-    {
-        "apiVersion": "2014-04-01",
-        "name": "<YourSiteName>",
-        "type": "Microsoft.Web/Sites",
-        "location": "<Your-Location>",
-        "dependsOn": [
-            "Microsoft.Web/serverFarms/<YourHostingPlanName>"
-        ],
-        "properties": {
-        "name": "<Your-Site-Name>",
-        "serverFarm": "<Your-Hosting-Plan-Name>"
-     	}
-    },
-    ````
+	````JavaScript
+	{
+		"apiVersion": "2014-04-01",
+		"name": "<YourSiteName>",
+		"type": "Microsoft.Web/Sites",
+		"location": "<Your-Location>",
+		"dependsOn": [
+			"Microsoft.Web/serverFarms/<YourHostingPlanName>"
+		],
+		"properties": {
+			"name": "<Your-Site-Name>",
+			"serverFarm": "<Your-Hosting-Plan-Name>"
+		}
+	},
+	````
 
 6. Add a new resource to the list, this time a **SQL Server**. To do this, add the following code in the resource section.
 
-    ````JavaScript
-    {
-      "name": "<Your-Server-Name>",
-      "type": "Microsoft.Sql/servers",
-      "location": "<Your-Location>",
-      "apiVersion": "2.0",
-      "properties": {
-        "administratorLogin": "<Admin-User>",
-        "administratorLoginPassword": "<Admin-Password>"
-      }
-    }
-````
+	````JavaScript
+	{
+		"name": "<Your-Server-Name>",
+		"type": "Microsoft.Sql/servers",
+		"location": "<Your-Location>",
+		"apiVersion": "2.0",
+		"properties": {
+			"administratorLogin": "<Admin-User>",
+			"administratorLoginPassword": "<Admin-Password>"
+		}
+	}
+	````
 
 7. Replace the _\<Your-Server-Name\>_ placeholder with a name for your SQL Server.
 
@@ -277,6 +275,8 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 	````PowerShell
 	New-AzureStorageAccount -StorageAccountName [STORAGE NAME] -Location "East US"
 	````
+	
+	> **Note:** Take into account that the Storage Account Name must be all lowercase.
 
 12. Switch mode to **AzureResourceManager** using the following command. In this mode, you will have access to the Cmdlets related to **Azure Resource Manager**.
 
@@ -316,15 +316,15 @@ In this task, you will learn how to use parameters in your templates. Using para
 Parameters are defined in the **parameters** section of the Top-level template, using the following pattern.
 
 ````JavaScript
-    "<Parameter-Name>": {
-      "type": "<Parameter-Type>",
-      "allowedValues": [
-        "value1",
-        "value2",
-        "value3"
-      ],
-      "defaultValue": "value0"
-    },
+"<Parameter-Name>": {
+	"type": "<Parameter-Type>",
+	"allowedValues": [
+		"value1",
+		"value2",
+		"value3"
+	],
+	"defaultValue": "value0"
+},
 ````
 
 Then to use a defined resource in the template, you specify it in the following way.
@@ -339,11 +339,11 @@ Then to use a defined resource in the template, you specify it in the following 
 
 	<!-- mark:2-4 -->
 	````JavaScript
-    "parameters": {
-      "siteName": {
-        "type": "string"
-      },
-    }
+	"parameters": {
+		"siteName": {
+			type": "string"
+		},
+	}
 	````
 
 3. Now, locate the two instances where you hardcoded the name of the site, and replace them with the following code.
@@ -360,158 +360,159 @@ Then to use a defined resource in the template, you specify it in the following 
 
 	<!-- mark:5-19 -->
 	````JavaScript
-    "parameters": {
-      "siteName": {
-        "type": "string"
-      },
-      "hostingPlanName": {
-        "type": "string"
-      },
-      "siteLocation": {
-        "type": "string"
-      },
-      "serverName": {
-        "type": "string"
-      },
-      "serverLocation": {
-        "type": "string"
-      },
-      "administratorLogin": {
-        "type": "string"
-      },
-    }
+	"parameters": {
+		"siteName": {
+			"type": "string"
+		},
+		"hostingPlanName": {
+			"type": "string"
+		},
+		"siteLocation": {
+			"type": "string"
+		},
+		"serverName": {
+			"type": "string"
+		},
+		"serverLocation": {
+			"type": "string"
+		},
+		"administratorLogin": {
+			"type": "string"
+		},
+	}
 	````
 
 5. Replace all the hardcoded values for the parameters defined in the previous step with calls to the parameter values. Your resulting template should look like the following code, in which the replacements are highlighted.
 
     <!-- mark:5,7,9,19,25,29,31,34 -->
     ````JavaScript
-    "resources": 
-    [
-    {
-      "apiVersion": "2014-04-01",
-      "name": "[parameters('hostingPlanName')]",
-      "type": "Microsoft.Web/serverFarms",
-      "location": "[parameters('siteLocation')]",
-      "properties": {
-        "name": "[parameters('hostingPlanName')]",
-        "sku": "Free",
-        "workerSize": "0",
-        "numberOfWorkers": 1
-      }
-    },
-    {
-      "apiVersion": "2014-04-01",
-      "name": "[parameters('siteName')]",
-      "type": "Microsoft.Web/Sites",
-      "location": "[parameters('siteLocation')]",
-      "dependsOn": [
-         "Microsoft.Web/serverFarms/MyHostingPlan"
-      ],
-      "properties": {
-        "name": "[parameters('siteName')]",
-        "serverFarm": "[parameters('hostingPlanName')]"
-      }
-    },
-    {
-      "name": "[parameters('serverName')]",
-      "type": "Microsoft.Sql/servers",
-      "location": "[parameters('serverLocation')]",
-      "apiVersion": "2.0",
-      "properties": {
-        "administratorLogin": "[parameters('administratorLogin')]",
-        "administratorLoginPassword": "Passw0rd!"
-      }
-    }
-    ],
-    ````
+	"resources": 
+	[
+	{
+		"apiVersion": "2014-04-01",
+		"name": "[parameters('hostingPlanName')]",
+		"type": "Microsoft.Web/serverFarms",
+		"location": "[parameters('siteLocation')]",
+		"properties": {
+			"name": "[parameters('hostingPlanName')]",
+			"sku": "Free",
+			"workerSize": "0",
+			"numberOfWorkers": 1
+		}
+	},
+	{
+		"apiVersion": "2014-04-01",
+		"name": "[parameters('siteName')]",
+		"type": "Microsoft.Web/Sites",
+		"location": "[parameters('siteLocation')]",
+		"dependsOn": [
+			"Microsoft.Web/serverFarms/MyHostingPlan"
+		],
+		"properties": {
+			"name": "[parameters('siteName')]",
+			"serverFarm": "[parameters('hostingPlanName')]"
+		}
+	},
+	{
+		"name": "[parameters('serverName')]",
+		"type": "Microsoft.Sql/servers",
+		"location": "[parameters('serverLocation')]",
+		"apiVersion": "2.0",
+		"properties": {
+			"administratorLogin": "[parameters('administratorLogin')]",
+			"administratorLoginPassword": "Passw0rd!"
+		}
+	}
+	],
+	````
     
 6. Look at the definition of the Website resource, and locate the **dependsOn** property. Notice that the value uses a predefined part (_Microsoft.Web/serverFarms/_) and then the value that you chose for the hosting plan name. For these cases, you can use the **concat** operator: [concat('value1', 'value2')]. Use this operator to append the hosting plan name parameter to the fixed path, as shown in the following code.
 
     <!-- mark:7 -->
     ````JavaScript
-    {
-      "apiVersion": "2014-04-01",
-      "name": "[parameters('siteName')]",
-      "type": "Microsoft.Web/Sites",
-      "location": "[parameters('siteLocation')]",
-      "dependsOn": [
-         "[concat('Microsoft.Web/serverFarms/', parameters('hostingPlanName'))]"
-      ],
-      "properties": {
-        "name": "[parameters('siteName')]",
-        "serverFarm": "[parameters('hostingPlanName')]"
-      }
-    },
+	{
+		"apiVersion": "2014-04-01",
+		"name": "[parameters('siteName')]",
+		"type": "Microsoft.Web/Sites",
+		"location": "[parameters('siteLocation')]",
+		"dependsOn": [
+			"[concat('Microsoft.Web/serverFarms/', parameters('hostingPlanName'))]"
+		],
+		"properties": {
+			"name": "[parameters('siteName')]",
+			"serverFarm": "[parameters('hostingPlanName')]"
+		}
+	},
     ````
 
     > **Note:** As the **concat** operator already uses brackets (**[]**), you do not need to use them when specifying the parameter.
     
 7. You may have notice that although the administrator login password is a string, we did not create a parameter for it, as it is not recommended to enter the passwords or sensitive information in plain text when executing the template. For this reason, there is a special type: **secureString**, which will mask the user input. First, define the following parameter in the parameters section.
 
-    ````JavaScript
-    "administratorLoginPassword": {
-      "type": "securestring"
-    },
-    ````
+	````JavaScript
+	"administratorLoginPassword": {
+		"type": "securestring"
+	},
+	````
 
 8. Now replace the hardcoded password with the parameter usage expression, as shown in the following code.
 
     <!-- mark:8 -->
     ````JavaScript
-        {
-      "name": "[parameters('serverName')]",
-      "type": "Microsoft.Sql/servers",
-      "location": "[parameters('serverLocation')]",
-      "apiVersion": "2.0",
-      "properties": {
-        "administratorLogin": "[parameters('administratorLogin')]",
-        "administratorLoginPassword": "[parameters('administratorLoginPassword')]"
-      }
+	{
+		"name": "[parameters('serverName')]",
+		"type": "Microsoft.Sql/servers",
+		"location": "[parameters('serverLocation')]",
+		"apiVersion": "2.0",
+		"properties": {
+			"administratorLogin": "[parameters('administratorLogin')]",
+			"administratorLoginPassword": "[parameters('administratorLoginPassword')]"
+		}
+	}
     ````
 
 9. There are some parameters that may accept only a set of values. You can specify this, and also if there is a default value when defining the parameter. Let's do this with the **sku** and **workerSize** values of the hosting plan resource. Add the following parameter definition in the parameters section.
 
     ````JavaScript
-    "sku": {
-      "type": "string",
-      "allowedValues": [
-        "Free",
-        "Shared",
-        "Basic",
-        "Standard"
-      ],
-      "defaultValue": "Free"
-    },
-    "workerSize": {
-      "type": "string",
-      "allowedValues": [
-        "0",
-        "1",
-        "2"
-      ],
-      "defaultValue": "0"
-    },
-    ````
+	"sku": {
+		"type": "string",
+		"allowedValues": [
+			"Free",
+			"Shared",
+			"Basic",
+			"Standard"
+		],
+		"defaultValue": "Free"
+	},
+	"workerSize": {
+		"type": "string",
+		"allowedValues": [
+			"0",
+			"1",
+			"2"
+		],
+		"defaultValue": "0"
+	},
+	````
     
 	> **Note:** The **allowedValues** property is used to specify the values that are valid for the parameter, and the **defaultValue** property defines the value that will be used when the parameter is not specified. Specifying a default value, means that the parameter is optional.
 	
 10. In the template, locate the hosting plan resource and replace the hardcoded **sku** and **workerSize** values with the parameter reference. This is shown in the following code.
     <!-- mark:8-9 -->
-    ````JavaScript
-    {
-      "apiVersion": "2014-04-01",
-      "name": "[parameters('hostingPlanName')]",
-      "type": "Microsoft.Web/serverFarms",
-      "location": "[parameters('siteLocation')]",
-      "properties": {
-        "name": "[parameters('hostingPlanName')]",
-        "sku": "[parameters('sku')]",
-        "workerSize": "[parameters('workerSize')]",
-        "numberOfWorkers": 1
-      }
-    },
-    ````
+	````JavaScript
+	{
+		"apiVersion": "2014-04-01",
+		"name": "[parameters('hostingPlanName')]",
+		"type": "Microsoft.Web/serverFarms",
+		"location": "[parameters('siteLocation')]",
+		"properties": {
+			"name": "[parameters('hostingPlanName')]",
+			"sku": "[parameters('sku')]",
+			"workerSize": "[parameters('workerSize')]",
+			"numberOfWorkers": 1
+		}
+	},
+	````
 
 11. Save the template file and switch back to **PowerShell**.
 
@@ -1276,17 +1277,26 @@ In this task you will learn about deleting resources and deleting resource group
 	Get-AzureResourceGroup
 	```` 
 
+	![Listing the Resource Groups of your suscription](Images/listing-the-resource-groups-of-your-suscripti.png?raw=true)
+	_Listing the Resource Groups of your suscription_
+	
 4. From the list of resource groups in your suscription, choose the one created in the previous exercises and execute the following command that will list all the resources of that resource group. Without parameters, **Get-AzureResource** gets all resources in your Azure subscription
 
 	````PowerShell
 	Get-AzureResource -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME]
 	```` 
+	
+	![Listing the resources of a Resource Group](Images/listing-the-resources-of-a-resource-group.png?raw=true)
+	_Listing the resources of a Resource Group_
 
 5. Choose one resource from the list of resources that will be deleted, for example the Website. To get more information about the chosen resouce, specify the name of it. When you use the **Name** parameter to get a particular resource, the **ResourceGroupName**, **ResourceType**, and **APIVersion** parameters are required.
 
 	````PowerShell
 	Get-AzureResource -Name [YOUR-AZURE-RESOURCE-NAME] -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME] -ResourceType "Microsoft.Web/sites" -ApiVersion 2014-04-01
 	```` 
+	
+	![Seeing the details of the Website resource](Images/seeing-the-details-of-the-website-resource.png?raw=true)
+	_Seeing the details of the Website resource_
 	
 6. Delete the selected resource. To delete a resource from the resource group, use the **Remove-AzureResource** cmdlet. This cmdlet deletes the resource, but does not delete the resource group.
 
@@ -1304,21 +1314,33 @@ In this task you will learn about deleting resources and deleting resource group
 	````PowerShell
 	Get-AzureResource -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME]
 	```` 
+	
+	![The Website resource is deleted](Images/the-website-resource-is-deleted.png?raw=true)
+	_The Website resource is deleted_
+	
+	> **Note:** Notice that the Hosting Plan resource was also deleted as it was dependant on the Website.
+
 
 9. The **Remove-AzureResourceGroup** cmdlet deletes a resource group and its resources from your subscription. By default, **Remove-AzureResourceGroup** prompts you for confirmation. To suppress the prompt, use the **Force** parameter. Delete the resource group by using the following command.
 
 	````PowerShell
-	Get-AzureResource -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME]
+	Remove-AzureResourceGroup -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME]
 	```` 
 	
 10. Type **'Y'** and press **Enter** to confirm the deletion.
+
+	![Removing the Resource Group](Images/removing-the-resource-group.png?raw=true)
+	_Removing the Resource Group_
 
 11. You can verify that the resource group was successfully deleted by listing all the resource groups by using the following command. Notice that the the deleted resource group is no longer in your suscription.
 
 	````PowerShell
 	Get-AzureResourceGroup
 	```` 
-
+	
+	![The Resource Group was deleted](Images/the-resource-group-was-deleted.png?raw=true)
+	_The Resource Group was deleted_
+	
 ---
 
 <a name="Summary" />
