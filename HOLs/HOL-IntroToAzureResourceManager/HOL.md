@@ -61,7 +61,7 @@ At a glance, the following is the Top-level Template structure.
 	"$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
 	"contentVersion" : "1.0",
 	"parameters": { 
-		/ name/value pairs representing the template inputs
+		// name/value pairs representing the template inputs
 	},
 	"variables": {
 		// arbitrary JSON data used for constants and metadata
@@ -92,12 +92,11 @@ At a glance, the following is the Top-level Template structure.
 		"$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
 		"contentVersion" : "1.0",
 		"parameters": { 
-	},
-	"variables": {
-	},
-	"resources": 
-	[
-	]
+		},
+		"variables": {
+		},
+		"resources": [
+		]
 	}
     ````
     
@@ -107,7 +106,7 @@ At a glance, the following is the Top-level Template structure.
 
 4. In the **parameters** section, create a new parameter named _paramName_ as shown in the following code.
 
-    <!-- mark:5-7 -->
+    <!-- mark:5-6 -->
     ````JavaScript
 	{
 		"$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
@@ -341,7 +340,7 @@ Then to use a defined resource in the template, you specify it in the following 
 	````JavaScript
 	"parameters": {
 		"siteName": {
-			type": "string"
+			"type": "string"
 		},
 	}
 	````
@@ -770,9 +769,9 @@ In this task you will add child resources to the resources you have created in t
 
 	Sometimes there are dependencies that are not obvious from these references. There's a property in the resource template were the user can explicitly declare a dependency. The property is called **dependsOn**.
 
-1. Locate the database resource inside the SQL Server resource and add the **dependsOn** property to explicitly declare a dependency from the database to the SQL Server.
+1. Locate the resources inside the SQL Server resource and add the **dependsOn** property to explicitly declare a dependency.
 	
-	<!-- mark:16-18 -->
+	<!-- mark:16-18,28-30 -->
 	````JavaScript
 	{
 		"name": "[parameters('serverName')]",
@@ -797,6 +796,18 @@ In this task you will add child resources to the resources you have created in t
 					"collation": "[parameters('collation')]",
 					"maxSizeBytes": "1073741824"
 				}
+			},{
+				"apiVersion": "2.0",
+				"location": "[parameters('serverLocation')]",
+				"name": "AllowAllWindowsAzureIps",
+				"dependsOn": [
+					
+				],
+				"properties": {
+					"endIpAddress": "0.0.0.0",
+					"startIpAddress": "0.0.0.0"
+				},
+				"type": "firewallrules"
 			}
 		]
 	}
@@ -1218,22 +1229,22 @@ In this task you will learn how to deploy a Website as part of the ARM template.
 	<!-- mark:1-18 -->
 	````JavaScript
 	{
-	"apiVersion": "01-01-2014",
-	"name": "MSDeploy",
-	"type": "Extensions",
-	"dependsOn": [
-		"[concat('Microsoft.Web/Sites/', parameters('siteName'))]",
-		"[concat('Microsoft.Sql/servers/', parameters('serverName'), '/databases/', parameters('siteName'), '_db')]"
-	],
-	"properties": {
-			"packageUri": "[STORAGE-FILE-URL]",
-			"dbType": "SQL",
-			"connectionString": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]",
-			"setParameters": "setParameters": {
-				"Application Path": "[parameters('siteName')]",
-				"Connection String": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]"
+		"apiVersion": "01-01-2014",
+		"name": "MSDeploy",
+		"type": "Extensions",
+		"dependsOn": [
+			"[concat('Microsoft.Web/Sites/', parameters('siteName'))]",
+			"[concat('Microsoft.Sql/servers/', parameters('serverName'), '/databases/', parameters('siteName'), '_db')]"
+		],
+		"properties": {
+				"packageUri": "[STORAGE-FILE-URL]",
+				"dbType": "SQL",
+				"connectionString": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]",
+				"setParameters": "setParameters": {
+					"Application Path": "[parameters('siteName')]",
+					"Connection String": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]"
+				}
 			}
-		}
 	}
 	````
 	
