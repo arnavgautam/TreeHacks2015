@@ -16,7 +16,7 @@ In this hands-on lab, you will learn how to:
 - Use the different sections of the Top-level Template Structure
 - Create more advanced templates
 - Configure Firewall Rules, Alerts, and Autoscaling
-- Deploy a Website using WebDeploy???
+- Deploy a Website using the MSDeploy extension
 - Remove Resources and Resource Groups
 
 <a name="Prerequisites"></a>
@@ -1094,7 +1094,7 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 	
 	The **scaleAction** property is defined by its direction. As this is a _scale-up_ rule, the direction value is **Increase**. The action will increase a single instance each time is invoked with a cooldown period of 10 minutes (it will not execute again before that period of time).
 	
-1. To add a scale-down rule you need to add a new rule to the **rules** property, but in this case you need to set the **direction** to **Decrease**. Additionally, define a rule that will execute only when the CPU average percentage is below 60%. This is highlighted in the following code.
+4. To add a scale-down rule you need to add a new rule to the **rules** property, but in this case you need to set the **direction** to **Decrease**. Additionally, define a rule that will execute only when the CPU average percentage is below 60%. This is highlighted in the following code.
 
 	<!-- mark:40-57 -->
 	````JavaScript
@@ -1195,13 +1195,13 @@ In this task you will learn how to deploy a Website as part of the ARM template.
 
 1. In Azure PowerShell, navigate to the **Source/Assets** folder of the lab
 
-1. Execute the following command to change from **Azure Resource Manager** to **Azure Service Management** mode.
+2. Execute the following command to change from **Azure Resource Manager** to **Azure Service Management** mode.
 
 	````PowerShell
 	Switch-AzureMode AzureServiceManagement
 	````
 
-1. Replace the _[STORAGE-ACCOUNT-NAME]_ placeholder with the Account you created in the previous exercise and execute the following script to create a packages container in your storage account and update the zip file named **mywebsite** to the storage account.
+3. Replace the _[STORAGE-ACCOUNT-NAME]_ placeholder with the Account you created in the previous exercise and execute the following script to create a packages container in your storage account and update the zip file named **mywebsite** to the storage account.
 	
 	````PowerShell
 	$storageAccountName = "[STORAGE-ACOUNT-NAME]"
@@ -1218,7 +1218,7 @@ In this task you will learn how to deploy a Website as part of the ARM template.
 	
 	_Uploaded zip file to blob storage_
 	
-1. Once the zip file is uploaded, replace the _[STORAGE-FILE-URL]_ placeholder with the url of the file in Blob storage in the following snippet and add **MSDeploy** extension to the website resources after the **config** resource.
+4. Once the zip file is uploaded, replace the _[STORAGE-FILE-URL]_ placeholder with the url of the file in Blob storage in the following snippet and add **MSDeploy** extension to the website resources after the **config** resource.
 
 	<!-- mark:1-16 -->
 	````JavaScript
@@ -1242,15 +1242,15 @@ In this task you will learn how to deploy a Website as part of the ARM template.
 	
 	>**Note** The storage URL should look like the following. HTTP://[ACCOUNT-NAME].blob.core.windows.net/[CONTAINER]/[FILENAME]. If you left the variables as the script  bellow, _[CONTAINER]_ should be **package** and _[FILENAME]_ should be **mydeployedwebsite.zip**.
 
-1. Save the template and go back to **PowerShell**.
+5. Save the template and go back to **PowerShell**.
 
-1. Run the **New-AzureResourceGroup** Cmdlet and wait until the Resource Group is updated. Once completed, open Internet Explorer.
+6. Run the **New-AzureResourceGroup** Cmdlet and wait until the Resource Group is updated. Once completed, open Internet Explorer.
 
 	![New-AzureResourceGroup command with MSDeploy task added](Images/new-azureresourcegroup-command-with-msdeploy.png?raw=true "New-AzureResourceGroup command with MSDeploy task added")
 	
 	_New-AzureResourceGroup command with MSDeploy task added_
 
-1. Navigate to **HTTP://[YOUR-SITE-NAME].azurewebsites.net** where _[YOUR-SITE-NAME]_ is the same name you set in the command.
+7. Navigate to **HTTP://[YOUR-SITE-NAME].azurewebsites.net** where _[YOUR-SITE-NAME]_ is the same name you set in the command.
 
 	![HTTP://[YOUR-SITE].azurewebsites.net](Images/httpyour-siteazurewebsitesnet.png?raw=true "HTTP://[YOUR-SITE].azurewebsites.net")
 	
@@ -1282,6 +1282,7 @@ In this task you will learn about deleting resources and deleting resource group
 	```` 
 
 	![Listing the Resource Groups of your suscription](Images/listing-the-resource-groups-of-your-suscripti.png?raw=true)
+	
 	_Listing the Resource Groups of your suscription_
 	
 4. From the list of resource groups in your suscription, choose the one created in the previous exercises and execute the following command that will list all the resources of that resource group. Without parameters, **Get-AzureResource** gets all resources in your Azure subscription
@@ -1291,6 +1292,7 @@ In this task you will learn about deleting resources and deleting resource group
 	```` 
 	
 	![Listing the resources of a Resource Group](Images/listing-the-resources-of-a-resource-group.png?raw=true)
+	
 	_Listing the resources of a Resource Group_
 
 5. Choose one resource from the list of resources that will be deleted, for example the Website. To get more information about the chosen resouce, specify the name of it. When you use the **Name** parameter to get a particular resource, the **ResourceGroupName**, **ResourceType**, and **APIVersion** parameters are required.
@@ -1300,6 +1302,7 @@ In this task you will learn about deleting resources and deleting resource group
 	```` 
 	
 	![Seeing the details of the Website resource](Images/seeing-the-details-of-the-website-resource.png?raw=true)
+	
 	_Seeing the details of the Website resource_
 	
 6. Delete the selected resource. To delete a resource from the resource group, use the **Remove-AzureResource** cmdlet. This cmdlet deletes the resource, but does not delete the resource group.
@@ -1320,6 +1323,7 @@ In this task you will learn about deleting resources and deleting resource group
 	```` 
 	
 	![The Website resource is deleted](Images/the-website-resource-is-deleted.png?raw=true)
+	
 	_The Website resource is deleted_
 	
 	> **Note:** Notice that the Hosting Plan resource was also deleted as it was dependant on the Website.
@@ -1334,6 +1338,7 @@ In this task you will learn about deleting resources and deleting resource group
 10. Type **'Y'** and press **Enter** to confirm the deletion.
 
 	![Removing the Resource Group](Images/removing-the-resource-group.png?raw=true)
+	
 	_Removing the Resource Group_
 
 11. You can verify that the resource group was successfully deleted by listing all the resource groups by using the following command. Notice that the the deleted resource group is no longer in your suscription.
@@ -1343,6 +1348,7 @@ In this task you will learn about deleting resources and deleting resource group
 	```` 
 	
 	![The Resource Group was deleted](Images/the-resource-group-was-deleted.png?raw=true)
+	
 	_The Resource Group was deleted_
 	
 ---
