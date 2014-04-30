@@ -1226,7 +1226,7 @@ In this task you will learn how to deploy a Website as part of the ARM template.
 	
 1. Once the zip file is uploaded, replace the _[STORAGE-FILE-URL]_ placeholder with the url of the file in Blob storage in the following snippet and add **MSDeploy** extension to the website resources after the **config** resource.
 
-	<!-- mark:1-18 -->
+	<!-- mark:1-16 -->
 	````JavaScript
 	{
 		"apiVersion": "01-01-2014",
@@ -1238,8 +1238,6 @@ In this task you will learn how to deploy a Website as part of the ARM template.
 		],
 		"properties": {
 				"packageUri": "[STORAGE-FILE-URL]",
-				"dbType": "SQL",
-				"connectionString": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]",
 				"setParameters": "setParameters": {
 					"Application Path": "[parameters('siteName')]",
 					"Connection String": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]"
