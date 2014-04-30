@@ -1,5 +1,5 @@
 ﻿<a name="HOLTop" />
-# Introduction to Azure Resource Manager #
+# Understanding Azure Resource Manager #
 
 ---
 
@@ -34,16 +34,16 @@ The following is required to complete this hands-on lab:
 ## Exercises ##
 This hands-on lab includes the following exercises:
 
-1. [Getting familiar with the Azure Resource Manager Top-level Template Structure](#Exercise1)
+1. [Getting Started with the ARM Top-level Template Structure](#Exercise1)
 1. [Advanced Template Configuration](#Exercise2)
-1. [Cleaning up Resources using ARM ](#Exercise3)
+1. [Cleaning up Resources using ARM](#Exercise3)
 
 Estimated time to complete this lab: **45 minutes**
 
 >**Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
 
 <a name="Exercise1" />
-### Exercise 1: Getting familiar with the Azure Resource Manager Top-level Template Structure ###
+### Exercise 1: Getting Started with the ARM Top-level Template Structure ###
 
 In this exercise you will learn about the **Azure Resource Manager** (ARM) Template Language, its Top-level Template structure, and you will explore the different sections of it, learning about its usage, and how to construct them. 
 
@@ -539,12 +539,12 @@ Then to use a defined resource in the template, you specify it in the following 
 	> **Note:** If you use the same values as the ones used in the first task, the resources will not be created again. However if you change some properties in the script, the affected resources will be updated. For example, when we run the template in previous steps we updated the **sku** property, in this case if everything but this property remains the same, only that resource will be updated.
 
 <a name="Exercise2" />
-### Exercise 2 : Advanced Template Configuration  ###
+### Exercise 2: Advanced Template Configuration  ###
 
 In this exercise you will dig deeper into more options that the **ARM** template provides to define your resources and some custom options. You will learn how to create nested resources, how to configure alerts based on your resource metrics, and even how to autoscale your resourced based on these metrics.
 
 <a name="Ex2Task1" />
-#### Task 1 - Nested Resources  ####
+#### Task 1 - Adding Nested Resources ####
 
 Inside the Resource section, each resource can have a list of resources that are part of this service. The resource allows 5 levels deep of resources and a total amount of 100 resources.
 
@@ -1255,7 +1255,7 @@ In this task you will learn how to deploy a Website as part of the ARM template.
 
 
 <a name="Exercise3" />
-### Exercise 3 : Cleaning up Resources using ARM  ###
+### Exercise 3: Cleaning up Resources using ARM ###
 
 In this exercise you will learn how to delete resources and resource groups. You will learn this by deleting the resource group that was created in the previous exercises.
 
@@ -1347,8 +1347,6 @@ In this task you will learn about deleting resources and deleting resource group
 <a name="Summary" />
 ## Summary ##
 
-In this Hands-on Lab you learned about **Azure Resource Manager** (ARM) and the ARM template language to define resources and its dependencies. You learned how to parameterize the template, add dependencies, configure alerts and autoscaling settings to your resources.
+In this Hands-on Lab you learned about **Azure Resource Manager** (ARM) and the ARM template language to define resources and its dependencies. You learned how to parameterize the template, add dependencies, configure alerts, and autoscaling settings to your resources.
 
 Additionally, you learned how to remove specific resources from a **Resource Group** and how to delete an entire **Resource Group** using the Azure PowerShell Cmdlets.
-
-
