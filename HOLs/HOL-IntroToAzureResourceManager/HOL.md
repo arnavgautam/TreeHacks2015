@@ -6,7 +6,7 @@
 <a name="Overview" />
 ## Overview ##
 
-A growing expectation of any cloud offering is the ability to automate the deployment and management of infrastructure components, like virtual machines, networks, storage, and databases - and enable customers to build and manage higher level applications on top of these in a rich DevOps friendly way. The Azure Resource Manager, provides a **Language** (Azure Resource Manager Template Language) that allows a declarative, parameterized description (a **Template**) of a set of related resources, so that they may be deployed and managed as a unit. The Templates are text-based (JSON), making it easy to use them with source code control systems like TFS and Git.
+A growing expectation of any cloud offering is the ability to automate the deployment and management of infrastructure components, like virtual machines, networks, storage, and databases - and enable customers to build and manage higher level applications on top of these in a rich DevOps friendly way. The Azure Resource Manager (ARM), provides a **Language** (Azure Resource Manager Template Language) that allows a declarative, parameterized description (a **Template**) of a set of related resources, so that they may be deployed and managed as a unit. The Templates are text-based (JSON), making it easy to use them with source code control systems like TFS and Git.
 
 <a name="Objectives" />
 ### Objectives ###
@@ -16,13 +16,15 @@ In this hands-on lab, you will learn how to:
 - Use the different sections of the Top-level Template Structure
 - Create more advanced templates
 - Configure Firewall Rules, Alerts, and Autoscaling
+- Deploy a Website using WebDeploy???
+- Remove Resources and Resource Groups
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
 
 The following is required to complete this hands-on lab:
 
-- [Visual Studio 2013 Ultimate][1]
+- [Visual Studio 2013 Ultimate Update 2][1]
 - [Azure PowerShell][2]
 
 [1]: http://www.microsoft.com/visualstudio/
@@ -45,7 +47,7 @@ Estimated time to complete this lab: **45 minutes**
 <a name="Exercise1" />
 ### Exercise 1: Getting Started with the ARM Top-level Template Structure ###
 
-In this exercise you will learn about the **Azure Resource Manager** (ARM) Template Language, its Top-level Template structure, and you will explore the different sections of it, learning about its usage, and how to construct them. 
+In this exercise you will learn about the **Azure Resource Manager** Template Language, its Top-level Template structure, and you will explore the different sections of it, learning about its usage, and how to construct them. 
 
 <a name="Ex1Task1" />
 #### Task 1 – Introduction to the ARM Template Language ####
@@ -223,7 +225,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 	},
 	````
 
-5. As you may have noticed, the Hosting Plan resource needs to be created before the creation of the Website. This means that the Website depends on the Hosting Plan. Add the **dependsOn** property in the Website resource to indicate this dependency. The property is highlighted in the following code.
+5. As you may have noticed, the Hosting Plan resource needs to be created before the creation of the Website. This means that the Website depends on the Hosting Plan. Add the **dependsOn** property in the Website resource to indicate this dependency. This property is highlighted in the following code.
 
     <!-- mark:6-8 -->
 	````JavaScript
@@ -269,12 +271,11 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 11. Replace the _[STORAGE NAME]_ placeholder and execute the following command to create a new storage account. Make sure that the storage name you selected is unique.
 
-	> **Note:** You can skip this step if you prefer to use an already existing storage account of your own instead of creating a new one.
+	You can skip this step if you prefer to use an already existing storage account of your own instead of creating a new one.
 
 	````PowerShell
 	New-AzureStorageAccount -StorageAccountName [STORAGE NAME] -Location "East US"
 	````
-	
 	> **Note:** Take into account that the Storage Account Name must be all lowercase.
 
 12. Switch mode to **AzureResourceManager** using the following command. In this mode, you will have access to the Cmdlets related to **Azure Resource Manager**.
@@ -283,7 +284,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 	Switch-AzureMode AzureResourceManager
 	````
 
-	> **Note:** You can switch back to the Azure module executing _Switch-AzureMode -Name AzureServiceManagement_.
+	> **Note:** You can switch back to the Azure module executing _Switch-AzureMode AzureServiceManagement_.
 	
 13. Replace the placeholders and execute the following command to create your new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you have created in the previous step.
 
@@ -350,8 +351,6 @@ Then to use a defined resource in the template, you specify it in the following 
     ````JavaScript
     [parameters('siteName')]
     ````
-    
-    > **Note:** You should make two replacements.
     
     > **Note:** As this parameter is of string type, it is recommended that you use simple quotes when specifying the parameter name to escape the double quotes that define the whole string.
     
@@ -470,7 +469,7 @@ Then to use a defined resource in the template, you specify it in the following 
 	}
     ````
 
-9. There are some parameters that may accept only a set of values. You can specify this, and also if there is a default value when defining the parameter. Let's do this with the **sku** and **workerSize** values of the hosting plan resource. Add the following parameter definition in the parameters section.
+9. There are some parameters that may accept only a set of values. You can specify this, and also if there is a default value when defining the parameter. Let's do this with the **sku** and **workerSize** values of the hosting plan resource. Add the following parameter definitions in the parameters section.
 
     ````JavaScript
 	"sku": {
@@ -515,10 +514,10 @@ Then to use a defined resource in the template, you specify it in the following 
 
 11. Save the template file and switch back to **PowerShell**.
 
-14. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise. Notice that we forced the **sku** parameter to be _Standard_.
+12. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise.
 
 	````PowerShell
-	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN] -sku Standard
+	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN] -sku Free
 	````
 
 	![The PowerShell script is running](Images/the-powershell-script-is-running.png?raw=true "The PowerShell script is running")
@@ -527,15 +526,13 @@ Then to use a defined resource in the template, you specify it in the following 
 	
 	> **Note:** When writing the command in PowerShell if you press the _TAB_ key after specifying the Template file, the parameters defined in it will be listed.
 
-	> **Note:** Notice that the **sku** property was changed to use the _Standard_ value. This is required for the following exercises and may incur in costs in your subscriptions.
-
-15. The **administratorLoginPassword** was not specified in the previous command, as this parameter will be prompted to the user.
+13. The **administratorLoginPassword** was not specified in the previous command, as this parameter will be prompted to the user.
 
 	![The Administrator Login Password is prompted to the user and the input is masked](Images/the-administrator-login-password-is-prompted.png?raw=true "The Administrator Login Password is prompted to the user and the input is masked")
 	
 	_The Administrator Login Password is prompted to the user and the input is masked_
 
-	> **Note:** If you use the same values as the ones used in the first task, the resources will not be created again. However if you change some properties in the script, the affected resources will be updated. For example, when we run the template in previous steps we updated the **sku** property, in this case if everything but this property remains the same, only that resource will be updated.
+	> **Note:** If you use the same values as the ones used in the first task, the resources will not be created again. However if you change some properties in the script, the affected resources will be updated.
 
 <a name="Exercise2" />
 ### Exercise 2: Advanced Template Configuration  ###
@@ -545,13 +542,13 @@ In this exercise you will dig deeper into more options that the **ARM** template
 <a name="Ex2Task1" />
 #### Task 1 - Adding Nested Resources ####
 
-Inside the Resource section, each resource can have a list of resources that are part of this service. The resource allows 5 levels deep of resources and a total amount of 100 resources.
+Inside the Resource section, each resource can have a list of resources that are part of this service. The resource allows 5 levels of nested resources and a total amount of 100 resources.
 
 In this task you will add child resources to the resources you have created in the previous exercise. You will create a database in the SQL Server you have created and then you will create a configuration in the WebSite to reference the database.
 
-1. If not already opened, open the custom JSON you started creating in Exercise 1.
+1. If it is not already opened, open the custom JSON you started creating in Exercise 1.
 
-1. Locate the **SQL Server** resource in the **resources** section.
+2. Locate the **SQL Server** resource in the **resources** section.
 
 	````JavaScript
 	{
@@ -566,7 +563,7 @@ In this task you will add child resources to the resources you have created in t
 	}
 	````
 
-1. Add a new property to the resource called **resources**. The **resources** property is a list of resources inside the service.
+3. Add a new property to the resource called **resources**. The **resources** property is a list of resources inside the service.
 
 	<!-- mark:10-13 -->
 	````JavaScript
@@ -585,7 +582,7 @@ In this task you will add child resources to the resources you have created in t
 	}
 	````
 
-1. Add a new resource in the **resources** property you have just defined to create a database inside the SQL Server. The resource should look like the following:
+4. Add a new resource in the **resources** property you have just defined to create a database inside the SQL Server. The nested resource should look like the following:
 
 	<!-- mark:11-16 -->
 	````JavaScript
@@ -611,7 +608,7 @@ In this task you will add child resources to the resources you have created in t
 
 	>**Note**: The resource you have just added defines a new database in the same location as the server which is specified when executing the command. The name of the database is defined with the name of the site with the __db_ prefix.
 	
-1. Now you will add some configuration properties to the database to define the **edition** of the SQL Database, the **collation** and the **maximum size**.
+5. Now you will add some configuration properties to the database to define the **edition** of the SQL Database, the **collation** and the **maximum size**.
 
 	<!-- mark:16-20 -->
 	````JavaScript
@@ -646,7 +643,7 @@ In this task you will add child resources to the resources you have created in t
 	> Use the **Max Size** property to specify an upper limit for the database size. Insert and update transactions that exceed the upper limit will be rejected because the database will be in read-only mode. Changing the **Max Size** property of a database does not directly affect the charges incurred for the database. Charges are based on actual size.
 
 	
-1. To allow the Azure services, you need to add a firewall rule to allow Azure IPs 0.0.0.0. To do so, add the following highlighted resource to the SQL Server resource.
+6. To allow the Azure services, you need to add a firewall rule to allow Azure IPs 0.0.0.0. To do so, add the following highlighted resource to the SQL Server resource.
 
 	<!-- mark:24-33 -->
 	````JavaScript
@@ -688,9 +685,7 @@ In this task you will add child resources to the resources you have created in t
 	...
 	````
 
-1. Now, you will add a configuration resource in the website and add a connection string to the database you have created.
-
-1. Locate the website resource in the **resources** section. Add a new **resources** property inside the website.
+7. Now, you will add a configuration resource in the website and add a connection string to the database you have created. To do this, locate the website resource in the **resources** section. Add a new **resources** property inside the website, as shown in the following code.
 
 	<!-- mark:10-12 -->
 	````JavaScript
@@ -709,7 +704,7 @@ In this task you will add child resources to the resources you have created in t
 	}
 	````
 
-1. Add a new resource in the **resources** property you have just defined to create a config inside the Website. The resource should look like below.
+8. Add a new resource in the **resources** property you have just defined to create a config inside the Website. The resource should look like the following code.
 
 	<!-- mark:11-15 -->
 	````JavaScript
@@ -731,7 +726,7 @@ In this task you will add child resources to the resources you have created in t
 		]
 	}
 	````
-1. In the **config** resource add a new property called **connectionstring** which will have the connection string to the database you have included in the previous step.
+9. In the **config** resource add a new property called **connectionstring** which will have the connection string to the database you have included in the previous step.
 
 	<!-- mark:15-23 -->
 	````JavaScript
@@ -765,11 +760,11 @@ In this task you will add child resources to the resources you have created in t
 
 	>**Note**: Notice that the connection string value is the combination of various strings and properties, which include the **serverName**, **siteName**, **administratorLogin** and **administratorPassoword** parameters.
 
-	The **Template Engine** will read the template, evaluate the dependencies between resources and construct a graph that it will use determine the order of deployment. When there are not dependencies between resources, the orchestrator will try to deploy the resources in parallel. Dependencies can be found by looking at where one resource gets values from another resource via Resource Expressions. 
+	The **Template Engine** will read the template, evaluate the dependencies between resources and construct a graph that it will  determine the order of deployment. When there are not dependencies between resources, the orchestrator will try to deploy the resources in parallel. Dependencies can be found by looking at where one resource gets values from another resource via _Resource Expressions_. 
 
-	Sometimes there are dependencies that are not obvious from these references. There's a property in the resource template were the user can explicitly declare a dependency. The property is called **dependsOn**.
+	Sometimes there are dependencies that are not obvious from these references. There is a property in the resource template where the user can explicitly declare a dependency. The property is called **dependsOn**.
 
-1. Locate the resources inside the SQL Server resource and add the **dependsOn** property to explicitly declare a dependency.
+10. Locate the resources inside the SQL Server resource and add the **dependsOn** property to explicitly declare a dependency.
 	
 	<!-- mark:16-18,28-30 -->
 	````JavaScript
@@ -813,7 +808,7 @@ In this task you will add child resources to the resources you have created in t
 	}
 	````
 
-1. Add the following highlighted line to the **dependsOn** property to set the dependency to the SQL Server.
+11. Add the following highlighted line to the **dependsOn** property to set the dependency on the SQL Server.
 
 	<!-- mark:4 -->
 	````JavaScript
@@ -825,7 +820,7 @@ In this task you will add child resources to the resources you have created in t
 	...
 	````
 	
-1. Locate the config resource in the website and add the **dependsOn** property to explicitly declare a dependency from the config resource to the Website.
+12. Locate the config resource in the website and add the **dependsOn** property to explicitly declare the dependency of the Website on the configuration resource.
 
 	<!-- mark:6-8 -->
 	````JavaScript
@@ -850,27 +845,26 @@ In this task you will add child resources to the resources you have created in t
 	]
 	````
 	
-1. Save the template file and switch back to **PowerShell**.
+13. Save the template file and switch back to **PowerShell**.
 
-14. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise. Notice that we forced the **sku** parameter to be _Standard_.
+14. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise.
 
 	````PowerShell
-	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN] -sku Standard
+	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN] -sku Free
 	````
 	
 	![Creating the database and configuring the website](Images/creating-the-databas-and-configuring-the-webs.png?raw=true "Creating the databas and configuring the website")
 	
 	_Creating the database and configuring the website_
 	
-
 <a name="Ex2Task2" />
 #### Task 2 - Configuring Alerts ####
 
 In this task you will add a new **Alert** as a new resource in the JSON template. You can configure different types of alerts depending on the metric you want to be notified with. For example, in this task you will create a new alert that will send you an email when a threshold of 2000 Requests (or greater) is reached for your website.
 
-1. Edit the JSON template file you created in the previous exercises.
+2. Edit the JSON template file you created in the previous exercises.
 
-1. Add the following resource at the end of the template.
+3. Add the following resource at the end of the template.
 
 	````JavaScript
 	,{
@@ -887,9 +881,9 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 	}
 	````
 
-	As you can see, this section is using a parameter to set up a dynamic name for the rule. In this case it is appending the _siteName_ parameter to the text "Requests-". The resulting alert name would be something similar to "Requests-MyAzureWebsite". The resource is of type **microsoft.insights/alertrules** and it has a single dependency to the Website that you created in the first exercise.
+	As you can see, this section is using a parameter to set up a dynamic name for the rule. In this case it is appending the _siteName_ parameter to the "Requests-" text. The resulting alert name would be something similar to "Requests-MyAzureWebsite". The resource is of type **microsoft.insights/alertrules** and it has a single dependency on the Website that you created in the first exercise.
 	
-1. This alert needs a rule to define the conditions to send a notification email to the Service owner and co-admins of the Azure account. You will define a new condition where the metric "Requests" must not exceed a value of 2000 requests in a time frame of 15 minutes. Paste the following highlighted code block inside the **properties** property.
+3. This alert needs a rule to define the conditions to send a notification email to the Service owner and co-admins of the Azure account. You will define a new condition where the metric "Requests" must not exceed a value of 2000 requests in a time frame of 15 minutes. Paste the following highlighted code block inside the **properties** property.
 
 	<!-- mark:10-22 -->
 	````JavaScript
@@ -924,9 +918,9 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 	 - **odata.type**: This condition use a **ThresholdRuleCondition** which requires a value to meet the condition.
 	 - **dataSource**: Inside this property you have 3 more properties to configure. The **metricName** is the type of metric that the alert will be watching. In this case you are using **Requests** but you can choose a different one. For example, to listen for HTTP 500 error codes, you need to set the **metricName** value to **Http5xx**. Additionally, you need to set the **resourceUri** which will identify the Website that the alert is currently watching.
 	 - **threshold**: This value is related to the **metricName** you specified. In this example, we are using a value of 2000 for the **Requests** metric.
-	 - **windowSize**: This property is the time span to monitor the metric data specified in the **dataSource** property. In this code block, you are using a period of time of 15 minutes.
+	 - **windowSize**: This property indicates the time span to monitor the metric data specified in the **dataSource** property. In this code block, you are using a period of time of 15 minutes.
 
-1. Now that you have the alert condition set, you need to set an **action**. You can configure the alert to send an email to the service administrator and co-admins, including additional emails if you want. To do this, add the following highlighted code block to the resource.
+4. Now that you have the alert condition set, you need to set an **action**. You can configure the alert to send an email to the service administrator and co-admins, including additional emails if you want. To do this, add the following highlighted code block to the resource.
 
 	<!-- mark:23-27 -->
 	````JavaScript
@@ -963,25 +957,25 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 
 	To send an email to the service owner and co-admins set the property **sendToServiceOwners** to **true**. To add additional emails, write them inside the **customEmails** array.
 
-1. Save the template and go back to **PowerShell**.
+5. Save the template and go back to **PowerShell**.
 
-1. Run the **New-AzureResourceGroup** Cmdlet and wait until the Resource Group is updated. Once completed, open the Azure Preview portal.
+6. Run the **New-AzureResourceGroup** Cmdlet and wait until the Resource Group is updated. Once completed, open the Azure Preview portal.
 
 	![Alert rule created](Images/alert-rule-created.png?raw=true "Alert rule created")
 	
 	_Alert rule created_
 
-1. Click the **Browse** button in the **Hub Menu** and select **Resource Groups**. Select the resource group you created in the first exercise.
+7. Click the **Browse** button in the **Hub Menu** and select **Resource Groups**. Select the resource group you created in the first exercise.
 
-1. In the **Resource Map**, select the website.
+8. In the **Resource Map**, select the website.
 
-1. In the Website blade, scroll-down to the **Operations** part and select **Alert Rules**.
+9. In the Website blade, scroll-down to the **Operations** part and select **Alert Rules**.
 
 	![Alert rules in website blade](Images/alert-rules-in-website-blade.png?raw=true "Alert rules in website blade")
 	
 	_Alert rules in website blade_
 
-1. You will see the alert you created in the list. Select the rule to display its properties. Check that the settings match the ones you specified in your template.
+10. You will see the alert you created in the list. Select the rule to display its properties. Check that the settings match the ones you specified in your template.
 	
 	![Alert created in the portal](Images/alert-created-in-the-portal.png?raw=true "Alert created in the portal")
 	
@@ -1014,9 +1008,9 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 	}
 	````
 
-	> **Note:** Take notice of the **dependsOn** property. The autoscale setting resource depends on the **Hosting Plan** configured for the server farm.
+	> **Note:** Notice the **dependsOn** property. The autoscale setting resource depends on the **Hosting Plan** configured for the server farm.
 	
-1. First you will add the **profiles** property, which establishes the minimum and maximum number of instances to perform the autoscaling. In this case, you will set a minimum of 2 instances and a maximum value of 4. The default number of instances that the website will start is 2.
+2. First you will add the **profiles** property, which establishes the minimum and maximum number of instances to perform the autoscaling. In this case, you will set a minimum of 2 instances and a maximum value of 4. The default number of instances that the website will start is 2.
 
 	<!-- mark:13-22 -->
 	````JavaScript
@@ -1046,7 +1040,7 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 	}	
 	````
 
-1. Now, add a scale-up rule that will increase the number of instances when the CPU threshold is greater than 80%. To do this, add the **rules** property inside **profiles**.
+3. Now, add a scale-up rule that will increase the number of instances when the CPU threshold is greater than 80%. To do this, add the **rules** property inside **profiles**, as shown in the highlighted code.
 
 	<!-- mark:21-39 -->
 	````JavaScript
@@ -1100,7 +1094,7 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 	
 	The **scaleAction** property is defined by its direction. As this is a _scale-up_ rule, the direction value is **Increase**. The action will increase a single instance each time is invoked with a cooldown period of 10 minutes (it will not execute again before that period of time).
 	
-1. To add a scale-down rule you need to add a new rule to the **rules** property, but in this case you need to set the **direction** to **Decrease**. Additionally, you will define a rule that will execute only when the CPU average percentage is below 60%.
+1. To add a scale-down rule you need to add a new rule to the **rules** property, but in this case you need to set the **direction** to **Decrease**. Additionally, define a rule that will execute only when the CPU average percentage is below 60%. This is highlighted in the following code.
 
 	<!-- mark:40-57 -->
 	````JavaScript
@@ -1170,25 +1164,25 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 
 	> **Note:** Another difference when comparing with the scale-up rule is that the time period to scale-down an instance is 1 hour.
 
-1. Save the template and go back to **PowerShell**.
+5. Save the template and go back to **PowerShell**.
 
-1. Run the **New-AzureResourceGroup** Cmdlet. Set the **sku** value to **standard**. Once completed, open the Azure Preview portal.
+6. Run the **New-AzureResourceGroup** Cmdlet. Set the **sku** value to **Standard**. Once completed, open the Azure Preview portal.
 
 	![Autoscaling rule created](Images/autoscaling-rule-created.png?raw=true "Autoscaling rule created")
 	
 	_Autoscaling rule created_
 
-1. Click the **Browse** button in the **Hub Menu** and select **Resource Groups**. Select the resource group you created in the first exercise.
+7. Click the **Browse** button in the **Hub Menu** and select **Resource Groups**. Select the resource group you created in the first exercise.
 
-1. In the **Resource Map**, select the website.
+8. In the **Resource Map**, select the website.
 
-1. In the Website blade, scroll-down to the **Usage** part and select **Scale**. You will see the autoscale setting you specified in the template.
+9. In the Website blade, scroll-down to the **Usage** part and select **Scale**. You will see the autoscale setting you specified in the template.
 
 	![Scale part in website blade ](Images/scale-part-in-website-blade.png?raw=true "Scale part in website blade ")
 	
 	_Scale part in website blade _
 
-1. Notice that the **Instance Range** is between _2_ and _4_.
+10. Notice that the **Instance Range** is between _2_ and _4_.
 
 	![Scale blade](Images/scale-blade.png?raw=true "Scale blade")
 
