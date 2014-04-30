@@ -289,7 +289,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 13. Replace the placeholders and execute the following command to create your new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you have created in the previous step.
 
 	````PowerShell
-	New-AzureResourceGroup -Location [LOCATION] -Name [RESOURCE-GROUP-NAME] -TemplateFile [JSON-File-Path]  –StorageAccountName [STORAGEACCOUNT] -Verbose
+	New-AzureResourceGroup –StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -Name [RESOURCE-GROUP-NAME] -Location [LOCATION]
 	````
 
 	![New-AzureResourceGroup command](Images/new-azureresourcegroup-command.png?raw=true "New-AzureResourceGroup command")
@@ -304,7 +304,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 17. Notice that in the **Resource** groups pane, there is a list of resources. Check that your resource group was created. Navigate to the Resource Group and check that there is a website with the names you defined in the template.
 
-	![Resource Group in the azure portal](Images/resource-group-in-the-azure-portal.png?raw=true "Resource Group in the azure portal")
+	![Resource Group in the azure portal](Images/Resource-group-in-the-azure-portal.png?raw=true "Resource Group in the azure portal")
 	
 	_Resource Group in the azure portal_
 
@@ -517,7 +517,7 @@ Then to use a defined resource in the template, you specify it in the following 
 12. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise.
 
 	````PowerShell
-	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN] -sku Free
+	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN]
 	````
 
 	![The PowerShell script is running](Images/the-powershell-script-is-running.png?raw=true "The PowerShell script is running")
@@ -850,10 +850,10 @@ In this task you will add child resources to the resources you have created in t
 14. Replace the placeholders and execute the following command to create or update your resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account that you created in the previous exercise.
 
 	````PowerShell
-	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN] -sku Free
+	New-AzureResourceGroup -StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -ResourceGroupName [RESOURCE-GROUP-NAME] -Location [LOCATION] -siteName [YOUR-SITE-NAME] -hostingPlanName [YOUR-HOSTING-PLAN-NAME] -siteLocation [YOUR-SITE-LOCATION] -serverName [YOUR-SQL-SERVER-NAME] -serverLocation [YOUR-SERVER-LOCATION] -administratorLogin [YOUR-ADMINISTRATOR-LOGIN]
 	````
 	
-	![Creating the database and configuring the website](Images/creating-the-databas-and-configuring-the-webs.png?raw=true "Creating the databas and configuring the website")
+	![Creating the database and configuring the website](Images/creating-the-database-and-configuring-the-web.png?raw=true "Creating the database and configuring the website")
 	
 	_Creating the database and configuring the website_
 	
@@ -1178,9 +1178,9 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 
 9. In the Website blade, scroll-down to the **Usage** part and select **Scale**. You will see the autoscale setting you specified in the template.
 
-	![Scale part in website blade ](Images/scale-part-in-website-blade.png?raw=true "Scale part in website blade ")
+	![Scale part in website blade](Images/scale-part-in-website-blade.png?raw=true "Scale part in website blade")
 	
-	_Scale part in website blade _
+	_Scale part in website blade_
 
 10. Notice that the **Instance Range** is between _2_ and _4_.
 
@@ -1222,7 +1222,7 @@ In this task you will learn how to deploy a Website as part of the ARM template.
 
 	<!-- mark:1-16 -->
 	````JavaScript
-	{
+	,{
 		"apiVersion": "01-01-2014",
 		"name": "MSDeploy",
 		"type": "Extensions",
@@ -1232,7 +1232,7 @@ In this task you will learn how to deploy a Website as part of the ARM template.
 		],
 		"properties": {
 				"packageUri": "[STORAGE-FILE-URL]",
-				"setParameters": "setParameters": {
+				"setParameters": {
 					"Application Path": "[parameters('siteName')]",
 					"Connection String": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('siteName'), '_db', ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]"
 				}
