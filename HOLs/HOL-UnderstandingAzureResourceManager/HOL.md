@@ -6,7 +6,7 @@
 <a name="Overview" />
 ## Overview ##
 
-A growing expectation of any cloud offering is the ability to automate the deployment and management of infrastructure components, like virtual machines, networks, storage, and databases - and enable customers to build and manage higher level applications on top of these in a rich DevOps friendly way. The Azure Resource Manager (ARM), provides a **Language** (Azure Resource Manager Template Language) that allows a declarative, parameterized description (a **Template**) of a set of related resources, so that they may be deployed and managed as a unit. The Templates are text-based (JSON), making it easy to use them with source code control systems like TFS and Git.
+A growing expectation of any cloud offering is the ability to automate the deployment and management of infrastructure components, like virtual machines, networks, storage, and databases - and enable customers to build and manage higher level applications on top of these in a rich and friendly DevOps environment. The Azure Resource Manager (ARM) provides a **Language** (Azure Resource Manager Template Language) that allows a declarative, parameterized description (a **Template**) of a set of related resources, so that they may be deployed and managed as a unit. The Templates are text-based (JSON), making it easy to use them with source code control systems like TFS and Git.
 
 <a name="Objectives" />
 ### Objectives ###
@@ -47,14 +47,14 @@ Estimated time to complete this lab: **45 minutes**
 <a name="Exercise1" />
 ### Exercise 1: Getting Started with the ARM Top-level Template Structure ###
 
-In this exercise you will learn about the **Azure Resource Manager** Template Language, its Top-level Template structure, and you will explore the different sections of it, learning about its usage, and how to construct them. 
+In this exercise you will learn about the **Azure Resource Manager** Template Language, its Top-level Template structure, and you will explore its different sections, learning about its usage and construction. 
 
 <a name="Ex1Task1" />
 #### Task 1 – Introduction to the ARM Template Language ####
 
 In this task you will learn about the **ARM** Template Language and its Top-level Template structure.
 
-This **Language** allows a declarative, parameterized description of a set of related resources, so that they may be deployed and managed as a unit. There is a service that reads these Templates and orchestrates the creation of the resources they describe. Tools like _Visual Studio 2013 Update 2_ can read and write these Templates and even provide IntelliSense. The Templates are text-based (JSON), making it easy to use them with source code control systems like TFS and Git.
+This **Language** allows a declarative, parameterized description of a set of related resources so that they may be deployed and managed as a unit. There is a service that reads these Templates and orchestrates the creation of the resources they describe. Tools like _Visual Studio 2013 Update 2_ can read and write these Templates and even provide IntelliSense. The Templates are text-based (JSON), making it easy to use them with source code control systems like TFS and Git.
 
 At a glance, the following is the Top-level Template structure.
 
@@ -87,7 +87,7 @@ At a glance, the following is the Top-level Template structure.
 }
 ````
 
-1. Open your preferred text editor and paste the following Top-level Template Structure. You will use this, to start constructing your own template.
+1. Open your preferred text editor and paste the following Top-level Template Structure. You will use this to start constructing your own template.
 
 	````JavaScript
 	{
@@ -131,12 +131,12 @@ At a glance, the following is the Top-level Template structure.
 	
 	_Visual Studio 2013 Update 2 providing IntelliSense for the ARM template_
 	
-	> **Note:** ARM provides a gallery of already created templates. These templates are useful for the most common resource groups scenarios, such as _Websites with SQL_. To get the list of available templates in the gallery use the following Azure PowerShell command while you are in _AzureResourceManager_ Azure mode.
+	> **Note:** ARM provides a gallery of already created templates. These templates are useful for the most common resource group scenarios, such as _Websites with SQL_. To get the list of available templates in the gallery, use the following Azure PowerShell command while you are in _AzureResourceManager_ Azure mode.
 
 	````PowerShell	
 	Get-AzureResourceGroupGalleryTemplate
 	````
-	> Using the **-Identity** switch you can review a gallery template and its properties, including icons and screenshots.	
+	> Using the **-Identity** switch, you can review a gallery template and its properties, including icons and screenshots.	
 	> To save a template from the gallery, you can use the **Save-AzureResourceGroupGalleryTemplate** command, specifying the template name and the path where the file will be saved.
 	
 	````PowerShell
@@ -146,7 +146,7 @@ At a glance, the following is the Top-level Template structure.
 <a name="Ex1Task2" />
 #### Task 2 – Understanding the Resources Section ####
 
-In this task, you will learn about the Resource section, which is used for defining all the resources that will be in your resource group.
+In this task, you will learn about the Resource section, used for defining all the resources included in your resource group.
 
 The **Resources** collection contains a JSON array of **Resource** objects. Each Resource object has the following top-level structure.
 
@@ -172,19 +172,19 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 > **Note:** The following is the description of the different properties of the resource top-level structure.
 
-> The _name_ property identifies a resource and it is required.
+> The _name_ property identifies a resource and is required.
 
-> The _type_ property defines the type of the resource in the form _"\<ResourceProviderNamespace\>/\<ResourceTypeName\>"_. This type will be used to lookup the Resource Provider that the Orchestrator will call to create or update the resources. This property is required.
+> The _type_ property defines the type of the resource in the form _"\<ResourceProviderNamespace\>/\<ResourceTypeName\>"_. This type will be used to look up the Resource Provider that the Orchestrator will call to create or update the resources. This property is required.
 
 > The _location_ property specifies the georegion, datacenter, or private cluster where the resource will be deployed. If not specified, the default value is the Location of the resourceGroup
 
-> The _dependsOn_ property specify that the processing of a specific resource depends on another resource.
+> The _dependsOn_ property specifies that the processing of a specific resource depends on another resource.
 
 > The _properties_ property is a bag containing name/value pairs. Every resource can have a section with properties. These are the settings that describe or configure the resource. 
 
 1. You will create your custom template by adding  a website resource. To do this, locate the **resources** section, and below the comment add the following code. This code will add a very simple website to your resource group. Before adding the code, replace every _\<Your-Site-Name\>_ tag with a name of your choice, for example: _MyTestWebSite_, and every _\<Your-Location\>_ with the location of your choice (e.g.: _East US_).
 
-	> **Note:** Take into account that Azure Websites names must be unique. Therefore you must choose a name that has not been taken yet. To avoid duplication you can append a random number to the end or your desired name.
+	> **Note:** Take into account that Azure Websites names must be unique. Therefore, you must choose a name that has not previously been used. To avoid duplication, you can append a random number to the end or your desired name.
 	
 	<!-- mark:2-11 -->
 	````JavaScript
@@ -202,13 +202,13 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 	],
 	````
 	
-2. In the **location** property of the resource, replace the _\<Your-Location\>_ value with _East Us_ or another Datacenter location.
+2. In the **location** property of the resource, replace the _\<Your-Location\>_ value with _East Us_ or other Datacenter location.
 
-	> Take note of the location you will use here, as it is recommended, but not mandatory, that all the other resources of the resource group are hosted in the same location.
+	> Take note of the location you will use here. It is recommended, but not mandatory, that all the other resources of the resource group be hosted in the same location.
 
 3. Choose a name for your hosting plan name, and replace the  _\<Your-Hosting-Plan-Name\>_ tag with the chosen name in the code created in the previous step.
 
-4. The following code will create a **Hosting Plan** that will be used in the creation of the website. Replace the _\<Your-Hosting-Plan-Name\>_ tag with the name choosen in the previous step and paste this code in the resource sections of your template. Preferably, paste it before the Website resource.
+4. The following code will create a **Hosting Plan** that will be used in the creation of the website. Replace the _\<Your-Hosting-Plan-Name\>_ tag with the name chosen in the previous step and paste this code in the resource sections of your template. Preferably, paste it before the Website resource.
 	
 	````JavaScript
 	{
@@ -286,7 +286,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 	> **Note:** You can switch back to the Azure module executing _Switch-AzureMode AzureServiceManagement_.
 	
-13. Replace the placeholders and execute the following command to create your new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you have created in the previous step.
+13. Replace the placeholders and execute the following command to create your new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you created in the previous step.
 
 	````PowerShell
 	New-AzureResourceGroup –StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -Name [RESOURCE-GROUP-NAME] -Location [LOCATION]
@@ -304,14 +304,14 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 17. Notice that in the **Resource** groups pane, there is a list of resources. Check that your resource group was created. Navigate to the Resource Group and check that there is a website with the names you defined in the template.
 
-	![Resource Group in the azure portal](Images/Resource-group-in-the-azure-portal.png?raw=true "Resource Group in the azure portal")
+	![Resource Group in the azure portal](Images/resource-group-in-the-azure-portal.png?raw=true "Resource Group in the azure portal")
 	
 	_Resource Group in the azure portal_
 
 <a name="Ex1Task3" />
 #### Task 3 – Understanding the Parameters Section ####
 
-In this task, you will learn how to use parameters in your templates. Using parameters makes changing repetitive values easier. It also allows you to create templates that contains values that should be prompted to the user, for example, resource names or even credentials that can be masked when entered.
+In this task, you will learn how to use parameters in your templates. Using parameters makes changing repetitive values easier. It also allows you to create templates that contain values that should be prompted to the user, for example, resource names or even credentials that can be masked when entered.
 
 Parameters are defined in the **parameters** section of the Top-level template, using the following pattern.
 
@@ -327,7 +327,7 @@ Parameters are defined in the **parameters** section of the Top-level template, 
 },
 ````
 
-Then to use a defined resource in the template, you specify it in the following way.
+To use a defined resource in the template, you specify it in the following way.
 
 ````JavaScript
 [parameters("Parameter-Name")]
@@ -335,7 +335,7 @@ Then to use a defined resource in the template, you specify it in the following 
 
 1. Open the template that you created in the previous exercise.
 
-2. Let's parametrize the name of the resources. Start with the Website name. To do this, in the parameters section of the template, define the following parameter.
+2. Let's parametrize the name of the resources. Start with the Website name by defining the following parameter in the parameters section of the template.
 
 	<!-- mark:2-4 -->
 	````JavaScript
@@ -352,7 +352,7 @@ Then to use a defined resource in the template, you specify it in the following 
     [parameters('siteName')]
     ````
     
-    > **Note:** As this parameter is of string type, it is recommended that you use simple quotes when specifying the parameter name to escape the double quotes that define the whole string.
+    > **Note:** As this is a string type parameter, it is recommended that you use simple quotes when specifying the parameter name to escape the double quotes that define the whole string.
     
 4. Continue defining the following simple string parameters. Simple string parameters can be used for the hosting plan name, the site location, the server name, server location, and the administration login.
 
@@ -424,7 +424,7 @@ Then to use a defined resource in the template, you specify it in the following 
 	],
 	````
     
-6. Look at the definition of the Website resource, and locate the **dependsOn** property. Notice that the value uses a predefined part (_Microsoft.Web/serverFarms/_) and then the value that you chose for the hosting plan name. For these cases, you can use the **concat** operator: [concat('value1', 'value2')]. Use this operator to append the hosting plan name parameter to the fixed path, as shown in the following code.
+6. Look at the definition of the Website resource, and locate the **dependsOn** property. Notice that the value uses a predefined part (_Microsoft.Web/serverFarms/_) plus the value that you chose for the hosting plan name. For these cases, you can use the **concat** operator: [concat('value1', 'value2')]. Use this operator to append the hosting plan name parameter to the fixed path, as shown in the following code.
 
     <!-- mark:7 -->
     ````JavaScript
@@ -445,7 +445,7 @@ Then to use a defined resource in the template, you specify it in the following 
 
     > **Note:** As the **concat** operator already uses brackets (**[]**), you do not need to use them when specifying the parameter.
     
-7. You may have notice that although the administrator login password is a string, we did not create a parameter for it, as it is not recommended to enter the passwords or sensitive information in plain text when executing the template. For this reason, there is a special type: **secureString**, which will mask the user input. First, define the following parameter in the parameters section.
+7. You may have noticed that although the administrator login password is a string, we did not create a parameter for it, as it is not recommended to enter the passwords or sensitive information in plain text when executing the template. For this reason, there is a special type: **secureString**, which will mask the user input. First, define the following parameter in the parameters section.
 
 	````JavaScript
 	"administratorLoginPassword": {
@@ -469,7 +469,7 @@ Then to use a defined resource in the template, you specify it in the following 
 	}
     ````
 
-9. There are some parameters that may accept only a set of values. You can specify this, and also if there is a default value when defining the parameter. Let's do this with the **sku** and **workerSize** values of the hosting plan resource. Add the following parameter definitions in the parameters section.
+9. There are some parameters that may accept only a set of values. You can specify this as well as any default values when defining the parameter. Let's do this with the **sku** and **workerSize** values of the hosting plan resource. Add the following parameter definitions in the parameters section.
 
     ````JavaScript
 	"sku": {
@@ -493,7 +493,7 @@ Then to use a defined resource in the template, you specify it in the following 
 	},
 	````
     
-	> **Note:** The **allowedValues** property is used to specify the values that are valid for the parameter, and the **defaultValue** property defines the value that will be used when the parameter is not specified. Specifying a default value, means that the parameter is optional.
+	> **Note:** The **allowedValues** property is used to specify the values that are valid for the parameter, and the **defaultValue** property defines the value that will be used when the parameter is not specified. Specifying a default value means that the parameter is optional.
 	
 10. In the template, locate the hosting plan resource and replace the hardcoded **sku** and **workerSize** values with the parameter reference. This is shown in the following code.
     <!-- mark:8-9 -->
@@ -524,7 +524,7 @@ Then to use a defined resource in the template, you specify it in the following 
 	
 	_The PowerShell script is running_
 	
-	> **Note:** When writing the command in PowerShell if you press the _TAB_ key after specifying the Template file, the parameters defined in it will be listed.
+	> **Note:** If you press the _TAB_ key after specifying the Template file when writing the command in PowerShell, the parameters defined in it will be listed.
 
 13. The **administratorLoginPassword** was not specified in the previous command, as this parameter will be prompted to the user.
 
@@ -532,21 +532,21 @@ Then to use a defined resource in the template, you specify it in the following 
 	
 	_The Administrator Login Password is prompted to the user and the input is masked_
 
-	> **Note:** If you use the same values as the ones used in the first task, the resources will not be created again. However if you change some properties in the script, the affected resources will be updated.
+	> **Note:** If you use the same values as the ones used in the first task, the resources will not be created again. However, if you change any properties in the script, the affected resources will be updated.
 
 <a name="Exercise2" />
 ### Exercise 2: Advanced Template Configuration  ###
 
-In this exercise you will dig deeper into more options that the **ARM** template provides to define your resources and some custom options. You will learn how to create nested resources, how to configure alerts based on your resource metrics, and even how to autoscale your resourced based on these metrics.
+In this exercise you will dig deeper into more options that the **ARM** template provides to define your resources. You will learn how to create nested resources, how to configure alerts based on your resource metrics, and even how to autoscale your resources based on these metrics.
 
 <a name="Ex2Task1" />
 #### Task 1 - Adding Nested Resources ####
 
 Inside the Resource section, each resource can have a list of resources that are part of this service. The resource allows 5 levels of nested resources and a total amount of 100 resources.
 
-In this task you will add child resources to the resources you have created in the previous exercise. You will create a database in the SQL Server you have created and then you will create a configuration in the WebSite to reference the database.
+In this task you will add child resources to the resources you created in the previous exercise. You will create a database in the SQL Server already generated and then a configuration in the WebSite to reference the database.
 
-1. If it is not already opened, open the custom JSON you started creating in Exercise 1.
+1. If not already open, open the custom JSON file you started in Exercise 1.
 
 2. Locate the **SQL Server** resource in the **resources** section.
 
@@ -608,7 +608,7 @@ In this task you will add child resources to the resources you have created in t
 
 	>**Note**: The resource you have just added defines a new database in the same location as the server which is specified when executing the command. The name of the database is defined with the name of the site with the __db_ prefix.
 	
-5. Now you will add some configuration properties to the database to define the **edition** of the SQL Database, the **collation** and the **maximum size**.
+5. Now you will add some configuration properties to the database to define the **edition** of the SQL Database: the **collation** and the **maximum size**.
 
 	<!-- mark:16-20 -->
 	````JavaScript
@@ -638,7 +638,7 @@ In this task you will add child resources to the resources you have created in t
 	````
 
 
-	>**Note**: **Collations** define rules that sort and compare data. Make a thoughtful choice of collation, based on application needs, at the time you create your database. Note that a collation cannot be changed after database creation. The default collation is **SQL_Latin1_General_CP1_CI_AS**: Latin dictionary, code page 1 (CP1), case-insensitive (CI), and accent-sensitive (AS).
+	>**Note**: **Collations** define rules that sort and compare data. Before choosing a collation, carefully consider your application's needs when it comes to creating your database. Note that a collation cannot be changed after database creation. The default collation is **SQL_Latin1_General_CP1_CI_AS**: Latin dictionary, code page 1 (CP1), case-insensitive (CI), and accent-sensitive (AS).
 	
 	> Use the **Max Size** property to specify an upper limit for the database size. Insert and update transactions that exceed the upper limit will be rejected because the database will be in read-only mode. Changing the **Max Size** property of a database does not directly affect the charges incurred for the database. Charges are based on actual size.
 
@@ -685,7 +685,7 @@ In this task you will add child resources to the resources you have created in t
 	...
 	````
 
-7. Now, you will add a configuration resource in the website and add a connection string to the database you have created. To do this, locate the website resource in the **resources** section. Add a new **resources** property inside the website, as shown in the following code.
+7. Now, you will add a configuration resource to the website and a connection string to the database you have created. To do this, locate the website resource in the **resources** section. Add a new **resources** property inside the website, as shown in the following code.
 
 	<!-- mark:10-12 -->
 	````JavaScript
@@ -726,7 +726,7 @@ In this task you will add child resources to the resources you have created in t
 		]
 	}
 	````
-9. In the **config** resource add a new property called **connectionstring** which will have the connection string to the database you have included in the previous step.
+9. In the **config** resource, add a new property called **connectionstring** which will have the connection string to the database you have included in the previous step.
 
 	<!-- mark:15-23 -->
 	````JavaScript
@@ -760,7 +760,7 @@ In this task you will add child resources to the resources you have created in t
 
 	>**Note**: Notice that the connection string value is the combination of various strings and properties, which include the **serverName**, **siteName**, **administratorLogin** and **administratorPassoword** parameters.
 
-	The **Template Engine** will read the template, evaluate the dependencies between resources and construct a graph that it will  determine the order of deployment. When there are not dependencies between resources, the orchestrator will try to deploy the resources in parallel. Dependencies can be found by looking at where one resource gets values from another resource via _Resource Expressions_. 
+	The **Template Engine** will read the template, evaluate the dependencies between resources and construct a graph which will determine the order of deployment. When there are not dependencies between resources, the orchestrator will try to deploy the resources in parallel. Dependencies can be found by looking at where one resource gets values from another resource via _Resource Expressions_. 
 
 	Sometimes there are dependencies that are not obvious from these references. There is a property in the resource template where the user can explicitly declare a dependency. The property is called **dependsOn**.
 
@@ -860,7 +860,7 @@ In this task you will add child resources to the resources you have created in t
 <a name="Ex2Task2" />
 #### Task 2 - Configuring Alerts ####
 
-In this task you will add a new **Alert** as a new resource in the JSON template. You can configure different types of alerts depending on the metric you want to be notified with. For example, in this task you will create a new alert that will send you an email when a threshold of 2000 Requests (or greater) is reached for your website.
+In this task you will add a new **Alert** as a new resource in the JSON template. You can configure different types of alerts depending on the metric you want to be notified of. For example, in this task you will create a new alert that will send you an email when a threshold of 2000 Requests (or greater) is reached for your website.
 
 2. Edit the JSON template file you created in the previous exercises.
 
@@ -881,9 +881,9 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 	}
 	````
 
-	As you can see, this section is using a parameter to set up a dynamic name for the rule. In this case it is appending the _siteName_ parameter to the "Requests-" text. The resulting alert name would be something similar to "Requests-MyAzureWebsite". The resource is of type **microsoft.insights/alertrules** and it has a single dependency on the Website that you created in the first exercise.
+	As you can see, this section is using a parameter to set up a dynamic name for the rule. In this case it is appending the _siteName_ parameter to the "Requests-" text. The resulting alert name would be something similar to "Requests-MyAzureWebsite". The resource is of type **microsoft.insights/alertrules**, and it has a single dependency on the Website that you created in the first exercise.
 	
-3. This alert needs a rule to define the conditions to send a notification email to the Service owner and co-admins of the Azure account. You will define a new condition where the metric "Requests" must not exceed a value of 2000 requests in a time frame of 15 minutes. Paste the following highlighted code block inside the **properties** property.
+3. This alert needs a rule to define the conditions to send a notification email to the Service owner and co-admins of the Azure account. You will define a new condition where the "Requests" metric must not exceed a value of 2000 in a time frame of 15 minutes. Paste the following highlighted code block inside the **properties** property.
 
 	<!-- mark:10-22 -->
 	````JavaScript
@@ -915,10 +915,10 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 
 	 To trigger a notification, the alert must meet the condition settings. Inside the **condition** property for this example, you are configuring the following values:
 	 
-	 - **odata.type**: This condition use a **ThresholdRuleCondition** which requires a value to meet the condition.
+	 - **odata.type**: This condition uses a **ThresholdRuleCondition** which requires a value to meet the condition.
 	 - **dataSource**: Inside this property you have 3 more properties to configure. The **metricName** is the type of metric that the alert will be watching. In this case you are using **Requests** but you can choose a different one. For example, to listen for HTTP 500 error codes, you need to set the **metricName** value to **Http5xx**. Additionally, you need to set the **resourceUri** which will identify the Website that the alert is currently watching.
 	 - **threshold**: This value is related to the **metricName** you specified. In this example, we are using a value of 2000 for the **Requests** metric.
-	 - **windowSize**: This property indicates the time span to monitor the metric data specified in the **dataSource** property. In this code block, you are using a period of time of 15 minutes.
+	 - **windowSize**: This property indicates the time span to monitor the metric data specified in the **dataSource** property. In this code block, you are using a time frame of 15 minutes.
 
 4. Now that you have the alert condition set, you need to set an **action**. You can configure the alert to send an email to the service administrator and co-admins, including additional emails if you want. To do this, add the following highlighted code block to the resource.
 
@@ -955,7 +955,7 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 	}	
 	````
 
-	To send an email to the service owner and co-admins set the property **sendToServiceOwners** to **true**. To add additional emails, write them inside the **customEmails** array.
+	To send an email to the service owner and co-admins, set the **sendToServiceOwners** property to **true**. To add additional emails, write them inside the **customEmails** array.
 
 5. Save the template and go back to **PowerShell**.
 
@@ -969,7 +969,7 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 
 8. In the **Resource Map**, select the website.
 
-9. In the Website blade, scroll-down to the **Operations** part and select **Alert Rules**.
+9. In the Website blade, scroll down to the **Operations** part and select **Alert Rules**.
 
 	![Alert rules in website blade](Images/alert-rules-in-website-blade.png?raw=true "Alert rules in website blade")
 	
@@ -1090,11 +1090,11 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 	}
 	````
 	
-	Inside the **rules** property you define the different scale-up and scale-down rules you need to autoscale your Website. Each rule is composed of 2 properties: **metricTrigger** and **scaleAction**. In a **metricTrigger** you are defining a _CpuPercentage_ metric, with a threshold of _80_ and using the operator _GreaterThan_. The **timeWindow** property is set to 10 minutes, i.e. every 10 minutes the rule will verify that the CPU percentage average did not exceed the 80% threshold. If it does, it will execute the action specified in the **scaleAction** property.
+	Inside the **rules** property, you define the different scale-up and scale-down rules you need to autoscale your Website. Each rule is composed of 2 properties: **metricTrigger** and **scaleAction**. In a **metricTrigger** you are defining a _CpuPercentage_ metric, with a threshold of _80_ and using the operator _GreaterThan_. The **timeWindow** property is set to 10 minutes, i.e. every 10 minutes the rule will verify that the CPU percentage average did not exceed the 80% threshold. If it does, it will execute the action specified in the **scaleAction** property.
 	
-	The **scaleAction** property is defined by its direction. As this is a _scale-up_ rule, the direction value is **Increase**. The action will increase a single instance each time is invoked with a cooldown period of 10 minutes (it will not execute again before that period of time).
+	The **scaleAction** property is defined by its direction. As this is a _scale-up_ rule, the direction value is **Increase**. The action will increase a single instance each time it is invoked with a cooldown period of 10 minutes (it will not execute again before that period of time).
 	
-4. To add a scale-down rule you need to add a new rule to the **rules** property, but in this case you need to set the **direction** to **Decrease**. Additionally, define a rule that will execute only when the CPU average percentage is below 60%. This is highlighted in the following code.
+4. To add a scale-down rule, you need to add a new rule to the **rules** property, but in this case you will set the **direction** to **Decrease**. Additionally, define a rule that will execute only when the CPU average percentage is below 60%. This is highlighted in the following code.
 
 	<!-- mark:40-57 -->
 	````JavaScript
@@ -1162,7 +1162,7 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 	}	
 	````
 
-	> **Note:** Another difference when comparing with the scale-up rule is that the time period to scale-down an instance is 1 hour.
+	> **Note:** Another difference when comparing with the scale-up rule is that the time period to scale down an instance is 1 hour.
 
 5. Save the template and go back to **PowerShell**.
 
@@ -1176,7 +1176,7 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 
 8. In the **Resource Map**, select the website.
 
-9. In the Website blade, scroll-down to the **Usage** part and select **Scale**. You will see the autoscale setting you specified in the template.
+9. In the Website blade, scroll down to the **Usage** part and select **Scale**. You will see the autoscale setting you specified in the template.
 
 	![Scale part in website blade](Images/scale-part-in-website-blade.png?raw=true "Scale part in website blade")
 	
@@ -1240,7 +1240,7 @@ In this task you will learn how to deploy a Website as part of the ARM template.
 	}
 	````
 	
-	>**Note** The storage URL should look like the following. HTTP://[ACCOUNT-NAME].blob.core.windows.net/[CONTAINER]/[FILENAME]. If you left the variables as the script  bellow, _[CONTAINER]_ should be **package** and _[FILENAME]_ should be **mydeployedwebsite.zip**.
+	>**Note** The storage URL should look like the following. HTTP://[ACCOUNT-NAME].blob.core.windows.net/[CONTAINER]/[FILENAME]. If you left the variables as the script  below, _[CONTAINER]_ should be **package** and _[FILENAME]_ should be **mydeployedwebsite.zip**.
 
 5. Save the template and go back to **PowerShell**.
 
@@ -1260,14 +1260,14 @@ In this task you will learn how to deploy a Website as part of the ARM template.
 <a name="Exercise3" />
 ### Exercise 3: Cleaning up Resources using ARM ###
 
-In this exercise you will learn how to delete resources and resource groups. You will learn this by deleting the resource group that was created in the previous exercises.
+In this exercise you will learn how to delete resources and resource groups by deleting the resource group that was created in the previous exercises.
 
 <a name="Ex3Task1" />
 #### Task 1 - Removing Resources and Resource Groups  ####
 
 In this task you will learn about deleting resources and deleting resource groups using Azure PowerShell.
 
-1. Open Azure Powershell if it is not already opened.
+1. Open Azure Powershell if it is not already open.
 
 2. Ensure that your Powershell session is in _AzureResourceManager_ mode. If not, execute the following command to enter in this mode.
 
@@ -1283,9 +1283,9 @@ In this task you will learn about deleting resources and deleting resource group
 
 	![Listing the Resource Groups of your suscription](Images/listing-the-resource-groups-of-your-suscripti.png?raw=true)
 	
-	_Listing the Resource Groups of your suscription_
+	_Listing the Resource Groups of your subscription_
 	
-4. From the list of resource groups in your suscription, choose the one created in the previous exercises and execute the following command that will list all the resources of that resource group. Without parameters, **Get-AzureResource** gets all resources in your Azure subscription
+4. From the list of resource groups in your subscription, choose the one created in the previous exercises and execute the following command that will list all the resources of that resource group. Without parameters, **Get-AzureResource** gets all resources in your Azure subscription
 
 	````PowerShell
 	Get-AzureResource -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME]
@@ -1295,7 +1295,7 @@ In this task you will learn about deleting resources and deleting resource group
 	
 	_Listing the resources of a Resource Group_
 
-5. Choose one resource from the list of resources that will be deleted, for example the Website. To get more information about the chosen resouce, specify the name of it. When you use the **Name** parameter to get a particular resource, the **ResourceGroupName**, **ResourceType**, and **APIVersion** parameters are required.
+5. Choose one resource from the list of resources that will be deleted, for example, the Website. To get more information about the chosen resource, specify its name. When you use the **Name** parameter to get a particular resource, the **ResourceGroupName**, **ResourceType**, and **APIVersion** parameters are required.
 
 	````PowerShell
 	Get-AzureResource -Name [YOUR-AZURE-RESOURCE-NAME] -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME] -ResourceType "Microsoft.Web/sites" -ApiVersion 2014-04-01
@@ -1305,7 +1305,7 @@ In this task you will learn about deleting resources and deleting resource group
 	
 	_Seeing the details of the Website resource_
 	
-6. Delete the selected resource. To delete a resource from the resource group, use the **Remove-AzureResource** cmdlet. This cmdlet deletes the resource, but does not delete the resource group.
+6. Delete the selected resource. To delete a resource from the resource group, use the **Remove-AzureResource** cmdlet. This cmdlet deletes the resource but does not delete the resource group.
 
 	````PowerShell
 	Remove-AzureResource -Name [YOUR-AZURE-RESOURCE-NAME] -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME] -ResourceType Microsoft.web/sites -ApiVersion 2014-04-01
@@ -1316,7 +1316,7 @@ In this task you will learn about deleting resources and deleting resource group
  
 7. Type **'Y'** and press **Enter** to confirm the deletion.
 
-8. List all the resources from your resource group to verify that the specified resource was deleted. To do that, use the following command.
+8. List all the resources from your resource group to verify that the specified resource was deleted by issuing the following command.
 
 	````PowerShell
 	Get-AzureResource -ResourceGroupName [YOUR-AZURE-RESOURCE-GROUP-NAME]
@@ -1326,7 +1326,7 @@ In this task you will learn about deleting resources and deleting resource group
 	
 	_The Website resource is deleted_
 	
-	> **Note:** Notice that the Hosting Plan resource was also deleted as it was dependant on the Website.
+	> **Note:** Notice that the Hosting Plan resource was also deleted as it was dependent on the Website.
 
 
 9. The **Remove-AzureResourceGroup** cmdlet deletes a resource group and its resources from your subscription. By default, **Remove-AzureResourceGroup** prompts you for confirmation. To suppress the prompt, use the **Force** parameter. Delete the resource group by using the following command.
@@ -1341,7 +1341,7 @@ In this task you will learn about deleting resources and deleting resource group
 	
 	_Removing the Resource Group_
 
-11. You can verify that the resource group was successfully deleted by listing all the resource groups by using the following command. Notice that the the deleted resource group is no longer in your suscription.
+11. You can verify that the resource group was successfully deleted by using the following command. Notice that the deleted resource group is no longer in your subscription.
 
 	````PowerShell
 	Get-AzureResourceGroup
@@ -1356,6 +1356,6 @@ In this task you will learn about deleting resources and deleting resource group
 <a name="Summary" />
 ## Summary ##
 
-In this Hands-on Lab you learned about **Azure Resource Manager** (ARM) and the ARM template language to define resources and its dependencies. You learned how to parameterize the template, add dependencies, configure alerts, and autoscaling settings to your resources.
+In this Hands-on Lab you learned about **Azure Resource Manager** (ARM) and the ARM template language to define resources and their dependencies. You learned how to parameterize the template, add dependencies, configure alerts, and autoscaling settings to your resources.
 
 Additionally, you learned how to remove specific resources from a **Resource Group** and how to delete an entire **Resource Group** using the Azure PowerShell Cmdlets.
