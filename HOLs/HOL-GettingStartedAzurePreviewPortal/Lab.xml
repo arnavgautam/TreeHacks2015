@@ -2,7 +2,7 @@
 <Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
   <Id>GettingStartedAzurePreviewPortal</Id>
   <Technologies>
-    <Technology>TBC</Technology>
+    <Technology>Microsoft Azure</Technology>
   </Technologies>
   <Author>
     <Blog></Blog>
@@ -10,7 +10,7 @@
     <Name></Name>
   </Author>
   <Description>
-    In this Hands-on lab, you will learn how to create a new resource group by building a Website and a SQL Server. Then you set up continuous deployment using Team Project and edited the source code of the Website using Visual Studio Online. At the end of this lab, you will learn how to create a custom Resource Group using Azure Resource Manager (via Azure PowerShell).
+    The new Azure Preview portal is an all-in-one, work-anywhere experience. Now you can manage websites, databases, and Visual Studio Online team projects in a reimagined UX personalized to your work style. In this Hands-on lab, you will learn how to create a new resource group by building a Website and a SQL Server, and set up continuous deployment using Team Project.
   </Description>
   <Document ConversionType="Html">.\HOL.md</Document>
   <Title>Getting Started with the Azure Preview Portal</Title>

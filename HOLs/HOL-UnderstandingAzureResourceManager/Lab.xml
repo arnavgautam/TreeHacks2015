@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
-  <Id>IntroToAzureResourceManager</Id>
+  <Id>UnderstandingAzureResourceManager</Id>
   <Technologies>
     <Technology>Azure Resource Manager</Technology>
     <Technology>Microsoft Azure</Technology>
@@ -12,10 +12,10 @@
     <Name></Name>
   </Author>
   <Description>
-    A growing expectation of any cloud offering is the ability to automate the deployment and management of infrastructure components, like virtual machines, networks, storage, and databases - and enable customers to build and manage higher level applications on top of these in a rich DevOps friendly way. The Azure Resource Manager, provides a **Language** (Azure Resource Manager Template Language) that allows a declarative, parameterized description (a **Template**) of a set of related resources, so that they may be deployed and managed as a unit. The Templates are text-based (JSON), making it easy to use them with source code control systems like TFS and Git.
+    A growing expectation of any cloud offering is the ability to automate the deployment and management of infrastructure components, like virtual machines, networks, storage, and databases - and enable customers to build and manage higher level applications on top of these in a rich DevOps friendly way. The Azure Resource Manager, provides a Language (Azure Resource Manager Template Language) that allows a declarative, parameterized description (a Template) of a set of related resources, so that they may be deployed and managed as a unit. The Templates are text-based (JSON), making it easy to use them with source code control systems like TFS and Git.
   </Description>
   <Document ConversionType="Html">.\HOL.md</Document>
-  <Title>Intro to Azure Resource Manager</Title>
+  <Title>Understanding Azure Resource Manager</Title>
   <Version>1.0.0</Version>
   <Source>.\Source</Source>
   <CustomProperties>
