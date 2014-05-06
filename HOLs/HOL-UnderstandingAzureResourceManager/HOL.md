@@ -106,7 +106,7 @@ At a glance, the following is the Top-level Template structure.
 
 3. Open the JSON file you just created in _Visual Studio 2013 Update 2_.
 
-4. In the **parameters** section, create a new parameter named _paramName_ as shown in the following code.
+4. In order to showcase Intellisense capabilities, in the **parameters** section, create a new parameter named _paramName_ as shown in the following code.
 
     <!-- mark:5-6 -->
     ````JavaScript
@@ -130,18 +130,19 @@ At a glance, the following is the Top-level Template structure.
 	![Visual Studio 2013 Update 2 providing Intellisense](Images/visual-studio-2013-update-2-providing-intelli.png?raw=true)
 	
 	_Visual Studio 2013 Update 2 providing IntelliSense for the ARM template_
+
+6. Remove the _paramName_ parameter so the **parameters** section is empty.
 	
 	> **Note:** ARM provides a gallery of already created templates. These templates are useful for the most common resource group scenarios, such as _Websites with SQL_. To get the list of available templates in the gallery, use the following Azure PowerShell command while you are in _AzureResourceManager_ Azure mode.
 
-	````PowerShell	
+	>	````PowerShell	
 	Get-AzureResourceGroupGalleryTemplate
 	````
-	> Using the **-Identity** switch, you can review a gallery template and its properties, including icons and screenshots.	
+	> Using the **-Identity** switch, you can review a gallery template and its properties, including icons and screenshots.
 	> To save a template from the gallery, you can use the **Save-AzureResourceGroupGalleryTemplate** command, specifying the template name and the path where the file will be saved.
-	
-	````PowerShell
+
+	>	````PowerShell
 	Save-AzureResourceGroupGalleryTemplate -Identity [TEMPLATE-NAME] -Path [FILE-PATH]	
-	````
 
 <a name="Ex1Task2" />
 #### Task 2 – Understanding the Resources Section ####
@@ -208,7 +209,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 3. Choose a name for your hosting plan name, and replace the  _\<Your-Hosting-Plan-Name\>_ tag with the chosen name in the code created in the previous step.
 
-4. The following code will create a **Hosting Plan** that will be used in the creation of the website. Replace the _\<Your-Hosting-Plan-Name\>_ tag with the name chosen in the previous step and paste this code in the resource sections of your template. Preferably, paste it before the Website resource.
+4. The following code will create a **Hosting Plan** that will be used in the creation of the website. Add a new resource and replace the _\<Your-Hosting-Plan-Name\>_ tag with the name chosen in the previous step and paste this code in the resource sections of your template. Preferably, paste it before the Website resource.
 	
 	````JavaScript
 	{
@@ -269,7 +270,15 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 10. Open **Azure PowerShell**.
 
-11. Replace the _[STORAGE NAME]_ placeholder and execute the following command to create a new storage account. Make sure that the storage name you selected is unique.
+11. If you have not added an Azure Account yet, type the following command:
+
+	````PowerShell
+	Add-AzureAccount
+	````
+
+12. The PowerShell command should open a dialog. Enter your Azure credentials and log in.
+
+13. Replace the _[STORAGE NAME]_ placeholder and execute the following command to create a new storage account. Make sure that the storage name you selected is unique.
 
 	You can skip this step if you prefer to use an already existing storage account of your own instead of creating a new one.
 
@@ -278,7 +287,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 	````
 	> **Note:** Take into account that the Storage Account Name must be all lowercase.
 
-12. Switch mode to **AzureResourceManager** using the following command. In this mode, you will have access to the Cmdlets related to **Azure Resource Manager**.
+13. Switch mode to **AzureResourceManager** using the following command. In this mode, you will have access to the Cmdlets related to **Azure Resource Manager**.
 
 	````PowerShell
 	Switch-AzureMode AzureResourceManager
@@ -286,7 +295,7 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 
 	> **Note:** You can switch back to the Azure module executing _Switch-AzureMode AzureServiceManagement_.
 	
-13. Replace the placeholders and execute the following command to create your new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you created in the previous step.
+14. Replace the placeholders and execute the following command to create your new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you created in the previous step.
 
 	````PowerShell
 	New-AzureResourceGroup –StorageAccountName [STORAGEACCOUNT] -TemplateFile [JSON-File-Path] -Name [RESOURCE-GROUP-NAME] -Location [LOCATION]
@@ -296,13 +305,13 @@ The **Resources** collection contains a JSON array of **Resource** objects. Each
 	
 	_New-AzureResourceGroup command_
 	
-14. Open Internet Explorer and browse to the [Azure Portal](http://azure.portal.com)
+15. Open Internet Explorer and browse to the [Azure Portal](http://azure.portal.com)
 
-15. Click the **Browse** button from the Hub Menu on the left side of the window.
+16. Click the **Browse** button from the Hub Menu on the left side of the window.
 
-16. In the **Browse** menu, click **Resource groups**.
+17. In the **Browse** menu, click **Resource groups**.
 
-17. Notice that in the **Resource** groups pane, there is a list of resources. Check that your resource group was created. Navigate to the Resource Group and check that there is a website with the names you defined in the template.
+18. Notice that in the **Resource** groups pane, there is a list of resources. Check that your resource group was created. Navigate to the Resource Group and check that there is a website with the names you defined in the template.
 
 	![Resource Group in the azure portal](Images/resource-group-in-the-azure-portal.png?raw=true "Resource Group in the azure portal")
 	
@@ -382,7 +391,7 @@ To use a defined resource in the template, you specify it in the following way.
 
 5. Replace all the hardcoded values for the parameters defined in the previous step with calls to the parameter values. Your resulting template should look like the following code, in which the replacements are highlighted.
 
-    <!-- mark:5,7,9,19,25,29,31,34 -->
+    <!-- mark:5,7,9,17,19,25,29,31,34 -->
     ````JavaScript
 	"resources": 
 	[
@@ -426,7 +435,7 @@ To use a defined resource in the template, you specify it in the following way.
     
 6. Look at the definition of the Website resource, and locate the **dependsOn** property. Notice that the value uses a predefined part (_Microsoft.Web/serverFarms/_) plus the value that you chose for the hosting plan name. For these cases, you can use the **concat** operator: [concat('value1', 'value2')]. Use this operator to append the hosting plan name parameter to the fixed path, as shown in the following code.
 
-    <!-- mark:4 -->
+    <!-- mark:7 -->
     ````JavaScript
 	{
 		"apiVersion": "2014-04-01",
