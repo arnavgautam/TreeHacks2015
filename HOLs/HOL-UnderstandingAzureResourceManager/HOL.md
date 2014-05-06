@@ -640,7 +640,7 @@ In this task you will add child resources to the resources you created in the pr
 
 	>**Note**: **Collations** define rules that sort and compare data. Before choosing a collation, carefully consider your application's needs when it comes to creating your database. Note that a collation cannot be changed after database creation. The default collation is **SQL_Latin1_General_CP1_CI_AS**: Latin dictionary, code page 1 (CP1), case-insensitive (CI), and accent-sensitive (AS).
 	
-	> Use the **Max Size** property to specify an upper limit for the database size. Insert and update transactions that exceed the upper limit will be rejected because the database will be in read-only mode. Changing the **Max Size** property of a database does not directly affect the charges incurred for the database. Charges are based on actual size.
+	> Use the **Max Size** property to specify an upper limit for the database size. Insert and update transactions that exceed the upper limit will be rejected because the database will be in read-only mode. Changing the **Max Size** property of a database does not directly affect the charges incurred by the database. Charges are based on actual size.
 
 	
 6. To allow the Azure services, you need to add a firewall rule to allow Azure IPs 0.0.0.0. To do so, add the following highlighted resource to the SQL Server resource.
@@ -758,7 +758,7 @@ In this task you will add child resources to the resources you created in the pr
 	}
 	````
 
-	>**Note**: Notice that the connection string value is the combination of various strings and properties, which include the **serverName**, **siteName**, **administratorLogin** and **administratorPassoword** parameters.
+	>**Note**: Notice that the connection string value is the combination of various strings and properties, which include the **serverName**, **siteName**, **administratorLogin** and **administratorPassword** parameters.
 
 	The **Template Engine** will read the template, evaluate the dependencies between resources and construct a graph which will determine the order of deployment. When there are not dependencies between resources, the orchestrator will try to deploy the resources in parallel. Dependencies can be found by looking at where one resource gets values from another resource via _Resource Expressions_. 
 
@@ -881,7 +881,7 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 	}
 	````
 
-	As you can see, this section is using a parameter to set up a dynamic name for the rule. In this case it is appending the _siteName_ parameter to the "Requests-" text. The resulting alert name would be something similar to "Requests-MyAzureWebsite". The resource is of type **microsoft.insights/alertrules**, and it has a single dependency on the Website that you created in the first exercise.
+	As you can see, this section is using a parameter to set up a dynamic name for the rule. In this case it is appending the _siteName_ parameter to the "Requests-" text. The resulting alert name would be something similar to "Requests-MyAzureWebsite". The resource is of type **microsoft.insights/alertrules** and has a single dependency on the Website that you created in the first exercise.
 	
 3. This alert needs a rule to define the conditions to send a notification email to the Service owner and co-admins of the Azure account. You will define a new condition where the "Requests" metric must not exceed a value of 2000 in a time frame of 15 minutes. Paste the following highlighted code block inside the **properties** property.
 
@@ -916,7 +916,7 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 	 To trigger a notification, the alert must meet the condition settings. Inside the **condition** property for this example, you are configuring the following values:
 	 
 	 - **odata.type**: This condition uses a **ThresholdRuleCondition** which requires a value to meet the condition.
-	 - **dataSource**: Inside this property you have 3 more properties to configure. The **metricName** is the type of metric that the alert will be watching. In this case you are using **Requests** but you can choose a different one. For example, to listen for HTTP 500 error codes, you need to set the **metricName** value to **Http5xx**. Additionally, you need to set the **resourceUri** which will identify the Website that the alert is currently watching.
+	 - **dataSource**: Inside this property there are 3 more properties to configure. The **metricName** is the type of metric that the alert will be watching. In this case you are using **Requests** but you can choose a different one. For example, to listen for HTTP 500 error codes, you need to set the **metricName** value to **Http5xx**. Additionally, you need to set the **resourceUri** which will identify the Website that the alert is currently watching.
 	 - **threshold**: This value is related to the **metricName** you specified. In this example, we are using a value of 2000 for the **Requests** metric.
 	 - **windowSize**: This property indicates the time span to monitor the metric data specified in the **dataSource** property. In this code block, you are using a time frame of 15 minutes.
 
@@ -975,7 +975,7 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 	
 	_Alert rules in website blade_
 
-10. You will see the alert you created in the list. Select the rule to display its properties. Check that the settings match the ones you specified in your template.
+10. You will see the alert you created in the list. Select the rule to display its properties. Check that the settings match those you specified in your template.
 	
 	![Alert created in the portal](Images/alert-created-in-the-portal.png?raw=true "Alert created in the portal")
 	
@@ -984,7 +984,7 @@ In this task you will add a new **Alert** as a new resource in the JSON template
 <a name="Ex2Task3" />
 #### Task 3 - Configuring Autoscaling Settings ####
 
-In this task you will add an **Autoscaling setting** to your hosting plan. With this setting you can automatically define a rule to scale-up your Website when the CPU metric is above 80% and a scale-down rule that will decrease the number of instances when the CPU hits below 60%.
+In this task you will add an **Autoscaling setting** to your hosting plan. With this setting you can automatically define a rule to scale up your Website when the CPU metric is above 80% and a scale-down rule that will decrease the number of instances when the CPU goes below 60%.
 
 > **Note:** In order to enable the autoscale setting, the pricing tier of the Hosting Plan must be set to **Standard**. When updating the Resource Group using PowerShell you need to set the **sku** parameter to _Standard_.
 
@@ -1090,7 +1090,7 @@ In this task you will add an **Autoscaling setting** to your hosting plan. With 
 	}
 	````
 	
-	Inside the **rules** property, you define the different scale-up and scale-down rules you need to autoscale your Website. Each rule is composed of 2 properties: **metricTrigger** and **scaleAction**. In a **metricTrigger** you are defining a _CpuPercentage_ metric, with a threshold of _80_ and using the operator _GreaterThan_. The **timeWindow** property is set to 10 minutes, i.e. every 10 minutes the rule will verify that the CPU percentage average did not exceed the 80% threshold. If it does, it will execute the action specified in the **scaleAction** property.
+	Inside the **rules** property, you define the different scale-up and scale-down rules you need to autoscale your Website. Each rule is composed of 2 properties: **metricTrigger** and **scaleAction**. In a **metricTrigger** you are defining a _CpuPercentage_ metric with a threshold of _80_ and using the operator _GreaterThan_. The **timeWindow** property is set to 10 minutes, i.e. every 10 minutes the rule will verify that the CPU percentage average did not exceed the 80% threshold. If it does, it will execute the action specified in the **scaleAction** property.
 	
 	The **scaleAction** property is defined by its direction. As this is a _scale-up_ rule, the direction value is **Increase**. The action will increase a single instance each time it is invoked with a cooldown period of 10 minutes (it will not execute again before that period of time).
 	
@@ -1218,7 +1218,7 @@ In this task you will learn how to deploy a Website as part of the ARM template.
 	
 	_Uploaded zip file to blob storage_
 	
-4. Once the zip file is uploaded, replace the _[STORAGE-FILE-URL]_ placeholder with the url of the file in Blob storage in the following snippet and add **MSDeploy** extension to the website resources after the **config** resource.
+4. Once the zip file is uploaded, replace the _[STORAGE-FILE-URL]_ placeholder with the file's URL in Blob storage in the following snippet and add the **MSDeploy** extension to the website resources after the **config** resource.
 
 	<!-- mark:1-16 -->
 	````JavaScript
@@ -1240,7 +1240,7 @@ In this task you will learn how to deploy a Website as part of the ARM template.
 	}
 	````
 	
-	>**Note** The storage URL should look like the following. HTTP://[ACCOUNT-NAME].blob.core.windows.net/[CONTAINER]/[FILENAME]. If you left the variables as the script  below, _[CONTAINER]_ should be **package** and _[FILENAME]_ should be **mydeployedwebsite.zip**.
+	>**Note** The storage URL should look like the following. HTTP://[ACCOUNT-NAME].blob.core.windows.net/[CONTAINER]/[FILENAME]. If you left the variables as shown in the script below, _[CONTAINER]_ should be **package** and _[FILENAME]_ should be **mydeployedwebsite.zip**.
 
 5. Save the template and go back to **PowerShell**.
 
