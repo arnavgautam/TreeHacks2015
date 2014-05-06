@@ -64,7 +64,7 @@ In this exercise, you will learn how to create a new Web Site and a SQL Server u
 <a name="Ex1Task1" />
 #### Task 1 – Creating a Website + SQL ####
 
-In this task, you will login to the Azure Preview portal and create a new Web Site and SQL Server.[
+In this task, you will login to the Azure Preview portal and create a new Web Site and SQL Server.
 
 1. Open a browser and browse to http://portal.azure.com and log in using your credentials.
 
@@ -119,6 +119,8 @@ In this task, you will login to the Azure Preview portal and create a new Web Si
 1. Click **OK** to go back to the **Website** blade. You can change or leave the default location for the Website. Click **OK** to go to the previous blade.
 
 1. Click **Database** to change the settings for your new database.
+
+	> **Note:** If there are any existing databases asociated to the user, the **Database** blade will show up. Select **Create a new Database**. 
 
 	![Changing your database settings](Images/changing-your-database-settings.png?raw=true)
 
@@ -305,19 +307,19 @@ Enter a commit message and verify that all the solutions files are included in t
 	
 	_Syncing the changes in the server_
 
-1. When the syncing is complete, go to the Azure portal. Open your pinned team project part. Within one minute, you should see that your commit has been automatically deployed.
+1. When the syncing is complete, go to the Azure portal. Open your pinned team project part. Within one minute, you should see that your commit has been automatically deployed. Click your web site name in **Latest Build** part. This will display details of the website.
 
 	![Checking the status of the team project](Images/checking-the-status-of-the-team-project.png?raw=true)
 	
 	_Checking the status of the team project_
  
-1. Click your web site name in **Latest Build** part. This will display details of the website.
+1. In the Website blade, click the **Browse** command, to go to the deployed website.
 
 	![Website blade](Images/latest-build-details.png?raw=true)
 
 	_Website blade_
 
-1. In this blade, click the **Browse** command, to go to the deployed website.
+1. Verify the deployed site.
  
 	![Browsing the deployed Site](Images/browsing-the-deployed-site.png?raw=true)
 	
@@ -390,6 +392,8 @@ In this task, you will modify your code from the Azure Portal and then commit th
 **Azure Resource Manager** introduces an entirely new way of thinking about your Azure resources. Instead of creating and managing individual resources, you begin by imagining a complex service, such as a blog, a photo gallery, a SharePoint portal, or a wiki. You use a template -- a resource model of the service -- to create a resource group with the resources that you need to support the service. Then, you can manage and deploy that resource group as a logical unit.
 
 In this exercise, you learn how to use Azure PowerShell with Resource Manager for Microsoft Azure. You will go through the process of downloading, updating and creating a resource group for a Web site with a SQL database.
+
+> **Note:** You can read the **Understanding Azure Resource Manager** Hands-on lab for deeper insights about Azure Resource Manager and the Template language specification.
 
 <a name="Ex3Task1" />
 #### Task 1 - Downloading Resource Group Template ####

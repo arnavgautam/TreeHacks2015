@@ -426,7 +426,7 @@ To use a defined resource in the template, you specify it in the following way.
     
 6. Look at the definition of the Website resource, and locate the **dependsOn** property. Notice that the value uses a predefined part (_Microsoft.Web/serverFarms/_) plus the value that you chose for the hosting plan name. For these cases, you can use the **concat** operator: [concat('value1', 'value2')]. Use this operator to append the hosting plan name parameter to the fixed path, as shown in the following code.
 
-    <!-- mark:7 -->
+    <!-- mark:4 -->
     ````JavaScript
 	{
 		"apiVersion": "2014-04-01",
