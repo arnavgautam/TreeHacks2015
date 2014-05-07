@@ -1,0 +1,80 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  "contentVersion" : "1.0",
+  "parameters": { 
+    "siteName": {
+        "type": "string"
+    },
+    "hostingPlanName": {
+        "type": "string"
+    },
+    "siteLocation": {
+        "type": "string"
+    },
+    "serverName": {
+        "type": "string"
+    },
+    "serverLocation": {
+        "type": "string"
+    },
+    "administratorLogin": {
+        "type": "string"
+    },
+    "administratorLoginPassword": { 
+        "type": "securestring"
+    },
+     "sku": {
+        "type": "string",
+        "allowedValues": [
+            "Free",
+            "Shared",
+            "Basic",
+            "Standard"
+        ],
+        "defaultValue": "Free"
+    },
+    "workerSize": {
+        "type": "string",
+        "allowedValues": [ "0", "1", "2"],
+        "defaultValue": "0"
+    }
+  },
+  "variables": {
+  },
+  "resources": [
+    {
+        "apiVersion": "2014-04-01",
+        "name": "[parameters('hostingPlanName')]",
+        "type": "Microsoft.Web/serverFarms",
+        "location": "[parameters('siteLocation')]",
+        "properties": {
+            "name": "[parameters('hostingPlanName')]",
+            "sku": "[parameters('sku')]",
+            "workerSize": "[parameters('workerSize')]",
+            "numberOfWorkers": 1
+        }
+    },
+    {
+        "apiVersion": "2014-04-01",
+        "name": "[parameters('siteName')]",
+        "type": "Microsoft.Web/Sites",
+        "location": "[parameters('siteLocation')]",
+        "dependsOn": [
+            "[concat('Microsoft.Web/serverFarms/', parameters('hostingPlanName'))]"
+        ],
+        "properties": {
+            "name": "[parameters('siteName')]",
+            "serverFarm": "[parameters('hostingPlanName')]"
+        }
+    },
+    {
+        "name": "[parameters('serverName')]",
+        "type": "Microsoft.Sql/servers",
+        "location": "[parameters('serverLocation')]",
+        "apiVersion": "2.0",
+        "properties": {
+            "administratorLogin": "[parameters('administratorLogin')]",
+            "administratorLoginPassword": "[parameters('administratorLoginPassword')]"
+        }
+    }]
+}

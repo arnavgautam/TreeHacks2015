@@ -6,7 +6,7 @@
 <a name="Overview" />
 ## Overview ##
 
-The new Azure Preview portal is an all-in-one, work-anywhere experience. Now you can manage websites, databases, and Visual Studio Online team projects in a reimagined UX you personalize around your work. It was built from the ground up to put your _applications_ at the center of the experience. 
+The new Azure Preview portal is an all-in-one, work-anywhere experience. Now you can manage websites, databases, and Visual Studio Online team projects in a reimagined UX personalized to your work style. It was built from the ground up to put your _applications_ at the center of the experience. 
 
 This unified hub radically simplifies building, deploying, and managing your cloud resources. Imagine a single easy-to-use console built just for you —your team, your projects. It brings together all of the cloud resources, team members, and lifecycle stages of your application and provides you with a centralized place to plan, develop, test, provision, deploy, scale, and monitor those applications. This approach can help teams embrace a DevOps culture by bringing both development and operations capabilities and perspectives together in a meaningful way.
 
@@ -18,13 +18,13 @@ The new portal allows each user to transform the portal home page (called the _S
 
 * **Gallery**. A rich gallery of application and services from Microsoft and the open source community, this integrated marketplace of free and paid services enables customers to leverage the ecosystem to be more agile and productive.
 
-* **Visual Studio Online**. Microsoft announced key enhancements through the Microsoft Azure Preview Portal, available Thursday. This includes Team Projects supporting greater agility for application lifecycle management and the lightweight editor code-named “Monaco” for modifying and committing Web project code changes without leaving Azure. Also included is Application Insights, an analytics solution that collects telemetry data such as availability, performance and usage information to track an application’s health. Visual Studio integration enables developers to surface this data from new applications with a single click.
+* **Visual Studio Online**. Microsoft announced key enhancements through the Microsoft Azure Preview Portal. This includes Team Projects supporting greater agility for application lifecycle management and the lightweight editor code-named “Monaco” for modifying and committing Web project code changes without leaving Azure. Also included is Application Insights, an analytics solution that collects telemetry data such as availability, performance and usage information to track an application’s health. Visual Studio integration enables developers to surface this data from new applications with a single click.
 
 <a name="Objectives" />
 ### Objectives ###
 In this hands-on lab, you will learn how to:
 
-- Create a **Web Site + DB**
+- Create a **Web Site + SQL**
 - Set up continuous integration using Team Project
 - Customize and organize your Startboard
 - [Optional] Create a new Resource Group using Azure Resource Manager (PowerShell)
@@ -46,7 +46,7 @@ The following is required to complete this hands-on lab:
 ## Exercises ##
 This hands-on lab includes the following exercises:
 
-1. [Creating a Web Site + DB](#Exercise1)
+1. [Creating a Web Site + SQL](#Exercise1)
 1. [Setting Up Continuous Integration using Team Project](#Exercise2)
 1. [[Optional] Creating a Resource Group using Azure Resource Manager](#Exercise3)
 
@@ -57,7 +57,7 @@ Estimated time to complete this lab: **30 minutes**
 <a name="Exercise1" />
 ### Exercise 1: Creating a Web Site + SQL ###
 
-Historically, managing a resource (a user-managed entity such as a database server, database or web site,) in Microsoft Azure required you to perform operations against one resource at a time. When developing for the cloud today, we are oftentimes managing _individual resources_ (databases, storage, cloud services, virtual machines, and so on). It’s left up to us as cloud developers and IT professionals to piece these resources together in some meaningful way and manage them over time. In the Microsoft Azure Preview portal was designed to bring together all of the individual resources of an application into a consolidated view. Resource group is a new concept in Azure that serves as the lifecycle boundary for every resource contained within it. 
+Historically, managing a resource (a user-managed entity such as a database server, database or web site,) in Microsoft Azure required you to perform operations against one resource at a time. When developing for the cloud today, we are often managing _individual resources_ (databases, storage, cloud services, virtual machines, and so on). It’s left up to us as cloud developers and IT professionals to piece these resources together in a meaningful way and manage them over time. The Microsoft Azure Preview portal was designed to bring together all of the individual resources of an application into a consolidated view. Resource group is a new concept in Azure that serves as the lifecycle boundary for all of its resources. 
 
 In this exercise, you will learn how to create a new Web Site and a SQL Server using the Azure Preview portal.
 
@@ -66,17 +66,17 @@ In this exercise, you will learn how to create a new Web Site and a SQL Server u
 
 In this task, you will login to the Azure Preview portal and create a new Web Site and SQL Server.
 
-1. Open a browser and navigate to http://portal.azure.com. Log in using your credentials.
+1. Open a browser and browse to http://portal.azure.com and log in using your credentials.
 
-1. The first thing you will see is the **Startboard**. This is your home page, where you can see dynamic data and all the details you care about your resources. You can customize it as you see fit.
+1. The first thing you will see is the **Startboard**. This is your home page, where you can see dynamic data from your resources and all the details you care about. You can customize it as you see fit.
 
-	> **Note:** You can right click on the tiles of the startboard to customize it. You can pin or unpin tiles and change their size.
+	> **Note:** You can right-click on the tiles of the Startboard to customize it. You can pin or unpin tiles and change their size.
 	
 	![Startboard](Images/startboard.png?raw=true)
 	
 	_Your Home Page: The Startboard_
 
-1. On the left side, you will see the **Hub Menu**. This is your navigation menu to access all of your resources and options. Click the **New** button at the bottom of the **Hub Menu**.
+1. On the left side, you will see the **Hub Menu**. This is the navigation menu where you can access all of your resources and options. Click the **New** button at the bottom of the **Hub Menu**.
 
 	![Creating a new resource](Images/creating-a-new-resource.png?raw=true)
 	
@@ -94,23 +94,23 @@ In this task, you will login to the Azure Preview portal and create a new Web Si
 	
 	> ![Tour](Images/tour.png?raw=true)
 
-1. When you are create an application that consists of a few resources working together (like in this example, a Website + SQL) it is always created in its own resource group, so you can manage the lifecycle of all related assets using the resource group. Choose a name for the **Resource Group**, for example _MyResourceGroup_, and click the **Website** option.
+1. When you create an application that consists of several resources working together (like in this example, a Website + SQL), it is always created in its own resource group so that you can manage the lifecycle of all related assets. Coose a name for the **Resource Group**, for example _MyResourceGroup_, and click the **Website** option.
 
-	> **Note:** Resources group names can only contain letters, numbers, periods, underscores and dashes.
+	> **Note:** Resource group names can only contain letters, numbers, periods, underscores and dashes.
 
 	![New Resource Group](Images/new-resource-group.png?raw=true)
 		
 	_New Resource Group_
 
-1. Another blade is opened which displays the options to create a new **Website**. Select an URL for your Website, for example _mynewazurewebsite_. Take into account that this name must be unique. Click the **Web Hosting Plan** option.
+1. Another blade is opened which displays the options to create a new **Website**. Select a URL for your Website, for example _mynewazurewebsite_. Take into account that this name must be unique. Click the **Web Hosting Plan** option.
 
 	![Changing the Web Hosting Plan](Images/changing-the-web-hosting-plan.png?raw=true)
 	
 	_Changing the Web Hosting Plan_
 
-1. In the _Choose your pricing tier_ blade, choose the hosting plan that fits your needs and click **Select**. Web hosting plans represent a set of features and capacity that you can share across your web sites. Web hosting plans support a few pricing tiers (e.g. Free, Shared, Basic, and Standard) where each tier has its own capabilities. There are a couple of difference between these tiers. Plans in the Free and Shared tier provide sites with a shared infrastructure, meaning that your sites share resources with other customers' sites. Web hosting plans in the Basic and Standard tier provider sites with a dedicated infrastructure, meaning that only the site or sites you choose to associate with this plan will be running on those resources. At this tier you can configure your web hosting plan to use one or more virtual machine instances.
+1. In the _Choose your pricing tier_ blade, choose the hosting plan that fits your needs and click **Select**. Web hosting plans represent a set of features and capacity that you can share across your Websites. Web hosting plans support several pricing tiers (e.g. Free, Shared, Basic and Standard), each with its own capabilities. There are a couple of differences among these tiers. Plans in the Free and Shared tier provide sites with a shared infrastructure, meaning that your sites share resources with other customers' sites. Web hosting plans in the Basic and Standard tiers provider sites with a dedicated infrastructure, meaning that only the site or sites you choose to associate with this plan will be running on those resources. In this tier you can configure your web hosting plan to use one or more virtual machine instances.
 
-	> **Note:** For all tiers except 'Shared' you pay one price for the web hosting plan based on the tier and your chosen capacity and there is no additional charge for each site that uses the plan. Shared web hosting plans are different. Due to the nature of the shared infrastructure you are charged separately for each site in the plan. 
+	> **Note:** For all tiers (except 'Shared') you pay one price for the web hosting plan based on the tier and your chosen capacity with no additional charge for each site that uses the plan. Shared web hosting plans are different; due to the nature of the shared infrastructure, you are charged separately for each site in the plan. 
 	
 	![Selecting a Web Hosting Plan](Images/selecting-a-web-hosting-plan.png?raw=true)
 	
@@ -119,6 +119,8 @@ In this task, you will login to the Azure Preview portal and create a new Web Si
 1. Click **OK** to go back to the **Website** blade. You can change or leave the default location for the Website. Click **OK** to go to the previous blade.
 
 1. Click **Database** to change the settings for your new database.
+
+	> **Note:** If there are any existing databases asociated to the user, the **Database** blade will show up. Select **Create a new Database**. 
 
 	![Changing your database settings](Images/changing-your-database-settings.png?raw=true)
 
@@ -155,7 +157,7 @@ In this task, you will login to the Azure Preview portal and create a new Web Si
 	
 	_Created Resource Group Notification_
 
-1. You created your new resoure group, which includes a Website and SQL Server database.
+1. You created your new resource group, which includes a Website and SQL Server database.
 
 	![New Resource Group Blade](Images/new-resource-group-blade.png?raw=true)
 	
@@ -164,7 +166,7 @@ In this task, you will login to the Azure Preview portal and create a new Web Si
 <a name="Exercise2" />
 ### Exercise 2 :  Publishing Azure Web Sites using Team Projects
 
-In this exercise you will create a new a new Team Project, and enable continuous integration in the project. Therefore when you commit any changes to the project repository, an automatic deployment will be fired. Additionally, you will see how to update the code from within the portal and commit those changes, triggering an automatic build.
+In this exercise you will create a new Team Project, and enable continuous integration in the project. Therefore when you commit any changes to the project repository, an automatic deployment will be fired. Additionally, you will see how to update the code from within the portal and commit those changes, triggering an automatic build.
 
 <a name="Ex2Task1" />
 #### Task 1 - Creating a team project ####
@@ -183,7 +185,7 @@ In this task you will learn how to create a **Team Project** using the new Azure
 
 	_New Team Project Blade_
  
-1. Click the **Version Control** tab to see the different options you have. 
+1. Click the **Version Control** tab to see your different options. 
 
 	![Checking the Version Control options](Images/checking-the-version-control-options.png?raw=true)
 
@@ -191,25 +193,23 @@ In this task you will learn how to create a **Team Project** using the new Azure
 
 1. Select **GIT** and click **Select**. Additionally, you can check the available **Process Template** options.
 
-	> **Note:** The process templates define the set of work item types, queries and reports that you will use to plan an track your project. The available **Process Templates** are: _Scrum 2013_, _Agile 2013_, and _CMMI 2013_.
+	> **Note:** The process templates define the set of work item types, queries and reports that you will use to plan and track your project. The available **Process Templates** are: _Scrum 2013_, _Agile 2013_, and _CMMI 2013_.
 
-1. Click the **Account** tab, and the click **Create New**. Enter the name for the new _visualstudio.com_ account. Click **OK** to confirm the settings.
+1. Click the **Account** tab, and the click **Create New**. Enter the name of the new _visualstudio.com_ account. Click **OK** to confirm the settings, and then click **Create** to create the team project.
  
 	![Creating a new Visual Studio Online Account](Images/creating-a-new-visual-studio-online-account.png?raw=true)
 
 	_Creating a new Visual Studio Online Account_
-
-1. Enter the name for the new _.visualstudio.com_ account. For example, _MyTestTeamProject_. Click **OK** to confirm the account, and then click **Create** to create the team project.
  
-1. Wait till the new **Team Project** is created. You will see the summary of it.
+1. Wait until the new **Team Project** is created. You will see a summary.
  
 	![The Team Project is Created](Images/the-team-project-is-created.png?raw=true)
 	
-	_The Team Project is Created_
+	_The Team Project is created_
 
-	> **Note:** The summary part is a Resouce Map. The Resource Map is a visualization of a **Resource Group**, which is a model where the relationship between resources is stored, along with other important information. For this application, you can see the relationship between the team project, and the Visual Studio Online account.
+	> **Note:** The summary part is a Resource Map. The Resource Map is a visualization of a **Resource Group**, which is a model where the relationship between resources is stored, along with other important information. For this application, you can see the relationship between the team project, and the Visual Studio Online account.
 
-	> **Note:** If you want to add users to the team project, in the **Team Project** blade, click the **Users** part for more information on how to add them. Basically, to add people you have to sync your user accounts or simply add them one by one. Then assign users to you team project.
+	> **Note:** If you want to add users to the team project, in the **Team Project** blade, click the **Users** part for more information on how to add them. Basically, to add people you have to sync your user accounts or simply add them one by one. You can then assign users to you team project.
 	
 <a name="Ex2Task2" />
 #### Task 2 - Enabling Continuous Integration ####
@@ -220,7 +220,7 @@ In this task, you will set up continuous deployment in your Team Project. Then y
  
 	![Setting Up Continuous Deployment](Images/setting-up-continuous-deployment.png?raw=true)
 
-	_Setting Up Continuous Deployment_
+	_Setting up Continuous Deployment_
 
 1. Click the **Website** tab and choose the website you created in a previous exercise. Click **Select** to continue.
 
@@ -234,9 +234,9 @@ In this task, you will set up continuous deployment in your Team Project. Then y
 
 	_Selecting a Repository_
 	
-	> **Note:** The repositories that are listed here are the ones created in the selected Visual Studio Online account.
+	> **Note:** The repositories that are listed here are those created in the selected Visual Studio Online account.
  
-1. Lastly, in the **Branch** tab make sure that the **default** branch is selected and click **Select**.
+1. In the **Branch** tab, make sure the **default** branch is selected and click **Select**.
 	
 1. Click **Create** in the **Set up deployment** blade.
 
@@ -244,7 +244,7 @@ In this task, you will set up continuous deployment in your Team Project. Then y
  
 	_The deployment is configured_
 	
-	> **Note:**	Notice the message that says that a build will begin after code is added to your project.
+	> **Note:**	Notice the message stating that a build will begin after code is added to your project.
  
 1. Click the **Add code to your repository** part, to open the **Repository** part.
  
@@ -252,13 +252,13 @@ In this task, you will set up continuous deployment in your Team Project. Then y
 	
 	_The Repository blade_
 
-1. Click the **Clone** command. You will get information about how to clone your repository.
+1. Click the **Clone** command. You will find information about how to clone your repository.
  
-	![Getting Information on how to clone the repository](Images/getting-information-on-how-to-clone-the-repos.png?raw=true)
+	![Information on how to clone the repository](Images/getting-information-on-how-to-clone-the-repos.png?raw=true)
 	
-	_Getting information on how to clone the repository_
+	_Information on how to clone the repository_
 
-1. Go back to the **Team Project** blade and click the **Open in Visual Studio** part. This will add the team project automatically to Visual Studio and will open it.
+1. Go back to the **Team Project** blade and click the **Open in Visual Studio** part. This will automatically add the team project to Visual Studio and will open it.
 
 	> **Note:** You will be prompted to accept that you want to open the application link with Visual Studio.
 
@@ -276,7 +276,7 @@ In this task, you will set up continuous deployment in your Team Project. Then y
 	
 	_Creating a New Solution in Source Control_
  
-1. Select **Visual C# / Web / ASP.NET Web Application** in the **New Project** dialog. Enter _MyTestWebApplication_ as the solution **Name**, and click **OK**.
+1. Select **Visual C# / Web / ASP.NET Web Application** in the **New Project** dialog box. Enter _MyTestWebApplication_ as the solution **Name**, and click **OK**.
 
 	> **Note:** Notice that the **Add to Source Control** option is selected by default.
 
@@ -284,7 +284,7 @@ In this task, you will set up continuous deployment in your Team Project. Then y
 	
 	_Creating a new Project_
  
-1. Select **MVC** in the **New ASP.NET Project** dialog, and click **OK**.
+1. Select **MVC** in the **New ASP.NET Project** dialog box, and click **OK**.
 
 	![Selecting the ASP.NET Project type](Images/selecting-the-aspnet-project-type.png?raw=true)
  
@@ -301,34 +301,34 @@ Enter a commit message and verify that all the solutions files are included in t
 
 1. Once the commit is created locally, click **Sync** to share these changes with the server.
  
-1. In **Unsynced Commits**, you will see the list of local commits that will be uploaded to the server. Click the **Sync** button to do so. 
+1. In **Unsynced Commits**, you will see the list of local commits that will be uploaded to the server. Click the **Sync** button. 
 
 	![Syncing the changes in the server](Images/syncing-the-changes-in-the-server.png?raw=true)
 	
 	_Syncing the changes in the server_
 
-1. When the syncing is complete, go to the Azure portal. Open your pinned team project part. Within one minute, you will see that your commit has been automatically deployed.
+1. When the syncing is complete, go to the Azure portal. Open your pinned team project part. Within one minute, you should see that your commit has been automatically deployed. Click your web site name in **Latest Build** part. This will display details of the website.
 
 	![Checking the status of the team project](Images/checking-the-status-of-the-team-project.png?raw=true)
 	
 	_Checking the status of the team project_
  
-1. Click the **Latest Build** part. This will display details of the automatic deploy.
+1. In the Website blade, click the **Browse** command, to go to the deployed website.
 
-	![Latest build Details](Images/latest-build-details.png?raw=true)
+	![Website blade](Images/latest-build-details.png?raw=true)
 
-	_Latest build Details_
+	_Website blade_
 
-1. In this blade, click the **Browse** command, to go to the deployed website.
+1. Verify the deployed site.
  
 	![Browsing the deployed Site](Images/browsing-the-deployed-site.png?raw=true)
 	
-	_Browsing the deployed Site_
+	_Browsing the deployed site_
 
 <a name="Ex2Task3" />
 #### Task 3 - Updating the code from the Azure Portal ####
 
-In this task, you will modify your code from the Azure Portal and then commit those changes. This is useful if you want to make a quick fix in your code from a device that do not have Visual Studio installed. After the commit, as continuous deployment is enabled, a deployment will be fired and you will see the updated site live.
+In this task, you will modify your code from the Azure Portal and then commit those changes. This is useful if you want to make a quick fix in your code from a device that does not have Visual Studio installed. After the commit, as continuous deployment is enabled, a deployment will be fired and you will see the updated site live.
 
 1. In the Azure Portal, click your pinned Team Project.
 
@@ -340,7 +340,7 @@ In this task, you will modify your code from the Azure Portal and then commit th
 	
 	_Browsing the Code of the Team Project_
 
-1. In the code blade, browse to _MyTestWebApplication\MyTestWebApplication\Views\Home\Index.cshtml_ file.
+1. In the code blade, go to _MyTestWebApplication\MyTestWebApplication\Views\Home\Index.cshtml_ file.
 
 	![editing a file](Images/editing-a-file.png?raw=true)
 	
@@ -348,19 +348,19 @@ In this task, you will modify your code from the Azure Portal and then commit th
  
 	> **Note:**	 Notice that the code of the file will be displayed in a new blade.
 
-1. Click **Edit** to modify the code online. Update the line where the **H1** tags are, replacing _“ASP.NET”_ with _“My Updated App from the portal”_.
+1. Click **Edit** to modify the code online. Update the line with the **H1** tags, replacing _“ASP.NET”_ with _“My Updated App from the portal”_.
  
 	![The edited Index file](Images/the-edited-index-file.png?raw=true)
 	
 	_The edited Index file_
 
-1. Click the **Commit** command, to commit your changes. In the **Commit** blade, enter a comment and click **OK**.
+1. Click the **Commit** command to commit your changes. In the **Commit** blade, enter a comment and click **OK**.
  
 	![Committing the Changes from the portal](Images/commiting-the-changes-from-the-portal.png?raw=true)
 	
-	_Committing the Changes from the portal_
+	_Committing the changes from the portal_
 
-1. Go back to the **Team Project** blade and note that an additional commit has been generated after we edited and checked in the code from the portal.
+1. Go back to the **Team Project** blade and note that an additional commit was generated after you edited and checked in the code from the portal.
 
 	![New commit generated](Images/new-commit-generated.png?raw=true)
 	
@@ -378,7 +378,7 @@ In this task, you will modify your code from the Azure Portal and then commit th
 	
 	_Opening the website details blade_
  
-1. In the **Website** blade, click the **Browse** command to open the WebSite.
+1. In the **Website** blade, click the **Browse** command to open the Website.
  
 	![The updated website](Images/the-updated-website.png?raw=true)
 	
@@ -387,16 +387,18 @@ In this task, you will modify your code from the Azure Portal and then commit th
 	> **Note:**	You will see that the changes made in the previous steps are impacted in the live site. If you try to browse to the site while the changes are being deployed, you will still see the previous deployment.
 	
 <a name="Exercise3" />
-### Exercise 3 : Creating Azure Environments using Azure Resource Manager ###
+### Exercise 3: Creating Azure Environments using Azure Resource Manager ###
 
 **Azure Resource Manager** introduces an entirely new way of thinking about your Azure resources. Instead of creating and managing individual resources, you begin by imagining a complex service, such as a blog, a photo gallery, a SharePoint portal, or a wiki. You use a template -- a resource model of the service -- to create a resource group with the resources that you need to support the service. Then, you can manage and deploy that resource group as a logical unit.
 
 In this exercise, you learn how to use Azure PowerShell with Resource Manager for Microsoft Azure. You will go through the process of downloading, updating and creating a resource group for a Web site with a SQL database.
 
+> **Note:** You can read the **Understanding Azure Resource Manager** Hands-on lab for deeper insights about Azure Resource Manager and the Template language specification.
+
 <a name="Ex3Task1" />
 #### Task 1 - Downloading Resource Group Template ####
 
-In this task you will you will use Azure PowerShell for Azure Resources to list the available templates from the gallery and then download one JSON template for creating a Web site and a SQL Database.
+In this task you will use Azure PowerShell for Azure Resources to list the available templates from the gallery and then download one JSON template to create a Web site and a SQL Database.
 
 1. Open Azure PowerShell console.
 
@@ -412,25 +414,25 @@ In this task you will you will use Azure PowerShell for Azure Resources to list 
 	
 	 >**Note**: The **AzureResourceManager** module, introduced in Azure PowerShell version 0.8.0, lets you manage your resources in an entirely new way. Instead of creating individual resources and trying to use them together, begin by imagining the service you want to create, such as a web portal, a blog, a photo gallery, a commerce site, or a wiki.
 
-	>Select a resource group template for the service, including one of dozens in the Azure template gallery, or create your own. Each template provides a model of a complex service, complete with the resources that you need to support the service. Then use the template to create a resource group and its resources, and deploy and manage the related resources as a unit.
+	>Select a resource group template for the service, from among dozens in the Azure template gallery, or create your own. Each template provides a model of a complex service, complete with the resources that you need to support the service. Then use the template to create a resource group and its resources, and deploy and manage the related resources as a unit.
 
 	>Beginning in version 0.8,0, the Azure PowerShell installation includes the Azure and **AzureResourceManager** modules, and **AzureProfile**, a module of cmdlets common to both modules. The Azure and **AzureResourceManager** modules are not designed to work together in the same session.
 
 	>When you use the Azure PowerShell cmdlets, the Azure module is imported into the session by default. To remove the Azure module from the session and import the **AzureResourceManager** and **AzureProfile** modules, use the **Switch-AzureMode** cmdlet.
 
-1. Execute the following command to authenticate to Microsoft Azure and download the subsctiptions associated with the account.
+1. Execute the following command to authenticate to Microsoft Azure and download the subscriptions associated with the account.
 
 	````PowerShell
 	Add-AzureAccount
 	````
 
-1. In the **Sign-in to Windows Azure** dialog box, enter your **Microsoft Account** and **Password** and click sign-in
+1. In the **Sign-in to Windows Azure** dialog box, enter your **Microsoft Account** and click **Continue**. You may be required to enter the password on the next step.
 
 	![Sign in to Windows Azure dialog box](Images/sign-in-to-windows-azure-dialog-box.png?raw=true "Sign in to Windows Azure dialog box")
 	
-	_Sign in to Windows Azure dialog box_
+	_Signing in to Windows Azure dialog box_
 
-1. Once the authentication process completes, one of your subscription is set as the default subscription.
+1. Once the authentication process is complete, one of your subscriptions is set as the default subscription.
 
 	![Add-AzureAccount](Images/add-azureaccount.png?raw=true "Add-AzureAccount")
 	
@@ -444,9 +446,9 @@ In this task you will you will use Azure PowerShell for Azure Resources to list 
 	Get-AzureResourceGroupGalleryTemplate
 	````
 
-	>**Note**: A resource group template is a JSON string that defines a resource group for a complex entity, such as a web portal, a blog, a photo gallery, a commerce site, or a wiki. The template defines the resources that are typically needed for the entity, such as web sites, database servers, databases and storage accounts, and includes parameters for user-defined values, such as the names and properties of the resources. To create a resource group with a template, just identify the template and provide values for its parameters.
+	>**Note**: A resource group template is a JSON string that defines a resource group for a complex entity, such as a web portal, a blog, a photo gallery, a commerce site, or a wiki. The template defines the resources that are typically needed for the entity, such as Websites, database servers, databases and storage accounts, and includes parameters for user-defined values, such as the names and properties of the resources. To create a resource group with a template, just identify the template and provide values for its parameters.
 
-1. You can review the gallery template and its properties, such as icons and screenshots. Use the **Get-AzureResourceGroupGalleryTemplate** command to review the **Microsoft.WebSiteSQLDatabase.0.1.0-preview1** template and its properties.
+1. You can review the gallery template and its properties, including icons and screenshots. Use the **Get-AzureResourceGroupGalleryTemplate** command to review the **Microsoft.WebSiteSQLDatabase.{version}-preview** template and its properties. Replace {version} with the number listed on your screen (e.g.: 0.1.0).
 
 	````PowerShell
 	Get-AzureResourceGroupGalleryTemplate -Identity Microsoft.WebSiteSQLDatabase.0.1.0-preview1	
@@ -456,10 +458,10 @@ In this task you will you will use Azure PowerShell for Azure Resources to list 
 	
 	_Get-AzureRourceGroupGalleryTemplate command_
 	
-1.  To save a gallery template as a JSON file, use the **Save-AzureResourceGroupGalleryTemplate** cmdlet. Download the **Microsoft.WebSiteSQLDatabase.0.1.0-preview1** template executing the following command replacing the _[FILE-PATH]_ placeholder.
+1.  To save a gallery template as a JSON file, use the **Save-AzureResourceGroupGalleryTemplate** cmdlet. Download the **Microsoft.WebSiteSQLDatabase.{version}-preview** template executing the following command replacing the _[FILE-PATH]_ placeholder. Remember to replace {version} with the number of your chosen template (e.g.: 0.1.0).
 
 	````PowerShell
-	Save-AzureResourceGroupGalleryTemplate -Identity Microsoft.WebSiteSQLDatabase.0.1.0-preview1 -Path [FILE-PATH]	
+	Save-AzureResourceGroupGalleryTemplate -Identity Microsoft.WebSiteSQLDatabase.0.1.0-preview -Path [FILE-PATH]	
 	````
 	![Save-AzureResourceGroupGalleryTeamplate](Images/save-azureresourcegroupgalleryteamplate.png?raw=true "Save-AzureResourceGroupGalleryTeamplate")
 	
@@ -474,7 +476,7 @@ In this task you will update the JSON file from the Simple website template and 
 
 1. Open the JSON file you downloaded in the previous task in Visual Studio and locate the **parameters** section.
 
-1. You will create your custom template by updating the websites with SQL Database template to use the site name parameter with the _\_db_ prefix as the database name. To do so, remove the parameter _databaseName_ as it is no longer required.
+1. You will create your custom template by updating the websites with SQL Database template to use the site name parameter with the _\_db_ prefix as the database name. Remove the _databaseName_ parameter as it is no longer required.
 
 1. Locate the **resources** section with type _databases_ and replace the **name** property with the following code.
 
@@ -490,7 +492,7 @@ In this task you will update the JSON file from the Simple website template and 
         },
 	...
 	````
-1. Locate the **resource** section with **type** _config_ and replace the **ConnectionString** property with the following.
+1. Locate the **resource** section with **type** _config_ and replace the **ConnectionString** property with the following code.
 
 	<!-- mark:12 -->
 	````JSON
@@ -527,22 +529,22 @@ In this task you will update the JSON file from the Simple website template and 
 1. Replace the _[STORAGE NAME]_ placeholder and execute the following command to create a new storage account. Make sure that the storage name you selected is unique.
 
 	````PowerShell
-	New-AzureStorageAcount -StorageAccountName [STORAGE NAME] -Location "West US"
+	New-AzureStorageAccount -StorageAccountName [STORAGE NAME] -Location "West US"
 	````
 
 1. Switch back to **AzureResourceManager** mode using the following command.
 
 	````PowerShell
-	SwitchMode AzureResourceManager
+	Switch-AzureMode AzureResourceManager
 	````
 	
 1. Replace the placeholders and execute the following command to create a new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you have created in the previous step.
 
 	````PowerShell
-	New-AzureResourceGroup -Location [LOCATION] -Name [RESOURCE-GROUP-NAME] -TemplateFile [JSON-File-Path]  –StorageAccountName [STORAGEACCOUNT] -siteName [WEBSITENAME] -hostingPlanName TestPlan -siteLocation "North Europe" -serverName [SERVERNAME] -serverLocation "West US" -administratorLogin Admin01 -databaseName [DATABASENAME] -Verbose
+	New-AzureResourceGroup -Location [LOCATION] -Name [RESOURCE-GROUP-NAME] -TemplateFile [JSON-File-Path]  –StorageAccountName [STORAGEACCOUNT] -siteName [WEBSITENAME] -hostingPlanName TestPlan -siteLocation "North Europe" -serverName [SERVERNAME] -serverLocation "West US" -administratorLogin Admin01 -Verbose
 	````
 	
-	>**Dynamic Template Parameters**: To get the parameters, type a minus sign (-) to indicate a parameter name and then press the **TAB** key. Or, type the first few letters of a parameter name, such as siteName and then press the TAB key.
+	>**Dynamic Template Parameters:** To get the parameters, type a minus sign (-) to indicate a parameter name and then press the **TAB** key. Or, type the first few letters of a parameter name, such as siteName and then press the TAB key.
 	
 1. When you enter the command, you are prompted for the missing mandatory parameter **administratorLoginPassword**. Enter the **administratorLoginPassword** and press **Enter**.
 
@@ -572,19 +574,19 @@ In this task you will update the JSON file from the Simple website template and 
 	
 	_Resources groups list_
 
-1. Navigate to the Resouce Group and check that there is a website and a SQL database with the namesyou defined in PowerShell.
+1. Navigate to the Resource Group and check that there is a website and a SQL database with the names you defined in PowerShell.
 
 	![Custom Resource Group](Images/custom-resource-group.png?raw=true "Custom Resource Group")
 	
 	_Custom Resource Group_
 	
-1. Click the **DELETE** button in the resource group to delete it.
+1. Click **DELETE** in the resource group to delete it.
 
 	![Delete button](Images/delete-button.png?raw=true "Delete button")
 	
 	_Delete button_
 
-1. In the delete confirmation blade, enter the resource group name and click delete.
+1. In the delete confirmation blade, enter the resource group name and click **Delete**.
 
 	![Delete confirmation blade](Images/delete-confirmation-blade.png?raw=true "Delete confirmation blade")
 	
@@ -595,4 +597,4 @@ In this task you will update the JSON file from the Simple website template and 
 <a name="Summary" />
 ## Summary ##
 
-The new Azure Preview portal paints an exciting look at the future of DevOps. This is a first-of-its-kind experience which brings together all of the individual resources, people, and lifecycle stages of your application into a unified portal. In this Hands-on lab, you learned how to create a new resource group by building a Website and a SQL Server. Then you set up continuous depoyment using **Team Project** and edited the source code of the Website using Visual Studio Online. At the end of this lab, you learned how to create a custom Resource Group using **Azure Resource Manager** (via Azure PowerShell).
+The new Azure Preview portal offers an exciting look into the future of DevOps. This is a first-of-its-kind experience which brings together all of the individual resources, people, and lifecycle stages of your application into a unified portal. In this Hands-on lab, you learned how to create a new resource group by building a Website and a SQL Server. Then you set up continuous deployment using **Team Project** and edited the source code of the Website using Visual Studio Online. At the end of this lab, you learned how to create a custom Resource Group using **Azure Resource Manager** (via Azure PowerShell).
