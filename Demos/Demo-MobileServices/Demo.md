@@ -47,27 +47,49 @@ This demo is composed of the following segments:
 <a name="segment1" />
 ### Creating and Deploying a Mobile Services C# Backend ###
 
-1. Go to **Visual Studio**.
+1. Go to Start and open **Visual Studio 2013**.
 
-1. Go to **File > New Project**.
+2. Click on **File**, hover on the **New** menu, and click **New Project**.
 
-1. Make sure that **C# > Cloud** is selected. Choose **Windows Azure Mobile Services** and click **OK**.
+	![File > New > Project](Images/new-project.png?raw=true)
+	
+	_Creating new Project_
 
-1. Explain the contents of the project template. Open and explain the following folders: 
+3. Make sure that **Visual C# > Cloud** is selected in the **Templates** list. Choose **Windows Azure Mobile Services**, type **MobileService** as the name for the project, and click **OK**.
 
-	- **ScheduledJobs**
-	- **Models**
+	![Windows Azure Mobile Services Project](Images/windows-azure-mobile-services-project.png?raw=true)
+	
+	_Cloud > Windows Azure Mobile Service project_
+
+4. Select the **Windows Azure Mobile Service** template and click **OK**.
+
+	![New ASP.NET Project](Images/new-aspnet-project.png?raw=true)
+	
+	_New ASP.NET Project_
+
+5. Explain the contents of the project template. Open and explain each one of the following folders: 
+
 	- **Controllers**
+	- **Models**
+	- **ScheduledJobs**
 
-1. Right-click the project and select **Publish**.
+	![Project Template](Images/project-template.png?raw=true)
+	
+	_Mobile Service Project Template_
+	
+6. Right-click the project and select **Publish**.
 
-1. In the dialog box, select **Mobile Services**.
+	![Publish](Images/publish.png?raw=true)
+	
+	_Publish Mobile Service Project to Azure_
 
-1. From the dropdown list, select an existing Mobile Services.
+7. In the dialog box, select **Mobile Services**, click **Sign In** in the dialog box, and sign in with your credentials.
 
-1. Click OK. Show the different options that automatically the wizard populates. **DO NOT PUBLISH**. Click **Close** to continue.
+8. From the dropdown list, select an existing Mobile Services.
 
-1. Switch to the **FacilityApp** Mobile Service backend.
+9. Click OK. Show the different options that automatically the wizard populates. **DO NOT PUBLISH**. Click **Close** to continue.
+
+10. Switch to the **FacilityApp** Mobile Service backend.
 
 1. Open the **DataObjects** folder and add a new class named _FacilityRequest_.
 
