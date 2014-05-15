@@ -75,16 +75,82 @@ This demo is composed of the following segments:
 
 1. Open the **Controllers** folder and add a new **TableController** named _FacilityRequestController_.
 
-1. Paste the snippet **snippet2**.
+
+
+
+<a name="segment2" />
+### Integrating with ADAL ###
+
+1. In the **FacilityRequestController** paste the following highlighted code after the namespace declaration.
+
+	(Code Snippet - _authattrib_)
+
+	<!-- mark:3-5 -->
+	````C#
+	namespace MobileService.Controllers
+	{
+		using Microsoft.WindowsAzure.Mobile.Services.Security;
+		
+		[AuthorizeLevel(AuthorizationLevel.User)]
+		public class FacilityRequestController : TableController<FacilityRequest>
+		{
+			...
+		}
+	}	
+	````
+
+Paste the snippet **snippet2**.
 
 1. Add the attribute to authenticate with ADAL.
 
-<a name="segment2" />
-### Integrating ADAL in a Windows Store App ###
+1. Switch to the FacilityApp solution in Visual Studio.
 
+1. Show the Core portable class library.
+
+1. Show FacilityServiceBase.cs, and the methods.
+
+1. Go to Win8 client and open FacilityService.
+
+1. Replace LoginAsync code with code snippet.
+
+1. Launch app in the Simulator.
+
+1. Login with the username.
+
+1. Click Add. Add a new Facility Request.
+
+1. Type a description.
+
+1. Click Accept.
 
 <a name="segment3" />
-### Integrating ADAL and Xamarin for iOS ###
+### Integrating with SharePoint ###
+
+1. Go to the Service Project. 
+
+1. Go to PatchFacilityRequest method, and update pasting the snippet.
+
+1. Explain SharePoint APIs.
+
+1. Save changes and re-publish the C# backend. Wait until its deployed
+
+1. Switch to the app in the Simulator.
+
+1. Select the previously created Request.
+
+1. Update the Service Notes and click Accept.
+
+1. Open SharePoint in the browser. Go to My Documents.
+
+1. Open the folder Requests and selected the Word document.
+
+1. Open the Portable Class Library properties and show the Targeting.
+
+1. Change the target to iPhoneSimulator.
+
+1. Switch to the Mac.
+
+1. Show the Simulator running.
 
 ---
 
