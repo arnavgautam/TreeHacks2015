@@ -67,7 +67,7 @@ This demo is composed of the following segments:
 	
 	_New ASP.NET Project_
 	
-	> **Speaking Point:** Mention any .NET language can be used to build the Mobile Service right from VS, and the framework is built on top of ASP.NET Web API.
+	> **Speaking Point:** Mention any .NET language can be used to build the Mobile Service right from VS, and the framework is built on top of ASP.NET Web API, which means we get leverage the power of NuGet and all our existing skills and code.
 
 5. Explain the contents of the project template. Open and explain each one of the following folders: 
 
@@ -78,6 +78,53 @@ This demo is composed of the following segments:
 	![Project Template](Images/project-template.png?raw=true)
 	
 	_Mobile Service Project Template_
+
+6. Press **F5** to run the Mobile Services back-end, and mention that we have a documentation page with information about the API, with a testing client right inside the browser to allow trying it out. This is added support for local development. Highlight that local and remote debugging now work great with Mobile Services.
+
+6. Mention we're going to build a powerful business line app with the cloud. Mention the goals of the app we're about to build.
+	
+10. Right-click the **DataObjects** folder, select **Add**, and click **Class..** in order to add a new class. Name it as _FacilityRequest.cs_ and click **Add**.
+
+	![Add new FacilityRequest class](Images/add-new-facilityrequest-class.png?raw=true)
+	
+	_Adding FacilityRequest.cs class_
+
+11. Replace the _FacilityService_ class in VS with the following snippet.
+	<!-- mark:1-28 -->
+	````C#
+	public class FacilityRequest : EntityData
+	{
+		public string User { get; set; }
+
+		public RoomType RoomType { get; set; }
+
+		public string Building { get; set; }
+
+		public string Room { get; set; }
+
+		public string GeoLocation { get; set; }
+
+		public string BTLEId { get; set; }
+
+		public string BeforeImageUrl { get; set; }
+
+		public string AfterImageUrl { get; set; }
+
+		public string ProblemDescription { get; set; }
+
+		public string ServiceNotes { get; set; }
+
+		public string DocId { get; set; }
+
+		public DateTimeOffset RequestedDate { get; set; }
+
+		public DateTimeOffset CompletedDate { get; set; }
+	}
+	````
+
+	> **Speaking Point:** By default we use Entity Framework backed by a SQL Server database, but there's a number of backend choices such as MongoDB and Table Storage.
+
+12. Open the **Controllers** folder and add a new **TableController** named _FacilityRequestController_.
 
 6. Right-click the project and select **Publish**.
 
@@ -103,11 +150,6 @@ This demo is composed of the following segments:
 	
 	_Windows Azure Mobile Service Settings_
 
-10. Open the **DataObjects** folder and add a new class named _FacilityRequest_.
-
-1. Paste the snippet **snippet1**.
-
-1. Open the **Controllers** folder and add a new **TableController** named _FacilityRequestController_.
 
 <a name="segment2" />
 ### Integrating with ADAL ###
