@@ -47,7 +47,7 @@ This demo is composed of the following segments:
 <a name="segment1" />
 ### Creating and Deploying a Mobile Services C# Backend ###
 
-1. Go to Start and open **Visual Studio 2013**.
+1. Go to **Start** and open **Visual Studio 2013**.
 
 2. Click on **File**, hover on the **New** menu, and click **New Project**.
 
@@ -66,6 +66,8 @@ This demo is composed of the following segments:
 	![New ASP.NET Project](Images/new-aspnet-project.png?raw=true)
 	
 	_New ASP.NET Project_
+	
+	> **Speaking Point:** Mention any .NET language can be used to build the Mobile Service right from VS, and the framework is built on top of ASP.NET Web API.
 
 5. Explain the contents of the project template. Open and explain each one of the following folders: 
 
@@ -76,7 +78,7 @@ This demo is composed of the following segments:
 	![Project Template](Images/project-template.png?raw=true)
 	
 	_Mobile Service Project Template_
-	
+
 6. Right-click the project and select **Publish**.
 
 	![Publish](Images/publish.png?raw=true)
@@ -85,20 +87,27 @@ This demo is composed of the following segments:
 
 7. In the dialog box, select **Mobile Services**, click **Sign In** in the dialog box, and sign in with your credentials.
 
-8. From the dropdown list, select an existing Mobile Services.
+	![Sign In to Windows Azure](Images/sign-in-to-windows-azure.png?raw=true)
+	
+	_Sign In to Windows Azure_
 
-9. Click OK. Show the different options that automatically the wizard populates. **DO NOT PUBLISH**. Click **Close** to continue.
+8. From the dropdown list, select an existing Mobile Service, previously created for the demo.
 
-10. Switch to the **FacilityApp** Mobile Service backend.
+	![Select Windows Azure Mobile Service](Images/select-windows-azure-mobile-service.png?raw=true)
+	
+	_Select Windows Azure Mobile Service_
 
-1. Open the **DataObjects** folder and add a new class named _FacilityRequest_.
+9. Click **OK**. Show the different options that the wizard automatically populates. **DO NOT PUBLISH**. Click **Close** to continue.
+
+	![Publish Web Mobile Service](Images/publish-web-mobile-service.png?raw=true)
+	
+	_Windows Azure Mobile Service Settings_
+
+10. Open the **DataObjects** folder and add a new class named _FacilityRequest_.
 
 1. Paste the snippet **snippet1**.
 
 1. Open the **Controllers** folder and add a new **TableController** named _FacilityRequestController_.
-
-
-
 
 <a name="segment2" />
 ### Integrating with ADAL ###
