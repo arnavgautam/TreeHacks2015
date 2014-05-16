@@ -121,58 +121,66 @@ This demo is composed of the following segments:
 	}	
 	````
 
-Paste the snippet **snippet2**.
+1. Switch to the **FacilityApp** solution in Visual Studio.
 
-1. Add the attribute to authenticate with ADAL.
+1. Show the **Core** Portable Class library.
 
-1. Switch to the FacilityApp solution in Visual Studio.
+1. Open **FacilityServiceBase.cs** and explain the advatages of the integration with the **Mobile Services SDK**.
 
-1. Show the Core portable class library.
+1. Go to the Windows 8.1 client project and open the **FacilityService** file under **Services**.
 
-1. Show FacilityServiceBase.cs, and the methods.
+1. Replace the **LoginAsync** code with the following highlighted code.
 
-1. Go to Win8 client and open FacilityService.
+	(Code Snippet - _authclient_)
+	
+	````C#
+	
+	````
 
-1. Replace LoginAsync code with code snippet.
+1. Make sure the **Simulator** option is selected and launch the client app.
 
-1. Launch app in the Simulator.
+1. When prompted, login using your AD credentials.
 
-1. Login with the username.
+1. Click the **Add** button to add a new Facility Request.
 
-1. Click Add. Add a new Facility Request.
+1. Enter a description in the **Description of the Problem** and click **Accept**.
 
-1. Type a description.
-
-1. Click Accept.
+	> **Note:** Do not close the Simulator or stop the app in Visual Studio. You will continue using it in the next segment.
 
 <a name="segment3" />
 ### Integrating with SharePoint ###
 
-1. Go to the Service Project. 
+1. Switch to the **MobileService** backend project and open the **FacilityRequestController** class. 
 
-1. Go to PatchFacilityRequest method, and update pasting the snippet.
+1. Locate the **PatchFacilityRequest** method and paste the following highlighted code at the beginning of the method.
 
-1. Explain SharePoint APIs.
+	(Code Snippet - _sharepoint_)
 
-1. Save changes and re-publish the C# backend. Wait until its deployed
+	````C#
+	
+	````
+	
+1. Explain the advantage of using the **Active Directory** authentication token to make calls to the **Office 365 SharePoint APIs**.
 
-1. Switch to the app in the Simulator.
+1. Save changes and re-publish the **C# backend**. Wait until it's deployed.
 
-1. Select the previously created Request.
+1. Switch to client app in the **Simulator** and select the previously created **Facility Request** item from the list.
 
-1. Update the Service Notes and click Accept.
+1. Update the **Service Notes** field and click **Accept**.
 
-1. Open SharePoint in the browser. Go to My Documents.
+1. Open **SharePoint** in the browser and go to **OneDrive**. Select **My Documents** from the left panel.
 
-1. Open the folder Requests and selected the Word document.
+1. Open the **Requests** folder and select the **Word** document created a few seconds ago.
 
-1. Open the Portable Class Library properties and show the Targeting.
+1. Switch back to **Visual Studio** and open the **Portable Class Library** properties. Make focus on the **Targeting** section and explain that this class library it's using Xamarin to integrate with **iOS**.
 
-1. Change the target to iPhoneSimulator.
+1. Open the **Misc** folder and show that the **iOS** project is in the same solution in **Visual Studio**.
 
-1. Switch to the Mac.
+1. Change the **build** target from **Any CPU** to **iPhoneSimulator**. Make sure the iOS client app is selected for running and run the app.
 
-1. Show the Simulator running.
+1. Switch to the Mac and show the **Xamarin Build Host**. Explain the pairing feature to connect Visual Studio with iOS.
+
+1. Wait until the Simulator is displayed. Show the app is running.
 
 ---
 
