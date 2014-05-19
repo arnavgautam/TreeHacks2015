@@ -79,10 +79,35 @@ This demo is composed of the following segments:
 	
 	_Mobile Service Project Template_
 
-6. Press **F5** to run the Mobile Services back-end, and mention that we have a documentation page with information about the API, with a testing client right inside the browser to allow trying it out. This is added support for local development. Highlight that local and remote debugging now work great with Mobile Services.
-
-6. Mention we're going to build a powerful business line app with the cloud. Mention the goals of the app we're about to build.
+	> **Speaking Point:** We have a simple structure, with the corresponding model and the controller to expose that model to the world in a way that all our cross-platform clients understand. Also, it wouldn't be Mobile Services without great support for scheduled jobs.
 	
+6. Press **F5** to run the Mobile Services back-end.
+
+	![Mobile Service Back-End running](Images/mobile-service-back-end-running.png?raw=true)
+	
+	_Mobile Service Back-End running_
+
+	> **Speaking Point:** We have support for local development. We have a documentation page with information about the API, and a test client inside the browser to try it out. Local and remote debugging now work great with Mobile Services.
+	We're going to build a powerful line of business app, where we can report facilities issues, and then the facilities department can use it to take care of it.
+	
+7. Right-click the **MobileService** project, select **Add** and click **New Folder**. Type **Common** as the name for the new folder and press Enter.
+
+8. Right-click the **Common** folder, select **Add**, and click **Class..**. Type **Enum.cs** as the name for the class and click **Add**.
+
+	![Adding Enum.cs class](Images/adding-enumcs-class.png?raw=true)
+	
+	_Adding Enum.cs class_
+	
+9. Replace the **Enum** class in the **Enum.cs** with the following snippet.
+	<!-- mark:1-5 -->
+	````C#
+	public enum RoomType
+	{
+		Office,
+		Auditorium,
+	}
+	````
+
 10. Right-click the **DataObjects** folder, select **Add**, and click **Class..** in order to add a new class. Name it as _FacilityRequest.cs_ and click **Add**.
 
 	![Add new FacilityRequest class](Images/add-new-facilityrequest-class.png?raw=true)
@@ -92,6 +117,8 @@ This demo is composed of the following segments:
 11. Replace the _FacilityService_ class in VS with the following snippet.
 	<!-- mark:1-28 -->
 	````C#
+	using Common;
+	
 	public class FacilityRequest : EntityData
 	{
 		public string User { get; set; }
@@ -124,32 +151,13 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** By default we use Entity Framework backed by a SQL Server database, but there's a number of backend choices such as MongoDB and Table Storage.
 
-12. Open the **Controllers** folder and add a new **TableController** named _FacilityRequestController_.
+12. Right-click the **Controllers** folder, select **Add**, and click **Controller**. Select **Windows Azure Mobile Services Table Controller** as the Scaffold and add a new **TableController** named _FacilityRequestController_. Select **FacilityRequest** as the Model class, and **MobileServiceContext** as the Data Context class.
 
-6. Right-click the project and select **Publish**.
-
-	![Publish](Images/publish.png?raw=true)
+	![Add Controller](Images/add-controller.png?raw=true)
 	
-	_Publish Mobile Service Project to Azure_
+	_Adding a Controller_
 
-7. In the dialog box, select **Mobile Services**, click **Sign In** in the dialog box, and sign in with your credentials.
-
-	![Sign In to Windows Azure](Images/sign-in-to-windows-azure.png?raw=true)
-	
-	_Sign In to Windows Azure_
-
-8. From the dropdown list, select an existing Mobile Service, previously created for the demo.
-
-	![Select Windows Azure Mobile Service](Images/select-windows-azure-mobile-service.png?raw=true)
-	
-	_Select Windows Azure Mobile Service_
-
-9. Click **OK**. Show the different options that the wizard automatically populates. **DO NOT PUBLISH**. Click **Close** to continue.
-
-	![Publish Web Mobile Service](Images/publish-web-mobile-service.png?raw=true)
-	
-	_Windows Azure Mobile Service Settings_
-
+	> **Speaking Point:** We have first class support for Mobile Services Table Controller right in the scaffolding dialog.
 
 <a name="segment2" />
 ### Integrating with ADAL ###
@@ -172,21 +180,51 @@ This demo is composed of the following segments:
 	}	
 	````
 
-1. Switch to the **FacilityApp** solution in Visual Studio.
+	> **Speaking Point:** Let's assume for a moment that our company has already federated our on-premise Active Directory with Azure. Adding authentication to our API is as easy as adding an attribute to our controller.
+	
+2. Right-click the project and select **Publish**.
 
-1. Expand the **Core** project and explain the multiplatform advantages of a Portable Class Library.
+	![Publish](Images/publish.png?raw=true)
+	
+	_Publish Mobile Service Project to Azure_
+
+3. In the dialog box, select **Mobile Services**, click **Sign In** in the dialog box, and sign in with your credentials.
+
+	![Sign In to Windows Azure](Images/sign-in-to-windows-azure.png?raw=true)
+	
+	_Sign In to Windows Azure_
+
+4. From the dropdown list, select an existing Mobile Service, previously created for the demo.
+
+	![Select Windows Azure Mobile Service](Images/select-windows-azure-mobile-service.png?raw=true)
+	
+	_Select Windows Azure Mobile Service_
+	
+	> **Speaking Point:** We can use an existing service, or create a new one right from VS. Let's pick one we created previously.
+
+5. Click **OK**. Show the different options that the wizard automatically populates. Click **Publish** to continue.
+
+	![Publish Web Mobile Service](Images/publish-web-mobile-service.png?raw=true)
+	
+	_Windows Azure Mobile Service Settings_
+
+	> **Speaking Point:** We deploy this to Mobile Services, which provides a first class hosting environment for our APIs.
+
+6. Switch to the **FacilityApp** solution in Visual Studio.
+
+7. Expand the **Core** project and explain the multiplatform advantages of a Portable Class Library.
 
 	![Core Portable Class Library](Images/core-portable-class-library.png?raw=true)
 
-1. Open **FacilityServiceBase.cs** and explain the advatages of the integration with the **Mobile Services SDK**.
+8. Open **FacilityServiceBase.cs** and explain the advatages of the integration with the **Mobile Services SDK**.
 
 	![Mobile Services SDK integration](Images/mobile-services-sdk-integration.png?raw=true)
 
-1. Go to the Windows 8.1 client project and open the **FacilityService** file under **Services**.
+8. Go to the Windows 8.1 client project and open the **FacilityService** file under **Services**.
 
 	![FacilityService in W8 client](Images/facilityservice-in-w8-client.png?raw=true)
 
-1. Replace the **LoginAsync** code with the following highlighted code.
+10. Replace the **LoginAsync** code with the following highlighted code.
 
 	(Code Snippet - _authclient_)
 	<!-- mark:3-14 -->
@@ -274,7 +312,7 @@ This demo is composed of the following segments:
 	
 1. Explain the advantage of using the **Active Directory** authentication token to make calls to the **Office 365 SharePoint APIs**.
 
-1. Save changes and re-publish the **C# backend**. Wait until it's deployed.
+1. Save changes and go through publishing the **C# backend** once again, but this time click **Publish**. Wait until it's deployed.
 
 	![Publishing Mobile Service Backend Changes](Images/publishing-mobile-service-backend-changes.png?raw=true)
 
