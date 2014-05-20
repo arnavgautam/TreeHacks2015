@@ -212,19 +212,31 @@ This demo is composed of the following segments:
 
 6. Switch to the **FacilityApp** solution in Visual Studio.
 
-7. Expand the **Core** project and explain the multiplatform advantages of a Portable Class Library.
+7. Expand the **Core** project and explain the multiplatform advantages of a Portable Class Library. 
 
 	![Core Portable Class Library](Images/core-portable-class-library.png?raw=true)
+	
+	_Core Portable Class Library_
 
-8. Open **FacilityServiceBase.cs** and explain the advatages of the integration with the **Mobile Services SDK**.
+	> **Speaking Point:** The Portable Class Library allows us to reuse our code across a variety of client platforms.
+	
+8. Open **FacilityServiceBase.cs** and explain the advatages of the integration with the **Mobile Services SDK**. 
 
 	![Mobile Services SDK integration](Images/mobile-services-sdk-integration.png?raw=true)
+	
+	_Mobile Services SDK integration_
 
-8. Go to the Windows 8.1 client project and open the **FacilityService** file under **Services**.
+	> **Speaking Point:** This SDK gives us some easy access methods such as **ReadAsync** that loads up all the facility requests from the server.
+
+9. Go to the Windows 8.1 client project and open the **FacilityService.cs** file under **Services**.
 
 	![FacilityService in W8 client](Images/facilityservice-in-w8-client.png?raw=true)
+	
+	_FacilityService in W8 client_
 
-10. Replace the **LoginAsync** code with the following highlighted code.
+	> **Speaking Point:** What this app is still missing is support for authentication. So let's go ahead and do that.
+
+10. Replace the code inside the **LoginAsync** method with the following highlighted code.
 
 	(Code Snippet - _authclient_)
 	<!-- mark:3-14 -->
@@ -246,107 +258,139 @@ This demo is composed of the following segments:
 	}	
 	````
 
-1. Set the Windows 8.1 project as the startup project for the solution, make sure the **Simulator** option is selected, and launch the client app.
+	> **Speaking Point:** We can take advantage of the Active Directory authentication library, which gives us a native login experience on all clients. We can pass the authentication token to the Mobile Services back-end, so the user is logged in to both places.
+	
+11. Set the Windows 8.1 project as the startup project for the solution, make sure the **Simulator** option is selected, and launch the client app.
 
 	![Run in Simulator](Images/run-in-simulator.png?raw=true)
+	
+	_Run in Simulator_
 
-1. The Simulator will launch and start the application. When prompted, login using your AD credentials.
+12. The Simulator will launch and start the application. When prompted, login using your AD credentials.
 
 	![Login with AD](Images/login-with-ad.png?raw=true)
+	
+	_Login with AD_
 
-1. Click the **Add** button to add a new Facility Request.
+	> **Speaking Point:** Once signed in, it's going to call out to our on-premise Active Directory and start pulling graph information about our user.
+	
+13. Click the **Add** button to add a new Facility Request.
 
 	![Add a new Request](Images/add-a-new-request.png?raw=true)
+	
+	_Add a new Request_
 
-1. Enter a description in the **Description of the Problem** and click **Accept**.
+14. Enter a description in the **Description of the Problem** and click **Accept**.
 
 	![Accepting a Request](Images/accepting-a-request.png?raw=true)
+	
+	_Accepting a Request_
 
+	> **Speaking Point:** Once saved, the facility request will be safely stored in the Mobile Services back-end.
+	
 	> **Note:** Do not close the Simulator or stop the app in Visual Studio. You will continue using it in the next segment.
 
 <a name="segment3" />
 ### Integrating with SharePoint ###
 
+We've added authentication with Active Directory, but what our app users would really want is integration with all other enterprise services, including SharePoint and Office365. For example, the facilities department might want to create a document in their SharePoint site for every request they receive. It's easy to build that for them with Mobile Services.
+
 1. Switch to the **MobileService** backend project and open the **FacilityRequestController** class. 
 
 	![FacilityRequestController](Images/facilityrequestcontroller.png?raw=true)
+	
+	_FacilityRequestController_
 
-1. Locate the **PatchFacilityRequest** method and paste the following highlighted code at the beginning of the method.
+2. Locate the **PatchFacilityRequest** method and paste the following highlighted code replacing the one inside that method.
 
 	(Code Snippet - _sharepoint_)
 	<!-- mark:3-31 -->
 	````C#
 	public async Task<FacilityRequest> PatchFacilityRequest(string id, Delta<FacilityRequest> patch)
 	{
-	    if (SharePointProvider.SharePointUri == null)
-		Services.Settings.TryGetValue("SharePointUri", out SharePointProvider.SharePointUri);
+		if (SharePointProvider.SharePointUri == null)
+			Services.Settings.TryGetValue("SharePointUri", out SharePointProvider.SharePointUri);
 
-	    var facilityRequest = patch.GetEntity();
+            var facilityRequest = patch.GetEntity();
 
-	    var sharepointUri = SharePointProvider.SharePointUri
-				+ string.Format(
-				    @"/getfolderbyserverrelativeurl('Documents')/Folders('Requests')/Files/Add(url='{0}.docx', overwrite=true)",
-				    facilityRequest.DocId);
+            var sharepointUri = SharePointProvider.SharePointUri + string.Format(@"/getfolderbyserverrelativeurl('Documents')/Folders('Requests')/Files/Add(url='{0}.docx', overwrite=true)",
+                                    facilityRequest.DocId);
 
-	    string authority;
-	    string sharePointResource;
-	    string activeDirectoryClientId;
-	    string activeDirectoryClientSecret;
+            string authority;
+            string sharePointResource;
+            string activeDirectoryClientId;
+            string activeDirectoryClientSecret;
 
-	    Services.Settings.TryGetValue("Authority", out authority);
-	    Services.Settings.TryGetValue("SharePointResource", out sharePointResource);
-	    Services.Settings.TryGetValue("ActiveDirectoryClientId", out activeDirectoryClientId);
-	    Services.Settings.TryGetValue("ActiveDirectoryClientSecret", out activeDirectoryClientSecret);
+            Services.Settings.TryGetValue("Authority", out authority);
+            Services.Settings.TryGetValue("SharePointResource", out sharePointResource);
+            Services.Settings.TryGetValue("ActiveDirectoryClientId", out activeDirectoryClientId);
+            Services.Settings.TryGetValue("ActiveDirectoryClientSecret", out activeDirectoryClientSecret);
 
-	    var token = await SharePointProvider.RequestAccessToken((ServiceUser)this.User, authority, sharePointResource, activeDirectoryClientId, activeDirectoryClientSecret);
+            var token = await SharePointProvider.RequestAccessToken((ServiceUser)this.User, authority, sharePointResource, activeDirectoryClientId, activeDirectoryClientSecret);
 
-	    string headerUri;
-	    Services.Settings.TryGetValue("HeaderUri", out headerUri);
-	    var document = SharePointProvider.BuildDocument(facilityRequest, headerUri);
+            string headerUri;
+            Services.Settings.TryGetValue("HeaderUri", out headerUri);
+            var document = SharePointProvider.BuildDocument(facilityRequest, headerUri);
 
-	    await SharePointProvider.UploadFile(sharepointUri, document, token, activeDirectoryClientId);
+            await SharePointProvider.UploadFile(sharepointUri, document, token, activeDirectoryClientId);
 
-	    return await this.UpdateAsync(id, patch);
+            return await this.UpdateAsync(id, patch);
 	}	
 	````
-	
-1. Explain the advantage of using the **Active Directory** authentication token to make calls to the **Office 365 SharePoint APIs**.
 
-1. Save changes and go through publishing the **C# backend** once again, but this time click **Publish**. Wait until it's deployed.
+	> **Speaking Point:** The method is called every time a facility request is updated, so we can take advantage of the Active Directory authentication token to call to the new set of Office365 REST APIs, which allows us to generate the document on-the-fly and post it straight to SharePoint.
+
+3. Save changes and go through publishing the **C# backend** once again.
 
 	![Publishing Mobile Service Backend Changes](Images/publishing-mobile-service-backend-changes.png?raw=true)
+	
+	_Publishing Mobile Service Backend Changes_
 
-1. Switch to client app in the **Simulator** and select the previously created **Facility Request** item from the list.
+4. Switch to client app in the **Simulator** and select the previously created **Facility Request** item from the list.
 
-1. Update the **Service Notes** field and click **Accept**.
+5. Update the **Service Notes** field and click **Accept**.
 
 	![Updating the Facility Request](Images/updating-the-facility-request.png?raw=true)
+	
+	_Updating the Facility Request_
 
-1. Open **SharePoint** in the browser and go to **OneDrive**. Select **My Documents** from the left panel.
+	> **Speaking Point:** Once we press Accept, the request will go through Mobile Services and now call out to SharePoint and generate the document.
 
-1. Open the **Requests** folder and select the **Word** document created a few seconds ago.
+6. Open **SharePoint** in the browser and go to **OneDrive**. Select **My Documents** from the left panel.
+
+	> **Speaking Point:** We can verify it browsing to the company SharePoint site, we can find a new generated document with our company identity.
+
+7. Open the **Requests** folder and select the **Word** document created a few seconds ago.
 
 	![Created Word document in SharePoint](Images/created-word-document-in-sharepoint.png?raw=true)
+	
+	_Created Word document in SharePoint_
 
-1. Switch back to **Visual Studio** and open the **Portable Class Library** properties. Make focus on the **Targeting** section and explain that this class library it's using Xamarin to integrate with **iOS**.
+8. Switch back to **Visual Studio** and open the **Portable Class Library** properties. Make focus on the **Targeting** section and explain that this class library is using Xamarin to integrate with **iOS**.
 
 	![Multiple targets in Portable Class](Images/multiple-targets-in-portable-class.png?raw=true)
+	
+	_Multiple targets in Portable Class_
 
-1. Open the **Misc** folder and show that the **iOS** project is in the same solution in **Visual Studio**.
+9. Open the **Misc** folder and show that the **iOS** project is in the same solution in **Visual Studio**.
 
 	![iOS Project in Visual Studio](Images/ios-project-in-visual-studio.png?raw=true)
+	
+	_iOS Project in Visual Studio_
 
-1. Change the **build** target from **Any CPU** to **iPhoneSimulator**. Make sure the iOS client app is selected for running and run the app.
+10. Change the **build** target from **Any CPU** to **iPhoneSimulator**. Make sure the iOS client app is selected for running and press **F5** to run the app.
 
 	![Run as iPhoneSimulator](Images/run-as-iphonesimulator.png?raw=true)
+	
+	_Run as iPhoneSimulator_
 
-1. Switch to the Mac and show the **Xamarin Build Host**. Explain the pairing feature to connect Visual Studio with iOS.
+11. Switch to the Mac and show the **Xamarin Build Host**. Explain the pairing feature to connect Visual Studio with iOS.
 
-1. Wait until the Simulator is displayed. Show the app running with the same Facility Request you created using the Windows 8 client app.
+12. Wait until the Simulator is displayed. Show the app running with the same Facility Request you created using the Windows 8 client app.
 
 ---
 
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw how to create...
+In this demo, you saw building a .NET Mobile Service back-end locally, publishing it to the cloud, adding authentication with Active Directory, integrating with SharePoint, and then building a cross-platform client with Xamarin.
