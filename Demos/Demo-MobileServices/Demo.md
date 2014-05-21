@@ -302,35 +302,17 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** We have support for local development. We have a documentation page with information about the API, and a test client inside the browser to try it out. Local and remote debugging now work great with Mobile Services.
 	We're going to build a powerful line of business app, where we can report facilities issues, and then the facilities department can use it to take care of it.
-	
-7. Right-click the **MobileService** project, select **Add** and click **New Folder**. Type **Common** as the name for the new folder and press Enter.
 
-8. Right-click the **Common** folder, select **Add**, and click **Class..**. Type **Enum.cs** as the name for the class and click **Add**.
-
-	![Adding Enum.cs class](Images/adding-enumcs-class.png?raw=true)
-	
-	_Adding Enum.cs class_
-	
-9. Replace the **Enum** class in the **Enum.cs** with the following snippet.
-	<!-- mark:1-5 -->
-	````C#
-	public enum RoomType
-	{
-		Office,
-		Auditorium,
-	}
-	````
-
-10. Right-click the **DataObjects** folder, select **Add**, and click **Class..** in order to add a new class. Name it as _FacilityRequest.cs_ and click **Add**.
+7. Right-click the **DataObjects** folder, select **Add**, and click **Class..** in order to add a new class. Name it as _FacilityRequest.cs_ and click **Add**.
 
 	![Add new FacilityRequest class](Images/add-new-facilityrequest-class.png?raw=true)
 	
 	_Adding FacilityRequest.cs class_
 
-11. Replace the _FacilityService_ class in VS with the following snippet.
-	<!-- mark:1-28 -->
+8. Replace the _FacilityRequest_ class in VS with the following snippet.
+	<!-- mark:1-36 -->
 	````C#
-	using Common;
+	using Microsoft.WindowsAzure.Mobile.Service;
 	
 	public class FacilityRequest : EntityData
 	{
@@ -360,11 +342,17 @@ This demo is composed of the following segments:
 
 		public DateTimeOffset CompletedDate { get; set; }
 	}
+	
+	public enum RoomType
+	{
+		Office,
+		Auditorium,
+	}
 	````
 
 	> **Speaking Point:** By default we use Entity Framework backed by a SQL Server database, but there's a number of backend choices such as MongoDB and Table Storage.
 
-12. Right-click the **Controllers** folder, select **Add**, and click **Controller**. Select **Windows Azure Mobile Services Table Controller** as the Scaffold and add a new **TableController** named _FacilityRequestController_. Select **FacilityRequest** as the Model class, and **MobileServiceContext** as the Data Context class.
+9. Right-click the **Controllers** folder, select **Add**, and click **Controller**. Select **Windows Azure Mobile Services Table Controller** as the Scaffold and add a new **TableController** named _FacilityRequestController_. Select **FacilityRequest** as the Model class, and **MobileServiceContext** as the Data Context class.
 
 	![Add Controller](Images/add-controller.png?raw=true)
 	
@@ -375,7 +363,19 @@ This demo is composed of the following segments:
 <a name="segment2" />
 ### Integrating with ADAL ###
 
-1. In the **FacilityRequestController** paste the following highlighted code after the namespace declaration.
+1. Right-click the MobileService project and click **Manage NuGet Packages**.
+
+	![Manage NuGet Packages](Images/manage-nuget-packages.png?raw=true)
+	
+	_Manage NuGet Packages_
+
+2. Select the **Online** tab at the left of the dialog, be sure to choose **Include Prerelease** in the combo box at the top, and search for **ADAL**. In the results click install for the **Active Directory Authentication Library**. Click **I Accept** for the License dialog.
+
+	![Adding Active Directory Authentication Library](Images/adding-active-directory-authentication-librar.png?raw=true)
+	
+	_Adding Active Directory Authentication Library_
+
+3. In the **FacilityRequestController** paste the following highlighted code after the namespace declaration.
 
 	(Code Snippet - _authattrib_)
 
@@ -383,7 +383,7 @@ This demo is composed of the following segments:
 	````C#
 	namespace MobileService.Controllers
 	{
-		using Microsoft.WindowsAzure.Mobile.Services.Security;
+		using Microsoft.WindowsAzure.Mobile.Service.Security;
 		
 		[AuthorizeLevel(AuthorizationLevel.User)]
 		public class FacilityRequestController : TableController<FacilityRequest>
