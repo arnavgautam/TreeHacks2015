@@ -136,6 +136,12 @@ This demo requires two applications in your Azure AD: One for the Mobile Service
 	
 1. In the Management Portal, click **Manage Manifest** and select **Upload Manifest**. Select the file you just updated and upload the manifest.
 
+1. Open **Configure** and scroll down to the **Client ID** section. Take note of the Client ID, you will use it later.
+
+1. In the **Keys** section, choose a duration from the drop-down list to create a new key. Click **Save**.
+
+1. Take note the generated key value, you will use it later.
+
 #### Associate your Client App to the Windows Store ####
 	
 1. Open the **FacilityApp.sln** solution in Visual Studio.
@@ -156,8 +162,92 @@ This demo requires two applications in your Azure AD: One for the Mobile Service
 
 1. Then click **Live Services Site**.
 
-1. Copy your package SID from the top of the page.
+1. Copy your package **SID** from the top of the page.
 
+1. Switch to the Management Portal and go to your AD.
+
+1. Go to applications and click **Add**. Select **Add an application my organization is developing**.
+
+1. Type a name for the client app and select **Native Client Application**. Click next to continue.
+
+	![Creating clent AD app](Images/creating-clent-ad-app.png?raw=true)
+	
+1. In the **Redirect URI** field, paste the package **SID** you copied in a previous step.
+
+	![Client App Package SID](Images/client-app-package-sid.png?raw=true)
+
+1. Click the **Configure** tab for the native application and copy the **Client ID**.
+
+	![Copying the Client ID](Images/copying-the-client-id.png?raw=true)
+
+1. Scroll down to the **permissions to other applications** section and grant full access to the mobile service application that you registered earlier. 
+
+1. Grant permissions to **Office 365 SharePoint Online** and select **Edit or delete users' files** from the **Delegated Permissions** drop-down list. Then click **Save**.
+
+	![Granting permissions to the Client App](Images/granting-permissions-to-the-client-app.png?raw=true)
+	
+#### Setting up Configuration Variables ####
+
+1. In the Management Portal, open your Mobile Service and go to **Configure**.
+
+1. Scroll down to the **app settings** section.
+
+1. Add the following settings:
+
+	* **SharePointUri**: The SharePoint user's personal site targeting the API address. The URL usually has the following form **https://{domain}-my.sharepoint.com/personal/{username}_{domain}_onmicrosoft_com/_api/web**. For example: https://dpe-my.sharepoint.com/personal/admin_dpe_onmicrosoft_com/_api/web.
+	* **Authority**: The Azure AD authority. Use https://login.windows.net/common/oauth2/authorize.
+	* **ActiveDirectoryClientId**: The Id of the Mobile Service application registered in the Azure AD.
+	* **ActiveDirectorySecret**: The secret of the Mobile Service application registered in the Azure AD.
+	* **SharePointResource**: The base URL of SharePoint's Personal sites collection. E.g.: https://{domain}-my.sharepoint.com
+
+1. Click **Save**.	
+
+1. Open the file **Config.xml** located in the **Setup** folder of this demo.
+
+1. Update the values under **clientSettings** in the XML file to configure your solutions:
+
+	* **AadAuthority**: The Azure AD authority. Use https://login.windows.net/common/oauth2/authorize.
+	* **AppRedirectURI**: Use the package **SID** for the client application you associated in Windows Store.
+	* **AadRedirectResourceURI**: The Mobile Service AAD login URI. You can find this value under **Azure Active Directory** in your Mobile Service's **Identity** tab.
+	* **AadClientId**: The Id of your native client app registered in your AD.
+	* **AppKey**: The Mobile Service key. You can retrieve this value by clicking **Manage Keys** in your Mobile Service.
+	* **MobSvcUri**: The Mobile Servce URI.
+	* **SharePointResource**: It is the root URL for the personal sites of your SharePoint domain. E.g.: http://{domain}-my.sharepoint.com/
+	
+	The following values are displayed on the Windows Store app. These settings configure the Username and the default location of the device, simulating Geolocation inside the app. You can replace them with with a real location (e.g.: the location where the demo will be presented).
+	
+	* **UserName**: The first name of the User that is displayed on the Windows Store app.
+	* **UserSurname**: The last name of the User that is displayed on the Windows Store app.
+	* **BuildingFR**: The Building Number.
+	* **RoomFR**: The Room Number.
+	* **BuildingFRVM**: The building name.
+	* **RoomFRVM**: The room number.
+	* **CityFRVM**: The city name.
+	* **StreetFRVM**: The street name.
+	* **StateFRVM**: The state where the city is located.
+	* **ZipFRVM**: The zip code.
+
+1. Under **windowsAzureSubscription**, update the values of the Mobile Service SQL Server (you can find these values in your Mobile Service configuration):
+
+	* **sqlserver**: The SQL Server adress. Eg.: {server}.database.windows.net.
+	* **db**: The database name.
+	* **sqlUsername**: The server administrator username.
+	* **sqlPassword**: The server administrator password.
+	* **sqlTable**: The database table including the schema name. Use the following format: **{mobileservice-name}.facilityrequests**.
+
+1. Under the **sharepoint** element set the values to connect your SharePoint:
+
+	* **baseUrl**: The SharePoint user's personal site. The URL usually has the following form **https://{domain}-my.sharepoint.com/personal/{username}_{domain}_onmicrosoft_com/**. For example: https://dpe-my.sharepoint.com/personal/admin_dpe_onmicrosoft_com/.
+	* **username**: Full qualified name for the Office 365 user. E.g.: admin@dpe.onmicrosoft.com
+	* **password**: The password for the Office 365 user.
+	* **folderName**: The folder in the personal's site documents where the app will upload files. Leave the default value **Requests**.
+
+1. Save and close the file.
+
+1. Run **Reset.cmd** in the **Setup** folder to execute the reset scripts. These scripts configure the settings files for each client app, removes any record in the Mobile Service SQL database and deletes all the files in the **Requests** folder in SharePoint.
+
+	> **Note:** You can execute Reset.cmd any time you need to reset the demo. As you already configured Azure AD and the Mobile Service you only need to execute the reset scripts to reset the demo to a starting point.
+	
 <a name="Demo" />
 ## Demo ##
 
