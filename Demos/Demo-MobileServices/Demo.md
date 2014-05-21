@@ -258,7 +258,7 @@ This demo is composed of the following segments:
 1. [Integrating ADAL and Xamarin for iOS](#segment3).
 
 <a name="segment1" />
-### Creating and Deploying a Mobile Services C# Backend ###
+### Creating a Mobile Services C# Backend ###
 
 1. Go to **Start** and open **Visual Studio 2013**.
 
@@ -361,7 +361,7 @@ This demo is composed of the following segments:
 	> **Speaking Point:** We have first class support for Mobile Services Table Controller right in the scaffolding dialog.
 
 <a name="segment2" />
-### Integrating with ADAL ###
+### Integrating with ADAL and Deploying to Windows Azure Mobile Services###
 
 1. Right-click the MobileService project and click **Manage NuGet Packages**.
 
