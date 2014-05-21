@@ -31,9 +31,132 @@ In this demo, you will see how to:
 
 In order to execute this demo you need to set up your environment.
 
-1. Go to <https://manage.windowsazure.com/>
+#### Creating an Office 365 subscription ####
 
-1. ...
+If you do not have an Office 365 subscription you can do one of the following:
+
+- If you are a **Microsoft Partner**, you have the option of requesting a demo tenant here https://www.microsoftofficedemos.com. These demo tenants expire in 90 days after the creation.
+
+- If you have a **MSDN subscription** you can activate your **Office 365 Developer** subscription in your MSDN subscriber dashboard.
+
+- Buy a subscription. Go to http://office.microsoft.com/en-us/business/compare-office-365-for-business-plans-FX102918419.aspx and pick the option of your choice (e.g. Office 365 Small Business).
+
+Once you finish signin up for you Office 365 subscription, follow these steps:
+
+1. Close the browser to clear out the authentication. Open a browser again and go to https://portal.microsoftonline.com/default.aspx.
+
+	> **Note:** This will open the Office 365 Management Portal. It might take a few minutes until all services are provisioned.
+
+1. Click the **Users and groups** option in the left navigation menu.
+
+1. Click at your user name and verify that it's linked to the subscription accordingly.
+
+	![Office Subscription Linked](Images/office-subscription-linked.png?raw=true)
+	
+1. Go to https://{username}-my.sharepoint.com replacing the placeholder with the username you defined before the **.onmicrosoft.com** domain (e.g.: https://myuser-my.sharepoint.com/).
+
+1. This site is provisioned upon the first time you actually launch it on the browser. It should take a few minutes to provision. Your site should look like the following:
+
+	![SharePoint My Site](Images/sharepoint-my-site.png?raw=true)
+	
+#### Setting Azure + Office 365 Subscription ####
+
+> **Note:** If you have a MSDN subscription you get a free Azure subscription with it. Go to the msdn.com subscription dashboard and follow the **Activate Windows Azure** option.
+
+1. Open a browser and go to http://manage.windowsazure.com.
+
+1. When prompted, use your Office 365 credentials.
+
+1. You will be presented with a screen asking you to get a subscription before you can start using Azure. Click the **Sign Up for Windows Azure** link.
+
+	![Sign up for Azure](Images/sign-up-for-azure.png?raw=true)
+	
+1. You will be taken to a screen where you will validate your details, agree with the Terms and Privacy statement and then finish signing up. Once the registration is over, you will be able to access the Management Portal. Now Azure and Office 365 are both linked to the same user account.
+
+#### Creating a Mobile Service and Registering your Apps in Azure AD ####
+
+This demo requires two applications in your Azure AD: One for the Mobile Service and another for the Client App.
+
+1. In the [Management Portal](http://manage.windowsazure.com/) create a new Mobile Service. You can select a new Free Database or choose an existing one.
+
+	![Creating a Mobile Service](Images/creating-a-mobile-service.png?raw=true)
+	
+1. Once created, click the Mobile Service and go to **Identity**.
+
+1. Scroll down to the **Azure Active Directory** identity provider section and copy the **APP URL** listed there.
+
+1. Go to **Active Directoy**.
+
+1. Select your **Default Directory** from the list and go to **Applications**.
+
+1. Click **Add** and select **Add an application my organization is developing**.
+
+1. Type a name, for example _mymobileservice_, and select **Web Application and/or Web API**. Click next to continue.
+
+	![Creating a Web Application in AD](Images/creating-a-web-application-in-ad.png?raw=true)
+
+1. Paste the Mobile Service URL in the **SIGN-ON URL** and **APP ID URI** field. Click ok to create the app.
+
+	![Configuring App Properties](Images/configuring-app-properties.png?raw=true)
+	
+1. Click **Manage Manifest** from the menu and select **Download Manifest**.
+
+	![Download Manifest](Images/download-manifest.png?raw=true)
+	
+1. Open the application manifest file with **Visual Studio**. At the top of the file find the app permissions line that looks as follows:
+
+	````JSON
+	"appPermissions": [],
+	````
+
+1. Replace that line with the following app permissions and save the file.
+
+	````JSON
+	"appPermissions": [
+	    {
+		"claimValue": "user_impersonation",
+		"description": "Allow the application access to the mobile service",
+		"directAccessGrantTypes": [],
+		"displayName": "Have full access to the mobile service",
+		"impersonationAccessGrantTypes": [
+		    {
+			"impersonated": "User",
+			"impersonator": "Application"
+		    }
+		],
+		"isDisabled": false,
+		"origin": "Application",
+		"permissionId": "b69ee3c9-c40d-4f2a-ac80-961cd1534e40",
+		"resourceScopeType": "Personal",
+		"userConsentDescription": "Allow the application full access to the mobile service on your behalf",
+		"userConsentDisplayName": "Have full access to the mobile service"
+	    }
+	],
+	````
+	
+1. In the Management Portal, click **Manage Manifest** and select **Upload Manifest**. Select the file you just updated and upload the manifest.
+
+#### Associate your Client App to the Windows Store ####
+	
+1. Open the **FacilityApp.sln** solution in Visual Studio.
+
+1. Right-click the **FacilityApp.UI.Windows** project and select **Associate App with the Store...**.
+
+1. Sign into your **Dev Center** account.
+
+1. Enter the app name you want to reserve and click **Reserve**.
+
+1. Select the new app name and click **Next**.
+
+1. Click **Associate** to associate the app with the store name.
+
+1. Log into you [Windows Dev Center Dashboard](http://go.microsoft.com/fwlink/p/?linkid=266734&clcid=0x409) and click **Edit** on the app.
+
+1. Then click **Services**.
+
+1. Then click **Live Services Site**.
+
+1. Copy your package SID from the top of the page.
 
 <a name="Demo" />
 ## Demo ##
