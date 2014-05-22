@@ -222,8 +222,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 1. The following values are displayed on the Windows Store app. These settings configure the Username and the default location of the device, simulating Geolocation inside the app. You can replace them with a real location (e.g.: the location where the demo will be presented).	
 	
 	* **UserName**: The first name of the User that is displayed on the Windows Store app.
-	* **UserSurname**: The last name of the User that is displayed on the Windows Store app.
-	* **BuildingFR**: The Building Number.
+	* **UserSurname**: The last name of the User that is displayed on the Windows Store app.	
 	* **RoomFR**: The Room Number.
 	* **BuildingFRVM**: The building name.
 	* **RoomFRVM**: The room number.

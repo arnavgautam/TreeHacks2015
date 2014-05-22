@@ -1,0 +1,42 @@
+<configuration>
+	<appSetup>
+		<packagename>FacilityRequest</packagename>
+    </appSetup>
+	<clientSettings>
+		<!-- Configuration Settings -->
+		<AadAuthority>https://login.windows.net/common/oauth2/authorize</AadAuthority>
+		<AppRedirectURI>{clientapp-package-SID}</AppRedirectURI>
+		<AadRedirectResourceURI>https://{mobileservice-name}.azure-mobile.net/login/aad</AadRedirectResourceURI>
+		<AadClientID>{mobileservice-AD-appId}</AadClientID>
+		<AppKey>{mobileservice-AD-appKey}</AppKey>
+		<MobSvcUri>https://{mobileservice-name}.azure-mobile.net/</MobSvcUri>
+		<SharePointResource>https://{domain}-my.sharepoint.com</SharePointResource>
+		<SharePointUri>https://{domain}-my.sharepoint.com/personal/{user}/_api/web</SharePointUri>	  
+		<Authority>https://login.windows.net/{domain}</Authority>
+		<!-- Client App Settings -->
+		<UserName>{User-FirstName}</UserName>
+		<UserSurname>{User-Surname}</UserSurname>		
+		<RoomFR>{Room}</RoomFR>
+		<BuildingFRVM>{Building}</BuildingFRVM>
+		<RoomFRVM>{Room}</RoomFRVM>
+		<CityFRVM>{City}</CityFRVM>
+		<StreetFRVM>{Street}</StreetFRVM>
+		<StateFRVM>{State}</StateFRVM>
+		<ZipFRVM>{ZipCode}</ZipFRVM>
+	</clientSettings>
+	<windowsAzureSubscription>
+		<mobileService>
+			<sqlServer>{server}.database.windows.net</sqlServer>
+			<db>{database}</db>
+			<sqlUsername>{sql-user}</sqlUsername>
+			<sqlPassword>{password}</sqlPassword>
+			<sqlTable>{mobileservice-name}.facilityrequests</sqlTable>
+		</mobileService>
+  </windowsAzureSubscription>  
+  <sharepoint>
+		<baseUrl>https://{domain}-my.sharepoint.com/personal/{user}/</baseUrl>
+		<username>{sharepoint-user}</username>
+		<password>{password}</password>
+		<folderName>Requests</folderName>
+  </sharepoint>
+</configuration>
