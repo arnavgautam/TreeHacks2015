@@ -293,20 +293,26 @@ This demo is composed of the following segments:
 	
 	_Creating new Project_
 
-3. Make sure that **Visual C# > Cloud** is selected in the **Templates** list. Choose **Windows Azure Mobile Services**, type **MobileService** as the name for the project, and click **OK**.
+3. Make sure that **Visual C# > Cloud** is selected in the **Templates** list. Choose **Windows Azure Mobile Services** and click **OK**.
 
 	![Windows Azure Mobile Services Project](Images/windows-azure-mobile-services-project.png?raw=true)
 	
 	_Cloud > Windows Azure Mobile Service project_
 
-4. Select the **Windows Azure Mobile Service** template and click **OK**.
+4. Select the **Windows Azure Mobile Service** template and explain how this template can be used. **Do not click OK**. Click **Cancel**.
 
 	![New ASP.NET Project](Images/new-aspnet-project.png?raw=true)
-	
+
 	_New ASP.NET Project_
 	
 	> **Speaking Point:** Mention any .NET language can be used to build the Mobile Service right from VS, and the framework is built on top of ASP.NET Web API, which means we get leverage the power of NuGet and all our existing skills and code.
+	
+5. Click **File > Close Solution**, and then **File > Open > Project/Solution...**. Browse to the **source/begin** folder in the demo's folder and open the **MobileService** solution.
 
+	![Open Project](Images/open-project.png?raw=true)
+
+	_Open Begin Solution_
+	
 5. Explain the contents of the project template. Open and explain each one of the following folders: 
 
 	- **Controllers**
@@ -394,21 +400,23 @@ This demo is composed of the following segments:
 	
 	_Manage NuGet Packages_
 
-2. Select the **Online** tab at the left of the dialog, be sure to choose **Include Prerelease** in the combo box at the top, and search for **ADAL**. In the results click install for the **Active Directory Authentication Library**. Click **I Accept** for the License dialog.
+2. Select the **Installed Packages** tab at the left of the dialog and search for **ADAL**. In the results verify the **Active Directory Authentication Library** is installed in the solution. Note this is a Prerelease version. Click **Close**.
 
-	![Adding Active Directory Authentication Library](Images/adding-active-directory-authentication-librar.png?raw=true)
+	![ADAL Library](Images/adal-library.png?raw=true)
 	
-	_Adding Active Directory Authentication Library_
+	_Active Directory Authentication Library is installed_
 
+	> **Speaking Point:** We use the ADAL (Active Directory Authentication Library) to easily provide authentication functionality for a .NET client and Windows Store application.
+	
 3. In the **FacilityRequestController** paste the following highlighted code after the namespace declaration.
 
 	(Code Snippet - _authattrib_)
-
-	<!-- mark:3-5 -->
+	<!-- mark:3-6 -->
 	````C#
 	namespace MobileService.Controllers
 	{
 		using Microsoft.WindowsAzure.Mobile.Service.Security;
+		using MobileService.Common.Providers;
 		
 		[AuthorizeLevel(AuthorizationLevel.User)]
 		public class FacilityRequestController : TableController<FacilityRequest>
@@ -474,7 +482,7 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** What this app is still missing is support for authentication. So let's go ahead and do that.
 
-10. Replace the code inside the **LoginAsync** method with the following highlighted code.
+10. Place the following highlighted snippet of code in the **LoginAsync** method.
 
 	(Code Snippet - _authclient_)
 	<!-- mark:3-14 -->
@@ -539,20 +547,21 @@ We've added authentication with Active Directory, but what our app users would r
 	
 	_FacilityRequestController_
 
-2. Locate the **PatchFacilityRequest** method and paste the following highlighted code replacing the one inside that method.
+2. Locate the **PatchFacilityRequest** method and replace it with the following snippet.
 
-	(Code Snippet - _sharepoint_)
-	<!-- mark:3-31 -->
+	<!-- (Code Snippet - _sharepoint_);mark:3-31 -->
 	````C#
 	public async Task<FacilityRequest> PatchFacilityRequest(string id, Delta<FacilityRequest> patch)
 	{
-		if (SharePointProvider.SharePointUri == null)
-			Services.Settings.TryGetValue("SharePointUri", out SharePointProvider.SharePointUri);
+		var sharePointUri = SharePointProvider.SharePointUri;
+            if (sharePointUri == null)
+                Services.Settings.TryGetValue("SharePointUri", out sharePointUri);
 
+            SharePointProvider.SharePointUri = sharePointUri;
             var facilityRequest = patch.GetEntity();
 
-            var sharepointUri = SharePointProvider.SharePointUri + string.Format(@"/getfolderbyserverrelativeurl('Documents')/Folders('Requests')/Files/Add(url='{0}.docx', overwrite=true)",
-                                    facilityRequest.DocId);
+            sharePointUri = SharePointProvider.SharePointUri + string.Format(@"/getfolderbyserverrelativeurl('Documents')/Folders('Requests')/Files/Add(url='{0}.docx', overwrite=true)",
+                        facilityRequest.DocId);
 
             string authority;
             string sharePointResource;
@@ -570,7 +579,7 @@ We've added authentication with Active Directory, but what our app users would r
             Services.Settings.TryGetValue("HeaderUri", out headerUri);
             var document = SharePointProvider.BuildDocument(facilityRequest, headerUri);
 
-            await SharePointProvider.UploadFile(sharepointUri, document, token, activeDirectoryClientId);
+            await SharePointProvider.UploadFile(sharePointUri, document, token, activeDirectoryClientId);
 
             return await this.UpdateAsync(id, patch);
 	}	
