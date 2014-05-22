@@ -1,5 +1,5 @@
 ﻿<a name="title" />
-# Mobile Services #
+# Mobile Services Demo #
 
 ---
 
@@ -13,26 +13,27 @@ In this demo, you will see an exciting new set of features that makes Mobile Ser
 ### Goals ###
 In this demo, you will see how to:
 
-1. Create & Deploy a Mobile Services C# Backend
+1. Create a Mobile Services C# Backend
 1. Integrate ADAL in a Windows Store app
 1. Showcase Xamarin for iOS and its integration with ADAL
 
 <a name="technologies" />
 ### Key Technologies ###
 
-- Azure subscription- you can sign up for free trial [here][1]
 - [Microsoft Visual Studio 2013][2]
-
+- [Visual Studio 2013 Update 2][3]
+- A Windows Azure subscription
+	
 [1]: http://bit.ly/WindowsAzureFreeTrial
 [2]: http://www.microsoft.com/visualstudio/
-
+[3]: http://www.microsoft.com/en-us/download/details.aspx?id=42666
 
 <a name="setup" />
 ### Setup and Configuration ###
 
 In order to execute this demo you need to set up your environment. The following are one-time instructions you need to execute in order to prepare the demo. Once completed, there is no need to execute these steps again, you can simply run **Reset.cmd** located in the **Setup** folder to clear the database and SharePoint files to restart the demo.
 
-#### Creating an Office 365 subscription ####
+#### Task 1 - Creating an Office 365 subscription ####
 
 If you do not have an Office 365 subscription you can do one of the following:
 
@@ -60,7 +61,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 	![SharePoint My Site](Images/sharepoint-my-site.png?raw=true)
 	
-#### Setting Azure + Office 365 Subscription ####
+#### Task 2 - Setting Azure + Office 365 Subscription ####
 
 > **Note:** If you have a MSDN subscription you get a free Azure subscription with it. Go to the msdn.com subscription dashboard and follow the **Activate Windows Azure** option.
 
@@ -74,7 +75,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 	
 1. You will be taken to a screen where you will validate your details, agree with the Terms and Privacy statement and then finish signing up. Once the registration is over, you will be able to access the Management Portal. Now Azure and Office 365 are both linked to the same user account.
 
-#### Creating a Mobile Service and Registering your Apps in Azure AD ####
+#### Task 3 - Creating a Mobile Service and Registering your Apps in Azure AD ####
 
 1. In the [Management Portal](http://manage.windowsazure.com/) create a new Mobile Service. You can choose between a new Free Database and an existing one. Make sure the **.NET (PREVIEW)** option is selected for the **Backend** drop-down list.
 
@@ -145,7 +146,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. Take note the generated key value, you will use it later.
 
-#### Associate your Client App to the Windows Store ####
+#### Task 4 - Associate your Client App to the Windows Store ####
 	
 1. Open the **FacilityApp.sln** solution in Visual Studio.
 
@@ -189,7 +190,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 	![Granting permissions to the Client App](Images/granting-permissions-to-the-client-app.png?raw=true)
 	
-#### Setting up Configuration Variables ####
+#### Task 5 - Setting up Configuration Variables ####
 
 1. In the Management Portal, open your Mobile Service and go to **Configure**.
 
@@ -253,7 +254,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 	> **Note:** You can execute **Reset.cmd** any time you need to reset the demo. As you already configured Azure AD and the Mobile Service you only need to execute the reset scripts to reset the demo to a starting point.
 
 	
-#### First Run - Windows Store App ####
+#### Task 6 - First Run - Windows Store App ####
 
 Follow these steps to run the **FacilityRequests** app to adjust the correct Simulator's resolution display and orientation.
 
@@ -273,13 +274,12 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 	
 	![Simulator running](Images/simulator-running.png?raw=true)
 	
-	
 <a name="Demo" />
 ## Demo ##
 
 This demo is composed of the following segments:
 
-1. [Creating and Deploying a Mobile Services C# Backend](#segment1).
+1. [Creating a Mobile Services C# Backend](#segment1).
 1. [Integrating ADAL in a Windows Store App](#segment2).
 1. [Integrating ADAL and Xamarin for iOS](#segment3).
 
