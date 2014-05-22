@@ -42,7 +42,7 @@ If you do not have an Office 365 subscription you can do one of the following:
 
 - Buy a subscription. Go to http://office.microsoft.com/en-us/business/compare-office-365-for-business-plans-FX102918419.aspx and pick the option of your choice (e.g. Office 365 Small Business).
 
-Once you finish signin up for you Office 365 subscription, follow these steps:
+Once you finish signing up for your **Office 365** subscription, follow these steps:
 
 1. Close the browser to clear out the authentication. Open a browser again and go to https://portal.microsoftonline.com/default.aspx.
 
@@ -76,7 +76,7 @@ Once you finish signin up for you Office 365 subscription, follow these steps:
 
 #### Creating a Mobile Service and Registering your Apps in Azure AD ####
 
-1. In the [Management Portal](http://manage.windowsazure.com/) create a new Mobile Service. You can choose between a new Free Database or an existing one. Make sure the **.NET (PREVIEW)** option is selected for the **Backend** drop-down list.
+1. In the [Management Portal](http://manage.windowsazure.com/) create a new Mobile Service. You can choose between a new Free Database and an existing one. Make sure the **.NET (PREVIEW)** option is selected for the **Backend** drop-down list.
 
 	![Creating a Mobile Service](Images/creating-a-mobile-service.png?raw=true)
 	
@@ -84,7 +84,7 @@ Once you finish signin up for you Office 365 subscription, follow these steps:
 
 1. Scroll down to the **Azure Active Directory** identity provider section and copy the **APP URL** listed there.
 
-1. Go to **Active Directoy**.
+1. Go to **Active Directory**.
 
 1. Select your directory from the list and go to **Applications**.
 
@@ -210,15 +210,15 @@ Once you finish signin up for you Office 365 subscription, follow these steps:
 1. Update the values under **clientSettings** in the XML file to configure your solutions:
 
 	* **AadAuthority**: The Azure AD authority. Use https://login.windows.net/common/oauth2/authorize.
-	* **AppRedirectLocation**: The Mobile Servce URI.
+	* **AppRedirectLocation**: The Mobile Service URI.
 	* **AadRedirectResourceURI**: The Mobile Service AAD login URI. You can find this value under **Azure Active Directory** in your Mobile Service's **Identity** tab.
 	* **AadClientId**: The Id of your native client app registered in your AD.
 	* **AppKey**: The Mobile Service key. You can retrieve this value by clicking **Manage Keys** in your Mobile Service.
-	* **MobSvcUri**: The Mobile Servce URI.
+	* **MobSvcUri**: The Mobile Service URI.
 	* **SharePointResource**: It is the root URL for the personal sites of your SharePoint domain. E.g.: http://{domain}-my.sharepoint.com/
 	* **SharePointUser**: Full qualified name for the Office 365 user. E.g.: admin@dpe.onmicrosoft.com.
 	
-	The following values are displayed on the Windows Store app. These settings configure the Username and the default location of the device, simulating Geolocation inside the app. You can replace them with with a real location (e.g.: the location where the demo will be presented).
+1. The following values are displayed on the Windows Store app. These settings configure the Username and the default location of the device, simulating Geolocation inside the app. You can replace them with a real location (e.g.: the location where the demo will be presented).	
 	
 	* **UserName**: The first name of the User that is displayed on the Windows Store app.
 	* **UserSurname**: The last name of the User that is displayed on the Windows Store app.
@@ -233,7 +233,7 @@ Once you finish signin up for you Office 365 subscription, follow these steps:
 
 1. Under **windowsAzureSubscription**, update the values of the Mobile Service SQL Server (you can find these values in your Mobile Service configuration):
 
-	* **sqlserver**: The SQL Server adress. Eg.: {server}.database.windows.net.
+	* **sqlserver**: The SQL Server address. E.g.: {server}.database.windows.net.
 	* **db**: The database name.
 	* **sqlUsername**: The server administrator username.
 	* **sqlPassword**: The server administrator password.
@@ -265,7 +265,7 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 
 	![Changing the simulator resolution](Images/changing-the-simulator-resolution.png?raw=true)
 	
-1. Change the orientation of the Simulator by rotating it clockwise 90 degress.
+1. Change the orientation of the Simulator by rotating it clockwise 90 degreess.
 
 	![Rotating the simulator clockwise](Images/rotating-the-simulator-clockwise.png?raw=true)
 
@@ -389,7 +389,7 @@ This demo is composed of the following segments:
 <a name="segment2" />
 ### Integrating with ADAL and Deploying to Windows Azure Mobile Services###
 
-1. Right-click the MobileService project and click **Manage NuGet Packages**.
+1. Right-click the **MobileService** project and click **Manage NuGet Packages**.
 
 	![Manage NuGet Packages](Images/manage-nuget-packages.png?raw=true)
 	
@@ -459,7 +459,7 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** The Portable Class Library allows us to reuse our code across a variety of client platforms.
 	
-8. Open **FacilityServiceBase.cs** and explain the advatages of the integration with the **Mobile Services SDK**. 
+8. Open **FacilityServiceBase.cs** and explain the advantages of the integration with the **Mobile Services SDK**. 
 
 	![Mobile Services SDK integration](Images/mobile-services-sdk-integration.png?raw=true)
 	
