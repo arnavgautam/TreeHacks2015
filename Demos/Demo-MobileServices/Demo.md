@@ -6,7 +6,8 @@
 <a name="Overview" />
 ## Overview ##
 
-This demo is designed to...
+Since Mobile Services was launched, you have seen some strong adoption and some great apps built on top of the platform, both across the consumer and enterprise space. Mobile Services lets you easily add a cloud-hosted back end to your mobile app, regardless of what client platform you are using. 
+In this demo, you will see an exciting new set of features that makes Mobile Services even more compelling, especially in the enterprise space. You will see how to build a .NET back end locally, publishing it to the cloud, adding authentication using the **Active Directory Authentication Library** (ADAL), integrating with SharePoint and then building a cross-platform client with **Xamarin**.
 
 <a id="goals" />
 ### Goals ###
@@ -29,7 +30,7 @@ In this demo, you will see how to:
 <a name="setup" />
 ### Setup and Configuration ###
 
-In order to execute this demo you need to set up your environment.
+In order to execute this demo you need to set up your environment. The following are one-time instructions you need to execute in order to prepare the demo. Once completed, there is no need to execute these steps again, you can simply run **Reset.cmd** located in the **Setup** folder to clear the database and SharePoint files to restart the demo.
 
 #### Creating an Office 365 subscription ####
 
@@ -41,7 +42,7 @@ If you do not have an Office 365 subscription you can do one of the following:
 
 - Buy a subscription. Go to http://office.microsoft.com/en-us/business/compare-office-365-for-business-plans-FX102918419.aspx and pick the option of your choice (e.g. Office 365 Small Business).
 
-Once you finish signin up for you Office 365 subscription, follow these steps:
+Once you finish signing up for your **Office 365** subscription, follow these steps:
 
 1. Close the browser to clear out the authentication. Open a browser again and go to https://portal.microsoftonline.com/default.aspx.
 
@@ -75,9 +76,7 @@ Once you finish signin up for you Office 365 subscription, follow these steps:
 
 #### Creating a Mobile Service and Registering your Apps in Azure AD ####
 
-This demo requires two applications in your Azure AD: One for the Mobile Service and another for the Client App.
-
-1. In the [Management Portal](http://manage.windowsazure.com/) create a new Mobile Service. You can select a new Free Database or choose an existing one.
+1. In the [Management Portal](http://manage.windowsazure.com/) create a new Mobile Service. You can choose between a new Free Database and an existing one. Make sure the **.NET (PREVIEW)** option is selected for the **Backend** drop-down list.
 
 	![Creating a Mobile Service](Images/creating-a-mobile-service.png?raw=true)
 	
@@ -85,9 +84,9 @@ This demo requires two applications in your Azure AD: One for the Mobile Service
 
 1. Scroll down to the **Azure Active Directory** identity provider section and copy the **APP URL** listed there.
 
-1. Go to **Active Directoy**.
+1. Go to **Active Directory**.
 
-1. Select your **Default Directory** from the list and go to **Applications**.
+1. Select your directory from the list and go to **Applications**.
 
 1. Click **Add** and select **Add an application my organization is developing**.
 
@@ -95,7 +94,7 @@ This demo requires two applications in your Azure AD: One for the Mobile Service
 
 	![Creating a Web Application in AD](Images/creating-a-web-application-in-ad.png?raw=true)
 
-1. Paste the Mobile Service URL in the **SIGN-ON URL** and **APP ID URI** field. Click ok to create the app.
+1. Paste the Mobile Service URL in the **SIGN-ON URL** and **APP ID URI** field. Click OK to create the app.
 
 	![Configuring App Properties](Images/configuring-app-properties.png?raw=true)
 	
@@ -136,6 +135,16 @@ This demo requires two applications in your Azure AD: One for the Mobile Service
 	
 1. In the Management Portal, click **Manage Manifest** and select **Upload Manifest**. Select the file you just updated and upload the manifest.
 
+1. Open **Configure** and scroll down to the **Client ID** section. Take note of the Client ID, you will use it later.
+
+1. Scroll down to the **permissions to other applications** section and grant permissions to **Office 365 SharePoint Online**. Select **Edit or delete users' files** from the **Delegated Permissions** drop-down list.
+
+	![Permissions for the Mobile Service App](Images/permissions-for-the-mobile-service-app.png?raw=true)
+
+1. In the **Keys** section choose a duration from the drop-down list to create a new key. Click **Save**.
+
+1. Take note the generated key value, you will use it later.
+
 #### Associate your Client App to the Windows Store ####
 	
 1. Open the **FacilityApp.sln** solution in Visual Studio.
@@ -156,8 +165,115 @@ This demo requires two applications in your Azure AD: One for the Mobile Service
 
 1. Then click **Live Services Site**.
 
-1. Copy your package SID from the top of the page.
+1. Copy your package **SID** from the top of the page.
 
+1. Switch to the **Management Portal** and go to your AD.
+
+1. Go to **Applications** and click **Add**. Select **Add an application my organization is developing**.
+
+1. Type a name for the client app (e.g.: _facilityappclient_) and select **Native Client Application**. Click next to continue.
+
+	![Creating clent AD app](Images/creating-clent-ad-app.png?raw=true)
+	
+1. In the **Redirect URI** field, paste the package **SID** you copied in a previous step. Click OK to continue.
+
+	![Client App Package SID](Images/client-app-package-sid.png?raw=true)
+
+1. Click the **Configure** tab for the native application and take note of the **Client ID**.
+
+	![Copying the Client ID](Images/copying-the-client-id.png?raw=true)
+
+1. In the **Redirect URIs** section add the Mobile Services URL. E.g.: https://{mobileservice-name}.azure-mobile.net/.
+	
+1. Scroll down to the **permissions to other applications** section and grant full access to the mobile service application that you registered earlier.
+
+	![Granting permissions to the Client App](Images/granting-permissions-to-the-client-app.png?raw=true)
+	
+#### Setting up Configuration Variables ####
+
+1. In the Management Portal, open your Mobile Service and go to **Configure**.
+
+1. Scroll down to the **app settings** section.
+
+1. Add the following settings (take into account that the name of each setting is case sensitive):
+
+	* **SharePointUri**: The SharePoint user's personal site targeting the API address. The URL usually has the following form **https://{domain}-my.sharepoint.com/personal/{username}_{domain}_onmicrosoft_com/_api/web**. For example: https://dpe-my.sharepoint.com/personal/admin_dpe_onmicrosoft_com/_api/web.
+	* **SharePointResource**: The base URL of SharePoint's Personal sites collection. E.g.: https://{domain}-my.sharepoint.com
+	* **Authority**: The Azure AD authority. Use https://login.windows.net/common/oauth2/authorize.
+	* **ActiveDirectoryClientId**: The Id of the Mobile Service application registered in the Azure AD.
+	* **ActiveDirectoryClientSecret**: The secret of the Mobile Service application registered in the Azure AD.
+
+1. Click **Save**.
+
+1. Browse to the **Setup** folder of this demo and open the file **Config.xml**.
+
+1. Update the values under **clientSettings** in the XML file to configure your solutions:
+
+	* **AadAuthority**: The Azure AD authority. Use https://login.windows.net/common/oauth2/authorize.
+	* **AppRedirectLocation**: The Mobile Service URI.
+	* **AadRedirectResourceURI**: The Mobile Service AAD login URI. You can find this value under **Azure Active Directory** in your Mobile Service's **Identity** tab.
+	* **AadClientId**: The Id of your native client app registered in your AD.
+	* **AppKey**: The Mobile Service key. You can retrieve this value by clicking **Manage Keys** in your Mobile Service.
+	* **MobSvcUri**: The Mobile Service URI.
+	* **SharePointResource**: It is the root URL for the personal sites of your SharePoint domain. E.g.: http://{domain}-my.sharepoint.com/
+	* **SharePointUser**: Full qualified name for the Office 365 user. E.g.: admin@dpe.onmicrosoft.com.
+	
+1. The following values are displayed on the Windows Store app. These settings configure the Username and the default location of the device, simulating Geolocation inside the app. You can replace them with a real location (e.g.: the location where the demo will be presented).	
+	
+	* **UserName**: The first name of the User that is displayed on the Windows Store app.
+	* **UserSurname**: The last name of the User that is displayed on the Windows Store app.
+	* **BuildingFR**: The Building Number.
+	* **RoomFR**: The Room Number.
+	* **BuildingFRVM**: The building name.
+	* **RoomFRVM**: The room number.
+	* **CityFRVM**: The city name.
+	* **StreetFRVM**: The street name.
+	* **StateFRVM**: The state where the city is located.
+	* **ZipFRVM**: The zip code.
+
+1. Under **windowsAzureSubscription**, update the values of the Mobile Service SQL Server (you can find these values in your Mobile Service configuration):
+
+	* **sqlserver**: The SQL Server address. E.g.: {server}.database.windows.net.
+	* **db**: The database name.
+	* **sqlUsername**: The server administrator username.
+	* **sqlPassword**: The server administrator password.
+	* **sqlTable**: The database table including the schema name. Use the following format: **{mobileservice-name}.facilityrequests**.
+
+1. Under the **sharepoint** element set the values to connect your SharePoint:
+
+	* **baseUrl**: The SharePoint user's personal site. The URL usually has the following form **https://{domain}-my.sharepoint.com/personal/{username}_{domain}_onmicrosoft_com/**. For example: https://dpe-my.sharepoint.com/personal/admin_dpe_onmicrosoft_com/.
+	* **username**: Full qualified name for the Office 365 user. E.g.: admin@dpe.onmicrosoft.com.
+	* **password**: The password for the Office 365 user.
+	* **folderName**: The folder in the personal's site documents where the app will upload files. Leave the default value **Requests**.
+
+1. Save and close the file.
+
+1. Run **Reset.cmd** in the **Setup** folder to execute the reset scripts. These scripts configure the settings files for each client app, removes any record in the Mobile Service SQL database and deletes all the files in the **Requests** folder in SharePoint.
+
+	> **Note:** You can execute **Reset.cmd** any time you need to reset the demo. As you already configured Azure AD and the Mobile Service you only need to execute the reset scripts to reset the demo to a starting point.
+
+	
+#### First Run - Windows Store App ####
+
+Follow these steps to run the **FacilityRequests** app to adjust the correct Simulator's resolution display and orientation.
+
+1. Open **FacilityApp.sln** located under the **Source** folder.
+
+1. Set **FacilityApp.UI.Windows** as the startup project and run the app using the Simulator.
+
+1. Click on the **resolution** button and set its value to **12'' 1280 X 800 (16:10, 100%)**.
+
+	![Changing the simulator resolution](Images/changing-the-simulator-resolution.png?raw=true)
+	
+1. Change the orientation of the Simulator by rotating it clockwise 90 degreess.
+
+	![Rotating the simulator clockwise](Images/rotating-the-simulator-clockwise.png?raw=true)
+
+	Your Simulator is now adjusted.
+	
+	![Simulator running](Images/simulator-running.png?raw=true)
+	
+	
 <a name="Demo" />
 ## Demo ##
 
@@ -279,7 +395,7 @@ This demo is composed of the following segments:
 <a name="segment2" />
 ### Integrating with ADAL and Deploying to Windows Azure Mobile Services###
 
-1. Right-click the MobileService project and click **Manage NuGet Packages**.
+1. Right-click the **MobileService** project and click **Manage NuGet Packages**.
 
 	![Manage NuGet Packages](Images/manage-nuget-packages.png?raw=true)
 	
@@ -351,7 +467,7 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** The Portable Class Library allows us to reuse our code across a variety of client platforms.
 	
-8. Open **FacilityServiceBase.cs** and explain the advatages of the integration with the **Mobile Services SDK**. 
+8. Open **FacilityServiceBase.cs** and explain the advantages of the integration with the **Mobile Services SDK**. 
 
 	![Mobile Services SDK integration](Images/mobile-services-sdk-integration.png?raw=true)
 	
