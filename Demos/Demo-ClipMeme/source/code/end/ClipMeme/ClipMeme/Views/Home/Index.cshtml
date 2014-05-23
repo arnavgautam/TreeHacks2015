@@ -1,0 +1,33 @@
+﻿<!-- content -->
+<div class="title">Welcome to ClipMeme. </div>
+
+<div class="subtitle">
+    Upload your favorite animated gifs and and we'll help caption them.
+</div>
+
+<div class="loading-clips" ng-show="loading">
+    <p>Loading Clips...</p>
+    <img src="/Content/Images/W8Spinner.GIF" alt="" />
+</div>
+<div id="wrapper">
+    <div id="columns">
+        <div class="meme" ng-repeat="img in uploadingImages">
+            <div class="meme-image" style="height:200px">
+                <div class='inprogress-overlay' style="vertical-align: middle; margin: 0px;line-height: 200px;">Processing...</div>
+            </div>
+        </div>
+        <div class="meme" ng-repeat="img in images">
+            <div class="meme-image">
+                <div data-source="img.URL" data-app-imagefreeze></div>
+            </div>
+            <div class="meme-action">
+                <div class="meme-user"><span class="text-muted">Submited by:</span> <a href="#">{{image.Username}}</a></div>
+                <div class="share-panel">
+                    <div class="inline text-muted share-label">Share: </div>
+                    <div class="social-icon twitter right"></div>
+                    <div class="social-icon facebook right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

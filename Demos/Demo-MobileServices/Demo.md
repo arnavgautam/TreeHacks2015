@@ -274,7 +274,7 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 1. Your Simulator is now adjusted. Stop the app in Visual Studio.
 	
 	![Simulator running](Images/simulator-running.png?raw=true)
-
+	
 1. Open the solutions **FacilityApp** and **MobileServices** in Visual Studio. Open a new Visual Studio instance but do not open any solutions.
 	
 <a name="Demo" />
@@ -310,7 +310,7 @@ This demo is composed of the following segments:
 	> **Speaking Point:** Mention any .NET language can be used to build the Mobile Service right from VS, and the framework is built on top of ASP.NET Web API, which means we get leverage the power of NuGet and all our existing skills and code.
 	
 5. Switch to the **MobileService** solution.
-	
+
 5. Explain the contents of the project template. Open and explain each one of the following folders: 
 
 	- **Controllers**
@@ -344,42 +344,42 @@ This demo is composed of the following segments:
 	namespace MobileService.DataObjects
 	{
 		using System;
-		using Microsoft.WindowsAzure.Mobile.Service;
-		
+	using Microsoft.WindowsAzure.Mobile.Service;
+	
 		public class FacilityRequest : EntityData, ITableData
-		{
-			public string User { get; set; }
+	{
+		public string User { get; set; }
 
-			public RoomType RoomType { get; set; }
+		public RoomType RoomType { get; set; }
 
-			public string Building { get; set; }
+		public string Building { get; set; }
 
-			public string Room { get; set; }
+		public string Room { get; set; }
 
-			public string GeoLocation { get; set; }
+		public string GeoLocation { get; set; }
 
-			public string BTLEId { get; set; }
+		public string BTLEId { get; set; }
 
-			public string BeforeImageUrl { get; set; }
+		public string BeforeImageUrl { get; set; }
 
-			public string AfterImageUrl { get; set; }
+		public string AfterImageUrl { get; set; }
 
-			public string ProblemDescription { get; set; }
+		public string ProblemDescription { get; set; }
 
-			public string ServiceNotes { get; set; }
+		public string ServiceNotes { get; set; }
 
-			public string DocId { get; set; }
+		public string DocId { get; set; }
 
-			public DateTimeOffset RequestedDate { get; set; }
+		public DateTimeOffset RequestedDate { get; set; }
 
-			public DateTimeOffset CompletedDate { get; set; }
-		}
-		
-		public enum RoomType
-		{
-			Office,
-			Auditorium,
-		}
+		public DateTimeOffset CompletedDate { get; set; }
+	}
+	
+	public enum RoomType
+	{
+		Office,
+		Auditorium,
+	}
 	}
 	````
 
@@ -487,7 +487,7 @@ This demo is composed of the following segments:
 10. Replace the **LoginAsync** method with the following highlighted code snippet.
 
 	(Code Snippet - _authclient_)
-	<!-- mark:1-15 -->
+	<!-- mark:3-21 -->
 	````C#
 	public override async Task<string> LoginAsync(bool clearCache, string authorityId, string redirectUri, string resourceId, string clientId)
 	{
@@ -502,6 +502,13 @@ This demo is composed of the following segments:
 
 	    // Request access to Azure Mobile Services
 	    await MobileServiceClientProvider.MobileClient.LoginAsync(MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory, token);
+
+		var authContext = new AuthenticationContext(ConfigurationHub.ReadConfigurationValue("AadAuthority"), false);
+
+		// Get the sharepoint token
+		var authenticationResult = await authContext.AcquireTokenByRefreshTokenAsync(result.RefreshToken, ConfigurationHub.ReadConfigurationValue("AadClientID"), ConfigurationHub.ReadConfigurationValue("SharePointResource"));
+		State.SharePointToken = authenticationResult.AccessToken;
+
 	    return result.AccessToken;
 	}	
 	````

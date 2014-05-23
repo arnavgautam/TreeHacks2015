@@ -1,0 +1,13 @@
+node_modules
+azure_error
+/obj
+/packages
+
+*.suo
+*.user
+[Bb]in
+[Oo]bj
+
+bin/
+
+ClipMeme/App_Data/jobs/
