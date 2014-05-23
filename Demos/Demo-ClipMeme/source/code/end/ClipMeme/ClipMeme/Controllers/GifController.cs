@@ -1,7 +1,5 @@
 ﻿namespace ClipMeme.Controllers
 {
-    using ClipMeme.Models;
-    using ClipMeme.Services;
     using System;
     using System.Collections.Generic;
     using System.Net;
@@ -9,6 +7,9 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
+    using ClipMeme.Models;
+    using ClipMeme.Services;
+  
     public class GifController : ApiController
     {
         public async Task<IEnumerable<Meme>> Get()
@@ -72,7 +73,7 @@
                 {
                     { "UserName", username },
                     { "OverlayText", overlayText },
-                    { "HubId", hubId}
+                    { "HubId", hubId }
                 });
         }
 

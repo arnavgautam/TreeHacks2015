@@ -6,6 +6,7 @@
     angular.module('app').controller(controllerId, ['$scope', 'gifservice', '$modal', 'signalrservice', '$rootScope', main]);
 
     function main($scope, gifservice, $modal, signalrservice, $rootScope) {
+        $rootScope.username = "Mads";
         $scope.loading = true;
         $scope.uploadingImages = [];
         

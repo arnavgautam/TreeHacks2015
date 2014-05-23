@@ -1,12 +1,5 @@
 ﻿namespace ClipMeme.Services
 {
-    using ClipMeme.Models;
-    using GifGenerator.Models;
-    using Microsoft.WindowsAzure.Storage;
-    using Microsoft.WindowsAzure.Storage.Blob;
-    using Microsoft.WindowsAzure.Storage.Queue;
-    using Microsoft.WindowsAzure.Storage.RetryPolicies;
-    using Microsoft.WindowsAzure.Storage.Table;
     using System;
     using System.Collections.Generic;
     using System.Configuration;
@@ -14,35 +7,25 @@
     using System.Threading.Tasks;
     using System.Web.Script.Serialization;
 
+    using ClipMeme.Models;
+    using GifGenerator.Models;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Queue;
+    using Microsoft.WindowsAzure.Storage.RetryPolicies;
+    using Microsoft.WindowsAzure.Storage.Table;
+
     public class GifStorageService
     {
-        private readonly CloudStorageAccount _storageAccount;
-
-        static GifStorageService()
-        {
-            var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString);
-            var blobClient = storageAccount.CreateCloudBlobClient();
-            var queueClient = storageAccount.CreateCloudQueueClient();
-            var tableClient = storageAccount.CreateCloudTableClient();
-
-            blobClient.GetContainerReference("uploads").CreateIfNotExists();
-            var container = blobClient.GetContainerReference("memes");
-            container.CreateIfNotExists();
-            container.SetPermissions(new BlobContainerPermissions() { PublicAccess = BlobContainerPublicAccessType.Container });
-
-            queueClient.GetQueueReference("uploads").CreateIfNotExists();
-
-            tableClient.GetTableReference("MemeMetadata").CreateIfNotExists();
-        }
+        private readonly CloudStorageAccount storageAccount;
 
         public GifStorageService()
         {
-            _storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString);
+            this.storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString);
         }
 
         public Task<IEnumerable<Meme>> GetAllAsync()
         {
-            var tableClient = _storageAccount.CreateCloudTableClient();
+            var tableClient = this.storageAccount.CreateCloudTableClient();
             var table = tableClient.GetTableReference("MemeMetadata");
             var query = new TableQuery<MemeMetadata>();
             var requestOptions = new TableRequestOptions()
@@ -58,14 +41,12 @@
                 (result as List<Meme>).Add(new Meme { Name = memeMetadata.Description, URL = memeMetadata.BlobUri, Username = memeMetadata.Username });
             }
 
-
             return Task.FromResult(result);
         }
 
         public async Task StoreGifAsync(string fileName, byte[] gifBytes, string mediaType, IDictionary<string, string> metadata)
         {
-
-            var blobClient = _storageAccount.CreateCloudBlobClient();
+            var blobClient = this.storageAccount.CreateCloudBlobClient();
             var container = blobClient.GetContainerReference("uploads");
 
             var blob = container.GetBlockBlobReference(fileName);
@@ -79,7 +60,7 @@
             blob.SetMetadata();
             blob.SetProperties();
 
-            var queueClient = _storageAccount.CreateCloudQueueClient();
+            var queueClient = this.storageAccount.CreateCloudQueueClient();
             queueClient.RetryPolicy = new LinearRetry(TimeSpan.FromMilliseconds(500), 5);
             var queue = queueClient.GetQueueReference("uploads");
 

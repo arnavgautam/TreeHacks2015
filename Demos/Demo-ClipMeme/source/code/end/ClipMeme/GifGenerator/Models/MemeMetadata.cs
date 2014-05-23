@@ -7,7 +7,6 @@
     {
         public MemeMetadata()
         {
-
         }
 
         public MemeMetadata(string blobName, string uri, string description, string username)

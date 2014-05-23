@@ -2,6 +2,7 @@
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(ClipMeme.Startup))]
+
 namespace ClipMeme
 {
     public partial class Startup

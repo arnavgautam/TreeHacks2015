@@ -1,30 +1,28 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNet.SignalR.Client;
-
-namespace GifGenerator
+﻿namespace GifGenerator
 {
-    using Microsoft.WindowsAzure.Jobs;
     #region using System...
+    using System;
     using System.Collections.Generic;
-    using System.IO;
+    using System.Configuration;
     using System.Drawing;
     using System.Drawing.Imaging;
-    using NGif;
-    using System.Configuration;
-    using System;
+    using System.IO;
+    using System.Threading.Tasks;
     using GifGenerator.Models;
-    using Microsoft.AspNet.SignalR;
+    using Microsoft.AspNet.SignalR.Client;
     #endregion
+    using Microsoft.WindowsAzure.Jobs;
+    using NGif;
 
     public class Program
     {
-        private static IHubProxy _hub;
         private const string Url = "http://azuretkclipmeme.azurewebsites.net";
+        private static IHubProxy hub;
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var hubConnection = new HubConnection(Url);
-            _hub = hubConnection.CreateHubProxy("GifServerHub");
+            hub = hubConnection.CreateHubProxy("GifServerHub");
             hubConnection.Start().Wait();
 
             Console.WriteLine("Connected to {0}", Url);
@@ -71,7 +69,7 @@ namespace GifGenerator
         private static async Task SendCompleteNotification(Message message, string uri)
         {
             Console.WriteLine("Invoked  GifGenerationCompleted with URL: {0}", uri);
-            await _hub.Invoke("GifGenerationCompleted", message.HubId, uri);
+            await hub.Invoke("GifGenerationCompleted", message.HubId, uri);
         }
 
         #region Private Methods
@@ -111,7 +109,8 @@ namespace GifGenerator
 
         private static Bitmap RenderOverlay(Bitmap source, string overlayText)
         {
-            var graphics = Graphics.FromImage(source);  //fails for indexed pixel format image (see: m1col.gif sample)
+            // fails for indexed pixel format image (see: m1col.gif sample)
+            var graphics = Graphics.FromImage(source);  
             var brush = new SolidBrush(Color.White);
             var fontSize = 32;
             var font = new Font("Microsoft Sans Serif", fontSize, FontStyle.Bold);

@@ -106,13 +106,21 @@
   <ItemGroup>
     <Compile Include="Models\MemeMetadata.cs" />
     <Compile Include="Models\Message.cs" />
-    <Compile Include="NGif\AnimatedGifEncoder.cs" />
-    <Compile Include="NGif\GifDecoder.cs" />
-    <Compile Include="NGif\GifEncoder.cs" />
+    <Compile Include="NGif\AnimatedGifEncoder.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="NGif\GifDecoder.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="NGif\GifEncoder.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="NGif\LZWEncoder.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="NGif\NeuQuant.cs" />
+    <Compile Include="NGif\NeuQuant.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

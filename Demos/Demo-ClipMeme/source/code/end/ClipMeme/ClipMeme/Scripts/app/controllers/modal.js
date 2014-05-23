@@ -20,7 +20,8 @@
                     url: '/api/gif',
                     data: {
                         textOverlay: $scope.image.text,
-                        hubId: $rootScope.hubid
+                        hubId: $rootScope.hubid,
+                        username: $rootScope.username
                     },
                     file: $scope.image.file,
                 }).progress(function (evt) {

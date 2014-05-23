@@ -4,8 +4,7 @@
 
     public class AccountController : Controller
     {
-        //
-        // GET: /Account/
+        // GET: /Account/ 
         public ActionResult Index()
         {
             return this.View();
@@ -15,5 +14,5 @@
         {
             return this.View("Index");
         }
-	}
+    }
 }
