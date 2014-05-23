@@ -1,0 +1,45 @@
+<configuration>
+  <localPaths>
+    <workingDir>C:\Demos</workingDir>
+    <beginSolutionDir>.\code\begin\ClipMeme</beginSolutionDir>
+    <solutionWorkingDir>C:\Demos</solutionWorkingDir>
+	<vsSuoFile>.\setup\assets\ClipMeme.v12.suo</vsSuoFile>
+	<webConfig>C:\Demos\ClipMeme\Web.config</webConfig>
+	<solution>C:\Demos\ClipMeme.sln</solution>
+	<vsSettingsFile>.\setup\assets\VS2013Settings.vssettings</vsSettingsFile>
+	<gifFile>.\setup\assets\unplug.gif</gifFile>
+  </localPaths>
+  
+  <appSettings>
+		<storageConnectionString>DefaultEndpointsProtocol=https;AccountName=clipmemestorage;AccountKey=rcvLiI9vjwNN80S6fLCSJ+qUElqTX+ZUhVevzyd3iOEmsrjYqZiCw35Pl/X3zUatAk0TDVFi1yWt1j0h+/MeaA==;</storageConnectionString>
+  </appSettings>
+  
+  <webDeploy>
+	<server>waws-prod-bay-007.publish.azurewebsites.windows.net</server>
+	<siteName>clipmeme</siteName>
+	<username>$clipmeme</username>
+	<password>KsEn1ydyh6sZvWeGat20hLwANlXQK7JcFtqlXctxa17TpRGqxBM75Z5QebAh</password>
+	<stagingSiteName>clipmeme__Staging</stagingSiteName>
+	<stagingUsername>$clipmeme__Staging</stagingUsername>
+	<stagingPassword>hk8tJvqFezkj2HGAWvNypljke2qenq63hrYqYdncMbWi7co5EqkHBl7N7D1N</stagingPassword>
+  </webDeploy>
+  
+  <azureSubscription>
+		<publishSettingsFile>.\setup\assets\publishSettings\primary.publishsettings</publishSettingsFile>
+		<accountName>BUILD Web Workload 1 -- Cory | Jon</accountName>
+		<enableWebSitesDelete>true</enableWebSitesDelete>
+		<webSitesToKeep>clipmeme, clipmeme-ne, clipmeme-je, clipmemes, clipmemes-ne, clipmemes-ea, clipmemes-je</webSitesToKeep>	
+		<storageMemesContainerName>memes</storageMemesContainerName>
+		<storageMemesTableName>MemeMetadata</storageMemesTableName>
+		<storageDirectoryToScan>.\setup\assets\gifs</storageDirectoryToScan>
+		<webJobFunctionName>clipmemestorage.GifGenerator.GifGenerator.Program.ProcessImage</webJobFunctionName>			
+   </azureSubscription>	
+   
+   <iisExpressPort>7148</iisExpressPort>
+   <browserTabsToOpen>https://manage.windowsazure.com/microsoft.onmicrosoft.com#Workspaces/WebsiteExtension/Website/clipmeme/dashboard,
+					  https://manage.windowsazure.com/microsoft.onmicrosoft.com#Workspaces/WebsiteExtension/Website/clipmeme/jobs,
+					  https://clipmeme.scm.azurewebsites.net/azurejobs/#/functions,
+                      https://manage.windowsazure.com/microsoft.onmicrosoft.com#Workspaces/TrafficManagerExtension/Profile/clipmeme/Endpoints,
+					  http://clipmeme.trafficmanager.net/
+	</browserTabsToOpen>
+ </configuration>

@@ -1,0 +1,50 @@
+===============================================
+Manual Reset Steps (run them after every reset)
+===============================================
+
+1- On the IE opened tabs, make sure that session was initiated with both the Web Job Dashboard and the Azure Mgmt Portal.
+   Also ensure to check the "remember me" checkbox.
+	- build2014web1@outlook.com -> Primary Subscription
+	- build2014web2@outlook.com -> Shadow Subscription
+
+  For the WebJobs dashboard:
+	- build2014web1 -> Primary 
+	- build2014web2 -> Shadow
+
+  NOTE: all required tabs are saved as "Home Page". click the home page button to populate them.
+
+2- In the Traffic Manager Tab, remove one of the websites from the traffic manager endpoints:
+	- Primary: remove clipmeme
+	- Shadow: remove clipmemeS
+
+3- Open a new instance of IE pointing to http://localhost:7148. Make sure the "F12 Auto Sync" feature is checked in Web Essentials.
+4. Open Chrome pointing to http://localhost:7148
+
+5- Check Visual Studio layout: Toolbox, Server exlorer on left (minimized); Solution explorer on right (visible).
+
+6- Site Replicator (this could be done only once) - make sure that the Site Replicator Extension is enabled in the main sites:
+	- Primary: clipmeme: https://clipmeme.scm.azurewebsites.net/SiteExtensions/#gallery
+	- Primary: clipmemes: https://clipmemes.scm.azurewebsites.net/SiteExtensions/#gallery
+
+
+TODO (one time)
+====
+ZOOM
+- Make sure IE and Chrome zoom was set to 125%
+
+Web Essentials
+- Enable CSS - "Minify files on save"
+- Disable CSS - "Small images should be inline"
+
+
+Primary Account
+===============
+build2014web1@outlook.com
+same pass as in VMs and all demos
+
+
+Shadow Account
+===============
+build2014web2@outlook.com
+same pass as in VMs and all demos
+	
