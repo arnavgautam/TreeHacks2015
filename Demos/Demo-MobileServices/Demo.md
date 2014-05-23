@@ -357,47 +357,51 @@ This demo is composed of the following segments:
 	_Adding FacilityRequest.cs class_
 
 8. Replace the _FacilityRequest_ class in VS with the following snippet.
-	<!-- mark:1-36 -->
+
+	
+	(Code Snippet - _facilityrequest_)
+	<!-- mark:1-40 -->
 	````C#
 	namespace MobileService.DataObjects
 	{
 		using System;
-	using Microsoft.WindowsAzure.Mobile.Service;
+		using Microsoft.WindowsAzure.Mobile.Service;
+		using Microsoft.WindowsAzure.Mobile.Service.Tables;
 	
 		public class FacilityRequest : EntityData, ITableData
-	{
-		public string User { get; set; }
+		{
+			public string User { get; set; }
 
-		public RoomType RoomType { get; set; }
+			public RoomType RoomType { get; set; }
 
-		public string Building { get; set; }
+			public string Building { get; set; }
 
-		public string Room { get; set; }
+			public string Room { get; set; }
 
-		public string GeoLocation { get; set; }
+			public string GeoLocation { get; set; }
 
-		public string BTLEId { get; set; }
+			public string BTLEId { get; set; }
 
-		public string BeforeImageUrl { get; set; }
+			public string BeforeImageUrl { get; set; }
 
-		public string AfterImageUrl { get; set; }
+			public string AfterImageUrl { get; set; }
 
-		public string ProblemDescription { get; set; }
+			public string ProblemDescription { get; set; }
 
-		public string ServiceNotes { get; set; }
+			public string ServiceNotes { get; set; }
 
-		public string DocId { get; set; }
+			public string DocId { get; set; }
 
-		public DateTimeOffset RequestedDate { get; set; }
+			public DateTimeOffset RequestedDate { get; set; }
 
-		public DateTimeOffset CompletedDate { get; set; }
-	}
+			public DateTimeOffset CompletedDate { get; set; }
+		}
 	
-	public enum RoomType
-	{
-		Office,
-		Auditorium,
-	}
+		public enum RoomType
+		{
+			Office,
+			Auditorium,
+		}
 	}
 	````
 
@@ -576,39 +580,39 @@ We've added authentication with Active Directory, but what our app users would r
 
 2. Locate the **PatchFacilityRequest** method and replace it with the following snippet.
 
-	<!-- (Code Snippet - _sharepoint_);mark:3-31 -->
+	(Code Snippet - _sharepoint_)
+	<!-- mark:1-31 -->
 	````C#
 	public async Task<FacilityRequest> PatchFacilityRequest(string id, Delta<FacilityRequest> patch)
 	{
 		var sharePointUri = SharePointProvider.SharePointUri;
-            if (sharePointUri == null)
+		if (sharePointUri == null)
                 Services.Settings.TryGetValue("SharePointUri", out sharePointUri);
 
-            SharePointProvider.SharePointUri = sharePointUri;
-            var facilityRequest = patch.GetEntity();
+		SharePointProvider.SharePointUri = sharePointUri;
+		var facilityRequest = patch.GetEntity();
 
-            sharePointUri = SharePointProvider.SharePointUri + string.Format(@"/getfolderbyserverrelativeurl('Documents')/Folders('Requests')/Files/Add(url='{0}.docx', overwrite=true)",
-                        facilityRequest.DocId);
+		sharePointUri = SharePointProvider.SharePointUri + string.Format(@"/getfolderbyserverrelativeurl('Documents')/Folders('Requests')/Files/Add(url='{0}.docx', overwrite=true)", facilityRequest.DocId);
 
-            string authority;
-            string sharePointResource;
-            string activeDirectoryClientId;
-            string activeDirectoryClientSecret;
+		string authority;
+		string sharePointResource;
+		string activeDirectoryClientId;
+		string activeDirectoryClientSecret;
 
-            Services.Settings.TryGetValue("Authority", out authority);
-            Services.Settings.TryGetValue("SharePointResource", out sharePointResource);
-            Services.Settings.TryGetValue("ActiveDirectoryClientId", out activeDirectoryClientId);
-            Services.Settings.TryGetValue("ActiveDirectoryClientSecret", out activeDirectoryClientSecret);
+		Services.Settings.TryGetValue("Authority", out authority);
+		Services.Settings.TryGetValue("SharePointResource", out sharePointResource);
+		Services.Settings.TryGetValue("ActiveDirectoryClientId", out activeDirectoryClientId);
+		Services.Settings.TryGetValue("ActiveDirectoryClientSecret", out activeDirectoryClientSecret);
 
-            var token = await SharePointProvider.RequestAccessToken((ServiceUser)this.User, authority, sharePointResource, activeDirectoryClientId, activeDirectoryClientSecret);
+		var token = await SharePointProvider.RequestAccessToken((ServiceUser)this.User, authority, sharePointResource, activeDirectoryClientId, activeDirectoryClientSecret);
 
-            string headerUri;
-            Services.Settings.TryGetValue("HeaderUri", out headerUri);
-            var document = SharePointProvider.BuildDocument(facilityRequest, headerUri);
+		string headerUri;
+		Services.Settings.TryGetValue("HeaderUri", out headerUri);
+		var document = SharePointProvider.BuildDocument(facilityRequest, headerUri);
 
-            await SharePointProvider.UploadFile(sharePointUri, document, token, activeDirectoryClientId);
+		await SharePointProvider.UploadFile(sharePointUri, document, token, activeDirectoryClientId);
 
-            return await this.UpdateAsync(id, patch);
+		return await this.UpdateAsync(id, patch);
 	}	
 	````
 

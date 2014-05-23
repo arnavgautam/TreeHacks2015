@@ -1,18 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacilityApp.Core", "FacilityApp.Core\FacilityApp.Core\FacilityApp.Core.csproj", "{29DDA322-9640-4167-A6B8-F745781DC77D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacilityApp.UI.Windows", "Client\FacilityApp.UI.Windows.csproj", "{C8FCA4E8-5E5B-4B79-95A9-A74383823FEC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8D52CB10-FE62-42AC-AAE4-47FB91BE5488}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacilityApp.UI.IOS", "FacilityApp.UI.IOS\FacilityApp.UI.IOS.csproj", "{40DD63D3-DD98-4154-9C26-B2FA037BB947}"
 EndProject

@@ -210,6 +210,7 @@
     <Compile Include="Common\Providers\SharePointProvider.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\FacilityRequestController.cs" />
+    <Compile Include="Controllers\TodoItemController.cs" />
     <Compile Include="DataObjects\FacilityRequest.cs" />
     <Compile Include="DataObjects\TodoItem.cs" />
     <Compile Include="Global.asax.cs">
@@ -238,6 +239,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\mobile-hmeydacmobiledemo.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
