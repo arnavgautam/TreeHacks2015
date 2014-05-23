@@ -24,11 +24,17 @@ pushd ".."
 [string] $sharepointPassword = $xmlAzureSettings.configuration.sharepoint.password
 [string] $sharepointFolderName = $xmlAzureSettings.configuration.sharepoint.folderName
 
-[string] $plistpath = Join-Path -path $scriptDir -childpath "..\code\endv2\FacilityApp\FacilityApp.UI.IOS\Settings.plist"  -resolve
-[string] $facilityAppClient = Join-Path -path $scriptDir -childpath "..\code\endv2\FacilityApp\Client\Assets\Configuration\Settings.xml"  -resolve
-[string] $msSettings = Join-Path -path $scriptDir -childpath "..\code\endv2\FacilityApp\Service\Web.config"  -resolve
 [string] $src_dir_location = Join-Path -path $scriptDir -childpath ".\assets\image\Map_Large.png" -resolve
-[string] $dst_dir_location = Join-Path -path $scriptDir -childpath "..\code\endv2\FacilityApp\Client\Assets\Map_Large.png" -resolve
+
+[string] $plistpathbegin = Join-Path -path $scriptDir -childpath "..\FacilityApp\Begin\FacilityApp.UI.IOS\Settings.plist"  -resolve
+[string] $facilityAppClientbegin = Join-Path -path $scriptDir -childpath "..\FacilityApp\Begin\Client\Assets\Configuration\Settings.xml"  -resolve
+[string] $msSettingsbegin = Join-Path -path $scriptDir -childpath "..\FacilityApp\Begin\Service\Web.config"  -resolve
+[string] $dst_dir_locationbegin = Join-Path -path $scriptDir -childpath "..\FacilityApp\Begin\Client\Assets\Map_Large.png" -resolve
+
+[string] $plistpathend = Join-Path -path $scriptDir -childpath "..\FacilityApp\End\FacilityApp.UI.IOS\Settings.plist"  -resolve
+[string] $facilityAppClientend = Join-Path -path $scriptDir -childpath "..\FacilityApp\End\Client\Assets\Configuration\Settings.xml"  -resolve
+[string] $msSettingsend = Join-Path -path $scriptDir -childpath "..\FacilityApp\End\Service\Web.config"  -resolve
+[string] $dst_dir_locationend = Join-Path -path $scriptDir -childpath "..\FacilityApp\End\Client\Assets\Map_Large.png" -resolve
 
 popd
 
@@ -42,18 +48,34 @@ Write-Action "Cleaning SharePoint Library..."
 .\tasks\clean-sharepoint-library\CleanSharePointLibrary.exe -SharePointSiteUrl "$sharepointBaseUrl" -SharePointUserName "$sharepointUsername" -SharePointPassword "$sharepointPassword" -SharePointFolder "$sharepointFolderName"
 Write-Done
 
-Write-Action "Updating images in Windows Store application"
-Copy-Item $src_dir_location $dst_dir_location -force
+Write-Action "Updating images in the Windows Store application (Begin sln)"
+Copy-Item $src_dir_location $dst_dir_locationbegin -force
 Write-Done
 
-Write-Action "Setting Windows Store client settings..."
-Invoke-Expression  ".\tasks\updateConfig.ps1 -settingsConfig `"$facilityAppClient`" -azureSettingsFile `"..\config.xml`"  -node `"appSettings`""
+Write-Action "Updating images in the Windows Store application (End sln)"
+Copy-Item $src_dir_location $dst_dir_locationend -force
 Write-Done
 
-Write-Action "Setting iOS client settings..."
-Invoke-Expression ".\tasks\updatePlist.ps1 -plistPath `"$plistpath`" -azureSettingsFile `"..\config.xml`" "
+Write-Action "Updating Windows Store client settings (Begin sln)..."
+Invoke-Expression  ".\tasks\updateConfig.ps1 -settingsConfig `"$facilityAppClientbegin`" -azureSettingsFile `"..\config.xml`"  -node `"appSettings`""
 Write-Done
 
-Write-Action "Setting Mobile Services settings..."
-Invoke-Expression ".\tasks\updateConfig.ps1 -settingsConfig `"$msSettings`" -azureSettingsFile `"..\config.xml`" -node `"configuration/appSettings`""
+Write-Action "Updating Windows Store client settings (End sln)..."
+Invoke-Expression  ".\tasks\updateConfig.ps1 -settingsConfig `"$facilityAppClientend`" -azureSettingsFile `"..\config.xml`"  -node `"appSettings`""
+Write-Done
+
+Write-Action "Updating iOS client settings (Begin sln)..."
+Invoke-Expression ".\tasks\updatePlist.ps1 -plistPath `"$plistpathbegin`" -azureSettingsFile `"..\config.xml`" "
+Write-Done
+
+Write-Action "Updating iOS client settings (End sln)..."
+Invoke-Expression ".\tasks\updatePlist.ps1 -plistPath `"$plistpathend`" -azureSettingsFile `"..\config.xml`" "
+Write-Done
+
+Write-Action "Updating the Mobile Service settings (Begin sln)..."
+Invoke-Expression ".\tasks\updateConfig.ps1 -settingsConfig `"$msSettingsbegin`" -azureSettingsFile `"..\config.xml`" -node `"configuration/appSettings`""
+Write-Done
+
+Write-Action "Updating the Mobile Service settings (End sln)..."
+Invoke-Expression ".\tasks\updateConfig.ps1 -settingsConfig `"$msSettingsend`" -azureSettingsFile `"..\config.xml`" -node `"configuration/appSettings`""
 Write-Done
