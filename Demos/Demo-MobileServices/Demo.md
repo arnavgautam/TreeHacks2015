@@ -485,22 +485,29 @@ This demo is composed of the following segments:
 10. Place the following highlighted snippet of code in the **LoginAsync** method.
 
 	(Code Snippet - _authclient_)
-	<!-- mark:3-14 -->
+	<!-- mark:3-21 -->
 	````C#
 	public override async Task<string> LoginAsync(bool clearCache, string authorityId, string redirectUri, string resourceId, string clientId)
 	{
-	    var context = new AuthenticationContext(authorityId);
-	    var result = await context.AcquireTokenAsync(resourceId, clientId);
+		var context = new AuthenticationContext(authorityId);
+		var result = await context.AcquireTokenAsync(resourceId, clientId);
 
-	    // Build our token
-	    var token = JObject.FromObject(new
-	    {
-		access_token = result.AccessToken,
-	    });
+		// Build our token
+		var token = JObject.FromObject(new
+		{
+			access_token = result.AccessToken,
+		});
 
-	    // Request access to Azure Mobile Services
-	    await MobileServiceClientProvider.MobileClient.LoginAsync(MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory, token);
-	    return result.AccessToken;
+		// Request access to Azure Mobile Services
+		await MobileServiceClientProvider.MobileClient.LoginAsync(MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory, token);
+
+		var authContext = new AuthenticationContext(ConfigurationHub.ReadConfigurationValue("AadAuthority"), false);
+
+		// Get the sharepoint token
+		var authenticationResult = await authContext.AcquireTokenByRefreshTokenAsync(result.RefreshToken, ConfigurationHub.ReadConfigurationValue("AadClientID"), ConfigurationHub.ReadConfigurationValue("SharePointResource"));
+		State.SharePointToken = authenticationResult.AccessToken;
+
+		return result.AccessToken;
 	}	
 	````
 
