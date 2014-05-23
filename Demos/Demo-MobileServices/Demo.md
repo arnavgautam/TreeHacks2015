@@ -148,9 +148,9 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 #### Task 4 - Associate your Client App to the Windows Store ####
 	
-1. Open the **FacilityApp.sln** solution in Visual Studio.
+1. Open the **Begin\FacilityApp.sln** solution located under the **Source** folder in Visual Studio.
 
-1. Right-click the **FacilityApp.UI.Windows** project and select **Associate App with the Store...**.
+1. Right-click the **FacilityApp.UI.Windows** project and select **Associate App with the Store...** under **Store** sub-menu.
 
 1. Sign into your **Dev Center** account.
 
@@ -186,7 +186,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. In the **Redirect URIs** section add the Mobile Services URL. E.g.: https://{mobileservice-name}.azure-mobile.net/.
 	
-1. Scroll down to the **permissions to other applications** section and grant full access to the mobile service application that you registered earlier.
+1. Scroll down to the **permissions to other applications** section and grant full access to the mobile service application that you registered earlier. Click **Save**
 
 	![Granting permissions to the Client App](Images/granting-permissions-to-the-client-app.png?raw=true)
 	
@@ -257,7 +257,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 Follow these steps to run the **FacilityRequests** app to adjust the correct Simulator's resolution display and orientation.
 
-1. Open **FacilityApp.sln** located under the **Source** folder.
+1. Open the **Begin\FacilityApp.sln** solution located under the **Source** folder.
 
 1. Set **FacilityApp.UI.Windows** as the startup project and run the app using the Simulator.
 
