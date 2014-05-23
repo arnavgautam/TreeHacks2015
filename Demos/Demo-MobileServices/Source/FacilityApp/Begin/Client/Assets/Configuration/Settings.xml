@@ -19,4 +19,5 @@
   <add key="MapImageLarge" value="ms-appx:///Assets/Map_Large.png" />
   <add key="StatusImageComplete" value="/Assets/complete.png" />
   <add key="StatusImageIncomplete" value="/Assets/complete.png" />
+  <add key="UserImage" value="ms-appx:///Assets/UserImage.png" />
 </appSettings>

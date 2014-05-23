@@ -208,6 +208,8 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. Browse to the **Setup** folder of this demo and open the file **Config.xml**.
 
+1. The starting solutions will be copied to the **C:\Demos\Source** folder. If you want to change the default directory, update the element **solutionWorkingDir** in **localPaths**.
+
 1. Update the values under **clientSettings** in the XML file to configure your solutions:
 
 	* **AadAuthority**: The Azure AD authority. Use https://login.windows.net/common/oauth2/authorize.
@@ -257,7 +259,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 Follow these steps to run the **FacilityRequests** app to adjust the correct Simulator's resolution display and orientation.
 
-1. Open the **Begin\FacilityApp.sln** solution located under the **Source** folder.
+1. Open the **FacilityApp.sln** solution located in your demo folder (by default **C:\Demos\Source**).
 
 1. Set **FacilityApp.UI.Windows** as the startup project and run the app using the Simulator.
 
@@ -269,9 +271,11 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 
 	![Rotating the simulator clockwise](Images/rotating-the-simulator-clockwise.png?raw=true)
 
-	Your Simulator is now adjusted. Stop the app in Visual Studio.
+1. Your Simulator is now adjusted. Stop the app in Visual Studio.
 	
 	![Simulator running](Images/simulator-running.png?raw=true)
+
+1. Open the solutions **FacilityApp** and **MobileServices** in Visual Studio. Open a new Visual Studio instance but do not open any solutions.
 	
 <a name="Demo" />
 ## Demo ##
@@ -285,9 +289,7 @@ This demo is composed of the following segments:
 <a name="segment1" />
 ### Creating a Mobile Services C# Backend ###
 
-1. Go to **Start** and open **Visual Studio 2013**.
-
-2. Click on **File**, hover on the **New** menu, and click **New Project**.
+1. In Visual Studio, click on **File**, hover on the **New** menu, and click **New Project**.
 
 	![File > New > Project](Images/new-project.png?raw=true)
 	
@@ -307,11 +309,7 @@ This demo is composed of the following segments:
 	
 	> **Speaking Point:** Mention any .NET language can be used to build the Mobile Service right from VS, and the framework is built on top of ASP.NET Web API, which means we get leverage the power of NuGet and all our existing skills and code.
 	
-5. Click **File > Close Solution**, and then **File > Open > Project/Solution...**. Browse to the **source/begin** folder in the demo's folder and open the **MobileService** solution.
-
-	![Open Project](Images/open-project.png?raw=true)
-
-	_Open Begin Solution_
+5. Switch to the **MobileService** solution.
 	
 5. Explain the contents of the project template. Open and explain each one of the following folders: 
 
@@ -343,41 +341,45 @@ This demo is composed of the following segments:
 8. Replace the _FacilityRequest_ class in VS with the following snippet.
 	<!-- mark:1-36 -->
 	````C#
-	using Microsoft.WindowsAzure.Mobile.Service;
-	
-	public class FacilityRequest : EntityData
+	namespace MobileService.DataObjects
 	{
-		public string User { get; set; }
+		using System;
+		using Microsoft.WindowsAzure.Mobile.Service;
+		
+		public class FacilityRequest : EntityData, ITableData
+		{
+			public string User { get; set; }
 
-		public RoomType RoomType { get; set; }
+			public RoomType RoomType { get; set; }
 
-		public string Building { get; set; }
+			public string Building { get; set; }
 
-		public string Room { get; set; }
+			public string Room { get; set; }
 
-		public string GeoLocation { get; set; }
+			public string GeoLocation { get; set; }
 
-		public string BTLEId { get; set; }
+			public string BTLEId { get; set; }
 
-		public string BeforeImageUrl { get; set; }
+			public string BeforeImageUrl { get; set; }
 
-		public string AfterImageUrl { get; set; }
+			public string AfterImageUrl { get; set; }
 
-		public string ProblemDescription { get; set; }
+			public string ProblemDescription { get; set; }
 
-		public string ServiceNotes { get; set; }
+			public string ServiceNotes { get; set; }
 
-		public string DocId { get; set; }
+			public string DocId { get; set; }
 
-		public DateTimeOffset RequestedDate { get; set; }
+			public DateTimeOffset RequestedDate { get; set; }
 
-		public DateTimeOffset CompletedDate { get; set; }
-	}
-	
-	public enum RoomType
-	{
-		Office,
-		Auditorium,
+			public DateTimeOffset CompletedDate { get; set; }
+		}
+		
+		public enum RoomType
+		{
+			Office,
+			Auditorium,
+		}
 	}
 	````
 
@@ -482,10 +484,10 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** What this app is still missing is support for authentication. So let's go ahead and do that.
 
-10. Place the following highlighted snippet of code in the **LoginAsync** method.
+10. Replace the **LoginAsync** method with the following highlighted code snippet.
 
 	(Code Snippet - _authclient_)
-	<!-- mark:3-14 -->
+	<!-- mark:1-15 -->
 	````C#
 	public override async Task<string> LoginAsync(bool clearCache, string authorityId, string redirectUri, string resourceId, string clientId)
 	{
