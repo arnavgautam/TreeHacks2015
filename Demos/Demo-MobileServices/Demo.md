@@ -253,11 +253,29 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 	> **Note:** You can execute **Reset.cmd** any time you need to reset the demo. As you already configured Azure AD and the Mobile Service you only need to execute the reset scripts to reset the demo to a starting point.
 
 	
-#### Task 6 - First Run - Windows Store App ####
+#### Task 6 - First Run
 
 Follow these steps to run the **FacilityRequests** app to adjust the correct Simulator's resolution display and orientation.
 
 1. Open the **Begin\FacilityApp.sln** solution located under the **Source** folder.
+
+1. The **Xamarin Pair With** screen will pop up requesting a PIN.
+
+	![Xamarin Pair With screen](Images/xamarin-pair-with-screen.png?raw=true)
+	
+1. Go to the **MAC OS**, type **Xamarin** in the **Spotlight** control and open **Xamarin.iOS Build Host** application.
+
+	![Xamarin.iOS Build Host app](Images/xamarinios-build-host-app.png?raw=true)
+	
+1. Click **Pair** and take note of the generated **PIN** code.
+
+	![Xamarin.iOS Build Host pin code](Images/xamarinios-build-host-pin-code.png?raw=true)
+
+1. Go back to Visual studio, write the PIN code in the **Xamarin Pair With** screen and click **Pair**.
+
+	![Pairing with Xamarin in Visual Studio](Images/pairing-with-xamarin-in-visual-studio.png?raw=true)
+
+1. A succesfull pairing message pops up. Click **Finish**.
 
 1. Set **FacilityApp.UI.Windows** as the startup project and run the app using the Simulator.
 
