@@ -3,10 +3,10 @@
 
     var controllerId = 'maincontroller';
 
-    angular.module('app').controller(controllerId, ['$scope', 'gifservice', '$modal', 'signalrservice', '$rootScope', main]);
+    angular.module('app').controller(controllerId, ['$scope', 'gifservice', '$modal', 'signalrservice', 'username', main]);
 
-    function main($scope, gifservice, $modal, signalrservice, $rootScope) {
-        $rootScope.username = "Mads";
+    function main($scope, gifservice, $modal, signalrservice, username) {
+        $scope.username = username;
         $scope.loading = true;
         $scope.uploadingImages = [];
         
@@ -39,7 +39,7 @@
             }
             $scope.images.unshift(
                 {
-                    'Username': $rootScope.username,
+                    'Username': $scope.username,
                     'URL': url
                 });
         }

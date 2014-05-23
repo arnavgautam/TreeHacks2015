@@ -7,6 +7,7 @@
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
+            ViewBag.Username = "Marcos";
 
             return this.View();
         }

@@ -3,9 +3,9 @@
 
     var controllerId = 'modalInstanceCtrl';
 
-    angular.module('app').controller(controllerId, ['$scope', '$upload', '$modalInstance', 'gifservice', '$rootScope', modal]);
+    angular.module('app').controller(controllerId, ['$scope', '$upload', '$modalInstance', 'gifservice', '$rootScope', 'username', modal]);
 
-    function modal($scope, $upload, $modalInstance, gifservice, $rootScope) {
+    function modal($scope, $upload, $modalInstance, gifservice, $rootScope, username) {
         cleanVariables();
 
         $scope.dropComplete = function(src, file) {
@@ -21,7 +21,7 @@
                     data: {
                         textOverlay: $scope.image.text,
                         hubId: $rootScope.hubid,
-                        username: $rootScope.username
+                        username: username
                     },
                     file: $scope.image.file,
                 }).progress(function (evt) {
