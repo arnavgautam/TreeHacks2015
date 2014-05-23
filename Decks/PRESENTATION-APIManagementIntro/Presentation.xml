@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Presentation xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>VirtualNetworks</Id>
+  <Author>
+    <Blog></Blog>
+    <Email>nickha@microsoft.com</Email>
+    <Name>Nick Harris</Name>
+  </Author>
+  <Description>
+API Management solutions help organizations expose and publish their backend services as APIs for external and internal consumption. Join us to find out more about the new API Management capability in Azure. In addition to taking a tour of the product and its capabilities, we discuss the business of APIs, why we think the API Management space is important, and how our solution can help you and your customers.
+ </Description>
+  <Document RemoveSpeakerNotes="false">.\APIManagementIntro.pptx</Document>
+  <Title>Introduction to Azure API Management</Title>
+  <Version>1.0.0</Version>
+  <SlideThumbnail>1</SlideThumbnail>
+  <CustomProperties>
+    <Property Name="Filter" Value="Foundation,itprocamps" />
+  </CustomProperties>
+</Presentation>
