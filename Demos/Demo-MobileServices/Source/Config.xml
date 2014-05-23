@@ -2,9 +2,7 @@
 	<appSetup>
 		<packagename>FacilityRequest</packagename>
     </appSetup>
-    <localPaths>
-		<!-- Location where the demo files will be copied in order to perform the demo -->
-        <workingDir>C:\Demos</workingDir>		
+    <localPaths>		
 		<!-- Location where the demo source files will be copied in order to perform the demo -->
         <solutionWorkingDir>C:\Demos\Source</solutionWorkingDir>
 		<!-- Relative path to the folder containing the begin solutions -->

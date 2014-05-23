@@ -85,14 +85,14 @@ Invoke-Expression ".\tasks\updateConfig.ps1 -settingsConfig `"$msSettingsend`" -
 Write-Done
 
 Write-Action "Removing current working directory..."
-if (Test-Path "$workingDir")
+if (Test-Path "$solutionWorkingDir")
 {
-	Remove-Item "$workingDir" -recurse -force
+	Remove-Item "$solutionWorkingDir" -recurse -force
 }
 Write-Done
 
 Write-Action "Creating working directory..."
-New-Item "$workingDir" -type directory | Out-Null
+New-Item "$solutionWorkingDir" -type directory | Out-Null
 if (!(Test-Path "$solutionWorkingDir"))
 {
 	New-Item "$solutionWorkingDir" -type directory | Out-Null
