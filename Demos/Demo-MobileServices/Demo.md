@@ -269,7 +269,7 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 
 	![Rotating the simulator clockwise](Images/rotating-the-simulator-clockwise.png?raw=true)
 
-	Your Simulator is now adjusted.
+	Your Simulator is now adjusted. Stop the app in Visual Studio.
 	
 	![Simulator running](Images/simulator-running.png?raw=true)
 	

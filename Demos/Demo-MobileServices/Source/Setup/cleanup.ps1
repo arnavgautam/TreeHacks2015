@@ -36,6 +36,10 @@ pushd ".."
 [string] $msSettingsend = Join-Path -path $scriptDir -childpath "..\FacilityApp\End\Service\Web.config"  -resolve
 [string] $dst_dir_locationend = Join-Path -path $scriptDir -childpath "..\FacilityApp\End\Client\Assets\Map_Large.png" -resolve
 
+[string] $workingDir = $xmlAzureSettings.configuration.localPaths.workingDir
+[string] $solutionWorkingDir = $xmlAzureSettings.configuration.localPaths.solutionWorkingDir
+[string] $beginSolutionDir = Resolve-Path $xmlAzureSettings.configuration.localPaths.beginSolutionDir
+
 popd
 
 # "========= Main Script =========" #
@@ -78,4 +82,20 @@ Write-Done
 
 Write-Action "Updating the Mobile Service settings (End sln)..."
 Invoke-Expression ".\tasks\updateConfig.ps1 -settingsConfig `"$msSettingsend`" -azureSettingsFile `"..\config.xml`" -node `"configuration/appSettings`""
+Write-Done
+
+Write-Action "Removing current working directory..."
+if (Test-Path "$workingDir")
+{
+	Remove-Item "$workingDir" -recurse -force
+}
+Write-Done
+
+Write-Action "Creating working directory..."
+New-Item "$workingDir" -type directory | Out-Null
+if (!(Test-Path "$solutionWorkingDir"))
+{
+	New-Item "$solutionWorkingDir" -type directory | Out-Null
+}
+Copy-Item "$beginSolutionDir\*" "$solutionWorkingDir" -Recurse -Force
 Write-Done

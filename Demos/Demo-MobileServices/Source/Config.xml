@@ -2,6 +2,14 @@
 	<appSetup>
 		<packagename>FacilityRequest</packagename>
     </appSetup>
+    <localPaths>
+		<!-- Location where the demo files will be copied in order to perform the demo -->
+        <workingDir>C:\Demos</workingDir>		
+		<!-- Location where the demo source files will be copied in order to perform the demo -->
+        <solutionWorkingDir>C:\Demos\Source</solutionWorkingDir>
+		<!-- Relative path to the folder containing the begin solutions -->
+        <beginSolutionDir>.\FacilityApp\Begin</beginSolutionDir>
+     </localPaths>
 	<clientSettings>
 		<!-- Configuration Settings -->
 		<AadAuthority>https://login.windows.net/common/oauth2/authorize</AadAuthority>
