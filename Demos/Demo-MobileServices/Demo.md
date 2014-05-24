@@ -22,11 +22,15 @@ In this demo, you will see how to:
 
 - [Microsoft Visual Studio 2013][2]
 - [Visual Studio 2013 Update 2][3]
-- A Windows Azure subscription
+- [Windows Azure Mobile Services][6]
+- [Active Directory Authentication Library][4] (ADAL)
+- [Xamarin Studio for iOS][5]
 	
-[1]: http://bit.ly/WindowsAzureFreeTrial
 [2]: http://www.microsoft.com/visualstudio/
 [3]: http://www.microsoft.com/en-us/download/details.aspx?id=42666
+[4]: http://msdn.microsoft.com/en-us/library/jj573266.aspx
+[5]: http://xamarin.com/
+[6]: http://azure.microsoft.com/en-us/develop/mobile/
 
 <a name="setup" />
 ### Setup and Configuration ###
@@ -136,7 +140,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 	
 1. In the Management Portal, click **Manage Manifest** and select **Upload Manifest**. Select the file you just updated and upload the manifest.
 
-1. Open **Configure** and scroll down to the **Client ID** section. Take note of the Client ID, you will use it later.
+1. Open **Configure** and scroll down to the **Client ID** section. Take note of the Client ID, you will use it later to update a configuration value named **AadClientId**.
 
 1. Scroll down to the **permissions to other applications** section and grant permissions to **Office 365 SharePoint Online**. Select **Edit or delete users' files** from the **Delegated Permissions** drop-down list.
 
