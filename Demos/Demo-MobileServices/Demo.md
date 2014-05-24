@@ -24,7 +24,8 @@ In this demo, you will see how to:
 - [Visual Studio 2013 Update 2][3]
 - [Windows Azure Mobile Services][6]
 - [Active Directory Authentication Library][4] (ADAL)
-- [Xamarin Studio for iOS][5]
+- Mac iOS 7.0
+- [Xamarin Studio for iOS][5] (A Mac computer is required to run Xamarin)
 	
 [2]: http://www.microsoft.com/visualstudio/
 [3]: http://www.microsoft.com/en-us/download/details.aspx?id=42666
@@ -36,6 +37,8 @@ In this demo, you will see how to:
 ### Setup and Configuration ###
 
 In order to execute this demo you need to set up your environment. The following are one-time instructions you need to execute in order to prepare the demo. Once completed, there is no need to execute these steps again, you can simply run **Reset.cmd** located in the **Setup** folder to clear the database and SharePoint files to restart the demo.
+
+> **Note:** You need a Mac computer with iOS 7.0 in order to run the iOS client using Xamarin.
 
 #### Task 1 - Creating an Office 365 subscription ####
 
