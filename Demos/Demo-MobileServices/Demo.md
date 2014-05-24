@@ -228,8 +228,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 1. The following values are displayed on the Windows Store app. These settings configure the Username and the default location of the device, simulating Geolocation inside the app. You can replace them with a real location (e.g.: the location where the demo will be presented).	
 	
 	* **UserName**: The first name of the User that is displayed on the Windows Store app.
-	* **UserSurname**: The last name of the User that is displayed on the Windows Store app.	
-	* **RoomFR**: The Room Number.
+	* **UserSurname**: The last name of the User that is displayed on the Windows Store app.
 	* **BuildingFRVM**: The building name.
 	* **RoomFRVM**: The room number.
 	* **CityFRVM**: The city name.
@@ -254,11 +253,10 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. Save and close the file.
 
-1. Run **Reset.cmd** in the **Setup** folder to execute the reset scripts. These scripts configure the settings files for each client app, removes any record in the Mobile Service SQL database and deletes all the files in the **Requests** folder in SharePoint.
+1. Run **Reset.cmd** in the **Setup** folder to execute the reset scripts. These scripts configure the settings files for each client app, removes any record in the Mobile Service SQL database and deletes all the files in the **Requests** folder in SharePoint. Remember to add a firewall rule for your machine to access the SQL database in Azure.
 
 	> **Note:** You can execute **Reset.cmd** any time you need to reset the demo. As you already configured Azure AD and the Mobile Service you only need to execute the reset scripts to reset the demo to a starting point.
 
-	
 #### Task 6 - First Run
 
 Follow these steps to run the **FacilityRequests** app to adjust the correct Simulator's resolution display and orientation.
@@ -297,7 +295,7 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 	
 	![Simulator running](Images/simulator-running.png?raw=true)
 	
-1. Open the solutions **FacilityApp** and **MobileServices** in Visual Studio. Open a new Visual Studio instance but do not open any solutions.
+1. Open the solutions **FacilityApp** and **MobileServices** in Visual Studio. Compile both solutions to ensure that all NuGet packages are downloaded. Open a new Visual Studio instance but do not open any solutions. You will start presenting using this instance.
 	
 <a name="Demo" />
 ## Demo ##
@@ -344,7 +342,9 @@ This demo is composed of the following segments:
 	_Mobile Service Project Template_
 
 	> **Speaking Point:** We have a simple structure, with the corresponding model and the controller to expose that model to the world in a way that all our cross-platform clients understand. Also, it wouldn't be Mobile Services without great support for scheduled jobs.
-	
+
+7. Open **TodoItemController.cs** in the **Controllers**	folder and add a breakpoint at the beginning of the **GetAllTodoItem** method.
+
 6. Press **F5** to run the Mobile Services back-end.
 
 	![Mobile Service Back-End running](Images/mobile-service-back-end-running.png?raw=true)
@@ -352,8 +352,19 @@ This demo is composed of the following segments:
 	_Mobile Service Back-End running_
 
 	> **Speaking Point:** We have support for local development. We have a documentation page with information about the API, and a test client inside the browser to try it out. Local and remote debugging now work great with Mobile Services.
-	We're going to build a powerful line of business app, where we can report facilities issues, and then the facilities department can use it to take care of it.
 
+1. Click the **Try out** link.
+
+	![Try out link](Images/try-out-link.png?raw=true)
+
+1. Select **GET tables/TodoItem** from the list.
+
+1. Click the **try this out** button at the top of the screen. Click **send** on the dialog box. The debugger will be hit in Visual Studio.
+
+1. Stop the app.
+	
+	> **Speaking Point:** We're going to build a powerful line of business app, where we can report facilities issues, and then the facilities department can use it to take care of it.
+	
 7. Right-click the **DataObjects** folder, select **Add**, and click **Class..** in order to add a new class. Name it as _FacilityRequest.cs_ and click **Add**.
 
 	![Add new FacilityRequest class](Images/add-new-facilityrequest-class.png?raw=true)
@@ -364,7 +375,7 @@ This demo is composed of the following segments:
 
 	
 	(Code Snippet - _facilityrequest_)
-	<!-- mark:1-40 -->
+	<!-- mark:1-41 -->
 	````C#
 	namespace MobileService.DataObjects
 	{
@@ -510,7 +521,7 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** What this app is still missing is support for authentication. So let's go ahead and do that.
 
-10. Replace the **LoginAsync** method with the following highlighted code snippet.
+10. Replace the content of the **LoginAsync** method with the following highlighted code snippet.
 
 	(Code Snippet - _authclient_)
 	<!-- mark:3-21 -->
@@ -578,7 +589,7 @@ We've added authentication with Active Directory, but what our app users would r
 
 1. Switch to the **MobileService** backend project and open the **FacilityRequestController** class. 
 
-	![FacilityRequestController](Images/facilityrequestcontroller.png?raw=true)
+![FacilityRequestController](Images/facilityrequestcontroller.png?raw=true)
 	
 	_FacilityRequestController_
 
