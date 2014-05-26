@@ -6,7 +6,7 @@
 <a name="Overview" />
 ## Overview ##
 
-Since Mobile Services was launched, you have seen some strong adoption and some great apps built on top of the platform, both across the consumer and enterprise space. Mobile Services lets you easily add a cloud-hosted back end to your mobile app, regardless of what client platform you are using. 
+Since Mobile Services was launched, you have seen some strong adoption and some great apps built on top of the platform, across both the consumer and enterprise space. Mobile Services lets you easily add a cloud-hosted back end to your mobile app, regardless of what client platform you are using. 
 In this demo, you will see an exciting new set of features that makes Mobile Services even more compelling, especially in the enterprise space. You will see how to build a .NET back end locally, publishing it to the cloud, adding authentication using the **Active Directory Authentication Library** (ADAL), integrating with SharePoint and then building a cross-platform client with **Xamarin**.
 
 <a id="goals" />
@@ -36,35 +36,35 @@ In this demo, you will see how to:
 <a name="setup" />
 ### Setup and Configuration ###
 
-In order to execute this demo you need to set up your environment. The following are one-time instructions you need to execute in order to prepare the demo. Once completed, there is no need to execute these steps again, you can simply run **Reset.cmd** located in the **Setup** folder to clear the database and SharePoint files to restart the demo.
+In order to execute this demo you need to set up your environment. The following are one-time instructions you need to execute in order to prepare the demo. Once completed, there is no need to execute these steps again; you can simply run **Reset.cmd** located in the **Setup** folder to clear the database and SharePoint files to restart the demo.
 
 > **Note:** You need a Mac computer with iOS 7.0 in order to run the iOS client using Xamarin.
 
-#### Task 1 - Creating an Office 365 subscription ####
+#### Task 1 - Creating an Office 365 Subscription ####
 
 If you do not have an Office 365 subscription you can do one of the following:
 
-- If you are a **Microsoft Partner**, you have the option of requesting a demo tenant here https://www.microsoftofficedemos.com. These demo tenants expire in 90 days after the creation.
+- If you are a **Microsoft Partner**, you have the option of requesting a demo tenant at https://www.microsoftofficedemos.com. These demo tenants expire after 90 days after the creation.
 
-- If you have a **MSDN subscription** you can activate your **Office 365 Developer** subscription in your MSDN subscriber dashboard.
+- If you have a **MSDN subscription**, you can activate your **Office 365 Developer** subscription in your MSDN subscriber dashboard.
 
-- Buy a subscription. Go to http://office.microsoft.com/en-us/business/compare-office-365-for-business-plans-FX102918419.aspx and pick the option of your choice (e.g. Office 365 Small Business).
+- Buy a subscription. Go to http://office.microsoft.com/en-us/business/compare-office-365-for-business-plans-FX102918419.aspx and choose the option that best suits your needs (e.g. Office 365 Small Business).
 
 Once you finish signing up for your **Office 365** subscription, follow these steps:
 
-1. Close the browser to clear out the authentication. Open a browser again and go to https://portal.microsoftonline.com/default.aspx.
+1. Close the browser to clear out the authentication. Open the browser again and go to https://portal.microsoftonline.com/default.aspx.
 
-	> **Note:** This will open the Office 365 Management Portal. It might take a few minutes until all services are provisioned.
+	> **Note:** This will open the Office 365 Management Portal. It might take a few minutes before all services are provisioned.
 
 1. Click the **Users and groups** option in the left navigation menu.
 
-1. Click at your user name and verify that it's linked to the subscription accordingly.
+1. Click your user name and verify that it is linked to the subscription accordingly.
 
 	![Office Subscription Linked](Images/office-subscription-linked.png?raw=true)
 	
-1. Go to https://{username}-my.sharepoint.com replacing the placeholder with the username you defined before the **.onmicrosoft.com** domain (e.g.: https://myuser-my.sharepoint.com/).
+1. Go to https://{username}-my.sharepoint.com replacing the placeholder with the username you defined before in the **.onmicrosoft.com** domain (e.g.: https://myuser-my.sharepoint.com/).
 
-1. This site is provisioned upon the first time you actually launch it on the browser. It should take a few minutes to provision. Your site should look like the following:
+1. This site is provisioned the first time you actually launch it in the browser. After a few minutes, you should see the following:
 
 	![SharePoint My Site](Images/sharepoint-my-site.png?raw=true)
 	
@@ -74,17 +74,17 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. Open a browser and go to http://manage.windowsazure.com.
 
-1. When prompted, use your Office 365 credentials.
+1. When prompted, enter your Office 365 credentials.
 
-1. You will be presented with a screen asking you to get a subscription before you can start using Azure. Click the **Sign Up for Windows Azure** link.
+1. You will see a screen asking you to get a subscription before you can start using Azure. Click **Sign Up for Windows Azure**.
 
 	![Sign up for Azure](Images/sign-up-for-azure.png?raw=true)
 	
-1. You will be taken to a screen where you will validate your details, agree with the Terms and Privacy statement and then finish signing up. Once the registration is over, you will be able to access the Management Portal. Now Azure and Office 365 are both linked to the same user account.
+1. You will be taken to a screen where you will validate your details, agree with the Terms and Privacy statement and then finish signing up. Once registered is over, you will be able to access the Management Portal. Now Azure and Office 365 are both linked to the same user account.
 
 #### Task 3 - Creating a Mobile Service and Registering your Apps in Azure AD ####
 
-1. In the [Management Portal](http://manage.windowsazure.com/) create a new Mobile Service. You can choose between a new Free Database and an existing one. Make sure the **.NET (PREVIEW)** option is selected for the **Backend** drop-down list.
+1. In the [Management Portal](http://manage.windowsazure.com/), create a new Mobile Service. You can choose between a new Free Database and an existing one. Make sure the **.NET (PREVIEW)** option is selected for the **Backend** drop-down list.
 
 	![Creating a Mobile Service](Images/creating-a-mobile-service.png?raw=true)
 	
@@ -98,19 +98,19 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. Click **Add** and select **Add an application my organization is developing**.
 
-1. Type a name, for example _mymobileservice_, and select **Web Application and/or Web API**. Click next to continue.
+1. Type a name, for example _mymobileservice_, and select **Web Application and/or Web API**. Click the arrow button to continue.
 
 	![Creating a Web Application in AD](Images/creating-a-web-application-in-ad.png?raw=true)
 
-1. Paste the Mobile Service URL in the **SIGN-ON URL** and **APP ID URI** field. Click OK to create the app.
+1. Paste the Mobile Service URL in the **SIGN-ON URL** and **APP ID URI** field. Click the check button to create the app.
 
 	![Configuring App Properties](Images/configuring-app-properties.png?raw=true)
 	
-1. Click **Manage Manifest** from the menu and select **Download Manifest**.
+1. Click **Manage Manifest** in the menu and select **Download Manifest**.
 
 	![Download Manifest](Images/download-manifest.png?raw=true)
 	
-1. Open the application manifest file with **Visual Studio**. At the top of the file find the app permissions line that looks as follows:
+1. Open the application manifest file with **Visual Studio**. At the top of the file, find the app permissions line.
 
 	````JSON
 	"appPermissions": [],
@@ -143,15 +143,15 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 	
 1. In the Management Portal, click **Manage Manifest** and select **Upload Manifest**. Select the file you just updated and upload the manifest.
 
-1. Open **Configure** and scroll down to the **Client ID** section. Take note of the Client ID, you will use it later to update a configuration value named **AadClientId**.
+1. Open **Configure** and scroll down to the **Client ID** section. Take note of the Client ID; you will use it later to update a configuration value named **AadClientId**.
 
 1. Scroll down to the **permissions to other applications** section and grant permissions to **Office 365 SharePoint Online**. Select **Edit or delete users' files** from the **Delegated Permissions** drop-down list.
 
 	![Permissions for the Mobile Service App](Images/permissions-for-the-mobile-service-app.png?raw=true)
 
-1. In the **Keys** section choose a duration from the drop-down list to create a new key. Click **Save**.
+1. In the **Keys** section, choose a duration from the drop-down list to create a new key. Click **Save**.
 
-1. Take note the generated key value, you will use it later.
+1. Take note of the generated key value; you will use it later.
 
 #### Task 4 - Associate your Client App to the Windows Store ####
 	
@@ -167,7 +167,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. Click **Associate** to associate the app with the store name.
 
-1. Log into you [Windows Dev Center Dashboard](http://go.microsoft.com/fwlink/p/?linkid=266734&clcid=0x409) and click **Edit** on the app.
+1. Log into your [Windows Dev Center Dashboard](http://go.microsoft.com/fwlink/p/?linkid=266734&clcid=0x409) and click **Edit** on the app.
 
 1. Then click **Services**.
 
@@ -191,7 +191,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 	![Copying the Client ID](Images/copying-the-client-id.png?raw=true)
 
-1. In the **Redirect URIs** section add the Mobile Services URL. E.g.: https://{mobileservice-name}.azure-mobile.net/.
+1. In the **Redirect URIs** section, add the Mobile Services URL. E.g.: https://{mobileservice-name}.azure-mobile.net/.
 	
 1. Scroll down to the **permissions to other applications** section and grant full access to the mobile service application that you registered earlier. Click **Save**
 
@@ -205,11 +205,11 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. Add the following settings (take into account that the name of each setting is case sensitive):
 
-	* **SharePointUri**: The SharePoint user's personal site targeting the API address. The URL usually has the following form **https://{domain}-my.sharepoint.com/personal/{username}_{domain}_onmicrosoft_com/_api/web**. For example: https://dpe-my.sharepoint.com/personal/admin_dpe_onmicrosoft_com/_api/web.
-	* **SharePointResource**: The base URL of SharePoint's Personal sites collection. E.g.: https://{domain}-my.sharepoint.com
-	* **Authority**: The Azure AD authority. Use https://login.windows.net/common/oauth2/authorize.
-	* **ActiveDirectoryClientId**: The Id of the Mobile Service application registered in the Azure AD.
-	* **ActiveDirectoryClientSecret**: The secret of the Mobile Service application registered in the Azure AD.
+	* **SharePointUri**: the SharePoint user's personal site targeting the API address. The URL usually has the following form **https://{domain}-my.sharepoint.com/personal/{username}_{domain}_onmicrosoft_com/_api/web**. For example: https://dpe-my.sharepoint.com/personal/admin_dpe_onmicrosoft_com/_api/web.
+	* **SharePointResource**: the base URL of SharePoint's Personal sites collection. E.g.: https://{domain}-my.sharepoint.com
+	* **Authority**: the Azure AD authority. Use https://login.windows.net/common/oauth2/authorize
+	* **ActiveDirectoryClientId**: the Id of the Mobile Service application registered in the Azure AD
+	* **ActiveDirectoryClientSecret**: the secret of the Mobile Service application registered in the Azure AD
 
 1. Click **Save**.
 
@@ -219,46 +219,46 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. Update the values under **clientSettings** in the XML file to configure your solutions:
 
-	* **AadAuthority**: The Azure AD authority. Use https://login.windows.net/common/oauth2/authorize.
-	* **AppRedirectLocation**: The Mobile Service URI.
-	* **AadRedirectResourceURI**: The Mobile Service AAD login URI. You can find this value under **Azure Active Directory** in your Mobile Service's **Identity** tab.
-	* **AadClientId**: The Id of your native client app registered in your AD.
-	* **AppKey**: The Mobile Service key. You can retrieve this value by clicking **Manage Keys** in your Mobile Service.
-	* **MobSvcUri**: The Mobile Service URI.
-	* **SharePointResource**: It is the root URL for the personal sites of your SharePoint domain. E.g.: http://{domain}-my.sharepoint.com/
+	* **AadAuthority**: the Azure AD authority. Use https://login.windows.net/common/oauth2/authorize
+	* **AppRedirectLocation**: the Mobile Service URI
+	* **AadRedirectResourceURI**: the Mobile Service AAD login URI. You can find this value under **Azure Active Directory** in your Mobile Service's **Identity** tab
+	* **AadClientId**: the Id of your native client app registered in your AD
+	* **AppKey**: the Mobile Service key. You can retrieve this value by clicking **Manage Keys** in your Mobile Service
+	* **MobSvcUri**: the Mobile Service URI
+	* **SharePointResource**: the root URL for the personal sites of your SharePoint domain. E.g.: http://{domain}-my.sharepoint.com/
 	* **SharePointUser**: Full qualified name for the Office 365 user. E.g.: admin@dpe.onmicrosoft.com.
 	
-1. The following values are displayed on the Windows Store app. These settings configure the Username and the default location of the device, simulating Geolocation inside the app. You can replace them with a real location (e.g.: the location where the demo will be presented).	
+1. The following values are displayed in the Windows Store app. These settings configure the Username and the default location of the device, simulating Geolocation inside the app. You can replace them with a real location (e.g.: the location where the demo will be presented).
 	
-	* **UserName**: The first name of the User that is displayed on the Windows Store app.
-	* **UserSurname**: The last name of the User that is displayed on the Windows Store app.
-	* **BuildingFRVM**: The building name.
-	* **RoomFRVM**: The room number.
-	* **CityFRVM**: The city name.
-	* **StreetFRVM**: The street name.
-	* **StateFRVM**: The state where the city is located.
-	* **ZipFRVM**: The zip code.
+	* **UserName**: the first name of the User that is displayed on the Windows Store app
+	* **UserSurname**: the last name of the User that is displayed on the Windows Store app
+	* **BuildingFRVM**: the building name
+	* **RoomFRVM**: the room number
+	* **CityFRVM**: the city name
+	* **StreetFRVM**: the street name
+	* **StateFRVM**: the state where the city is located
+	* **ZipFRVM**: the zip code
 
 1. Under **windowsAzureSubscription**, update the values of the Mobile Service SQL Server (you can find these values in your Mobile Service configuration):
 
-	* **sqlserver**: The SQL Server address. E.g.: {server}.database.windows.net.
-	* **db**: The database name.
-	* **sqlUsername**: The server administrator username.
-	* **sqlPassword**: The server administrator password.
-	* **sqlTable**: The database table including the schema name. Use the following format: **{mobileservice-name}.facilityrequests**.
+	* **sqlserver**: the SQL Server address. E.g.: {server}.database.windows.nett
+	* **db**: the database name.
+	* **sqlUsername**: the server administrator username
+	* **sqlPassword**: the server administrator password
+	* **sqlTable**: the database table including the schema name. Use the following format: **{mobileservice-name}.facilityrequests**
 
-1. Under the **sharepoint** element set the values to connect your SharePoint:
+1. Under the **SharePoint** element set the values to connect your SharePoint:
 
-	* **baseUrl**: The SharePoint user's personal site. The URL usually has the following form **https://{domain}-my.sharepoint.com/personal/{username}_{domain}_onmicrosoft_com/**. For example: https://dpe-my.sharepoint.com/personal/admin_dpe_onmicrosoft_com/.
-	* **username**: Full qualified name for the Office 365 user. E.g.: admin@dpe.onmicrosoft.com.
-	* **password**: The password for the Office 365 user.
-	* **folderName**: The folder in the personal's site documents where the app will upload files. Leave the default value **Requests**.
+	* **baseUrl**: the SharePoint user's personal site. The URL usually has the following form **https://{domain}-my.sharepoint.com/personal/{username}_{domain}_onmicrosoft_com/**. For example: https://dpe-my.sharepoint.com/personal/admin_dpe_onmicrosoft_com/
+	* **username**: Full quaified name for the Office 365 user. E.g.: admin@dpe.onmicrosoft.com
+	* **password**: the password for the Office 365 user
+	* **folderName**: Tte folder in the Personal Sites documents list where the app will upload files. Leave the default value, **Requests**
 
 1. Save and close the file.
 
-1. Run **Reset.cmd** in the **Setup** folder to execute the reset scripts. These scripts configure the settings files for each client app, removes any record in the Mobile Service SQL database and deletes all the files in the **Requests** folder in SharePoint. Remember to add a firewall rule for your machine to access the SQL database in Azure.
+1. Run **Reset.cmd** in the **Setup** folder to execute the reset scripts. These scripts configure the settings files for each client app, remove any records in the Mobile Service SQL database, and delete all the files in the **Requests** folder in SharePoint. Remember to add a firewall rule for your machine to access the SQL database in Azure.
 
-	> **Note:** You can execute **Reset.cmd** any time you need to reset the demo. As you already configured Azure AD and the Mobile Service you only need to execute the reset scripts to reset the demo to a starting point.
+	> **Note:** You can execute **Reset.cmd** any time you need to reset the demo. Since you already configured Azure AD and the Mobile Service, you only need to execute the reset scripts to reset the demo to a starting point.
 
 #### Task 6 - First Run
 
@@ -266,7 +266,7 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 
 1. Open the **FacilityApp.sln** solution located in your demo folder (by default **C:\Demos\Source**).
 
-1. The **Xamarin Pair With** screen will pop up requesting a PIN.
+1. The **Xamarin Pair With** screen will pop up requesting a PIN code.
 
 	![Xamarin Pair With screen](Images/xamarin-pair-with-screen.png?raw=true)
 	
@@ -286,11 +286,11 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 
 1. Set **FacilityApp.UI.Windows** as the startup project and run the app using the Simulator.
 
-1. Click on the **resolution** button and set its value to **12'' 1280 X 800 (16:10, 100%)**.
+1. Click the **resolution** button and set its value to **12'' 1280 X 800 (16:10, 100%)**.
 
 	![Changing the simulator resolution](Images/changing-the-simulator-resolution.png?raw=true)
 	
-1. Change the orientation of the Simulator by rotating it clockwise 90 degreess.
+1. Change the orientation of the Simulator by rotating it clockwise 90 degrees.
 
 	![Rotating the simulator clockwise](Images/rotating-the-simulator-clockwise.png?raw=true)
 
@@ -312,7 +312,7 @@ This demo is composed of the following segments:
 <a name="segment1" />
 ### Creating a Mobile Services C# Backend ###
 
-1. In Visual Studio, click on **File**, hover on the **New** menu, and click **New Project**.
+1. In Visual Studio, click **File > New > Project...**.
 
 	![File > New > Project](Images/new-project.png?raw=true)
 	
@@ -330,7 +330,7 @@ This demo is composed of the following segments:
 
 	_New ASP.NET Project_
 	
-	> **Speaking Point:** Mention any .NET language can be used to build the Mobile Service right from VS, and the framework is built on top of ASP.NET Web API, which means we get leverage the power of NuGet and all our existing skills and code.
+	> **Speaking Point:** Mention that any .NET language can be used to build the Mobile Service right from VS, and that the framework is built on top of ASP.NET Web API, which means we can leverage the power of NuGet and all our existing skills and code.
 	
 5. Switch to the **MobileService** solution.
 
@@ -368,7 +368,7 @@ This demo is composed of the following segments:
 	
 	> **Speaking Point:** We're going to build a powerful line of business app, where we can report facilities issues, and then the facilities department can use it to take care of it.
 	
-7. Right-click the **DataObjects** folder, select **Add**, and click **Class..** in order to add a new class. Name it as _FacilityRequest.cs_ and click **Add**.
+7. Right-click the **DataObjects** folder, select **Add**, and click **Class** in order to add a new class. Name it as _FacilityRequest.cs_ and click **Add**.
 
 	![Add new FacilityRequest class](Images/add-new-facilityrequest-class.png?raw=true)
 	
@@ -423,7 +423,7 @@ This demo is composed of the following segments:
 	}
 	````
 
-	> **Speaking Point:** By default we use Entity Framework backed by a SQL Server database, but there's a number of backend choices such as MongoDB and Table Storage.
+	> **Speaking Point:** By default we use Entity Framework backed by a SQL Server database, but there are a number of backend choices such as MongoDB and Table Storage.
 
 9. Right-click the **Controllers** folder, select **Add**, and click **Controller**. Select **Windows Azure Mobile Services Table Controller** as the Scaffold and add a new **TableController** named _FacilityRequestController_. Select **FacilityRequest** as the Model class, and **MobileServiceContext** as the Data Context class.
 
@@ -450,7 +450,7 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** We use the ADAL (Active Directory Authentication Library) to easily provide authentication functionality for a .NET client and Windows Store application.
 	
-3. In the **FacilityRequestController** paste the following highlighted code after the namespace declaration.
+3. In the **FacilityRequestController**, paste the following highlighted code after the namespace declaration.
 
 	(Code Snippet - _authattrib_)
 	<!-- mark:3-6 -->
@@ -470,7 +470,7 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** Let's assume for a moment that our company has already federated our on-premise Active Directory with Azure. Adding authentication to our API is as easy as adding an attribute to our controller.
 	
-2. Right-click the project and select **Publish**.
+2. Right-click the project and select **Publish...**.
 
 	![Publish](Images/publish.png?raw=true)
 	
@@ -482,13 +482,13 @@ This demo is composed of the following segments:
 	
 	_Sign In to Windows Azure_
 
-4. From the dropdown list, select an existing Mobile Service, previously created for the demo.
+4. From the dropdown list, select an existing Mobile Service previously created for the demo.
 
 	![Select Windows Azure Mobile Service](Images/select-windows-azure-mobile-service.png?raw=true)
 	
 	_Select Windows Azure Mobile Service_
 	
-	> **Speaking Point:** We can use an existing service, or create a new one right from VS. Let's pick one we created previously.
+	> **Speaking Point:** We can use an existing service, or create a new one right from VS. Let's pick one we've already created.
 
 5. Click **OK**. Show the different options that the wizard automatically populates. Click **Publish** to continue.
 
@@ -496,7 +496,7 @@ This demo is composed of the following segments:
 	
 	_Windows Azure Mobile Service Settings_
 
-	> **Speaking Point:** We deploy this to Mobile Services, which provides a first class hosting environment for our APIs.
+	> **Speaking Point:** We will deploy this to Mobile Services, which provides a first class hosting environment for our APIs.
 
 6. Switch to the **FacilityApp** solution in Visual Studio.
 
@@ -508,13 +508,13 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** The Portable Class Library allows us to reuse our code across a variety of client platforms.
 	
-8. Open **FacilityServiceBase.cs** and explain the advantages of the integration with the **Mobile Services SDK**. 
+8. Open **FacilityServiceBase.cs** and explain the advantages of the integration with **Mobile Services SDK**. 
 
 	![Mobile Services SDK integration](Images/mobile-services-sdk-integration.png?raw=true)
 	
 	_Mobile Services SDK integration_
 
-	> **Speaking Point:** This SDK gives us some easy access methods such as **ReadAsync** that loads up all the facility requests from the server.
+	> **Speaking Point:** This SDK gives us several easy access methods such as **ReadAsync** that loads all the facility requests from the server.
 
 9. Go to the Windows 8.1 client project and open the **FacilityService.cs** file under **Services**.
 
@@ -553,7 +553,7 @@ This demo is composed of the following segments:
 	}	
 	````
 
-	> **Speaking Point:** We can take advantage of the Active Directory authentication library, which gives us a native login experience on all clients. We can pass the authentication token to the Mobile Services back-end, so the user is logged in to both places.
+	> **Speaking Point:** We can take advantage of the Active Directory authentication library, which gives us a native login experience on all clients. We can pass the authentication token to the Mobile Services back-end, so that the user is logged in to both places.
 	
 11. Set the Windows 8.1 project as the startup project for the solution, make sure the **Simulator** option is selected, and launch the client app.
 
@@ -561,7 +561,7 @@ This demo is composed of the following segments:
 	
 	_Run in Simulator_
 
-12. The Simulator will launch and start the application. When prompted, login using your AD credentials.
+12. The Simulator will launch and start the application. When prompted, log_in using your AD credentials.
 
 	![Login with AD](Images/login-with-ad.png?raw=true)
 	
@@ -588,7 +588,7 @@ This demo is composed of the following segments:
 <a name="segment3" />
 ### Integrating with SharePoint ###
 
-We've added authentication with Active Directory, but what our app users would really want is integration with all other enterprise services, including SharePoint and Office365. For example, the facilities department might want to create a document in their SharePoint site for every request they receive. It's easy to build that for them with Mobile Services.
+We've added authentication with Active Directory, but what our app users would really like is integration with all other enterprise services, including SharePoint and Office365. For example, the facilities department might want to create a document in their SharePoint site for every request they receive. It's easy to build that for them with Mobile Services.
 
 1. Switch to the **MobileService** backend project and open the **FacilityRequestController** class. 
 
@@ -634,7 +634,7 @@ We've added authentication with Active Directory, but what our app users would r
 	}	
 	````
 
-	> **Speaking Point:** The method is called every time a facility request is updated, so we can take advantage of the Active Directory authentication token to call to the new set of Office365 REST APIs, which allows us to generate the document on-the-fly and post it straight to SharePoint.
+	> **Speaking Point:** The method is called every time a facility request is updated, so we can take advantage of the Active Directory authentication token to call the new set of Office365 REST APIs, allowing us to generate the document on the fly and post it straight to SharePoint.
 
 3. Save changes and go through publishing the **C# backend** once again.
 
@@ -642,7 +642,7 @@ We've added authentication with Active Directory, but what our app users would r
 	
 	_Publishing Mobile Service Backend Changes_
 
-4. Switch to client app in the **Simulator** and select the previously created **Facility Request** item from the list.
+4. Switch to the client app in the **Simulator** and select the previously created **Facility Request** item from the list.
 
 5. Update the **Service Notes** field and click **Accept**.
 
@@ -650,19 +650,19 @@ We've added authentication with Active Directory, but what our app users would r
 	
 	_Updating the Facility Request_
 
-	> **Speaking Point:** Once we press Accept, the request will go through Mobile Services and now call out to SharePoint and generate the document.
+	> **Speaking Point:** Once we click Accept, the request will go through Mobile Services and now call out to SharePoint and generate the document.
 
 6. Open **SharePoint** in the browser and go to **OneDrive**. Select **My Documents** from the left panel.
 
-	> **Speaking Point:** We can verify it browsing to the company SharePoint site, we can find a new generated document with our company identity.
+	> **Speaking Point:** We can verify it by browsing to the company SharePoint site. We will find a new generated document with our company identity.
 
-7. Open the **Requests** folder and select the **Word** document created a few seconds ago.
+7. Open the **Requests** folder and select the **Word** document created just now.
 
 	![Created Word document in SharePoint](Images/created-word-document-in-sharepoint.png?raw=true)
 	
 	_Created Word document in SharePoint_
 
-8. Switch back to **Visual Studio** and open the **Portable Class Library** properties. Make focus on the **Targeting** section and explain that this class library is using Xamarin to integrate with **iOS**.
+8. Switch back to **Visual Studio** and open the **Portable Class Library** properties. Focus on the **Targeting** section and explain that this class library is using Xamarin to integrate with **iOS**.
 
 	![Multiple targets in Portable Class](Images/multiple-targets-in-portable-class.png?raw=true)
 	
@@ -674,7 +674,7 @@ We've added authentication with Active Directory, but what our app users would r
 	
 	_iOS Project in Visual Studio_
 
-10. Change the **build** target from **Any CPU** to **iPhoneSimulator**. Make sure the iOS client app is selected for running and press **F5** to run the app.
+10. Change the **build** target from **Any CPU** to **iPhoneSimulator**. Make sure the iOS client app is selected to run and press **F5** to run the app.
 
 	![Run as iPhoneSimulator](Images/run-as-iphonesimulator.png?raw=true)
 	
@@ -689,4 +689,4 @@ We've added authentication with Active Directory, but what our app users would r
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw building a .NET Mobile Service back-end locally, publishing it to the cloud, adding authentication with Active Directory, integrating with SharePoint, and then building a cross-platform client with Xamarin.
+In this demo, you saw how to build a .NET Mobile Service back-end locally, publish it to the cloud, add authentication with Active Directory, integrate with SharePoint, and then build a cross-platform client with Xamarin.
