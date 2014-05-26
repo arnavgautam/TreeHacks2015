@@ -2,6 +2,19 @@
 {
     public static class State
     {
-        public static string SharePointToken = "";
+        private static string sharePointToken = string.Empty;
+
+        public static string SharePointToken 
+        { 
+            get 
+            {
+                return sharePointToken;
+            }
+
+            set
+            {
+                sharePointToken = value;
+            }
+        }
     }
 }

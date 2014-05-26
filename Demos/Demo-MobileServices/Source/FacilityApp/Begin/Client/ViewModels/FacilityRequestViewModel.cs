@@ -1,40 +1,224 @@
-﻿using MobileClient.Common;
-
-namespace MobileClient.ViewModels
+﻿namespace MobileClient.ViewModels
 {
-    using FacilityApp.Core;
     using System;
+    using FacilityApp.Core;
+    using MobileClient.Common;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Media;
 
     public class FacilityRequestViewModel : ViewModelBase
     {
-        public FacilityRequestViewModel ()
+        private string user;
+        private string beforeImageUrl;
+        private string afterImageUrl;
+        private DateTimeOffset completedDate;
+
+        private string status = "Incomplete";
+        private string statusImage = ConfigurationHub.ReadConfigurationValue("StatusImageIncomplete");
+        private Brush statusForegroundBrush = Application.Current.Resources["StatusIncompleteForegroundThemeBrush"] as SolidColorBrush;
+        private string street;
+        private string state;
+        private string city;
+        private string zip;
+
+        public FacilityRequestViewModel()
         {
-               
         }
+
         public FacilityRequestViewModel(FacilityRequest request)
         {
-            Update (request);
+            this.Update(request);
+        }
+
+        public string Id { get; set; }
+
+        public string User
+        {
+            get
+            {
+                return this.user;
+            }
+
+            set
+            {
+                this.user = value;
+                this.NotifyPropertyChanged("User");
+            }
+        }
+
+        public RoomType RoomType { get; set; }
+
+        public string Building { get; set; }
+
+        public string Room { get; set; }
+
+        public string GeoLocation { get; set; }
+
+        public string BTLEId { get; set; }
+
+        public string BeforeImageUrl
+        {
+            get
+            {
+                return this.beforeImageUrl;
+            }
+
+            set
+            {
+                this.beforeImageUrl = value;
+                this.NotifyPropertyChanged("BeforeImageUrl");
+            }
+        }
+
+        public string AfterImageUrl
+        {
+            get { return this.afterImageUrl; }
+            set
+            {
+                this.afterImageUrl = value;
+                this.NotifyPropertyChanged("AfterImageUrl");
+            }
+        }
+
+        public string ProblemDescription { get; set; }
+
+        public string ServiceNotes { get; set; }
+
+        public string DocId { get; set; }
+
+        public DateTimeOffset RequestedDate { get; set; }
+
+        public DateTimeOffset CompletedDate
+        {
+            get
+            {
+                return this.completedDate;
+            }
+
+            set
+            {
+                this.completedDate = value;
+                if (this.completedDate > this.RequestedDate)
+                {
+                    this.Status = "Complete";
+                    this.StatusImage = ConfigurationHub.ReadConfigurationValue("StatusImageComplete");
+                    this.StatusForegroundBrush = Application.Current.Resources["StatusCompleteForegroundThemeBrush"] as SolidColorBrush;
+                }
+                else
+                {
+                    this.Status = "Incomplete";
+                    this.StatusImage = ConfigurationHub.ReadConfigurationValue("StatusImageIncomplete");
+                    this.StatusForegroundBrush = Application.Current.Resources["StatusIncompleteForegroundThemeBrush"] as SolidColorBrush;
+                }
+
+                this.NotifyPropertyChanged("CompletedDate");
+            }
+        }
+
+        public string Version { get; set; }
+
+        #region UX properties
+
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.status = value;
+                this.NotifyPropertyChanged("Status");
+            }
+        }
+
+        public string StatusImage
+        {
+            get { return this.statusImage; }
+
+            set
+            {
+                this.statusImage = value;
+                this.NotifyPropertyChanged("StatusImage");
+            }
+        }
+
+        public Brush StatusForegroundBrush
+        {
+            get
+            {
+                return this.statusForegroundBrush;
+            }
+
+            set
+            {
+                this.statusForegroundBrush = value;
+                this.NotifyPropertyChanged("StatusForegroundBrush");
+            }
+        }
+
+        public string Street
+        {
+            get { return this.street; }
+
+            set
+            {
+                this.street = value;
+                this.NotifyPropertyChanged("Street");
+            }
+        }
+
+        public string State
+        {
+            get { return this.state; }
+
+            set
+            {
+                this.state = value;
+                this.NotifyPropertyChanged("State");
+            }
+        }
+
+        public string City
+        {
+            get { return this.city; }
+
+            set
+            {
+                this.city = value;
+                this.NotifyPropertyChanged("City");
+            }
+        }
+
+        public string Zip
+        {
+            get { return this.zip; }
+
+            set
+            {
+                this.zip = value;
+                this.NotifyPropertyChanged("Zip");
+            }
         }
 
         public void Update(FacilityRequest request)
         {
-            Id = request.Id;
-            User = request.User;
-            RoomType = request.RoomType;
-            Building = request.Building;
-            Room = request.Room;
-            GeoLocation = request.GeoLocation;
-            BTLEId = request.BTLEId;
-            BeforeImageUrl = request.BeforeImageUrl;
-            AfterImageUrl = request.AfterImageUrl;
-            ProblemDescription = request.ProblemDescription;
-            ServiceNotes = request.ServiceNotes;
-            DocId = request.DocId ?? new Random(((int)DateTime.Now.Ticks & 0x0000FFFF)).Next(100000).ToString();
-            RequestedDate = request.RequestedDate;
-            CompletedDate = request.CompletedDate;
-            Version = request.Version;            
+            this.Id = request.Id;
+            this.User = request.User;
+            this.RoomType = request.RoomType;
+            this.Building = request.Building;
+            this.Room = request.Room;
+            this.GeoLocation = request.GeoLocation;
+            this.BTLEId = request.BTLEId;
+            this.BeforeImageUrl = request.BeforeImageUrl;
+            this.AfterImageUrl = request.AfterImageUrl;
+            this.ProblemDescription = request.ProblemDescription;
+            this.ServiceNotes = request.ServiceNotes;
+            this.DocId = request.DocId ?? new Random((int)DateTime.Now.Ticks & 0x0000FFFF).Next(100000).ToString();
+            this.RequestedDate = request.RequestedDate;
+            this.CompletedDate = request.CompletedDate;
+            this.Version = request.Version;            
         }
 
         public FacilityRequest GetFacilityRequest() 
@@ -58,175 +242,6 @@ namespace MobileClient.ViewModels
             };
         }
 
-        public string Id { get; set; }
-        private string _user;
-
-        public string User
-        {
-            get { return _user; }
-            set { 
-                _user = value;
-                NotifyPropertyChanged("User");
-            
-            }
-        }
-        
-        public RoomType RoomType { get; set; }
-        public string Building { get; set; }
-        public string Room { get; set; }
-        public string GeoLocation { get; set; }
-        public string BTLEId { get; set; }
-        private string _beforeImageUrl;
-
-        public string BeforeImageUrl
-        {
-            get { 
-                return _beforeImageUrl; 
-            }
-            set
-            {
-                _beforeImageUrl = value;
-                NotifyPropertyChanged("BeforeImageUrl");
-            }
-        }
-
-        private string _afterImageUrl;
-
-        public string AfterImageUrl
-        {
-            get { return _afterImageUrl; }
-            set
-            {
-                _afterImageUrl = value;
-                NotifyPropertyChanged("AfterImageUrl");
-            }
-        }
-
-        public string ProblemDescription { get; set; }
-        public string ServiceNotes { get; set; }
-        public string DocId { get; set; }
-        public DateTimeOffset RequestedDate { get; set; }
-        private DateTimeOffset _completedDate;
-        public DateTimeOffset CompletedDate 
-        { 
-            get
-            { 
-                return _completedDate; 
-            }
-            set
-            {
-                _completedDate = value;
-                if(_completedDate > RequestedDate)
-                {
-                    Status = "Complete";
-                    StatusImage = ConfigurationHub.ReadConfigurationValue("StatusImageComplete");
-                    StatusForegroundBrush = Application.Current.Resources["StatusCompleteForegroundThemeBrush"] as SolidColorBrush;
-                }
-                else
-                {
-                    Status = "Incomplete";
-                    StatusImage = ConfigurationHub.ReadConfigurationValue("StatusImageIncomplete");
-                    StatusForegroundBrush = Application.Current.Resources["StatusIncompleteForegroundThemeBrush"] as SolidColorBrush;
-                }
-               
-                NotifyPropertyChanged("CompletedDate");
-            }
-        }
-
-        public string Version { get; set; }
-
-        #region UX properties
-        private string _status = "Incomplete";
-        public string Status
-        {
-            get 
-            { 
-                return _status; 
-            }
-            set 
-            { 
-                _status = value;
-                NotifyPropertyChanged("Status");
-            }
-        }
-
-        private string _statusImage = ConfigurationHub.ReadConfigurationValue("StatusImageIncomplete");
-
-        public string StatusImage
-        {
-            get { return _statusImage; }
-            set 
-            { 
-                _statusImage = value;
-                NotifyPropertyChanged("StatusImage");
-            }
-        }
-
-        private Brush _statusForegroundBrush = Application.Current.Resources["StatusIncompleteForegroundThemeBrush"] as SolidColorBrush;
-
-        public Brush StatusForegroundBrush
-        {
-            get
-            {
-                return _statusForegroundBrush;
-            }
-            set
-            {
-                _statusForegroundBrush = value;
-                NotifyPropertyChanged("StatusForegroundBrush");
-            }
-        }
-
-        private string _street;
-
-        public string Street
-        {
-            get { return _street; }
-            set
-            {
-                _street = value;
-                NotifyPropertyChanged("Street");
-            }
-        }
-
-        private string _state;
-
-        public string State
-        {
-            get { return _state; }
-            set 
-            { 
-                _state = value;
-                NotifyPropertyChanged("State");
-            }
-        }
-
-        private string _city;
-
-        public string City
-        {
-            get { return _city; }
-            set 
-            { 
-                _city = value;
-                NotifyPropertyChanged("City");
-            }
-        }
-
-        private string _zip;
-
-        public string Zip
-        {
-            get { return _zip; }
-            set 
-            { 
-                _zip = value;
-                NotifyPropertyChanged("Zip");
-            }
-        }
-        
-
         #endregion
-
     }
 }

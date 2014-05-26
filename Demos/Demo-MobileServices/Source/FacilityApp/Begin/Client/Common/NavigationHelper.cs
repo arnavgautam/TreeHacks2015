@@ -1,6 +1,5 @@
 ﻿namespace MobileClient.Common
 {
-    using System;
     using System.Collections.Generic;
     using Windows.System;
     using Windows.UI.Core;
@@ -67,7 +66,7 @@
     {
         private RelayCommand gobackcommand;
         private RelayCommand goforwardcommand;
-        private String pagekey;
+        private string pagekey;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NavigationHelper"/> class.
@@ -106,6 +105,21 @@
             };
         }
 
+        /// <summary>
+        /// Register this event on the current page to populate the page
+        /// with content passed during navigation as well as any saved
+        /// state provided when recreating a page from a prior session.
+        /// </summary>
+        public event LoadStateEventHandler LoadState;
+
+        /// <summary>
+        /// Register this event on the current page to preserve
+        /// state associated with the current page in case the
+        /// application is suspended or the page is discarded from
+        /// the navigation cache.
+        /// </summary>
+        public event SaveStateEventHandler SaveState;
+
         #region Navigation support
 
         /// <summary>
@@ -120,12 +134,12 @@
         {
             get
             {
-                return gobackcommand ?? (gobackcommand = new RelayCommand(this.GoBack, this.CanGoBack));
+                return this.gobackcommand ?? (this.gobackcommand = new RelayCommand(this.GoBack, this.CanGoBack));
             }
 
             set
             {
-                gobackcommand = value;
+                this.gobackcommand = value;
             }
         }
 
@@ -139,7 +153,7 @@
         {
             get
             {
-                return goforwardcommand ?? (goforwardcommand = new RelayCommand(this.GoForward, this.CanGoForward));
+                return this.goforwardcommand ?? (this.goforwardcommand = new RelayCommand(this.GoForward, this.CanGoForward));
             }
         }
 
@@ -190,6 +204,70 @@
         {
             if (this.Frame != null && this.Frame.CanGoForward) this.Frame.GoForward();
         }
+        #endregion
+
+        #region Process lifetime management
+        /// <summary>
+        /// Invoked when this page is about to be displayed in a Frame.  
+        /// This method calls <see cref="LoadState"/>, where all page specific
+        /// navigation and process lifetime management logic should be placed.
+        /// </summary>
+        /// <param name="e">Event data that describes how this page was reached.  The Parameter
+        /// property provides the group to be displayed.</param>
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var frameState = SuspensionManager.SessionStateForFrame(this.Frame);
+            this.pagekey = "Page-" + this.Frame.BackStackDepth;
+
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                // Clear existing state for forward navigation when adding a new page to the
+                // navigation stack
+                var nextPageKey = this.pagekey;
+                var nextPageIndex = this.Frame.BackStackDepth;
+                while (frameState.Remove(nextPageKey))
+                {
+                    nextPageIndex++;
+                    nextPageKey = "Page-" + nextPageIndex;
+                }
+
+                // Pass the navigation parameter to the new page
+                if (this.LoadState != null)
+                {
+                    this.LoadState(this, new LoadStateEventArgs(e.Parameter, null));
+                }
+            }
+            else
+            {
+                // Pass the navigation parameter and preserved page state to the page, using
+                // the same strategy for loading suspended state and recreating pages discarded
+                // from cache
+                if (this.LoadState != null)
+                {
+                    this.LoadState(this, new LoadStateEventArgs(e.Parameter, (Dictionary<string, object>)frameState[this.pagekey]));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Invoked when this page will no longer be displayed in a Frame.
+        /// This method calls <see cref="SaveState"/>, where all page specific
+        /// navigation and process lifetime management logic should be placed.
+        /// </summary>
+        /// <param name="e">Event data that describes how this page was reached.  The Parameter
+        /// property provides the group to be displayed.</param>
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            var frameState = SuspensionManager.SessionStateForFrame(this.Frame);
+            var pageState = new Dictionary<string, object>();
+            if (this.SaveState != null)
+            {
+                this.SaveState(this, new SaveStateEventArgs(pageState));
+            }
+
+            frameState[this.pagekey] = pageState;
+        }
+        #endregion
 
         /// <summary>
         /// Invoked on every keystroke, including system keys such as Alt key combinations, when
@@ -198,8 +276,7 @@
         /// </summary>
         /// <param name="sender">Instance that triggered the event.</param>
         /// <param name="e">Event data describing the conditions that led to the event.</param>
-        private void CoreDispatcher_AcceleratorKeyActivated(CoreDispatcher sender,
-            AcceleratorKeyEventArgs e)
+        private void CoreDispatcher_AcceleratorKeyActivated(CoreDispatcher sender, AcceleratorKeyEventArgs e)
         {
             var virtualKey = e.VirtualKey;
 
@@ -242,8 +319,7 @@
         /// </summary>
         /// <param name="sender">Instance that triggered the event.</param>
         /// <param name="e">Event data describing the conditions that led to the event.</param>
-        private void CoreWindow_PointerPressed(CoreWindow sender,
-            PointerEventArgs e)
+        private void CoreWindow_PointerPressed(CoreWindow sender, PointerEventArgs e)
         {
             var properties = e.CurrentPoint.Properties;
 
@@ -258,145 +334,6 @@
             e.Handled = true;
             if (backPressed) this.GoBackCommand.Execute(null);
             if (forwardPressed) this.GoForwardCommand.Execute(null);
-        }
-
-        #endregion
-
-        #region Process lifetime management
-
-        /// <summary>
-        /// Register this event on the current page to populate the page
-        /// with content passed during navigation as well as any saved
-        /// state provided when recreating a page from a prior session.
-        /// </summary>
-        public event LoadStateEventHandler LoadState;
-
-        /// <summary>
-        /// Register this event on the current page to preserve
-        /// state associated with the current page in case the
-        /// application is suspended or the page is discarded from
-        /// the navigation cache.
-        /// </summary>
-        public event SaveStateEventHandler SaveState;
-
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.  
-        /// This method calls <see cref="LoadState"/>, where all page specific
-        /// navigation and process lifetime management logic should be placed.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.  The Parameter
-        /// property provides the group to be displayed.</param>
-        public void OnNavigatedTo(NavigationEventArgs e)
-        {
-            var frameState = SuspensionManager.SessionStateForFrame(this.Frame);
-            this.pagekey = "Page-" + this.Frame.BackStackDepth;
-
-            if (e.NavigationMode == NavigationMode.New)
-            {
-                // Clear existing state for forward navigation when adding a new page to the
-                // navigation stack
-                var nextPageKey = this.pagekey;
-                var nextPageIndex = this.Frame.BackStackDepth;
-                while (frameState.Remove(nextPageKey))
-                {
-                    nextPageIndex++;
-                    nextPageKey = "Page-" + nextPageIndex;
-                }
-
-                // Pass the navigation parameter to the new page
-                if (this.LoadState != null)
-                {
-                    this.LoadState(this, new LoadStateEventArgs(e.Parameter, null));
-                }
-            }
-            else
-            {
-                // Pass the navigation parameter and preserved page state to the page, using
-                // the same strategy for loading suspended state and recreating pages discarded
-                // from cache
-                if (this.LoadState != null)
-                {
-                    this.LoadState(this, new LoadStateEventArgs(e.Parameter, (Dictionary<String, Object>)frameState[this.pagekey]));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Invoked when this page will no longer be displayed in a Frame.
-        /// This method calls <see cref="SaveState"/>, where all page specific
-        /// navigation and process lifetime management logic should be placed.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.  The Parameter
-        /// property provides the group to be displayed.</param>
-        public void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            var frameState = SuspensionManager.SessionStateForFrame(this.Frame);
-            var pageState = new Dictionary<String, Object>();
-            if (this.SaveState != null)
-            {
-                this.SaveState(this, new SaveStateEventArgs(pageState));
-            }
-
-            frameState[pagekey] = pageState;
-        }
-
-        #endregion
-    }
-
-    /// <summary>
-    /// Class used to hold the event data required when a page attempts to load state.
-    /// </summary>
-    public class LoadStateEventArgs : EventArgs
-    {
-        /// <summary>
-        /// The parameter value passed to <see cref="Frame.Navigate(Type, Object)"/> 
-        /// when this page was initially requested.
-        /// </summary>
-        public Object NavigationParameter { get; private set; }
-
-        /// <summary>
-        /// A dictionary of state preserved by this page during an earlier
-        /// session.  This will be null the first time a page is visited.
-        /// </summary>
-        public Dictionary<string, Object> PageState { get; private set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LoadStateEventArgs"/> class.
-        /// </summary>
-        /// <param name="navigationParameter">
-        /// The parameter value passed to <see cref="Frame.Navigate(Type, Object)"/> 
-        /// when this page was initially requested.
-        /// </param>
-        /// <param name="pageState">
-        /// A dictionary of state preserved by this page during an earlier
-        /// session.  This will be null the first time a page is visited.
-        /// </param>
-        public LoadStateEventArgs(Object navigationParameter, Dictionary<string, Object> pageState)
-            : base()
-        {
-            this.NavigationParameter = navigationParameter;
-            this.PageState = pageState;
-        }
-    }
-
-    /// <summary>
-    /// Class used to hold the event data required when a page attempts to save state.
-    /// </summary>
-    public class SaveStateEventArgs : EventArgs
-    {
-        /// <summary>
-        /// An empty dictionary to be populated with serializable state.
-        /// </summary>
-        public Dictionary<string, Object> PageState { get; private set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SaveStateEventArgs"/> class.
-        /// </summary>
-        /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
-        public SaveStateEventArgs(Dictionary<string, Object> pageState)
-            : base()
-        {
-            this.PageState = pageState;
         }
     }
 }

@@ -29,6 +29,8 @@
 
         public DbSet<TodoItem> TodoItems { get; set; }
 
+        public DbSet<FacilityRequest> FacilityRequests { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             string schema = ServiceSettingsDictionary.GetSchemaName();

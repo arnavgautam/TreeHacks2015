@@ -114,14 +114,17 @@
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Common\ConfigurationHub.cs" />
+    <Compile Include="Common\LoadStateEventArgs.cs" />
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\QuickStartTask.xaml.cs">
       <DependentUpon>QuickStartTask.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\SaveStateEventArgs.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Services\FacilityService.cs" />
+    <Compile Include="Util\SharePointProvider.cs" />
     <Compile Include="ViewModels\FacilityRequestListViewModel.cs" />
     <Compile Include="ViewModels\FacilityRequestViewModel.cs" />
     <Compile Include="ViewModels\InspectionDetailsViewModel.cs" />
@@ -133,8 +136,6 @@
     <Compile Include="Views\InspectionDetailsView.xaml.cs">
       <DependentUpon>InspectionDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Util\Extensions.cs" />
-    <Compile Include="Util\NetworkHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
