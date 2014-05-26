@@ -6,11 +6,14 @@
     angular.module('app').factory(serviceId, ['$rootScope', signalrservice]);
 
     function signalrservice($rootScope) {
-        var hubName = "GifClientHub";
+        var hubName = "GifServerHub";
 
         var connection = $.hubConnection();
         var proxy = connection.createHubProxy(hubName);
-        
+        connection.error(function (error) {
+            console.log('SignalR error: ' + error);
+        });
+
         return {
             on: function (eventName, callback) {
                 proxy.on(eventName, function (result) {

@@ -16,17 +16,11 @@
 
     public class Program
     {
-        private const string Url = "http://azuretkclipmeme.azurewebsites.net";
+        private const string Url = "https://azuretkclipmeme.azurewebsites.net/";
         private static IHubProxy hub;
 
         public static void Main(string[] args)
         {
-            var hubConnection = new HubConnection(Url);
-            hub = hubConnection.CreateHubProxy("GifServerHub");
-            hubConnection.Start().Wait();
-
-            Console.WriteLine("Connected to {0}", Url);
-
             var host = new JobHost();
             host.RunAndBlock();
         }
@@ -68,8 +62,14 @@
 
         private static async Task SendCompleteNotification(Message message, string uri)
         {
+            var hubConnection = new HubConnection(Url);
+            hub = hubConnection.CreateHubProxy("GifServerHub");
+            await hubConnection.Start();
+
             Console.WriteLine("Invoked  GifGenerationCompleted with URL: {0}", uri);
             await hub.Invoke("GifGenerationCompleted", message.HubId, uri);
+
+            hubConnection.Stop();
         }
 
         #region Private Methods

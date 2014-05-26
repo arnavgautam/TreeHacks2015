@@ -1,19 +1,16 @@
 ﻿namespace ClipMeme.Hubs
 {
+    using System;
+    using System.Diagnostics;
     using Microsoft.AspNet.SignalR;
 
     public class GifServerHub : Hub
     {
-        private readonly IHubContext hub;
-
-        public GifServerHub()
-        {
-            this.hub = GlobalHost.ConnectionManager.GetHubContext<GifClientHub>();
-        }
-
         public void GifGenerationCompleted(string clientId, string url)
         {
-            this.hub.Clients.Client(clientId).GifGenerationCompleted(url);
+            Trace.TraceError(string.Format("GifGenerationCompleted {0} : {1}", url, DateTime.Now));
+
+            this.Clients.All.GifGenerationCompleted(url);
         }
     }
 }

@@ -12,9 +12,9 @@
   
     public class GifController : ApiController
     {
-        public async Task<IEnumerable<Meme>> Get()
+        public async Task<IEnumerable<Meme>> Get(int page = 0, int offset = 20)
         {
-            return await new GifStorageService().GetAllAsync();
+            return await new GifStorageService().GetAllAsync(page, offset);
         }
 
         // GET api/values/5

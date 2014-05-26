@@ -3,9 +3,9 @@
 
     var controllerId = 'maincontroller';
 
-    angular.module('app').controller(controllerId, ['$scope', 'gifservice', '$modal', 'signalrservice', 'username', main]);
+    angular.module('app').controller(controllerId, ['$scope', 'gifservice', '$modal', 'signalrservice', '$rootScope', 'username', main]);
 
-    function main($scope, gifservice, $modal, signalrservice, username) {
+    function main($scope, gifservice, $modal, signalrservice, $rootScope, username) {
         $scope.username = username;
         $scope.loading = true;
         $scope.uploadingImages = [];
@@ -17,6 +17,7 @@
 
         signalrservice.init().done(function() {
             $rootScope.hubid = signalrservice.connection.id;
+            console.log("Connected with client id : " + $rootScope.hubid);
         });
 
         $scope.openModal = function () {
@@ -39,7 +40,7 @@
             }
             $scope.images.unshift(
                 {
-                    'Username': $scope.username,
+                    'Username': username,
                     'URL': url
                 });
         }

@@ -290,6 +290,7 @@
     <Content Include="Properties\ligershark.webjobs.targets" />
     <Content Include="Properties\ligershark.webjobs.ext.targets" />
     <None Include="Properties\PublishProfiles\azuretkclipmeme %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\azuretkclipmeme %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\azuretkclipmeme.pubxml" />
     <None Include="Scripts\vendors\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\vendors\FileAPI.flash.swf" />

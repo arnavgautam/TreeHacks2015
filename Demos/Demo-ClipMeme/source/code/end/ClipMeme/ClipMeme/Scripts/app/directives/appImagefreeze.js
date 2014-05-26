@@ -12,6 +12,7 @@
                                 '<canvas>' +
                             '</div>' +
                         '</div>',
+
             link: link,
             restrict: 'A',
             transclude: true,
@@ -25,6 +26,8 @@
 
         function link(scope, element, attrs) {
             var canvas = element.find('canvas')[0];
+            $(canvas).addClass((Math.random() * 1000000000000000000000) + "_canvas");
+            
             var img = element.find('img')[0];
 
             var renderCanvas = img.onload = function () {
@@ -39,8 +42,6 @@
                 setTimeout(function () {
                     try {
                         // workaround for multiple canvas in chrome - http://stackoverflow.com/questions/12114283/how-to-get-multiple-canvas-tags-to-render-reliably-in-chrome
-                        $(canvas).addClass("canvas_" + ((new Date() * 10000) + 621355968000000000));
-
                         canvas.getContext('2d').drawImage(img, 0, 0, width, height);
                         img.style.display = "";
                     } catch(e) {
