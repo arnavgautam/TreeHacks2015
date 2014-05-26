@@ -400,6 +400,14 @@ This demo is composed of the following segments:
 			public string Room { get; set; }
 
 			public string GeoLocation { get; set; }
+			
+			public string Zip { get; set; }
+
+			public string Street { get; set; }
+
+			public string State { get; set; }
+
+			public string City { get; set; }
 
 			public string BTLEId { get; set; }
 
