@@ -123,6 +123,7 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SaveStateEventArgs.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Common\SuspensionManagerException.cs" />
     <Compile Include="Services\FacilityService.cs" />
     <Compile Include="Util\SharePointProvider.cs" />
     <Compile Include="ViewModels\FacilityRequestListViewModel.cs" />

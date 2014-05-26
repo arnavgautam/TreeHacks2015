@@ -5,8 +5,7 @@
     using FacilityApp.Core;
     using Microsoft.IdentityModel.Clients.ActiveDirectory;
     using Microsoft.WindowsAzure.MobileServices;
-	using MobileClient.Common;
-
+    using MobileClient.Common;
     using Newtonsoft.Json.Linq;
 
     public class FacilityService : FacilityServiceBase

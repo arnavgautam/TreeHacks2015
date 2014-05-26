@@ -10,18 +10,6 @@
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
-    public class SuspensionManagerException : Exception
-    {
-        public SuspensionManagerException()
-        {
-        }
-
-        public SuspensionManagerException(Exception e)
-            : base("SuspensionManager failed", e)
-        {
-        }
-    }
-
     /// <summary>
     /// SuspensionManager captures global session state to simplify process lifetime management
     /// for an application.  Note that session state will be automatically cleared under a variety
