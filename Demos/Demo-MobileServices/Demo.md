@@ -24,8 +24,8 @@ In this demo, you will see how to:
 - [Visual Studio 2013 Update 2][3]
 - [Windows Azure Mobile Services][6]
 - [Active Directory Authentication Library][4] (ADAL)
-- Mac iOS 7.0
-- [Xamarin Studio for iOS][5] (A Mac computer is required to run Xamarin)
+- Mac iOS 7.0 (A Mac computer is required to run Xamarin)
+- [Xamarin Studio for iOS][5]
 	
 [2]: http://www.microsoft.com/visualstudio/
 [3]: http://www.microsoft.com/en-us/download/details.aspx?id=42666
@@ -299,7 +299,9 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 	![Simulator running](Images/simulator-running.png?raw=true)
 	
 1. Open the solutions **FacilityApp** and **MobileServices** in Visual Studio. Compile both solutions to ensure that all NuGet packages are downloaded. Open a new Visual Studio instance but do not open any solutions. You will start presenting using this instance.
-	
+
+1. In the **Source\Assets** folder of this demo you will find the following files: **apiDefinition.cs** and **StructsAndEnums.cs**. Transfer these two files to a working directory in your iOS computer. These files are used in the optional segment **Creating Your Own ADAL Binding Library**.
+
 <a name="Demo" />
 ## Demo ##
 
@@ -308,6 +310,7 @@ This demo is composed of the following segments:
 1. [Creating a Mobile Services C# Backend](#segment1).
 1. [Integrating ADAL in a Windows Store App](#segment2).
 1. [Integrating ADAL and Xamarin for iOS](#segment3).
+1. [Creating Your Own ADAL Binding Library (Optional)](#segment4).
 
 <a name="segment1" />
 ### Creating a Mobile Services C# Backend ###
@@ -683,6 +686,85 @@ We've added authentication with Active Directory, but what our app users would r
 11. Switch to the Mac and show the **Xamarin Build Host**. Explain the pairing feature to connect Visual Studio with iOS.
 
 12. Wait until the Simulator is displayed. Show the app running with the same Facility Request you created using the Windows 8 client app.
+
+<a name="segment4" />
+### Creating Your Own ADAL Binding Library ###
+
+1. Swith to the iOS 7.0 computer.
+
+1. Open **Terminal** and browse to the folder where the ADAL source code is located. Navigate to the **ADALiOS** folder.
+
+	> **Speaking Point:** The first thing we need to do is compile the ADAL source code we cloned from GitHub. We'll generate three files for each type of architecture. Then we'll generate an universal binary with those 3 files.
+
+1. Execute the following command to build the library for each specific architecture.
+
+	````Bash
+	xcodebuild -project ADALiOS.xcodeproj -target ADALiOS-sdk iphonesimulator -configuration Release clean build
+	````
+
+	![Compiling ADAL iOS](Images/compiling-adal-ios.png?raw=true)
+	
+	_Compiling the ADAL library for iOS_
+	
+1. Rename the generated file to **libADALiOS-i386.a**.
+
+1. Execute the previous **xcodebuild** command but use the flag _armv7_.
+
+	````Bash
+	xcodebuild -project ADALiOS.xcodeproj -target ADALiOS-sdk iphoneos -arch armv7 -configuration Release clean build
+	````
+
+1. Rename the generated file but this time to **libADALiOS-armv7.a**.
+
+1. Execute **xcodebuild** using the flag _armv7s_.
+
+	````Bash
+	xcodebuild -project ADALiOS.xcodeproj -target ADALiOS-sdk iphoneos -arch armv7s -configuration Release clean build
+	````
+
+1. Rename the last generated file to **libADALiOS-armv7s.a**.
+
+	> **Speaking Point:** Now that we have the 3 generated libraries, we'll merge them using the **lipo** command to create an universal binary.
+
+1. Execute the following command specifying the 3 files you generated before.
+
+	````Bash
+	lipo -create -output libADALiOS.a libADALiOS-i386.a libADALiOS-armv7.a libADALiOS-armv7s.a
+	````
+	
+	![Creating an universal binary](Images/creating-an-universal-binary.png?raw=true)
+	
+	_Creating an universal binary_
+	
+	> **Speaking Point:** With this library we'll create the Binding project in Xamarin to link the native ADAL library for iOS and use it in Visual Studio.
+	
+1. Open **Xamarin Studio** and click the **New...** button.
+
+	![Creating a new project in Xamarin](Images/creating-a-new-project-in-xamarin.png?raw=true)
+	
+	_Creating a new project in Xamarin_
+
+1. In the **New Solution** dialog box, select **iOS Binding Project**, name it **ADALBinding** and click **OK**.
+
+	![Selecting iOS Binding Project Template](Images/selecting-ios-binding-project-template.png?raw=true)
+	
+	_Selecting iOS Binding Project Template_
+
+1. Right-click the **ADALBinding** solution node, select **Add** and then **Add Files...**.
+
+1. Browse to the folder you generated the universal binary and select the file. Whem prompted select **Copy the file to the directory**.
+
+	![Adding the universal binary to Xamarin](Images/adding-the-universal-binary-to-xamarin.png?raw=true)
+	
+	_Adding the universal binary to Xamarin_
+
+	> **Speaking Point:** We included our generated binary to the project. But we still need to indicate how Xamarin will expose those native methods. We have two files here, the apiDefinition and the StructsAndEnums. These files define how Xamarin invokes ADAL's native methods. We'll replace them with the ones I have here, which already define the required methods we need.
+	
+1. Replace the **apiDefinition.cs** and **StructsAndEnums.cs** files  with those located in your working directory for this demo.
+
+1. Right-click the solution and select **Build ADALBinding** to generate the DLL.
+
+	> **Speaking Point:** We can import this generated library into our solution in Visual Studio and start using it as if it's a simple .NET library. When we compile our app for iOS, Xamarin will generate the method calls to native library.
 
 ---
 
