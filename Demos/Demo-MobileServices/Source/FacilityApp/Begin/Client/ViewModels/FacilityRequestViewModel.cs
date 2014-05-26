@@ -210,6 +210,10 @@
             this.Building = request.Building;
             this.Room = request.Room;
             this.GeoLocation = request.GeoLocation;
+            this.Zip = request.Zip;
+            this.Street = request.Street;
+            this.State = request.State;
+            this.City = request.City;
             this.BTLEId = request.BTLEId;
             this.BeforeImageUrl = request.BeforeImageUrl;
             this.AfterImageUrl = request.AfterImageUrl;
@@ -230,6 +234,10 @@
                 Building = this.Building,
                 Room = this.Room,
                 GeoLocation = this.GeoLocation,
+                Zip = this.Zip,
+                Street = this.Street,
+                State = this.State,
+                City = this.City,
                 BTLEId = this.BTLEId,
                 BeforeImageUrl = this.BeforeImageUrl ?? ConfigurationHub.ReadConfigurationValue("CameraThumbnail"),
                 AfterImageUrl = this.AfterImageUrl ?? ConfigurationHub.ReadConfigurationValue("CameraThumbnail"),
