@@ -256,6 +256,8 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. Save and close the file.
 
+1. If you want to replace the map image that is displayed on the Windows Store client app, replace the file located in **Source\Setup\assets\image**.
+
 1. Run **Reset.cmd** in the **Setup** folder to execute the reset scripts. These scripts configure the settings files for each client app, remove any records in the Mobile Service SQL database, and delete all the files in the **Requests** folder in SharePoint. Remember to add a firewall rule for your machine to access the SQL database in Azure.
 
 	> **Note:** You can execute **Reset.cmd** any time you need to reset the demo. Since you already configured Azure AD and the Mobile Service, you only need to execute the reset scripts to reset the demo to a starting point.
