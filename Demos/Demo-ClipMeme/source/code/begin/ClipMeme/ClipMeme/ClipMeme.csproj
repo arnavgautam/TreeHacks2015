@@ -247,7 +247,6 @@
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\main.js" />
     <Content Include="Scripts\app\controllers\modal.js" />
-    <Content Include="Scripts\app\directives\appDropzone.js" />
     <Content Include="Scripts\app\directives\appImagefreeze.js" />
     <Content Include="Scripts\app\services\gifservice.js" />
     <Content Include="Scripts\vendors\bootstrap.js" />
@@ -346,11 +345,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>7148</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:7148/</IISUrl>
+          <IISUrl>http://localhost:7149/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

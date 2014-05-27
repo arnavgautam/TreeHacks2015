@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClipMeme</RootNamespace>
-    <AssemblyName>ClipMeme</AssemblyName>
+    <RootNamespace>GifMeme</RootNamespace>
+    <AssemblyName>GifMeme</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -41,12 +41,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.AspNet.SignalR.Core">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.0.3\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.0.3\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
@@ -57,25 +51,12 @@
     <Reference Include="Microsoft.Data.Services.Client, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin">
-      <HintPath>..\packages\Microsoft.Owin.2.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Host.SystemWeb">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security">
-      <HintPath>..\packages\Microsoft.Owin.Security.2.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Storage, Version=3.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAzure.Storage.3.0.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
-    </Reference>
-    <Reference Include="Owin">
-      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -90,7 +71,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -162,20 +142,45 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\GifController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hubs\GifServerHub.cs" />
     <Compile Include="Models\Meme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GifStorageService.cs" />
-    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
     <Content Include="Content\bootstrap\bootstrap.min.css">
       <DependentUpon>bootstrap.css</DependentUpon>
@@ -184,29 +189,8 @@
     <Content Include="Content\bootstrap\font-awesome.min.css">
       <DependentUpon>font-awesome.css</DependentUpon>
     </Content>
-    <Content Include="Content\Images\clips\20140326-090035-unplug.gif" />
-    <Content Include="Content\Images\clips\20140326-090146-dog-race.gif" />
-    <Content Include="Content\Images\clips\20140326-090217-updated-visual-studio-theme.gif" />
-    <Content Include="Content\Images\clips\20140326-090247-when-i-merge-my-own-pull-requests.gif" />
-    <Content Include="Content\Images\clips\20140326-090337-cookies.gif" />
-    <Content Include="Content\Images\clips\20140326-090412-just-learned-about-git-rebase.gif" />
-    <Content Include="Content\Images\clips\20140326-090501-when-someone-merges-your-pull-request-before-its-ready.gif" />
-    <Content Include="Content\Images\clips\20140326-090527-oops.gif" />
-    <Content Include="Content\Images\clips\20140326-090608-when-i-unstash-something.gif" />
-    <Content Include="Content\Images\clips\20140326-090649-Weekend-is-over__No!.gif" />
-    <Content Include="Content\Images\clips\20140326-103112-cat-caterpillar.gif" />
-    <Content Include="Content\Images\clips\20140326-103134-disco-girl.gif" />
-    <Content Include="Content\Images\clips\20140326-103147-tallyho.gif" />
-    <Content Include="Content\Images\clips\20140326-103447-horse-cannon.gif" />
-    <Content Include="Content\Images\clips\20140326-103855-Fat-Dance-Suit-Men-Rave-On-At-Home.gif" />
-    <Content Include="Content\Images\error.png" />
-    <Content Include="error.html">
-      <BrowseToURL>~/Properties/demo.htm</BrowseToURL>
-    </Content>
     <Content Include="Content\fonts\flat-ui-icons-regular.svg" />
-    <Content Include="Content\fonts\fonts.css">
-      <DependentUpon>fonts.less</DependentUpon>
-    </Content>
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\lato\lato-black.svg" />
     <Content Include="Content\fonts\lato\lato-bold.svg" />
@@ -216,50 +200,71 @@
     <Content Include="Content\fonts\lato\lato-regular.svg" />
     <Content Include="Content\Images\fb_48.png" />
     <Content Include="Content\Images\google_48.png" />
+    <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\share-google.png" />
     <Content Include="Content\Images\W8Spinner.GIF" />
     <Content Include="Content\share-facebook.png" />
     <Content Include="Content\share-twitter.png" />
-    <Content Include="Content\Site.css">
-      <DependentUpon>Site.less</DependentUpon>
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Social.css">
+      <DependentUpon>Social.scss</DependentUpon>
     </Content>
     <Content Include="Content\Images\twitter_48.png" />
-    <Content Include="Content\Site.min.css">
-      <DependentUpon>Site.css</DependentUpon>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Properties\WebJobs.xml" />
-    <Content Include="Scripts\app\services\signalrservice.js" />
-    <Content Include="Scripts\vendors\jquery.signalR-2.0.3.js" />
-    <Content Include="Scripts\vendors\jquery.signalR-2.0.3.min.js" />
-    <Content Include="Scripts\vendors\angular-file-upload-html5-shim.js" />
-    <Content Include="Scripts\vendors\angular-file-upload-html5-shim.min.js" />
-    <Content Include="Scripts\vendors\angular-file-upload-shim.js" />
-    <Content Include="Scripts\vendors\angular-file-upload-shim.min.js" />
-    <Content Include="Scripts\vendors\angular-file-upload.js" />
-    <Content Include="Scripts\vendors\angular-file-upload.min.js" />
-    <Content Include="Scripts\vendors\angular-mocks.js" />
-    <Content Include="Scripts\vendors\angular-resource.js" />
-    <Content Include="Scripts\vendors\angular-resource.min.js" />
-    <Content Include="Scripts\vendors\angular.js" />
-    <Content Include="Scripts\vendors\angular.min.js" />
+    <Content Include="Scripts\angular-file-upload-html5-shim.js" />
+    <Content Include="Scripts\angular-file-upload-html5-shim.min.js" />
+    <Content Include="Scripts\angular-file-upload-shim.js" />
+    <Content Include="Scripts\angular-file-upload-shim.min.js" />
+    <Content Include="Scripts\angular-file-upload.js" />
+    <Content Include="Scripts\angular-file-upload.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-resource.js" />
+    <Content Include="Scripts\angular-resource.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\main.js" />
-    <Content Include="Scripts\app\controllers\modal.js" />
-    <Content Include="Scripts\app\directives\appDropzone.js" />
-    <Content Include="Scripts\app\directives\appImagefreeze.js" />
+    <Content Include="Scripts\app\directives\gmImagefreeze.js" />
     <Content Include="Scripts\app\services\gifservice.js" />
-    <Content Include="Scripts\vendors\bootstrap.js" />
-    <Content Include="Scripts\vendors\bootstrap.min.js" />
-    <Content Include="Scripts\vendors\angular.min.js.map" />
-    <Content Include="Scripts\vendors\angular-resource.min.js.map" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="GifMeme.wpp.targets" />
+    <Content Include="Content\Social.scss" />
+    <Content Include="Content\Social.css.map">
+      <DependentUpon>Social.css</DependentUpon>
+    </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\flat-ui-icons-regular.eot" />
     <Content Include="Content\fonts\flat-ui-icons-regular.ttf" />
     <Content Include="Content\fonts\flat-ui-icons-regular.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Content\fonts\lato\lato-black.eot" />
     <Content Include="Content\fonts\lato\lato-black.ttf" />
     <Content Include="Content\fonts\lato\lato-black.woff" />
@@ -278,31 +283,18 @@
     <Content Include="Content\fonts\lato\lato-regular.eot" />
     <Content Include="Content\fonts\lato\lato-regular.ttf" />
     <Content Include="Content\fonts\lato\lato-regular.woff" />
-    <Content Include="Content\fonts\fonts.less" />
-    <Content Include="Content\fonts\fonts.css.map">
-      <DependentUpon>fonts.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Site.less" />
-    <Content Include="Content\Site.css.map">
-      <DependentUpon>Site.css</DependentUpon>
-    </Content>
-    <Content Include="Properties\ligershark.webjobs.targets" />
-    <Content Include="Properties\ligershark.webjobs.ext.targets" />
-    <None Include="Properties\PublishProfiles\azuretkclipmeme %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\azuretkclipmeme %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\azuretkclipmeme.pubxml" />
-    <None Include="Scripts\vendors\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\vendors\FileAPI.flash.swf" />
-    <Content Include="Scripts\vendors\FileAPI.min.js" />
-    <Content Include="Scripts\vendors\jquery-1.10.2.js" />
-    <Content Include="Scripts\vendors\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\vendors\modernizr-2.6.2.js" />
-    <Content Include="Scripts\vendors\respond.js" />
-    <Content Include="Scripts\vendors\respond.min.js" />
-    <Content Include="Scripts\vendors\ui-bootstrap-0.10.0.js" />
-    <Content Include="Scripts\vendors\ui-bootstrap-0.10.0.min.js" />
-    <Content Include="Scripts\vendors\ui-bootstrap-tpls-0.10.0.js" />
-    <Content Include="Scripts\vendors\ui-bootstrap-tpls-0.10.0.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\FileAPI.flash.swf" />
+    <Content Include="Scripts\FileAPI.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ui-bootstrap-0.10.0.js" />
+    <Content Include="Scripts\ui-bootstrap-0.10.0.min.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-0.10.0.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-0.10.0.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -310,24 +302,16 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\vendors\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Shared\Modal.cshtml" />
-    <Content Include="webjobs.wpp.targets" />
-    <Content Include="Settings.StyleCop" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GifGenerator\GifGenerator.csproj">
-      <Project>{3ED3800E-0B59-400A-91D8-42AFF1A137F4}</Project>
-      <Name>GifGenerator</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
@@ -346,7 +330,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>7148</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
