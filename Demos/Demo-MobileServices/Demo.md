@@ -266,6 +266,12 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 
 1. Open the **FacilityApp.sln** solution located in your demo folder (by default **C:\Demos\Source**).
 
+1. A Xamarin dialog box will appear to _pair_ Visual Studio with a Mac. Click **Continue**.
+
+	![Pairing Visual Studio with Xamarin](Images/pairing-visual-studio-with-xamarin.png?raw=true)
+
+1. In the next dialog box, select the Mac instance where Xamarin Studio is installed and click **Connect**.
+
 1. The **Xamarin Pair With** screen will pop up requesting a PIN code.
 
 	![Xamarin Pair With screen](Images/xamarin-pair-with-screen.png?raw=true)
