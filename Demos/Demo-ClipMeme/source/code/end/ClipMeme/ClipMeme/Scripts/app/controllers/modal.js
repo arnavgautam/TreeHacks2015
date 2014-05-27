@@ -8,7 +8,7 @@
     function modal($scope, $upload, $modalInstance, gifservice, $rootScope, username) {
         cleanVariables();
 
-        $scope.dropComplete = function(src, file) {
+        $scope.dropComplete = function (src, file) {
             $scope.image.source = src;
             $scope.image.file = file;
             showImage();
@@ -16,6 +16,8 @@
 
         $scope.submit = function (isValid) {
             if (isValid && $scope.image.file) {
+                var image = $scope.image.source;
+
                 $scope.upload = $upload.upload({
                     url: '/api/gif',
                     data: {
@@ -30,7 +32,12 @@
                     }
                 }).success(function (data, status, headers, config) {
                     cleanVariables();
-                    $modalInstance.close('close');
+                    $modalInstance.close({
+                        URL: image,
+                        user: username,
+                        text: "Processing",
+                        date: new Date()
+                    });
                 }).error(function (err) {
                     console.log(err);
                     cleanVariables();

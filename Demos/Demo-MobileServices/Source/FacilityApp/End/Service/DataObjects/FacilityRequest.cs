@@ -16,6 +16,14 @@
 
         public string GeoLocation { get; set; }
 
+        public string Zip { get; set; }
+
+        public string Street { get; set; }
+
+        public string State { get; set; }
+
+        public string City { get; set; }
+
         public string BTLEId { get; set; }
 
         public string BeforeImageUrl { get; set; }

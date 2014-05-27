@@ -23,7 +23,7 @@
             this.storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString);
         }
 
-        public Task<IEnumerable<Meme>> GetAllAsync()
+        public Task<IEnumerable<Meme>> GetAllAsync(int page, int offset)
         {
             var tableClient = this.storageAccount.CreateCloudTableClient();
             var table = tableClient.GetTableReference("MemeMetadata");
@@ -33,7 +33,7 @@
                 RetryPolicy = new LinearRetry(TimeSpan.FromMilliseconds(500), 5)
             };
 
-            var memesMetadata = table.ExecuteQuery(query, requestOptions).OrderByDescending(md => md.BlobName);
+            var memesMetadata = table.ExecuteQuery(query, requestOptions).OrderByDescending(md => md.BlobName).Skip(page*offset).Take(offset);
 
             IEnumerable<Meme> result = new List<Meme>();
             foreach (var memeMetadata in memesMetadata)

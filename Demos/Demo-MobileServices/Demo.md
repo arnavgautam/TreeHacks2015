@@ -38,7 +38,7 @@ In this demo, you will see how to:
 
 In order to execute this demo you need to set up your environment. The following are one-time instructions you need to execute in order to prepare the demo. Once completed, there is no need to execute these steps again; you can simply run **Reset.cmd** located in the **Setup** folder to clear the database and SharePoint files to restart the demo.
 
-> **Note:** You need a Mac computer with iOS 7.0 in order to run the iOS client using Xamarin.
+You need a Mac computer with iOS 7.0 in order to run the iOS client using Xamarin. Make sure **XCode**, **Git** and **Xamarin for iOS** are installed on the box.
 
 #### Task 1 - Creating an Office 365 Subscription ####
 
@@ -266,6 +266,12 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 
 1. Open the **FacilityApp.sln** solution located in your demo folder (by default **C:\Demos\Source**).
 
+1. A Xamarin dialog box will appear to _pair_ Visual Studio with a Mac. Click **Continue**.
+
+	![Pairing Visual Studio with Xamarin](Images/pairing-visual-studio-with-xamarin.png?raw=true)
+
+1. In the next dialog box, select the Mac instance where Xamarin Studio is installed and click **Connect**.
+
 1. The **Xamarin Pair With** screen will pop up requesting a PIN code.
 
 	![Xamarin Pair With screen](Images/xamarin-pair-with-screen.png?raw=true)
@@ -301,6 +307,8 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 1. Open the solutions **FacilityApp** and **MobileServices** in Visual Studio. Compile both solutions to ensure that all NuGet packages are downloaded. Open a new Visual Studio instance but do not open any solutions. You will start presenting using this instance.
 
 1. In the **Source\Assets** folder of this demo you will find the following files: **apiDefinition.cs** and **StructsAndEnums.cs**. Transfer these two files to a working directory in your iOS computer. These files are used in the optional segment **Creating Your Own ADAL Binding Library**.
+
+1. In the Mac computer, open **Terminal** and clone the ADAL for iOS library from the GitHub repository: https://github.com/MSOpenTech/azure-activedirectory-library-for-ios
 
 <a name="Demo" />
 ## Demo ##
@@ -378,10 +386,9 @@ This demo is composed of the following segments:
 	_Adding FacilityRequest.cs class_
 
 8. Replace the _FacilityRequest_ class in VS with the following snippet.
-
 	
 	(Code Snippet - _facilityrequest_)
-	<!-- mark:1-41 -->
+	<!-- mark:1-49 -->
 	````C#
 	namespace MobileService.DataObjects
 	{
@@ -635,9 +642,7 @@ We've added authentication with Active Directory, but what our app users would r
 
 		var token = await SharePointProvider.RequestAccessToken((ServiceUser)this.User, authority, sharePointResource, activeDirectoryClientId, activeDirectoryClientSecret);
 
-		string headerUri;
-		Services.Settings.TryGetValue("HeaderUri", out headerUri);
-		var document = SharePointProvider.BuildDocument(facilityRequest, headerUri);
+		var document = SharePointProvider.BuildDocument(facilityRequest);
 
 		await SharePointProvider.UploadFile(sharePointUri, document, token, activeDirectoryClientId);
 

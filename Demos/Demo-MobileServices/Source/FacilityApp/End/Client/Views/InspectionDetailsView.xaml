@@ -42,11 +42,11 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition  Width="200"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Background="#032A3B" Width="300" Height="150" x:Name="JoshGrid" Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding GridVisibility, Mode=TwoWay}">
-                <Image Name="UserImage" Width="52" Margin="90 0 0 0"></Image>
+            <StackPanel Background="#032A3B" Width="300" Height="150" x:Name="JoshGrid" Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Name="UserImage" Width="52" Margin="90 0 0 0" Source="{Binding DefaultViewModel.UserImage}"></Image>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0 0 0">
-                    <TextBlock Name="UserTextBlockName" FontSize="25" Foreground="White"></TextBlock>
-                    <TextBlock Name="UserTextBlockSurname" FontSize="22" Foreground="White"></TextBlock>
+                    <TextBlock Name="UserTextBlockName" FontSize="25" Foreground="White" Text="{Binding DefaultViewModel.UserName}"></TextBlock>
+                    <TextBlock Name="UserTextBlockSurname" FontSize="22" Foreground="White" Text="{Binding DefaultViewModel.UserSurname}"></TextBlock>
                 </StackPanel>
             </StackPanel>
             <Button x:Name="backButton" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}" Grid.Column="0"

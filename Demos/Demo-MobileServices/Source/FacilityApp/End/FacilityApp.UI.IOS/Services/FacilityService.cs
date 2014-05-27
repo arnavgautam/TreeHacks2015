@@ -10,24 +10,30 @@ namespace FacilityApp.UI.IOS.Services
 
     public class FacilityService : FacilityServiceBase
     {
-        public Action LoginCompletedAction;
+        public Action LoginCompletedAction { get; set; }
 
         public override Task<string> LoginAsync(bool clearCache, string authorityId, string redirectUri, string resourceId, string clientId)
         {
-            ADALBuild.GetToken(clearCache, authorityId, redirectUri, resourceId, clientId, async (result) =>
-            {
-                JObject payload = new JObject();
-                payload["access_token"] = result.ToString();
-                try
+            ADALBuild.GetToken(
+                clearCache,
+                authorityId,
+                redirectUri,
+                resourceId,
+                clientId,
+                async (result) =>
                 {
-                    await MobileServiceClientProvider.MobileClient.LoginAsync(MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory, payload);
-                }
-                catch (Exception)
-                {
-                }
+                    JObject payload = new JObject();
+                    payload["access_token"] = result.ToString();
+                    try
+                    {
+                        await MobileServiceClientProvider.MobileClient.LoginAsync(MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory, payload);
+                    }
+                    catch (Exception)
+                    {
+                    }
 
-                this.LoginCompletedAction();
-            });
+                    this.LoginCompletedAction();
+                });
 
             return Task.FromResult(string.Empty);
         }
