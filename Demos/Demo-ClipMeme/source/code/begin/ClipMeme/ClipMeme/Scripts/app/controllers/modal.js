@@ -68,7 +68,7 @@
                 removeErrorMessage();
                 this.classList.remove('over');
 
-                var file = event.originalEvent.dataTransfer.files[0];
+                var file = event.originalEvent.dataTransfer.files[0]
                 if (file && file.type == "image/gif") {
                     var reader = new FileReader();
 
