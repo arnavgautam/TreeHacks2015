@@ -44,7 +44,7 @@ You need a Mac computer with iOS 7.0 in order to run the iOS client using Xamari
 
 If you do not have an Office 365 subscription you can do one of the following:
 
-- If you are a **Microsoft Partner**, you have the option of requesting a demo tenant at https://www.microsoftofficedemos.com. These demo tenants expire after 90 days after the creation.
+- If you are a **Microsoft Partner**, you have the option of requesting a demo tenant at https://www.microsoftofficedemos.com. These demo tenants expire 90 days after creation.
 
 - If you have a **MSDN subscription**, you can activate your **Office 365 Developer** subscription in your MSDN subscriber dashboard.
 
@@ -70,7 +70,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 	
 #### Task 2 - Setting Azure + Office 365 Subscription ####
 
-> **Note:** If you have a MSDN subscription you get a free Azure subscription with it. Go to the msdn.com subscription dashboard and follow the **Activate Windows Azure** option.
+> **Note:** If you have a MSDN subscription, a free Azure subscription is included. Go to the msdn.com subscription dashboard and follow the **Activate Windows Azure** option.
 
 1. Open a browser and go to http://manage.windowsazure.com.
 
@@ -80,7 +80,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 	![Sign up for Azure](Images/sign-up-for-azure.png?raw=true)
 	
-1. You will be taken to a screen where you will validate your details, agree with the Terms and Privacy statement and then finish signing up. Once registered is over, you will be able to access the Management Portal. Now Azure and Office 365 are both linked to the same user account.
+1. You will be taken to a screen where you will validate your details, agree with the Terms and Privacy statement and then finish signing up. Once registered, you will be able to access the Management Portal. Now Azure and Office 365 are both linked to the same user account.
 
 #### Task 3 - Creating a Mobile Service and Registering your Apps in Azure AD ####
 
@@ -167,7 +167,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. Click **Associate** to associate the app with the store name.
 
-1. Log into your [Windows Dev Center Dashboard](http://go.microsoft.com/fwlink/p/?linkid=266734&clcid=0x409) and click **Edit** on the app.
+1. Log in to your [Windows Dev Center Dashboard](http://go.microsoft.com/fwlink/p/?linkid=266734&clcid=0x409) and click **Edit** on the app.
 
 1. Then click **Services**.
 
@@ -183,7 +183,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 	![Creating clent AD app](Images/creating-clent-ad-app.png?raw=true)
 	
-1. In the **Redirect URI** field, paste the package **SID** you copied in a previous step. Click OK to continue.
+1. In the **Redirect URI** field, paste the package **SID** you copied in a previous step. Click the check button to continue.
 
 	![Client App Package SID](Images/client-app-package-sid.png?raw=true)
 
@@ -250,11 +250,13 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 1. Under the **SharePoint** element set the values to connect your SharePoint:
 
 	* **baseUrl**: the SharePoint user's personal site. The URL usually has the following form **https://{domain}-my.sharepoint.com/personal/{username}_{domain}_onmicrosoft_com/**. For example: https://dpe-my.sharepoint.com/personal/admin_dpe_onmicrosoft_com/
-	* **username**: Full quaified name for the Office 365 user. E.g.: admin@dpe.onmicrosoft.com
+	* **username**: Full qualified name for the Office 365 user. E.g.: admin@dpe.onmicrosoft.com
 	* **password**: the password for the Office 365 user
-	* **folderName**: Tte folder in the Personal Sites documents list where the app will upload files. Leave the default value, **Requests**
+	* **folderName**: the folder in the Personal Sites documents list where the app will upload files. Leave the default value, **Requests**
 
 1. Save and close the file.
+
+1. If you want to replace the map image that is displayed on the Windows Store client app, replace the file located in **Source\Setup\assets\image**.
 
 1. Run **Reset.cmd** in the **Setup** folder to execute the reset scripts. These scripts configure the settings files for each client app, remove any records in the Mobile Service SQL database, and delete all the files in the **Requests** folder in SharePoint. Remember to add a firewall rule for your machine to access the SQL database in Azure.
 
@@ -288,7 +290,7 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 
 	![Pairing with Xamarin in Visual Studio](Images/pairing-with-xamarin-in-visual-studio.png?raw=true)
 
-1. A succesfull pairing message pops up. Click **Finish**.
+1. A successfull pairing message pops up. Click **Finish**.
 
 1. Set **FacilityApp.UI.Windows** as the startup project and run the app using the Simulator.
 
@@ -355,7 +357,7 @@ This demo is composed of the following segments:
 	
 	_Mobile Service Project Template_
 
-	> **Speaking Point:** We have a simple structure, with the corresponding model and the controller to expose that model to the world in a way that all our cross-platform clients understand. Also, it wouldn't be Mobile Services without great support for scheduled jobs.
+	> **Speaking Point:** We have a simple structure, with the corresponding model and the controller to expose the model to the world in a way that all our cross-platform clients understand. Also, it wouldn't be Mobile Services without great support for scheduled jobs.
 
 7. Open **TodoItemController.cs** in the **Controllers**	folder and add a breakpoint at the beginning of the **GetAllTodoItem** method.
 
@@ -367,19 +369,19 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** We have support for local development. We have a documentation page with information about the API, and a test client inside the browser to try it out. Local and remote debugging now work great with Mobile Services.
 
-1. Click the **Try out** link.
+1. Click the **Try it out** link.
 
 	![Try out link](Images/try-out-link.png?raw=true)
 
 1. Select **GET tables/TodoItem** from the list.
 
-1. Click the **try this out** button at the top of the screen. Click **send** on the dialog box. The debugger will be hit in Visual Studio.
+1. Click the **try this out** button at the top of the screen. Click **send** in the dialog box. The debugger will be hit in Visual Studio.
 
 1. Stop the app.
 	
-	> **Speaking Point:** We're going to build a powerful line of business app, where we can report facilities issues, and then the facilities department can use it to take care of it.
+	> **Speaking Point:** We're going to build a powerful line-of-business app, where we can report facilities issues, which the facilities department can use to find solutions.
 	
-7. Right-click the **DataObjects** folder, select **Add**, and click **Class** in order to add a new class. Name it as _FacilityRequest.cs_ and click **Add**.
+7. Right-click the **DataObjects** folder, select **Add**, and click **Class** in order to add a new class. Name it _FacilityRequest.cs_ and click **Add**.
 
 	![Add new FacilityRequest class](Images/add-new-facilityrequest-class.png?raw=true)
 	
@@ -454,13 +456,13 @@ This demo is composed of the following segments:
 <a name="segment2" />
 ### Integrating with ADAL and Deploying to Windows Azure Mobile Services###
 
-1. Right-click the **MobileService** project and click **Manage NuGet Packages**.
+1. Right-click the **MobileService** project and click **Manage NuGet Packages...**.
 
 	![Manage NuGet Packages](Images/manage-nuget-packages.png?raw=true)
 	
 	_Manage NuGet Packages_
 
-2. Select the **Installed Packages** tab at the left of the dialog and search for **ADAL**. In the results verify the **Active Directory Authentication Library** is installed in the solution. Note this is a Prerelease version. Click **Close**.
+2. Select the **Installed Packages** tab on the left side of the dialog box and search for **ADAL**. In the results, verify that the **Active Directory Authentication Library** is installed in the solution. Note that this is a Prerelease version. Click **Close**.
 
 	![ADAL Library](Images/adal-library.png?raw=true)
 	
@@ -571,7 +573,7 @@ This demo is composed of the following segments:
 	}	
 	````
 
-	> **Speaking Point:** We can take advantage of the Active Directory authentication library, which gives us a native login experience on all clients. We can pass the authentication token to the Mobile Services back-end, so that the user is logged in to both places.
+	> **Speaking Point:** We can take advantage of the Active Directory authentication library which gives us a native login experience on all clients. We can pass the authentication token to the Mobile Services back-end so that the user is logged in to both places.
 	
 11. Set the Windows 8.1 project as the startup project for the solution, make sure the **Simulator** option is selected, and launch the client app.
 
@@ -579,11 +581,11 @@ This demo is composed of the following segments:
 	
 	_Run in Simulator_
 
-12. The Simulator will launch and start the application. When prompted, log_in using your AD credentials.
+12. The Simulator will launch and start the application. When prompted, log in using your AD credentials.
 
 	![Login with AD](Images/login-with-ad.png?raw=true)
 	
-	_Login with AD_
+	_Log in with AD_
 
 	> **Speaking Point:** Once signed in, it's going to call out to our on-premise Active Directory and start pulling graph information about our user.
 	
@@ -652,7 +654,7 @@ We've added authentication with Active Directory, but what our app users would r
 
 	> **Speaking Point:** The method is called every time a facility request is updated, so we can take advantage of the Active Directory authentication token to call the new set of Office365 REST APIs, allowing us to generate the document on the fly and post it straight to SharePoint.
 
-3. Save changes and go through publishing the **C# backend** once again.
+3. Save the changes and go through publishing the **C# backend** once again.
 
 	![Publishing Mobile Service Backend Changes](Images/publishing-mobile-service-backend-changes.png?raw=true)
 	
@@ -670,7 +672,7 @@ We've added authentication with Active Directory, but what our app users would r
 
 6. Open **SharePoint** in the browser and go to **OneDrive**. Select **My Documents** from the left panel.
 
-	> **Speaking Point:** We can verify it by browsing to the company SharePoint site. We will find a new generated document with our company identity.
+	> **Speaking Point:** We can verify this by browsing to the company SharePoint site. We will find a new document generated in our documents list.
 
 7. Open the **Requests** folder and select the **Word** document created just now.
 
@@ -703,11 +705,11 @@ We've added authentication with Active Directory, but what our app users would r
 <a name="segment4" />
 ### Creating Your Own ADAL Binding Library ###
 
-1. Swith to the iOS 7.0 computer.
+1. Switch to the iOS 7.0 computer.
 
 1. Open **Terminal** and browse to the folder where the ADAL source code is located. Navigate to the **ADALiOS** folder.
 
-	> **Speaking Point:** The first thing we need to do is compile the ADAL source code we cloned from GitHub. We'll generate three files for each type of architecture. Then we'll generate an universal binary with those 3 files.
+	> **Speaking Point:** The first thing we need to do is compile the ADAL source code we cloned from GitHub. We'll generate three files for each type of architecture. Then we'll generate a universal binary with those 3 files.
 
 1. Execute the following command to build the library for each specific architecture.
 
@@ -719,15 +721,15 @@ We've added authentication with Active Directory, but what our app users would r
 	
 	_Compiling the ADAL library for iOS_
 	
-1. Rename the generated file to **libADALiOS-i386.a**.
+1. Rename the generated file **libADALiOS-i386.a**.
 
-1. Execute the previous **xcodebuild** command but use the flag _armv7_.
+1. Execute the previous **xcodebuild** command, but use the flag _armv7_.
 
 	````Bash
 	xcodebuild -project ADALiOS.xcodeproj -target ADALiOS-sdk iphoneos -arch armv7 -configuration Release clean build
 	````
 
-1. Rename the generated file but this time to **libADALiOS-armv7.a**.
+1. Now rename the generated file **libADALiOS-armv7.a**.
 
 1. Execute **xcodebuild** using the flag _armv7s_.
 
@@ -735,9 +737,9 @@ We've added authentication with Active Directory, but what our app users would r
 	xcodebuild -project ADALiOS.xcodeproj -target ADALiOS-sdk iphoneos -arch armv7s -configuration Release clean build
 	````
 
-1. Rename the last generated file to **libADALiOS-armv7s.a**.
+1. Rename the last generated file **libADALiOS-armv7s.a**.
 
-	> **Speaking Point:** Now that we have the 3 generated libraries, we'll merge them using the **lipo** command to create an universal binary.
+	> **Speaking Point:** Now that we have the 3 libraries generated, we'll merge them using the **lipo** command to create a universal binary.
 
 1. Execute the following command specifying the 3 files you generated before.
 
@@ -747,9 +749,9 @@ We've added authentication with Active Directory, but what our app users would r
 	
 	![Creating an universal binary](Images/creating-an-universal-binary.png?raw=true)
 	
-	_Creating an universal binary_
+	_Creating a universal binary_
 	
-	> **Speaking Point:** With this library we'll create the Binding project in Xamarin to link the native ADAL library for iOS and use it in Visual Studio.
+	> **Speaking Point:** With this library we'll create the Binding project in Xamarin to link the native iOS ADAL library and use it in Visual Studio.
 	
 1. Open **Xamarin Studio** and click the **New...** button.
 
@@ -765,19 +767,19 @@ We've added authentication with Active Directory, but what our app users would r
 
 1. Right-click the **ADALBinding** solution node, select **Add** and then **Add Files...**.
 
-1. Browse to the folder you generated the universal binary and select the file. Whem prompted select **Copy the file to the directory**.
+1. Browse to the folder where you generated the universal binary and select the file. When prompted, select **Copy the file to the directory**.
 
 	![Adding the universal binary to Xamarin](Images/adding-the-universal-binary-to-xamarin.png?raw=true)
 	
 	_Adding the universal binary to Xamarin_
 
-	> **Speaking Point:** We included our generated binary to the project. But we still need to indicate how Xamarin will expose those native methods. We have two files here, the apiDefinition and the StructsAndEnums. These files define how Xamarin invokes ADAL's native methods. We'll replace them with the ones I have here, which already define the required methods we need.
+	> **Speaking Point:** We included our generated binary to the project. But we still need to indicate how Xamarin will expose those native methods. We have two files here - the apiDefinition and the StructsAndEnums. These files define how Xamarin invokes ADAL's native methods. We'll replace them with the ones I have here, which already define the required methods we need.
 	
 1. Replace the **apiDefinition.cs** and **StructsAndEnums.cs** files  with those located in your working directory for this demo.
 
 1. Right-click the solution and select **Build ADALBinding** to generate the DLL.
 
-	> **Speaking Point:** We can import this generated library into our solution in Visual Studio and start using it as if it's a simple .NET library. When we compile our app for iOS, Xamarin will generate the method calls to native library.
+	> **Speaking Point:** We can import this generated library into our solution in Visual Studio and start using it like a simple .NET library. When we compile our app for iOS, Xamarin will generate the method calls to the native library.
 
 ---
 

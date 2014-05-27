@@ -53,7 +53,7 @@ namespace FacilityApp.UI.IOS.ViewControllers
             this.progressHud.Show(animated: true);
 
             this.facilityService.LoginCompletedAction = this.RetrieveRequests;
-            this.facilityService.LoginAsync(true, ConfigurationHub.ReadConfigurationValue("AadAuthority"), ConfigurationHub.ReadConfigurationValue("AppRedirectURI"), ConfigurationHub.ReadConfigurationValue("AadRedirectResourceURI"), ConfigurationHub.ReadConfigurationValue("AadClientID"));
+            this.facilityService.LoginAsync(true, ConfigurationHub.ReadConfigurationValue("AadAuthority"), ConfigurationHub.ReadConfigurationValue("AppRedirectLocation"), ConfigurationHub.ReadConfigurationValue("AadRedirectResourceURI"), ConfigurationHub.ReadConfigurationValue("AadClientID"));
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
