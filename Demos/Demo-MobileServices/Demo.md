@@ -38,7 +38,7 @@ In this demo, you will see how to:
 
 In order to execute this demo you need to set up your environment. The following are one-time instructions you need to execute in order to prepare the demo. Once completed, there is no need to execute these steps again; you can simply run **Reset.cmd** located in the **Setup** folder to clear the database and SharePoint files to restart the demo.
 
-> **Note:** You need a Mac computer with iOS 7.0 in order to run the iOS client using Xamarin.
+You need a Mac computer with iOS 7.0 in order to run the iOS client using Xamarin. Make sure **XCode**, **Git** and **Xamarin for iOS** are installed on the box.
 
 #### Task 1 - Creating an Office 365 Subscription ####
 
@@ -307,6 +307,8 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 1. Open the solutions **FacilityApp** and **MobileServices** in Visual Studio. Compile both solutions to ensure that all NuGet packages are downloaded. Open a new Visual Studio instance but do not open any solutions. You will start presenting using this instance.
 
 1. In the **Source\Assets** folder of this demo you will find the following files: **apiDefinition.cs** and **StructsAndEnums.cs**. Transfer these two files to a working directory in your iOS computer. These files are used in the optional segment **Creating Your Own ADAL Binding Library**.
+
+1. In the Mac computer, open **Terminal** and clone the ADAL for iOS library from the GitHub repository: https://github.com/MSOpenTech/azure-activedirectory-library-for-ios
 
 <a name="Demo" />
 ## Demo ##
