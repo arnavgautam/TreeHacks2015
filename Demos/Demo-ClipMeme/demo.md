@@ -27,14 +27,43 @@ In this demo, you will see how to:
 
 In order to execute this demo, you first need to set up your environment by completing the following tasks: 
 
-1. [Segment #1](#segment1)
+1. [Visual Studio and Azure Provisioning](#segment1)
 
-1. [Segment #2](#segment2)
+1. [Web Essentials Features](#segment2)
 
 <a name="segment1" />
-###Segment #1###
+###Visual Studio and Azure Provisioning###
 
+	File / New Experience
+		Database
+		Website
+		Virtual machine
+	Provisioning and PowerShell
+	
+### Web Essentials Features ###
+	Quick Site Demo
+		Show ClipMeme site
+		Upload new gif
+	BrowserLink Features
+		Design in Browser 
+			Fix Wording issue 
+		Edit CSS with F12 Tooling
+			Change Background color 
+	Image Sprites (Not in Keynote Demo)
+	Javascript editing
+		Js hint
+	Angular JS refactoring (Not in Keynote)
+		Show angular Intellisense 
+	Azure Staged Published
+		Site Swap
+		
+### Azure Web Jobs ###
+	Code Walk-through
+	Web Jobs Dashboard (SiteExtension)
+		There should be a note to generate an error to visualize it in the Dashboard.
 
-<a name="segment2" />
-###Segment #2###
-
+### Azure Auto Scale, Traffic Manager and Backup ###
+	Site Swap
+	Auto Scale
+	Traffic Manager
+	Backup
