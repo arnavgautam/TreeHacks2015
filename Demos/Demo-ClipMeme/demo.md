@@ -63,7 +63,6 @@ In order to execute this demo, you first need to set up your environment by comp
 		There should be a note to generate an error to visualize it in the Dashboard.
 
 ### Azure Auto Scale, Traffic Manager and Backup ###
-	Site Swap
 	Auto Scale
 	Traffic Manager
 	Backup
