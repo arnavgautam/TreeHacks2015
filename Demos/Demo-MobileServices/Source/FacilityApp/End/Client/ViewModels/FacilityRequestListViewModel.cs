@@ -3,12 +3,9 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using FacilityApp.Core;
-
     using Common;
+    using FacilityApp.Core;
     using Services;
-
     using Windows.UI.Xaml;
 
     public class FacilityRequestListViewModel : ViewModelBase
@@ -50,7 +47,9 @@
         public async Task OnLoadState()
         {
             this.GridVisibility = Visibility.Collapsed;
+
             await this.AuthenticateAsync();
+            await this.GetUserImage();
             await this.InitPageAsync();
         }
 
@@ -63,6 +62,7 @@
 
         public async Task InitPageAsync()
         {
+            await this.InitUserInfo();
             await this.RefreshRequests();
         }
 

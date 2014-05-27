@@ -1,15 +1,14 @@
-﻿using FacilityApp.Core;
-using MobileClient.Common;
-
-namespace MobileClient
+﻿namespace MobileClient
 {
     using System;
+    using FacilityApp.Core;
+    using MobileClient.Common;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;
-
+    
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>

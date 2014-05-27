@@ -114,10 +114,10 @@
             </Grid.ColumnDefinitions>
             <StackPanel Background="#032A3B" Width="300" Height="150" x:Name="JoshGrid" Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding GridVisibility, Mode=TwoWay}">
 
-                <Image Name="UserImage" Width="52" Margin="90 0 0 0"></Image>
+                <Image Name="UserImage" Width="52" Margin="90 0 0 0" Source="{Binding UserImage}"></Image>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0 0 0">
-                    <TextBlock Name="UserTextBlockName"  FontSize="25" Foreground="White"></TextBlock>
-                    <TextBlock Name="UserTextBlockSurname" FontSize="22" Foreground="White"></TextBlock>
+                    <TextBlock Name="UserTextBlockName"  FontSize="25" Foreground="White" Text="{Binding UserName}"></TextBlock>
+                    <TextBlock Name="UserTextBlockSurname" FontSize="22" Foreground="White" Text="{Binding UserSurname}"></TextBlock>
                 </StackPanel>
             </StackPanel>
             <Button x:Name="backButton" Margin="39,49,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"

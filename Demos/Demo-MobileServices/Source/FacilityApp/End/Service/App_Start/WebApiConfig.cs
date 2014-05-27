@@ -1,10 +1,10 @@
 ﻿namespace MobileService
 {
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Web.Http;
-    using DataObjects;
+
     using Microsoft.WindowsAzure.Mobile.Service;
+
     using Models;
 
     public static class WebApiConfig
@@ -24,7 +24,7 @@
             Database.SetInitializer(new MobileServiceInitializer());
         }
 
-        private class MobileServiceInitializer : DropCreateDatabaseIfModelChanges<MobileServiceContext>
+        public class MobileServiceInitializer : DropCreateDatabaseIfModelChanges<MobileServiceContext>
         {
         }
     }

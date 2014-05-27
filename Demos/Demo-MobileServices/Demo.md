@@ -378,10 +378,9 @@ This demo is composed of the following segments:
 	_Adding FacilityRequest.cs class_
 
 8. Replace the _FacilityRequest_ class in VS with the following snippet.
-
 	
 	(Code Snippet - _facilityrequest_)
-	<!-- mark:1-41 -->
+	<!-- mark:1-49 -->
 	````C#
 	namespace MobileService.DataObjects
 	{
@@ -635,9 +634,7 @@ We've added authentication with Active Directory, but what our app users would r
 
 		var token = await SharePointProvider.RequestAccessToken((ServiceUser)this.User, authority, sharePointResource, activeDirectoryClientId, activeDirectoryClientSecret);
 
-		string headerUri;
-		Services.Settings.TryGetValue("HeaderUri", out headerUri);
-		var document = SharePointProvider.BuildDocument(facilityRequest, headerUri);
+		var document = SharePointProvider.BuildDocument(facilityRequest);
 
 		await SharePointProvider.UploadFile(sharePointUri, document, token, activeDirectoryClientId);
 
