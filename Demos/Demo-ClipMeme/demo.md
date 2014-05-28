@@ -13,7 +13,9 @@ In this demo, you will see how to:
 
 <a name="Technologies" />
 ### Key Technologies ###
-
+- Windows Azure subscription
+- Microsoft Visual Studio 2013
+- Visual Studio 2013 Update 2
 - Windows Azure Webistes
 
 <a name="Prerequisites" />
@@ -24,7 +26,10 @@ In this demo, you will see how to:
 <a name="Setup" />
 ### Setup and Configuration ###
 
-In order to execute this demo, you first need to set up your environment by completing the following tasks: 
+<a name="Demo" />
+## Demo ##
+
+This demo is composed of the following segments: 
 
 1. [Visual Studio and Azure Provisioning](#segment1)
 
@@ -37,6 +42,25 @@ In order to execute this demo, you first need to set up your environment by comp
 <a name="segment1" />
 ###Visual Studio and Azure Provisioning###
 
+1. In Visual Studio, click **File > New > Project...** 
+
+1. Click **Web** and select **ASP .NET Web Application**. Click **OK**
+
+1. Select **Empty** template and check **Create remote resources** checkbox. Click **OK**
+
+> **Speaking Point:** Azure Provisioning.
+
+2. Select **No Database** and click **OK**
+
+2. Open **Publish-WebApplication.ps1**
+
+> **Speaking Point:** PublishScripts content. 
+
+2. Right-Click on PS1 file. And click **Open with Powershell ISE**
+
+> **Speaking Point:** PowerShell feature. 
+
+_Creating new Project_
 	File / New Experience
 		Database
 		Website
