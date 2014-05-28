@@ -28,6 +28,10 @@ In this demo, you will see how to:
 
 In order to execute this demo, you first need to set up your environment by completing the following tasks: 
 
+
+
+## Demo ##
+
 1. [Visual Studio and Azure Provisioning](#segment1)
 
 1. [Web Essentials Features](#segment2)
@@ -51,7 +55,7 @@ In order to execute this demo, you first need to set up your environment by comp
 
 
 <a name="quick-site-demo" />
-#### Quick Site Demo ####
+#### Task 1 - Quick Site Demo ####
 
 1. So for this scenario, we’re going to look at a small site that could get big fast. We are building a viral meme generator with a twist: we are using animated GIFs. 
 	
@@ -62,7 +66,7 @@ In order to execute this demo, you first need to set up your environment by comp
 1. Hover over one of the images to show the animated gif with the text overlay.
 	
 <a name="browserlink-features" />
-#### Browser link####
+#### Task 2 - Browser link####
 
 1. Back in the home page, show that there’s a typo in the header, the word “and” is repeated.
 
