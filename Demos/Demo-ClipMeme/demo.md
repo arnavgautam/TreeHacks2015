@@ -227,8 +227,50 @@ _Creating new Project_
 
 <a name="segment4" />
 ### Site Swap, Azure Auto Scale, Traffic Manager and Backup ###
-	Site Swap
-	Auto Scale
-	Traffic Manager
-	Backup
+<a name="site-swap" />
+#### Site Swap ####
+
+1. Browse to the Azure Portal and to the website.
+1. Click Swap.
+1. Select the staging deployment as the source and the production deployment as the destination, and click Ok.
+
+> **Speaking Point:** Explain that all the configuration such as SSL certificates and public domain names stay where they are, but the deployments are swapped. The site is readily available afterwards.
+
+<a name="auto-scale" />
+#### Auto Scale ####
+1. In the Web Site, go to **Scale**.
+2. Scroll down to **Scale by Metric** and select **CPU**. Change the instance count to **2** and **4**.
+
+	> **Speaking Point:** Explain how the user can use the Target CPU threshold to automatically upscale or downscale the number of instances.
 	
+<a name="traffic-manager" />
+#### Traffic Manager ####
+1. Browse to the Azure Portal, and click New > Network Services > Traffic Manager > Quick Create.
+
+	> **Speaking Point:** Explain the different Load Balancing Methods available.
+	
+1. Click Close, and go to the an existing Traffic Manager created.
+1. Select Web Site in the Service Type combo.
+1. Check the deployed Web Site to the Traffic Manager profile.
+
+	> **Speaking Point:** Explain that no matter where the user is, they will always hit the data center closest to them.
+
+<a name="backups" />
+#### Backups ####
+1. Go to the **Backups** section in the Web Site.
+1. Enable **Automated Backup** by clicking **ON**
+1. Select a storage account.
+
+	> **Speaking Point:** Explain that the user can change the **Frequency** and the Start Date.
+	
+1. Select a database connection from the **Included Databases** drop-down.
+1. Click **Save** to confirm.
+1. Click **Backup Now** to create a backup.
+1. Once completed, show how to restore a backup. Click **Restore Now**.
+
+	> **Speaking Point:** Explain the two options to restore a backup: From a previous backup of the site or by selecting a file from the storage account. Select the second option and click the folder icon.
+	
+1. Browse the storage account you selected to generate the backup. Select the **websitebackups** container.
+1. Select the backup file and click **OPEN**.
+1. Click the arrow to continue to next page.
+1. Show the options to restore a Web Site (_current_ or _new_). From the databases drop-down, select a server and show how you can set up credentials to restore the database. Click the **Automatically adjust connection strings** checkbox. **Do not Confirm changes, close the window to continue**
