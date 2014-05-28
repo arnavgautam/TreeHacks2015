@@ -1,12 +1,10 @@
 ﻿namespace MobileClient
 {
-    using System;
-    using Windows.UI.Xaml.Media.Imaging;
     using FacilityApp.Core;
 
-    using Common;
-    using ViewModels;
-    using Views;
+    using MobileClient.Common;
+    using MobileClient.ViewModels;
+    using MobileClient.Views;
 
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
@@ -23,11 +21,7 @@
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
-            this.navigationHelper.LoadState += this.OnLoadState;
-
-            this.UserImage.Source = new BitmapImage(new Uri(ConfigurationHub.ReadConfigurationValue("UserImage")));
-            this.UserTextBlockName.Text = ConfigurationHub.ReadConfigurationValue("UserName");
-            this.UserTextBlockSurname.Text = ConfigurationHub.ReadConfigurationValue("UserSurname");
+            this.navigationHelper.LoadState += this.OnLoadState;   
         }
 
         public NavigationHelper NavigationHelper

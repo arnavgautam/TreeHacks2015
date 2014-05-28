@@ -4,13 +4,13 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.OData;
 using Microsoft.WindowsAzure.Mobile.Service;
-using MobileService.Common.Providers;
 using MobileService.DataObjects;
 using MobileService.Models;
 
 namespace MobileService.Controllers
 {
     using Microsoft.WindowsAzure.Mobile.Service.Security;
+    using MobileService.Common.Providers;
 
     [AuthorizeLevel(AuthorizationLevel.User)]
     public class FacilityRequestController : TableController<FacilityRequest>
@@ -34,7 +34,7 @@ namespace MobileService.Controllers
             return Lookup(id);
         }
 
-        // PATCH tables/FacilityRequest/48D68C86-6EA6-4C25-AA33-223FC9A27959
+		// PATCH tables/FacilityRequest/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public async Task<FacilityRequest> PatchFacilityRequest(string id, Delta<FacilityRequest> patch)
         {
             var sharePointUri = SharePointProvider.SharePointUri;
@@ -44,8 +44,7 @@ namespace MobileService.Controllers
             SharePointProvider.SharePointUri = sharePointUri;
             var facilityRequest = patch.GetEntity();
 
-            sharePointUri = SharePointProvider.SharePointUri + string.Format(@"/getfolderbyserverrelativeurl('Documents')/Folders('Requests')/Files/Add(url='{0}.docx', overwrite=true)",
-                        facilityRequest.DocId);
+            sharePointUri = SharePointProvider.SharePointUri + string.Format(@"/getfolderbyserverrelativeurl('Documents')/Folders('Requests')/Files/Add(url='{0}.docx', overwrite=true)", facilityRequest.DocId);
 
             string authority;
             string sharePointResource;
@@ -57,25 +56,22 @@ namespace MobileService.Controllers
             Services.Settings.TryGetValue("ActiveDirectoryClientId", out activeDirectoryClientId);
             Services.Settings.TryGetValue("ActiveDirectoryClientSecret", out activeDirectoryClientSecret);
 
-            var token = await SharePointProvider.RequestAccessToken((ServiceUser)this.User, authority, sharePointResource, activeDirectoryClientId, activeDirectoryClientSecret);
-
-            string headerUri;
-            Services.Settings.TryGetValue("HeaderUri", out headerUri);
-            var document = SharePointProvider.BuildDocument(facilityRequest, headerUri);
+            var token = await SharePointProvider.RequestAccessToken((ServiceUser)this.User, authority, sharePointResource, activeDirectoryClientId, activeDirectoryClientSecret);                      
+            var document = SharePointProvider.BuildDocument(facilityRequest);
 
             await SharePointProvider.UploadFile(sharePointUri, document, token, activeDirectoryClientId);
 
             return await this.UpdateAsync(id, patch);
-        } 
+        }
 
-        // POST tables/FacilityRequest/48D68C86-6EA6-4C25-AA33-223FC9A27959
+		// POST tables/FacilityRequest/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public async Task<IHttpActionResult> PostFacilityRequest(FacilityRequest item)
         {
-            FacilityRequest current = await InsertAsync(item);
+			FacilityRequest current = await InsertAsync(item);
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }
 
-        // DELETE tables/FacilityRequest/48D68C86-6EA6-4C25-AA33-223FC9A27959
+		// DELETE tables/FacilityRequest/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public Task DeleteFacilityRequest(string id)
         {
              return DeleteAsync(id);

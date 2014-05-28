@@ -12,13 +12,9 @@
     /// </summary>
     public class RelayCommand : ICommand
     {
-        private readonly Action _execute;
-        private readonly Func<bool> _canExecute;
+        private readonly Action execute;
 
-        /// <summary>
-        /// Raised when RaiseCanExecuteChanged is called.
-        /// </summary>
-        public event EventHandler CanExecuteChanged;
+        private readonly Func<bool> canExecute;
 
         /// <summary>
         /// Creates a new command that can always execute.
@@ -38,9 +34,14 @@
         {
             if (execute == null)
                 throw new ArgumentNullException("execute");
-            _execute = execute;
-            _canExecute = canExecute;
+            this.execute = execute;
+            this.canExecute = canExecute;
         }
+
+        /// <summary>
+        /// Raised when RaiseCanExecuteChanged is called.
+        /// </summary>
+        public event EventHandler CanExecuteChanged;
 
         /// <summary>
         /// Determines whether this <see cref="RelayCommand"/> can execute in its current state.
@@ -51,7 +52,7 @@
         /// <returns>true if this command can be executed; otherwise, false.</returns>
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null ? true : _canExecute();
+            return this.canExecute == null || this.canExecute();
         }
 
         /// <summary>
@@ -62,7 +63,7 @@
         /// </param>
         public void Execute(object parameter)
         {
-            _execute();
+            this.execute();
         }
 
         /// <summary>
@@ -72,7 +73,7 @@
         /// </summary>
         public void RaiseCanExecuteChanged()
         {
-            var handler = CanExecuteChanged;
+            var handler = this.CanExecuteChanged;
             if (handler != null)
             {
                 handler(this, EventArgs.Empty);

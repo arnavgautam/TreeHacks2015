@@ -1,14 +1,19 @@
-﻿using Microsoft.WindowsAzure.MobileServices;
-
-namespace FacilityApp.Core
+﻿namespace FacilityApp.Core
 {
+    using Microsoft.WindowsAzure.MobileServices;
+
     public static class MobileServiceClientProvider
     {
-        public static MobileServiceClient MobileClient;
+        private static MobileServiceClient mobileClient;
+
+        public static MobileServiceClient MobileClient 
+        {
+            get { return mobileClient; }
+        }
 
         public static void InitializeClient(string mobSvcUri, string appKey)
         {
-            MobileClient = new MobileServiceClient(mobSvcUri, appKey);
+            mobileClient = new MobileServiceClient(mobSvcUri, appKey);
         }
     }
 }

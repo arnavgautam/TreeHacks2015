@@ -1,0 +1,21 @@
+﻿.navbar-default {
+  background-color: #fff;
+}
+footer {
+  background-color: #34495E;
+}
+.facebook {
+  background: url(share-facebook.png) no-repeat;
+  width: 24px;
+  height: 24px;
+}
+.twitter {
+  background: url(share-twitter.png) no-repeat;
+  width: 24px;
+  height: 24px;
+}
+.button-container {
+  color: #999999;
+  border-color: #808080;
+}
+/*# sourceMappingURL=Site.css.map */

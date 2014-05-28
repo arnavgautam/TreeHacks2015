@@ -5,7 +5,7 @@
     using FacilityApp.Core;
     using Microsoft.IdentityModel.Clients.ActiveDirectory;
     using Microsoft.WindowsAzure.MobileServices;
-
+    using MobileClient.Common;
     using Newtonsoft.Json.Linq;
 
     public class FacilityService : FacilityServiceBase
@@ -23,6 +23,13 @@
 
             // Request access to Azure Mobile Services
             await MobileServiceClientProvider.MobileClient.LoginAsync(MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory, token);
+
+            var authContext = new AuthenticationContext(ConfigurationHub.ReadConfigurationValue("AadAuthority"), false);
+
+            // Get the sharepoint token
+            var authenticationResult = await authContext.AcquireTokenByRefreshTokenAsync(result.RefreshToken, ConfigurationHub.ReadConfigurationValue("AadClientID"), ConfigurationHub.ReadConfigurationValue("SharePointResource"));
+            State.SharePointToken = authenticationResult.AccessToken;
+
             return result.AccessToken;
         }
     }

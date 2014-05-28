@@ -1,18 +1,17 @@
 ﻿// The Split Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234234
-
-using Windows.UI.Xaml.Media.Imaging;
-using FacilityApp.Core;
-
 namespace MobileClient.Views
 {
     using System;
 
-    using Common;
-    using Services;
-    using ViewModels;
+    using FacilityApp.Core;
+
+    using MobileClient.Common;
+    using MobileClient.Services;
+    using MobileClient.ViewModels;
 
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Media.Imaging;
     using Windows.UI.Xaml.Navigation;
 
     /// <summary>
@@ -33,10 +32,6 @@ namespace MobileClient.Views
             this.DataContext = this;
 
             this.MapImage.Source = new BitmapImage(new Uri(ConfigurationHub.ReadConfigurationValue("MapImageLarge")));
-            this.UserImage.Source = new BitmapImage(new Uri(ConfigurationHub.ReadConfigurationValue("UserImage")));
-
-            this.UserTextBlockName.Text = ConfigurationHub.ReadConfigurationValue("UserName");
-            this.UserTextBlockSurname.Text = ConfigurationHub.ReadConfigurationValue("UserSurname");
 
             // Setup the navigation helper
             this.navigationHelper = new NavigationHelper(this);
@@ -74,6 +69,34 @@ namespace MobileClient.Views
         }
 
         /// <summary>
+        /// Invoked to determine the name of the visual state that corresponds to an application
+        /// view state.
+        /// </summary>
+        /// <returns>The name of the desired visual state.  This is the same as the name of the
+        /// view state except when there is a selected item in portrait and snapped views where
+        /// this additional logical page is represented by adding a suffix of _Detail.</returns>
+        private static string DetermineVisualState()
+        {
+            if (!UsingLogicalPageNavigation())
+                return "PrimaryView";
+
+            // Update the back button's enabled state when the view state changes
+            var logicalPageBack = UsingLogicalPageNavigation();
+
+            return logicalPageBack ? "SinglePane_Detail" : "SinglePane";
+        }
+
+        /// <summary>
+        /// Invoked to determine whether the page should act as one logical page or two.
+        /// </summary>
+        /// <returns>True if the window should show act as one logical page, false
+        /// otherwise.</returns>
+        private static bool UsingLogicalPageNavigation()
+        {
+            return Window.Current.Bounds.Width < MinimumWidthForSupportingTwoPanes;
+        }
+
+        /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
         /// </summary>
@@ -84,8 +107,10 @@ namespace MobileClient.Views
         /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
         /// a dictionary of state preserved by this page during an earlier
         /// session.  The state will be null the first time a page is visited.</param>
-        private void NavigationHelperLoadState(object sender, LoadStateEventArgs e)
+        private async void NavigationHelperLoadState(object sender, LoadStateEventArgs e)
         {
+            await this.DefaultViewModel.InitPageAsync();
+
             var request = e.NavigationParameter as FacilityRequestViewModel;
             this.DefaultViewModel.CurrentJob = request ?? new FacilityRequestViewModel()
             {
@@ -96,7 +121,7 @@ namespace MobileClient.Views
                 RequestedDate = DateTime.Now,
                 BeforeImageUrl = ConfigurationHub.ReadConfigurationValue("CameraThumbnail"),
                 AfterImageUrl = ConfigurationHub.ReadConfigurationValue("CameraThumbnail"),
-                DocId = new Random(((int)DateTime.Now.Ticks & 0x0000FFFF)).Next(100000).ToString(),
+                DocId = new Random((int)DateTime.Now.Ticks & 0x0000FFFF).Next(100000).ToString(),
                 Street = ConfigurationHub.ReadConfigurationValue("StreetFRVM"),
                 City = ConfigurationHub.ReadConfigurationValue("CityFRVM"),
                 State = ConfigurationHub.ReadConfigurationValue("StateFRVM"),
@@ -124,16 +149,6 @@ namespace MobileClient.Views
             btnAccept.IsEnabled = true;
             this.progressRing.IsActive = false;
             this.GoBack();
-        }
-
-        /// <summary>
-        /// Invoked to determine whether the page should act as one logical page or two.
-        /// </summary>
-        /// <returns>True if the window should show act as one logical page, false
-        /// otherwise.</returns>
-        private static bool UsingLogicalPageNavigation()
-        {
-            return Window.Current.Bounds.Width < MinimumWidthForSupportingTwoPanes;
         }
 
         /// <summary>
@@ -173,24 +188,6 @@ namespace MobileClient.Views
             var visualState = DetermineVisualState();
             VisualStateManager.GoToState(this, visualState, false);
             this.navigationHelper.GoBackCommand.RaiseCanExecuteChanged();
-        }
-
-        /// <summary>
-        /// Invoked to determine the name of the visual state that corresponds to an application
-        /// view state.
-        /// </summary>
-        /// <returns>The name of the desired visual state.  This is the same as the name of the
-        /// view state except when there is a selected item in portrait and snapped views where
-        /// this additional logical page is represented by adding a suffix of _Detail.</returns>
-        private static string DetermineVisualState()
-        {
-            if (!UsingLogicalPageNavigation())
-                return "PrimaryView";
-
-            // Update the back button's enabled state when the view state changes
-            var logicalPageBack = UsingLogicalPageNavigation();
-
-            return logicalPageBack ? "SinglePane_Detail" : "SinglePane";
         }
     }
 }

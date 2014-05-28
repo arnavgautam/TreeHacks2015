@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MobileService.DataObjects
+﻿namespace MobileService.DataObjects
 {
+    using System;
     using Microsoft.WindowsAzure.Mobile.Service;
+    using Microsoft.WindowsAzure.Mobile.Service.Tables;
 
-    public class FacilityRequest : EntityData
+    public class FacilityRequest : EntityData, ITableData
     {
         public string User { get; set; }
 
@@ -18,6 +15,14 @@ namespace MobileService.DataObjects
         public string Room { get; set; }
 
         public string GeoLocation { get; set; }
+
+        public string Zip { get; set; }
+
+        public string Street { get; set; }
+
+        public string State { get; set; }
+
+        public string City { get; set; }
 
         public string BTLEId { get; set; }
 

@@ -1,0 +1,25 @@
+﻿Local 4428
+running in pid: 4428
+Timestamp:9:21:16 PM
+Parameters bound. Invoking user function.
+--------
+at Microsoft.WindowsAzure.StorageClient.Tasks.Task`1.get_Result()
+at Microsoft.WindowsAzure.StorageClient.Tasks.Task`1.Execute()
+at Microsoft.WindowsAzure.StorageClient.RequestWithRetry.RequestWithRetrySyncImpl[TResult](ShouldRetry retryOracle, SynchronousTask`1 syncTask)
+at Microsoft.WindowsAzure.StorageClient.TaskImplHelper.ExecuteSyncTaskWithRetry[TResult](SynchronousTask`1 syncTask, RetryPolicy policy)
+at Microsoft.WindowsAzure.StorageClient.CloudBlob.DownloadToStream(Stream target, BlobRequestOptions options)
+at GifGenerator.Program.GetInputStream(Message message)
+at GifGenerator.Program.ProcessImage(Message message, Stream output)
+--------
+Exception while executing:
+Microsoft.WindowsAzure.StorageClient.StorageClientException, The specified blob does not exist.
+at Microsoft.WindowsAzure.Jobs.RunnerProgram.InvokeWorker(MethodInfo m, BindResult[] binds, ParameterInfo[] ps)
+at Microsoft.WindowsAzure.Jobs.RunnerProgram.Invoke(IConfiguration config, MethodInfo m, FunctionInstanceGuid instance, IRuntimeBindingInputs inputs, ParameterRuntimeBinding[] argDescriptors)
+at Microsoft.WindowsAzure.Jobs.RunnerProgram.Invoke(FunctionInvokeRequest invoke, IConfiguration config)
+at Microsoft.WindowsAzure.Jobs.RunnerProgram.MainWorker(FunctionInvokeRequest descr, IConfiguration config)
+
+System.Net.WebException, The remote server returned an error: (404) Not Found.
+at System.Net.HttpWebRequest.GetResponse()
+at Microsoft.WindowsAzure.StorageClient.EventHelper.ProcessWebResponseSync(WebRequest req, EventHandler`1 handler, Object sender)
+
+FAIL

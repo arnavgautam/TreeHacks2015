@@ -58,7 +58,7 @@
             return true;
         }
 
-        public static byte[] BuildDocument(dynamic facRequest, string headerUri)
+        public static byte[] BuildDocument(dynamic facRequest)
         {
             const string Content = "<!DOCTYPE html>                                                                                                              "
                                    + "                                                                                                                            "
@@ -67,7 +67,6 @@
                                    + "<body style=\"font-family:'Segoe UI';font-weight:100;font-size:12pt;\">                                                     "
                                    + "                                                                                                                            "
                                    + "    <div style=\"width:800px;height:150px;display:inline-block;margin:auto;text-align:center;\">                            "
-                                   + "        <img src='{0}' width='300' height='auto'><br />                                                                                               "
                                    + "        <div style=\"font-size:16pt;font-weight:400;\">                                                                     "
                                    + "            Facilities Request Form                                                                                         "
                                    + "        </div>                                                                                                              "
@@ -77,28 +76,28 @@
                                    + "    <table width=\"600\">                                                                                                   "
                                    + "        <tr>                                                                                                                "
                                    + "            <td>Requested By:</td>                                                                                          "
-                                   + "            <td>{1}</td>                                                                                                    "
+                                   + "            <td>{0}</td>                                                                                                    "
                                    + "            <td>On:</td>                                                                                                    "
-                                   + "            <td>{2}</td>                                                                                                    "
+                                   + "            <td>{1}</td>                                                                                                    "
                                    + "        </tr>                                                                                                               "
                                    + "        <tr>                                                                                                                "
                                    + "            <td>Building:</td>                                                                                              "
-                                   + "            <td>{3}</td>                                                                                                    "
+                                   + "            <td>{2}</td>                                                                                                    "
                                    + "            <td>Room:</td>                                                                                                  "
-                                   + "            <td>{4}</td>                                                                                                    "
+                                   + "            <td>{3}</td>                                                                                                    "
                                    + "        </tr>                                                                                                               "
                                    + "            <tr>                                                                                                            "
+                                   + "            <td colspan=\"2\"><img width='200' height='280' src='{6}'></td>                                                 "
                                    + "            <td colspan=\"2\"><img width='200' height='280' src='{7}'></td>                                                 "
-                                   + "            <td colspan=\"2\"><img width='200' height='280' src='{8}'></td>                                                 "
                                    + "        </tr>                                                                                                               "
                                    + "    </table>                                                                                                                "
                                    + "                                                                                                                            "
                                    + "    <table width=\"600\">                                                                                                   "
                                    + "        <tr>                                                                                                                "
                                    + "            <td>Description:</td>                                                                                           "
-                                   + "            <td>{5}</td>                                                                                                    "
+                                   + "            <td>{4}</td>                                                                                                    "
                                    + "            <td>Service Notes:</td>                                                                                         "
-                                   + "            <td>{6}</td>                                                                                                    "
+                                   + "            <td>{5}</td>                                                                                                    "
                                    + "        </tr>                                                                                                               "
                                    + "    </table>                                                                                                                "
                                    + "                                                                                                                            "
@@ -112,7 +111,6 @@
 
             var html = string.Format(
                 Content,
-                headerUri,
                 facRequest.User,
                 facRequest.RequestedDate.ToString("dd MMM HH:mm"),
                 facRequest.Building,
