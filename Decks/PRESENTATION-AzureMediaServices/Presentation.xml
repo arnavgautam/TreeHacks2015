@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Presentation xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>VirtualNetworks</Id>
+  <Author>
+    <Blog></Blog>
+    <Email>yanmf@microsoft.com</Email>
+    <Name>Mingfei Yan</Name>
+  </Author>
+  <Description>
+Azure Media Services is a platform-as-a-service that enables you to build customizable media workflow; you could upload, encode, encrypt, package, and deliver video content to multiple platforms and devices. In this session, see how to consume various services using the Media Services client SDK. We focus on some new features, such as secure delivery options, live streaming, and more. 
+ </Description>
+  <Document RemoveSpeakerNotes="false">.\AzureMediaServices.pptx</Document>
+  <Title>Build end-to-end video experiences with Azure Media Services</Title>
+  <Version>1.0.0</Version>
+  <SlideThumbnail>1</SlideThumbnail>
+  <CustomProperties>
+    <Property Name="Filter" Value="Foundation,itprocamps" />
+  </CustomProperties>
+</Presentation>
