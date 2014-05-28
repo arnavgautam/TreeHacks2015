@@ -85,17 +85,17 @@ This demo is composed of the following segments:
 
 1. Select **Empty** template and check **Create remote resources** checkbox. Click **OK**
 
-	> **Speaking Point:** Azure Provisioning.
+> **Speaking Point:** Azure Provisioning.
 
 2. Select **No Database** and click **OK**
 
 2. Open **Publish-WebApplication.ps1**
 
-	> **Speaking Point:** PublishScripts content. 
+> **Speaking Point:** PublishScripts content. 
 
 2. Right-Click on PS1 file. And click **Open with Powershell ISE**
 
-	> **Speaking Point:** PowerShell feature. 
+> **Speaking Point:** PowerShell feature. 
 
 <a name="segment2" />
 ### Web Essentials Features ###
@@ -248,25 +248,19 @@ This demo is composed of the following segments:
 	> **Note:** If you generated errors in your log, click on the item to show the details of the error. Then click the **Toggle Output** button to expand the exception details
 
 <a name="segment4" />
-### Site Swap, Azure Auto Scale, Traffic Manager and Backup ###
-<a name="site-swap" />
-#### Task 1 - Site Swap ####
-
-1. Browse to the Azure Portal and to the website.
-1. Click Swap.
-1. Select the staging deployment as the source and the production deployment as the destination, and click Ok.
+### Azure Auto Scale, Traffic Manager and Backup ###
 
 > **Speaking Point:** Explain that all the configuration such as SSL certificates and public domain names stay where they are, but the deployments are swapped. The site is readily available afterwards.
 
 <a name="auto-scale" />
-#### Task 2 - Auto Scale ####
+#### Task 1 - Auto Scale ####
 1. In the Web Site, go to **Scale**.
 2. Scroll down to **Scale by Metric** and select **CPU**. Change the instance count to **2** and **4**.
 
 	> **Speaking Point:** Explain how the user can use the Target CPU threshold to automatically upscale or downscale the number of instances.
 	
 <a name="traffic-manager" />
-#### Task 3 - Traffic Manager ####
+#### Task 2 - Traffic Manager ####
 1. Browse to the Azure Portal, and click New > Network Services > Traffic Manager > Quick Create.
 
 	> **Speaking Point:** Explain the different Load Balancing Methods available.
@@ -278,7 +272,7 @@ This demo is composed of the following segments:
 	> **Speaking Point:** Explain that no matter where the user is, they will always hit the data center closest to them.
 
 <a name="backups" />
-#### Task 4 - Backups ####
+#### Task 3 - Backups ####
 1. Go to the **Backups** section in the Web Site.
 1. Enable **Automated Backup** by clicking **ON**
 1. Select a storage account.
