@@ -222,13 +222,7 @@ _Creating new Project_
 	> **Note:** If you generated errors in your log, click on the item to show the details of the error. Then click the **Toggle Output** button to expand the exception details
 
 <a name="segment4" />
-### Site Swap, Azure Auto Scale, Traffic Manager and Backup ###
-<a name="site-swap" />
-#### Site Swap ####
-
-1. Browse to the Azure Portal and to the website.
-1. Click Swap.
-1. Select the staging deployment as the source and the production deployment as the destination, and click Ok.
+### Azure Auto Scale, Traffic Manager and Backup ###
 
 > **Speaking Point:** Explain that all the configuration such as SSL certificates and public domain names stay where they are, but the deployments are swapped. The site is readily available afterwards.
 
