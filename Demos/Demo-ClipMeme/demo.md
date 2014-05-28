@@ -227,14 +227,14 @@ _Creating new Project_
 > **Speaking Point:** Explain that all the configuration such as SSL certificates and public domain names stay where they are, but the deployments are swapped. The site is readily available afterwards.
 
 <a name="auto-scale" />
-#### Auto Scale ####
+#### Task 1 - Auto Scale ####
 1. In the Web Site, go to **Scale**.
 2. Scroll down to **Scale by Metric** and select **CPU**. Change the instance count to **2** and **4**.
 
 	> **Speaking Point:** Explain how the user can use the Target CPU threshold to automatically upscale or downscale the number of instances.
 	
 <a name="traffic-manager" />
-#### Traffic Manager ####
+#### Task 2 - Traffic Manager ####
 1. Browse to the Azure Portal, and click New > Network Services > Traffic Manager > Quick Create.
 
 	> **Speaking Point:** Explain the different Load Balancing Methods available.
@@ -246,7 +246,7 @@ _Creating new Project_
 	> **Speaking Point:** Explain that no matter where the user is, they will always hit the data center closest to them.
 
 <a name="backups" />
-#### Backups ####
+#### Task 3 - Backups ####
 1. Go to the **Backups** section in the Web Site.
 1. Enable **Automated Backup** by clicking **ON**
 1. Select a storage account.
