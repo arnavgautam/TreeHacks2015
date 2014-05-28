@@ -24,18 +24,49 @@ In this demo, you will see how to:
 - [Visual Studio 2013 Update 2](http://www.microsoft.com/es-es/download/details.aspx?id=42666)
 - [Web Essentials for Update 2](http://visualstudiogallery.msdn.microsoft.com/56633663-6799-41d7-9df7-0f2a504ca361)
 - [Side Waffles templates](http://visualstudiogallery.msdn.microsoft.com/a16c2d07-b2e1-4a25-87d9-194f04e7a698)
+- Google Chrome
 
 <a name="Setup" />
 ### Setup and Configuration ###
 
-<a name="Demo" />
+##### Azure #####
+
+1. Create a **Storage Account** in Azure.
+
+1. Create a **Windows Azure Website** in **Standard** mode and enable Staging slot.
+
+1. Enable **Web Sockets** in **Configure**.
+
+1. Add the following settings in **Configure**:
+
+	* AzureJobsRuntime: Storage Account connection string
+	* AzureJobsData: Storage Account connection string
+
+1. Create **Traffic Manager** and configure it. 
+	
+##### Solutions  #####
+
+1. Open **ClipMeme** and build it to install NuGet Packages.
+
+1. Publish **ClipMeme** to the Azure Website you created before.
+
+##### Configuration Variables #####
+
+1. Set the connection string for BlobStorage.
+
+1. Run **Reset.cmd**.
+
+1. Open **Visual Studio** and the **ClipMeme** solution.
+
+##### First Run #####
+
+1. Open a browser and go Management Portal > Web Site.
+
+1. Open a browser and go Webjob **Dashboard**.
+
 ## Demo ##
 
 This demo is composed of the following segments: 
-
-
-
-## Demo ##
 
 1. [Visual Studio and Azure Provisioning](#segment1)
 
@@ -54,29 +85,20 @@ This demo is composed of the following segments:
 
 1. Select **Empty** template and check **Create remote resources** checkbox. Click **OK**
 
-> **Speaking Point:** Azure Provisioning.
+	> **Speaking Point:** Azure Provisioning.
 
 2. Select **No Database** and click **OK**
 
 2. Open **Publish-WebApplication.ps1**
 
-> **Speaking Point:** PublishScripts content. 
+	> **Speaking Point:** PublishScripts content. 
 
 2. Right-Click on PS1 file. And click **Open with Powershell ISE**
 
-> **Speaking Point:** PowerShell feature. 
-
-_Creating new Project_
-	File / New Experience
-		Database
-		Website
-		Virtual machine
-	Provisioning and PowerShell
+	> **Speaking Point:** PowerShell feature. 
 
 <a name="segment2" />
 ### Web Essentials Features ###
-
-
 
 <a name="quick-site-demo" />
 #### Task 1 - Quick Site Demo ####
@@ -119,7 +141,7 @@ _Creating new Project_
 	>**Note**: we will use **F12 auto-sync**
 
 <a name="image-sprites-not-in-keynote" />
-#### Image Sprites####
+#### Task 3 - Image Sprites####
 
 1. We can improve performance on our site by sending a lot of images in one HTTP request, using CSS sprites. We’ll select some common images on our site and create a sprite the easy way, using Web Essentials.
 
@@ -153,7 +175,7 @@ _Creating new Project_
 	````
 
 <a name="javascript-editing" />
-#### Javascript and AngularJS editing ####
+#### Task 4 - Javascript and AngularJS editing ####
 
 1. Open the **/Scripts/app/controllers/main.js** file and show that there’s built-in Intellisense for AngularJS in the IDE:
 
@@ -184,7 +206,7 @@ _Creating new Project_
 	````
 
 <a name="azure-staged-published" />
-#### Azure Staged Published ####
+#### Task 5 - Azure Staged Published ####
 
 1. Right-click on the **Project** and select **Publish…**
 
@@ -228,7 +250,7 @@ _Creating new Project_
 <a name="segment4" />
 ### Site Swap, Azure Auto Scale, Traffic Manager and Backup ###
 <a name="site-swap" />
-#### Site Swap ####
+#### Task 1 - Site Swap ####
 
 1. Browse to the Azure Portal and to the website.
 1. Click Swap.
@@ -237,14 +259,14 @@ _Creating new Project_
 > **Speaking Point:** Explain that all the configuration such as SSL certificates and public domain names stay where they are, but the deployments are swapped. The site is readily available afterwards.
 
 <a name="auto-scale" />
-#### Auto Scale ####
+#### Task 2 - Auto Scale ####
 1. In the Web Site, go to **Scale**.
 2. Scroll down to **Scale by Metric** and select **CPU**. Change the instance count to **2** and **4**.
 
 	> **Speaking Point:** Explain how the user can use the Target CPU threshold to automatically upscale or downscale the number of instances.
 	
 <a name="traffic-manager" />
-#### Traffic Manager ####
+#### Task 3 - Traffic Manager ####
 1. Browse to the Azure Portal, and click New > Network Services > Traffic Manager > Quick Create.
 
 	> **Speaking Point:** Explain the different Load Balancing Methods available.
@@ -256,7 +278,7 @@ _Creating new Project_
 	> **Speaking Point:** Explain that no matter where the user is, they will always hit the data center closest to them.
 
 <a name="backups" />
-#### Backups ####
+#### Task 4 - Backups ####
 1. Go to the **Backups** section in the Web Site.
 1. Enable **Automated Backup** by clicking **ON**
 1. Select a storage account.
