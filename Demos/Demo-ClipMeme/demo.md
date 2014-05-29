@@ -212,19 +212,30 @@ This demo is composed of the following segments:
 <a name="image-sprites-not-in-keynote" />
 #### Task 2 - Image Sprites####
 
-1. We can improve performance on our site by sending a lot of images in one HTTP request, using CSS sprites. We’ll select some common images on our site and create a sprite the easy way, using Web Essentials.
+1. Switch back to Visual Studio and stop the application.
 
-1. Select the 2 share images in the **/Content/** folder, right-click, and select **Web Essentials / Create Image Sprite**…
- 
-1. Name the sprite **social**.
+	>**Speaking Poiunt**: We can improve performance on our site by sending a lot of images in one HTTP request, using CSS sprites. We will select some common images on our site and create a sprite the easy way, using Web Essentials.
+
+
+1. In the Solution Explorer, expand the **Content** folder and select **share-facebook.png** and share-twitter.png holding the **Ctrl** key.
+
+1. Right-click on the images and select **Web Essentials | Create Image Sprite...**…
+
+	![Create image sprite](Images/create-image-sprite.png?raw=true "Create image sprite")
+	
+	_Create image sprite_
+
+1. In the **Save As** dialog box,, name the sprite **social.sprite** and click **Save**.
+
+	![Save as dialog box](Images/save-as-dialog-box.png?raw=true "Save as dialog box")
+	
+	_Save as dialog box_
   
 	>**Note**: Adding a new sprite automatically generates example CSS, LESS and SASS to include these new images using standard CSS classes. We’ll update our CSS and now we’re only making one image request for all of the images in the sprite.
 
-	>**Review**: [TODO: Show SCSS addition and SCSS tooling in Visual Studio 2013 Update 2.]
-
 1. Open the “**Content/Site.less**” file and do the following to use the image sprite just generated:
 	
-1. Add the following @import statement at the top of the file:
+1. Add the following **@import** statement at the top of the file:
 	
 	<!-- mark:1 -->
 	````CSS
@@ -233,15 +244,38 @@ This demo is composed of the following segments:
  
 1. Within the same file modify the **.facebook** and **.twitter** classes by replacing the background-image style with the corresponding less function to retrieve the image sprite as shown below:
 
-	<!-- mark:1-6 -->
+	<!-- mark:1-11 -->
 	````CSS
-	.facebook: {
-		.sprite-share-facebook();
+	.facebook {
+		.sprite-Content-share-facebook();
+		width: 24px;
+		height: 24px;
 	}
+
 	.twitter {
-		.sprite-share-twitter();
+		.sprite-Content-share-twitter();
+		width: 24px;
+		height: 24px;
 	}
 	````
+
+1. Run the solution
+
+1. Open **Developer tools** in Internet Explorer and switch to the Network tab.
+
+1. Click on **Play** to start recording the network traffic.
+
+1. Check there is a request to **/Content/Social.png**. Select it and click on **Details** to check the details of the request.
+
+	![Request details](Images/request-details.png?raw=true "Request details")
+	
+	_Request details_
+
+1. Click on **Response body** to check that both icons come in the same image.
+	
+	![Response body](Images/response-body.png?raw=true "Response body")
+	
+	_Response body_
 
 <a name="javascript-editing" />
 #### Task 3 - Javascript and AngularJS editing ####
