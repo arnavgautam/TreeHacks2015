@@ -181,7 +181,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. Type a name for the client app (e.g.: _facilityappclient_) and select **Native Client Application**. Click next to continue.
 
-	![Creating clent AD app](Images/creating-clent-ad-app.png?raw=true)
+	![Creating client AD app](Images/creating-client-ad-app.png?raw=true)
 	
 1. In the **Redirect URI** field, paste the package **SID** you copied in a previous step. Click the check button to continue.
 
@@ -213,19 +213,20 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. Click **Save**.
 
-1. Browse to the **Setup** folder of this demo and open the file **Config.xml**.
+1. Browse to the **Source** folder of this demo and open the file **Config.xml**.
 
 1. The starting solutions will be copied to the **C:\Demos\Source** folder. If you want to change the default directory, update the element **solutionWorkingDir** in **localPaths**.
 
 1. Update the values under **clientSettings** in the XML file to configure your solutions:
 
 	* **AadAuthority**: the Azure AD authority. Use https://login.windows.net/common/oauth2/authorize
-	* **AppRedirectLocation**: the Mobile Service URI
 	* **AadRedirectResourceURI**: the Mobile Service AAD login URI. You can find this value under **Azure Active Directory** in your Mobile Service's **Identity** tab
+	* **AppRedirectLocation**: the Mobile Service URI
 	* **AadClientId**: the Id of your native client app registered in your AD
 	* **AppKey**: the Mobile Service key. You can retrieve this value by clicking **Manage Keys** in your Mobile Service
 	* **MobSvcUri**: the Mobile Service URI
 	* **SharePointResource**: the root URL for the personal sites of your SharePoint domain. E.g.: http://{domain}-my.sharepoint.com/
+	* **SharePointUri**: the SharePoint user's personal site targeting the API address. The URL usually has the following form **https://{domain}-my.sharepoint.com/personal/{username}_{domain}_onmicrosoft_com/_api/web**. For example: https://dpe-my.sharepoint.com/personal/admin_dpe_onmicrosoft_com/_api/web.
 	* **SharePointUser**: Full qualified name for the Office 365 user. E.g.: admin@dpe.onmicrosoft.com.
 	
 1. The following values are displayed in the Windows Store app. These settings configure the Username and the default location of the device, simulating Geolocation inside the app. You can replace them with a real location (e.g.: the location where the demo will be presented).
@@ -266,7 +267,15 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 Follow these steps to run the **FacilityRequests** app to adjust the correct Simulator's resolution display and orientation.
 
-1. Open the **FacilityApp.sln** solution located in your demo folder (by default **C:\Demos\Source**).
+1. Go to the **MAC OS**, type **Xamarin** in the **Spotlight** control and open **Xamarin.iOS Build Host** application.
+
+	![Xamarin.iOS Build Host app](Images/xamarinios-build-host-app.png?raw=true)
+	
+1. Click **Pair** and take note of the generated **PIN** code. You will use it later in this section.
+
+	![Xamarin.iOS Build Host pin code](Images/xamarinios-build-host-pin-code.png?raw=true)
+	
+1. Go back to Windows and open the **FacilityApp.sln** solution located in your demo folder (by default **C:\Demos\Source**).
 
 1. A Xamarin dialog box will appear to _pair_ Visual Studio with a Mac. Click **Continue**.
 
@@ -274,19 +283,7 @@ Follow these steps to run the **FacilityRequests** app to adjust the correct Sim
 
 1. In the next dialog box, select the Mac instance where Xamarin Studio is installed and click **Connect**.
 
-1. The **Xamarin Pair With** screen will pop up requesting a PIN code.
-
-	![Xamarin Pair With screen](Images/xamarin-pair-with-screen.png?raw=true)
-	
-1. Go to the **MAC OS**, type **Xamarin** in the **Spotlight** control and open **Xamarin.iOS Build Host** application.
-
-	![Xamarin.iOS Build Host app](Images/xamarinios-build-host-app.png?raw=true)
-	
-1. Click **Pair** and take note of the generated **PIN** code.
-
-	![Xamarin.iOS Build Host pin code](Images/xamarinios-build-host-pin-code.png?raw=true)
-
-1. Go back to Visual studio, write the PIN code in the **Xamarin Pair With** screen and click **Pair**.
+1. The **Xamarin Pair With** screen will pop up requesting a PIN code. Write the PIN code generated in the previous step and click **Pair**.
 
 	![Pairing with Xamarin in Visual Studio](Images/pairing-with-xamarin-in-visual-studio.png?raw=true)
 
