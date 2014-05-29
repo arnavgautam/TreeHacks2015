@@ -89,12 +89,14 @@ This demo is composed of the following segments:
 
 1. Select **Empty** template and check **Create remote resources** checkbox. Click **OK**.
 
-	> **Speaking Point:** Azure Provisioning.
+	> **Speaking Point:** As a new thing, as you can see, we made it really easy for you to provision both **Azure Web Sites** and **Virtual Machines** directly from this dialog. 
 	
 	![Web Site Empty Template](Images/web-site-empty-template.png?raw=true)
 
 2. Select **Create new server**. Provide **Database Username** and **Database Password**. Click **OK**.
 
+	> **Speaking Point:** You can even provision a new database directly from here with let you set up your entire development environment ahead of time.
+	
 	![Azure Website Database Provisioning](Images/azure-website-database-provisioning.png?raw=true)
 
 2. Browse to https://manage.windowsazure.com and log-in with your credentials.  
@@ -105,13 +107,13 @@ This demo is composed of the following segments:
 
 2. Go back to **Visual Studio** and open **Publish-WebApplication.ps1** file.
 
-	> **Speaking Point:** PublishScripts content. 
+	> **Speaking Point:** So now my project is created and Visual Studio is provisioning Azure. But its also now creating Publishing Scripts that i can use to automate my deployment.
 	
 	![Publish Web Application PS1](Images/publish-web-application-ps1.png?raw=true)
 
 2. Right-Click on the **PS1** file and click **Open with Powershell ISE**
 
-	> **Speaking Point:** PowerShell feature.
+	> **Speaking Point:** One neat feature that I think you’ll enjoy is the context menu for PowerShell. If you Right-click on the PS1 file, you will notice the new context menu ‘Open with PowerShell ISE, which allows you to open a PowerShell editor straight from Visual Studio.
 	
 	![Open with PowerShell ISE](Images/open-with-powershell-ise.png?raw=true)
 
