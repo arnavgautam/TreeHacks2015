@@ -16,7 +16,7 @@ In this demo, you will see how to:
 - Windows Azure subscription
 - Microsoft Visual Studio 2013
 - Visual Studio 2013 Update 2
-- Windows Azure Webistes
+- Windows Azure Websites
 
 <a name="Prerequisites" />
 ### System Prerequisites ###
@@ -40,8 +40,8 @@ In this demo, you will see how to:
 
 1. Add the following settings in **Configure**:
 
-	* AzureJobsRuntime: Storage Account connection string
-	* AzureJobsData: Storage Account connection string
+	* **AzureJobsRuntime**: Storage Account connection string
+	* **AzureJobsData**: Storage Account connection string
 
 1. Create **Traffic Manager** and configure it. 
 	
@@ -114,11 +114,11 @@ This demo is composed of the following segments:
 
 2. Go back to **Visual Studio** and open **Publish-WebApplication.ps1** file.
 
-	> **Speaking Point:** So now my project is created and Visual Studio is provisioning Azure. But its also now creating Publishing Scripts that i can use to automate my deployment.
+	> **Speaking Point:** So now my project is created and Visual Studio is provisioning Azure. But it is also now creating Publishing Scripts that I can use to automate my deployment.
 	
 	![Publish Web Application PS1](Images/publish-web-application-ps1.png?raw=true)
 
-2. Right-Click on the **PS1** file and click **Open with Powershell ISE**
+2. Right-Click on the **PS1** file and click **Open with PowerShell ISE**
 
 	> **Speaking Point:** One neat feature that I think you’ll enjoy is the context menu for PowerShell. If you Right-click on the PS1 file, you will notice the new context menu ‘Open with PowerShell ISE, which allows you to open a PowerShell editor straight from Visual Studio.
 	
@@ -127,7 +127,7 @@ This demo is composed of the following segments:
 <a name="segment2" />
 ### Web Essentials Features ###
 
->**Speeking Point**: Introduction to ClipMeme scenario:
+>**Speaking Point**: Introduction to ClipMeme scenario:
 
 >* We are going to look at a small site that could get big fast. We are building a viral meme generator with a twist: we are using animated GIFs. 
 >* Show the running application.
@@ -138,11 +138,9 @@ This demo is composed of the following segments:
 
 1. Place Visual Studio and Internet Explorer side by side.
 
-1. Show that there’s a typo in the header, the word **and** is repeated bellow the **Welcome to ClipMeme** section.
+	>**Note**: This also works for changes I make using the browser developer tools. I’ve decided the header looks a little too bland, and I’d prefer to change the color interactively in the browser using the **F12** tools in my browser. 
 
-	>**Note**: This also works for changes I make using the browser developer tools. I’ve decided the header looks a little too bland, and I’d prefer to change the color interactively in the browser using the F12 tools in my browser. 
-
-1. Right-Click in the header section and select **Inspect element**. This will open the developer tools.
+1. Right-click in the header section and select **Inspect element**. This will open the developer tools.
 
 	![Internet Explorer - Inspect element](Images/internet-explorer---inspect-element.png?raw=true "Internet Explorer - Inspect element")
 	
@@ -174,16 +172,16 @@ This demo is composed of the following segments:
 	
 	_Final background color_
 	
-1. Switch to Google Chrome and show that the header color is automatically udpated in all the browsers.
+1. Switch to Google Chrome and show that the header color is automatically updated in all the browsers.
 
-	![Google crhome with background color updated](Images/google-crhome-with-background-color-updated.png?raw=true "Google crhome with background color updated")
+	![Google chrome with background color updated](Images/google-crhome-with-background-color-updated.png?raw=true "Google chrome with background color updated")
 	
-	_Google crhome with background color updated_
+	_Google chrome with background color updated_
 
 	
 1. Show that there is duplicated **and** in the text.
 
-	>**Speeking Point**: Oops, it looks like there is a text error in the header - we repeated the word “and”. Let’s fix that. 
+	>**Speaking Point**: Oops, it looks like there is a text error in the header - we repeated the word “and”. Let’s fix that. 
 	
 1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay**. 
 
@@ -201,7 +199,7 @@ This demo is composed of the following segments:
 	
 	_Hovering in the browser updates in Visual Studio_
 
-1. Click on the text with the typoe and delete the duplicated word.
+1. Click on the text with the typo and delete the duplicated word.
 
 	![Removed duplicate word](Images/removed-duplicate-word.png?raw=true "Removed duplicate word")
 	
@@ -212,19 +210,30 @@ This demo is composed of the following segments:
 <a name="image-sprites-not-in-keynote" />
 #### Task 2 - Image Sprites####
 
-1. We can improve performance on our site by sending a lot of images in one HTTP request, using CSS sprites. We’ll select some common images on our site and create a sprite the easy way, using Web Essentials.
+1. Switch back to Visual Studio and stop the application.
 
-1. Select the 2 share images in the **/Content/** folder, right-click, and select **Web Essentials / Create Image Sprite**…
- 
-1. Name the sprite **social**.
+	>**Speaking Point**: We can improve performance on our site by sending a lot of images in one HTTP request, using CSS sprites. We will select some common images on our site and create a sprite the easy way, using Web Essentials.
+
+
+1. In the Solution Explorer, expand the **Content** folder and select **share-facebook.png** and share-twitter.png holding the **Ctrl** key.
+
+1. Right-click on the images and select **Web Essentials | Create Image Sprite...**…
+
+	![Create image sprite](Images/create-image-sprite.png?raw=true "Create image sprite")
+	
+	_Create image sprite_
+
+1. In the **Save As** dialog box, name the sprite **social.sprite** and click **Save**.
+
+	![Save as dialog box](Images/save-as-dialog-box.png?raw=true "Save as dialog box")
+	
+	_Save as dialog box_
   
 	>**Note**: Adding a new sprite automatically generates example CSS, LESS and SASS to include these new images using standard CSS classes. We’ll update our CSS and now we’re only making one image request for all of the images in the sprite.
 
-	>**Review**: [TODO: Show SCSS addition and SCSS tooling in Visual Studio 2013 Update 2.]
-
 1. Open the “**Content/Site.less**” file and do the following to use the image sprite just generated:
 	
-1. Add the following @import statement at the top of the file:
+1. Add the following **@import** statement at the top of the file:
 	
 	<!-- mark:1 -->
 	````CSS
@@ -233,26 +242,49 @@ This demo is composed of the following segments:
  
 1. Within the same file modify the **.facebook** and **.twitter** classes by replacing the background-image style with the corresponding less function to retrieve the image sprite as shown below:
 
-	<!-- mark:1-6 -->
+	<!-- mark:1-11 -->
 	````CSS
-	.facebook: {
-		.sprite-share-facebook();
+	.facebook {
+		.sprite-Content-share-facebook();
+		width: 24px;
+		height: 24px;
 	}
+
 	.twitter {
-		.sprite-share-twitter();
+		.sprite-Content-share-twitter();
+		width: 24px;
+		height: 24px;
 	}
 	````
+
+1. Run the solution
+
+1. Open **Developer tools** in Internet Explorer and switch to the Network tab.
+
+1. Click on **Play** to start recording the network traffic.
+
+1. Check there is a request to **/Content/Social.png**. Select it and click on **Details** to check the details of the request.
+
+	![Request details](Images/request-details.png?raw=true "Request details")
+	
+	_Request details_
+
+1. Click on **Response body** to check that both icons come in the same image.
+	
+	![Response body](Images/response-body.png?raw=true "Response body")
+	
+	_Response body_
 
 <a name="javascript-editing" />
 #### Task 3 - Javascript and AngularJS editing ####
 
 1. Open the **/Scripts/app/controllers/modal.js** file.
 
-1. Place the cursor below the **cleanVariables();** line and start writing **$sc**. Show that there is Intellicense for Javascript and AngualrJS.
+1. Place the cursor below the **cleanVariables();** line and start writing **$sc**. Show that there is Intellisense for JavaScript and AngualrJS.
 
 	![Intellisence Javascript with Web Essentials](Images/intellisence-javascript-with-web-essentials.png?raw=true "Intellisence Javascript with Web Essentials")
 	
-	_Intellisence Javascript with Web Essentials_
+	_Intellisense JavaScript with Web Essentials_
 
 1. Right-click the **/scripts/app/directives** directory and select **Add** | **New item**.
 	
@@ -289,7 +321,7 @@ This demo is composed of the following segments:
 	
 	_Error list panel_
 
-1. Fix the semicolong issue by adding the ; at the end of the line
+1. Fix the semicolon issue by adding the ; at the end of the line
 
 1. Fix the comparison issue by adding another =.
 
@@ -366,13 +398,13 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** I've already associated my Console project with my Website. When I publish my Website, the Webjob will published with it.
 
-1. Switch to the the **Management Portal** and click the **logs** link of your WebJob.
+1. Switch to the **Management Portal** and click the **logs** link of your WebJob.
 
 	![Webjob Logs](Images/webjob-logs.png?raw=true)
 	
 	_Webjob Logs_
 
-1. Show the logs and explain that everytime a Job runs or fails, it will add a new entry to this log.
+1. Show the logs and explain that every time a Job runs or fails, it will add a new entry to this log.
 
 	> **Note:** If you generated errors in your log, they will be displayed between the other logs.
 
