@@ -379,26 +379,40 @@ This demo is composed of the following segments:
 <a name="segment4" />
 ### Azure Auto Scale, Traffic Manager and Backup ###
 
-> **Speaking Point:** Explain that all the configuration such as SSL certificates and public domain names stay where they are, but the deployments are swapped. The site is readily available afterwards.
-
 <a name="auto-scale" />
 #### Task 1 - Auto Scale ####
-1. In the Web Site, go to **Scale**.
-2. Scroll down to **Scale by Metric** and select **CPU**. Change the instance count to **2** and **4**.
+1. In the Azure Portal, click Web Sites, browse to the Web Site and click **Scale**.
+1. Make sure the **Instance Size** is set to **Medium** or **Large**.
+1. Scroll down to **Scale by Metric** and select **CPU**.
+1. Change the **Instance Count** slider to **2** and then to **4**. Turn it back to **1** after you have demonstrated this.
+1. Click **Discard**.
 
-	> **Speaking Point:** Explain how the user can use the Target CPU threshold to automatically upscale or downscale the number of instances.
+	![Scale Web Site](Images/scale-web-site.png?raw=true)
+
+	_Scale Web Site capacity_
+
+	> **Speaking Point:** Explain how the user can use the Target CPU threshold to automatically upscale or downscale the number of instances. This allows to spend only as much as needed for the service.
 	
 <a name="traffic-manager" />
 #### Task 2 - Traffic Manager ####
-1. Browse to the Azure Portal, and click New > Network Services > Traffic Manager > Quick Create.
+1. Browse to the Azure Portal, and click **New** > **Network Services** > **Traffic Manager** > **Quick Create**.
+
+	![Traffic Manager creation](Images/traffic-manager-creation.png?raw=true)
+	
+	_Traffic Manager creation_
 
 	> **Speaking Point:** Explain the different Load Balancing Methods available.
 	
-1. Click Close, and go to the an existing Traffic Manager created.
-1. Select Web Site in the Service Type combo.
-1. Check the deployed Web Site to the Traffic Manager profile.
+1. Click **Close**, and go to the Traffic Manager already created.
+1. Select **Endpoints** and click **Add**.
+1. Select **Web Site** in the **Service Type** combo.
+1. Check the deployed Web Site and add it to the Traffic Manager profile and click Ok.
 
-	> **Speaking Point:** Explain that no matter where the user is, they will always hit the data center closest to them.
+	![Add Web Site to the Traffic Manager](Images/add-web-site-to-the-traffic-manager.png?raw=true)
+	
+	_Add Web Site to the Traffic Manager_
+
+	> **Speaking Point:** We can optimize the Web Site for **Performance**, **Round Robin**, or **Failover**. Failover is the scenario where we set up a primary node and in case of failure, traffic is routed automatically by Traffic Manager to secondary nodes. Since we want to optimize for Performance, we'll select this method. No matter where the user is, they will always hit the data center closest to them.
 
 <a name="backups" />
 #### Task 3 - Backups ####
@@ -406,11 +420,16 @@ This demo is composed of the following segments:
 1. Enable **Automated Backup** by clicking **ON**
 1. Select a storage account.
 
-	> **Speaking Point:** Explain that the user can change the **Frequency** and the Start Date.
+	> **Speaking Point:** The user can change the **Frequency** for performing a backup and also the **Start Date**.
 	
 1. Select a database connection from the **Included Databases** drop-down.
 1. Click **Save** to confirm.
 1. Click **Backup Now** to create a backup.
+
+	![Backing up a Web Site](Images/backing-up-a-web-site.png?raw=true)
+	
+	_Backing up a Web Site_
+
 1. Once completed, show how to restore a backup. Click **Restore Now**.
 
 	> **Speaking Point:** Explain the two options to restore a backup: From a previous backup of the site or by selecting a file from the storage account. Select the second option and click the folder icon.
