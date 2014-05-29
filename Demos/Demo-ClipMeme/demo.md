@@ -81,25 +81,39 @@ This demo is composed of the following segments:
 
 1. In Visual Studio, click **File > New > Project...** 
 
+	![Create New Project](Images/create-new-project.png?raw=true)
+
 1. Click **Web** and select **ASP .NET Web Application**. Click **OK**.
+
+	![New ASP .NET Web Application](Images/new-asp-net-web-application.png?raw=true)
 
 1. Select **Empty** template and check **Create remote resources** checkbox. Click **OK**.
 
 	> **Speaking Point:** Azure Provisioning.
+	
+	![Web Site Empty Template](Images/web-site-empty-template.png?raw=true)
 
 2. Select **Create new server**. Provide **Database Username** and **Database Password**. Click **OK**.
+
+	![Azure Website Database Provisioning](Images/azure-website-database-provisioning.png?raw=true)
 
 2. Browse to https://manage.windowsazure.com and log-in with your credentials.  
  
 2. Click **Web sites** and verify that your site is created.
 
+	![Azure Web Site Created](Images/azure-web-site-created.png?raw=true)
+
 2. Go back to **Visual Studio** and open **Publish-WebApplication.ps1** file.
 
 	> **Speaking Point:** PublishScripts content. 
+	
+	![Publish Web Application PS1](Images/publish-web-application-ps1.png?raw=true)
 
 2. Right-Click on the **PS1** file and click **Open with Powershell ISE**
 
-	> **Speaking Point:** PowerShell feature. 
+	> **Speaking Point:** PowerShell feature.
+	
+	![Open with PowerShell ISE](Images/open-with-powershell-ise.png?raw=true)
 
 <a name="segment2" />
 ### Web Essentials Features ###
