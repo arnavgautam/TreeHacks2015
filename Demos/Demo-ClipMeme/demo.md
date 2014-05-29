@@ -127,9 +127,9 @@ This demo is composed of the following segments:
 <a name="segment2" />
 ### Web Essentials Features ###
 
->**Speeking Point**: Introduction to the scenario:
+>**Speeking Point**: Introduction to ClipMeme scenario:
 
->* So for this scenario, we’re going to look at a small site that could get big fast. We are building a viral meme generator with a twist: we are using animated GIFs. 
+>* We are going to look at a small site that could get big fast. We are building a viral meme generator with a twist: we are using animated GIFs. 
 >* Show the running application.
 >* Hover over one of the images to show the animated gif with the text overlay.
 	
@@ -154,23 +154,58 @@ This demo is composed of the following segments:
 	
 	_DOM Explorer - Header section_
 
+1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay**. 
+
+1. Click on **F12 Auto sync** from the Web Essentials toolbox in Internet Explorer to enable updating in the browser.
+
+	![F12 Auto Sync](Images/f12-auto-sync.png?raw=true "F12 Auto Sync")
+	
+	_F12 Auto Sync_
+	
 1. In the **Styles** pane, scroll until you find the **.navbar-default** selector. 
 
-1. Double-click the background color value and change it to a different color. Show how the value is automatically updated in Visual Studio.
+1. Double-click the **background-color** value and change it to a different color (e.g. Azure). Show how the value is automatically updated in Visual Studio.
 
+	![Automatic update background color](Images/update-background-color.png?raw=true "Automatic update background color")
+
+	_Automatic update background color_
+	
+	![Final background color](Images/final-background-color.png?raw=true "Final background color")
+	
+	_Final background color_
+	
 1. Switch to Google Chrome and show that the header color is automatically udpated in all the browsers.
 
-	>**Speeking Point**: Oops, it looks like there is a text error in the header - we repeated the word “and”. Let’s fix that. 
+	![Google crhome with background color updated](Images/google-crhome-with-background-color-updated.png?raw=true "Google crhome with background color updated")
+	
+	_Google crhome with background color updated_
 
-1. Press the **Ctrl** key in the browser to enable the Web Essentials Browser Link Overlay. 
+	
+1. Show that there is duplicated **and** in the text.
+
+	>**Speeking Point**: Oops, it looks like there is a text error in the header - we repeated the word “and”. Let’s fix that. 
+	
+1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay**. 
 
 1. Click on the **Design** link to enable Design mode.
 	
+	![Design link](Images/design-link.png?raw=true "Design link")
+	
+	_Design link_
+
 	>**Note**: Now I can fix the text right in the page and save it back to my source code in Visual Studio.
 
 1. Show that while hovering each section of the page, Visual Studio highlights the element.
 	
-1. Delete the duplicated word.
+	![Hovering in the browser updates in Visual Studio](Images/hovering-in-the-browser-updates-in-visual-stu.png?raw=true "Hovering in the browser updates in Visual Studio")
+	
+	_Hovering in the browser updates in Visual Studio_
+
+1. Click on the text with the typoe and delete the duplicated word.
+
+	![Removed duplicate word](Images/removed-duplicate-word.png?raw=true "Removed duplicate word")
+	
+	_Removed duplicate word_
 
 	>**Note**: This works the exact same in any browser, in case we want to use IE instead.
 
