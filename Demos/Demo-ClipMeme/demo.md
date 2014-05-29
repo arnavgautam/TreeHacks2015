@@ -1,5 +1,5 @@
 ﻿<a name="demo2" />
-# ClipMeme Demo : BUILD Clips#
+# ClipMeme Demo#
 
 ## Overview ##
 
@@ -96,12 +96,14 @@ This demo is composed of the following segments:
 
 1. Select **Empty** template and check **Create remote resources** checkbox. Click **OK**.
 
-	> **Speaking Point:** Azure Provisioning.
+	> **Speaking Point:** As a new thing, as you can see, we made it really easy for you to provision both **Azure Web Sites** and **Virtual Machines** directly from this dialog. 
 	
 	![Web Site Empty Template](Images/web-site-empty-template.png?raw=true)
 
 2. Select **Create new server**. Provide **Database Username** and **Database Password**. Click **OK**.
 
+	> **Speaking Point:** You can even provision a new database directly from here with let you set up your entire development environment ahead of time.
+	
 	![Azure Website Database Provisioning](Images/azure-website-database-provisioning.png?raw=true)
 
 2. Browse to https://manage.windowsazure.com and log-in with your credentials.  
@@ -112,61 +114,103 @@ This demo is composed of the following segments:
 
 2. Go back to **Visual Studio** and open **Publish-WebApplication.ps1** file.
 
-	> **Speaking Point:** PublishScripts content. 
+	> **Speaking Point:** So now my project is created and Visual Studio is provisioning Azure. But its also now creating Publishing Scripts that i can use to automate my deployment.
 	
 	![Publish Web Application PS1](Images/publish-web-application-ps1.png?raw=true)
 
 2. Right-Click on the **PS1** file and click **Open with Powershell ISE**
 
-	> **Speaking Point:** PowerShell feature.
+	> **Speaking Point:** One neat feature that I think you’ll enjoy is the context menu for PowerShell. If you Right-click on the PS1 file, you will notice the new context menu ‘Open with PowerShell ISE, which allows you to open a PowerShell editor straight from Visual Studio.
 	
 	![Open with PowerShell ISE](Images/open-with-powershell-ise.png?raw=true)
 
 <a name="segment2" />
 ### Web Essentials Features ###
 
-<a name="quick-site-demo" />
-#### Task 1 - Quick Site Demo ####
+>**Speeking Point**: Introduction to ClipMeme scenario:
 
-1. So for this scenario, we’re going to look at a small site that could get big fast. We are building a viral meme generator with a twist: we are using animated GIFs. 
-	
-	>**Note**: Site screenshots do not yet incorporate final design.
-
-1. Show the running application.
-
-1. Hover over one of the images to show the animated gif with the text overlay.
+>* We are going to look at a small site that could get big fast. We are building a viral meme generator with a twist: we are using animated GIFs. 
+>* Show the running application.
+>* Hover over one of the images to show the animated gif with the text overlay.
 	
 <a name="browserlink-features" />
-#### Task 2 - Browser link####
+#### Task 1 - Browser link####
 
-1. Back in the home page, show that there’s a typo in the header, the word “and” is repeated.
+1. Place Visual Studio and Internet Explorer side by side.
 
-	>**Note**: Oops, it looks like there is a text error in the header - we repeated the word “and”. Let’s fix that.
+1. Show that there’s a typo in the header, the word **and** is repeated bellow the **Welcome to ClipMeme** section.
 
-1. Press the **Ctrl** key in the browser to enable the Web Essentials Browser Link Overlay. 
+	>**Note**: This also works for changes I make using the browser developer tools. I’ve decided the header looks a little too bland, and I’d prefer to change the color interactively in the browser using the F12 tools in my browser. 
+
+1. Right-Click in the header section and select **Inspect element**. This will open the developer tools.
+
+	![Internet Explorer - Inspect element](Images/internet-explorer---inspect-element.png?raw=true "Internet Explorer - Inspect element")
+	
+	_Internet Explorer - Inspect element_
+
+1. In the **DOM Explorer** select the **header** html tag
+	
+	![DOM Explorer - Header section](Images/dom-explorer---header-section.png?raw=true "DOM Explorer - Header section")
+	
+	_DOM Explorer - Header section_
+
+1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay**. 
+
+1. Click on **F12 Auto sync** from the Web Essentials toolbox in Internet Explorer to enable updating in the browser.
+
+	![F12 Auto Sync](Images/f12-auto-sync.png?raw=true "F12 Auto Sync")
+	
+	_F12 Auto Sync_
+	
+1. In the **Styles** pane, scroll until you find the **.navbar-default** selector. 
+
+1. Double-click the **background-color** value and change it to a different color (e.g. Azure). Show how the value is automatically updated in Visual Studio.
+
+	![Automatic update background color](Images/update-background-color.png?raw=true "Automatic update background color")
+
+	_Automatic update background color_
+	
+	![Final background color](Images/final-background-color.png?raw=true "Final background color")
+	
+	_Final background color_
+	
+1. Switch to Google Chrome and show that the header color is automatically udpated in all the browsers.
+
+	![Google crhome with background color updated](Images/google-crhome-with-background-color-updated.png?raw=true "Google crhome with background color updated")
+	
+	_Google crhome with background color updated_
+
+	
+1. Show that there is duplicated **and** in the text.
+
+	>**Speeking Point**: Oops, it looks like there is a text error in the header - we repeated the word “and”. Let’s fix that. 
+	
+1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay**. 
 
 1. Click on the **Design** link to enable Design mode.
 	
+	![Design link](Images/design-link.png?raw=true "Design link")
+	
+	_Design link_
+
 	>**Note**: Now I can fix the text right in the page and save it back to my source code in Visual Studio.
 
-1. Delete the duplicated word.
+1. Show that while hovering each section of the page, Visual Studio highlights the element.
+	
+	![Hovering in the browser updates in Visual Studio](Images/hovering-in-the-browser-updates-in-visual-stu.png?raw=true "Hovering in the browser updates in Visual Studio")
+	
+	_Hovering in the browser updates in Visual Studio_
 
-1. Right click on the header and “Inspect Element”. This will open the developer tools.
+1. Click on the text with the typoe and delete the duplicated word.
 
-	>**Note**: This also works for changes I make using the browser developer tools. I’ve decided the header looks a little too bland, and I’d prefer to change the color interactively in the browser using the F12 tools in my browser. This works with any browser, so in this case I'm showing this with the Chrome dev tools. 
+	![Removed duplicate word](Images/removed-duplicate-word.png?raw=true "Removed duplicate word")
+	
+	_Removed duplicate word_
 
 	>**Note**: This works the exact same in any browser, in case we want to use IE instead.
 
-1. Using the developer tools, change the background color of the header to a different color.
- 
-1. Click the **Save F12 changes** to push that CSS change back to Visual Studio.
-
-	>**Note**: Now I’ll click the “Save F12 changes to push that CSS change back to Visual Studio.
-
-	>**Note**: we will use **F12 auto-sync**
-
 <a name="image-sprites-not-in-keynote" />
-#### Task 3 - Image Sprites ####
+#### Task 2 - Image Sprites####
 
 1. We can improve performance on our site by sending a lot of images in one HTTP request, using CSS sprites. We’ll select some common images on our site and create a sprite the easy way, using Web Essentials.
 
@@ -200,38 +244,70 @@ This demo is composed of the following segments:
 	````
 
 <a name="javascript-editing" />
-#### Task 4 - Javascript and AngularJS editing ####
+#### Task 3 - Javascript and AngularJS editing ####
 
-1. Open the **/Scripts/app/controllers/main.js** file and show that there’s built-in Intellisense for AngularJS in the IDE:
+1. Open the **/Scripts/app/controllers/modal.js** file.
 
-1. Right-click the **/scripts/app/directives** directory and select **Add** / **New item**.
+1. Place the cursor below the **cleanVariables();** line and start writing **$sc**. Show that there is Intellicense for Javascript and AngualrJS.
+
+	![Intellisence Javascript with Web Essentials](Images/intellisence-javascript-with-web-essentials.png?raw=true "Intellisence Javascript with Web Essentials")
 	
+	_Intellisence Javascript with Web Essentials_
+
+1. Right-click the **/scripts/app/directives** directory and select **Add** | **New item**.
+	
+	![Add new item menu](Images/add-new-item-menu.png?raw=true "Add new item menu")
+	
+	_Add new item menu_
+
 1. Type **directive** in the filter to narrow the list. Name the directive **appDropzone.js**.
 	
+	![Directive template](Images/directive-template.png?raw=true "Directive template")
+	
+	_Directive template_
+
+
 	>**Note**: This sets me up with a basic directive with some best practices, like for instance it’s using Strict Mode. We’ve also got JsHint running in the background so it can catch some common JavaScript coding issues as I type, for instance if I try to reuse a function parameter name.
 	
-1. Add another parameter named **scope** to the end of the link function and show that JsHint flags it.
+1. Add another parameter named **scope** to the end of the **link** function and show that **JsHint** flags it.
 
-	>**Note**: if the error doesn’tdoes not show up in the output window, build the solution first.
+	![Duplicate parameter error](Images/duplicate-parameter-error.png?raw=true "Duplicate parameter error")
+	
+	_Duplicate parameter error_
+
+	>**Note**: if the error does not show up in the output window, build the solution first.
  
 1. Remove the **scope** parameter just added, it was simply to show the error.
 	
-1. Move the code from the controller to the directive; the code to move is highlighted with a comment that says “//TODO: refactor”. 
+1. Move the code from the **modal** controller to the directive you created; the code to move is highlighted with a comment that says **//TODO: refactor**. 
 
-1. Show the JSHint error with the missing **;** and the **==** 
+1. Remove the **element** and **scope** variable in the controller to avoid JSHint issues.
+
+1. Open the **Error List** panel and show that there are two JSHIint errors.
+
+	![Error list panel](Images/error-list-panel.png?raw=true "Error list panel")
+	
+	_Error list panel_
+
+1. Fix the semicolong issue by adding the ; at the end of the line
+
+1. Fix the comparison issue by adding another =.
+
+	![JSHint issues fixed in directive](Images/jshint-issues-fixed-in-directive.png?raw=true "JSHint issues fixed in directive")
+	
+	_JSHint issues fixed in directive_
 
 1. Demonstrate that it works.
 	
-1. Remove the **element** and **scope** variable in the controller.
- 
-1. In the index view update the div element with id **dropzone** as shown below in the screenshot:
+1. Open **Modal.cshtml** view from the **Share** folder and update the div element with id **dropzone** as with the code below; the code to update is highlighted with a comment that says **<!--Dropzone element-->**. 
  
 	````HTML
-	<div gm-dropzone drop-complete="dropComplete(src, file)" ng-hide="loading" class="col-sm-6 dropzone">
+	<div app-dropzone class="drag-drop" ng-hide="fileloaded || loading">
 	````
 
+	
 <a name="azure-staged-published" />
-#### Task 5 - Azure Staged Published ####
+#### Task 4 - Azure Staged Published ####
 
 1. Right-click on the **Project** and select **Publish…**
 
@@ -303,26 +379,40 @@ This demo is composed of the following segments:
 <a name="segment4" />
 ### Azure Auto Scale, Traffic Manager and Backup ###
 
-> **Speaking Point:** Explain that all the configuration such as SSL certificates and public domain names stay where they are, but the deployments are swapped. The site is readily available afterwards.
-
 <a name="auto-scale" />
 #### Task 1 - Auto Scale ####
-1. In the Web Site, go to **Scale**.
-2. Scroll down to **Scale by Metric** and select **CPU**. Change the instance count to **2** and **4**.
+1. In the Azure Portal, click Web Sites, browse to the Web Site and click **Scale**.
+1. Make sure the **Instance Size** is set to **Medium** or **Large**.
+1. Scroll down to **Scale by Metric** and select **CPU**.
+1. Change the **Instance Count** slider to **2** and then to **4**. Turn it back to **1** after you have demonstrated this.
+1. Click **Discard**.
 
-	> **Speaking Point:** Explain how the user can use the Target CPU threshold to automatically upscale or downscale the number of instances.
+	![Scale Web Site](Images/scale-web-site.png?raw=true)
+
+	_Scale Web Site capacity_
+
+	> **Speaking Point:** Explain how the user can use the Target CPU threshold to automatically upscale or downscale the number of instances. This allows to spend only as much as needed for the service.
 	
 <a name="traffic-manager" />
 #### Task 2 - Traffic Manager ####
-1. Browse to the Azure Portal, and click New > Network Services > Traffic Manager > Quick Create.
+1. Browse to the Azure Portal, and click **New** > **Network Services** > **Traffic Manager** > **Quick Create**.
+
+	![Traffic Manager creation](Images/traffic-manager-creation.png?raw=true)
+	
+	_Traffic Manager creation_
 
 	> **Speaking Point:** Explain the different Load Balancing Methods available.
 	
-1. Click Close, and go to the an existing Traffic Manager created.
-1. Select Web Site in the Service Type combo.
-1. Check the deployed Web Site to the Traffic Manager profile.
+1. Click **Close**, and go to the Traffic Manager already created.
+1. Select **Endpoints** and click **Add**.
+1. Select **Web Site** in the **Service Type** combo.
+1. Check the deployed Web Site and add it to the Traffic Manager profile and click Ok.
 
-	> **Speaking Point:** Explain that no matter where the user is, they will always hit the data center closest to them.
+	![Add Web Site to the Traffic Manager](Images/add-web-site-to-the-traffic-manager.png?raw=true)
+	
+	_Add Web Site to the Traffic Manager_
+
+	> **Speaking Point:** We can optimize the Web Site for **Performance**, **Round Robin**, or **Failover**. Failover is the scenario where we set up a primary node and in case of failure, traffic is routed automatically by Traffic Manager to secondary nodes. Since we want to optimize for Performance, we'll select this method. No matter where the user is, they will always hit the data center closest to them.
 
 <a name="backups" />
 #### Task 3 - Backups ####
@@ -330,11 +420,16 @@ This demo is composed of the following segments:
 1. Enable **Automated Backup** by clicking **ON**
 1. Select a storage account.
 
-	> **Speaking Point:** Explain that the user can change the **Frequency** and the Start Date.
+	> **Speaking Point:** The user can change the **Frequency** for performing a backup and also the **Start Date**.
 	
 1. Select a database connection from the **Included Databases** drop-down.
 1. Click **Save** to confirm.
 1. Click **Backup Now** to create a backup.
+
+	![Backing up a Web Site](Images/backing-up-a-web-site.png?raw=true)
+	
+	_Backing up a Web Site_
+
 1. Once completed, show how to restore a backup. Click **Restore Now**.
 
 	> **Speaking Point:** Explain the two options to restore a backup: From a previous backup of the site or by selecting a file from the storage account. Select the second option and click the folder icon.
