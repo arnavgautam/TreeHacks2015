@@ -1,5 +1,5 @@
 ﻿<a name="demo2" />
-# ClipMeme Demo : BUILD Clips#
+# ClipMeme Demo#
 
 ## Overview ##
 
@@ -127,23 +127,40 @@ This demo is composed of the following segments:
 <a name="segment2" />
 ### Web Essentials Features ###
 
-<a name="quick-site-demo" />
-#### Task 1 - Quick Site Demo ####
+>**Speeking Point**: Introduction to the scenario:
 
-1. So for this scenario, we’re going to look at a small site that could get big fast. We are building a viral meme generator with a twist: we are using animated GIFs. 
-	
-	>**Note**: Site screenshots do not yet incorporate final design.
-
-1. Show the running application.
-
-1. Hover over one of the images to show the animated gif with the text overlay.
+>* So for this scenario, we’re going to look at a small site that could get big fast. We are building a viral meme generator with a twist: we are using animated GIFs. 
+>* Show the running application.
+>* Hover over one of the images to show the animated gif with the text overlay.
 	
 <a name="browserlink-features" />
-#### Task 2 - Browser link####
+#### Task 1 - Browser link####
 
-1. Back in the home page, show that there’s a typo in the header, the word “and” is repeated.
+1. Place Visual Studio and Internet Explorer side by side.
 
-	>**Note**: Oops, it looks like there is a text error in the header - we repeated the word “and”. Let’s fix that.
+1. Show that there’s a typo in the header, the word **and** is repeated bellow the **Welcome to ClipMeme** section.
+
+	>**Note**: This also works for changes I make using the browser developer tools. I’ve decided the header looks a little too bland, and I’d prefer to change the color interactively in the browser using the F12 tools in my browser. 
+
+1. Right-Click in the header section and select **Inspect element**. This will open the developer tools.
+
+	![Internet Explorer - Inspect element](Images/internet-explorer---inspect-element.png?raw=true "Internet Explorer - Inspect element")
+	
+	_Internet Explorer - Inspect element_
+
+1. In the **DOM Explorer** select the **header** html tag
+	
+	![DOM Explorer - Header section](Images/dom-explorer---header-section.png?raw=true "DOM Explorer - Header section")
+	
+	_DOM Explorer - Header section_
+
+1. In the **Styles** pane, scroll until you find the **.navbar-default** selector. 
+
+1. Double-click the background color value and change it to a different color. Show how the value is automatically updated in Visual Studio.
+
+1. Switch to Google Chrome and show that the header color is automatically udpated in all the browsers.
+
+	>**Speeking Point**: Oops, it looks like there is a text error in the header - we repeated the word “and”. Let’s fix that. 
 
 1. Press the **Ctrl** key in the browser to enable the Web Essentials Browser Link Overlay. 
 
@@ -151,24 +168,14 @@ This demo is composed of the following segments:
 	
 	>**Note**: Now I can fix the text right in the page and save it back to my source code in Visual Studio.
 
+1. Show that while hovering each section of the page, Visual Studio highlights the element.
+	
 1. Delete the duplicated word.
-
-1. Right click on the header and “Inspect Element”. This will open the developer tools.
-
-	>**Note**: This also works for changes I make using the browser developer tools. I’ve decided the header looks a little too bland, and I’d prefer to change the color interactively in the browser using the F12 tools in my browser. This works with any browser, so in this case I'm showing this with the Chrome dev tools. 
 
 	>**Note**: This works the exact same in any browser, in case we want to use IE instead.
 
-1. Using the developer tools, change the background color of the header to a different color.
- 
-1. Click the **Save F12 changes** to push that CSS change back to Visual Studio.
-
-	>**Note**: Now I’ll click the “Save F12 changes to push that CSS change back to Visual Studio.
-
-	>**Note**: we will use **F12 auto-sync**
-
 <a name="image-sprites-not-in-keynote" />
-#### Task 3 - Image Sprites ####
+#### Task 2 - Image Sprites####
 
 1. We can improve performance on our site by sending a lot of images in one HTTP request, using CSS sprites. We’ll select some common images on our site and create a sprite the easy way, using Web Essentials.
 
@@ -202,38 +209,70 @@ This demo is composed of the following segments:
 	````
 
 <a name="javascript-editing" />
-#### Task 4 - Javascript and AngularJS editing ####
+#### Task 3 - Javascript and AngularJS editing ####
 
-1. Open the **/Scripts/app/controllers/main.js** file and show that there’s built-in Intellisense for AngularJS in the IDE:
+1. Open the **/Scripts/app/controllers/modal.js** file.
 
-1. Right-click the **/scripts/app/directives** directory and select **Add** / **New item**.
+1. Place the cursor below the **cleanVariables();** line and start writing **$sc**. Show that there is Intellicense for Javascript and AngualrJS.
+
+	![Intellisence Javascript with Web Essentials](Images/intellisence-javascript-with-web-essentials.png?raw=true "Intellisence Javascript with Web Essentials")
 	
+	_Intellisence Javascript with Web Essentials_
+
+1. Right-click the **/scripts/app/directives** directory and select **Add** | **New item**.
+	
+	![Add new item menu](Images/add-new-item-menu.png?raw=true "Add new item menu")
+	
+	_Add new item menu_
+
 1. Type **directive** in the filter to narrow the list. Name the directive **appDropzone.js**.
 	
+	![Directive template](Images/directive-template.png?raw=true "Directive template")
+	
+	_Directive template_
+
+
 	>**Note**: This sets me up with a basic directive with some best practices, like for instance it’s using Strict Mode. We’ve also got JsHint running in the background so it can catch some common JavaScript coding issues as I type, for instance if I try to reuse a function parameter name.
 	
-1. Add another parameter named **scope** to the end of the link function and show that JsHint flags it.
+1. Add another parameter named **scope** to the end of the **link** function and show that **JsHint** flags it.
 
-	>**Note**: if the error doesn’tdoes not show up in the output window, build the solution first.
+	![Duplicate parameter error](Images/duplicate-parameter-error.png?raw=true "Duplicate parameter error")
+	
+	_Duplicate parameter error_
+
+	>**Note**: if the error does not show up in the output window, build the solution first.
  
 1. Remove the **scope** parameter just added, it was simply to show the error.
 	
-1. Move the code from the controller to the directive; the code to move is highlighted with a comment that says “//TODO: refactor”. 
+1. Move the code from the **modal** controller to the directive you created; the code to move is highlighted with a comment that says **//TODO: refactor**. 
 
-1. Show the JSHint error with the missing **;** and the **==** 
+1. Remove the **element** and **scope** variable in the controller to avoid JSHint issues.
+
+1. Open the **Error List** panel and show that there are two JSHIint errors.
+
+	![Error list panel](Images/error-list-panel.png?raw=true "Error list panel")
+	
+	_Error list panel_
+
+1. Fix the semicolong issue by adding the ; at the end of the line
+
+1. Fix the comparison issue by adding another =.
+
+	![JSHint issues fixed in directive](Images/jshint-issues-fixed-in-directive.png?raw=true "JSHint issues fixed in directive")
+	
+	_JSHint issues fixed in directive_
 
 1. Demonstrate that it works.
 	
-1. Remove the **element** and **scope** variable in the controller.
- 
-1. In the index view update the div element with id **dropzone** as shown below in the screenshot:
+1. Open **Modal.cshtml** view from the **Share** folder and update the div element with id **dropzone** as with the code below; the code to update is highlighted with a comment that says **<!--Dropzone element-->**. 
  
 	````HTML
-	<div gm-dropzone drop-complete="dropComplete(src, file)" ng-hide="loading" class="col-sm-6 dropzone">
+	<div app-dropzone class="drag-drop" ng-hide="fileloaded || loading">
 	````
 
+	
 <a name="azure-staged-published" />
-#### Task 5 - Azure Staged Published ####
+#### Task 4 - Azure Staged Published ####
 
 1. Right-click on the **Project** and select **Publish…**
 
