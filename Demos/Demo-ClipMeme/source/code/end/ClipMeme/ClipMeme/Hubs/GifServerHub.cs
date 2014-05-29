@@ -8,8 +8,7 @@
     {
         public void GifGenerationCompleted(string clientId, string url)
         {
-            Trace.TraceError(string.Format("GifGenerationCompleted {0} : {1}", url, DateTime.Now));
-
+            Trace.TraceInformation(string.Format("GifGenerationCompleted {0} : {1}", url, DateTime.Now));
             this.Clients.All.GifGenerationCompleted(url);
         }
     }

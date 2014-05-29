@@ -23,8 +23,9 @@ In this demo, you will see how to:
 - Visual Studio 2013
 - [Visual Studio 2013 Update 2](http://www.microsoft.com/es-es/download/details.aspx?id=42666)
 - [Web Essentials for Update 2](http://visualstudiogallery.msdn.microsoft.com/56633663-6799-41d7-9df7-0f2a504ca361)
+- [Add-in to add publishing support to web projects for Azure WebJobs](http://visualstudiogallery.msdn.microsoft.com/f4824551-2660-4afa-aba1-1fcc1673c3d0)
 - [Side Waffles templates](http://visualstudiogallery.msdn.microsoft.com/a16c2d07-b2e1-4a25-87d9-194f04e7a698)
-- Google Chrome
+- [Google Chrome](www.google.com/chrome)
 
 <a name="Setup" />
 ### Setup and Configuration ###
@@ -53,6 +54,12 @@ In this demo, you will see how to:
 ##### Configuration Variables #####
 
 1. Set the connection string for BlobStorage.
+
+1. Set the default path for the _Working Directory_.
+
+1. Set the username that will be displayed in ClipMeme.
+
+1. Set the Azure WebSite URL.
 
 1. Run **Reset.cmd**.
 
@@ -161,7 +168,7 @@ This demo is composed of the following segments:
 	>**Note**: we will use **F12 auto-sync**
 
 <a name="image-sprites-not-in-keynote" />
-#### Task 3 - Image Sprites####
+#### Task 3 - Image Sprites ####
 
 1. We can improve performance on our site by sending a lot of images in one HTTP request, using CSS sprites. We’ll select some common images on our site and create a sprite the easy way, using Web Essentials.
 
@@ -241,31 +248,59 @@ This demo is composed of the following segments:
 <a name="segment3" />
 ### Azure Web Jobs ###
 
-1. Switch to the production site of ClipMeme, click **Create Meme**.
+1. Switch back to the production site of **ClipMeme** and click the **Create Meme** button.
 
-1. Drag the animated GIF from your working directory into the _drop zone_ in the browser.
+	![Creating a new meme](Images/creating-a-new-meme.png?raw=true)
+	
+	_Creating a new meme_
 
-1. Add a caption and click **Submit**.
+1. Drag the animated GIF from your working directory into the _drop zone_ in the browser. Enter a caption and click **Submit**.
 
-1. Wait until the meme is fully created (the image legend will change to your caption).
+	![Submitting a new meme](Images/submitting-a-new-meme.png?raw=true)
+	
+	_Submitting a new meme_
 
-1. Switch to the ClipMeme Azure Website in the Management Portal and go to **WEBJOBS**.
+1. Wait until the meme is fully created (the image legend will change from _Processing_ to your caption).
 
-	> **Speaking Point:** This allows me to run background tasks.
+	![Processing the meme](Images/processing-the-meme.png?raw=true)
+	
+	_Processing the meme_
 
-1. Switch back to Visual Studio.
+1. Switch to the **ClipMeme Azure Website** in the Management Portal and go to **WEBJOBS**.
 
-1. Open **Program.cs** and scroll down to show the **ProcessImage** method.
+	![Azure Webjobs](Images/azure-webjobs.png?raw=true)
+	
+	_Azure Webjobs_
+
+	> **Speaking Point:** A Webjob allows me to run background tasks.
+
+1. Switch back to the **ClipMeme** solution in **Visual Studio**.
+
+1. In **Solution Explorer** go to the **GifGenerator** project and open **Program.cs**. Scroll down to show the **ProcessImage** method.
+
+	> **Speaking Point:** TODO
 
 1. In Solution Explorer, right-click the **ClipMeme** project node and select **Add > Windows Azure Webjob...**.
 
-	> **Speaking Point:** I've already associated my Console project with my Website. When I publish my Website the Webjob is published too.
+	![Associating a Webjob project with your Website](Images/associating-a-webjob-project-with-your-websit.png?raw=true)
+	
+	_Associating a Webjob project with your Website_
 
-1. Switch to the Web Jobs Dashboard in the Management Portal.
+	![Webjob project selector](Images/webjob-project-selector.png?raw=true)
+	
+	_Webjob project selector_
 
-1. Show the **Invocation Log** and explain that everytime a Job runs or fails, it will add a new entry to this log.
+	> **Speaking Point:** I've already associated my Console project with my Website. When I publish my Website, the Webjob will published with it.
 
-	> **Note:** If you generated errors in your log, click on the item to show the details of the error. Then click the **Toggle Output** button to expand the exception details
+1. Switch to the the **Management Portal** and click the **logs** link of your WebJob.
+
+	![Webjob Logs](Images/webjob-logs.png?raw=true)
+	
+	_Webjob Logs_
+
+1. Show the logs and explain that everytime a Job runs or fails, it will add a new entry to this log.
+
+	> **Note:** If you generated errors in your log, they will be displayed between the other logs.
 
 <a name="segment4" />
 ### Azure Auto Scale, Traffic Manager and Backup ###
