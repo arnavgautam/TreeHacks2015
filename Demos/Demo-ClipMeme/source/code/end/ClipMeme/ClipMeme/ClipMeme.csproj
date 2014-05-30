@@ -200,6 +200,12 @@
     <Content Include="Content\Images\clips\20140326-103447-horse-cannon.gif" />
     <Content Include="Content\Images\clips\20140326-103855-Fat-Dance-Suit-Men-Rave-On-At-Home.gif" />
     <Content Include="Content\Images\error.png" />
+    <Content Include="Content\social.png">
+      <DependentUpon>social.sprite</DependentUpon>
+    </Content>
+    <Content Include="Content\social.png.css">
+      <DependentUpon>social.png</DependentUpon>
+    </Content>
     <Content Include="error.html">
       <BrowseToURL>~/Properties/demo.htm</BrowseToURL>
     </Content>
@@ -288,9 +294,16 @@
     </Content>
     <Content Include="Properties\ligershark.webjobs.targets" />
     <Content Include="Properties\ligershark.webjobs.ext.targets" />
-    <None Include="Properties\PublishProfiles\azuretkclipmeme %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\azuretkclipmeme %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\azuretkclipmeme.pubxml" />
+    <Content Include="Content\social.sprite" />
+    <Content Include="Content\social.png.map">
+      <DependentUpon>social.png</DependentUpon>
+    </Content>
+    <Content Include="Content\social.png.less">
+      <DependentUpon>social.png</DependentUpon>
+    </Content>
+    <Content Include="Content\social.png.scss">
+      <DependentUpon>social.png</DependentUpon>
+    </Content>
     <None Include="Scripts\vendors\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\vendors\FileAPI.flash.swf" />
     <Content Include="Scripts\vendors\FileAPI.min.js" />

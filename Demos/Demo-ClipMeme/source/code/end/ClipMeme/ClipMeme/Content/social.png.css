@@ -1,0 +1,15 @@
+﻿/*
+This is an example of how to use the image sprite in your own CSS files
+*/
+.Content-share-facebook {
+/* You may have to set 'display: block' */
+	width: 24px;
+	height: 24px;
+	background: url('social.png') 0 0;
+}
+.Content-share-twitter {
+/* You may have to set 'display: block' */
+	width: 24px;
+	height: 24px;
+	background: url('social.png') 0 -24px;
+}

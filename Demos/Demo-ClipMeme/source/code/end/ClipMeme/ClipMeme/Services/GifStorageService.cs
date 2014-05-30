@@ -33,7 +33,7 @@
                 RetryPolicy = new LinearRetry(TimeSpan.FromMilliseconds(500), 5)
             };
 
-            var memesMetadata = table.ExecuteQuery(query, requestOptions).OrderByDescending(md => md.BlobName).Skip(page*offset).Take(offset);
+            var memesMetadata = table.ExecuteQuery(query, requestOptions).OrderByDescending(md => md.BlobName).Skip(page * offset).Take(offset);
 
             IEnumerable<Meme> result = new List<Meme>();
             foreach (var memeMetadata in memesMetadata)
