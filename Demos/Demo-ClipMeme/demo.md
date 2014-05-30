@@ -341,15 +341,26 @@ This demo is composed of the following segments:
 <a name="azure-staged-published" />
 #### Task 4 - Azure Staged Published ####
 
-1. Right-click on the **Project** and select **Publish…**
+1. In the **Solution Explorer**, right-click on the **Project** and select **Publish…**
 
-1. Go to **Profile** and show the different hosting options. 
+	![Publish](Images/publish.png?raw=true "Publish")
+	
+	_Publish_
+
+1. Go to **Profile** and show the different publish targets. 
+
+	![Publish Web dialog box](Images/publish-web-dialog-box.png?raw=true "Publish Web dialog box")
+	
+	_Publish Web dialog box_
 
 1. Select **Windows Azure Web Sites**.
  
-1. Select **build2014p-gifmeme(Staging)** and click **OK**.
- 
-	>**Note**: Option to launch browser when deployment is complete will be disabled to prevent interrupting next segment.
+	![Select Existing Web Site dialog box ](Images/select-existing-web-site-dialog-box.png?raw=true "Select Existing Web Site dialog box ")
+	
+	_Select Existing Web Site dialog box _
+
+1. Select the **Staging** web site and click **OK**.
+
 
 <a name="segment3" />
 ### Azure Web Jobs ###

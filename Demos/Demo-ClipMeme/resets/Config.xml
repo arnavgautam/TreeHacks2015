@@ -14,5 +14,6 @@
 	</clientSettings>
 	<windowsAzureSubscription>
 		<storageAccountName>azuretkstorage</storageAccountName>
+		<subscriptionName>Azdem169F29744N</subscriptionName>
   </windowsAzureSubscription>  
 </configuration>
