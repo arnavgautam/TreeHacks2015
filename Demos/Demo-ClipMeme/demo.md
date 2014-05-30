@@ -378,13 +378,13 @@ This demo is composed of the following segments:
 	
 	_Azure Webjobs_
 
-	> **Speaking Point:** A Webjob allows me to run background tasks.
+	> **Speaking Point:** A Webjob allows me to run background tasks in the same context as my Web Site.
 
 1. Switch back to the **ClipMeme** solution in **Visual Studio**.
 
 1. In **Solution Explorer** go to the **GifGenerator** project and open **Program.cs**. Scroll down to show the **ProcessImage** method.
 
-	> **Speaking Point:** TODO
+	> **Speaking Point:** Using the WebJobs SDK it makes really easy to listen to any events that is happening in any of my Azure resources.
 
 1. In Solution Explorer, right-click the **ClipMeme** project node and select **Add > Windows Azure Webjob...**.
 
@@ -396,7 +396,7 @@ This demo is composed of the following segments:
 	
 	_Webjob project selector_
 
-	> **Speaking Point:** I've already associated my Console project with my Website. When I publish my Website, the Webjob will published with it.
+	> **Speaking Point:** I've already associated my Console project with my Website. The next time I publish my Website, the Webjob will be published with it.
 
 1. Switch to the **Management Portal** and click the **logs** link of your WebJob.
 
