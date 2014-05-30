@@ -1,8 +1,9 @@
-﻿@social-border-color: #999;
+﻿@import 'social.png.less';
+@social-border-color: #999;
 @social-border-shadow-color: darken( @social-border-color, 10% );
 
 .navbar-default {
-    background-color: #fff;
+    background-color: azure;
 }
 
 footer {
@@ -10,13 +11,13 @@ footer {
 }
 
 .facebook {
-    background: url(share-facebook.png) no-repeat;
+    .sprite-Content-share-facebook();
     width: 24px;
     height: 24px;
 }
 
 .twitter {
-    background: url(share-twitter.png) no-repeat;
+    .sprite-Content-share-twitter();
     width: 24px;
     height: 24px;
 }
