@@ -293,13 +293,19 @@ This demo is composed of the following segments:
 	
 	_Error list panel_
 
-1. Fix both JSHint issues by adding the semi colon and the ;. 
+1. Double-click on each issue and it will take you to the corresponding line.
 
-	![JSHint issues fixed](Images/jshint-issues-fixed.png?raw=true "JSHint issues fixed")
+	![Before fixing the error](Images/before-fixing-the-error.png?raw=true "Before fixing the error")
+
+	_Before fixing the error_
+
+1. Fix the issues, save the file and show that there are no more issues.
+
+	![After fixing the error](Images/after-fixing-the-error.png?raw=true "After fixing the error")
 	
-	_JSHint issues fixed in directive_
+	_After fixing the error_
 
-	>**Speaking Point:** Show that there are no more issues, close the **Error List** panel and show that querying the DOM from a controller is not a good practise in AngularJS so we need to refactor the code by adding a new directive.
+1. Close the **Error List** panel and show that querying the DOM from a controller is not a good practise in AngularJS so we need to refactor the code by adding a new directive.
 	
 1. Right-click the **/scripts/app/directives** directory and select **Add** | **New item**.
 	
