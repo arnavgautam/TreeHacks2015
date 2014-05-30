@@ -25,7 +25,7 @@ pushd ".."
 
 # Windows Azure
 [string] $storageAccountName = $xmlAzureSettings.configuration.windowsAzureSubscription.storageAccountName
-
+[string] $subscriptionName = $xmlAzureSettings.configuration.windowsAzureSubscription.subscriptionName
 
 popd
 
@@ -47,26 +47,40 @@ try
 	$found = $FALSE	
 }
 
-if ($found)
+if (-not $found)
 {
-	Write-Action "Cleaning Storage Account Blobs"
-	Set-AzureStorageAccount -StorageAccountName $storageAccountName
-	Remove-AzureStorageContainer -Name "uploads"
-	Remove-AzureStorageContainer -Name "memes"
-	Write-Done
-}else{
 	Write-Action "Creating Storage Account"
-	New-AzureStorageAccount -StorageAccountName $storageAccountName -Location "East US"
-	Set-AzureStorageAccount -StorageAccountName $storageAccountName
+	New-AzureStorageAccount -StorageAccountName $storageAccountName -Location "East US"	
+	Set-AzureSubscription -SubscriptionName $subscriptionName -CurrentStorageAccountName $storageAccountName	
 	Write-Done
+	
+
 }
 
-Write-Action "Creating containers"
-	$keys = Get-AzureStorageKey -StorageAccountName $storageAccountName
-	$context = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $keys.Primary
-	New-AzureStorageContainer -Name "uploads" -Permission Container -Context $context
-	New-AzureStorageContainer -Name "memes" -Permission Container -Context $context
-Write-Done
+# Containers
+
+try{
+	Get-AzureStorageContainer -Name "uploads" -ErrorAction Stop
+	Write-Action "Removing blobs from container: uploads"
+	Get-AzureStorageBlob -Container "uploads" | Remove-AzureStorageBlob
+	Write-Done
+}catch
+{
+	Write-Action "Creating Container Uploads"
+	New-AzureStorageContainer -Name "uploads" -Permission Container
+}
+
+try{
+	Get-AzureStorageContainer -Name "memes" -ErrorAction Stop
+	Write-Action "Removing blobs from container: memes"
+	Get-AzureStorageBlob -Container "memes" | Remove-AzureStorageBlob
+	Write-Done
+}catch
+{
+	Write-Action "Creating container: memes"
+	New-AzureStorageContainer -Name "memes" -Permission Container
+}
+
 
 
 #
