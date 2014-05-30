@@ -27,10 +27,10 @@
                     },
                     file: $scope.image.file,
                 }).progress(function (evt) {
-                    if (!$scope.loading && evt.loaded != evt.total) {
+                    if (!$scope.loading && evt.loaded !== evt.total) {
                         $scope.loading = true;
                     }
-                }).success(function (data, status, headers, config) {
+                }).success(function () {
                     cleanVariables();
                     $modalInstance.close({
                         URL: image,
@@ -50,6 +50,9 @@
         };
 
         $scope.cancel = closeModal;
+
+        $scope.init = function () {
+        };
 
         function closeModal() {
             cleanVariables();

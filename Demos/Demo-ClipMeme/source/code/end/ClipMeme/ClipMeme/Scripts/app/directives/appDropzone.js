@@ -1,10 +1,15 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('app').directive('appDropzone', [appDropzone]);
-
-    function appDropzone() {
-
+    // TODO: replace app with your module name
+    angular.module('app').directive('appDropzone', ['$window', appDropzone]);
+    
+    function appDropzone ($window) {
+        // Usage:
+        // 
+        // Creates:
+        //
+        
         var directive = {
             link: link,
             restrict: 'A'
@@ -12,7 +17,7 @@
 
         return directive;
 
-        function link(scope, element) {
+        function link(scope, element, attrs) {
             element.on('dragover', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
@@ -25,8 +30,8 @@
                 removeErrorMessage();
                 this.classList.remove('over');
 
-                var file = event.originalEvent.dataTransfer.files[0]
-                if (file && file.type == "image/gif") {
+                var file = event.originalEvent.dataTransfer.files[0];
+                if (file && file.type === "image/gif") {
                     var reader = new FileReader();
 
                     reader.onloadend = function (evt) {

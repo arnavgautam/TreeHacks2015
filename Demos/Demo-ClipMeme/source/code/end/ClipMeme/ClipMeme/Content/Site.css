@@ -1,16 +1,21 @@
-﻿.navbar-default {
-  background-color: #fff;
+﻿/*
+@import this file directly into your existing Less files to use these mixins
+*/
+.navbar-default {
+  background-color: azure;
 }
 footer {
   background-color: #34495E;
 }
 .facebook {
-  background: url(share-facebook.png) no-repeat;
+  /* You may have to set 'display: block' */
+  background: url('social.png') 0 0;
   width: 24px;
   height: 24px;
 }
 .twitter {
-  background: url(share-twitter.png) no-repeat;
+  /* You may have to set 'display: block' */
+  background: url('social.png') 0 -24px;
   width: 24px;
   height: 24px;
 }

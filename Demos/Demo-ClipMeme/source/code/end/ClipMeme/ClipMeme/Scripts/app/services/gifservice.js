@@ -9,5 +9,5 @@
         return {
             "data": $resource('/api/gif/:id', { id: '@id' })
         };
-    };
+    }
 })();
