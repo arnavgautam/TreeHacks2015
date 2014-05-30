@@ -13,7 +13,9 @@
 		<username>{Username}</username>				
 	</clientSettings>
 	<windowsAzureSubscription>
-		<storageAccountName>azuretkstorage</storageAccountName>
+		<EnvironmentSubscriptionName>azuretkstorage</EnvironmentSubscriptionName>
+		<EnvironmentPrimaryLocation>West US</EnvironmentPrimaryLocation>
 		<subscriptionName>Azdem169F29744N</subscriptionName>
+		<websiteName>clipmemehmeydac</webSiteName>
   </windowsAzureSubscription>  
 </configuration>

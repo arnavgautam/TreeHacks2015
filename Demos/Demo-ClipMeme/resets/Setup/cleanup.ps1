@@ -3,6 +3,8 @@ Param([string] $azureSettingsFile)
 $scriptDir = (split-path $myinvocation.mycommand.path -parent)
 Set-Location $scriptDir
 
+$FunctionToRegister = Join-Path $scriptDir ".\Invoke-AzureEnvironmentSetup.ps1"
+
 # Import progress functions
 . ".\tasks\progress-functions.ps1"
 
@@ -20,10 +22,12 @@ pushd ".."
 [string] $endSolutionDir = $xmlAzureSettings.configuration.localPaths.solutionsDir + "\End\ClipMeme\ClipMeme\web.config"
 
 # Client Settings
-[string] $username = $xmlAzureSettings.configuration.clientSettings.username
+[string] $displayName = $xmlAzureSettings.configuration.clientSettings.displayName
 
 
 # Windows Azure
+[string] $EnvironmentSubscriptionName = 
+
 [string] $storageAccountName = $xmlAzureSettings.configuration.windowsAzureSubscription.storageAccountName
 [string] $subscriptionName = $xmlAzureSettings.configuration.windowsAzureSubscription.subscriptionName
 
@@ -53,8 +57,6 @@ if (-not $found)
 	New-AzureStorageAccount -StorageAccountName $storageAccountName -Location "East US"	
 	Set-AzureSubscription -SubscriptionName $subscriptionName -CurrentStorageAccountName $storageAccountName	
 	Write-Done
-	
-
 }
 
 # Containers
@@ -81,55 +83,8 @@ try{
 	New-AzureStorageContainer -Name "memes" -Permission Container
 }
 
+# Azure Web Site
+$appSettings = @{"displayName" = $displayName;}
+New-AzureWebSite -Name 	$webSiteName
+Set-AzureWebSite -Name $webSiteName -AppSettings $appSettings -WebSocketsEnabled $true
 
-
-#
-#Write-Action "Cleaning SharePoint Library..."
-#.\tasks\clean-sharepoint-library\CleanSharePointLibrary.exe -SharePointSiteUrl "$sharepointBaseUrl" -SharePointUserName "$sharepointUsername" -SharePointPassword "$sharepointPassword" -SharePointFolder "$sharepointFolderName"
-#Write-Done
-#
-#Write-Action "Updating images in the Windows Store application (Begin sln)"
-#Copy-Item $src_dir_location $dst_dir_locationbegin -force
-#Write-Done
-#
-#Write-Action "Updating images in the Windows Store application (End sln)"
-#Copy-Item $src_dir_location $dst_dir_locationend -force
-#Write-Done
-#
-#Write-Action "Updating Windows Store client settings (Begin sln)..."
-#Invoke-Expression  ".\tasks\updateConfig.ps1 -settingsConfig `"$facilityAppClientbegin`" -azureSettingsFile `"..\config.xml`"  -node `"appSettings`""
-#Write-Done
-#
-#
-#
-#Write-Action "Updating iOS client settings (Begin sln)..."
-#Invoke-Expression ".\tasks\updatePlist.ps1 -plistPath `"$plistpathbegin`" -azureSettingsFile `"..\config.xml`" "
-#Write-Done
-#
-#Write-Action "Updating iOS client settings (End sln)..."
-#Invoke-Expression ".\tasks\updatePlist.ps1 -plistPath `"$plistpathend`" -azureSettingsFile `"..\config.xml`" "
-#Write-Done
-#
-#Write-Action "Updating the Mobile Service settings (Begin sln)..."
-#Invoke-Expression ".\tasks\updateConfig.ps1 -settingsConfig `"$msSettingsbegin`" -azureSettingsFile `"..\config.xml`" -node `"configuration/appSettings`""
-#Write-Done
-#
-#Write-Action "Updating the Mobile Service settings (End sln)..."
-#Invoke-Expression ".\tasks\updateConfig.ps1 -settingsConfig `"$msSettingsend`" -azureSettingsFile `"..\config.xml`" -node `"configuration/appSettings`""
-#Write-Done
-#
-#Write-Action "Removing current working directory..."
-#if (Test-Path "$solutionWorkingDir")
-#{
-#	Remove-Item "$solutionWorkingDir" -recurse -force
-#}
-#Write-Done
-#
-#Write-Action "Creating working directory..."
-#New-Item "$solutionWorkingDir" -type directory | Out-Null
-#if (!(Test-Path "$solutionWorkingDir"))
-#{
-#	New-Item "$solutionWorkingDir" -type directory | Out-Null
-#}
-#Copy-Item "$beginSolutionDir\*" "$solutionWorkingDir" -Recurse -Force
-#Write-Done

@@ -10,7 +10,7 @@ $FunctionToRegister = Join-Path (Get-ScriptDirectory) "setup\Invoke-AzureEnviron
 $EnvironmentSubscriptionName = "BUILD Web Workload 1 -- Cory | Jon"
 $EnvironmentPrimaryLocation = "West US"
 $StorageEnvironmentLocation = "West US"
-$EnvironmentWebSites = @{"clipmeme"=$EnvironmentPrimaryLocation;"clipmeme-ne"="North Europe";"clipmeme-je"="Japan East"}
+$EnvironmentWebSites = @{"clipmeme"=$EnvironmentPrimaryLocation}
 $EnvironmentStagingSites = @{"clipmeme"=$EnvironmentPrimaryLocation}
 $EnvironmentStorageAccount = "clipmemestorage"
 $StorageContainers = @('uploads','memes')
