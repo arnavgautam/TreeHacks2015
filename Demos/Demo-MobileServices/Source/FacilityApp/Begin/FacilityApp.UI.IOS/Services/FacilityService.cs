@@ -3,7 +3,7 @@ namespace FacilityApp.UI.IOS.Services
     using System;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using adalbinding;
+    using BindingNewADAL;
     using FacilityApp.Core;
     using Microsoft.WindowsAzure.MobileServices;
     using Newtonsoft.Json.Linq;
@@ -14,7 +14,7 @@ namespace FacilityApp.UI.IOS.Services
 
         public override Task<string> LoginAsync(bool clearCache, string authorityId, string redirectUri, string resourceId, string clientId)
         {
-            ADALBuild.GetToken(
+            ADALWrapper.GetToken(
                 clearCache,
                 authorityId,
                 redirectUri,

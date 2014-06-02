@@ -14,7 +14,7 @@ namespace FacilityApp.UI.IOS.Services
 
         public override Task<string> LoginAsync(bool clearCache, string authorityId, string redirectUri, string resourceId, string clientId)
         {
-            BindingNewADAL.ADALWrapper.GetToken(
+            ADALWrapper.GetToken(
                 clearCache,
                 authorityId,
                 redirectUri,
