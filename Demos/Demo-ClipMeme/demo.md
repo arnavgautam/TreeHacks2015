@@ -164,7 +164,7 @@ This demo is composed of the following segments:
 
 1. Double-click the **background-color** value and change it to a different color (e.g. Azure). Show how the value is automatically updated in Visual Studio.
 
-	![Automatic update background color](Images/update-background-color.png?raw=true "Automatic update background color")
+	![Automatic update background color](Images/automatic-update-background-color.png?raw=true "Automatic update background color")
 
 	_Automatic update background color_
 	
@@ -172,24 +172,27 @@ This demo is composed of the following segments:
 	
 	_Final background color_
 	
-1. Switch to Google Chrome and show that the header color is automatically updated in all the browsers.
+1. Switch to **Google Chrome** and show that the header color is automatically updated in all the browsers.
 
-	![Google chrome with background color updated](Images/google-crhome-with-background-color-updated.png?raw=true "Google chrome with background color updated")
+	![Google Chrome with background color updated](Images/google-chrome-with-background-color-updated.png?raw=true "Google Chrome with background color updated")
 	
 	_Google chrome with background color updated_
 
-	
 1. Show that there is duplicated **and** in the text.
 
-	>**Speaking Point**: Oops, it looks like there is a text error in the header - we repeated the word “and”. Let’s fix that. 
+	![Typo - Duplicate and](Images/typo---duplicate-and.png?raw=true "Typo - Duplicate and")
+	
+	_Typo - Duplicate and_
+
+	>**Speaking Point**: Oops, it looks like there is a text error in the header - we repeated the word **and**. Let’s fix that. 
 	
 1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay**. 
 
-1. Click on the **Design** link to enable Design mode.
+1. Click on the **Design** link to enable **Design mode**.
 	
-	![Design link](Images/design-link.png?raw=true "Design link")
+	![Design mode link](Images/design-link.png?raw=true "Design mode link")
 	
-	_Design link_
+	_Design mode link_
 
 	>**Note**: Now I can fix the text right in the page and save it back to my source code in Visual Studio.
 
@@ -210,7 +213,7 @@ This demo is composed of the following segments:
 <a name="image-sprites-not-in-keynote" />
 #### Task 2 - Image Sprites####
 
-1. Switch back to Visual Studio and stop the application.
+1. Switch back to Visual Studio.
 
 	>**Speaking Point**: We can improve performance on our site by sending a lot of images in one HTTP request, using CSS sprites. We will select some common images on our site and create a sprite the easy way, using Web Essentials.
 
@@ -257,11 +260,9 @@ This demo is composed of the following segments:
 	}
 	````
 
-1. Run the solution
+1. In Internet Explorer, open **Developer tools** and switch to the **Network** tab.
 
-1. Open **Developer tools** in Internet Explorer and switch to the Network tab.
-
-1. Click on **Play** to start recording the network traffic.
+1. Click on **Play** to start recording the network traffic and refresh the application.
 
 1. Check there is a request to **/Content/Social.png**. Select it and click on **Details** to check the details of the request.
 
@@ -286,6 +287,26 @@ This demo is composed of the following segments:
 	
 	_Intellisense JavaScript with Web Essentials_
 
+1. Open the **Error List** panel and show that there are two JSHIint errors.
+
+	![Error list panel](Images/error-list-panel.png?raw=true "Error list panel")
+	
+	_Error list panel_
+
+1. Double-click on each issue and it will take you to the corresponding line.
+
+	![Before fixing the error](Images/before-fixing-the-error.png?raw=true "Before fixing the error")
+
+	_Before fixing the error_
+
+1. Fix the issues, save the file and show that there are no more issues.
+
+	![After fixing the error](Images/after-fixing-the-error.png?raw=true "After fixing the error")
+	
+	_After fixing the error_
+
+1. Close the **Error List** panel and show that querying the DOM from a controller is not a good practise in AngularJS so we need to refactor the code by adding a new directive.
+	
 1. Right-click the **/scripts/app/directives** directory and select **Add** | **New item**.
 	
 	![Add new item menu](Images/add-new-item-menu.png?raw=true "Add new item menu")
@@ -306,30 +327,18 @@ This demo is composed of the following segments:
 	![Duplicate parameter error](Images/duplicate-parameter-error.png?raw=true "Duplicate parameter error")
 	
 	_Duplicate parameter error_
-
-	>**Note**: if the error does not show up in the output window, build the solution first.
  
 1. Remove the **scope** parameter just added, it was simply to show the error.
 	
-1. Move the code from the **modal** controller to the directive you created; the code to move is highlighted with a comment that says **//TODO: refactor**. 
+1. Move the code from the **modal** controller to the directive you created; the code to move is highlighted with a comment that says **//TODO: refactor to a directive**. 
 
 1. Remove the **element** and **scope** variable in the controller to avoid JSHint issues.
-
-1. Open the **Error List** panel and show that there are two JSHIint errors.
-
-	![Error list panel](Images/error-list-panel.png?raw=true "Error list panel")
 	
-	_Error list panel_
-
-1. Fix the semicolon issue by adding the ; at the end of the line
-
-1. Fix the comparison issue by adding another =.
-
-	![JSHint issues fixed in directive](Images/jshint-issues-fixed-in-directive.png?raw=true "JSHint issues fixed in directive")
+	![Removed variables from modal controller](Images/removed-variables-from-modal-controller.png?raw=true "Removed variables from modal controller")
 	
-	_JSHint issues fixed in directive_
+	_Removed variables from modal controller_
 
-1. Demonstrate that it works.
+	>**Note:** Don't remove the **scope.init** declaration as it is required for AngularJS.
 	
 1. Open **Modal.cshtml** view from the **Share** folder and update the div element with id **dropzone** as with the code below; the code to update is highlighted with a comment that says **<!--Dropzone element-->**. 
  
@@ -337,6 +346,7 @@ This demo is composed of the following segments:
 	<div app-dropzone class="drag-drop" ng-hide="fileloaded || loading">
 	````
 
+1. Press **Ctrl** + **Shift** + **S** to save all the files.
 	
 <a name="azure-staged-published" />
 #### Task 4 - Azure Staged Published ####
@@ -355,9 +365,9 @@ This demo is composed of the following segments:
 
 1. Select **Windows Azure Web Sites**.
  
-	![Select Existing Web Site dialog box ](Images/select-existing-web-site-dialog-box.png?raw=true "Select Existing Web Site dialog box ")
+	![Select existing Web Site dialog box](Images/select-existing-web-site-dialog-box.png?raw=true "Select existing Web Site dialog box")
 	
-	_Select Existing Web Site dialog box _
+	_Select Existing Web Site dialog box_
 
 1. Select the **Staging** web site and click **OK**.
 
