@@ -3,7 +3,8 @@ Param([string] $azureSettingsFile)
 $scriptDir = (split-path $myinvocation.mycommand.path -parent)
 Set-Location $scriptDir
 
-$FunctionToRegister = Join-Path $scriptDir ".\Invoke-AzureEnvironmentSetup.ps1"
+$FunctionToRegister = Join-Path $scriptDir ".\Tasks\Invoke-AzureEnvironmentSetup.ps1"
+. "$FunctionToRegister"
 
 # Import progress functions
 . ".\tasks\progress-functions.ps1"
@@ -22,69 +23,29 @@ pushd ".."
 [string] $endSolutionDir = $xmlAzureSettings.configuration.localPaths.solutionsDir + "\End\ClipMeme\ClipMeme\web.config"
 
 # Client Settings
-[string] $displayName = $xmlAzureSettings.configuration.clientSettings.displayName
+[string] $DisplayName = $xmlAzureSettings.configuration.clientSettings.DisplayName
 
 
 # Windows Azure
-[string] $EnvironmentSubscriptionName = 
+[string] $EnvironmentSubscriptionName = $xmlAzureSettings.configuration.windowsAzureSubscription.EnvironmentSubscriptionName
+[string] $EnvironmentPrimaryLocation = $xmlAzureSettings.configuration.windowsAzureSubscription.EnvironmentPrimaryLocation
+[string] $StorageAccountName = $xmlAzureSettings.configuration.windowsAzureSubscription.StorageAccountName
+[string] $WebsiteName = $xmlAzureSettings.configuration.windowsAzureSubscription.WebsiteName
+$PublishSettingsFile = Join-Path $scriptDir ".\assets\publishSettings\azure.publishsettings"
+$StorageContainers = @('uploads','memes')
+$EnvironmentWebSites = @{$WebsiteName=$EnvironmentPrimaryLocation}
+$EnvironmentStagingSites = @{$WebsiteName=$EnvironmentPrimaryLocation}
 
-[string] $storageAccountName = $xmlAzureSettings.configuration.windowsAzureSubscription.storageAccountName
-[string] $subscriptionName = $xmlAzureSettings.configuration.windowsAzureSubscription.subscriptionName
+$AppSettings = @{'DisplayName'=$DisplayName; "TrafficManagerRegion"=$EnvironmentPrimaryLocation}
 
 popd
 
-# "========= Main Script =========" #
-
-Write-Action "Connecting to Azure..."
-Add-AzureAccount
-Write-Done
-
-Write-Action "Verifying Storage Account"
-try
-{
-	$storageAccount = Get-AzureStorageAccount -StorageAccountName $storageAccountName -ErrorAction Stop
-	Write-Host "Found..."
-	$found = $TRUE
-} catch 
-{
-	Write-Host "Not Found..."
-	$found = $FALSE	
-}
-
-if (-not $found)
-{
-	Write-Action "Creating Storage Account"
-	New-AzureStorageAccount -StorageAccountName $storageAccountName -Location "East US"	
-	Set-AzureSubscription -SubscriptionName $subscriptionName -CurrentStorageAccountName $storageAccountName	
-	Write-Done
-}
-
-# Containers
-
-try{
-	Get-AzureStorageContainer -Name "uploads" -ErrorAction Stop
-	Write-Action "Removing blobs from container: uploads"
-	Get-AzureStorageBlob -Container "uploads" | Remove-AzureStorageBlob
-	Write-Done
-}catch
-{
-	Write-Action "Creating Container Uploads"
-	New-AzureStorageContainer -Name "uploads" -Permission Container
-}
-
-try{
-	Get-AzureStorageContainer -Name "memes" -ErrorAction Stop
-	Write-Action "Removing blobs from container: memes"
-	Get-AzureStorageBlob -Container "memes" | Remove-AzureStorageBlob
-	Write-Done
-}catch
-{
-	Write-Action "Creating container: memes"
-	New-AzureStorageContainer -Name "memes" -Permission Container
-}
-
-# Azure Web Site
-$appSettings = @{"displayName" = $displayName;}
-New-AzureWebSite -Name 	$webSiteName
-Set-AzureWebSite -Name $webSiteName -AppSettings $appSettings -WebSocketsEnabled $true
-
+Invoke-AzureEnvironmentSetup -EnvironmentSubscriptionName $EnvironmentSubscriptionName `
+                             -EnvironmentPrimaryLocation $EnvironmentPrimaryLocation `
+                             -StorageEnvironmentLocation $EnvironmentPrimaryLocation `
+                             -EnvironmentWebSites $EnvironmentWebSites `
+                             -EnvironmentStagingSites $EnvironmentStagingSites `
+                             -EnvironmentStorageAccount $StorageAccountName `
+                             -StorageContainers $StorageContainers `
+							 -AppSettings $AppSettings `
+							 -PublishSettingsFile $PublishSettingsFile

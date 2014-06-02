@@ -1,7 +1,4 @@
 <configuration>
-	<appSetup>
-		<packagename>FacilityRequest</packagename>
-    </appSetup>
     <localPaths>		
 		<!-- Location where the demo source files will be copied in order to perform the demo -->
         <solutionWorkingDir>C:\Demos\Source</solutionWorkingDir>
@@ -10,12 +7,12 @@
      </localPaths>
 	<clientSettings>
 		<!-- Configuration Settings -->
-		<username>{Username}</username>				
+		<DisplayName>{Username}</DisplayName>
 	</clientSettings>
 	<windowsAzureSubscription>
-		<EnvironmentSubscriptionName>azuretkstorage</EnvironmentSubscriptionName>
-		<EnvironmentPrimaryLocation>West US</EnvironmentPrimaryLocation>
-		<subscriptionName>Azdem169F29744N</subscriptionName>
-		<websiteName>clipmemehmeydac</webSiteName>
+		<EnvironmentSubscriptionName>Azdem169F29744N</EnvironmentSubscriptionName>
+		<EnvironmentPrimaryLocation>East US</EnvironmentPrimaryLocation>		
+		<StorageAccountName>azuretkstorage</StorageAccountName>
+		<WebsiteName>clipmemehmeydac</WebsiteName>
   </windowsAzureSubscription>  
 </configuration>
