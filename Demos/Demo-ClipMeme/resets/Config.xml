@@ -1,8 +1,8 @@
 <configuration>
     <localPaths>		
-		<!-- Location where the demo source files will be copied in order to perform the demo -->
+		    <!-- Location where the demo source files will be copied in order to perform the demo -->
         <solutionWorkingDir>C:\Demos\Source</solutionWorkingDir>
-		<!-- Relative path to the folder containing the begin solutions -->
+		    <!-- Relative path to the folder containing the begin solutions -->
         <solutionsDir>.\ClipMeme\</solutionsDir>
      </localPaths>
 	<clientSettings>
@@ -10,9 +10,10 @@
 		<DisplayName>{Username}</DisplayName>
 	</clientSettings>
 	<windowsAzureSubscription>
-		<EnvironmentSubscriptionName>Azdem169F29744N</EnvironmentSubscriptionName>
-		<EnvironmentPrimaryLocation>East US</EnvironmentPrimaryLocation>		
-		<StorageAccountName>azuretkstorage</StorageAccountName>
-		<WebsiteName>clipmemehmeydac</WebsiteName>
+		<EnvironmentSubscriptionName>{SubscriptionName}</EnvironmentSubscriptionName>
+		<EnvironmentPrimaryLocation>{Location}</EnvironmentPrimaryLocation>		
+		<StorageAccountName>{StorageAccountName}</StorageAccountName>
+		<WebsiteName>{WebsiteName}</WebsiteName>
+		<TrafficManagerProfile>{TrafficManagerProfile}</TrafficManagerProfile>
   </windowsAzureSubscription>  
 </configuration>

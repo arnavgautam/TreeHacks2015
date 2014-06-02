@@ -8,11 +8,14 @@
           [Parameter(Mandatory=$true)]$EnvironmentStorageAccount,
           [Parameter(Mandatory=$true)]$StorageContainers,
 		  [Parameter(Mandatory=$true)]$AppSettings,
+		  [Parameter(Mandatory=$true)]$TrafficManagerProfile,
 		  [Parameter(Mandatory=$false)]$publishSettingsFile)
 
     begin {	
 		# Import progress functions
 		. ".\tasks\progress-functions.ps1"
+		
+		$TrafficManagerDomain =  "$TrafficManagerProfile.trafficmanager.net"
 		
 		Get-AzureAccount | Remove-AzureAccount -Force
 		
@@ -52,10 +55,19 @@
             $StorageContainers | % {
                 $StorageContainerJobs += Start-Job -ScriptBlock { param($container,$storageName,$storageKey) Invoke-Expression -Command "azure storage container delete --container $container --account-name $storageName --account-key $storageKey -q" } -ArgumentList $_, $EnvironmentStorageAccount, $StorageAccountKey
             }
-            Wait-Job $StorageContainerJobs
 			
+            Wait-Job $StorageContainerJobs			
 			Write-Done
-        }        
+        }       
+
+		if (Test-AzureTrafficManagerDomainName -DomainName $TrafficManagerProfile) 
+		{
+			Write-Action "Deleting Traffic Manager Profile"
+			$TrafficManagerJob = Start-Job -ScriptBlock { Remove-AzureTrafficManagerProfile -Name  -Force  } -ArgumentList $TrafficManagerProfile
+			
+			Wait-Job $TrafficManagerJob
+			Write-Done
+		}
     }
 
     process {
@@ -80,6 +92,7 @@
         $EnvironmentStagingSites.GetEnumerator() | % {
             $StagingCreateJobs += Start-Job -ScriptBlock { New-AzureWebsite -Name $args[0] -Location $args[1] -Slot "Staging" } -ArgumentList $_.Name, $_.Value
         }
+		
         Wait-Job -Job $StagingCreateJobs
         
 		Write-Done
@@ -103,6 +116,7 @@
         $StorageContainers | % {
             $StorageContainerJobs += Start-Job -ScriptBlock {param($container,$storageName,$storageKey) Invoke-Expression -Command "azure storage container create --permission 'Blob' --container $container --account-name $storageName --account-key $storageKey" } -ArgumentList $_, $EnvironmentStorageAccount, $StorageAccountKey
         }
+		
         Wait-Job $StorageContainerJobs
 		Write-Done
 		
@@ -119,11 +133,18 @@
             $UpdateSettingsJob = Start-Job -ScriptBlock { Set-AzureWebsite -AppSettings $args[3] -WebSocketsEnabled $true -ConnectionStrings $args[2] -Name $args[0] } -ArgumentList $_.Name, $_.Value, $WebSitesConnectionStrings, $AppSettings
 			Wait-Job -Job $UpdateSettingsJob;
         }
+		
         $EnvironmentStagingSites.GetEnumerator() | % {
             $UpdateSettingsJob = Start-Job -ScriptBlock { Set-AzureWebsite -AppSettings $args[3] -WebSocketsEnabled $true -ConnectionStrings $args[1] -Name $args[0] -Slot 'Staging' } -ArgumentList $_.Name, $WebSitesConnectionStrings, $AppSettings
 			Wait-Job -Job $UpdateSettingsJob;
         }
 
         Write-Done
+		
+		## Traffic Manager Profile ##
+		Write-Action "Creating Traffic Manager Profile"
+		$CreateTrafficManagerJob = Start-Job -ScriptBlock { New-AzureTrafficManagerProfile -Name $args[0] -DomainName $args[1] -LoadBalancingMethod "Performance" -MonitorProtocol "Http" -MonitorPort 80 -MonitorRelativePath "/" -Ttl 30 } -ArgumentList $TrafficManagerProfile, $TrafficManagerDomain
+		Wait-Job $CreateTrafficManagerJob
+		Write-Done
     }
 }

@@ -31,6 +31,7 @@ pushd ".."
 [string] $EnvironmentPrimaryLocation = $xmlAzureSettings.configuration.windowsAzureSubscription.EnvironmentPrimaryLocation
 [string] $StorageAccountName = $xmlAzureSettings.configuration.windowsAzureSubscription.StorageAccountName
 [string] $WebsiteName = $xmlAzureSettings.configuration.windowsAzureSubscription.WebsiteName
+$TrafficManagerProfile = $xmlAzureSettings.configuration.windowsAzureSubscription.TrafficManagerProfile
 $PublishSettingsFile = Join-Path $scriptDir ".\assets\publishSettings\azure.publishsettings"
 $StorageContainers = @('uploads','memes')
 $EnvironmentWebSites = @{$WebsiteName=$EnvironmentPrimaryLocation}
@@ -48,4 +49,5 @@ Invoke-AzureEnvironmentSetup -EnvironmentSubscriptionName $EnvironmentSubscripti
                              -EnvironmentStorageAccount $StorageAccountName `
                              -StorageContainers $StorageContainers `
 							 -AppSettings $AppSettings `
+							 -TrafficManagerProfile $TrafficManagerProfile `
 							 -PublishSettingsFile $PublishSettingsFile

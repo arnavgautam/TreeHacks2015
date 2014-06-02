@@ -19,8 +19,6 @@ cls
 %powerShellDir%\powershell.exe -NonInteractive -ExecutionPolicy Unrestricted -command ".\Setup\cleanup.ps1" ".\config.xml"
 echo.
 
-:: call %powerShellDir%\powershell.exe -NonInteractive -ExecutionPolicy Unrestricted -Command "&'.\setup\tasks\installCodeSnippets.ps1' '%~dp0setup\assets\snippets\demo.vsi'"
-
 :exit
 echo.
 @pause
