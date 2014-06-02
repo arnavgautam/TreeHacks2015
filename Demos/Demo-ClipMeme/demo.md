@@ -3,13 +3,16 @@
 
 ## Overview ##
 
-In this demo, we will ...
+In this demo, we will showcase the Visual studio and azure VM and Web Site provisioning features, **PowerShell** script generation and editing to provision multiple geographic deployments using Traffic Manager, and background services using both VM’s and Web Jobs. It also reinforces our momentum with Visual Studio (with Web Essentials) as a great tool for creating powerful **HTML5** applications backed by **ASP.NET**.
 
 <a name="Goals" />
 ### Goals ###
 In this demo, you will see how to:
 
-1. This...
+ 1. Provision Azure throug Visual Studio
+ 1. Work with the new Web Essentials Features, Image Sprites and Angular Js
+ 1. Create Azure Webjobs
+ 1. Backup, Scale and control site Traffic
 
 <a name="Technologies" />
 ### Key Technologies ###
@@ -24,7 +27,7 @@ In this demo, you will see how to:
 - [Visual Studio 2013 Update 2](http://www.microsoft.com/es-es/download/details.aspx?id=42666)
 - [Web Essentials for Update 2](http://visualstudiogallery.msdn.microsoft.com/56633663-6799-41d7-9df7-0f2a504ca361)
 - [Add-in to add publishing support to web projects for Azure WebJobs](http://visualstudiogallery.msdn.microsoft.com/f4824551-2660-4afa-aba1-1fcc1673c3d0)
-- [Side Waffles templates](http://visualstudiogallery.msdn.microsoft.com/a16c2d07-b2e1-4a25-87d9-194f04e7a698)
+- [Side Waffle templates](http://visualstudiogallery.msdn.microsoft.com/a16c2d07-b2e1-4a25-87d9-194f04e7a698)
 - [Google Chrome](www.google.com/chrome)
 
 <a name="Setup" />
@@ -102,7 +105,7 @@ This demo is composed of the following segments:
 
 2. Select **Create new server**. Provide **Database Username** and **Database Password**. Click **OK**.
 
-	> **Speaking Point:** You can even provision a new database directly from here with let you set up your entire development environment ahead of time.
+	> **Speaking Point:** You can even provision a new database directly from here. It will let you set up your entire development environment ahead of time.
 	
 	![Azure Website Database Provisioning](Images/azure-website-database-provisioning.png?raw=true)
 
@@ -114,13 +117,13 @@ This demo is composed of the following segments:
 
 2. Go back to **Visual Studio** and open **Publish-WebApplication.ps1** file.
 
-	> **Speaking Point:** So now my project is created and Visual Studio is provisioning Azure. But it is also now creating Publishing Scripts that I can use to automate my deployment.
+	> **Speaking Point:** So now the project is created and Visual Studio is provisioning Azure. But it is also now creating Publishing Scripts that we can use to automate deployments.
 	
 	![Publish Web Application PS1](Images/publish-web-application-ps1.png?raw=true)
 
 2. Right-Click on the **PS1** file and click **Open with PowerShell ISE**
 
-	> **Speaking Point:** One neat feature that I think you’ll enjoy is the context menu for PowerShell. If you Right-click on the PS1 file, you will notice the new context menu ‘Open with PowerShell ISE, which allows you to open a PowerShell editor straight from Visual Studio.
+	> **Speaking Point:** One neat feature is the context menu for PowerShell. If you Right-click on the PS1 file, you will notice the new context menu ‘Open with PowerShell ISE, which allows you to open a PowerShell editor straight from Visual Studio.
 	
 	![Open with PowerShell ISE](Images/open-with-powershell-ise.png?raw=true)
 
@@ -138,7 +141,7 @@ This demo is composed of the following segments:
 
 1. Place Visual Studio and Internet Explorer side by side.
 
-	>**Note**: This also works for changes I make using the browser developer tools. I’ve decided the header looks a little too bland, and I’d prefer to change the color interactively in the browser using the **F12** tools in my browser. 
+	>**Note**: This also works for changes we make using the browser developer tools. I’ve decided the header looks a little too bland, and I’d prefer to change the color interactively in the browser using the **F12** tools in my browser. 
 
 1. Right-click in the header section and select **Inspect element**. This will open the developer tools.
 
@@ -191,7 +194,7 @@ This demo is composed of the following segments:
 	
 	_Design link_
 
-	>**Note**: Now I can fix the text right in the page and save it back to my source code in Visual Studio.
+	>**Note**: Now we can fix the text right in the page and save it back to my source code in Visual Studio.
 
 1. Show that while hovering each section of the page, Visual Studio highlights the element.
 	
@@ -299,7 +302,7 @@ This demo is composed of the following segments:
 	_Directive template_
 
 
-	>**Note**: This sets me up with a basic directive with some best practices, like for instance it’s using Strict Mode. We’ve also got JsHint running in the background so it can catch some common JavaScript coding issues as I type, for instance if I try to reuse a function parameter name.
+	>**Note**: This sets us up with a basic directive with some best practices, like for instance it’s using Strict Mode. We’ve also got JsHint running in the background so it can catch some common JavaScript coding issues as we type, for instance if we try to reuse a function parameter name.
 	
 1. Add another parameter named **scope** to the end of the **link** function and show that **JsHint** flags it.
 
@@ -389,13 +392,13 @@ This demo is composed of the following segments:
 	
 	_Azure Webjobs_
 
-	> **Speaking Point:** A Webjob allows me to run background tasks in the same context as my Web Site.
+	> **Speaking Point:** A Webjob allowsus to run background tasks in the same context as the Web Site.
 
 1. Switch back to the **ClipMeme** solution in **Visual Studio**.
 
 1. In **Solution Explorer** go to the **GifGenerator** project and open **Program.cs**. Scroll down to show the **ProcessImage** method.
 
-	> **Speaking Point:** Using the WebJobs SDK it makes really easy to listen to any events that is happening in any of my Azure resources.
+	> **Speaking Point:** Using the WebJobs SDK it makes really easy to listen to any events that is happening in any of the Azure resources.
 
 1. In Solution Explorer, right-click the **ClipMeme** project node and select **Add > Windows Azure Webjob...**.
 
@@ -407,7 +410,7 @@ This demo is composed of the following segments:
 	
 	_Webjob project selector_
 
-	> **Speaking Point:** I've already associated my Console project with my Website. The next time I publish my Website, the Webjob will be published with it.
+	> **Speaking Point:**We've already associated my Console project with my Website. The next time we publish the Website, the Webjob will be published with it.
 
 1. Switch to the **Management Portal** and click the **logs** link of your WebJob.
 
@@ -496,12 +499,12 @@ This demo is composed of the following segments:
 #### Task 3 - Traffic Manager ####
 1. Browse to the Azure Portal, and click **New** > **Network Services** > **Traffic Manager** > **Quick Create**.
 
-	> **Note** Explain the different Load Balancing Methods available.
-	
 	![Traffic Manager creation](Images/traffic-manager-creation.png?raw=true)
 	
 	_Traffic Manager creation_
 
+	> **Speaking Point:** We can optimize the Web Site for **Performance**, **Round Robin**, or **Failover**. Failover is the scenario where we set up a primary node and in case of failure, traffic is routed automatically by Traffic Manager to secondary nodes. Since we want to optimize for Performance, we'll select this method. No matter where the user is, they will always hit the data center closest to them.
+		
 1. Click **Close**, and go to the Traffic Manager already created.
 1. Select **Endpoints**
 
@@ -512,9 +515,18 @@ This demo is composed of the following segments:
 	![Adding Traffic Manager endpoints](Images/adding-traffic-manager-endpoints.png?raw=true)
 
 1. Select **Web Site** in the **Service Type** combo. Check the deployed Web Site and add it to the Traffic Manager profile. Click **Ok**.
-
+	
 	![Add Web Site to the Traffic Manager](Images/add-web-site-to-the-traffic-manager.png?raw=true)
 	
 	_Add Web Site to the Traffic Manager_
 
-	> **Speaking Point:** We can optimize the Web Site for **Performance**, **Round Robin**, or **Failover**. Failover is the scenario where we set up a primary node and in case of failure, traffic is routed automatically by Traffic Manager to secondary nodes. Since we want to optimize for Performance, we'll select this method. No matter where the user is, they will always hit the data center closest to them.
+	> **Speaking Point:** This ensures that no mather where you are in the world, you are going to always hit the datacenter closest to your location.
+	
+1. Switch to **ClipMeme** site and show were are you served from.
+	
+---
+
+<a name="summary" />
+## Summary ##
+
+In this demo, you saw how to easelly create a development environment upfront. Use some of the new Visual Studio Features to create beautifull modern Web Applications, backup and restore them, deploy them to staging for Testing, then onto production and scale it World wide.
