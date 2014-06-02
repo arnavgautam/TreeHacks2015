@@ -155,7 +155,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 #### Task 4 - Associate your Client App to the Windows Store ####
 	
-1. Open the **Begin\FacilityApp.sln** solution located under the **Source** folder in Visual Studio.
+1. Open the **FacilityApp\Begin\FacilityApp.sln** solution located under the **Source** folder in Visual Studio.
 
 1. Right-click the **FacilityApp.UI.Windows** project and select **Associate App with the Store...** under **Store** sub-menu.
 
@@ -242,7 +242,7 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 
 1. Under **windowsAzureSubscription**, update the values of the Mobile Service SQL Server (you can find these values in your Mobile Service configuration):
 
-	* **sqlserver**: the SQL Server address. E.g.: {server}.database.windows.nett
+	* **sqlserver**: the SQL Server address. E.g.: {server}.database.windows.net
 	* **db**: the database name.
 	* **sqlUsername**: the server administrator username
 	* **sqlPassword**: the server administrator password
@@ -493,7 +493,7 @@ This demo is composed of the following segments:
 	
 	_Publish Mobile Service Project to Azure_
 
-3. In the dialog box, select **Mobile Services**, click **Sign In** in the dialog box, and sign in with your credentials.
+3. In the dialog box, select **Windows Azure Mobile Services**. Click **Sign In** in the dialog box, and sign in with your credentials.
 
 	![Sign In to Windows Azure](Images/sign-in-to-windows-azure.png?raw=true)
 	
@@ -533,7 +533,7 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** This SDK gives us several easy access methods such as **ReadAsync** that loads all the facility requests from the server.
 
-9. Go to the Windows 8.1 client project and open the **FacilityService.cs** file under **Services**.
+9. Go to the **FacilityApp.UI.Windows (Windows 8.1)** client project and open the **FacilityService.cs** file under **Services**.
 
 	![FacilityService in W8 client](Images/facilityservice-in-w8-client.png?raw=true)
 	
@@ -572,7 +572,7 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** We can take advantage of the Active Directory authentication library which gives us a native login experience on all clients. We can pass the authentication token to the Mobile Services back-end so that the user is logged in to both places.
 	
-11. Set the Windows 8.1 project as the startup project for the solution, make sure the **Simulator** option is selected, and launch the client app.
+11. Set the **FacilityApp.UI.Windows (Windows 8.1)** project as the startup project for the solution, make sure the **Simulator** option is selected, and launch the client app.
 
 	![Run in Simulator](Images/run-in-simulator.png?raw=true)
 	
@@ -609,11 +609,11 @@ We've added authentication with Active Directory, but what our app users would r
 
 1. Switch to the **MobileService** backend project and open the **FacilityRequestController** class. 
 
-![FacilityRequestController](Images/facilityrequestcontroller.png?raw=true)
-	
+	![FacilityRequestController](Images/facilityrequestcontroller.png?raw=true)
+ 
 	_FacilityRequestController_
 
-2. Locate the **PatchFacilityRequest** method and replace it with the following snippet.
+1. Locate the **PatchFacilityRequest** method and replace it with the following snippet.
 
 	(Code Snippet - _sharepoint_)
 	<!-- mark:1-31 -->
@@ -677,7 +677,7 @@ We've added authentication with Active Directory, but what our app users would r
 	
 	_Created Word document in SharePoint_
 
-8. Switch back to **Visual Studio** and open the **Portable Class Library** properties. Focus on the **Targeting** section and explain that this class library is using Xamarin to integrate with **iOS**.
+8. Switch back to the **FacilityApp** project in **Visual Studio** and open the **Portable Class Library** properties. Focus on the **Targeting** section and explain that this class library is using Xamarin to integrate with **iOS**.
 
 	![Multiple targets in Portable Class](Images/multiple-targets-in-portable-class.png?raw=true)
 	
@@ -689,7 +689,7 @@ We've added authentication with Active Directory, but what our app users would r
 	
 	_iOS Project in Visual Studio_
 
-10. Change the **build** target from **Any CPU** to **iPhoneSimulator**. Make sure the iOS client app is selected to run and press **F5** to run the app.
+10. Change the **build** target from **Any CPU** to **iPhoneSimulator**. Make sure the **FacilityApp.UI.IOS** client app is selected to run and press **F5** to run the app.
 
 	![Run as iPhoneSimulator](Images/run-as-iphonesimulator.png?raw=true)
 	
@@ -711,34 +711,37 @@ We've added authentication with Active Directory, but what our app users would r
 1. Execute the following command to build the library for each specific architecture.
 
 	````Bash
-	xcodebuild -project ADALiOS.xcodeproj -target ADALiOS-sdk iphonesimulator -configuration Release clean build
+	xcodebuild -project ADALiOS.xcodeproj -target ADALiOS -sdk iphonesimulator -configuration Release clean build
 	````
 
 	![Compiling ADAL iOS](Images/compiling-adal-ios.png?raw=true)
 	
 	_Compiling the ADAL library for iOS_
 	
-1. Rename the generated file **libADALiOS-i386.a**.
+1. Rename the generated file (**build/Release-iphonesimulator/libADALiOS.a**) as **libADALiOS-i386.a**.
 
 1. Execute the previous **xcodebuild** command, but use the flag _armv7_.
 
 	````Bash
-	xcodebuild -project ADALiOS.xcodeproj -target ADALiOS-sdk iphoneos -arch armv7 -configuration Release clean build
+	xcodebuild -project ADALiOS.xcodeproj -target ADALiOS -sdk iphoneos -arch armv7 -configuration Release clean build
 	````
 
-1. Now rename the generated file **libADALiOS-armv7.a**.
+1. Now rename the generated file (**build/Release-iphoneos/libADALiOS.a**) as **libADALiOS-armv7.a**.
 
 1. Execute **xcodebuild** using the flag _armv7s_.
 
 	````Bash
-	xcodebuild -project ADALiOS.xcodeproj -target ADALiOS-sdk iphoneos -arch armv7s -configuration Release clean build
+	xcodebuild -project ADALiOS.xcodeproj -target ADALiOS -sdk iphoneos -arch armv7s -configuration Release clean build
 	````
 
-1. Rename the last generated file **libADALiOS-armv7s.a**.
+1. Rename the last generated file (**build/Release-iphoneos/libADALiOS.a**) as **libADALiOS-armv7s.a**.
 
 	> **Speaking Point:** Now that we have the 3 libraries generated, we'll merge them using the **lipo** command to create a universal binary.
 
-1. Execute the following command specifying the 3 files you generated before.
+1. Create a new folder called **build/Binaries** and copy the files generated and renamed in the previous steps there.
+
+
+1. Change into the **build/Binaries** folder and execute the following command specifying the 3 files you generated before.
 
 	````Bash
 	lipo -create -output libADALiOS.a libADALiOS-i386.a libADALiOS-armv7.a libADALiOS-armv7s.a
