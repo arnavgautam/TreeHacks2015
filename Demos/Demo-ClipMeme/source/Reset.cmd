@@ -16,11 +16,7 @@ SET powerShellDir=%WINDIR%\system32\windowspowershell\v1.0
 echo.
 
 cls
-%powerShellDir%\powershell.exe -NonInteractive -ExecutionPolicy Unrestricted -command ".\setup\cleanup.local.ps1" ".\config.primary.xml" 
-%powerShellDir%\powershell.exe -NonInteractive -ExecutionPolicy Unrestricted -command ".\Setup\cleanup.azure.ps1" ".\config.primary.xml"
-
-REM %powerShellDir%\powershell.exe -NonInteractive -ExecutionPolicy Unrestricted -command ".\Setup\setup.azure.ps1" ".\config.primary.xml"
-%powerShellDir%\powershell.exe -NonInteractive -ExecutionPolicy Unrestricted -command ".\setup\setup.local.ps1" ".\config.primary.xml"
+%powerShellDir%\powershell.exe -NonInteractive -ExecutionPolicy Unrestricted -command ".\Setup\cleanup.ps1" ".\config.xml"
 echo.
 
 :exit
