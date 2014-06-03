@@ -9,7 +9,7 @@ namespace ClipMeme.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            ViewBag.Username = ConfigurationManager.AppSettings["username"];
+            ViewBag.Username = ConfigurationManager.AppSettings["DisplayName"];
 
             return this.View();
         }
