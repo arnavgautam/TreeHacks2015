@@ -143,15 +143,15 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 	
 1. In the Management Portal, click **Manage Manifest** and select **Upload Manifest**. Select the file you just updated and upload the manifest.
 
-1. Open **Configure** and scroll down to the **Client ID** section. Take note of the Client ID; you will use it later to update a configuration value named **AadClientId**.
-
 1. Scroll down to the **permissions to other applications** section and grant permissions to **Office 365 SharePoint Online**. Select **Edit or delete users' files** from the **Delegated Permissions** drop-down list.
 
 	![Permissions for the Mobile Service App](Images/permissions-for-the-mobile-service-app.png?raw=true)
 
 1. In the **Keys** section, choose a duration from the drop-down list to create a new key. Click **Save**.
 
-1. Take note of the generated key value; you will use it later.
+1. Take note of the generated key value; you will use it later to update the Mobile Service configuration value named **Active Directory Client Secret**.
+
+	![Generating Secret Key](Images/generating-secret-key.png?raw=true)
 
 #### Task 4 - Associate your Client App to the Windows Store ####
 	
