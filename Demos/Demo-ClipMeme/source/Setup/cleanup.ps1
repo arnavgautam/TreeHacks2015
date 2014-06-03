@@ -42,16 +42,16 @@ $AppSettings = @{'DisplayName'=$DisplayName; "TrafficManagerRegion"=$Environment
 
 popd
 
-# Invoke-AzureEnvironmentSetup -EnvironmentSubscriptionName $EnvironmentSubscriptionName `
-#                              -EnvironmentPrimaryLocation $EnvironmentPrimaryLocation `
-#                              -StorageEnvironmentLocation $EnvironmentPrimaryLocation `
-#                              -EnvironmentWebSites $EnvironmentWebSites `
-#                              -EnvironmentStagingSites $EnvironmentStagingSites `
-#                              -EnvironmentStorageAccount $StorageAccountName `
-#                              -StorageContainers $StorageContainers `
-# 							 -AppSettings $AppSettings `
-# 							 -TrafficManagerProfile $TrafficManagerProfile `
-# 							 -PublishSettingsFile $PublishSettingsFile
+Invoke-AzureEnvironmentSetup -EnvironmentSubscriptionName $EnvironmentSubscriptionName `
+                             -EnvironmentPrimaryLocation $EnvironmentPrimaryLocation `
+                             -StorageEnvironmentLocation $EnvironmentPrimaryLocation `
+                             -EnvironmentWebSites $EnvironmentWebSites `
+                             -EnvironmentStagingSites $EnvironmentStagingSites `
+                             -EnvironmentStorageAccount $StorageAccountName `
+                             -StorageContainers $StorageContainers `
+							 -AppSettings $AppSettings `
+							 -TrafficManagerProfile $TrafficManagerProfile `
+							 -PublishSettingsFile $PublishSettingsFile
 				 
 Write-Action "Removing current working directory..."
 if (Test-Path "$solutionWorkingDir")
