@@ -25,8 +25,6 @@ pushd ".."
 # Client Settings
 [string] $DisplayName = $xmlAzureSettings.configuration.clientSettings.DisplayName
 
-write-host $beginSolutionDir
-
 # Windows Azure
 [string] $EnvironmentSubscriptionName = $xmlAzureSettings.configuration.windowsAzureSubscription.EnvironmentSubscriptionName
 [string] $EnvironmentPrimaryLocation = $xmlAzureSettings.configuration.windowsAzureSubscription.EnvironmentPrimaryLocation
