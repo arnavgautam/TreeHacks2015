@@ -82,9 +82,6 @@ namespace FacilityApp.UI.IOS.ViewControllers
             var cell = tableView.DequeueReusableCell(CellIdentifier);
             var requestItem = this.requests[indexPath.Row];
 
-            var incidentImage = (UIImageView)cell.ViewWithTag(IncidentImageTag);
-            incidentImage.Image = UIImage.FromFile("Images/camera.png");
-
             if (!string.IsNullOrEmpty(requestItem.BeforeImageUrl) && !requestItem.BeforeImageUrl.StartsWith("ms-appx"))
             {
                 var imageRequest = new NSUrlRequest(new NSUrl(requestItem.BeforeImageUrl));
@@ -127,8 +124,7 @@ namespace FacilityApp.UI.IOS.ViewControllers
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-            this.selectedRequest = this.requests[indexPath.Row];
-            this.PerformSegue(NavigateToDetailsSegueIdentifier, this);
+           
         }
         #endregion 
 

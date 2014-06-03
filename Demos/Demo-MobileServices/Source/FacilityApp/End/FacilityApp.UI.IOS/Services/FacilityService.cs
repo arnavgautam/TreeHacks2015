@@ -14,21 +14,24 @@ namespace FacilityApp.UI.IOS.Services
 
         public override Task<string> LoginAsync(bool clearCache, string authorityId, string redirectUri, string resourceId, string clientId)
         {
-            ADALWrapper.GetToken(
-                clearCache,
-                authorityId,
-                redirectUri,
-                resourceId,
-                clientId,
-                async (result) =>
+            ADAuthenticationError error;
+            var context = ADAuthenticationContext.AuthenticationContextWithAuthority(authorityId, out error);
+            var redirectUrl = new Uri(redirectUri);
+
+            if(clearCache)
+            {
+                context.TokenCacheStore.RemoveAll();
+            }
+
+            context.AcquireTokenWithResource(resourceId, clientId, redirectUrl, async (result) =>
                 {
                     JObject payload = new JObject();
-                    payload["access_token"] = result.ToString();
+                    payload["access_token"] = result.AccessToken;
                     try
                     {
                         await MobileServiceClientProvider.MobileClient.LoginAsync(MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory, payload);
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                     }
 
