@@ -9,10 +9,10 @@ In this demo, we will showcase the Visual studio and azure VM and Web Site provi
 ### Goals ###
 In this demo, you will see how to:
 
- 1. Provision Azure throug Visual Studio
+ 1. Provision Azure through Visual Studio
  1. Work with the new Web Essentials Features, Image Sprites and Angular Js
  1. Create Azure Webjobs
- 1. Backup, Scale and control site Traffic
+ 1. Backup, Scale and control site traffic using Traffic Manager
 
 <a name="Technologies" />
 ### Key Technologies ###
@@ -23,11 +23,13 @@ In this demo, you will see how to:
 
 <a name="Prerequisites" />
 ### System Prerequisites ###
-- Visual Studio 2013
+- [Azure PowerShell Cmdlets](http://go.microsoft.com/?linkid=9811175&clcid=0x409)
+- [Azure Cross-platform Command Line Tools](http://go.microsoft.com/fwlink/?LinkID=275464&clcid=0x409)
+- [Visual Studio 2013](http://www.visualstudio.com/downloads/download-visual-studio-vs)
 - [Visual Studio 2013 Update 2](http://www.microsoft.com/es-es/download/details.aspx?id=42666)
 - [Web Essentials for Update 2](http://visualstudiogallery.msdn.microsoft.com/56633663-6799-41d7-9df7-0f2a504ca361)
 - [Add-in to add publishing support to web projects for Azure WebJobs](http://visualstudiogallery.msdn.microsoft.com/f4824551-2660-4afa-aba1-1fcc1673c3d0)
-- [Side Waffle templates](http://visualstudiogallery.msdn.microsoft.com/a16c2d07-b2e1-4a25-87d9-194f04e7a698)
+- [SideWaffle templates](http://visualstudiogallery.msdn.microsoft.com/a16c2d07-b2e1-4a25-87d9-194f04e7a698)
 - [Google Chrome](www.google.com/chrome)
 
 <a name="Setup" />
@@ -35,18 +37,7 @@ In this demo, you will see how to:
 
 ##### Azure #####
 
-1. Create a **Storage Account** in Azure.
 
-1. Create a **Windows Azure Website** in **Standard** mode and enable Staging slot.
-
-1. Enable **Web Sockets** in **Configure**.
-
-1. Add the following settings in **Configure**:
-
-	* **AzureJobsRuntime**: Storage Account connection string
-	* **AzureJobsData**: Storage Account connection string
-
-1. Create **Traffic Manager** and configure it. 
 	
 ##### Solutions  #####
 
@@ -55,14 +46,6 @@ In this demo, you will see how to:
 1. Publish **ClipMeme** to the Azure Website you created before.
 
 ##### Configuration Variables #####
-
-1. Set the connection string for BlobStorage.
-
-1. Set the default path for the _Working Directory_.
-
-1. Set the username that will be displayed in ClipMeme.
-
-1. Set the Azure WebSite URL.
 
 1. Run **Reset.cmd**.
 
