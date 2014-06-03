@@ -19,12 +19,13 @@ pushd ".."
 
 [string] $solutionWorkingDir = $xmlAzureSettings.configuration.localPaths.solutionWorkingDir
 [string] $solutionsDir = $xmlAzureSettings.configuration.localPaths.solutionsDir
-[string] $beginSolutionDir = $xmlAzureSettings.configuration.localPaths.solutionsDir + "\Begin\ClipMeme\ClipMeme\web.config"
-[string] $endSolutionDir = $xmlAzureSettings.configuration.localPaths.solutionsDir + "\End\ClipMeme\ClipMeme\web.config"
+[string] $beginSolutionDir = $xmlAzureSettings.configuration.localPaths.solutionsDir + "\Begin\ClipMeme\"
+[string] $endSolutionDir = $xmlAzureSettings.configuration.localPaths.solutionsDir + "\End\ClipMeme\"
 
 # Client Settings
 [string] $DisplayName = $xmlAzureSettings.configuration.clientSettings.DisplayName
 
+write-host $beginSolutionDir
 
 # Windows Azure
 [string] $EnvironmentSubscriptionName = $xmlAzureSettings.configuration.windowsAzureSubscription.EnvironmentSubscriptionName
@@ -41,13 +42,29 @@ $AppSettings = @{'DisplayName'=$DisplayName; "TrafficManagerRegion"=$Environment
 
 popd
 
-Invoke-AzureEnvironmentSetup -EnvironmentSubscriptionName $EnvironmentSubscriptionName `
-                             -EnvironmentPrimaryLocation $EnvironmentPrimaryLocation `
-                             -StorageEnvironmentLocation $EnvironmentPrimaryLocation `
-                             -EnvironmentWebSites $EnvironmentWebSites `
-                             -EnvironmentStagingSites $EnvironmentStagingSites `
-                             -EnvironmentStorageAccount $StorageAccountName `
-                             -StorageContainers $StorageContainers `
-							 -AppSettings $AppSettings `
-							 -TrafficManagerProfile $TrafficManagerProfile `
-							 -PublishSettingsFile $PublishSettingsFile
+# Invoke-AzureEnvironmentSetup -EnvironmentSubscriptionName $EnvironmentSubscriptionName `
+#                              -EnvironmentPrimaryLocation $EnvironmentPrimaryLocation `
+#                              -StorageEnvironmentLocation $EnvironmentPrimaryLocation `
+#                              -EnvironmentWebSites $EnvironmentWebSites `
+#                              -EnvironmentStagingSites $EnvironmentStagingSites `
+#                              -EnvironmentStorageAccount $StorageAccountName `
+#                              -StorageContainers $StorageContainers `
+# 							 -AppSettings $AppSettings `
+# 							 -TrafficManagerProfile $TrafficManagerProfile `
+# 							 -PublishSettingsFile $PublishSettingsFile
+				 
+Write-Action "Removing current working directory..."
+if (Test-Path "$solutionWorkingDir")
+{
+	Remove-Item "$solutionWorkingDir" -recurse -force
+}
+Write-Done
+
+Write-Action "Creating working directory..."
+New-Item "$solutionWorkingDir" -type directory | Out-Null
+if (!(Test-Path "$solutionWorkingDir"))
+{
+	New-Item "$solutionWorkingDir" -type directory | Out-Null
+}
+Copy-Item "$beginSolutionDir\*" "$solutionWorkingDir" -Recurse -Force
+Write-Done

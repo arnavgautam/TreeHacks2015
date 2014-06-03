@@ -3,7 +3,7 @@
 		    <!-- Location where the demo source files will be copied in order to perform the demo -->
         <solutionWorkingDir>C:\Demos\Source</solutionWorkingDir>
 		    <!-- Relative path to the folder containing the begin solutions -->
-        <solutionsDir>.\ClipMeme\</solutionsDir>
+        <solutionsDir>..\Code\</solutionsDir>
      </localPaths>
 	<clientSettings>
 		<!-- Configuration Settings -->
