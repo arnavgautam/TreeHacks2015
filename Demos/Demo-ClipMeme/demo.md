@@ -37,7 +37,33 @@ In this demo, you will see how to:
 
 ##### Azure #####
 
+1. Open **PowerShell** and execute the following command.
 
+	````PowerShell
+	Get-AzurePublishSettingsFile
+	````
+
+1. A browser will open. When prompted, enter your Azure credentials. Save the file to a known location.
+
+1. Rename the file **azure.publishsettings**.
+
+1. Copy the file and replace the one located in the **Source\Setup\assets\publishSettings** folder of this demo.
+	
+1. Open using a text editor the **config.xml** file located in the **Source** folder.
+
+1. Replace the placeholder values with the following:
+
+	- **solutionWorkingDir**: The default directory where the solutions and assets will be copied for the demo. You can leave the default directory or choose a different one.
+	- **DisplayName**: It is the username that is displayed on ClipMeme's home screen.
+	- **EnvironmentSubscriptionName**: It is your Azure subscription name.
+	- **EnvironmentPrimaryLocation**: It is the location where the Azure resources will be deployed. E.g.: East US, West US, etc.
+	- **StorageAccountName**: The name of the storage account required for ClipMeme. The setup scripts will automatically create a new Storage Account in Azure using this value. The name you choose must be unique and in lower case.
+	- **WebsiteName**: The name of the Azure Website for ClipMeme. The setup scripts will automatically create an Azure Website, scale it to **Standard** mode and create a _staging_ slot.
+	- **TrafficManagerProfile**: The name of the Azure Traffic Manager profile. The setup scripts will automatically create a profile to use in the demo.
+	
+1. Save the file and close the editor.
+
+1. Run **Reset.cmd** using elevated permissions.
 	
 ##### Solutions  #####
 

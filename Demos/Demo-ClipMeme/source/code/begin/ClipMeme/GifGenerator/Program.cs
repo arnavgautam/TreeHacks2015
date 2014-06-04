@@ -16,7 +16,7 @@
 
     public class Program
     {
-        private const string Url = "https://azuretkclipmeme.azurewebsites.net/";
+        private static string url = ConfigurationManager.AppSettings["Website"];
         private static IHubProxy hub;
 
         public static void Main(string[] args)
@@ -62,7 +62,7 @@
 
         private static async Task SendCompleteNotification(Message message, string uri)
         {
-            var hubConnection = new HubConnection(Url);
+            var hubConnection = new HubConnection(url);
             hub = hubConnection.CreateHubProxy("GifServerHub");
             await hubConnection.Start();
 
