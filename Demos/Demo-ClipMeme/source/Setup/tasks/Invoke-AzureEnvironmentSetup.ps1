@@ -54,9 +54,19 @@
             $StorageContainerJobs = @()
             $StorageContainers | % {
                 $StorageContainerJobs += Start-Job -ScriptBlock { param($container,$storageName,$storageKey) Invoke-Expression -Command "azure storage container delete --container $container --account-name $storageName --account-key $storageKey -q" } -ArgumentList $_, $EnvironmentStorageAccount, $StorageAccountKey
-            }
+            }			
 			
-            Wait-Job $StorageContainerJobs			
+            Wait-Job $StorageContainerJobs
+			Write-Done
+			
+			Write-Action "Deleting Storage Table"
+			$StorageTableJob = Start-Job -ScriptBlock { Remove-AzureStorageTable -Name "MemeMetadata" -Force -ErrorAction ignore }			
+			Wait-Job $StorageTableJob
+			Write-Done
+			
+			Write-Action "Deleting Queue"			
+			$StorageQueueJob = Start-Job -ScriptBlock { Remove-AzureStorageQueue -Name "uploads" -Force -ErrorAction ignore }
+			Wait-Job $StorageQueueJob
 			Write-Done
         }       
 
@@ -118,6 +128,16 @@
         }
 		
         Wait-Job $StorageContainerJobs
+		Write-Done
+		
+		Write-Action "Creating Storage Table"
+		$StorageTableJob = Start-Job -ScriptBlock { New-AzureStorageTable -Name "MemeMetadata" }			
+		Wait-Job $StorageTableJob
+		Write-Done
+		
+		Write-Action "Creating Queue"			
+		$StorageQueueJob = Start-Job -ScriptBlock { New-AzureStorageQueue -Name "uploads" }
+		Wait-Job $StorageQueueJob
 		Write-Done
 		
         #########################

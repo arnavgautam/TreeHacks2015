@@ -36,7 +36,7 @@ $StorageContainers = @('uploads','memes')
 $EnvironmentWebSites = @{$WebsiteName=$EnvironmentPrimaryLocation}
 $EnvironmentStagingSites = @{$WebsiteName=$EnvironmentPrimaryLocation}
 
-$AppSettings = @{'DisplayName'=$DisplayName; "TrafficManagerRegion"=$EnvironmentPrimaryLocation}
+$AppSettings = @{'DisplayName'=$DisplayName; 'TrafficManagerRegion'=$EnvironmentPrimaryLocation; 'Website'=$WebsiteName}
 
 popd
 
