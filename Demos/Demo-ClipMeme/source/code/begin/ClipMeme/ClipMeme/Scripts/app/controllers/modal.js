@@ -7,7 +7,7 @@
 
     function modal($scope, $upload, $modalInstance, gifservice, $rootScope, username) {
         cleanVariables();
-
+        
         $scope.dropComplete = function (src, file) {
             $scope.image.source = src;
             $scope.image.file = file;
@@ -27,10 +27,10 @@
                     },
                     file: $scope.image.file,
                 }).progress(function (evt) {
-                    if (!$scope.loading && evt.loaded != evt.total) {
+                    if (!$scope.loading && evt.loaded !== evt.total) {
                         $scope.loading = true;
                     }
-                }).success(function (data, status, headers, config) {
+                }).success(function () {
                     cleanVariables();
                     $modalInstance.close({
                         URL: image,

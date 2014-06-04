@@ -355,7 +355,7 @@ This demo is composed of the following segments:
 
 	>**Note:** Don't remove the **scope.init** declaration as it is required for AngularJS.
 	
-1. Open **Modal.cshtml** view from the **Share** folder and update the div element with id **dropzone** as with the code below; the code to update is highlighted with a comment that says **<!--Dropzone element-->**. 
+1. Open the **Modal.cshtml** view from **Views\Shared** folder and update the div element with id **dropzone** as with the code below; the code to update is highlighted with a comment that says **<!--Dropzone element-->**. 
  
 	````HTML
 	<div app-dropzone class="drag-drop" ng-hide="fileloaded || loading">
@@ -385,6 +385,8 @@ This demo is composed of the following segments:
 	_Select Existing Web Site dialog box_
 
 1. Select the **Staging** web site and click **OK**.
+
+1. In the **Connection** page, leave the imported values and click **Publish**. Wait until the publishing process completes.
 
 
 <a name="segment3" />
@@ -427,6 +429,8 @@ This demo is composed of the following segments:
 	![Associating a Webjob project with your Website](Images/associating-a-webjob-project-with-your-websit.png?raw=true)
 	
 	_Associating a Webjob project with your Website_
+
+1. In the Project Selector dialog, click Ok. 
 
 	![Webjob project selector](Images/webjob-project-selector.png?raw=true)
 	
