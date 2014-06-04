@@ -10,7 +10,7 @@ In this demo, we will showcase the Visual studio and azure VM and Web Site provi
 In this demo, you will see how to:
 
  1. Provision Azure through Visual Studio
- 1. Work with the new Web Essentials Features, Image Sprites and Angular Js
+ 1. Work with the new Web Essentials Features, Image Sprites and AngularJS
  1. Create Azure Webjobs
  1. Backup, Scale and control site traffic using Traffic Manager
 
@@ -278,17 +278,17 @@ This demo is composed of the following segments:
 	_Response body_
 
 <a name="javascript-editing" />
-#### Task 3 - Javascript and AngularJS editing ####
+#### Task 3 - JavaScript and AngularJS editing ####
 
 1. Open the **/Scripts/app/controllers/modal.js** file.
 
-1. Place the cursor below the **cleanVariables();** line and start writing **$sc**. Show that there is Intellisense for JavaScript and AngularJS.
+1. Place the cursor below the **cleanVariables();** line and start writing **$sc**. Show that there is IntelliSense for JavaScript and AngularJS.
 
 	![Intellisence Javascript with Web Essentials](Images/intellisence-javascript-with-web-essentials.png?raw=true "Intellisence Javascript with Web Essentials")
 	
-	_Intellisense JavaScript with Web Essentials_
+	_IntelliSense JavaScript with Web Essentials_
 
-1. Open the **Error List** panel and show that there are two JSHIint errors.
+1. Open the **Error List** panel and show that there are two JSHint errors.
 
 	![Error list panel](Images/error-list-panel.png?raw=true "Error list panel")
 	
@@ -306,7 +306,7 @@ This demo is composed of the following segments:
 	
 	_After fixing the errors_
 
-1. Close the **Error List** panel and show that querying the DOM from a controller is not a good practise in AngularJS so we need to refactor the code by adding a new directive.
+1. Close the **Error List** panel and show that querying the DOM from a controller is not a good practice in AngularJS so we need to refactor the code by adding a new directive.
 	
 1. Right-click the **/scripts/app/directives** directory and select **Add** | **New item**.
 	
@@ -402,7 +402,7 @@ This demo is composed of the following segments:
 	
 	_Azure Webjobs_
 
-	> **Speaking Point:** A Webjob allowsus to run background tasks in the same context as the Web Site.
+	> **Speaking Point:** A Webjob allows us to run background tasks in the same context as the Web Site.
 
 1. Switch back to the **ClipMeme** solution in **Visual Studio**.
 
@@ -422,7 +422,7 @@ This demo is composed of the following segments:
 	
 	_Webjob project selector_
 
-	> **Speaking Point:**We've already associated my Console project with my Website. The next time we publish the Website, the Webjob will be published with it.
+	> **Speaking Point:** We've already associated my Console project with my Website. The next time we publish the Website, the Webjob will be published with it.
 
 1. Switch to the **Management Portal** and click the **logs** link of your WebJob.
 
@@ -532,13 +532,13 @@ This demo is composed of the following segments:
 	
 	_Add Web Site to the Traffic Manager_
 
-	> **Speaking Point:** This ensures that no mather where you are in the world, you are going to always hit the datacenter closest to your location.
+	> **Speaking Point:** This ensures that no matter where you are in the world, you are going to always hit the datacenter closest to your location.
 	
-1. Switch to **ClipMeme** site and show were are you served from.
+1. Switch to **ClipMeme** site and show where you are served from.
 	
 ---
 
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw how to easelly create a development environment upfront. Use some of the new Visual Studio Features to create beautifull modern Web Applications, backup and restore them, deploy them to staging for Testing, then onto production and scale it World wide.
+In this demo, you saw how to easily create a development environment upfront. Use some of the new Visual Studio Features to create beautiful modern Web Applications, backup and restore them, deploy them to staging for Testing, then onto production and scale it worldwide.
