@@ -35,7 +35,7 @@ In this demo, you will see how to:
 <a name="Setup" />
 ### Setup and Configuration ###
 
-##### Azure #####
+##### Updating Configuration Variables #####
 
 1. Open **PowerShell** and execute the following command.
 
@@ -43,9 +43,7 @@ In this demo, you will see how to:
 	Get-AzurePublishSettingsFile
 	````
 
-1. A browser will open. When prompted, enter your Azure credentials. Save the file to a known location.
-
-1. Rename the file **azure.publishsettings**.
+1. A browser will open. When prompted, enter your Azure credentials. Save the file to a known location and rename it to **azure.publishsettings**.
 
 1. Copy the file and replace the one located in the **Source\Setup\assets\publishSettings** folder of this demo.
 	
@@ -65,23 +63,11 @@ In this demo, you will see how to:
 
 1. Run **Reset.cmd** using elevated permissions.
 	
-##### Solutions  #####
+##### First Run  #####
 
-1. Open **ClipMeme** and build it to install NuGet Packages.
+1. Go to your working directory (if you left the default value, the directory is **C:\Demos\Source**) and open the **ClipMeme** solution.
 
-1. Publish **ClipMeme** to the Azure Website you created before.
-
-##### Configuration Variables #####
-
-1. Run **Reset.cmd**.
-
-1. Open **Visual Studio** and the **ClipMeme** solution.
-
-##### First Run #####
-
-1. Open a browser and go Management Portal > Web Site.
-
-1. Open a browser and go Webjob **Dashboard**.
+1. Build the solution to install all the NuGet packages. Keep this Visual Studio instance open as you will use it in the demo.
 
 ## Demo ##
 

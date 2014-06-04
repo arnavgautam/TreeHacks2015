@@ -9,6 +9,8 @@
           [Parameter(Mandatory=$true)]$StorageContainers,
 		  [Parameter(Mandatory=$true)]$AppSettings,
 		  [Parameter(Mandatory=$true)]$TrafficManagerProfile,
+		  [Parameter(Mandatory=$true)]$beginSolutionDirSettings,
+		  [Parameter(Mandatory=$true)]$endSolutionDirSettings,
 		  [Parameter(Mandatory=$false)]$publishSettingsFile)
 
     begin {	
@@ -140,10 +142,12 @@
 		Wait-Job $StorageQueueJob
 		Write-Done
 		
+
+		
         #########################
         ### Shared Operations ###
         #########################
-
+		
         ## azure site connectionstring add
 		Write-Action "Injecting Settings into Web Sites"
         $StorageConnectionString = "DefaultEndpointsProtocol=https;AccountName=$EnvironmentStorageAccount;AccountKey=$StorageAccountKey"
@@ -158,6 +162,15 @@
             $UpdateSettingsJob = Start-Job -ScriptBlock { Set-AzureWebsite -AppSettings $args[3] -WebSocketsEnabled $true -ConnectionStrings $args[1] -Name $args[0] -Slot 'Staging' } -ArgumentList $_.Name, $WebSitesConnectionStrings, $AppSettings
 			Wait-Job -Job $UpdateSettingsJob;
         }
+		
+		Write-Action "Updating ClipMeme settings..."
+		[xml]$configuration = Get-Content $beginSolutionDirSettings;
+		$configuration.configuration.connectionStrings.ChildNodes[0].connectionString = $StorageConnectionString		
+		$configuration.save($beginSolutionDirSettings)
+		
+		[xml]$configuration = Get-Content $endSolutionDirSettings;
+		$configuration.configuration.connectionStrings.ChildNodes[0].connectionString = $StorageConnectionString		
+		$configuration.save($endSolutionDirSettings)
 
         Write-Done
 		
