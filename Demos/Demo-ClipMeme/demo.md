@@ -76,7 +76,7 @@ This demo is composed of the following segments:
 
 	![Create New Project](Images/create-new-project.png?raw=true)
 
-1. Click **Web** and select **ASP .NET Web Application**. Click **OK**.
+1. Click **Web** and select **ASP.NET Web Application**. Click **OK**.
 
 	![New ASP .NET Web Application](Images/new-asp-net-web-application.png?raw=true)
 
@@ -94,11 +94,11 @@ This demo is composed of the following segments:
 
 2. Browse to https://manage.windowsazure.com and log-in with your credentials.  
  
-2. Click **Web sites** and verify that your site is created.
+2. Click on **Web sites** and verify that your site is created.
 
 	![Azure Web Site Created](Images/azure-web-site-created.png?raw=true)
 
-2. Go back to **Visual Studio** and open **Publish-WebApplication.ps1** file.
+2. Go back to **Visual Studio** and open the **Publish-WebApplication.ps1** file.
 
 	> **Speaking Point:** So now the project is created and Visual Studio is provisioning Azure. But it is also now creating Publishing Scripts that we can use to automate deployments.
 	
@@ -121,6 +121,8 @@ This demo is composed of the following segments:
 	
 <a name="browserlink-features" />
 #### Task 1 - Browser link####
+
+1. Switch to the ClipMeme solution in **Visual Studio** and run the app.
 
 1. Place Visual Studio and Internet Explorer side by side.
 
@@ -148,7 +150,7 @@ This demo is composed of the following segments:
 	
 1. In the **Styles** pane, scroll until you find the **.navbar-default** selector. 
 
-1. Double-click the **background-color** value and change it to a different color (e.g. Azure). Show how the value is automatically updated in Visual Studio.
+1. Double-click the **background-color** value and change it to a different color (e.g. cadetBlue). Show how the value is automatically updated in Visual Studio.
 
 	![Automatic update background color](Images/automatic-update-background-color.png?raw=true "Automatic update background color")
 
@@ -164,7 +166,7 @@ This demo is composed of the following segments:
 	
 	_Google chrome with background color updated_
 
-1. Show that there is duplicated **and** in the text.
+1. Show that there is a typo in the text (duplicated **and**).
 
 	![Typo - Duplicate and](Images/typo---duplicate-and.png?raw=true "Typo - Duplicate and")
 	
@@ -197,6 +199,7 @@ This demo is composed of the following segments:
 	>**Note**: This works the exact same in any browser, in case we want to use IE instead.
 
 <a name="image-sprites-not-in-keynote" />
+
 #### Task 2 - Image Sprites####
 
 1. Switch back to Visual Studio.
@@ -204,7 +207,7 @@ This demo is composed of the following segments:
 	>**Speaking Point**: We can improve performance on our site by sending a lot of images in one HTTP request, using CSS sprites. We will select some common images on our site and create a sprite the easy way, using Web Essentials.
 
 
-1. In the Solution Explorer, expand the **Content** folder and select **share-facebook.png** and share-twitter.png holding the **Ctrl** key.
+1. In the Solution Explorer, expand the **Content** folder and select **share-facebook.png** and **share-twitter.png** holding the **Ctrl** key.
 
 1. Right-click on the images and select **Web Essentials | Create Image Sprite...**…
 
@@ -229,7 +232,7 @@ This demo is composed of the following segments:
 	@import 'social.png.less';
 	````
  
-1. Within the same file modify the **.facebook** and **.twitter** classes by replacing the background-image style with the corresponding less function to retrieve the image sprite as shown below:
+1. Within the same file modify the **.facebook** and **.twitter** classes by replacing the background-image style with the corresponding less function to retrieve the image sprite as shown below, and save the file.
 
 	<!-- mark:1-11 -->
 	````CSS
@@ -267,7 +270,7 @@ This demo is composed of the following segments:
 
 1. Open the **/Scripts/app/controllers/modal.js** file.
 
-1. Place the cursor below the **cleanVariables();** line and start writing **$sc**. Show that there is Intellisense for JavaScript and AngualrJS.
+1. Place the cursor below the **cleanVariables();** line and start writing **$sc**. Show that there is Intellisense for JavaScript and AngularJS.
 
 	![Intellisence Javascript with Web Essentials](Images/intellisence-javascript-with-web-essentials.png?raw=true "Intellisence Javascript with Web Essentials")
 	
@@ -287,9 +290,9 @@ This demo is composed of the following segments:
 
 1. Fix the issues, save the file and show that there are no more issues.
 
-	![After fixing the error](Images/after-fixing-the-error.png?raw=true "After fixing the error")
+	![After fixing the errors](Images/after-fixing-the-error.png?raw=true "After fixing the error")
 	
-	_After fixing the error_
+	_After fixing the errors_
 
 1. Close the **Error List** panel and show that querying the DOM from a controller is not a good practise in AngularJS so we need to refactor the code by adding a new directive.
 	
@@ -314,7 +317,7 @@ This demo is composed of the following segments:
 	
 	_Duplicate parameter error_
  
-1. Remove the **scope** parameter just added, it was simply to show the error.
+1. Remove the **scope** parameter just added (it was simply to show the error).
 	
 1. Move the code from the **modal** controller to the directive you created; the code to move is highlighted with a comment that says **//TODO: refactor to a directive**. 
 
