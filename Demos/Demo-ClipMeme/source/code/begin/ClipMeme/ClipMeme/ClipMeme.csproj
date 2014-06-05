@@ -315,8 +315,7 @@
     <Content Include="Scripts\vendors\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Shared\Modal.cshtml" />
-    <Content Include="webjobs.wpp.targets" />
-    <Content Include="Settings.StyleCop" />
+    <Content Include="webjobs.wpp.targets" />    
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GifGenerator\GifGenerator.csproj">

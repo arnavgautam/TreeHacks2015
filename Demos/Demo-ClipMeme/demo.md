@@ -384,10 +384,28 @@ This demo is composed of the following segments:
 
 1. In the **Connection** page, leave the imported values and click **Publish**. Wait until the publishing process completes.
 
+1. Show the URL in the browser and explain that you deployed the site in a new deployment **slot**.
+
+	> **Speaking Point:** And what staging support enables inside of Azure is for you to create a new staging version of your Web app with a private URL that you can access and use to test. This allows you to basically deploy your application to the staging environment, get it ready, test it out before you finally send users to it.
+
+1. Go to your Azure Website in the management portal and click **Swap**.
+
+	![Swapping slots](Images/swapping-azure-website-slot.png?raw=true)
+
+	_Swapping slots_
+
+1. Select the _staging_ slot as **Source** and the production slot as **Destination**. Click the check mark to continue.
+
+	![Swapping Azure Website slots](Images/swapping-azure-website-slots.png?raw=true)
+
+	> **Speaking Point:** With a single button called swap, we'll basically rotate the incoming traffic from the old production site to the new staged version. What's nice is that we still keep your old version around. So if you discover once you go live you still have a bug that you missed, you can always swap back to the previous state. Again, this allows you to deploy with a lot of confidence and make sure that your users are always seeing a consistent experience when they hit your app. 
+
+1. When the swapping is completed click the **Browse** button.
+
 <a name="segment3" />
 ### Azure Web Jobs ###
 
-1. Switch back to the production site of **ClipMeme** and click the **Create Meme** button.
+1. In the production site of **ClipMeme** in Internet Explorer, click the **Create Meme** button.
 
 	![Creating a new meme](Images/creating-a-new-meme.png?raw=true)
 	
