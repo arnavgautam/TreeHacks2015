@@ -42,8 +42,6 @@ $AppSettings = @{'DisplayName'=$DisplayName; 'TrafficManagerRegion'=$Environment
 
 popd
 
-write-host $beginSolutionDirSettings
-
 Invoke-AzureEnvironmentSetup -EnvironmentSubscriptionName $EnvironmentSubscriptionName `
                              -EnvironmentPrimaryLocation $EnvironmentPrimaryLocation `
                              -StorageEnvironmentLocation $EnvironmentPrimaryLocation `
@@ -57,8 +55,6 @@ Invoke-AzureEnvironmentSetup -EnvironmentSubscriptionName $EnvironmentSubscripti
 							 -endSolutionDirSettings $endSolutionDirSettings `
 							 -PublishSettingsFile $PublishSettingsFile
 
-
-Write-Host $beginSolutionDir
 Write-Action "Removing current working directory..."
 if (Test-Path "$solutionWorkingDir")
 {

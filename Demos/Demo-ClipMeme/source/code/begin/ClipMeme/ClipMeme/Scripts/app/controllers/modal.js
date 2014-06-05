@@ -107,6 +107,8 @@
                     scope.$apply();
                 }
             }
+			
+			// End refactor to a directive
         };
 
         function closeModal() {
