@@ -411,7 +411,7 @@ This demo is composed of the following segments:
 	
 	_Creating a new meme_
 
-1. Drag the animated GIF from your working directory into the _drop zone_ in the browser. Enter a caption and click **Submit**.
+1. Drag the animated GIF (_demo.gif_) from your working directory into the _drop zone_ in the browser. Enter a caption and click **Submit**.
 
 	![Submitting a new meme](Images/submitting-a-new-meme.png?raw=true)
 	
@@ -518,7 +518,7 @@ This demo is composed of the following segments:
 
 <a name="auto-scale" />
 #### Task 2 - Auto Scale ####
-1. In the Azure Portal, click Web Sites, browse to the Web Site and click **Scale**.
+1. Go to the **Scale** tab.
 
 	![Web Site Scale](Images/web-site-scale.png?raw=true)
 
