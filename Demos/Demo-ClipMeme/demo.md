@@ -3,7 +3,7 @@
 
 ## Overview ##
 
-In this demo, we will showcase the Visual studio and azure VM and Web Site provisioning features, **PowerShell** script generation and editing to provision multiple geographic deployments using Traffic Manager, and background services using both VM’s and Web Jobs. It also reinforces our momentum with Visual Studio (with Web Essentials) as a great tool for creating powerful **HTML5** applications backed by **ASP.NET**.
+In this demo, we will showcase **Visual Studio** provisioning features to deploy **Azure Virtual Machines** and **Web Sites**, along with **PowerShell** script generation and editing to provision multiple geographic deployments using **Traffic Manager**, and background services using Web Jobs. It also reinforces our momentum with **Visual Studio** (using **Web Essentials**) as a great tool for creating powerful **HTML5** applications backed by **ASP.NET**.
 
 <a name="Goals" />
 ### Goals ###
@@ -62,12 +62,18 @@ In this demo, you will see how to:
 1. Save the file and close the editor.
 
 1. Run **Reset.cmd** using elevated permissions.
+
+	> **Note:** It might take a few minutes to provision all the resources in Azure.
 	
 ##### First Run  #####
 
-1. Go to your working directory (if you left the default value, the directory is **C:\Demos\Source**) and open the **ClipMeme** solution.
+1. Go to your working directory (if you kept the default value, the directory is **C:\Demos\Source**) and open the **ClipMeme** solution.
 
-1. Build the solution to install all the NuGet packages. Keep this Visual Studio instance open as you will use it in the demo.
+1. Build the solution to install all the NuGet packages. Keep this Visual Studio instance open as you will use it in the demo, and open a new instance without selecting a solution. You will start the demo using this instance.
+
+1. Run without debugging (CTRL + F5) using Internet Explorer. Then switch back to Visual Studio, change the default browser to Google Chrome and again run without debugging. You will end up with 2 browsers showing ClipMeme. You will use them in Segment 2.
+
+	![Changing the browser to Chrome](Images/changing-the-browser-to-chrome.png?raw=true)
 
 ## Demo ##
 
@@ -92,11 +98,11 @@ This demo is composed of the following segments:
 
 	![New ASP .NET Web Application](Images/new-asp-net-web-application.png?raw=true)
 
-1. Select **Empty** template and check **Create remote resources** checkbox. Click **OK**.
+1. Select **Empty** template and check **Host in the cloud** checkbox. Click **OK**.
 
 	> **Speaking Point:** As a new thing, as you can see, we made it really easy for you to provision both **Azure Web Sites** and **Virtual Machines** directly from this dialog. 
-	
-	![Web Site Empty Template](Images/web-site-empty-template.png?raw=true)
+
+	![Web Site Empty Template](Images/web-site-empty-template.png?raw=true)	
 
 2. Select **Create new server**. Provide **Database Username** and **Database Password**. Click **OK**.
 
@@ -120,7 +126,7 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** One neat feature is the context menu for PowerShell. If you Right-click on the PS1 file, you will notice the new context menu ‘Open with PowerShell ISE, which allows you to open a PowerShell editor straight from Visual Studio.
 	
-	![Open with PowerShell ISE](Images/open-with-powershell-ise.png?raw=true)
+	![Open with PowerShell ISE](Images/open-with-powershell-ise.png?raw=true)	
 
 <a name="segment2" />
 ### Web Essentials Features ###
@@ -134,7 +140,9 @@ This demo is composed of the following segments:
 <a name="browserlink-features" />
 #### Task 1 - Browser link####
 
-1. Switch to the ClipMeme solution in **Visual Studio** and run the app.
+1. Switch to the ClipMeme solution in **Visual Studio** and show the solution.
+
+1. Go to Internet Explorer where ClipMeme is running.
 
 1. Place Visual Studio and Internet Explorer side by side.
 
@@ -146,13 +154,15 @@ This demo is composed of the following segments:
 	
 	_Internet Explorer - Inspect element_
 
+	> **Note:** Make sure the **DOM Explorer** is opened. You can press CTRL + 1 to activate it.
+	
 1. In the **DOM Explorer** select the **header** html tag
 	
 	![DOM Explorer - Header section](Images/dom-explorer---header-section.png?raw=true "DOM Explorer - Header section")
 	
 	_DOM Explorer - Header section_
 
-1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay**. 
+1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay**. If it is already opened, hover with your mouse over the panel.
 
 1. Click on **F12 Auto sync** from the Web Essentials toolbox in Internet Explorer to enable updating in the browser.
 
@@ -162,7 +172,7 @@ This demo is composed of the following segments:
 	
 1. In the **Styles** pane, scroll until you find the **.navbar-default** selector. 
 
-1. Double-click the **background-color** value and change it to a different color (e.g. cadetBlue). Show how the value is automatically updated in Visual Studio.
+1. Double-click the **background-color** value and change it to a different color (e.g. azure). Show how the value is automatically updated in Visual Studio when selecting different colors.
 
 	![Automatic update background color](Images/automatic-update-background-color.png?raw=true "Automatic update background color")
 
@@ -186,7 +196,7 @@ This demo is composed of the following segments:
 
 	>**Speaking Point**: Oops, it looks like there is a text error in the header - we repeated the word **and**. Let’s fix that. 
 	
-1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay**. 
+1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay** or hover the Web Essentials panel at the bottom of the browser.
 
 1. Click on the **Design** link to enable **Design mode**.
 	
@@ -244,9 +254,9 @@ This demo is composed of the following segments:
 	@import 'social.png.less';
 	````
  
-1. Within the same file modify the **.facebook** and **.twitter** classes by replacing the background-image style with the corresponding less function to retrieve the image sprite as shown below, and save the file.
+1. Within the same file modify the **.facebook** and **.twitter** classes by replacing the _background_ property with the corresponding less function to retrieve the image sprite as shown below, and save the file.
 
-	<!-- mark:1-11 -->
+	<!-- mark:2,8 -->
 	````CSS
 	.facebook {
 		.sprite-Content-share-facebook();
@@ -263,7 +273,7 @@ This demo is composed of the following segments:
 
 1. In Internet Explorer, open **Developer tools** and switch to the **Network** tab.
 
-1. Click on **Play** to start recording the network traffic and refresh the application.
+1. Click on **Play** to start recording the network traffic and refresh (**F5**) the application.
 
 1. Check there is a request to **/Content/Social.png**. Select it and click on **Details** to check the details of the request.
 
@@ -280,7 +290,7 @@ This demo is composed of the following segments:
 <a name="javascript-editing" />
 #### Task 3 - JavaScript and AngularJS editing ####
 
-1. Open the **/Scripts/app/controllers/modal.js** file.
+1. In Visual Studio, open the **/Scripts/app/controllers/modal.js** file.
 
 1. Place the cursor below the **cleanVariables();** line and start writing **$sc**. Show that there is IntelliSense for JavaScript and AngularJS.
 
@@ -323,7 +333,7 @@ This demo is composed of the following segments:
 
 	>**Note**: This sets us up with a basic directive with some best practices, like for instance it’s using Strict Mode. We’ve also got JsHint running in the background so it can catch some common JavaScript coding issues as we type, for instance if we try to reuse a function parameter name.
 	
-1. Add another parameter named **scope** to the end of the **link** function and show that **JsHint** flags it.
+1. Add another parameter named **scope** to the end of the **link** function and hover it to show that **JsHint** flags it as a _duplicated_ declaration.
 
 	![Duplicate parameter error](Images/duplicate-parameter-error.png?raw=true "Duplicate parameter error")
 	
@@ -331,9 +341,9 @@ This demo is composed of the following segments:
  
 1. Remove the **scope** parameter just added (it was simply to show the error).
 	
-1. Move the code from the **modal** controller to the directive you created; the code to move is highlighted with a comment that says **//TODO: refactor to a directive**. 
+1. Move the code from the **modal** controller to the directive you created, inside the **link** function; the code to move is highlighted with a comment that says **//Refactor to a directive** to another comment that says **// End refactor to a directive**. 
 
-1. Remove the **element** and **scope** variable in the controller to avoid JSHint issues.
+1. Remove the **element** and **scope** variable in the **modal** controller to avoid JSHint issues.
 	
 	![Removed variables from modal controller](Images/removed-variables-from-modal-controller.png?raw=true "Removed variables from modal controller")
 	
@@ -373,7 +383,6 @@ This demo is composed of the following segments:
 1. Select the **Staging** web site and click **OK**.
 
 1. In the **Connection** page, leave the imported values and click **Publish**. Wait until the publishing process completes.
-
 
 <a name="segment3" />
 ### Azure Web Jobs ###
