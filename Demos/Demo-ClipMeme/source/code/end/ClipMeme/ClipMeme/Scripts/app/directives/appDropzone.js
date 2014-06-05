@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     // TODO: replace app with your module name
@@ -8,13 +8,11 @@
         // Usage:
         // 
         // Creates:
-        //
-        
+        // 
         var directive = {
             link: link,
             restrict: 'A'
         };
-
         return directive;
 
         function link(scope, element, attrs) {

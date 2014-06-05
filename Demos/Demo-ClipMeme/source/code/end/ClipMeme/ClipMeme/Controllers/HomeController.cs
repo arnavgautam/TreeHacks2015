@@ -1,6 +1,7 @@
-﻿namespace ClipMeme.Controllers
+﻿using System.Configuration;
+
+namespace ClipMeme.Controllers
 {
-    using System.Configuration;
     using System.Web.Mvc;
 
     public class HomeController : Controller

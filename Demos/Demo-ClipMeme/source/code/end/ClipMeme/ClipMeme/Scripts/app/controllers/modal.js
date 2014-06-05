@@ -7,7 +7,7 @@
 
     function modal($scope, $upload, $modalInstance, gifservice, $rootScope, username) {
         cleanVariables();
-
+        
         $scope.dropComplete = function (src, file) {
             $scope.image.source = src;
             $scope.image.file = file;
