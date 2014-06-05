@@ -462,7 +462,11 @@ This demo is composed of the following segments:
 
 	![WebSite Storage accountand Frequency](Images/website-storage-accountand-frequency.png?raw=true)
 	
-1. Select a database connection from the **Included Databases** drop-down.
+1. This website has no databases configured.
+
+	![Database backup - No databases available](Images/database-backup---no-databases-available.png?raw=true)
+
+	If the website had databases configured, you could select a database to backup in the **Included Databases** drop-down.
 
 	![Selecting Backup Database](Images/selecting-backup-database.png?raw=true)
 	
@@ -516,6 +520,8 @@ This demo is composed of the following segments:
 	
 1. Click **Discard**.
 
+	![Discard changes to scale setting](Images/discard-website-scale.png?raw=true)
+
 <a name="traffic-manager" />
 #### Task 3 - Traffic Manager ####
 1. Browse to the Azure Portal, and click **New** > **Network Services** > **Traffic Manager** > **Quick Create**.
@@ -526,7 +532,7 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** We can optimize the Web Site for **Performance**, **Round Robin**, or **Failover**. Failover is the scenario where we set up a primary node and in case of failure, traffic is routed automatically by Traffic Manager to secondary nodes. Since we want to optimize for Performance, we'll select this method. No matter where the user is, they will always hit the data center closest to them.
 		
-1. Click **Close**, and go to the Traffic Manager already created.
+1. Click **Close**. Go to **Traffic Manager** and click on the traffic manager already created.
 1. Select **Endpoints**
 
 	![Traffic Manager Endpoints](Images/traffic-manager-endpoints.png?raw=true)
@@ -550,4 +556,4 @@ This demo is composed of the following segments:
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw how to easily create a development environment upfront. Use some of the new Visual Studio Features to create beautiful modern Web Applications, backup and restore them, deploy them to staging for Testing, then onto production and scale it worldwide.
+In this demo, you saw how to easily create a development environment upfront. Use some of the new Visual Studio Features to create beautiful modern Web Applications, backup and restore them, deploy them to Staging for testing, then onto Production and scale it worldwide.
