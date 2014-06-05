@@ -29,7 +29,7 @@ namespace UploadToTableStorage
             CloudBlobClient blobClient = new CloudBlobClient (storageAccount.BlobEndpoint, storageAccount.Credentials);
 
             // Create blob container if it doesn't exist.
-            CloudBlobContainer blobContainer = blobClient.GetContainerReference("memeblob");
+            CloudBlobContainer blobContainer = blobClient.GetContainerReference("memes");
             blobContainer.CreateIfNotExists(BlobContainerPublicAccessType.Container);
 
             // Create the table client.

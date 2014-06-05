@@ -166,5 +166,13 @@
 		$CreateTrafficManagerJob = Start-Job -ScriptBlock { New-AzureTrafficManagerProfile -Name $args[0] -DomainName $args[1] -LoadBalancingMethod "Performance" -MonitorProtocol "Http" -MonitorPort 80 -MonitorRelativePath "/" -Ttl 30 } -ArgumentList $TrafficManagerProfile, $TrafficManagerDomain
 		Wait-Job $CreateTrafficManagerJob
 		Write-Done
+		
+		# Upload Gifs to Storage
+		$MsBuildFile = Join-Path $env:windir "\Microsoft.NET\Framework\v4.0.30319\MsBuild.exe"
+		[string] $uploadGifolutionFile = ".\UploadToTableStorage\UploadToTableStorage.sln"
+		& $MsBuildFile @($uploadGifolutionFile, "/p:Configuration=Release")
+		write-host "Compiling GifUpload Solution Done!"
+		& ".\UploadToTableStorage\UploadToTableStorage\bin\Release\UploadToTableStorage.exe" $EnvironmentStorageAccount $StorageAccountKey .\assets\gifs
+		write-host "Uploading Gifs to Storage Done!"
     }
 }
