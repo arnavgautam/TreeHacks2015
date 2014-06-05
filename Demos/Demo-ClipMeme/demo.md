@@ -10,7 +10,7 @@ In this demo, we will showcase the Visual studio and azure VM and Web Site provi
 In this demo, you will see how to:
 
  1. Provision Azure through Visual Studio
- 1. Work with the new Web Essentials Features, Image Sprites and Angular Js
+ 1. Work with the new Web Essentials Features, Image Sprites and AngularJS
  1. Create Azure Webjobs
  1. Backup, Scale and control site traffic using Traffic Manager
 
@@ -35,7 +35,7 @@ In this demo, you will see how to:
 <a name="Setup" />
 ### Setup and Configuration ###
 
-##### Azure #####
+##### Updating Configuration Variables #####
 
 1. Open **PowerShell** and execute the following command.
 
@@ -43,9 +43,7 @@ In this demo, you will see how to:
 	Get-AzurePublishSettingsFile
 	````
 
-1. A browser will open. When prompted, enter your Azure credentials. Save the file to a known location.
-
-1. Rename the file **azure.publishsettings**.
+1. A browser will open. When prompted, enter your Azure credentials. Save the file to a known location and rename it to **azure.publishsettings**.
 
 1. Copy the file and replace the one located in the **Source\Setup\assets\publishSettings** folder of this demo.
 	
@@ -65,23 +63,11 @@ In this demo, you will see how to:
 
 1. Run **Reset.cmd** using elevated permissions.
 	
-##### Solutions  #####
+##### First Run  #####
 
-1. Open **ClipMeme** and build it to install NuGet Packages.
+1. Go to your working directory (if you left the default value, the directory is **C:\Demos\Source**) and open the **ClipMeme** solution.
 
-1. Publish **ClipMeme** to the Azure Website you created before.
-
-##### Configuration Variables #####
-
-1. Run **Reset.cmd**.
-
-1. Open **Visual Studio** and the **ClipMeme** solution.
-
-##### First Run #####
-
-1. Open a browser and go Management Portal > Web Site.
-
-1. Open a browser and go Webjob **Dashboard**.
+1. Build the solution to install all the NuGet packages. Keep this Visual Studio instance open as you will use it in the demo.
 
 ## Demo ##
 
@@ -102,7 +88,7 @@ This demo is composed of the following segments:
 
 	![Create New Project](Images/create-new-project.png?raw=true)
 
-1. Click **Web** and select **ASP .NET Web Application**. Click **OK**.
+1. Click **Web** and select **ASP.NET Web Application**. Click **OK**.
 
 	![New ASP .NET Web Application](Images/new-asp-net-web-application.png?raw=true)
 
@@ -120,11 +106,11 @@ This demo is composed of the following segments:
 
 2. Browse to https://manage.windowsazure.com and log-in with your credentials.  
  
-2. Click **Web sites** and verify that your site is created.
+2. Click on **Web sites** and verify that your site is created.
 
 	![Azure Web Site Created](Images/azure-web-site-created.png?raw=true)
 
-2. Go back to **Visual Studio** and open **Publish-WebApplication.ps1** file.
+2. Go back to **Visual Studio** and open the **Publish-WebApplication.ps1** file.
 
 	> **Speaking Point:** So now the project is created and Visual Studio is provisioning Azure. But it is also now creating Publishing Scripts that we can use to automate deployments.
 	
@@ -147,6 +133,8 @@ This demo is composed of the following segments:
 	
 <a name="browserlink-features" />
 #### Task 1 - Browser link####
+
+1. Switch to the ClipMeme solution in **Visual Studio** and run the app.
 
 1. Place Visual Studio and Internet Explorer side by side.
 
@@ -174,7 +162,7 @@ This demo is composed of the following segments:
 	
 1. In the **Styles** pane, scroll until you find the **.navbar-default** selector. 
 
-1. Double-click the **background-color** value and change it to a different color (e.g. Azure). Show how the value is automatically updated in Visual Studio.
+1. Double-click the **background-color** value and change it to a different color (e.g. cadetBlue). Show how the value is automatically updated in Visual Studio.
 
 	![Automatic update background color](Images/automatic-update-background-color.png?raw=true "Automatic update background color")
 
@@ -190,7 +178,7 @@ This demo is composed of the following segments:
 	
 	_Google chrome with background color updated_
 
-1. Show that there is duplicated **and** in the text.
+1. Show that there is a typo in the text (duplicated **and**).
 
 	![Typo - Duplicate and](Images/typo---duplicate-and.png?raw=true "Typo - Duplicate and")
 	
@@ -223,6 +211,7 @@ This demo is composed of the following segments:
 	>**Note**: This works the exact same in any browser, in case we want to use IE instead.
 
 <a name="image-sprites-not-in-keynote" />
+
 #### Task 2 - Image Sprites####
 
 1. Switch back to Visual Studio.
@@ -230,7 +219,7 @@ This demo is composed of the following segments:
 	>**Speaking Point**: We can improve performance on our site by sending a lot of images in one HTTP request, using CSS sprites. We will select some common images on our site and create a sprite the easy way, using Web Essentials.
 
 
-1. In the Solution Explorer, expand the **Content** folder and select **share-facebook.png** and share-twitter.png holding the **Ctrl** key.
+1. In the Solution Explorer, expand the **Content** folder and select **share-facebook.png** and **share-twitter.png** holding the **Ctrl** key.
 
 1. Right-click on the images and select **Web Essentials | Create Image Sprite...**…
 
@@ -255,7 +244,7 @@ This demo is composed of the following segments:
 	@import 'social.png.less';
 	````
  
-1. Within the same file modify the **.facebook** and **.twitter** classes by replacing the background-image style with the corresponding less function to retrieve the image sprite as shown below:
+1. Within the same file modify the **.facebook** and **.twitter** classes by replacing the background-image style with the corresponding less function to retrieve the image sprite as shown below, and save the file.
 
 	<!-- mark:1-11 -->
 	````CSS
@@ -289,17 +278,17 @@ This demo is composed of the following segments:
 	_Response body_
 
 <a name="javascript-editing" />
-#### Task 3 - Javascript and AngularJS editing ####
+#### Task 3 - JavaScript and AngularJS editing ####
 
 1. Open the **/Scripts/app/controllers/modal.js** file.
 
-1. Place the cursor below the **cleanVariables();** line and start writing **$sc**. Show that there is Intellisense for JavaScript and AngualrJS.
+1. Place the cursor below the **cleanVariables();** line and start writing **$sc**. Show that there is IntelliSense for JavaScript and AngularJS.
 
 	![Intellisence Javascript with Web Essentials](Images/intellisence-javascript-with-web-essentials.png?raw=true "Intellisence Javascript with Web Essentials")
 	
-	_Intellisense JavaScript with Web Essentials_
+	_IntelliSense JavaScript with Web Essentials_
 
-1. Open the **Error List** panel and show that there are two JSHIint errors.
+1. Open the **Error List** panel and show that there are two JSHint errors.
 
 	![Error list panel](Images/error-list-panel.png?raw=true "Error list panel")
 	
@@ -313,11 +302,11 @@ This demo is composed of the following segments:
 
 1. Fix the issues, save the file and show that there are no more issues.
 
-	![After fixing the error](Images/after-fixing-the-error.png?raw=true "After fixing the error")
+	![After fixing the errors](Images/after-fixing-the-error.png?raw=true "After fixing the error")
 	
-	_After fixing the error_
+	_After fixing the errors_
 
-1. Close the **Error List** panel and show that querying the DOM from a controller is not a good practise in AngularJS so we need to refactor the code by adding a new directive.
+1. Close the **Error List** panel and show that querying the DOM from a controller is not a good practice in AngularJS so we need to refactor the code by adding a new directive.
 	
 1. Right-click the **/scripts/app/directives** directory and select **Add** | **New item**.
 	
@@ -340,7 +329,7 @@ This demo is composed of the following segments:
 	
 	_Duplicate parameter error_
  
-1. Remove the **scope** parameter just added, it was simply to show the error.
+1. Remove the **scope** parameter just added (it was simply to show the error).
 	
 1. Move the code from the **modal** controller to the directive you created; the code to move is highlighted with a comment that says **//TODO: refactor to a directive**. 
 
@@ -352,7 +341,7 @@ This demo is composed of the following segments:
 
 	>**Note:** Don't remove the **scope.init** declaration as it is required for AngularJS.
 	
-1. Open **Modal.cshtml** view from the **Share** folder and update the div element with id **dropzone** as with the code below; the code to update is highlighted with a comment that says **<!--Dropzone element-->**. 
+1. Open the **Modal.cshtml** view from **Views\Shared** folder and update the div element with id **dropzone** as with the code below; the code to update is highlighted with a comment that says **<!--Dropzone element-->**. 
  
 	````HTML
 	<div app-dropzone class="drag-drop" ng-hide="fileloaded || loading">
@@ -383,6 +372,8 @@ This demo is composed of the following segments:
 
 1. Select the **Staging** web site and click **OK**.
 
+1. In the **Connection** page, leave the imported values and click **Publish**. Wait until the publishing process completes.
+
 
 <a name="segment3" />
 ### Azure Web Jobs ###
@@ -411,7 +402,7 @@ This demo is composed of the following segments:
 	
 	_Azure Webjobs_
 
-	> **Speaking Point:** A Webjob allowsus to run background tasks in the same context as the Web Site.
+	> **Speaking Point:** A Webjob allows us to run background tasks in the same context as the Web Site.
 
 1. Switch back to the **ClipMeme** solution in **Visual Studio**.
 
@@ -425,11 +416,13 @@ This demo is composed of the following segments:
 	
 	_Associating a Webjob project with your Website_
 
+1. In the Project Selector dialog, click Ok. 
+
 	![Webjob project selector](Images/webjob-project-selector.png?raw=true)
 	
 	_Webjob project selector_
 
-	> **Speaking Point:**We've already associated my Console project with my Website. The next time we publish the Website, the Webjob will be published with it.
+	> **Speaking Point:** We've already associated my Console project with my Website. The next time we publish the Website, the Webjob will be published with it.
 
 1. Switch to the **Management Portal** and click the **logs** link of your WebJob.
 
@@ -460,7 +453,11 @@ This demo is composed of the following segments:
 
 	![WebSite Storage accountand Frequency](Images/website-storage-accountand-frequency.png?raw=true)
 	
-1. Select a database connection from the **Included Databases** drop-down.
+1. This website has no databases configured.
+
+	![Database backup - No databases available](Images/database-backup---no-databases-available.png?raw=true)
+
+	If the website had databases configured, you could select a database to backup in the **Included Databases** drop-down.
 
 	![Selecting Backup Database](Images/selecting-backup-database.png?raw=true)
 	
@@ -514,6 +511,8 @@ This demo is composed of the following segments:
 	
 1. Click **Discard**.
 
+	![Discard changes to scale setting](Images/discard-website-scale.png?raw=true)
+
 <a name="traffic-manager" />
 #### Task 3 - Traffic Manager ####
 1. Browse to the Azure Portal, and click **New** > **Network Services** > **Traffic Manager** > **Quick Create**.
@@ -524,7 +523,7 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** We can optimize the Web Site for **Performance**, **Round Robin**, or **Failover**. Failover is the scenario where we set up a primary node and in case of failure, traffic is routed automatically by Traffic Manager to secondary nodes. Since we want to optimize for Performance, we'll select this method. No matter where the user is, they will always hit the data center closest to them.
 		
-1. Click **Close**, and go to the Traffic Manager already created.
+1. Click **Close**. Go to **Traffic Manager** and click on the traffic manager already created.
 1. Select **Endpoints**
 
 	![Traffic Manager Endpoints](Images/traffic-manager-endpoints.png?raw=true)
@@ -539,13 +538,13 @@ This demo is composed of the following segments:
 	
 	_Add Web Site to the Traffic Manager_
 
-	> **Speaking Point:** This ensures that no mather where you are in the world, you are going to always hit the datacenter closest to your location.
+	> **Speaking Point:** This ensures that no matter where you are in the world, you are going to always hit the datacenter closest to your location.
 	
-1. Switch to **ClipMeme** site and show were are you served from.
+1. Switch to **ClipMeme** site and show where you are served from.
 	
 ---
 
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw how to easelly create a development environment upfront. Use some of the new Visual Studio Features to create beautifull modern Web Applications, backup and restore them, deploy them to staging for Testing, then onto production and scale it World wide.
+In this demo, you saw how to easily create a development environment upfront. Use some of the new Visual Studio Features to create beautiful modern Web Applications, backup and restore them, deploy them to Staging for testing, then onto Production and scale it worldwide.

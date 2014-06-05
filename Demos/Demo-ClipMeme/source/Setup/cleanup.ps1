@@ -19,8 +19,10 @@ pushd ".."
 
 [string] $solutionWorkingDir = $xmlAzureSettings.configuration.localPaths.solutionWorkingDir
 [string] $solutionsDir = $xmlAzureSettings.configuration.localPaths.solutionsDir
-[string] $beginSolutionDir = $xmlAzureSettings.configuration.localPaths.solutionsDir + "\Begin\ClipMeme\"
-[string] $endSolutionDir = $xmlAzureSettings.configuration.localPaths.solutionsDir + "\End\ClipMeme\"
+[string] $beginSolutionDir = Join-Path $scriptDir "$solutionsDir\Begin\ClipMeme"
+[string] $beginSolutionDirSettings = "$beginSolutionDir\ClipMeme\web.config"
+[string] $endSolutionDir = Join-Path $scriptDir "$solutionsDir\End\ClipMeme"
+[string] $endSolutionDirSettings = "$endSolutionDir\ClipMeme\web.config"
 
 # Client Settings
 [string] $DisplayName = $xmlAzureSettings.configuration.clientSettings.DisplayName
@@ -40,6 +42,8 @@ $AppSettings = @{'DisplayName'=$DisplayName; 'TrafficManagerRegion'=$Environment
 
 popd
 
+write-host $beginSolutionDirSettings
+
 Invoke-AzureEnvironmentSetup -EnvironmentSubscriptionName $EnvironmentSubscriptionName `
                              -EnvironmentPrimaryLocation $EnvironmentPrimaryLocation `
                              -StorageEnvironmentLocation $EnvironmentPrimaryLocation `
@@ -49,8 +53,12 @@ Invoke-AzureEnvironmentSetup -EnvironmentSubscriptionName $EnvironmentSubscripti
                              -StorageContainers $StorageContainers `
 							 -AppSettings $AppSettings `
 							 -TrafficManagerProfile $TrafficManagerProfile `
+							 -beginSolutionDirSettings $beginSolutionDirSettings `
+							 -endSolutionDirSettings $endSolutionDirSettings `
 							 -PublishSettingsFile $PublishSettingsFile
-				 
+
+
+Write-Host $beginSolutionDir
 Write-Action "Removing current working directory..."
 if (Test-Path "$solutionWorkingDir")
 {
