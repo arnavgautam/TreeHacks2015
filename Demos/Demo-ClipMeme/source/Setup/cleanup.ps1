@@ -38,7 +38,7 @@ $StorageContainers = @('uploads','memes')
 $EnvironmentWebSites = @{$WebsiteName=$EnvironmentPrimaryLocation}
 $EnvironmentStagingSites = @{$WebsiteName=$EnvironmentPrimaryLocation}
 
-$AppSettings = @{'DisplayName'=$DisplayName; 'TrafficManagerRegion'=$EnvironmentPrimaryLocation; 'Website'=$WebsiteName}
+$AppSettings = @{'DisplayName'=$DisplayName; 'TrafficManagerRegion'=$EnvironmentPrimaryLocation; 'Website'='http://$WebsiteName.azurewebsites.net'}
 
 popd
 
@@ -69,4 +69,7 @@ if (!(Test-Path "$solutionWorkingDir"))
 	New-Item "$solutionWorkingDir" -type directory | Out-Null
 }
 Copy-Item "$beginSolutionDir\*" "$solutionWorkingDir" -Recurse -Force
+
+Copy-Item "$scriptDir\assets\demogif\demo.gif" "$solutionWorkingDir\..\" -Force
+
 Write-Done
