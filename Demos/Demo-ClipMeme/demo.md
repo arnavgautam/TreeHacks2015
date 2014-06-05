@@ -331,9 +331,9 @@ This demo is composed of the following segments:
 	_Directive template_
 
 
-	>**Note**: This sets us up with a basic directive with some best practices, like for instance it’s using Strict Mode. We’ve also got JsHint running in the background so it can catch some common JavaScript coding issues as we type, for instance if we try to reuse a function parameter name.
+	>**Note**: This sets us up with a basic directive with some best practices, like for instance it’s using Strict Mode. We’ve also got JSHint running in the background so it can catch some common JavaScript coding issues as we type, for instance if we try to reuse a function parameter name.
 	
-1. Add another parameter named **scope** to the end of the **link** function and hover it to show that **JsHint** flags it as a _duplicated_ declaration.
+1. Add another parameter named **scope** to the end of the **link** function and hover it to show that **JSHint** flags it as a _duplicated_ declaration.
 
 	![Duplicate parameter error](Images/duplicate-parameter-error.png?raw=true "Duplicate parameter error")
 	
@@ -484,7 +484,7 @@ This demo is composed of the following segments:
 
 	![Database backup - No databases available](Images/database-backup---no-databases-available.png?raw=true)
 
-	If the website had databases configured, you could select a database to backup in the **Included Databases** drop-down.
+	If the website had databases configured, you could select a database to back up in the **Included Databases** drop-down.
 
 	![Selecting Backup Database](Images/selecting-backup-database.png?raw=true)
 	
