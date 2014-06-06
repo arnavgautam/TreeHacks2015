@@ -165,11 +165,13 @@
 		
 		Write-Action "Updating ClipMeme settings..."
 		[xml]$configuration = Get-Content $beginSolutionDirSettings;
-		$configuration.configuration.connectionStrings.ChildNodes[0].connectionString = $StorageConnectionString		
+		$configuration.configuration.connectionStrings.ChildNodes[0].connectionString = $StorageConnectionString	
+		$configuration.configuration.appSettings.ChildNodes[5].value = $AppSettings["DisplayName"];
 		$configuration.save($beginSolutionDirSettings)
 		
 		[xml]$configuration = Get-Content $endSolutionDirSettings;
-		$configuration.configuration.connectionStrings.ChildNodes[0].connectionString = $StorageConnectionString		
+		$configuration.configuration.connectionStrings.ChildNodes[0].connectionString = $StorageConnectionString	
+		$configuration.configuration.appSettings.ChildNodes[5].value = $AppSettings["DisplayName"];
 		$configuration.save($endSolutionDirSettings)
 
         Write-Done
@@ -181,11 +183,14 @@
 		Write-Done
 		
 		# Upload Gifs to Storage
+		Write-Action "Compiling GifUpload solution tool"
 		$MsBuildFile = Join-Path $env:windir "\Microsoft.NET\Framework\v4.0.30319\MsBuild.exe"
 		[string] $uploadGifolutionFile = ".\UploadToTableStorage\UploadToTableStorage.sln"
 		& $MsBuildFile @($uploadGifolutionFile, "/p:Configuration=Release")
-		write-host "Compiling GifUpload Solution Done!"
+		Write-Done
+		
+		Write-Action "Uploading Gifs to Storage..."
 		& ".\UploadToTableStorage\UploadToTableStorage\bin\Release\UploadToTableStorage.exe" $EnvironmentStorageAccount $StorageAccountKey .\assets\gifs
-		write-host "Uploading Gifs to Storage Done!"
+		Write-Done
     }
 }
