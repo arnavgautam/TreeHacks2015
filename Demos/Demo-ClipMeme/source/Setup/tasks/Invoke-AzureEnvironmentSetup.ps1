@@ -61,13 +61,15 @@
             Wait-Job $StorageContainerJobs
 			Write-Done
 			
+			$StorageContext = New-AzureStorageContext -StorageAccountName $EnvironmentStorageAccount -StorageAccountKey $StorageAccountKey
+			
 			Write-Action "Deleting Storage Table"
-			$StorageTableJob = Start-Job -ScriptBlock { Remove-AzureStorageTable -Name "MemeMetadata" -Force -ErrorAction ignore }			
+			$StorageTableJob = Start-Job -ScriptBlock { Remove-AzureStorageTable -Name "MemeMetadata" -Context $StorageContext -Force -ErrorAction ignore }			
 			Wait-Job $StorageTableJob
 			Write-Done
 			
 			Write-Action "Deleting Queue"			
-			$StorageQueueJob = Start-Job -ScriptBlock { Remove-AzureStorageQueue -Name "uploads" -Force -ErrorAction ignore }
+			$StorageQueueJob = Start-Job -ScriptBlock { Remove-AzureStorageQueue -Name "uploads" -Context $StorageContext -Force -ErrorAction ignore }
 			Wait-Job $StorageQueueJob
 			Write-Done
         }       
