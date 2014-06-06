@@ -2,7 +2,7 @@
 @import this file directly into your existing Less files to use these mixins
 */
 .navbar-default {
-  background-color: #f0ffff;
+  background-color: azure;
 }
 footer {
   background-color: #34495E;

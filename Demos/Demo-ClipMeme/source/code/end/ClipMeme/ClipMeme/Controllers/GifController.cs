@@ -26,62 +26,55 @@
         // POST api/values
         public async Task Post()
         {
-            try
+            if (!Request.Content.IsMimeMultipartContent("form-data"))
             {
-                if (!Request.Content.IsMimeMultipartContent("form-data"))
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            var provider = new MultipartMemoryStreamProvider();
+
+            // Read the form data.
+            await Request.Content.ReadAsMultipartAsync(provider);
+
+            var fileName = DateTime.Now.ToString("yyyyMMdd-HHmmss");
+            var overlayText = string.Empty;
+            var mediaType = string.Empty;
+            var hubId = string.Empty;
+            var username = string.Empty;
+
+            byte[] bytes = null;
+            foreach (var content in provider.Contents)
+            {
+                if (content.Headers.ContentDisposition.Name.Trim('"').Equals("textOverlay", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+                    overlayText = await content.ReadAsStringAsync();
                 }
-
-                var provider = new MultipartMemoryStreamProvider();
-
-                // Read the form data.
-                await Request.Content.ReadAsMultipartAsync(provider);
-
-                var fileName = DateTime.Now.ToString("yyyyMMdd-HHmmss");
-                var overlayText = string.Empty;
-                var mediaType = string.Empty;
-                var hubId = string.Empty;
-                var username = string.Empty;
-
-                byte[] bytes = null;
-                foreach (var content in provider.Contents)
+                else if (content.Headers.ContentDisposition.Name.Trim('"').Equals("hubid", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    if (content.Headers.ContentDisposition.Name.Trim('"').Equals("textOverlay", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        overlayText = await content.ReadAsStringAsync();
-                    }
-                    else if (content.Headers.ContentDisposition.Name.Trim('"').Equals("hubid", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        hubId = await content.ReadAsStringAsync();
-                    }
-                    else if (content.Headers.ContentDisposition.Name.Trim('"').Equals("username", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        username = await content.ReadAsStringAsync();
-                    }
-                    else if (content.Headers.ContentDisposition.Name.Trim('"').Equals("file", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        fileName += "-" + content.Headers.ContentDisposition.FileName.Trim('"');
-                        mediaType = content.Headers.ContentType.MediaType;
-                        bytes = await content.ReadAsByteArrayAsync();
-                    }
+                    hubId = await content.ReadAsStringAsync();
                 }
+                else if (content.Headers.ContentDisposition.Name.Trim('"').Equals("username", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    username = await content.ReadAsStringAsync();
+                }
+                else if (content.Headers.ContentDisposition.Name.Trim('"').Equals("file", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    fileName += "-" + content.Headers.ContentDisposition.FileName.Trim('"');
+                    mediaType = content.Headers.ContentType.MediaType;
+                    bytes = await content.ReadAsByteArrayAsync();
+                }
+            }
 
-                await new GifStorageService().StoreGifAsync(
-                    fileName,
-                    bytes,
-                    mediaType,
-                    new Dictionary<string, string> 
+            await new GifStorageService().StoreGifAsync(
+                fileName,
+                bytes,
+                mediaType,
+                new Dictionary<string, string> 
                 {
                     { "UserName", username },
                     { "OverlayText", overlayText },
                     { "HubId", hubId }
                 });
-            }
-            catch (Exception)
-            {
-                throw;
-            }
         }
 
         // PUT api/values/5

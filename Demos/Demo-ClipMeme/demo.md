@@ -343,7 +343,7 @@ This demo is composed of the following segments:
  
 1. Remove the **scope** parameter just added (it was simply to show the error).
 	
-1. Move the code from the **modal** controller to the directive you created, inside the **link** function; the code you need to move is highlighted with a comment that says **//Refactor to a directive** to another comment that says **// End refactor to a directive**. 
+1. Cut and paste the code from the **modal** controller to the directive you created, inside the **link** function; the code to move is highlighted with a comment that says **//Refactor to a directive** to another comment that says **// End refactor to a directive**. 
 
 1. Remove the **element** and **scope** variable in the **modal** controller to avoid JSHint issues.
 	
