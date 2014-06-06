@@ -11,8 +11,8 @@ In this demo, you will see how to:
 
  1. Provision Azure through Visual Studio
  1. Work with the new Web Essentials Features, Image Sprites and AngularJS
- 1. Create Azure Webjobs
- 1. Backup, Scale and control site traffic using Traffic Manager
+ 1. Create Azure WebJobs
+ 1. Backup, scale and control site traffic using Traffic Manager
 
 <a name="Technologies" />
 ### Key Technologies ###
@@ -37,27 +37,27 @@ In this demo, you will see how to:
 
 ##### Updating Configuration Variables #####
 
-1. Open **PowerShell** and execute the following command.
+1. Open **PowerShell** and execute the following command:
 
 	````PowerShell
 	Get-AzurePublishSettingsFile
 	````
 
-1. A browser will open. When prompted, enter your Azure credentials. Save the file to a known location and rename it to **azure.publishsettings**.
+1. A browser will open. When prompted, enter your Azure credentials. Save the file to a known location and rename it **azure.publishsettings**.
 
 1. Copy the file and replace the one located in the **Source\Setup\assets\publishSettings** folder of this demo.
 	
-1. Open using a text editor the **config.xml** file located in the **Source** folder.
+1. Using a text editor, open the **config.xml** file located in the **Source** folder.
 
 1. Replace the placeholder values with the following:
 
-	- **solutionWorkingDir**: The default directory where the solutions and assets will be copied for the demo. You can leave the default directory or choose a different one.
-	- **DisplayName**: It is the username that is displayed on ClipMeme's home screen.
-	- **EnvironmentSubscriptionName**: It is your Azure subscription name.
-	- **EnvironmentPrimaryLocation**: It is the location where the Azure resources will be deployed. E.g.: East US, West US, etc.
-	- **StorageAccountName**: The name of the storage account required for ClipMeme. The setup scripts will automatically create a new Storage Account in Azure using this value. The name you choose must be unique and in lower case.
-	- **WebsiteName**: The name of the Azure Website for ClipMeme. The setup scripts will automatically create an Azure Website, scale it to **Standard** mode and create a _staging_ slot.
-	- **TrafficManagerProfile**: The name of the Azure Traffic Manager profile. The setup scripts will automatically create a profile to use in the demo.
+	- **solutionWorkingDir**: the default directory where the solutions and assets will be copied for the demo. You can leave the default directory or choose a different one.
+	- **DisplayName**: it is the username that is displayed on ClipMeme's home screen.
+	- **EnvironmentSubscriptionName**: it is your Azure subscription name.
+	- **EnvironmentPrimaryLocation**: it is the location where the Azure resources will be deployed. E.g.: East US, West US, etc.
+	- **StorageAccountName**: the name of the storage account required for ClipMeme. The setup scripts will automatically create a new Storage Account in Azure using this value. The name you choose must be unique and in lower case.
+	- **WebsiteName**: the name of the Azure Website for ClipMeme. The setup scripts will automatically create an Azure Website, scale it to **Standard** mode and create a _staging_ slot.
+	- **TrafficManagerProfile**: the name of the Azure Traffic Manager profile. The setup scripts will automatically create a profile to use in the demo.
 	
 1. Save the file and close the editor.
 
@@ -65,15 +65,17 @@ In this demo, you will see how to:
 
 	> **Note:** It might take a few minutes to provision all the resources in Azure.
 	
-##### First Run  #####
+##### First Run #####
 
-1. Go to your working directory (if you kept the default value, the directory is **C:\Demos\Source**) and open the **ClipMeme** solution.
+1. Go to your working directory (if you kept the default value, the directory is **C:\Demos\Source**) and  the **ClipMeme** solution with **Visual Studio**.
 
-1. Build the solution to install all the NuGet packages. Keep this Visual Studio instance open as you will use it in the demo, and open a new instance without selecting a solution. You will start the demo using this instance.
+1. Build the solution to install all the NuGet packages. Keep this Visual Studio instance open, as you will use it later in the demo. 
 
 1. Run without debugging (CTRL + F5) using Internet Explorer. Then switch back to Visual Studio, change the default browser to Google Chrome and again run without debugging. You will end up with 2 browsers showing ClipMeme. You will use them in Segment 2.
-
+	
 	![Changing the browser to Chrome](Images/changing-the-browser-to-chrome.png?raw=true)
+	
+1. Open a new instance of Visual Studio without selecting a solution. You will start the demo using this instance.
 
 ## Demo ##
 
@@ -98,21 +100,21 @@ This demo is composed of the following segments:
 
 	![New ASP .NET Web Application](Images/new-asp-net-web-application.png?raw=true)
 
-1. Select **Empty** template and check **Host in the cloud** checkbox. Click **OK**.
+1. Select the **Empty** template and select the **Host in the cloud** checkbox. Click **OK**.
 
-	> **Speaking Point:** As a new thing, as you can see, we made it really easy for you to provision both **Azure Web Sites** and **Virtual Machines** directly from this dialog. 
+	> **Speaking Point:** Something new to point out: you can see, we've made it really easy for you to provision both **Azure Web Sites** and **Virtual Machines** directly from this dialog box. 
 
 	![Web Site Empty Template](Images/web-site-empty-template.png?raw=true)	
 
-2. Select **Create new server**. Provide **Database Username** and **Database Password**. Click **OK**.
+2. Select **Create new server**. Provide the **Database Username** and **Database Password**. Click **OK**.
 
 	> **Speaking Point:** You can even provision a new database directly from here. It will let you set up your entire development environment ahead of time.
 	
 	![Azure Website Database Provisioning](Images/azure-website-database-provisioning.png?raw=true)
 
-2. Browse to https://manage.windowsazure.com and log-in with your credentials.  
+2. Browse to https://manage.windowsazure.com and log-in with your credentials.
  
-2. Click on **Web sites** and verify that your site is created.
+2. Click **Web sites** and verify that your site is created.
 
 	![Azure Web Site Created](Images/azure-web-site-created.png?raw=true)
 
@@ -122,9 +124,9 @@ This demo is composed of the following segments:
 	
 	![Publish Web Application PS1](Images/publish-web-application-ps1.png?raw=true)
 
-2. Right-Click on the **PS1** file and click **Open with PowerShell ISE**
+2. Right-click the **PS1** file and click **Open with PowerShell ISE**
 
-	> **Speaking Point:** One neat feature is the context menu for PowerShell. If you Right-click on the PS1 file, you will notice the new context menu ‘Open with PowerShell ISE, which allows you to open a PowerShell editor straight from Visual Studio.
+	> **Speaking Point:** One neat feature is the context menu for PowerShell. If you right-click the PS1 file, you will notice the new context menu ‘Open with PowerShell ISE, which allows you to open a PowerShell editor straight from Visual Studio.
 	
 	![Open with PowerShell ISE](Images/open-with-powershell-ise.png?raw=true)	
 
@@ -146,9 +148,9 @@ This demo is composed of the following segments:
 
 1. Place Visual Studio and Internet Explorer side by side.
 
-	>**Note**: This also works for changes we make using the browser developer tools. I’ve decided the header looks a little too bland, and I’d prefer to change the color interactively in the browser using the **F12** tools in my browser. 
+	>**Note**: This also works for changes we make using the browser developer tools. I’ve decided the header looks a little too plain, and I’d like to change the color interactively in the browser using the **F12** tools in my browser. 
 
-1. Right-click in the header section and select **Inspect element**. This will open the developer tools.
+1. Right-click the header section and select **Inspect element**. This will open the developer tools.
 
 	![Internet Explorer - Inspect element](Images/internet-explorer---inspect-element.png?raw=true "Internet Explorer - Inspect element")
 	
@@ -164,7 +166,7 @@ This demo is composed of the following segments:
 
 1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay**. If it is already opened, hover with your mouse over the panel.
 
-1. Click on **F12 Auto sync** from the Web Essentials toolbox in Internet Explorer to enable updating in the browser.
+1. Click **F12 Auto sync** from the Web Essentials toolbox in Internet Explorer to enable updates directly in the browser.
 
 	![F12 Auto Sync](Images/f12-auto-sync.png?raw=true "F12 Auto Sync")
 	
@@ -174,7 +176,7 @@ This demo is composed of the following segments:
 
 1. Double-click the **background-color** value and change it to a different color (e.g. azure). Show how the value is automatically updated in Visual Studio when selecting different colors.
 
-	![Automatic update background color](Images/automatic-update-background-color.png?raw=true "Automatic update background color")
+	![Automatic update of background color](Images/automatic-update-background-color.png?raw=true "Automatic update background color")
 
 	_Automatic update background color_
 	
@@ -186,9 +188,9 @@ This demo is composed of the following segments:
 
 	![Google Chrome with background color updated](Images/google-chrome-with-background-color-updated.png?raw=true "Google Chrome with background color updated")
 	
-	_Google chrome with background color updated_
+	_Google Chrome with background color updated_
 
-1. Show that there is a typo in the text (duplicated **and**).
+1. Show that there is a typo in the text (**and** is repeated).
 
 	![Typo - Duplicate and](Images/typo---duplicate-and.png?raw=true "Typo - Duplicate and")
 	
@@ -204,21 +206,21 @@ This demo is composed of the following segments:
 	
 	_Design mode link_
 
-	>**Note**: Now we can fix the text right in the page and save it back to my source code in Visual Studio.
+	>**Note**: Now we can fix the text right in the page and save it back to our source code in Visual Studio.
 
-1. Show that while hovering each section of the page, Visual Studio highlights the element.
+1. Show that while hovering over each section of the page, Visual Studio highlights the element.
 	
 	![Hovering in the browser updates in Visual Studio](Images/hovering-in-the-browser-updates-in-visual-stu.png?raw=true "Hovering in the browser updates in Visual Studio")
 	
 	_Hovering in the browser updates in Visual Studio_
 
-1. Click on the text with the typo and delete the duplicated word.
+1. Click on the text with the typo and delete the duplicate word.
 
 	![Removed duplicate word](Images/removed-duplicate-word.png?raw=true "Removed duplicate word")
 	
-	_Removed duplicate word_
+	_Duplicate word removed_
 
-	>**Note**: This works the exact same in any browser, in case we want to use IE instead.
+	>**Note**: This works exactly the same in any browser, in case we want to use IE instead.
 
 <a name="image-sprites-not-in-keynote" />
 
@@ -242,10 +244,10 @@ This demo is composed of the following segments:
 	![Save as dialog box](Images/save-as-dialog-box.png?raw=true "Save as dialog box")
 	
 	_Save as dialog box_
-  
-	>**Note**: Adding a new sprite automatically generates example CSS, LESS and SASS to include these new images using standard CSS classes. We’ll update our CSS and now we’re only making one image request for all of the images in the sprite.
 
-1. Open the “**Content/Site.less**” file and do the following to use the image sprite just generated:
+	>**Note**: Adding a new sprite automatically generates example CSS, LESS and SASS to include these new images using standard CSS classes. We’ll update our CSS so that we’re only making one image request for all of the images in the sprite.
+
+1. Open the “**Content/Site.less**” file and do the following to use the image sprite we just generated:
 	
 1. Add the following **@import** statement at the top of the file:
 	
@@ -273,15 +275,15 @@ This demo is composed of the following segments:
 
 1. In Internet Explorer, open **Developer tools** and switch to the **Network** tab.
 
-1. Click on **Play** to start recording the network traffic and refresh (**F5**) the application.
+1. Click **Play** to start recording the network traffic and refresh (**F5**) the application.
 
-1. Check there is a request to **/Content/Social.png**. Select it and click on **Details** to check the details of the request.
+1. Check that there is a request to **/Content/Social.png**. Select it and click **Details** to check the details of the request.
 
 	![Request details](Images/request-details.png?raw=true "Request details")
 	
 	_Request details_
 
-1. Click on **Response body** to check that both icons come in the same image.
+1. Click **Response body** to check that both icons come in the same image.
 	
 	![Response body](Images/response-body.png?raw=true "Response body")
 	
@@ -304,7 +306,7 @@ This demo is composed of the following segments:
 	
 	_Error list panel_
 
-1. Double-click on each issue and it will take you to the corresponding line.
+1. Double-click each issue and it will take you to the corresponding line.
 
 	![Before fixing the error](Images/before-fixing-the-error.png?raw=true "Before fixing the error")
 
@@ -331,7 +333,7 @@ This demo is composed of the following segments:
 	_Directive template_
 
 
-	>**Note**: This sets us up with a basic directive with some best practices, like for instance it’s using Strict Mode. We’ve also got JSHint running in the background so it can catch some common JavaScript coding issues as we type, for instance if we try to reuse a function parameter name.
+	>**Note**: This sets us up with a basic directive with some best practices, like the fact that is uses Strict Mode. We’ve also got JSHint running in the background so it can catch some common JavaScript coding issues as we type, for instance if we try to reuse a function parameter name.
 	
 1. Add another parameter named **scope** to the end of the **link** function and hover it to show that **JSHint** flags it as a _duplicated_ declaration.
 
@@ -341,7 +343,7 @@ This demo is composed of the following segments:
  
 1. Remove the **scope** parameter just added (it was simply to show the error).
 	
-1. Move the code from the **modal** controller to the directive you created, inside the **link** function; the code to move is highlighted with a comment that says **//Refactor to a directive** to another comment that says **// End refactor to a directive**. 
+1. Move the code from the **modal** controller to the directive you created, inside the **link** function; the code you need to move is highlighted with a comment that says **//Refactor to a directive** to another comment that says **// End refactor to a directive**. 
 
 1. Remove the **element** and **scope** variable in the **modal** controller to avoid JSHint issues.
 	
@@ -349,9 +351,9 @@ This demo is composed of the following segments:
 	
 	_Removed variables from modal controller_
 
-	>**Note:** Don't remove the **scope.init** declaration as it is required for AngularJS.
+	>**Note:** Do not remove the **scope.init** declaration as it is required for AngularJS.
 	
-1. Open the **Modal.cshtml** view from **Views\Shared** folder and update the div element with id **dropzone** as with the code below; the code to update is highlighted with a comment that says **<!--Dropzone element-->**. 
+1. Open the **Modal.cshtml** view from **Views\Shared** folder and update the div element with id **dropzone** as with the code below; the code you need to update is highlighted with a comment that says **<!--Dropzone element-->**. 
  
 	````HTML
 	<div app-dropzone class="drag-drop" ng-hide="fileloaded || loading">
@@ -362,7 +364,7 @@ This demo is composed of the following segments:
 <a name="azure-staged-published" />
 #### Task 4 - Azure Staged Published ####
 
-1. In the **Solution Explorer**, right-click on the **Project** and select **Publish…**
+1. In the **Solution Explorer**, right-click the **Project** and select **Publish…**
 
 	![Publish](Images/publish.png?raw=true "Publish")
 	
@@ -382,7 +384,7 @@ This demo is composed of the following segments:
 
 1. Select the **Staging** web site and click **OK**.
 
-1. In the **Connection** page, leave the imported values and click **Publish**. Wait until the publishing process completes.
+1. In the **Connection** page, leave the imported values and click **Publish**. Wait until the publishing process is complete.
 
 1. Show the URL in the browser and explain that you deployed the site in a new deployment **slot**.
 
@@ -425,39 +427,39 @@ This demo is composed of the following segments:
 
 1. Switch to the **ClipMeme Azure Website** in the Management Portal and go to **WEBJOBS**.
 
-	![Azure Webjobs](Images/azure-webjobs.png?raw=true)
+	![Azure WebJobs](Images/azure-webjobs.png?raw=true)
 	
-	_Azure Webjobs_
+	_Azure WebJobs_
 
-	> **Speaking Point:** A Webjob allows us to run background tasks in the same context as the Web Site.
+	> **Speaking Point:** A WebJob allows us to run background tasks in the same context as the Web Site.
 
 1. Switch back to the **ClipMeme** solution in **Visual Studio**.
 
 1. In **Solution Explorer** go to the **GifGenerator** project and open **Program.cs**. Scroll down to show the **ProcessImage** method.
 
-	> **Speaking Point:** Using the WebJobs SDK it makes really easy to listen to any events that is happening in any of the Azure resources.
+	> **Speaking Point:** Using the WebJobs SDK makes it really easy to listen to any event that is happening in any of the Azure resources.
 
-1. In Solution Explorer, right-click the **ClipMeme** project node and select **Add > Windows Azure Webjob...**.
+1. In Solution Explorer, right-click the **ClipMeme** project node and select **Add > Windows Azure WebJob...**.
 
-	![Associating a Webjob project with your Website](Images/associating-a-webjob-project-with-your-websit.png?raw=true)
+	![Associating a WebJob project with your Website](Images/associating-a-webjob-project-with-your-websit.png?raw=true)
 	
-	_Associating a Webjob project with your Website_
+	_Associating a WebJob project with your Website_
 
-1. In the Project Selector dialog, click Ok. 
+1. In the Project Selector dialog box, click OK. 
 
-	![Webjob project selector](Images/webjob-project-selector.png?raw=true)
+	![WebJob project selector](Images/webjob-project-selector.png?raw=true)
 	
-	_Webjob project selector_
+	_WebJob project selector_
 
 	> **Speaking Point:** We've already associated my Console project with my Website. The next time we publish the Website, the Webjob will be published with it.
 
 1. Switch to the **Management Portal** and click the **logs** link of your WebJob.
 
-	![Webjob Logs](Images/webjob-logs.png?raw=true)
+	![WebJob Logs](Images/webjob-logs.png?raw=true)
 	
-	_Webjob Logs_
+	_WebJob Logs_
 
-1. Show the logs and explain that every time a Job runs or fails, it will add a new entry to this log.
+1. Show the logs and explain that every time a Job runs or fails, a new entry will be added to this log.
 
 	> **Note:** If you generated errors in your log, they will be displayed between the other logs.
 
@@ -476,7 +478,7 @@ This demo is composed of the following segments:
 
 1. Select a storage account from the dropdown list.
 
-	> **Speaking Point:** The user can change the **Frequency** and also the **Start Date** for performing a backup.
+	> **Speaking Point:** The user can change both the **Frequency** and the **Start Date** for the backup.
 
 	![WebSite Storage accountand Frequency](Images/website-storage-accountand-frequency.png?raw=true)
 	
@@ -484,7 +486,7 @@ This demo is composed of the following segments:
 
 	![Database backup - No databases available](Images/database-backup---no-databases-available.png?raw=true)
 
-	If the website had databases configured, you could select a database to back up in the **Included Databases** drop-down.
+	If the website had databases configured, you could select a database to back up in the **Included Databases** drop-down list.
 
 	![Selecting Backup Database](Images/selecting-backup-database.png?raw=true)
 	
@@ -509,9 +511,9 @@ This demo is composed of the following segments:
 
 	![Restoring backup file](Images/restoring-backup-file.png?raw=true)
 	
-1. Click the arrow to continue to next page.
+1. Click the arrow to continue to the next page.
 
-1. Show the options to restore a Web Site (_current_ or _new_). From the databases drop-down, select a server and show how you can set up credentials to restore the database. Click the **Automatically adjust connection strings** checkbox. **Do not Confirm changes, close the window to continue**
+1. Show the options to restore a Web Site (_current_ or _new_). From the databases drop-down list, select a server and show how you can set up credentials to restore the database. Select the **Automatically adjust connection strings** checkbox. **Do not Confirm changes, close the window to continue**
 
 	![Restore Web Site options](Images/restore-web-site-options.png?raw=true)
 
@@ -532,7 +534,7 @@ This demo is composed of the following segments:
 	
 1. Change the **Instance Count** slider to **2** and then to **4**. 
 
-	> **Note:** Explain how the user can use the Target CPU threshold to automatically upscale or downscale the number of instances. This allows to spend only as much as needed for the service.
+	> **Note:** Explain how the user can use the Target CPU threshold to automatically upscale or downscale the number of instances. This allows the user to spend only the necessary amount for the service.
 	
 	![Updating instance count](Images/updating-instance-count.png?raw=true)
 	
@@ -551,7 +553,7 @@ This demo is composed of the following segments:
 	> **Speaking Point:** We can optimize the Web Site for **Performance**, **Round Robin**, or **Failover**. Failover is the scenario where we set up a primary node and in case of failure, traffic is routed automatically by Traffic Manager to secondary nodes. Since we want to optimize for Performance, we'll select this method. No matter where the user is, they will always hit the data center closest to them.
 		
 1. Click **Close**. Go to **Traffic Manager** and click on the traffic manager already created.
-1. Select **Endpoints**
+1. Click **Endpoints**
 
 	![Traffic Manager Endpoints](Images/traffic-manager-endpoints.png?raw=true)
 	
@@ -559,19 +561,19 @@ This demo is composed of the following segments:
 	
 	![Adding Traffic Manager endpoints](Images/adding-traffic-manager-endpoints.png?raw=true)
 
-1. Select **Web Site** in the **Service Type** combo. Check the deployed Web Site and add it to the Traffic Manager profile. Click **Ok**.
+1. Select **Web Site** in the **Service Type** dropdown list. Select the deployed Web Site and add it to the Traffic Manager profile. Click **Ok**.
 	
 	![Add Web Site to the Traffic Manager](Images/add-web-site-to-the-traffic-manager.png?raw=true)
 	
 	_Add Web Site to the Traffic Manager_
 
-	> **Speaking Point:** This ensures that no matter where you are in the world, you are going to always hit the datacenter closest to your location.
+	> **Speaking Point:** This ensures that no matter where you are in the world, you will always hit the datacenter closest to you.
 	
-1. Switch to **ClipMeme** site and show where you are served from.
+1. Switch to the **ClipMeme** site and show the datacenter that is serving your location.
 	
 ---
 
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw how to easily create a development environment upfront. Use some of the new Visual Studio Features to create beautiful modern Web Applications, backup and restore them, deploy them to Staging for testing, then onto Production and scale it worldwide.
+In this demo, you saw how to easily create a development environment upfront. Using some of the new Visual Studio Features we created beautiful modern Web Applications. We backed them up, restored them, deployed them to Staging for testing, then moved them onto Production, and finally scaled them in response to changes in demand.
