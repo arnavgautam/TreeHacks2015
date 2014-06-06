@@ -275,7 +275,7 @@ This demo is composed of the following segments:
 
 1. In Internet Explorer, open **Developer tools** and switch to the **Network** tab.
 
-1. Click **Play** to start recording the network traffic and refresh (**F5**) the application.
+1. Click **Play** to start recording the network traffic and refresh (**Ctrl+F5**) the application.
 
 1. Check that there is a request to **/Content/Social.png**. Select it and click **Details** to check the details of the request.
 
@@ -513,7 +513,7 @@ This demo is composed of the following segments:
 	
 1. Click the arrow to continue to the next page.
 
-1. Show the options to restore a Web Site (_current_ or _new_). From the databases drop-down list, select a server and show how you can set up credentials to restore the database. Select the **Automatically adjust connection strings** checkbox. **Do not Confirm changes, close the window to continue**
+1. Show the options to restore a Web Site (_current_ or _new_). **Do not Confirm changes, close the window to continue**
 
 	![Restore Web Site options](Images/restore-web-site-options.png?raw=true)
 
