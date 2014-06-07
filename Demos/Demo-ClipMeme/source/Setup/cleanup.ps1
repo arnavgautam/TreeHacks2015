@@ -37,8 +37,9 @@ $PublishSettingsFile = Join-Path $scriptDir ".\assets\publishSettings\azure.publ
 $StorageContainers = @('uploads','memes')
 $EnvironmentWebSites = @{$WebsiteName=$EnvironmentPrimaryLocation}
 $EnvironmentStagingSites = @{$WebsiteName=$EnvironmentPrimaryLocation}
+$WebsiteUrl = "http://$WebsiteName.azurewebsites.net"
 
-$AppSettings = @{'DisplayName'=$DisplayName; 'TrafficManagerRegion'=$EnvironmentPrimaryLocation; 'Website'='http://$WebsiteName.azurewebsites.net'}
+$AppSettings = @{'DisplayName'=$DisplayName; 'TrafficManagerRegion'=$EnvironmentPrimaryLocation; 'Website'=$WebsiteUrl}
 
 popd
 

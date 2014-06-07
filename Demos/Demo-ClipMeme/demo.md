@@ -87,7 +87,7 @@ This demo is composed of the following segments:
 
 1. [Azure Web Jobs](#segment3)
 
-1. [Azure Auto Scale, Traffic Manager and Backup](#segment4)
+1. [Azure Backups, Auto Scale and Traffic Manager](#segment4)
 
 <a name="segment1" />
 ###Visual Studio and Azure Provisioning###
@@ -464,7 +464,7 @@ This demo is composed of the following segments:
 	> **Note:** If you generated errors in your log, they will be displayed between the other logs.
 
 <a name="segment4" />
-### Azure Backup, Auto Scale and Traffic Manager ###
+### Azure Backups, Auto Scale and Traffic Manager ###
 
 <a name="backups" />
 #### Task 1 - Backups ####
