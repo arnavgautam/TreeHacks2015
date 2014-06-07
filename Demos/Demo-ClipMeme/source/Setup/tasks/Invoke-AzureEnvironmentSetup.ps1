@@ -132,13 +132,15 @@
         Wait-Job $StorageContainerJobs
 		Write-Done
 		
+		$StorageContext = New-AzureStorageContext -StorageAccountName $EnvironmentStorageAccount -StorageAccountKey $StorageAccountKey
+		
 		Write-Action "Creating Storage Table"
-		$StorageTableJob = Start-Job -ScriptBlock { New-AzureStorageTable -Name "MemeMetadata" }			
-		Wait-Job $StorageTableJob
+		$StorageTableJob = Start-Job -ScriptBlock { New-AzureStorageTable -Name "MemeMetadata" -Context $StorageContext }			
+		$rtc = Wait-Job $StorageTableJob
 		Write-Done
 		
 		Write-Action "Creating Queue"			
-		$StorageQueueJob = Start-Job -ScriptBlock { New-AzureStorageQueue -Name "uploads" }
+		$StorageQueueJob = Start-Job -ScriptBlock { New-AzureStorageQueue -Name "uploads" -Context $StorageContext }
 		Wait-Job $StorageQueueJob
 		Write-Done
 		
