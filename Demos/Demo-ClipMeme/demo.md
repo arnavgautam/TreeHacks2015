@@ -52,9 +52,9 @@ In this demo, you will see how to:
 1. Replace the placeholder values with the following:
 
 	- **solutionWorkingDir**: the default directory where the solutions and assets will be copied for the demo. You can leave the default directory or choose a different one.
-	- **DisplayName**: it is the username that is displayed on ClipMeme's home screen.
-	- **EnvironmentSubscriptionName**: it is your Azure subscription name.
-	- **EnvironmentPrimaryLocation**: it is the location where the Azure resources will be deployed. E.g.: East US, West US, etc.
+	- **DisplayName**: the username that is displayed on ClipMeme's home screen.
+	- **EnvironmentSubscriptionName**: your Azure subscription name.
+	- **EnvironmentPrimaryLocation**: the location where the Azure resources will be deployed. E.g.: East US, West US, etc.
 	- **StorageAccountName**: the name of the storage account required for ClipMeme. The setup scripts will automatically create a new Storage Account in Azure using this value. The name you choose must be unique and in lower case.
 	- **WebsiteName**: the name of the Azure Website for ClipMeme. The setup scripts will automatically create an Azure Website, scale it to **Standard** mode and create a _staging_ slot.
 	- **TrafficManagerProfile**: the name of the Azure Traffic Manager profile. The setup scripts will automatically create a profile to use in the demo.
@@ -69,9 +69,9 @@ In this demo, you will see how to:
 
 1. Go to your working directory (if you kept the default value, the directory is **C:\Demos\Source**) and  the **ClipMeme** solution with **Visual Studio**.
 
-1. Build the solution to install all the NuGet packages. Keep this Visual Studio instance open, as you will use it later in the demo. 
+1. Build the solution to install all the NuGet packages. Keep this Visual Studio instance open, to use later in the demo. 
 
-1. Run without debugging (CTRL + F5) using Internet Explorer. Then switch back to Visual Studio, change the default browser to Google Chrome and again run without debugging. You will end up with 2 browsers showing ClipMeme. You will use them in Segment 2.
+1. Run without debugging (CTRL + F5) using Internet Explorer. Then switch back to Visual Studio, change the default browser to Google Chrome and again run without debugging. You will end up with two browsers showing ClipMeme, which you will use in Segment 2.
 	
 	![Changing the browser to Chrome](Images/changing-the-browser-to-chrome.png?raw=true)
 	
@@ -102,7 +102,7 @@ This demo is composed of the following segments:
 
 1. Select the **Empty** template and select the **Host in the cloud** checkbox. Click **OK**.
 
-	> **Speaking Point:** Something new to point out: you can see, we've made it really easy for you to provision both **Azure Web Sites** and **Virtual Machines** directly from this dialog box. 
+	> **Speaking Point:** Something new to point out: as you can see, we've made it really easy for you to provision both **Azure Web Sites** and **Virtual Machines** directly from this dialog box. 
 
 	![Web Site Empty Template](Images/web-site-empty-template.png?raw=true)	
 
@@ -112,7 +112,7 @@ This demo is composed of the following segments:
 	
 	![Azure Website Database Provisioning](Images/azure-website-database-provisioning.png?raw=true)
 
-2. Browse to https://manage.windowsazure.com and log-in with your credentials.
+2. Browse to https://manage.windowsazure.com and log in with your credentials.
  
 2. Click **Web sites** and verify that your site is created.
 
@@ -156,7 +156,7 @@ This demo is composed of the following segments:
 	
 	_Internet Explorer - Inspect element_
 
-	> **Note:** Make sure the **DOM Explorer** is opened. You can press CTRL + 1 to activate it.
+	> **Note:** Make sure the **DOM Explorer** is open. You can press CTRL + 1 to activate it.
 	
 1. In the **DOM Explorer** select the **header** html tag
 	
@@ -164,7 +164,7 @@ This demo is composed of the following segments:
 	
 	_DOM Explorer - Header section_
 
-1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay**. If it is already opened, hover with your mouse over the panel.
+1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay**. If it is already open, hover with your mouse over the panel.
 
 1. Click **F12 Auto sync** from the Web Essentials toolbox in Internet Explorer to enable updates directly in the browser.
 
@@ -178,7 +178,7 @@ This demo is composed of the following segments:
 
 	![Automatic update of background color](Images/automatic-update-background-color.png?raw=true "Automatic update background color")
 
-	_Automatic update background color_
+	_Automatic update of background color_
 	
 	![Final background color](Images/final-background-color.png?raw=true "Final background color")
 	
@@ -198,7 +198,7 @@ This demo is composed of the following segments:
 
 	>**Speaking Point**: Oops, it looks like there is a text error in the header - we repeated the word **and**. Let’s fix that. 
 	
-1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay** or hover the Web Essentials panel at the bottom of the browser.
+1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay** or hover over the Web Essentials panel at the bottom of the browser.
 
 1. Click on the **Design** link to enable **Design mode**.
 	
@@ -318,7 +318,7 @@ This demo is composed of the following segments:
 	
 	_After fixing the errors_
 
-1. Close the **Error List** panel and show that querying the DOM from a controller is not a good practice in AngularJS so we need to refactor the code by adding a new directive.
+1. Close the **Error List** panel and show that querying the DOM from a controller is not good practice in AngularJS so we need to refactor the code by adding a new directive.
 	
 1. Right-click the **/scripts/app/directives** directory and select **Add** | **New item**.
 	
@@ -343,9 +343,9 @@ This demo is composed of the following segments:
  
 1. Remove the **scope** parameter just added (it was simply to show the error).
 	
-1. Cut and paste the code from the **modal** controller to the directive you created, inside the **link** function; the code to move is highlighted with a comment that says **//Refactor to a directive** to another comment that says **// End refactor to a directive**. 
+1. Cut and paste the code from the **modal** controller to the directive you created, inside the **link** function; the code you need to move is highlighted with a comment that says **//Refactor to a directive** to another comment that says **// End refactor to a directive**. 
 
-1. Remove the **element** and **scope** variable in the **modal** controller to avoid JSHint issues.
+1. Remove the **element** and **scope** variables in the **modal** controller to avoid JSHint issues.
 	
 	![Removed variables from modal controller](Images/removed-variables-from-modal-controller.png?raw=true "Removed variables from modal controller")
 	
@@ -353,7 +353,7 @@ This demo is composed of the following segments:
 
 	>**Note:** Do not remove the **scope.init** declaration as it is required for AngularJS.
 	
-1. Open the **Modal.cshtml** view from **Views\Shared** folder and update the div element with id **dropzone** as with the code below; the code you need to update is highlighted with a comment that says **<!--Dropzone element-->**. 
+1. Open the **Modal.cshtml** view from the **Views\Shared** folder and update the div element with id **dropzone** as with the code below; the code you need to update is highlighted with a comment that says **<!--Dropzone element-->**. 
  
 	````HTML
 	<div app-dropzone class="drag-drop" ng-hide="fileloaded || loading">
@@ -388,7 +388,7 @@ This demo is composed of the following segments:
 
 1. Show the URL in the browser and explain that you deployed the site in a new deployment **slot**.
 
-	> **Speaking Point:** And what staging support enables inside of Azure is for you to create a new staging version of your Web app with a private URL that you can access and use to test. This allows you to basically deploy your application to the staging environment, get it ready, test it out before you finally send users to it.
+	> **Speaking Point:** And what staging support enables inside of Azure is for you to create a new staging version of your Web app with a private URL that you can access and use to test. This allows you to basically deploy your application to the staging environment, get it ready, and test it out before you finally send users to it.
 
 1. Go to your Azure Website in the management portal and click **Swap**.
 
@@ -396,13 +396,13 @@ This demo is composed of the following segments:
 
 	_Swapping slots_
 
-1. Select the _staging_ slot as **Source** and the production slot as **Destination**. Click the check mark to continue.
+1. Select the _staging_ slot as the **Source** and the production slot as the **Destination**. Click the check mark to continue.
 
 	![Swapping Azure Website slots](Images/swapping-azure-website-slots.png?raw=true)
 
 	> **Speaking Point:** With a single button called swap, we'll basically rotate the incoming traffic from the old production site to the new staged version. What's nice is that we still keep your old version around. So if you discover once you go live you still have a bug that you missed, you can always swap back to the previous state. Again, this allows you to deploy with a lot of confidence and make sure that your users are always seeing a consistent experience when they hit your app. 
 
-1. When the swapping is completed click the **Browse** button.
+1. When the swapping is complete click the **Browse** button.
 
 <a name="segment3" />
 ### Azure Web Jobs ###
@@ -451,7 +451,7 @@ This demo is composed of the following segments:
 	
 	_WebJob project selector_
 
-	> **Speaking Point:** We've already associated my Console project with my Website. The next time we publish the Website, the Webjob will be published with it.
+	> **Speaking Point:** We've already associated my Console project with my Website. The next time we publish the Website, the WebJob will be published with it.
 
 1. Switch to the **Management Portal** and click the **logs** link of your WebJob.
 
@@ -461,7 +461,7 @@ This demo is composed of the following segments:
 
 1. Show the logs and explain that every time a Job runs or fails, a new entry will be added to this log.
 
-	> **Note:** If you generated errors in your log, they will be displayed between the other logs.
+	> **Note:** If errors were generated in your log, they will be displayed between the other logs.
 
 <a name="segment4" />
 ### Azure Backups, Auto Scale and Traffic Manager ###
@@ -520,7 +520,7 @@ This demo is composed of the following segments:
 
 <a name="auto-scale" />
 #### Task 2 - Auto Scale ####
-1. Go to the **Scale** tab.
+1. Click the **Scale** tab.
 
 	![Web Site Scale](Images/web-site-scale.png?raw=true)
 
@@ -561,7 +561,7 @@ This demo is composed of the following segments:
 	
 	![Adding Traffic Manager endpoints](Images/adding-traffic-manager-endpoints.png?raw=true)
 
-1. Select **Web Site** in the **Service Type** dropdown list. Select the deployed Web Site and add it to the Traffic Manager profile. Click **Ok**.
+1. Select **Web Site** in the **Service Type** dropdown list. Select the deployed Web Site and add it to the Traffic Manager profile. Click the check mark button.
 	
 	![Add Web Site to the Traffic Manager](Images/add-web-site-to-the-traffic-manager.png?raw=true)
 	
@@ -576,4 +576,4 @@ This demo is composed of the following segments:
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw how to easily create a development environment upfront. Using some of the new Visual Studio Features we created beautiful modern Web Applications. We backed them up, restored them, deployed them to Staging for testing, then moved them onto Production, and finally scaled them in response to changes in demand.
+In this demo, you saw how to easily create a development environment upfront. Using some of the new Visual Studio Features we created beautiful modern Web Applications; we backed them up, restored them, deployed them to Staging for testing, then moved them onto Production, and finally scaled them in response to changes on demand.
