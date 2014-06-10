@@ -119,7 +119,8 @@
             {
                 font = new Font("Microsoft Sans Serif", fontSize--, FontStyle.Bold);
                 size = graphics.MeasureString(overlayText, font);
-            } while (size.Width > source.Width);
+            } 
+            while (size.Width > source.Width);
 
             // shadows
             graphics.DrawString(overlayText, font, new SolidBrush(Color.Black), ((source.Width - size.Width) / 2) - 1, source.Height - size.Height);

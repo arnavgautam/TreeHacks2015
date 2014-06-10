@@ -110,7 +110,7 @@
         private static Bitmap RenderOverlay(Bitmap source, string overlayText)
         {
             // fails for indexed pixel format image (see: m1col.gif sample)
-            var graphics = Graphics.FromImage(source);  
+            var graphics = Graphics.FromImage(source);
             var brush = new SolidBrush(Color.White);
             var fontSize = 32;
             var font = new Font("Microsoft Sans Serif", fontSize, FontStyle.Bold);
@@ -119,7 +119,8 @@
             {
                 font = new Font("Microsoft Sans Serif", fontSize--, FontStyle.Bold);
                 size = graphics.MeasureString(overlayText, font);
-            } while (size.Width > source.Width);
+            }
+            while (size.Width > source.Width);
 
             // shadows
             graphics.DrawString(overlayText, font, new SolidBrush(Color.Black), ((source.Width - size.Width) / 2) - 1, source.Height - size.Height);
