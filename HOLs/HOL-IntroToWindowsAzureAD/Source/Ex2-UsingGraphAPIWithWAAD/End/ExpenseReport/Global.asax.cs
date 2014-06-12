@@ -20,7 +20,7 @@ namespace ExpenseReport
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        private void WSFederationAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
+        void WSFederationAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
         {
             if (!String.IsNullOrEmpty(IdentityConfig.Realm))
             {
