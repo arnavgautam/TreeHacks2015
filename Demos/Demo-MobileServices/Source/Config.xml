@@ -1,0 +1,49 @@
+<configuration>
+	<appSetup>
+		<packagename>FacilityRequest</packagename>
+    </appSetup>
+    <localPaths>		
+		<!-- Location where the demo source files will be copied in order to perform the demo -->
+        <solutionWorkingDir>C:\Demos\Source</solutionWorkingDir>
+		<!-- Relative path to the folder containing the begin solutions -->
+        <beginSolutionDir>.\FacilityApp\Begin</beginSolutionDir>
+     </localPaths>
+	<clientSettings>
+		<!-- Configuration Settings -->
+		<AadAuthority>c</AadAuthority>		
+		<AadRedirectResourceURI>https://{mobileservice-name}.azure-mobile.net/login/aad</AadRedirectResourceURI>
+		<AppRedirectLocation>https://{mobileservice-name}.azure-mobile.net/</AppRedirectLocation>
+		<AadClientID>{mobileservice-AD-appId}</AadClientID>
+		<AppKey>{mobileservice-appKey}</AppKey>
+		<MobSvcUri>https://{mobileservice-name}.azure-mobile.net/</MobSvcUri>
+		<SharePointResource>https://{domain}-my.sharepoint.com</SharePointResource>
+		<SharePointUri>https://{domain}-my.sharepoint.com/personal/{user}/_api/web</SharePointUri>	  
+		<SharePointUser>{sharepoint-user}</SharePointUser>
+		<Authority>https://login.windows.net/common/oauth2/authorize</Authority>
+		<!-- Client App Settings -->
+		<UserName>{User-FirstName}</UserName>
+		<UserSurname>{User-Surname}</UserSurname>		
+		<RoomFR>{Room}</RoomFR>
+		<BuildingFRVM>{Building}</BuildingFRVM>
+		<RoomFRVM>{Room}</RoomFRVM>
+		<CityFRVM>{City}</CityFRVM>
+		<StreetFRVM>{Street}</StreetFRVM>
+		<StateFRVM>{State}</StateFRVM>
+		<ZipFRVM>{ZipCode}</ZipFRVM>
+	</clientSettings>
+	<windowsAzureSubscription>
+		<mobileService>
+			<sqlServer>{server}.database.windows.net</sqlServer>
+			<db>{database}</db>
+			<sqlUsername>{sql-user}</sqlUsername>
+			<sqlPassword>{password}</sqlPassword>
+			<sqlTable>{mobileservice-name}.facilityrequests</sqlTable>
+		</mobileService>
+  </windowsAzureSubscription>  
+  <sharepoint>
+		<baseUrl>https://{domain}-my.sharepoint.com/personal/{user}/</baseUrl>
+		<username>{sharepoint-user}</username>
+		<password>{password}</password>
+		<folderName>Requests</folderName>
+  </sharepoint>
+</configuration>

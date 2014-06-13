@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<appSettings>
+  <add key="AppKey" value="{mobileservice-key}" />
+  <add key="AadAuthority" value="https://login.windows.net/common/oauth2/authorize" />
+  <add key="AadRedirectResourceURI" value="https://{mobileservice-name}.azure-mobile.net/login/aad" />
+  <add key="AadClientID" value="{nativeclient-appid}" />
+  <add key="SharePointResource" value="https://{domain}-my.sharepoint.com" />
+  <add key="MobSvcUri" value="https://mobileserviceazuredemo.azure-mobile.net/" />
+  <add key="SharePointUser" value="{user}@{domain}.onmicrosoft.com" />
+  <add key="UserName" value="{user-firstname}" />
+  <add key="UserSurname" value="{user-surname}" />
+  <add key="BuildingFRVM" value="{building}" />
+  <add key="RoomFRVM" value="{room}" />
+  <add key="StreetFRVM" value="{street}" />
+  <add key="CityFRVM" value="{city}" />
+  <add key="StateFRVM" value="{state}" />
+  <add key="ZipFRVM" value="{zip}" />
+  <add key="CameraThumbnail" value="ms-appx:///Assets/Camera.png" />
+  <add key="MapImageLarge" value="ms-appx:///Assets/Map_Large.png" />
+  <add key="StatusImageComplete" value="/Assets/complete.png" />
+  <add key="StatusImageIncomplete" value="/Assets/complete.png" />
+  <add key="UserImage" value="ms-appx:///Assets/UserImage.png" />
+</appSettings>

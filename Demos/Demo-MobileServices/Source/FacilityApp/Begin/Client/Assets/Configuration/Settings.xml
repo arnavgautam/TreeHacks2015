@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<appSettings>
+  <add key="AppKey" value="ef7ENZYwDriCLaixz6re9/Z+zrMkLdLmfOo65S9pJmA=" />
+  <add key="AadAuthority" value="https://login.windows.net/common/oauth2/authorize" />
+  <add key="AadRedirectResourceURI" value="https://mobileservice-daniel.azure-mobile.net/login/aad" />
+  <add key="AadClientID" value="5d6fed50-f71f-492b-986c-8658096f2fa4" />
+  <add key="SharePointResource" value="https://dpe1-my.sharepoint.com" />
+  <add key="MobSvcUri" value="https://mobileservice-daniel.azure-mobile.net/" />
+  <add key="SharePointUser" value="{user}@{domain}.onmicrosoft.com" />
+  <add key="UserName" value="Daniel" />
+  <add key="UserSurname" value="Altamirano" />
+  <add key="BuildingFRVM" value="Building 1" />
+  <add key="RoomFRVM" value="1234" />
+  <add key="StreetFRVM" value="Garibaldi" />
+  <add key="CityFRVM" value="Tandil" />
+  <add key="StateFRVM" value="BA" />
+  <add key="ZipFRVM" value="7000" />
+  <add key="CameraThumbnail" value="ms-appx:///Assets/Camera.png" />
+  <add key="MapImageLarge" value="ms-appx:///Assets/Map_Large.png" />
+  <add key="StatusImageComplete" value="/Assets/complete.png" />
+  <add key="StatusImageIncomplete" value="/Assets/complete.png" />
+  <add key="UserImage" value="ms-appx:///Assets/UserImage.png" />
+</appSettings>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>ClipMeme</Id>
+  <Technologies>
+		<Technology>Windows Azure Websites</Technology>
+  </Technologies>
+  <Author>
+    <Name></Name>
+  </Author>
+  <Description>
+  In this demo, we showcase Visual Studio Azure provisioning features along with PowerShell script to provision multiple geographic deployments using Traffic Manager, and background services using Web Jobs. It also reinforces our momentum with Visual Studio (using Web Essentials) as a great tool for creating powerful HTML5 applications backed by ASP.NET.
+  </Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>ClipMeme</Title>
+  <Version>1.0.0</Version>
+  <Source>Source</Source>
+  <DependencyChecker></DependencyChecker>
+</Demo>

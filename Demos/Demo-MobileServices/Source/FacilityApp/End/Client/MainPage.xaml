@@ -1,0 +1,135 @@
+﻿<Page
+    x:Name="pageRoot"
+    x:Class="MobileClient.MainPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="PageRootLoaded">
+    <Page.BottomAppBar>
+        <AppBar IsOpen="True" IsSticky="True">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>                    
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="RightPanel" Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Center">
+                    <AppBarButton x:Name="btnAdd" x:Uid="Add" Icon="Add" Label="Add" Click="OnAddClick" />
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+    <Page.Resources>
+
+        <!-- Collection of items displayed by this page -->
+        <CollectionViewSource
+            x:Name="itemsViewSource"
+            Source="{Binding Requests}" />
+    </Page.Resources>
+
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="820" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Horizontal scrolling grid -->
+       
+        <ListView
+           x:Name="itemListView"
+            AutomationProperties.Name="Items"
+            Grid.Row="1"
+            TabIndex="1"            
+            ItemsSource="{Binding Source={StaticResource itemsViewSource}}"    
+            Margin="0 45 0 37"
+            SelectionMode="None"
+            IsSwipeEnabled="False"
+            IsItemClickEnabled="True"
+            ItemClick="ItemViewItemClick">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="820" Style="{StaticResource DataGridItem}" >
+                        <Grid Grid.Column="1" VerticalAlignment="Top" Width="820" Background="{ThemeResource DataItemBackgrond}" Margin="0 7 0 7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="59"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="77"/>
+                                <!--<ColumnDefinition Width="275"  />
+                                <ColumnDefinition Width="26" />-->
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Text="{Binding ProblemDescription}"  Foreground="#2D3E50" FontSize="26" FontWeight="Bold" Margin="0 0 0 15" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
+                            <Image Source="{Binding StatusImage}" Width="60" Height="60" HorizontalAlignment="Left" Grid.Column="2"/>
+
+                            <TextBlock Text="{Binding Status}" Foreground="{Binding StatusForegroundBrush}" FontSize="20" FontWeight="Bold" Margin="0 -20 0 15" Grid.Row="1" VerticalAlignment="Top"  Grid.Column="1"/>
+                            <TextBlock Text="800 Howard St, CA 94103" Foreground="{StaticResource DataItemForegroundThemeBrush}" FontSize="22" TextWrapping="NoWrap" Margin="0 5 0 5" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            
+                            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+                                <TextBlock Text="Requestor:" Style="{ThemeResource ListDataItemLabel}" />
+                                <TextBlock Text="{Binding User}"  Style="{ThemeResource ListDataItemText}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+                                <TextBlock Text="Building:" Style="{ThemeResource ListDataItemLabel}" />
+                                <TextBlock Text="{Binding Building}" Style="{ThemeResource ListDataItemText}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+                                <TextBlock Text="Room:" Style="{ThemeResource ListDataItemLabel}" />
+                                <TextBlock Text="{Binding Room}" Style="{ThemeResource ListDataItemText}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ProgressRing x:Name="prog1" Grid.Row="1" IsActive="True" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="50"></ProgressRing>
+        <!-- Back button and page title -->
+        <Grid Style="{StaticResource TopGridBarStyleLight}" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Background="#032A3B" Width="300" Height="150" x:Name="JoshGrid" Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding GridVisibility, Mode=TwoWay}">
+
+                <Image Name="UserImage" Width="52" Margin="90 0 0 0" Source="{Binding UserImage}"></Image>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0 0 0">
+                    <TextBlock Name="UserTextBlockName"  FontSize="25" Foreground="White" Text="{Binding UserName}"></TextBlock>
+                    <TextBlock Name="UserTextBlockSurname" FontSize="22" Foreground="White" Text="{Binding UserSurname}"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+            <Button x:Name="backButton" Margin="39,49,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Style="{StaticResource TopGridButtonStyle}"
+                    
+                        VerticalAlignment="Top" 
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource TopGridCaptionStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Center" Margin="0,40,0,40"/>
+        </Grid>
+
+    </Grid>
+</Page>

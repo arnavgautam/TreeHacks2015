@@ -1,0 +1,48 @@
+﻿
+    <script type="text/ng-template" id="createModal.html">
+        <!-- Modal -->
+        <div class="modal-content" ng-init="init()">
+            <form role="form" name="gifForm" novalidate>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel();">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Create a Meme</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" ng-class="{ 'has-error' : gifForm.caption.$invalid && submitted }">
+                        <label for="Add a caption">Add a Caption</label>
+                        <input type="text" name="caption" id="caption" ng-required="true" ng-model="image.text" class="form-control" />
+                    </div>
+                    
+                    <!--Dropzone element-->
+                    <div app-dropzone class="drag-drop" ng-hide="fileloaded || loading">
+                        <div class="dashed">
+                            <h5 class="text-muted">Drag &amp; drop file here</h5>
+                            <i class="fa fa-upload fa-4x text-muted"></i>
+                        </div>
+                    </div>
+
+                    <div class="fileerror" ng-show="typeerror || filemissing">
+                        <span ng-show="typeerror">File type <strong>{{typeerror}}</strong> is not allowed</span>
+                        <span ng-show="filemissing">File is required</span>
+                    </div>
+
+                    <div class="drag-drop" ng-show="fileloaded && !loading">
+                        <div class="preview-image">
+                            <img class="img-responsive" ng-src="{{image.source}}" />
+                            <div class="overlay">
+                                {{image.text}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="drag-drop" ng-show="loading">
+                        <p>Uploading...</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" ng-click="submit(gifForm.$valid)">Submit</button>
+                </div>
+            </form>
+        </div>
+    </script>

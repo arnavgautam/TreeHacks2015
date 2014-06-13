@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Demo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+  <Id>MobileServicesDemo</Id>
+  <Technologies>
+    <Technology>Azure Mobile Services</Technology>
+  </Technologies>
+  <Author>
+    <Name></Name>
+    <Blog></Blog>
+    <Email></Email>
+  </Author>
+  <Description>In this demo, you will see an exciting new set of features that makes Mobile Services even more compelling, especially in the enterprise space. You will see how to build a .NET back end locally, publishing it to the cloud, adding authentication using the Active Directory Authentication Library (ADAL), integrating with SharePoint and then building a cross-platform client with Xamarin.
+</Description>
+  <Document ConversionType="Html">Demo.md</Document>
+  <Title>Mobile Services</Title>
+  <Version>1.0.0</Version>
+  <Source>Source</Source>
+  <DependencyChecker></DependencyChecker>  
+</Demo>

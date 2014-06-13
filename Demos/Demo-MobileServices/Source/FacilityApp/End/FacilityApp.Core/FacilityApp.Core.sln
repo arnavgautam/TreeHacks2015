@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacilityApp.Core", "FacilityApp.Core\FacilityApp.Core.csproj", "{29DDA322-9640-4167-A6B8-F745781DC77D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29DDA322-9640-4167-A6B8-F745781DC77D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29DDA322-9640-4167-A6B8-F745781DC77D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29DDA322-9640-4167-A6B8-F745781DC77D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29DDA322-9640-4167-A6B8-F745781DC77D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = FacilityApp.Core\FacilityApp.Core.csproj
+	EndGlobalSection
+EndGlobal

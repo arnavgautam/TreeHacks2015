@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>AadAuthority</key>
+    <string>https://login.windows.net/common/oauth2/authorize</string>
+    <key>AppRedirectLocation</key>
+    <string>https://{mobileservice-name}.azure-mobile.net/</string>
+    <key>AadRedirectResourceURI</key>
+    <string>https://{mobileservice-name}.azure-mobile.net/login/aad</string>
+    <key>AadClientID</key>
+    <string>{nativeclient-appid}</string>
+    <key>AppKey</key>
+    <string>{mobileservice-key}</string>
+    <key>MobSvcUri</key>
+    <string>https://{mobileservice-name}.azure-mobile.net/</string>
+    <key>UserLocation</key>
+    <string>{userLocation}</string>
+  </dict>
+</plist>
