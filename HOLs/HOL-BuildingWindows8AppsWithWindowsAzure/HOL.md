@@ -1,5 +1,5 @@
-ï»¿<a name="Title" />
-# Building Windows 8 Applications using Windows Azure Web Sites #
+<a name="Title" />
+# Building Windows 8 Applications using Windows Azure Websites #
 
 ---
 <a name="Overview" />
@@ -7,7 +7,7 @@
 
 Apps are at the center of the Windows 8 experience. They are alive with activity and vibrant content. Users are immersed in full-screen Windows Store apps where they can focus on their content, rather than the operating system.
 
-In this hands-on lab you will learn how to combine the fluency of Windows 8 applications with the power of Windows Azure. From a Windows Store application, you will consume an ASP.NET Web API service published in Windows Azure Web Sites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app using Windows Azure Notification Hubs to send toast notifications from your service to all registered clients.
+In this hands-on lab you will learn how to combine the fluency of Windows 8 applications with the power of Windows Azure. From a Windows Store application, you will consume an ASP.NET Web API service published in Windows Azure Websites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app using Windows Azure Notification Hubs to send toast notifications from your service to all registered clients.
 
 <a name="Objectives" />
 ### Objectives ###
@@ -15,7 +15,7 @@ In this hands-on lab you will learn how to combine the fluency of Windows 8 appl
 In this hands-on lab, you will learn how to:
 
 - Create an ASP.NET Web API service
-- Publish the service to Windows Azure Web Sites
+- Publish the service to Windows Azure Websites
 - Create a Windows Store application that consumes the Web API service
 - Add Push Notifications to the Windows Store application by using Notifications Hub
 
@@ -74,7 +74,7 @@ This hands-on lab includes the following exercises:
 
 ASP.NET Web API is a framework that facilitates the process of building and consuming HTTP services for a wide range of clients.
 
-In this exercise you will learn the basics of consuming an ASP.NET Web API REST service - hosted in Windows Azure Web Sites - from a Windows Store application.
+In this exercise you will learn the basics of consuming an ASP.NET Web API REST service - hosted in Windows Azure Websites - from a Windows Store application.
 
 You will first create a new Windows Azure Web Site in the portal to host the service. Then, you will create a new ASP.NET Web API project and publish it in Windows Azure from Visual Studio. Once the default service is published, you will create a basic Windows Store client application with a simple list to retrieve the service values.
 
@@ -82,7 +82,7 @@ You will first create a new Windows Azure Web Site in the portal to host the ser
 
 
 <a name="Ex1Task1" />
-#### Task 1 â€“ Creating a Web API Service ####
+#### Task 1 – Creating a Web API Service ####
 
 In this task you will create a new ASP.NET Web API project and explore its components. 
 
@@ -155,7 +155,7 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 1. Press **Shift + F5** to stop running the solution.
 
 <a name="Ex1Task2" />
-#### Task 2 â€“ Adding a New Windows Azure Web Site from Server Explorer ####
+#### Task 2 – Adding a New Windows Azure Web Site from Server Explorer ####
 
 1. If not already opened, open **Microsoft Visual Studio Express 2013 For Web** and then open **Server Explorer** by selecting **View | Server Explorer**.
 
@@ -167,7 +167,7 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 
 1. After sign in, the **Windows Azure** node is populated with the resources in your Windows Azure subscription.
 
-1. Expand the **Windows Azure** node, right-click the **Web Sites** node and select **Add New Site...**.
+1. Expand the **Windows Azure** node, right-click the **Websites** node and select **Add New Site...**.
 
 	![Add new site](Images/add-new-website.png?raw=true)
 
@@ -189,17 +189,17 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 
 	> **Note:** By default, Windows Azure provides domains at _azurewebsites.net_ but also gives you the possibility to set custom domains using the Windows Azure Management Portal (right-click your Web site from Server Explorer and select **Open in Management Portal**). However, you can only manage custom domains if you are using certain Web site modes.
 	
-	> Windows Azure offers 3 modes for users to run their Web sites - **Free**, **Shared**, and **Standard**. In **Free** and **Shared** mode, all Web sites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are **Free** (strict quotas) vs. **Shared** (more flexible quotas). The maximum number of free sites may vary with your plan. In **Standard** mode, you choose which sites run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Web Sites Mode configuration in the **Scale** menu of your Web site.
+	> Windows Azure offers 3 modes for users to run their Websites - **Free**, **Shared**, and **Standard**. In **Free** and **Shared** mode, all Websites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are **Free** (strict quotas) vs. **Shared** (more flexible quotas). The maximum number of free sites may vary with your plan. In **Standard** mode, you choose which sites run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Websites Mode configuration in the **Scale** menu of your Web site.
 
 	> ![Web Site Modes](Images/web-site-modes.png?raw=true "Web Site Modes")
 
-	> If you are using **Shared** or **Standard** mode, you will be able to manage custom domains for your Web site by going to your Web siteâ€™s **Configure** menu and clicking **Manage Domains** under _domain names_.
+	> If you are using **Shared** or **Standard** mode, you will be able to manage custom domains for your Web site by going to your Web site’s **Configure** menu and clicking **Manage Domains** under _domain names_.
 
 	> ![Manage Domains](Images/manage-domains.png?raw=true "Manage Domains")
 
 	> ![Manage Custom Domains](Images/manage-custom-domains.png?raw=true "Manage Custom Domains")
 
-1. Once the Web site is created, it will be displayed in Server Explorer under the **Web Sites** node. Right-click the new Web site and select **Open in Browser** to check that the Web site is running.
+1. Once the Web site is created, it will be displayed in Server Explorer under the **Websites** node. Right-click the new Web site and select **Open in Browser** to check that the Web site is running.
 
 	![Browsing to the new web site](Images/browsing-to-the-new-web-site.png?raw=true)
 
@@ -210,7 +210,7 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 	_Web site running_
 
 <a name="Ex1Task3" />
-#### Task 3 â€“ Publishing the Web API Service to Windows Azure Web Sites ####
+#### Task 3 – Publishing the Web API Service to Windows Azure Websites ####
 
 1. In **Solution Explorer**, right-click the Web site project and select **Publish...**.
 
@@ -259,7 +259,7 @@ In this task you will create a new ASP.NET Web API project and explore its compo
 	_Default web service - Published_
 
 <a name="Ex1Task4" />
-#### Task 4 â€“ Creating a Windows Store Client Application ####
+#### Task 4 – Creating a Windows Store Client Application ####
 
 In this task you will create a blank Windows Store application that will consume the service you already have running.
 
@@ -389,7 +389,7 @@ The Entity Framework Code First modeling workflow allows you to use your own dom
 <a name="Ex2Task1" />
 #### Task 1 - Creating an ASP.NET Web API Service with Entity Framework Code First and Scaffolding ####
 
-In this task you will add Entity Framework Scaffolding and Code First to an ASP.NET Web API service. At the end of this task, you will have a basic API service that performs CRUD operations (Create, Read, Update and Delete) implemented and published in Windows Azure Web Sites.
+In this task you will add Entity Framework Scaffolding and Code First to an ASP.NET Web API service. At the end of this task, you will have a basic API service that performs CRUD operations (Create, Read, Update and Delete) implemented and published in Windows Azure Websites.
 
 1. Open **Visual Studio Express 2013 for Web** and open the ***WebApi.sln*** solution located in the ***Source/Ex2-DataAccess/Begin*** folder. Alternatively, you can continue with the solution that you obtained in the previous exercise.
 
@@ -655,7 +655,7 @@ In this task you will add Entity Framework Scaffolding and Code First to an ASP.
 <a name="Ex2Task2" />
 #### Task 2 - Publishing the Customers Web API Service to Windows Azure ####
 
-In this task you will publish the updated Web API service in Windows Azure Web Sites replacing the connection string to use a SQL Database.
+In this task you will publish the updated Web API service in Windows Azure Websites replacing the connection string to use a SQL Database.
 
 1. In **Solution Explorer**, right-click the **WebAPI** project and select **Publish...**.
 
@@ -924,7 +924,7 @@ In this task you will bind your Windows Store Application against your customer'
 	<x:String x:Key="ServiceUrl">[YOUR-SERVICE-SITE-URL]/api/customers</x:String>
 	````
 
-	>**Note:** You can find your service URL in the  dashboard of your Windows Azure Web Sites.
+	>**Note:** You can find your service URL in the  dashboard of your Windows Azure Websites.
 
 <a name="Ex2Task5" />
 #### Task 5 - A Lap around the Customer Manager Application ####
@@ -989,7 +989,7 @@ A toast notification is a transient message to the user that contains relevant, 
 <a name="Ex3Task1" />
 #### Task 1 - Registering the Customer Manager Application for Push Notifications####
 
-Before you can send notifications through WNS, you must register your application with the Windows developer center that supports the end-to-end process for submitting, certifying, and managing applications for sale in the Windows Store. When you register your application with the Dashboard, you are given credentials â€” a Package security identifier (SID) and a secret key â€” which your Web site will use to authenticate itself with WNS.
+Before you can send notifications through WNS, you must register your application with the Windows developer center that supports the end-to-end process for submitting, certifying, and managing applications for sale in the Windows Store. When you register your application with the Dashboard, you are given credentials — a Package security identifier (SID) and a secret key — which your Web site will use to authenticate itself with WNS.
 
 In this task you will obtain the information necessary to enable your application to communicate with WNS and Live Connect.
 
@@ -1313,22 +1313,22 @@ In this task you will register your application with the service and then regist
 <a name="NextSteps" />
 ## Next Steps ##
 
-To learn more about Windows Store applications and Windows Azure Web Sites, please refer to the following articles:
+To learn more about Windows Store applications and Windows Azure Websites, please refer to the following articles:
 
 **Technical Reference**
 
 This is a list of articles that expand on the technologies explained in this lab:
 
-- [Windows Azure Web Sites Documentation](http://aka.ms/Alwcgu): provides reference information for developing your site with .NET, PHP, Node.js or Python and hosting in Windows Azure Web Sites
-- [Windows Azure Web Sites, Cloud Services, and VMs: When to use which?](http://aka.ms/Nocpe8): provides guidance on how to make an informed decision when choosing among Windows Azure Web Sites, Cloud Services, and virtual machines to host a web application
-- [Create a Global Web Presence on Windows Azure Web Sites](http://aka.ms/Rvc3yr): provides a technical overview of how to host your organization's (.COM) site on Windows Azure
+- [Windows Azure Websites Documentation](http://aka.ms/Alwcgu): provides reference information for developing your site with .NET, PHP, Node.js or Python and hosting in Windows Azure Websites
+- [Windows Azure Websites, Cloud Services, and VMs: When to use which?](http://aka.ms/Nocpe8): provides guidance on how to make an informed decision when choosing among Windows Azure Websites, Cloud Services, and virtual machines to host a web application
+- [Create a Global Web Presence on Windows Azure Websites](http://aka.ms/Rvc3yr): provides a technical overview of how to host your organization's (.COM) site on Windows Azure
 - [ASP.Net Web API (The official Microsoft ASP.NET Site)](http://aka.ms/Bxoypx): is a framework that makes it easy to build HTTP services that reach a broad range of clients, including browsers and mobile devices. ASP.NET Web API is an ideal platform for building RESTful applications on the .NET Framework
 - [Notification Hubs Documentation](http://aka.ms/Dmg3nf): provides tutorials and guides for using Notification Hubs to send mobile push notifications from any backend (in the cloud or on-premises) to any mobile platform
 - [Tiles, badges, and notifications (Windows Store apps)](http://aka.ms/Fasloi): discusses the concepts and terminologies required to design tiles (including secondary tiles and lock screen apps), badges, and toast notifications
 
 **Development**
 
-This is a list of developer-oriented articles related to Windows Store applications and Windows Azure Web Sites:
+This is a list of developer-oriented articles related to Windows Store applications and Windows Azure Websites:
 
 - [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](http://aka.ms/Gv0w5g): shows you how to build a secure ASP.NET MVC 5 web app that enables users to log in with credentials from Facebook or Google
 - [Developing Windows Store apps](http://aka.ms/Ryj9xy): provides reference information for designing and developing great Windows Store apps
@@ -1343,6 +1343,6 @@ This is a list of developer-oriented articles related to Windows Store applicati
 By completing this hands-on lab you have learned how to use Visual Studio 2013 to:
 
 - Create an ASP.NET Web API service
-- Publish the service to Windows Azure Web Sites
+- Publish the service to Windows Azure Websites
 - Create a Windows Store application that consumes the Web API service
 - Add Push Notifications to the Windows Store application by using Windows Azure Notification Hubs

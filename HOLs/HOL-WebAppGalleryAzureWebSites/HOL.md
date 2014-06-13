@@ -1,5 +1,5 @@
-﻿<a name="Title"></a>
-# Creating Web Sites in Windows Azure Using WebMatrix #
+<a name="Title"></a>
+# Creating Websites in Windows Azure Using WebMatrix #
 
 ---
 <a name="Overview"></a>
@@ -21,7 +21,7 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Microsoft Web Matrix 2](http://www.microsoft.com/web/webmatrix/next/)
-- A Windows Azure subscription with the Web Sites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Windows Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 >**Note:** This lab was designed to use Windows 7 Operating System.
 
@@ -95,7 +95,7 @@ During this exercise you will create a new web site using the pre-packaged web a
 
 	_Configuring the database administrator account_
 
-1. Once the web site is successfuly created, you will see it listed on the **Web Sites** section and a message will appear at the bottom of the screen. To start installing Umbraco click on **Setup**.
+1. Once the web site is successfuly created, you will see it listed on the **Websites** section and a message will appear at the bottom of the screen. To start installing Umbraco click on **Setup**.
 
 	![Umbraco Web Site](images/umbraco-web-site.png?raw=true "Umbraco Web Site")
 
@@ -306,4 +306,4 @@ During this exercise you will use Web Matrix 2 to update your application. You w
 <a name="Summary"></a>
 ## Summary ##
 
-In this hands-on lab you have learned how to create a new Web Site in Windows Azure by using a template from the pre-packaged applications gallery. Once created, you updated the site using Web Matrix and deployed the changes. This hands-on lab offers a glimpse into how simple web site development is when using WebMatrix and Windows Azure Web Sites together. 
+In this hands-on lab you have learned how to create a new Web Site in Windows Azure by using a template from the pre-packaged applications gallery. Once created, you updated the site using Web Matrix and deployed the changes. This hands-on lab offers a glimpse into how simple web site development is when using WebMatrix and Windows Azure Websites together. 

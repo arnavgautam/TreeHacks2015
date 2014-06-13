@@ -1,4 +1,4 @@
-﻿<a name="title" />
+<a name="title" />
 # Service Bus Message Me #
 
 ---
@@ -22,7 +22,7 @@ In this demo, you will see how to:
 <a name="technologies" />
 ### Key Technologies ###
 
-- Windows Azure subscription with the Web Sites enabled - you can sign up for free trial [here][1]
+- Windows Azure subscription with the Websites enabled - you can sign up for free trial [here][1]
 - [Microsoft Visual Studio 2012][2]
 - [ASP.NET MVC 4][3]
 

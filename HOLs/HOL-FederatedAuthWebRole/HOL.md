@@ -1,4 +1,4 @@
-Ôªø<a name="HOLTitle"></a>
+<a name="HOLTitle"></a>
 # Federated Authentication in a Windows Azure Cloud Service #
 
 ---
@@ -13,14 +13,14 @@ The text gives very concrete indications, and it is optimized for minimizing the
 <a name="essentialintro1"></a>
 ### Essential Introduction to Windows Identity Foundation for Windows Azure developers ###
 
-Windows¬Æ Identity Foundation (WIF) is a developer framework which enhances the .NET Framework with advanced identity capabilities. Based on the concept of Claims Based access, WIF offers a series of classes that, while integrating seamlessly with the traditional .NET identity object model, gives developers control over every aspect of authentication, authorization and identity-driven application behavior. WIF point & click tooling and tight Visual Studio integration make very easy to externalize authentication to a federated partner, so that a developer can configure an ASP.NET application or a WCF service to rely on external entities for identity management. WIF allows application access using open protocols and standards, while hiding the complexity of the security plumbing behind a handy programming model. WIF will work with applications written with the .NET Framework 3.5 SP2 or higher.
+WindowsÆ Identity Foundation (WIF) is a developer framework which enhances the .NET Framework with advanced identity capabilities. Based on the concept of Claims Based access, WIF offers a series of classes that, while integrating seamlessly with the traditional .NET identity object model, gives developers control over every aspect of authentication, authorization and identity-driven application behavior. WIF point & click tooling and tight Visual Studio integration make very easy to externalize authentication to a federated partner, so that a developer can configure an ASP.NET application or a WCF service to rely on external entities for identity management. WIF allows application access using open protocols and standards, while hiding the complexity of the security plumbing behind a handy programming model. WIF will work with applications written with the .NET Framework 3.5 SP2 or higher.
 
 You can find further information at <http://www.microsoft.com/wif>.
 
 <a name="essentialintro2"></a>
 ### Essential Introduction to Windows Azure for Windows Identity Foundation developers  ###
 
-Windows¬Æ Azure is a cloud services operating system that serves as the development, service hosting and service management environment of either consumer Web or enterprise scenarios. Windows Azure provides developers with on-demand compute and storage to host, scale, and manages Web applications on the Internet through Microsoft¬Æ data centers.
+WindowsÆ Azure is a cloud services operating system that serves as the development, service hosting and service management environment of either consumer Web or enterprise scenarios. Windows Azure provides developers with on-demand compute and storage to host, scale, and manages Web applications on the Internet through MicrosoftÆ data centers.
 
 Windows Azure offers a set of Visual Studio templates that can be used to develop ASP.NET applications or worker services destined to be deployed in the cloud. The Windows Azure Tool for Visual Studio includes the Windows Azure compute emulator, a hosting environment that can be used for local simulation of execution in the fabric. The Windows Azure compute emulator gives you the chance to experiment with multiple concurrent instances and other cloud features without the need to be online, while still being able to use your familiar debugging and development tools.
 
@@ -43,13 +43,13 @@ In this hands-on lab, you will learn how to:
 
 The following is required to complete this hands-on lab:
 
-- Microsoft¬Æ Internet Information Services (IIS) 7.0 with IIS Metabase and IIS 6 configuration compatibility
-- [Microsoft¬Æ .NET Framework 4][1]
-- [Microsoft¬Æ Visual Studio 2010][2]
-- [Microsoft¬Æ Windows Identity Foundation Runtime][3] 
-- [Microsoft¬Æ Windows Identity Foundation SDK 4.0][4]
+- MicrosoftÆ Internet Information Services (IIS) 7.0 with IIS Metabase and IIS 6 configuration compatibility
+- [MicrosoftÆ .NET Framework 4][1]
+- [MicrosoftÆ Visual Studio 2010][2]
+- [MicrosoftÆ Windows Identity Foundation Runtime][3] 
+- [MicrosoftÆ Windows Identity Foundation SDK 4.0][4]
 - [Windows Azure Tools for Microsoft Visual Studio 1.7][5]
-- A Windows Azure subscription with the Web Sites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Windows Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 [1]:http://go.microsoft.com/fwlink/?linkid=186916
 [2]:http://www.microsoft.com/visualstudio/en-us/products/2010-editions/
@@ -120,7 +120,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 1. In the **File** menu, choose **New** and then **Project**. 
 1. In the **New Project** dialog, select **Cloud** in the **Templates** list under **Visual C#** node.
 1. Select **Windows Azure Project** as project type.
-1. Choose a suitable name for your solution. Keep in mind that the name must be unique because it will be publicly visible when deployed to Windows Azure. Set the solution name ‚Äú**Begin**‚Äù and the location to the **\Source\Ex1-AzureFederatedAuthentication\** folder. Make sure that **Create directory for solution** is checked and the framework is **.NET Framework 4**. Click **OK** to create the project.
+1. Choose a suitable name for your solution. Keep in mind that the name must be unique because it will be publicly visible when deployed to Windows Azure. Set the solution name ì**Begin**î and the location to the **\Source\Ex1-AzureFederatedAuthentication\** folder. Make sure that **Create directory for solution** is checked and the framework is **.NET Framework 4**. Click **OK** to create the project.
 
 	![Creating a new Windows Azure Project](images/creating-a-new-windows-azure-project.png?raw=true "Creating a new Windows Azure Project")
 
@@ -132,7 +132,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 	
 	> The string \<projectname\> must be unique, since it has to be resolvable on the public internet. 
 	
-	> For the first steps of this hand-on lab, you could technically use any project name you‚Äôd like, since all addresses will be resolved locally. You are forced to pick a unique name (and adjust the configurations accordingly) only at the moment in which you deploy your application in production.
+	> For the first steps of this hand-on lab, you could technically use any project name youíd like, since all addresses will be resolved locally. You are forced to pick a unique name (and adjust the configurations accordingly) only at the moment in which you deploy your application in production.
 
 	> The steps in this guide are more easily understood if the naming convention is coherent, hence we suggest you adhere to it at least the first time you go through it. If you want to adapt the instructions to the name you will choose, simply substitute **fabrikamair** with your own project name when following a procedure.
 
@@ -212,7 +212,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 
 	_Adding a Https endpoint_
 
-1. Remove the HTTP endpoint. Select the existing ‚ÄúEndpoint1‚Äù and click **Remove Endpoint**.
+1. Remove the HTTP endpoint. Select the existing ìEndpoint1î and click **Remove Endpoint**.
 
 	![Removing the Http endpoint](images/removing-the-http-endpoint.png?raw=true "Removing the Http endpoint")
 
@@ -322,7 +322,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 	
 	> **Note:** **What is the WSFederationAuthenticationModule_RedirectingToIdentityProvidermethod for?**
 	
-	> The federated sign on process implemented by WIF is based on the WS-Federation protocol. Unauthenticated users landing on the web site are redirected to the trusted STS for authentication and token issuance. The URI used for the redirection contains a number of parameters, mainly retrieved from the website Web.config: among those, there is the address to which the STS will have to redirect the user‚Äôs browser once successfully authenticated. In the default case, WIF retrieves that return address from the configuration settings generated by the Federation Utility wizard. 
+	> The federated sign on process implemented by WIF is based on the WS-Federation protocol. Unauthenticated users landing on the web site are redirected to the trusted STS for authentication and token issuance. The URI used for the redirection contains a number of parameters, mainly retrieved from the website Web.config: among those, there is the address to which the STS will have to redirect the userís browser once successfully authenticated. In the default case, WIF retrieves that return address from the configuration settings generated by the Federation Utility wizard. 
 
 	> In Windows Azure this approach would not work as is: an application hosted in Windows Azure will have a different URI depending on the environment in which it is hosted (Windows Azure compute emulator, staging, production) hence one would have to continuously change the values in the Web.config before deploying. In fact, even that strategy would not work in all cases since in the staging environment you learn what URI has been assigned to your app only AFTER you deployed the project.
 	
@@ -481,7 +481,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 
 	>In Task 1, you modified the Global.asax of your application to ensure that it would send its actual URI to the STS, by storing it in the wreply parameter.
 	
-	>The ValidateReplyTo ensures that the address in the wreply refers to an application on your local machine (as in the Windows Azure compute emulator case) or from a host ending with ‚Äú.cloudapp.net‚Äù (as in the Windows Azure staging or production environments case). This mitigates redirection attacks, as it limits the accepted ReplyTo values to addresses of Windows Azure applications. Note that this check would prevent you from using a domain name not matching the Windows Azure schema; hence, if you plan to map Windows Azure applications through a custom domain, you will have to adjust the code accordingly.
+	>The ValidateReplyTo ensures that the address in the wreply refers to an application on your local machine (as in the Windows Azure compute emulator case) or from a host ending with ì.cloudapp.netî (as in the Windows Azure staging or production environments case). This mitigates redirection attacks, as it limits the accepted ReplyTo values to addresses of Windows Azure applications. Note that this check would prevent you from using a domain name not matching the Windows Azure schema; hence, if you plan to map Windows Azure applications through a custom domain, you will have to adjust the code accordingly.
 
 	>The assignment of scope.ReplyToAddress is modified to take the value of wreply, if present. If no wreply parameter is available in the request, the assignment will fold back to the default behavior (using the AppliesTo uri).
 
@@ -556,7 +556,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 	>- Verifying that the signer was indeed listed in the issuerNameRegistry element, hence trusted
 	In order to perform those operations, WIF can use the thumbprint for retrieving the bits of the STS certificate from the certificate store. However, certificate handling in Windows Azure requires extra operations, hence here we use an alternative method. Very often the request containing the token will also contain the bits of the certificate corresponding to the signature: this means that our application can use the thumbprint for retrieving the certificate from the request itself rather than relying on having the bits available locally. Setting the **certificateValidationMode** to **None** has the purpose of enabling the latter scenario.
 
-	>Note that the request does not have to contain the bits of the certificate, and for certain platforms this won‚Äôt be the default behavior: in those cases you will need to deploy in Windows Azure the public key (that is to say the certificate) of the STS as well, as shown in step 9 of task 5.
+	>Note that the request does not have to contain the bits of the certificate, and for certain platforms this wonít be the default behavior: in those cases you will need to deploy in Windows Azure the public key (that is to say the certificate) of the STS as well, as shown in step 9 of task 5.
  
 	[ASP.NET](http://ASP.NET) by default validates all the POSTs done to the web application. This validation checks that the input is not dangerous. For instance, a piece of XML that is not encoded is considered dangerous for [ASP.NET](http://ASP.NET). A token is a piece of XML that is not encoded. To avoid getting an exception when the token is posted, you will add a class that will check if the input is a token. If it is, it will return true and will let the request to continue. If not, it will throw the regular "A _potentially dangerous_ Request.Form value was detected..." exception.
 
@@ -571,7 +571,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 		</system.web>
 	````
 
-	>**Note:** Make sure you add the **httpRuntime** element inside the general **system.web** element and not the one that is inside the element **\<location path =‚ÄùFederationMetadata‚Äù>**.
+	>**Note:** Make sure you add the **httpRuntime** element inside the general **system.web** element and not the one that is inside the element **\<location path =îFederationMetadataî>**.
 
 <a name="Ex1Task4"></a>
 #### Task 4 - Testing FabrikamAir in the Windows Azure Compute Emulator ####
@@ -715,7 +715,7 @@ In this task you will publish your project to the staging environment, test it, 
 
 	_Accessing Site URL_
 
-1. A new browser will open, and you will get an error since the link is on http while you exposed only on https. Add the ‚Äús‚Äù to the protocol and the port number (i.e. http**s**://16c6c035e158424aaa5322837f7291e7.cloudapp.net**:8080**) in the address bar, and press **ENTER**. A certificate warning will be issued, since the staging URL, that contains a Guid, does not correspond to the certificate fabrikamair.cloudapp.net; you will be redirected to the development STS on your localhost; finally, you will land on the staging application where you will successfully authenticate.
+1. A new browser will open, and you will get an error since the link is on http while you exposed only on https. Add the ìsî to the protocol and the port number (i.e. http**s**://16c6c035e158424aaa5322837f7291e7.cloudapp.net**:8080**) in the address bar, and press **ENTER**. A certificate warning will be issued, since the staging URL, that contains a Guid, does not correspond to the certificate fabrikamair.cloudapp.net; you will be redirected to the development STS on your localhost; finally, you will land on the staging application where you will successfully authenticate.
 	
 	![The web application running in Staging environment](images/the-web-application-running-in-staging-enviro.png?raw=true "The web application running in Staging environment")
 
@@ -731,7 +731,7 @@ In this task you will publish your project to the staging environment, test it, 
 
 	_Swap VIPs dialog_
 
-1. The project is now deployed and running in production. Click the **DNS name** link. You will need to manually add the ‚Äús‚Äù to the protocol and the port number (i.e. http**s**://\<yourProjectName>.cloudapp.net**:8080**) in the address bar, and press **ENTER**. This time you will not receive any certificate warning because the DNS name matches the certificate you uploaded. The browser will be redirected to the local STS running on your local IIS. Click **Submit** to authenticate. The home page of the website will show the claims issued by the STS.
+1. The project is now deployed and running in production. Click the **DNS name** link. You will need to manually add the ìsî to the protocol and the port number (i.e. http**s**://\<yourProjectName>.cloudapp.net**:8080**) in the address bar, and press **ENTER**. This time you will not receive any certificate warning because the DNS name matches the certificate you uploaded. The browser will be redirected to the local STS running on your local IIS. Click **Submit** to authenticate. The home page of the website will show the claims issued by the STS.
 
 	![The Web Application Running](images/the-web-application-running.png?raw=true "The Web Application Running")
 
@@ -742,7 +742,7 @@ In this task you will publish your project to the staging environment, test it, 
 <a name="Summary"></a>
 ## Summary ##
 
-Taking advantage of existing identities in new applications is one of the fundamental requirements in today‚Äôs distributed systems, and the new wave of cloud based services is no exception.
+Taking advantage of existing identities in new applications is one of the fundamental requirements in todayís distributed systems, and the new wave of cloud based services is no exception.
 
 By completing this hands-on lab you have learned:
 

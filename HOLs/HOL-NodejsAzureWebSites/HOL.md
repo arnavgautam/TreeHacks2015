@@ -1,11 +1,11 @@
-ï»¿<a name="Title" />
-# Building and Publishing Node.js Applications with Windows Azure Web Sites (Windows) #
+<a name="Title" />
+# Building and Publishing Node.js Applications with Windows Azure Websites (Windows) #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-In this hands-on lab, you will learn the basics of the Windows Azure Web Sites service for Node.js applications. In Exercise 1, you will see how to use the Windows Azure Management Portal for creating a web site and then publish a "Hello World" Node.js application using GIT. In Exercise 2, you will learn how to use the Windows Azure Command-Line Tools for publishing applications. Finally, in exercise 3 you will explore the WebMatrix 2 features for building and publishing Node.js web applications in Windows Azure.
+In this hands-on lab, you will learn the basics of the Windows Azure Websites service for Node.js applications. In Exercise 1, you will see how to use the Windows Azure Management Portal for creating a web site and then publish a "Hello World" Node.js application using GIT. In Exercise 2, you will learn how to use the Windows Azure Command-Line Tools for publishing applications. Finally, in exercise 3 you will explore the WebMatrix 2 features for building and publishing Node.js web applications in Windows Azure.
 
 <a name="Objectives" />
 ### Objectives ###
@@ -33,7 +33,7 @@ The following is required to complete this hands-on lab:
 	>````
 	>By using -g, Windows Azure Command-Line Tools will install on your machine globally. That means, you will be able to execute azure commands from any location.
 
-- A Windows Azure subscription with the Web Sites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Windows Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 >**Note:** This lab was designed to use Windows 7 Operating System.
 
@@ -42,7 +42,7 @@ The following is required to complete this hands-on lab:
 
 In order to execute the exercises in this hands-on lab you need to set up your environment.
 
-1. Open a Windows Explorer window and browse to the labâ€™s **Source** folder.
+1. Open a Windows Explorer window and browse to the lab’s **Source** folder.
 
 1. Right-click the **Setup.cmd** file and click **Run as administrator**. This will launch the setup process that will automatically check and install all the requirements.
 
@@ -62,7 +62,7 @@ This hands-on lab includes the following exercises:
 In the first exercise you will create a new web site from the Windows Azure portal, create a 'Hello World' Node.js application and finally deploy it taking advantage of the new GIT publishing feature provided by Windows Azure.
 
 <a name="Ex1Task1" />
-#### Task 1 â€“ Creating a New Web Site Hosted in Windows Azure ####
+#### Task 1 – Creating a New Web Site Hosted in Windows Azure ####
 
 1. Go to the [Windows Azure portal](https://manage.windowsazure.com/) and sign in using your **Microsoft Account** credentials associated with your subscription.
 
@@ -185,7 +185,7 @@ to be handled by the iisnode module.
 	```
 
 <a name="Ex1Task3" />
-#### Task 3 â€“ Publishing the Node.js Application using Git####
+#### Task 3 – Publishing the Node.js Application using Git####
 
 1. Go back to the Windows Azure Management Portal. Open the site's **Dashboard** and under the **quick glance** section, copy the **Git Clone Url** value.
 
@@ -212,7 +212,7 @@ to be handled by the iisnode module.
 
 1. Enter the deployment credentials when prompted.
 
-	> **Note:** Deployment credentials are other than the Microsoft Account associated with your Windows Azure subscription and are valid for use with all Windows Azure web sites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site's **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
+	> **Note:** Deployment credentials are other than the Microsoft Account associated with your Windows Azure subscription and are valid for use with all Windows Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site's **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
 	>
 	>![Resetting the deployment credentials](images/setting-the-username-and-password.png?raw=true "Resetting the deployment credentials")
 	>
@@ -229,7 +229,7 @@ to be handled by the iisnode module.
 <a name="Exercise2" />
 ### Exercise 2: Building and Publishing a Node.js Web Site using the Command-Line Tools ###
 
-In this exercise, you will learn how to manage web sites using the Windows Azure Command-Line Tools. 
+In this exercise, you will learn how to manage Websites using the Windows Azure Command-Line Tools. 
 
 >**Note:** In the prerequisites section of this lab you will find the instructions to install the Command-Line Tools.
 
@@ -280,7 +280,7 @@ In this exercise, you will learn how to manage web sites using the Windows Azure
 
 	_Pushing the site files_
 
-	> **Note:** Deployment credentials are other than the Microsoft Account associated with your Windows Azure subscription and are valid for use with all Windows Azure web sites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site's **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
+	> **Note:** Deployment credentials are other than the Microsoft Account associated with your Windows Azure subscription and are valid for use with all Windows Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site's **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
 	>
 	>![Resetting the deployment credentials](images/reset-credentials-cli.png?raw=true "Resetting the deployment credentials")
 	>
@@ -312,7 +312,7 @@ In this exercise, you will learn how to manage web sites using the Windows Azure
 <a name="Exercise3" />
 ### Exercise 3: Building and Publishing a Node.js Web Site using WebMatrix 2 ###
 
-In this exercise you will learn how to build and publish web sites in Windows Azure with WebMatrix 2. You will use the new Node.js web site templates to create a simple Node.js web application and publish it to Windows Azure using WebMatrix publishing features.
+In this exercise you will learn how to build and publish Websites in Windows Azure with WebMatrix 2. You will use the new Node.js web site templates to create a simple Node.js web application and publish it to Windows Azure using WebMatrix publishing features.
 
 #### Task 1 - Creating a New Node.js Web Application in WebMatrix 2 ####
 
@@ -402,4 +402,4 @@ In this exercise you will learn how to build and publish web sites in Windows Az
 <a name="Summary" />
 ## Summary ##
 
-In this hands-on lab, you learned the basics of the Windows Azure Web Sites service for Node.js applications. In Exercise 1, you saw how to use the Windows Azure Management Portal for creating a web site and then published a "Hello World" Node.js application using GIT. In Exercise 2, you learned how to use the Windows Azure Command-Line Tools for publishing applications. Finally, in exercise 3 you explored the WebMatrix 2 features for building and publishing Node.js web applications in Windows Azure. At the end, you had a working Node.js site running on Windows Azure. 
+In this hands-on lab, you learned the basics of the Windows Azure Websites service for Node.js applications. In Exercise 1, you saw how to use the Windows Azure Management Portal for creating a web site and then published a "Hello World" Node.js application using GIT. In Exercise 2, you learned how to use the Windows Azure Command-Line Tools for publishing applications. Finally, in exercise 3 you explored the WebMatrix 2 features for building and publishing Node.js web applications in Windows Azure. At the end, you had a working Node.js site running on Windows Azure. 

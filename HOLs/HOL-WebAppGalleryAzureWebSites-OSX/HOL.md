@@ -1,5 +1,5 @@
-﻿<a name="Title" />
-# Creating Web Sites in Windows Azure (OS X) #
+<a name="Title" />
+# Creating Websites in Windows Azure (OS X) #
 
 ---
 <a name="Overview" />
@@ -20,7 +20,7 @@ In this hands-on lab, you will learn how to:
 
 The following is required to complete this hands-on lab:
 
-- A Windows Azure subscription with the Web Sites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Windows Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 > **Note:** This lab was designed to use Mac OS X Operating System
 
@@ -75,7 +75,7 @@ During this exercise you will create a new web site using the pre-packaged web a
 
 	_Configuring **Database Settings**_
 
-1. Once the web site is created, you will see it listed on the **Web Sites** section.
+1. Once the web site is created, you will see it listed on the **Websites** section.
 
 	![WordPress Web Site](images/wordpress-web-site.png?raw=true "WordPress Web Site")
 
@@ -146,7 +146,7 @@ During this exercise you will use the FTP publishing feature to update the web s
 
 	_Providing FTP credentials_
 	
-	> **Note:** Deployment credentials are other than the Live ID associated with your Windows Azure subscription and are valid for use with all Windows Azure web sites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
+	> **Note:** Deployment credentials are other than the Live ID associated with your Windows Azure subscription and are valid for use with all Windows Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
 
 	>
 	>![Entering the username and password](images/deployment-credentials.png?raw=true "Setting the user name and password")

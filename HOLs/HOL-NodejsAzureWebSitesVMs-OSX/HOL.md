@@ -1,5 +1,5 @@
-ï»¿<a name="handsonlab" />
-# Windows Azure Web Sites and Virtual Machines for Node.js Applications (OS X) #
+<a name="handsonlab" />
+# Windows Azure Websites and Virtual Machines for Node.js Applications (OS X) #
 
 ---
 
@@ -8,7 +8,7 @@
 
 A virtual machine in Windows Azure is a server in the cloud that you can control and manage. After you create a virtual machine in Windows Azure, you can start, stop, and delete it whenever you need to, and you can access the virtual machine just as you do with a server in your office. In this lab, you will learn how to create a virtual machine running Linux and use it as a database server for a Node.js application. You will see how diverse technologies can run and interact in Windows Azure's cloud-based infrastructure.
 
-In this lab, you will first create a new virtual machine starting from a Linux image from the Windows Azure Management Portal. Then, you will install and configure a [MongoDB](http://www.mongodb.org/) server on the virtual machine that can be accessible from an Internet application. Once the server is configured, you will publish a [Node.js](http://nodejs.org/) application using Windows Azure Web Sites that connects to the database server running in the virtual machine.
+In this lab, you will first create a new virtual machine starting from a Linux image from the Windows Azure Management Portal. Then, you will install and configure a [MongoDB](http://www.mongodb.org/) server on the virtual machine that can be accessible from an Internet application. Once the server is configured, you will publish a [Node.js](http://nodejs.org/) application using Windows Azure Websites that connects to the database server running in the virtual machine.
 
 <a name="Objectives" />
 ### Objectives ###
@@ -18,7 +18,7 @@ In this hands-on lab, you will learn how to:
 - Create a Linux virtual machine running on Windows Azure
 - Install and configure a MongoDB server in a Linux Virtual Machine running on Windows Azure
 - Create a Node.js web application that connects to the MongoDB server running on the Linux virtual machine
-- Publish a Node.js web application using GIT to Windows Azure Web Sites
+- Publish a Node.js web application using GIT to Windows Azure Websites
 
 <a name="Prerequisites" />
 ### Prerequisites ###
@@ -27,7 +27,7 @@ The following is required to complete this hands-on lab:
 
 - [Mac OS X](http://www.apple.com/macosx/)
 - [Git Version Control System](http://git-scm.com/)
-- A Windows Azure subscription with the Web Sites and Virtual Machines Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Windows Azure subscription with the Websites and Virtual Machines Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 >**Note:** This lab was designed for use on OS X.
 
@@ -48,7 +48,7 @@ This hands-on lab includes the following exercises:
 In this exercise, you will create a new Linux virtual machine using the Windows Azure Management portal. You will then connect to the virtual machine using SSH and configure and start MongoDB server.
 	
 <a name="Ex1Task1" />
-#### Task 1 â€“ Creating and Configuring a New Linux Virtual Machine ####
+#### Task 1 – Creating and Configuring a New Linux Virtual Machine ####
 
 1. Open Safari and browse to the [Windows Azure Management Portal](http://manage.windowsazure.com/). Then, log in with your Live Id credentials associated with your Windows Azure subscription.
 
@@ -130,7 +130,7 @@ In this exercise, you will create a new Linux virtual machine using the Windows 
 1. Repeat the previous steps to configure the endpoint for port **28017**.
 
 <a name="Ex1Task2" />
-#### Task 2 â€“ Connecting to the Virtual Machine Using an SSH Client ####
+#### Task 2 – Connecting to the Virtual Machine Using an SSH Client ####
  
 1. In the Windows Azure Portal, select the Linux virtual machine from the list to enter its **Dashboard**. Locate the **DNS** field in the quick glance at the right bottom of the page. This is the public address you will use to connect to the virtual machine.
 
@@ -155,7 +155,7 @@ In this exercise, you will create a new Linux virtual machine using the Windows 
 	_Logging in to the Linux Virtual Machine_
 
 <a name="Ex1Task3" />
-#### Task 3 â€“ Installing and Configuring MongoDB ####
+#### Task 3 – Installing and Configuring MongoDB ####
 
 In this task, you will install and configure a MongoDB server in the Linux virtual machine.
 
@@ -254,7 +254,7 @@ MongoDB is a document-oriented NoSQL database designed for ease of development a
 	_Server status_
 
 <a name="Ex1Task4" />
-#### Task 4 â€“ Configuring Text Search on MongoDB ####
+#### Task 4 – Configuring Text Search on MongoDB ####
 	
 In this task you will create a database and configure text search by adding a keyword index to your database. The text search feature in MongoDB has to be manually implemented. For that reason, you will create an additional field, which will store the text to be retrieved by the search queries, and you will then create an index on keywords field to improve the performance.
  	
@@ -345,7 +345,7 @@ _keywords: ["john", "harris", "john.harris@contoso.com" ] } );
 	> If you want to retrieve the existing indexes, you can run the command **db.system.indexes.find()** and check if the keywords index was created.
 
 <a name="Ex1Task5" />
-#### Task 5 â€“ Creating Database Users in MongoDB ####
+#### Task 5 – Creating Database Users in MongoDB ####
 
 In this task, you will learn how to configure MongoDB security. You will first create an administrator user for the server, and then you will learn how to add users for each of the databases.
 
@@ -394,10 +394,10 @@ In this task, you will learn how to configure MongoDB security. You will first c
 <a name="Exercise2" />
 ### Exercise 2: Connecting to the Virtual Machine from  a Node.js Application ###
 
-In this exercise you will create a new web site in Windows Azure Web Sites and publish a Node.js application taking advantage of the new GIT publishing feature provided by Windows Azure. The application you will publish will use a MongoDB database located in the Linux server you have configured in Exercise 1.
+In this exercise you will create a new web site in Windows Azure Websites and publish a Node.js application taking advantage of the new GIT publishing feature provided by Windows Azure. The application you will publish will use a MongoDB database located in the Linux server you have configured in Exercise 1.
 
 <a name="Ex2Task1" />
-#### Task 1 â€“ Creating a New Web Site Hosted in Windows Azure ####
+#### Task 1 – Creating a New Web Site Hosted in Windows Azure ####
 
 1. Go to the [Windows Azure Management Portal](http://manage.windowsazure.com/) and sign in using your **Windows Live ID** credentials associated with your subscription.
 
@@ -481,7 +481,7 @@ In this exercise you will create a new web site in Windows Azure Web Sites and p
 	_Database connection string configuration_
 
 <a name="Ex2Task2" />
-#### Task 2 â€“ Exploring the Node.js Application ####
+#### Task 2 – Exploring the Node.js Application ####
 
 In this task you open and explore a simple Node.js application provided in this lab that uses the MongoDB database you have configured in Exercise 1. The application consists of an API with the CRUD (create, read, update, delete) operations.
 
@@ -567,7 +567,7 @@ In this task you open and explore a simple Node.js application provided in this 
 	````
 
 <a name="Ex2Task3" />
-#### Task 3 â€“ Publishing the Node.js application using GIT ####
+#### Task 3 – Publishing the Node.js application using GIT ####
 
 1. Go back to the [Windows Azure Management Portal](http://manage.windowsazure.com/). Click the _nodeapp_ website and select the **Deployments** tab. Click in the **Copy** icon beside the **GIT URL**.
  
@@ -625,4 +625,4 @@ In this task you open and explore a simple Node.js application provided in this 
 ## Summary ##
 
 
-In this lab, you have created a new virtual machine starting from a Linux image from the Windows Azure Management Portal. Then, you installed and configured a MongoDB server on the virtual machine that can be accessible from an Internet application. Once the server was configured, you published a Node.js application using Windows Azure Web Sites that were connected to the database server running in the virtual machine.
+In this lab, you have created a new virtual machine starting from a Linux image from the Windows Azure Management Portal. Then, you installed and configured a MongoDB server on the virtual machine that can be accessible from an Internet application. Once the server was configured, you published a Node.js application using Windows Azure Websites that were connected to the database server running in the virtual machine.

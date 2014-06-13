@@ -1,4 +1,4 @@
-﻿<a name="title" />
+<a name="title" />
 # Connecting an iOS URL Shortener to a Backend in Windows Azure Websites #
 
 ---
@@ -19,7 +19,7 @@ In this demo, you will see:
 <a name="technologies" />
 ### Key Technologies ###
 
-- [Windows Azure Web Sites](https://www.windowsazure.com/en-us/home/scenarios/web-sites/)
+- [Windows Azure Websites](https://www.windowsazure.com/en-us/home/scenarios/web-sites/)
 - [XCode](https://developer.apple.com/xcode/)
 
 <a name="prerequisities" />

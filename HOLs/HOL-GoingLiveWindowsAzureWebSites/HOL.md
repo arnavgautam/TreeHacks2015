@@ -1,11 +1,11 @@
-﻿<a name="HOLTitle"></a>
-# Going Live with Windows Azure Web Sites #
+<a name="HOLTitle"></a>
+# Going Live with Windows Azure Websites #
 
 ---
 <a name="Overview"></a>
 ## Overview ##
 
-When you create a web site, Windows Azure provides a friendly subdomain on the azurewebsites.net domain so your users can access your web site using a URL like http://\<mysite\>.azurewebsites.net. However, if you configure your web sites for shared or standard mode, you can map your web site to your own domain name.
+When you create a web site, Windows Azure provides a friendly subdomain on the azurewebsites.net domain so your users can access your web site using a URL like http://\<mysite\>.azurewebsites.net. However, if you configure your Websites for shared or standard mode, you can map your web site to your own domain name.
 
 Secure Socket Layer (SSL) encryption is the most commonly used method of securing data sent across the internet, and assures visitors to your site that their transactions with your site are secure. This common task discusses how to enable SSL for a Windows Azure Web Site.
 
@@ -14,8 +14,8 @@ Secure Socket Layer (SSL) encryption is the most commonly used method of securin
 
 In this hands-on lab, you will learn how to:
 
-- Configure a custom domain in Windows Azure Web Sites
-- Configure a SSL in Windows Azure Web Sites
+- Configure a custom domain in Windows Azure Websites
+- Configure a SSL in Windows Azure Websites
 - Create a web application and redirecting request to HTTPS
 
 <a name="Prerequisites"></a>
@@ -33,7 +33,7 @@ The following is required to complete this hands-on lab:
 
 In order to execute the exercises in this hands-on lab you need to set up your environment.
 
-1. Open a Windows Explorer window and browse to the lab’s **Source** folder.
+1. Open a Windows Explorer window and browse to the lab�s **Source** folder.
 
 1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment.
 
@@ -83,7 +83,7 @@ Estimated time to complete this lab: **40** minutes.
 	
 	> **Note:** By default, Windows Azure provides domains at _azurewebsites.net_, but also gives you the possibility to set custom domains using the Windows Azure Management Portal. However, you can only manage custom domains if you are using certain Web Site modes.
 	
-	> Windows Azure offers 3 modes for users to run their web sites - Free, Shared, and Standard. In Free and Shared mode, all web sites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are Free (strict quotas) vs. Shared (more relaxed quotas). The maximum number of free sites may vary with your plan. The Standard mode applies to ALL of your sites and makes them run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Web Sites Mode configuration in the **Scale** menu of your Web Site.
+	> Windows Azure offers 3 modes for users to run their Websites - Free, Shared, and Standard. In Free and Shared mode, all Websites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are Free (strict quotas) vs. Shared (more relaxed quotas). The maximum number of free sites may vary with your plan. The Standard mode applies to ALL of your sites and makes them run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Websites Mode configuration in the **Scale** menu of your Web Site.
 
 	> ![Web Site Modes](Images/web-site-modes.png?raw=true "Web Site Modes")
 
@@ -102,7 +102,7 @@ Estimated time to complete this lab: **40** minutes.
 <a name="configuring-a-custom-domain-name-for-a-window" />
 ### Exercise 1: Configuring a custom domain name for a Windows Azure web site ###
 
-The steps in this exercise require you to configure your web sites for shared or standard mode. Because the Web Sites feature is in preview and we are adding capacity on a measured basis, you may receive a "_Not enough available reserved instance servers to satisfy this request_" error. If you receive this error, you will need to try again later to perform this task.
+The steps in this exercise require you to configure your Websites for shared or standard mode. Because the Websites feature is in preview and we are adding capacity on a measured basis, you may receive a "_Not enough available reserved instance servers to satisfy this request_" error. If you receive this error, you will need to try again later to perform this task.
 
 You can use a CNAME record to point your domain name to your Windows Azure web site. You can also configure an A record to point the domain name to Windows Azure web site. The process requires that you wait for the CNAME and A records propagate before you can finally set the domain name in the management portal.
 
@@ -125,7 +125,7 @@ There are two ways you can configure the Domain Name Server (DNS) settings on yo
 
 The task includes the following steps:
 
-1. Configuring your web sites for shared mode.
+1. Configuring your Websites for shared mode.
 1. Configuring the CNAME on your domain registrar.
 1. Configuring an A record on your domain registrar.
 1. Setting the domain name in management portal
@@ -133,19 +133,19 @@ The task includes the following steps:
 You can also optionally [Configure an A record for the domain name](http://www.windowsazure.com/en-us/develop/net/common-tasks/custom-dns-web-site/).
 
 <a name="configure-your-web-sites-for-shared-mode" />
-#### Task 1 - Configuring your web sites for shared mode ####
+#### Task 1 - Configuring your Websites for shared mode ####
 
 Setting a CNAME record is the recommended way to map your domain name to your Windows Azure web site. Mapping a CNAME record insulates your web site from changes that could affect the underlying IP address of the site.
 
-Setting a custom domain name on a web site is only available for the shared and standard modes for Windows Azure web sites. Before switching a web site from the free web site mode to the shared or standard web site mode, you must first remove spending caps in place for your web site subscription. For more information on shared and standard mode pricing, see [Pricing Details ](https://www.windowsazure.com/en-us/pricing/details/).
+Setting a custom domain name on a web site is only available for the shared and standard modes for Windows Azure Websites. Before switching a web site from the free web site mode to the shared or standard web site mode, you must first remove spending caps in place for your web site subscription. For more information on shared and standard mode pricing, see [Pricing Details ](https://www.windowsazure.com/en-us/pricing/details/).
 
 1.	In your browser, open the [Windows Azure Management Portal](http://manage.windowsazure.com/).
 
-1.	In the **Web Sites** tab, click the name of your site.
+1.	In the **Websites** tab, click the name of your site.
 
-	![Web Sites Tab](Images/web-sites-tab.png?raw=true "Web Sites Tab")
+	![Websites Tab](Images/web-sites-tab.png?raw=true "Websites Tab")
 
-	_Web Sites Tab_
+	_Websites Tab_
 
 1.	Click the **Scale** tab.
 
@@ -167,7 +167,7 @@ Setting a custom domain name on a web site is only available for the shared and 
 
 1.	On the **You are changing to a mode that may have a billing impact. Continue?** (If you select **STANDARD**, the confirmation message will be: **Are you sure you want to upgrade from Free to STANDARD web site mode?**), click **Yes**.
 
-	>**Note**: If you receive a "Configuring scale for web site '\<site name\>' failed" error you can use the details button to get more information. You may receive a "Not enough available reserved instance servers to satisfy this request" error. The web sites feature is in preview and we are adding capacity on a measured basis. If you receive this error, you will need to try again later to upgrade your account.
+	>**Note**: If you receive a "Configuring scale for web site '\<site name\>' failed" error you can use the details button to get more information. You may receive a "Not enough available reserved instance servers to satisfy this request" error. The Websites feature is in preview and we are adding capacity on a measured basis. If you receive this error, you will need to try again later to upgrade your account.
 
 <a name="configure-the-cname-on-your-domain-registrar" />
 #### Task 2 - Configuring the CNAME on your domain registrar ####
@@ -198,7 +198,7 @@ To configure an A record you must configure a CNAME record used to verify the do
 
 1.	In your browser, open the [Windows Azure Management Portal](http://manage.windowsazure.com/).
 
-1.	In the **Web Sites** tab, click the name of your site.
+1.	In the **Websites** tab, click the name of your site.
 
 1.	Click the **Configure** tab.
 
@@ -236,7 +236,7 @@ Once the CNAME or A record for domain name has propagated, you must associate it
 
 1.	In your browser, open the [Windows Azure Management Portal](http://manage.windowsazure.com/).
 
-1.	In the **Web Sites** tab, click the name of your site.
+1.	In the **Websites** tab, click the name of your site.
 
 1.	Click the **Configure** tab.
 
@@ -269,7 +269,7 @@ Once the CNAME or A record for domain name has propagated, you must associate it
 <a name="configuring-an-ssl-certificate-for-a-windows" />
 ### Exercise 2: Configuring an SSL certificate for a Windows Azure web site ###
 
-The steps in this exercise require you to configure your web sites for standard mode, which may incur additional costs if you are currently using free or shared mode. 
+The steps in this exercise require you to configure your Websites for standard mode, which may incur additional costs if you are currently using free or shared mode. 
 
 <a name="get-a-certificate" />
 #### Task 1 - Getting a Certificate ####
@@ -330,13 +330,13 @@ For simplicity of the lab, you will use a script located in the asset folder tha
 	_Output certificates_
 
 <a name="configure-standard-mode" />
-#### Task 2 - Configuring standard mode in Windows Azure Web Sites####
+#### Task 2 - Configuring standard mode in Windows Azure Websites####
 
-Enabling SSL on a web site is only available for the standard mode of Windows Azure web sites. Before switching a web site from the free web site mode to the standard web site mode, you must first remove spending caps in place for your Web Site subscription. For more information on shared and standard mode pricing, see [Pricing Details](https://www.windowsazure.com/en-us/pricing/details/).
+Enabling SSL on a web site is only available for the standard mode of Windows Azure Websites. Before switching a web site from the free web site mode to the standard web site mode, you must first remove spending caps in place for your Web Site subscription. For more information on shared and standard mode pricing, see [Pricing Details](https://www.windowsazure.com/en-us/pricing/details/).
 
 1.	In your browser, open the [Windows Azure Management Portal](https://manage.windowsazure.com/).
 
-1.	In the **Web Sites** tab, click the name of your web site.
+1.	In the **Websites** tab, click the name of your web site.
 
 1.	Click the **Scale** tab.
 
@@ -357,13 +357,13 @@ Enabling SSL on a web site is only available for the standard mode of Windows Az
 	> **Note**: If you receive a "Configuring scale for web site '<site name>' failed" error you can use the details button to get more information. You may receive a "Not enough available reserved instance servers to satisfy this request." error. If you receive this error, you will need to try again later to upgrade your account.
 
 <a name="configure-ssl" />
-#### Task 3 - Configuring SSL in Windows Azure Web Sites####
+#### Task 3 - Configuring SSL in Windows Azure Websites####
 
 Before performing the steps in this section, you must have associated a custom DNS name with your Windows Azure Web Site.
 
 1.	In your browser, open the [Windows Azure Management Portal ](https://manage.windowsazure.com/).
 
-1.	In the **Web Sites** section, click the name of your site and then select the **Configure** tab.
+1.	In the **Websites** section, click the name of your site and then select the **Configure** tab.
 
 	![Configure Tab](Images/configure-tab.png?raw=true "Configure Tab")
 
@@ -472,11 +472,11 @@ In this exercise you will create a new MVC 4 web application. Once created, you 
 1. Press **Ctrl** + **S** to save the file.
 
 <a name="deploying-to-windows-azure-web-sites" />
-#### Task 2 - Deploying to Windows Azure Web Sites ####
+#### Task 2 - Deploying to Windows Azure Websites ####
 
 1. Open the [Windows Azure Management Portal](https://manage.windowsazure.com/).
 
-1. In the **Web Sites** tab, click on the website you created in the Getting Started section.
+1. In the **Websites** tab, click on the website you created in the Getting Started section.
 
 1. Go to the **Dashboard** tab and, in the quick glance section at the right of the screen, click **Download the publish profile**
 
@@ -529,6 +529,6 @@ In this exercise you will create a new MVC 4 web application. Once created, you 
 
 By completing this hands-on lab you learned how to:
 
-- Configure a custom domain in Windows Azure Web Sites 
-- Configure a SSL in Windows Azure Web Sites 
+- Configure a custom domain in Windows Azure Websites 
+- Configure a SSL in Windows Azure Websites 
 - Create a web application and redirecting request to HTTPS 

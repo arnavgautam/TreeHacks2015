@@ -1,13 +1,13 @@
 <a name="Title"></a>
-# Building and Publishing Web Applications with Windows Azure Web Sites and WebMatrix 2#
+# Building and Publishing Web Applications with Windows Azure Websites and WebMatrix 2#
 
 ---
 <a name="Overview"></a>
 ## Overview ##
 
-In this Hands-on Lab you will learn how to use Microsoft WebMatrix 2 to build and publish web sites in Windows Azure.
+In this Hands-on Lab you will learn how to use Microsoft WebMatrix 2 to build and publish Websites in Windows Azure.
 
-Microsoft WebMatrix is a free tool that allows you to create, customize and publish web sites. WebMatrix includes a range of built-in templates to make it quick and easy to get started with your web site code and provides built-in publishing support to help you easily publish your web sites to Windows Azure.
+Microsoft WebMatrix is a free tool that allows you to create, customize and publish Websites. WebMatrix includes a range of built-in templates to make it quick and easy to get started with your web site code and provides built-in publishing support to help you easily publish your Websites to Windows Azure.
 
 Following the exercises, you will create a new Web Site from the Windows Azure Management Portal and start to build your Web Site locally using WebMatrix. By using a WebMatrix out-of-the-box template, you will quickly create a photo gallery application and customize it by adding a Facebook Like button. Finally, you will publish the resulting web application to Windows Azure using WebMatrix built-in publishing support.
 
@@ -25,7 +25,7 @@ In this hands-on lab, you will learn how to:
 <a name="Prerequisites"></a>
 ### Prerequisites ###
 
-- A Windows Azure subscription with the Web Sites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Windows Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 ---
 <a name="Exercises"></a>
@@ -67,11 +67,11 @@ In this task, you will create a new Web Site from the Windows Azure Management P
 
 In this task, you will download and install WebMatrix  and then create a site using the Photo Gallery template.
 
-1. In the **Windows Azure Management Portal**, click Web Sites and then click the Web Site **name** you created in the previous task to go to its **Dashboard**.
+1. In the **Windows Azure Management Portal**, click Websites and then click the Web Site **name** you created in the previous task to go to its **Dashboard**.
 
-	![Web Sites page](images/web-sites-page.png?raw=true "Web Sites page")
+	![Websites page](images/web-sites-page.png?raw=true "Websites page")
 
-	_Web Sites page_
+	_Websites page_
 
 
 1. In the **Dashboard** page, click **WebMatrix** from the bottom menu. 
@@ -180,7 +180,7 @@ In this task, you will publish the Photo Gallery template you created in the pre
 
 In this task you will explore the Photo Gallery application you have published in [Exercise 1](#Exercise1). You will register as a photo gallery user and then explore the application to see how it works. You will upload some images, add comments to those pictures and see how thumbnails change according to the pictures you uploaded.
 
->**Note:** This exercise requires that you have the Photo Gallery application published in Windows Azure Web Sites as explained in Exercise 1.
+>**Note:** This exercise requires that you have the Photo Gallery application published in Windows Azure Websites as explained in Exercise 1.
 
 
 <a name="Ex2Task1"></a>
@@ -266,7 +266,7 @@ In this task you will explore the Photo Gallery application you have published i
 
 In this exercise, you will customize the Photo Gallery application you created in the previous exercise by using **NuGet Packages**.
 
->**Note:** This exercise requires that you have the Photo Gallery application published in Windows Azure Web Sites as explained in Exercise 1.
+>**Note:** This exercise requires that you have the Photo Gallery application published in Windows Azure Websites as explained in Exercise 1.
 
 <a name="Ex3Task1"></a>
 #### Task 1 – Installing the Facebook Helper NuGet Package####

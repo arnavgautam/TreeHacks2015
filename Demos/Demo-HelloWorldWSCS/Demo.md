@@ -1,11 +1,11 @@
-﻿<a name="title" />
-# Windows Azure Web Sites and Cloud Services #
+<a name="title" />
+# Windows Azure Websites and Cloud Services #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-Windows Azure Web Sites let you build highly scalable Web Sites on Windows Azure. Quickly and easily deploy sites to a highly scalable cloud environment that allows you to start small and scale as traffic grows. Use the languages and apps of your choice then deploy with FTP, Git and TFS. 
+Windows Azure Websites let you build highly scalable Websites on Windows Azure. Quickly and easily deploy sites to a highly scalable cloud environment that allows you to start small and scale as traffic grows. Use the languages and apps of your choice then deploy with FTP, Git and TFS. 
 
 With Windows Azure Cloud Services you can quickly deploy and manage powerful applications and services. Simply upload your application and Windows Azure handles the deployment details from provisioning and load balancing to health monitoring for continuous availability.
 
@@ -64,7 +64,7 @@ In order to execute this demo you need to set up your environment.
 
 	_The new site's default page_
 
-1. In Windows Azure Management Portal go to **Web Sites** and click the name of the Web Site you just created.
+1. In Windows Azure Management Portal go to **Websites** and click the name of the Web Site you just created.
 
 	> **Speaking Point:** 
 	>
@@ -172,7 +172,7 @@ git push azure master
 
 	> **Speaking point:** 
 	>
-	Here we can manage the scaling options of our Web Site, such as the Web Site mode which can be Shared or Reserved .In Shared mode, all Web Sites share the servers and are created in the same geographical-region; Reserved mode implies that all Web Sites in a given region run on dedicated virtual machines. Reserved mode provides your sites more processing power and performance and allows you to scale your instance count and size. We can also change the Shared Instance count, denoting the number of processes dedicated to a Web Site. By changing this setting, you can scale out your Web Site for increased throughput and availability. Similarly, we can adjust the Instance size and Instance count for Reserved mode.
+	Here we can manage the scaling options of our Web Site, such as the Web Site mode which can be Shared or Reserved .In Shared mode, all Websites share the servers and are created in the same geographical-region; Reserved mode implies that all Websites in a given region run on dedicated virtual machines. Reserved mode provides your sites more processing power and performance and allows you to scale your instance count and size. We can also change the Shared Instance count, denoting the number of processes dedicated to a Web Site. By changing this setting, you can scale out your Web Site for increased throughput and availability. Similarly, we can adjust the Instance size and Instance count for Reserved mode.
 	>
 	Now we will see how we can publish our Web Site as a **Cloud Service** in **Windows Azure**
 

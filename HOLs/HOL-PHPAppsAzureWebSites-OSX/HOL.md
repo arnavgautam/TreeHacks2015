@@ -1,11 +1,11 @@
-ï»¿<a name="Title" />
-# Building and Publishing PHP Applications with Windows Azure Web Sites (OS X) #
+<a name="Title" />
+# Building and Publishing PHP Applications with Windows Azure Websites (OS X) #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-In this hands-on lab, you will explore the basic elements of the Windows Azure **Web Sites** service by creating a simple [PHP](http://www.php.net) application and deploying it using **FTP deployment**.
+In this hands-on lab, you will explore the basic elements of the Windows Azure **Websites** service by creating a simple [PHP](http://www.php.net) application and deploying it using **FTP deployment**.
 
 <a name="Objectives" />
 ### Objectives ###
@@ -34,7 +34,7 @@ The following is required to complete this hands-on lab:
 	>
 	>By using -g, Windows Azure Command-Line Tools will install on your machine globally. That means, you will be able to execute azure commands from any location.
 
-- A Windows Azure subscription with the Web Sites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Windows Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 >**Note:** This lab was designed to use the OS X Operating System.
 
@@ -45,18 +45,18 @@ The following is required to complete this hands-on lab:
 
 This hands-on lab includes the following exercises:
 
-1.	[Creating and publishing PHP application in Windows Azure Web Sites](#Exercise1)
+1.	[Creating and publishing PHP application in Windows Azure Websites](#Exercise1)
 1.	[Using the Windows Azure Command-Line Tools for Mac and Linux for publishing PHP applications](#Exercise2)
 
 ---
 
 <a name="Exercise1" />
-### Exercise 1: Creating and Publishing PHP Applications in Windows Azure Web Sites ###
+### Exercise 1: Creating and Publishing PHP Applications in Windows Azure Websites ###
 
 In the first exercise you will provision a new web site from the Windows Azure portal, create a simple PHP application using FTP, and finally publish the application taking advantage of the FTP endpoint provided by Windows Azure.
 
 <a name="Ex1Task1" />
-#### Task 1 â€“ Creating a new Web Site from Windows Azure Portal ####
+#### Task 1 – Creating a new Web Site from Windows Azure Portal ####
 
 1. Go to the [Windows Azure portal](https://manage.windowsazure.com/) and sign in using  your account credentials.
 
@@ -95,7 +95,7 @@ In the first exercise you will provision a new web site from the Windows Azure p
 	_Selecting the dashboard tab_
 
 <a name="Ex1Task2" />
-#### Task 2 â€“ Creating a New Simple PHP Application and Publishing it Using FTP ####
+#### Task 2 – Creating a New Simple PHP Application and Publishing it Using FTP ####
 
 1. Open a new command prompt window and create a new folder for the web site (e.g. **phpsample**). Then change the current directory to the one you have created.
 
@@ -120,11 +120,11 @@ In the first exercise you will provision a new web site from the Windows Azure p
 	<!DOCTYPE html>
 	<html>
 	<head>
-		<title>Windows Azure Web Sites - Hello World sample!</title>
+		<title>Windows Azure Websites - Hello World sample!</title>
 	</head>
 
 	<body>
-		<h1>Windows Azure Web Sites - Hello World sample!</h1>
+		<h1>Windows Azure Websites - Hello World sample!</h1>
 
 		<?php
 			// Show all information, defaults to INFO_ALL
@@ -155,7 +155,7 @@ In the first exercise you will provision a new web site from the Windows Azure p
 
 1. Enter the **User Name** and the **Password** of your deployment credentials. Make sure that the **User Name** is preceeded by the name of your web site (e.g. **phpsample\admin**).
 	
-	> **Note:** Deployment credentials are valid for use with all Windows Azure web sites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
+	> **Note:** Deployment credentials are valid for use with all Windows Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
 
 	>
 	>![Entering the username and password](images/deployment-credentials.png?raw=true "Setting the user name and password")
@@ -190,7 +190,7 @@ In the first exercise you will provision a new web site from the Windows Azure p
 In this exercise you will use the Windows Azure Command-Line Tools for Mac and Linux to download your management certificate, create a new Web Site with GIT publishing enabled, and finally create a simple PHP file and deploy it by pushing the changes to the remote repository.
 
 <a name="Ex2Task1" />
-#### Task 1 â€“ Downloading and Importing your Management Certificate  ####
+#### Task 1 – Downloading and Importing your Management Certificate  ####
 
 1. Open a new terminal window and execute the **account download** command to download your Windows Azure subscription **publish settings** file.
 
@@ -227,7 +227,7 @@ In this exercise you will use the Windows Azure Command-Line Tools for Mac and L
 	_Importing the publish settings file_
 
 <a name="Ex2Task2" />
-#### Task 2 â€“ Creating a new Web Site with GIT Publishing ####
+#### Task 2 – Creating a new Web Site with GIT Publishing ####
 
 1. Create a new folder for the new web site (e.g. **phpsamplecli**) and change the current directory to it.
 
@@ -262,11 +262,11 @@ In this exercise you will use the Windows Azure Command-Line Tools for Mac and L
 	<!DOCTYPE html>
 	<html>
 	<head>
-		<title>Windows Azure Web Sites - Hello World sample!</title>
+		<title>Windows Azure Websites - Hello World sample!</title>
 	</head>
 
 	<body>
-		<h1>Windows Azure Web Sites - Hello World sample!</h1>
+		<h1>Windows Azure Websites - Hello World sample!</h1>
 
 		<?php
 			// Show all information, defaults to INFO_ALL
@@ -283,7 +283,7 @@ In this exercise you will use the Windows Azure Command-Line Tools for Mac and L
 1. Save the **index.php** file and close TextEdit.
 
 <a name="Ex2Task3" />
-#### Task 3 â€“ Deploying the Web Site using GIT ####
+#### Task 3 – Deploying the Web Site using GIT ####
 
 1. Stage the new file, commit and push the changes to the git repository running the commands below. Enter the deployment password when prompted.
 
@@ -297,7 +297,7 @@ In this exercise you will use the Windows Azure Command-Line Tools for Mac and L
 
 	_Deploying the Web Site using GIT_
 
-	>Deployment credentials are other than the account associated with your Windows Azure subscription and are valid for use with all Windows Azure web sites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click OK.
+	>Deployment credentials are other than the account associated with your Windows Azure subscription and are valid for use with all Windows Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click OK.
 
 	>
 	>![Entering the username and password](images/deployment-credentials.png?raw=true "Setting the user name and password")

@@ -1,4 +1,4 @@
-Ôªø<a name="Title" />
+<a name="Title" />
 # Introduction to Windows Azure Access Control Service 2.0 #
 
 ---
@@ -6,7 +6,7 @@
 ## Overview ##
 
 Connecting one application to its users is one of the most basic requirements of any solution, whether deployed on-premises, in the cloud or on both.
-The emergence of standards is helping to break the silos that traditionally isolate accounts stored by different web sites and business entities. However, offering application access to users coming from multiple sources can still be a daunting task. As of today, if you want to open your application to users coming from Facebook, Live ID, Google and business directories, the brute-force approach demands you to lean and implement four different authentication protocols. Changes in today‚Äôs world happen fast and often, forcing you to keep updating your protocol implementations to chase the latest evolutions of the authentication mechanisms of different user repositories. All this can require a disproportionate amount of energy, leaving you with fewer resources to focus on your business.
+The emergence of standards is helping to break the silos that traditionally isolate accounts stored by different Websites and business entities. However, offering application access to users coming from multiple sources can still be a daunting task. As of today, if you want to open your application to users coming from Facebook, Live ID, Google and business directories, the brute-force approach demands you to lean and implement four different authentication protocols. Changes in todayís world happen fast and often, forcing you to keep updating your protocol implementations to chase the latest evolutions of the authentication mechanisms of different user repositories. All this can require a disproportionate amount of energy, leaving you with fewer resources to focus on your business.
 
 ![A functional view of the Access Control Service](Images/a-functional-view-of-the-access-control-servi.png?raw=true)
 
@@ -77,7 +77,7 @@ Estimated time to complete this lab: **45** minutes.
 <a name="Exercise1" />
 ### Exercise 1: Use Access Control Service to Accept Users from Multiple Identity Providers ###
 
-In this first exercise you will familiarize yourself with ACS‚Äô basic settings and terminology. The goal is to secure access to a newly created ASP.NET Web site. The Web site will accept users from Google, Yahoo! and Windows Live ID. As you will see in a minute, ACS makes it really easy.
+In this first exercise you will familiarize yourself with ACSí basic settings and terminology. The goal is to secure access to a newly created ASP.NET Web site. The Web site will accept users from Google, Yahoo! and Windows Live ID. As you will see in a minute, ACS makes it really easy.
 
 <a name="Ex1Task1" />
 #### Task 1 - Signing-up for Windows Azure Access Control Service and Creating the Service Namespace ####
@@ -143,7 +143,7 @@ In this task you will use the ACS portal to get the credentials that will be use
 	 
 	_The Yahoo Identity Provider configuration page_
  
-6.	You can follow the same steps to add Google as an Identity Provider. You‚Äôll end up with the Identity Providers list shown below.
+6.	You can follow the same steps to add Google as an Identity Provider. Youíll end up with the Identity Providers list shown below.
 	 
 	![Identity Providers configured](Images/identity-providers-configured.png?raw=true)
 	
@@ -168,7 +168,7 @@ In this task you will use the ACS portal to get the credentials that will be use
 <a name="Ex1Task3" />
 #### Task 3 - Configuring the allowed Identity Providers  ####
 
-By now you know that ACS takes care of accepting tokens in different formats from a number of possible identity providers via different protocols, and normalizes the incoming information into a different token format that your Web site will consume. ACS can emit different token types via various protocols. For Web sites, the default protocol is WS-Federation. There‚Äôs no need to go in the fine details: it‚Äôs suffice to say that WS-Federation is a protocol that is natively understood by Windows Identity Foundation (WIF), a part of the .NET framework that allows you to easily outsource application authentication to tokens sources such as the ACS itself. In particular, WIF extends Visual Studio with a tool that can automatically configure your application to outsource authentication without requiring you to write a single line of code.
+By now you know that ACS takes care of accepting tokens in different formats from a number of possible identity providers via different protocols, and normalizes the incoming information into a different token format that your Web site will consume. ACS can emit different token types via various protocols. For Websites, the default protocol is WS-Federation. Thereís no need to go in the fine details: itís suffice to say that WS-Federation is a protocol that is natively understood by Windows Identity Foundation (WIF), a part of the .NET framework that allows you to easily outsource application authentication to tokens sources such as the ACS itself. In particular, WIF extends Visual Studio with a tool that can automatically configure your application to outsource authentication without requiring you to write a single line of code.
 
 1. Open **Microsoft Visual Studio 2012** as administrator by right-clicking the **Microsoft Visual Studio 2012** shortcut and choosing **Run as administrator**.
 
@@ -240,13 +240,13 @@ By now you know that ACS takes care of accepting tokens in different formats fro
 
 	_An example of how ACS receives a token as proof of authentication (in this case from Google, but it can come from any recognized IP) and can emit for the application a token containing the original claims_
 
-	> **Note:** When a user successfully authenticates with one identity provider, ACS receives from that identity provider an artifact (called ‚Äúsecurity token‚Äù) which represents the proof that authentication took place. You don‚Äôt need to know the details of how a security token looks like. The only information relevant at the moment is that the token contains information about the authenticated user, the so-called claims, which help ACS to establish who the current user is.
+	> **Note:** When a user successfully authenticates with one identity provider, ACS receives from that identity provider an artifact (called ìsecurity tokenî) which represents the proof that authentication took place. You donít need to know the details of how a security token looks like. The only information relevant at the moment is that the token contains information about the authenticated user, the so-called claims, which help ACS to establish who the current user is.
 	ACS can process the incoming claims in various ways you will see a simple example of that in the next exercise. In the current exercise we will configure ACS to enforce its default behavior, which is to make sure that your application receives the claims as they came from the original identity providers. How does it do that? The ACS itself emits a token that your application is configured to consume (as you will see in just few steps). All it needs to do is to copy the incoming claims as is into the outgoing token.
 
 <a name="Ex1Task4" />
 ### Task 4 - Verification ###
  
-It‚Äôs time to give your newly secured Web site a spin. In order to verify that you have correctly performed all steps in exercise one, proceed as follows:
+Itís time to give your newly secured Web site a spin. In order to verify that you have correctly performed all steps in exercise one, proceed as follows:
 
 1.	Start debugging by pressing **F5**. 
 
@@ -258,7 +258,7 @@ It‚Äôs time to give your newly secured Web site a spin. In order to verify that 
 
 	The relying party application (https://localhost:{port-number}/) will redirect to the Access Control Service to authenticate. 
 
-1. Choose an Identity Provider. You will be redirected to the identity provider‚Äôs Web site where you will be prompted to enter your credentials. In this example we will use Windows Live ID choosing other options will lead to comparable experiences.
+1. Choose an Identity Provider. You will be redirected to the identity providerís Web site where you will be prompted to enter your credentials. In this example we will use Windows Live ID choosing other options will lead to comparable experiences.
 	 
 	![Choosing your Favorite Identity Provider](Images/choosing-your-identity-provider.png?raw=true)
 
@@ -283,9 +283,9 @@ It‚Äôs time to give your newly secured Web site a spin. In order to verify that 
 <a name="Exercise2" />
 ### Exercise 2: Take control of the Sign-In experience ###
 
-Using the WIF tooling to outsource authentication to ACS creates what is often referred to as ‚Äúblanket protection‚Äù.  From that moment on, any attempts from unauthenticated users to access any pages in the Web site triggers a redirection to the ACS. There are various scenarios where that is not the desired effect.  For example, you may want to leave some pages available to unauthenticated users, or you may want to take finer control of the authentication experience.
+Using the WIF tooling to outsource authentication to ACS creates what is often referred to as ìblanket protectionî.  From that moment on, any attempts from unauthenticated users to access any pages in the Web site triggers a redirection to the ACS. There are various scenarios where that is not the desired effect.  For example, you may want to leave some pages available to unauthenticated users, or you may want to take finer control of the authentication experience.
 
-This exercise shows you how you can seamlessly integrate ACS authentication elements in your Web site. It demonstrates that you can take advantage of ACS‚Äô advanced capabilities without having to break the experience and style you want for your web applications.
+This exercise shows you how you can seamlessly integrate ACS authentication elements in your Web site. It demonstrates that you can take advantage of ACSí advanced capabilities without having to break the experience and style you want for your web applications.
 
 <a name="Ex2Task1" />
 #### Task 1 - Generating a Controller to Handle Logins ####
@@ -396,7 +396,7 @@ In this task you will experience the new look and feel of the login process to y
 
 Handling access control for a Web application is mainly a matter of handling three tasks:
 
-* Authenticate the incoming user‚Äôs credentials
+* Authenticate the incoming userís credentials
 
 * Retrieve the attributes of the authenticated user and use them for granting or deny access
 
@@ -404,11 +404,11 @@ Handling access control for a Web application is mainly a matter of handling thr
 
 In traditional development practice, you would implement those tasks by coding directly against the credentials that your application uses: that would require you to be skilled in security matters and would generate code that is difficult to maintain or re-host.
 
-Windows Identity Foundation changes the game. As a first step, we _externalize authentication_. Instead of authenticating the users from our application, we trust an external authority to do so: we call such an authority _Security Token Service_, or _STS_. We configure our application to accept _security tokens_ from the STS, transmitted using standard protocols. Those tokens are the proof that the user successfully authenticated with the STS, which is all we need for considering the user authenticated with our application: hence we don‚Äôt need to worry about managing credentials anymore. For this reason, it is common in the security jargon to call an application that accepts tokens from an STS _relying party_ (or _RP_).
+Windows Identity Foundation changes the game. As a first step, we _externalize authentication_. Instead of authenticating the users from our application, we trust an external authority to do so: we call such an authority _Security Token Service_, or _STS_. We configure our application to accept _security tokens_ from the STS, transmitted using standard protocols. Those tokens are the proof that the user successfully authenticated with the STS, which is all we need for considering the user authenticated with our application: hence we donít need to worry about managing credentials anymore. For this reason, it is common in the security jargon to call an application that accepts tokens from an STS _relying party_ (or _RP_).
 
 The security tokens can also contain information about users: we call those information _claims_. A claim can literally be anything: groups or roles the user belongs to, attributes like name or email, or permissions such as CanRead. The STS embeds in the token claims about the user at issuance time: the tokens are digitally signed, hence after issuance their values cannot be tampered with. If our application trusts the STS, it consider the claims in the tokens it produce as actually describing the user; as a result, our application no longer needs to look up user attributes for authorization or customization purposes. 
 
-If this all sounds a bit confusing, don‚Äôt worry: it will all become clear as we walk through the lab.
+If this all sounds a bit confusing, donít worry: it will all become clear as we walk through the lab.
 In this first exercise, we will start from an existing ASP.NET application, which contains only some UI elements which need to be initialized with identity information about the current user. We will show how to secure the application and obtaining the identity info we need by taking advantage of a local STS.
 
 ![Redirects Sequence And Claims Flow](Images/redirects-sequence-and-claims-flow.png?raw=true)
@@ -458,9 +458,9 @@ The application has no authentication code at all. As mentioned before, you will
 
 	> **Note:** This tool helps to establish a trust relationship between a relying party application (the **WebSiteACS** application, in this case) and an STS. In this exercise, you will use the tool to configure the Local Development STS for development purposes.
 
-1. Check the **‚ÄúUse the Local Development STS to test your application‚Äù** option and click **OK**.
+1. Check the **ìUse the Local Development STS to test your applicationî** option and click **OK**.
 
-	> **Note:** The Local Development STS is a test endpoint, provided by the Identity and Access tools, which can be used on the local machine for getting claims of arbitrary types and values in your application. By choosing ‚ÄúUse the local development STS to test your application‚Äù you told the tools that you want your application to get tokens from the local STS, and the tools take care to configure your app accordingly. When you press F5, the tools launch an instance of Local STS and your application redirects the request to it. Local Development STS does not attempt to authenticate requests; it just issues a token with the claim types and values it is configured to issue.
+	> **Note:** The Local Development STS is a test endpoint, provided by the Identity and Access tools, which can be used on the local machine for getting claims of arbitrary types and values in your application. By choosing ìUse the local development STS to test your applicationî you told the tools that you want your application to get tokens from the local STS, and the tools take care to configure your app accordingly. When you press F5, the tools launch an instance of Local STS and your application redirects the request to it. Local Development STS does not attempt to authenticate requests; it just issues a token with the claim types and values it is configured to issue.
 
 	![Local STS Provider](Images/local-sts-provider.png?raw=true)
 
@@ -499,7 +499,7 @@ In this task you will manage roles in the web application by using custom claims
 
 1. Go to the **Role** claim and replace the _developer_ value with _Manager_. Click **OK** when you are finished.
 
-	> **Note:** You won‚Äôt modify FederationMetadata.xml for this exercise. However, this is important for ‚Äúadvertising‚Äù the claims that your application needs. This would be useful if you would allow an external STS, such as an Active Directory Federation Services (ADFS) instance, to automatically configure itself for providing claims to your application.
+	> **Note:** You wonít modify FederationMetadata.xml for this exercise. However, this is important for ìadvertisingî the claims that your application needs. This would be useful if you would allow an external STS, such as an Active Directory Federation Services (ADFS) instance, to automatically configure itself for providing claims to your application.
 
 	![Updating Role Claim Value From the List of Test Claims to Issue](Images/updating-role-claim-value-from-the-list-of-te.png?raw=true)
 
@@ -507,7 +507,7 @@ In this task you will manage roles in the web application by using custom claims
 
 	Optionally, you can modify the same settings from **LocalSTS.exe.config** file directly.
 
-	> **Note:** All the settings for the Development Local STS come from this file, which lives in your application‚Äôs folder. That means that you can create multiple copies of those files with different settings for your various test cases.
+	> **Note:** All the settings for the Development Local STS come from this file, which lives in your applicationís folder. That means that you can create multiple copies of those files with different settings for your various test cases.
 
 1. Open **HomeController.cs** from the **Controllers** folder and add the following using statement.
 
@@ -515,7 +515,7 @@ In this task you will manage roles in the web application by using custom claims
 	using System.Security.Claims;
 	````
 
-	> **Note:** Here you will use the Windows Identity Foundation object model for retrieving claims values and driving the applications‚Äô behavior. Sometimes, you will not even notice you are using Windows Identity Foundation, since its object model is seamlessly integrated with the existing ASP.NET model.
+	> **Note:** Here you will use the Windows Identity Foundation object model for retrieving claims values and driving the applicationsí behavior. Sometimes, you will not even notice you are using Windows Identity Foundation, since its object model is seamlessly integrated with the existing ASP.NET model.
 
 1. Find the **Index** action method and add the following highlighted line of code to pass the user name to the home view.
 
@@ -529,7 +529,7 @@ In this task you will manage roles in the web application by using custom claims
 	}
 	````
 
-	> **Note:** This is exactly the code you write for accessing the user‚Äôs name in an ASP.NET application, regardless of the authentication type: Windows Identity Foundation is no exception.
+	> **Note:** This is exactly the code you write for accessing the userís name in an ASP.NET application, regardless of the authentication type: Windows Identity Foundation is no exception.
 
 1. Add the following highlighted code to the **Index** action method to get the birthday claim value and pass the remaining days until the user's birthday to the home view.
 
@@ -552,7 +552,7 @@ In this task you will manage roles in the web application by using custom claims
 
 1. Save your changes.
 
-	> **Note:** What you see here is the claim identity model in action. First, we can do everything with ClaimsPrincipal (no need to get to the underlying ClaimsIdentity). Once we have that, we have a means of inspecting the claims we received from the STS: the next line queries the incoming claims collection, searching for the birth date of the user. The rest of the code just calculates how many days are left in the year before the user‚Äôs birthday.
+	> **Note:** What you see here is the claim identity model in action. First, we can do everything with ClaimsPrincipal (no need to get to the underlying ClaimsIdentity). Once we have that, we have a means of inspecting the claims we received from the STS: the next line queries the incoming claims collection, searching for the birth date of the user. The rest of the code just calculates how many days are left in the year before the userís birthday.
 Nothing of the code above gives away any details about which authentication technology has been used: the Windows Identity Foundation took care of all the details for us, and we are free to concentrate on our application logic.
 
 1. Open the **Web.config** file of the relying party Web site (**WebSiteACS** project).
@@ -602,7 +602,7 @@ In this task you will verify that you can only access the secret page only with 
 
 	_Secret Page_
 
-	Since the STS includes a hardcoded claim for the **Manager** role you can navigate to the **Home/SecretPage** page which is limited to Manager users only. Let‚Äôs put this to test and see what happens if we change Terry‚Äôs role from **Manager** to **Sales**: this should make Terry unable to reach **Home/SecretPage**.
+	Since the STS includes a hardcoded claim for the **Manager** role you can navigate to the **Home/SecretPage** page which is limited to Manager users only. Letís put this to test and see what happens if we change Terryís role from **Manager** to **Sales**: this should make Terry unable to reach **Home/SecretPage**.
 
 1. Close the browser.
 
@@ -621,11 +621,11 @@ In this task you will verify that you can only access the secret page only with 
 	_Access Denied for Secret Page_
 
 <a name="Ex3Task5" />
-#### Task 5 - Granting or Denying Access to the Website According to the User‚Äôs Age ####
+#### Task 5 - Granting or Denying Access to the Website According to the Userís Age ####
 
 In this task, you are going to delete the ASP.NET Role settings and add a claims authorization manager to change the permissions criteria. Also you will add a simple custom **ClaimsAuthorizationManager** class whose only capability is making sure that only callers older than a certain threshold age are granted access to a given web resource.
 
-> **Note:** The fact that Windows Identity Foundation integrates well with existing authentication practices is a big advantage, since it allows you to protect existing skills and investments: however claims have much more expressive power than the classic roles and attributes, and can be used for achieving things that would have been impossible with traditional approaches. One simple example is using claims for expressing attributes that have non-string values, such as dates (date of birth, expiration date, etc), numbers (spending limit, weight, etc) or even structured data. Those data can be processed using criteria that are more sophisticated than the simple existence check (i.e. the user has claims A with value X, or he doesn‚Äôt): one example of such a criteria would be imposing that all the users of the website should be older than 21.
+> **Note:** The fact that Windows Identity Foundation integrates well with existing authentication practices is a big advantage, since it allows you to protect existing skills and investments: however claims have much more expressive power than the classic roles and attributes, and can be used for achieving things that would have been impossible with traditional approaches. One simple example is using claims for expressing attributes that have non-string values, such as dates (date of birth, expiration date, etc), numbers (spending limit, weight, etc) or even structured data. Those data can be processed using criteria that are more sophisticated than the simple existence check (i.e. the user has claims A with value X, or he doesnít): one example of such a criteria would be imposing that all the users of the website should be older than 21.
 	
 > The Windows Identity Foundation object model offers an extensibility point in the claims processing pipeline, which is specifically designed to allow you to inject your own claims authorization code. In order to do that, you are required to derive from the **ClaimsAuthorizationManager** class and implement your claim authorization logic in the method **CheckAccess**. It is common practice to express the authorization conditions outside of the code, for example in configuration files, and implement in **CheckAccess** generic evaluation logic so that the values & conditions can be changed at deployment time. This ensures that a change in the authorization conditions can be applied without recompiling anything. The conditions can be associated to the resources they refer to using some notation convention directly in the configuration files: however it is also possible to use explicit invocations from code, or decorating the resources themselves with attributes which will tie to authorization conditions and will fire the associated logic.
 
@@ -769,7 +769,7 @@ In this task, you are going to delete the ASP.NET Role settings and add a claims
 	````
 
 <a name="Ex3Task6" />
-#### Task 6 - Verifying the User‚Äôs Age Based Access ####
+#### Task 6 - Verifying the Userís Age Based Access ####
 
 In this task you will verify that you can only access the secret page only if the user is 21 years old.
 
@@ -787,7 +787,7 @@ In this task you will verify that you can only access the secret page only if th
 
 	_Secret Page_
 
-	Since the STS includes a hardcoded claim for the **Birthdate** you can navigate to the **Home/SecretPage** page which is limited to users with an age greater or equal than 21 only. Let‚Äôs put this to test and see what happens if we change Terry‚Äôs **Birthdate** to **5/5/2012**: this should make Terry unable to reach **Home/SecretPage**
+	Since the STS includes a hardcoded claim for the **Birthdate** you can navigate to the **Home/SecretPage** page which is limited to users with an age greater or equal than 21 only. Letís put this to test and see what happens if we change Terryís **Birthdate** to **5/5/2012**: this should make Terry unable to reach **Home/SecretPage**
 
 1.	Close the browser.
 

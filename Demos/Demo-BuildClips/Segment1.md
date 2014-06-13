@@ -1,7 +1,7 @@
-﻿<a name="segment1" />
+<a name="segment1" />
 ### Segment 1: Building and Extending Web Apps to Windows 8 ###
 
-In this segment, we will extend the web site to include Web APIs that power a Windows 8 experience.  Finally, the web site project will be deployed to Windows Azure Web Sites and scaled using multiple paid shared instances.
+In this segment, we will extend the web site to include Web APIs that power a Windows 8 experience.  Finally, the web site project will be deployed to Windows Azure Websites and scaled using multiple paid shared instances.
 
 1.	Launch Visual Studio 2012 as **administrator** and open the **BuildClips.sln** solution in **[working directory]\BuildClips\BuildClips.Web**. Press **F5** to run the Web application locally.
 
@@ -207,7 +207,7 @@ In this segment, we will extend the web site to include Web APIs that power a Wi
 
 1. Go to the **Configure** tab in the portal and open the **Manage Domains**.
 
-	> **Speaking Point**: Talk about how Web Sites support CNAMES and A Records for applications running in Shared and Reserved modes.
+	> **Speaking Point**: Talk about how Websites support CNAMES and A Records for applications running in Shared and Reserved modes.
 
 	![portal manage domains](Images/portal-managedomains.png?raw=true)
 

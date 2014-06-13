@@ -1,11 +1,11 @@
-ï»¿<a name="Title" />
-# Building and Publishing Node.js Applications with Windows Azure Web Sites (OS X) #
+<a name="Title" />
+# Building and Publishing Node.js Applications with Windows Azure Websites (OS X) #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-In this hands-on lab, you will learn the basics of the Windows Azure Web Sites service for Node.js applications. In Exercise 1, you will see how to use the Windows Azure portal for creating a web site and then publish a "Hello World" Node.js application using GIT. In Exercise 2, you will learn how to use the Windows Azure Command-Line Tools for publishing applications. 
+In this hands-on lab, you will learn the basics of the Windows Azure Websites service for Node.js applications. In Exercise 1, you will see how to use the Windows Azure portal for creating a web site and then publish a "Hello World" Node.js application using GIT. In Exercise 2, you will learn how to use the Windows Azure Command-Line Tools for publishing applications. 
 <a name="Objectives" />
 ### Objectives ###
 
@@ -31,7 +31,7 @@ The following is required to complete this hands-on lab:
 	>
 	>By using -g, Windows Azure Command-Line Tools will install on your machine globally. That means, you will be able to execute azure commands from any location.
 
-- A Windows Azure subscription with the Web Sites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Windows Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 >**Note:** This lab was designed to use the OS X Operating System.
 
@@ -52,7 +52,7 @@ This hands-on lab includes the following exercises:
 In the first exercise you will create a new web site from the Windows Azure portal, create a 'Hello World' Node.js application and finally publish it, taking advantage of the new GIT publishing feature provided by Windows Azure.
 
 <a name="Ex1Task1" />
-#### Task 1 â€“ Creating a New Web Site Hosted in Windows Azure ####
+#### Task 1 – Creating a New Web Site Hosted in Windows Azure ####
 
 1. Go to the [Windows Azure portal](https://manage.windowsazure.com/) **Windows Azure portal** and sign in using the **Microsoft Account** credentials associated with your subscription.
 
@@ -171,7 +171,7 @@ that should be handled by the **iisnode** module.
 1. Save the file as **web.config** in your web site folder.
 
 <a name="Ex1Task3" />
-#### Task 3 â€“ Publishing the Node.js application using Git####
+#### Task 3 – Publishing the Node.js application using Git####
 
 1. Go back to the portal. Open the site's **Dashboard** and copy the **Git Clone Url** value from the bottom of the page.
 
@@ -198,7 +198,7 @@ that should be handled by the **iisnode** module.
 
 1. Enter the deployment credentials when prompted.
 
-	> **Note:** Deployment credentials are other than the **Microsoft Account** associated with your Windows Azure subscription and are valid for use with all Windows Azure web sites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
+	> **Note:** Deployment credentials are other than the **Microsoft Account** associated with your Windows Azure subscription and are valid for use with all Windows Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
 	>
 	>![Resetting the deployment credentials](images/deployment-credentials.png?raw=true "Resetting the deployment credentials")
 	>
@@ -215,7 +215,7 @@ that should be handled by the **iisnode** module.
 <a name="Exercise2" />
 ### Exercise 2: Building and Publishing a Node.js Web Site using the Command-Line Tools ###
 
-In this exercise, you will learn how manage web sites using the Windows Azure Command-Line Tools for Mac and Linux.
+In this exercise, you will learn how manage Websites using the Windows Azure Command-Line Tools for Mac and Linux.
 
 > **Note:** These steps assume you have the Windows Azure Command-Line Tools for Mac and Linux installed.
 
@@ -266,7 +266,7 @@ In this exercise, you will learn how manage web sites using the Windows Azure Co
 
 	_Pushing the site files_
 
-	> **Note:** Deployment credentials are other than the **Microsoft Account** associated with your Windows Azure subscription and are valid for use with all Windows Azure web sites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
+	> **Note:** Deployment credentials are other than the **Microsoft Account** associated with your Windows Azure subscription and are valid for use with all Windows Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
 	>
 	>![Resetting the deployment credentials](images/deployment-credentials.png?raw=true "Resetting the deployment credentials")
 	>

@@ -1,4 +1,4 @@
-﻿<a name="HelloASP" />
+<a name="HelloASP" />
 # Classic ASP and FTP - Hello ASP Web Site #
 ---
 
@@ -18,7 +18,7 @@ In this demo, you will see:
 <a name="technologies" />
 ### Key Technologies ###
 
-- [Windows Azure Web Sites](https://www.windowsazure.com/en-us/home/scenarios/web-sites/)
+- [Windows Azure Websites](https://www.windowsazure.com/en-us/home/scenarios/web-sites/)
 
 ---
 
@@ -81,7 +81,7 @@ This demo is composed of the following segments:
 	>
 	>  On the Dashboard we can see useful information about the Web Site such as access reports, hardware usage and database access.
 	>
-	> We also can find multiple options for uploading content to the Web Sites, including GIT, TFS and FTP.
+	> We also can find multiple options for uploading content to the Websites, including GIT, TFS and FTP.
 
 1. Show the information displayed on the Web Site Dashboard.
 

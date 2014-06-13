@@ -1,11 +1,11 @@
-﻿<a name="HOLTitle"></a>
-# Automatically Scaling Web Applications on Windows Azure Web Sites #
+<a name="HOLTitle"></a>
+# Automatically Scaling Web Applications on Windows Azure Websites #
 
 ---
 <a name="Overview"></a>
 ## Overview ##
 
-Windows Azure provides a set of features that allows you to monitor and scale your Web Site whenever is required. Moving static assets to a Storage account will leverage the load of your Web Site and with Auto-Scaling, your Windows Azure Web Sites will automatically scale accordingly with their CPU load. Additionally, you can use Endpoint monitoring to measure the response time of your Web site from different locations.
+Windows Azure provides a set of features that allows you to monitor and scale your Web Site whenever is required. Moving static assets to a Storage account will leverage the load of your Web Site and with Auto-Scaling, your Windows Azure Websites will automatically scale accordingly with their CPU load. Additionally, you can use Endpoint monitoring to measure the response time of your Web site from different locations.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -79,7 +79,7 @@ First, you will need to deploy a Web Site to Windows Azure. An MVC 4 Application
 
 1. In the **Dashboard** page, under the **quick glance** section, click the **Download the publish profile** link.
 
-1. Download the publish profile file to a known location. Further in this exercise you will see how to use this file to publish a web application to a Windows Azure Web Sites from Visual Studio.
+1. Download the publish profile file to a known location. Further in this exercise you will see how to use this file to publish a web application to a Windows Azure Websites from Visual Studio.
 
 	![Saving the publish profile file](Images/save-link.png?raw=true "Saving the publish profile")
 	
@@ -246,7 +246,7 @@ In this exercise, you will configure endpoint monitoring for your Windows Azure 
 <a name="Ex2Task1" />
 #### Task 1 - Enabling endpoint monitoring ####
 
-1.	Go to the Management Portal and open **Web Sites**. Select the Web site you created in the **Getting Started** section of this lab.
+1.	Go to the Management Portal and open **Websites**. Select the Web site you created in the **Getting Started** section of this lab.
 
 1.	Click **Scale** from the top menu.
 
@@ -333,4 +333,4 @@ By completing this hands-on lab you learned the following:
 
 * Moving static assets from your Web site to Windows Azure Storage.
 * Configure endpoint monitoring to measure the availability and response time of your deployed Web site from different locations.
-* Configure Auto-Scaling for Windows Azure Web Sites by changing the range of CPU target and the instance count.
+* Configure Auto-Scaling for Windows Azure Websites by changing the range of CPU target and the instance count.

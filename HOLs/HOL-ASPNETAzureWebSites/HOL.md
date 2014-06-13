@@ -1,13 +1,13 @@
-ï»¿<a name="Title"></a>
-# Building and Publishing ASP.NET Applications with Windows Azure Web Sites #
+<a name="Title"></a>
+# Building and Publishing ASP.NET Applications with Windows Azure Websites #
 
 ---
 <a name="Overview"></a>
 ## Overview ##
 
-Web site publication and deployment has never been easier in Windows Azure. Using familiar tools such as Web Deploy or Git, and virtually no changes to the development workflow, Windows Azure Web Sites is the next step in the Microsoft Azure platform for web developers. 
+Web site publication and deployment has never been easier in Windows Azure. Using familiar tools such as Web Deploy or Git, and virtually no changes to the development workflow, Windows Azure Websites is the next step in the Microsoft Azure platform for web developers. 
 
-In this hands-on lab, you will explore the basic elements of the **Windows Azure Web Sites** service by creating a simple **ASP.NET MVC 5** application, which uses scaffolding to automatically generate the baseline of your application's CRUD (Create, Read, Update and Delete). Then, you will deploy it using Web Deploy from Microsoft Visual Studio and finally, you will enable source control and use Git to publish directly from your local computer.
+In this hands-on lab, you will explore the basic elements of the **Windows Azure Websites** service by creating a simple **ASP.NET MVC 5** application, which uses scaffolding to automatically generate the baseline of your application's CRUD (Create, Read, Update and Delete). Then, you will deploy it using Web Deploy from Microsoft Visual Studio and finally, you will enable source control and use Git to publish directly from your local computer.
 
 Starting from a simple model class and without writing a single line of code, you will create a controller that will contain all the CRUD operations, as well as all the necessary views. After publishing and running the solution, you will have the model generated in your SQL Database, together with the MVC logic and views for data manipulation.
 
@@ -18,7 +18,7 @@ In this hands-on lab, you will learn how to:
 
 - Create a Windows Azure Web Site with Microsoft Visual Studio 2013
 - Use Microsoft Visual Studio 2013 to build a new ASP.NET MVC 5 application
-- Deploy an ASP.NET application to Windows Azure Web Sites using Web Deploy from Visual Studio
+- Deploy an ASP.NET application to Windows Azure Websites using Web Deploy from Visual Studio
 - Configure a Windows Azure Web Site with Git Repository enabled to publish an ASP.NET MVC 5 application using Git
 
 <a name="Prerequisites"></a>
@@ -55,7 +55,7 @@ This hands-on lab includes the following exercises:
 
 In this exercise, you will take advantage of the Windows Azure tools for Visual Studio to create a Windows Azure Web Site. Through **Server Explorer**, you will connect to Windows Azure by signing in with your Microsoft Account and then create a Windows Azure Web Site and its associated SQL database.
 
-#### Task 1 â€“ Adding a New Windows Azure Web Site from Server Explorer ####
+#### Task 1 – Adding a New Windows Azure Web Site from Server Explorer ####
 
 1. Open **Microsoft Visual Studio Express 2013 For Web** and then open **Server Explorer** by selecting **View | Server Explorer**.
 
@@ -67,7 +67,7 @@ In this exercise, you will take advantage of the Windows Azure tools for Visual 
 
 1. After sign in, the **Windows Azure** node is populated with the resources in your Windows Azure subscription.
 
-1. Expand the **Windows Azure** node, right-click the **Web Sites** node and select **Add New Site...**.
+1. Expand the **Windows Azure** node, right-click the **Websites** node and select **Add New Site...**.
 
 	![Add new site](Images/add-new-website.png?raw=true)
 
@@ -89,17 +89,17 @@ In this exercise, you will take advantage of the Windows Azure tools for Visual 
 
 	> **Note:** By default, Windows Azure provides domains at _azurewebsites.net_ but also gives you the possibility to set custom domains using the Windows Azure Management Portal (right-click your Web site from Server Explorer and select **Open Management Portal**). However, you can only manage custom domains if you are using certain Web site modes.
 	
-	> Windows Azure offers 3 modes for users to run their Web sites - Free, Shared, and Standard. In Free and Shared mode, all Web sites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are Free (strict quotas) vs. Shared (more flexible quotas). The maximum number of free sites may vary with your plan. In Standard mode, you choose which sites run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Web Sites Mode configuration in the **Scale** menu of your Web site.
+	> Windows Azure offers 3 modes for users to run their Websites - Free, Shared, and Standard. In Free and Shared mode, all Websites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are Free (strict quotas) vs. Shared (more flexible quotas). The maximum number of free sites may vary with your plan. In Standard mode, you choose which sites run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Websites Mode configuration in the **Scale** menu of your Web site.
 
 	> ![Web Site Modes](Images/web-site-modes.png?raw=true "Web Site Modes")
 
-	> If you are using **Shared** or **Standard** mode, you will be able to manage custom domains for your Web site by going to your Web siteâ€™s **Configure** menu and clicking **Manage Domains** under _domain names_.
+	> If you are using **Shared** or **Standard** mode, you will be able to manage custom domains for your Web site by going to your Web site’s **Configure** menu and clicking **Manage Domains** under _domain names_.
 
 	> ![Manage Domains](Images/manage-domains.png?raw=true "Manage Domains")
 
 	> ![Manage Custom Domains](Images/manage-custom-domains.png?raw=true "Manage Custom Domains")
 
-1. Once the Web site is created, it will be displayed in Server Explorer under the **Web Sites** node. Right-click the new Web site and select **Open in Browser** to check that the Web site is running.
+1. Once the Web site is created, it will be displayed in Server Explorer under the **Websites** node. Right-click the new Web site and select **Open in Browser** to check that the Web site is running.
 
 	![Browsing to the new web site](Images/browsing-to-the-new-web-site.png?raw=true)
 
@@ -115,7 +115,7 @@ In this exercise, you will take advantage of the Windows Azure tools for Visual 
 In this exercise, you will create a simple ASP.NET MVC 5 web application, using ASP.NET scaffolding with Entity Framework to create the CRUD methods.
 
 <a name="GettingStartedTask1"></a>
-#### Task 1 â€“ Creating an ASP.NET MVC 5 Application in Visual Studio ####
+#### Task 1 – Creating an ASP.NET MVC 5 Application in Visual Studio ####
 
 1. In **Microsoft Visual Studio Express 2013 For Web**, click the **New Project...** link in the start page or use **File** | **New Project...**.
 
@@ -243,10 +243,10 @@ In this exercise, you will create a simple ASP.NET MVC 5 web application, using 
 <a name="Exercise3"></a>
 ### Exercise 3: Publishing an MVC 5 Application using Web Deploy ###
 
-In this exercise, you will publish the application you obtained in [Exercise 2](#Exercise2) to Windows Azure Web Sites by making use of the Web Deploy publishing feature provided by Visual Studio.
+In this exercise, you will publish the application you obtained in [Exercise 2](#Exercise2) to Windows Azure Websites by making use of the Web Deploy publishing feature provided by Visual Studio.
 
 <a name="Ex3Task1"></a>
-#### Task 1 â€“ Publishing an ASP.NET MVC 5 Application using Web Deploy ####
+#### Task 1 – Publishing an ASP.NET MVC 5 Application using Web Deploy ####
 
 1. Open the solution you obtained in [Exercise 2](#Exercise2) with Visual Studio. Alternatively, you can open the **MVCSample.Web** solution located in the **Source\Assets** folder of this lab.
 
@@ -298,7 +298,7 @@ In this exercise, you will publish the application you obtained in [Exercise 2](
 
 	_Application published to Windows Azure_
 
-	>**Note:** If you still see the Windows Azure Web Sites default page, press **F5** to reload the page. 
+	>**Note:** If you still see the Windows Azure Websites default page, press **F5** to reload the page. 
 
 1. Go to **/Customer** to verify that the _Customers_ views are working as expected. You can try adding a new Customer to verify it is successfully saved to the database.
 
@@ -314,7 +314,7 @@ In this exercise you will publish the web application you created in [Exercise 2
 > **Note:** If you did not execute [Exercise 2](#Exercise2) you can still perform this exercise by deploying the site located in the **Source\Assets** folder of this lab.
 
 <a name="Ex4Task1"></a>  
-#### Task 1 â€“ Setting up Git Publishing ####
+#### Task 1 – Setting up Git Publishing ####
 
 1. In Visual Studio, right-click your Web site in **Server Explorer** and select **Open in Management Portal**. Sign in using the Microsoft credentials associated with your subscription.
 
@@ -363,7 +363,7 @@ In this exercise you will publish the web application you created in [Exercise 2
 1. Copy the **Git URL** value. You will use it later in this exercise.
 
 <a name="Ex4Task2"></a>  
-#### Task 2 â€“ Pushing the Application to Windows Azure using Git ####
+#### Task 2 – Pushing the Application to Windows Azure using Git ####
 
 1. Open the solution you obtained in [Exercise 1](#Exercise1) with Visual Studio. Alternatively, you can open the **MVCSample.Web** solution located in the **Source\Assets** folder of this lab.
 
@@ -399,9 +399,9 @@ In this exercise you will publish the web application you created in [Exercise 2
 
 	_Pushing to Windows Azure_
 
-	> **Note:** When you deploy content to the FTP host or GIT repository of a Windows Azure website you must authenticate using **deployment credentials** that you create from the Web siteâ€™s **Quick Start** or **Dashboard** management pages.  If you do not know your deployment credentials you can easily reset them using the management portal. Open the Web site **Dashboard** page and click the **Reset your deployment credentials** link. Provide a new password and click **OK**. Deployment credentials are valid for use with all Windows Azure Web sites associated with your subscription. 
+	> **Note:** When you deploy content to the FTP host or GIT repository of a Windows Azure website you must authenticate using **deployment credentials** that you create from the Web site’s **Quick Start** or **Dashboard** management pages.  If you do not know your deployment credentials you can easily reset them using the management portal. Open the Web site **Dashboard** page and click the **Reset your deployment credentials** link. Provide a new password and click **OK**. Deployment credentials are valid for use with all Windows Azure Websites associated with your subscription. 
 
-1. In order to verify the Web site was successfully pushed to Windows Azure, go back to the **Windows Azure Management Portal** and click **Web Sites**.
+1. In order to verify the Web site was successfully pushed to Windows Azure, go back to the **Windows Azure Management Portal** and click **Websites**.
 
 1. Locate your **Web Site** (where you deployed the application) and click its **Name** to see the **Dashboard**.
 
@@ -433,29 +433,29 @@ In this exercise you will publish the web application you created in [Exercise 2
 
 <a name="NextSteps"></a>
 ## Next Steps ##
-To learn more about Windows Azure Web Sites, please refer to the following articles:
+To learn more about Windows Azure Websites, please refer to the following articles:
 
 **Technical Reference**
 
 This is a list of articles that expand on the technologies explained on this lab:
 
-- [Windows Azure Web Sites Documentation](http://aka.ms/Alwcgu): provides reference information for developing your site with .NET, PHP, Node.js or Python and hosting in Windows Azure Web Sites
+- [Windows Azure Websites Documentation](http://aka.ms/Alwcgu): provides reference information for developing your site with .NET, PHP, Node.js or Python and hosting in Windows Azure Websites
 - [Get Better Acquainted with Azure](http://aka.ms/Y42duf): gives a wide range of resources to continue learning about Windows Azure including blogs, Twitter accounts, forums, books and courses
-- [Windows Azure Web Sites, Cloud Services, and VMs: When to use which?](http://aka.ms/Nocpe8): provides guidance on how to make an informed decision when choosing among Windows Azure Web Sites, Cloud Services, and virtual machines to host a web application
-- [Create a Line-of-Business Application on Windows Azure Web Sites](http://aka.ms/Kuynic): provides a technical overview of how to use Windows Azure Web Sites to create line-of-business applications
+- [Windows Azure Websites, Cloud Services, and VMs: When to use which?](http://aka.ms/Nocpe8): provides guidance on how to make an informed decision when choosing among Windows Azure Websites, Cloud Services, and virtual machines to host a web application
+- [Create a Line-of-Business Application on Windows Azure Websites](http://aka.ms/Kuynic): provides a technical overview of how to use Windows Azure Websites to create line-of-business applications
 
 **Development**
 
-This is a list of developer-oriented articles related to Windows Azure Web Sites:
+This is a list of developer-oriented articles related to Windows Azure Websites:
 
-- [How to Use ASP.NET Session State with Windows Azure Web Sites](http://aka.ms/Odtcqj): explains how to use the Windows Azure Cache Service to support ASP.NET session state caching
-- [Publishing from Source Control to Windows Azure Web Sites](http://aka.ms/B68rqv): shows how to use Git to publish to a Windows Azure Web Site using your local repository as well as with Web sites like BitBucket, CodePlex, DropBox, or GitHub
-- [How to Monitor Web Sites](http://aka.ms/Aovqr1): guides you through implementing and monitoring performance statistics for Windows Azure Web Sites
-- [Windows Azure Web Sites â€“ Exploring the platform (Video)](http://aka.ms/E9g0c1): shows you more about building a web application, understanding options for deployment, and setting up continuous integration
-- [Windows Azure Web Sites: Under the Hood (Video)](http://aka.ms/H5il2o): shows you how new Web sites are provisioned, how incoming requests are routed and serviced, and what actually happens when it is time to scale your Web site - both out and up
+- [How to Use ASP.NET Session State with Windows Azure Websites](http://aka.ms/Odtcqj): explains how to use the Windows Azure Cache Service to support ASP.NET session state caching
+- [Publishing from Source Control to Windows Azure Websites](http://aka.ms/B68rqv): shows how to use Git to publish to a Windows Azure Web Site using your local repository as well as with Websites like BitBucket, CodePlex, DropBox, or GitHub
+- [How to Monitor Websites](http://aka.ms/Aovqr1): guides you through implementing and monitoring performance statistics for Windows Azure Websites
+- [Windows Azure Websites – Exploring the platform (Video)](http://aka.ms/E9g0c1): shows you more about building a web application, understanding options for deployment, and setting up continuous integration
+- [Windows Azure Websites: Under the Hood (Video)](http://aka.ms/H5il2o): shows you how new Websites are provisioned, how incoming requests are routed and serviced, and what actually happens when it is time to scale your Web site - both out and up
 
 ---
 
 <a name="Summary"></a>
 ## Summary ##
-In this hands-on lab, you have created a new MVC Web site using MVC 5 Scaffolding and published it to Windows Azure Web Sites. Web site publication and deployment has never been easier in Windows Azure. Using familiar tools such as Web Deploy or Git, and virtually no changes to the development workflow, Windows Azure Web Sites is the next step in the Microsoft Azure platform for web developers. 
+In this hands-on lab, you have created a new MVC Web site using MVC 5 Scaffolding and published it to Windows Azure Websites. Web site publication and deployment has never been easier in Windows Azure. Using familiar tools such as Web Deploy or Git, and virtually no changes to the development workflow, Windows Azure Websites is the next step in the Microsoft Azure platform for web developers. 

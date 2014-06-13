@@ -1,4 +1,4 @@
-Ôªø<a name="HOLTop" />
+<a name="HOLTop" />
 # Getting Started with the Azure Preview Portal #
 
 ---
@@ -8,17 +8,17 @@
 
 The new Azure Preview portal is an all-in-one, work-anywhere experience. Now you can manage websites, databases, and Visual Studio Online team projects in a reimagined UX personalized to your work style. It was built from the ground up to put your _applications_ at the center of the experience. 
 
-This unified hub radically simplifies building, deploying, and managing your cloud resources. Imagine a single easy-to-use console built just for you ‚Äîyour team, your projects. It brings together all of the cloud resources, team members, and lifecycle stages of your application and provides you with a centralized place to plan, develop, test, provision, deploy, scale, and monitor those applications. This approach can help teams embrace a DevOps culture by bringing both development and operations capabilities and perspectives together in a meaningful way.
+This unified hub radically simplifies building, deploying, and managing your cloud resources. Imagine a single easy-to-use console built just for you óyour team, your projects. It brings together all of the cloud resources, team members, and lifecycle stages of your application and provides you with a centralized place to plan, develop, test, provision, deploy, scale, and monitor those applications. This approach can help teams embrace a DevOps culture by bringing both development and operations capabilities and perspectives together in a meaningful way.
 
 The new portal allows each user to transform the portal home page (called the _Startboard_) into their own customized dashboard. Stay on top of the things that matter most by pinning them to your **Startboard**. Resize parts to show more or less data. Drill in for all the details. And see insights (and opportunities) across apps and resources. New components include the following:
 
-* **Simplified Resource Management**. Rather than managing standalone resources such as Microsoft Azure Web Sites, Visual Studio Projects or databases, customers can now create, manage and analyze their entire application as a single resource group in a unified, customized experience, greatly reducing complexity while enabling scale. Today, the new Azure Manager is also being released through the latest Azure SDK for customers to automate their deployment and management from any client or device. 
+* **Simplified Resource Management**. Rather than managing standalone resources such as Microsoft Azure Websites, Visual Studio Projects or databases, customers can now create, manage and analyze their entire application as a single resource group in a unified, customized experience, greatly reducing complexity while enabling scale. Today, the new Azure Manager is also being released through the latest Azure SDK for customers to automate their deployment and management from any client or device. 
 
 * **Integrated billing**. A new integrated billing experience enables developers and IT pros to take control of their costs and optimize their resources for maximum business advantage.
 
 * **Gallery**. A rich gallery of application and services from Microsoft and the open source community, this integrated marketplace of free and paid services enables customers to leverage the ecosystem to be more agile and productive.
 
-* **Visual Studio Online**. Microsoft announced key enhancements through the Microsoft Azure Preview Portal. This includes Team Projects supporting greater agility for application lifecycle management and the lightweight editor code-named ‚ÄúMonaco‚Äù for modifying and committing Web project code changes without leaving Azure. Also included is Application Insights, an analytics solution that collects telemetry data such as availability, performance and usage information to track an application‚Äôs health. Visual Studio integration enables developers to surface this data from new applications with a single click.
+* **Visual Studio Online**. Microsoft announced key enhancements through the Microsoft Azure Preview Portal. This includes Team Projects supporting greater agility for application lifecycle management and the lightweight editor code-named ìMonacoî for modifying and committing Web project code changes without leaving Azure. Also included is Application Insights, an analytics solution that collects telemetry data such as availability, performance and usage information to track an applicationís health. Visual Studio integration enables developers to surface this data from new applications with a single click.
 
 <a name="Objectives" />
 ### Objectives ###
@@ -57,12 +57,12 @@ Estimated time to complete this lab: **30 minutes**
 <a name="Exercise1" />
 ### Exercise 1: Creating a Web Site + SQL ###
 
-Historically, managing a resource (a user-managed entity such as a database server, database or web site,) in Microsoft Azure required you to perform operations against one resource at a time. When developing for the cloud today, we are often managing _individual resources_ (databases, storage, cloud services, virtual machines, and so on). It‚Äôs left up to us as cloud developers and IT professionals to piece these resources together in a meaningful way and manage them over time. The Microsoft Azure Preview portal was designed to bring together all of the individual resources of an application into a consolidated view. Resource group is a new concept in Azure that serves as the lifecycle boundary for all of its resources. 
+Historically, managing a resource (a user-managed entity such as a database server, database or web site,) in Microsoft Azure required you to perform operations against one resource at a time. When developing for the cloud today, we are often managing _individual resources_ (databases, storage, cloud services, virtual machines, and so on). Itís left up to us as cloud developers and IT professionals to piece these resources together in a meaningful way and manage them over time. The Microsoft Azure Preview portal was designed to bring together all of the individual resources of an application into a consolidated view. Resource group is a new concept in Azure that serves as the lifecycle boundary for all of its resources. 
 
 In this exercise, you will learn how to create a new Web Site and a SQL Server using the Azure Preview portal.
 
 <a name="Ex1Task1" />
-#### Task 1 ‚Äì Creating a Website + SQL ####
+#### Task 1 ñ Creating a Website + SQL ####
 
 In this task, you will login to the Azure Preview portal and create a new Web Site and SQL Server.
 
@@ -164,7 +164,7 @@ In this task, you will login to the Azure Preview portal and create a new Web Si
 	_New Resource Group Blade_
 
 <a name="Exercise2" />
-### Exercise 2 :  Publishing Azure Web Sites using Team Projects
+### Exercise 2 :  Publishing Azure Websites using Team Projects
 
 In this exercise you will create a new Team Project, and enable continuous integration in the project. Therefore when you commit any changes to the project repository, an automatic deployment will be fired. Additionally, you will see how to update the code from within the portal and commit those changes, triggering an automatic build.
 
@@ -348,7 +348,7 @@ In this task, you will modify your code from the Azure Portal and then commit th
  
 	> **Note:**	 Notice that the code of the file will be displayed in a new blade.
 
-1. Click **Edit** to modify the code online. Update the line with the **H1** tags, replacing _‚ÄúASP.NET‚Äù_ with _‚ÄúMy Updated App from the portal‚Äù_.
+1. Click **Edit** to modify the code online. Update the line with the **H1** tags, replacing _ìASP.NETî_ with _ìMy Updated App from the portalî_.
  
 	![The edited Index file](Images/the-edited-index-file.png?raw=true)
 	
@@ -438,7 +438,7 @@ In this task you will use Azure PowerShell for Azure Resources to list the avail
 	
 	_Add-AzureAccount command_
 	
-	>**Note**: The **Set-AzureSubscription** cmdlet configures common settings including subscription ID, management certificate, and custom endpoints. The settings are stored in a subscription data file in the user‚Äôs profile or in a user specified file. Multiple subscription data sets are supported and identified by a subscription name. To select a subscription and make it current, use the **Select-AzureSubscription** cmdlet. 
+	>**Note**: The **Set-AzureSubscription** cmdlet configures common settings including subscription ID, management certificate, and custom endpoints. The settings are stored in a subscription data file in the userís profile or in a user specified file. Multiple subscription data sets are supported and identified by a subscription name. To select a subscription and make it current, use the **Select-AzureSubscription** cmdlet. 
 	
 1. Execute the following command to get the list of resources from the group gallery templates.
 
@@ -541,7 +541,7 @@ In this task you will update the JSON file from the Simple website template and 
 1. Replace the placeholders and execute the following command to create a new resource group using the custom template. Make sure to replace the _[STORAGE NAME]_ placeholder with the storage account you have created in the previous step.
 
 	````PowerShell
-	New-AzureResourceGroup -Location [LOCATION] -Name [RESOURCE-GROUP-NAME] -TemplateFile [JSON-File-Path]  ‚ÄìStorageAccountName [STORAGEACCOUNT] -siteName [WEBSITENAME] -hostingPlanName TestPlan -siteLocation "North Europe" -serverName [SERVERNAME] -serverLocation "West US" -administratorLogin Admin01 -Verbose
+	New-AzureResourceGroup -Location [LOCATION] -Name [RESOURCE-GROUP-NAME] -TemplateFile [JSON-File-Path]  ñStorageAccountName [STORAGEACCOUNT] -siteName [WEBSITENAME] -hostingPlanName TestPlan -siteLocation "North Europe" -serverName [SERVERNAME] -serverLocation "West US" -administratorLogin Admin01 -Verbose
 	````
 	
 	>**Dynamic Template Parameters:** To get the parameters, type a minus sign (-) to indicate a parameter name and then press the **TAB** key. Or, type the first few letters of a parameter name, such as siteName and then press the TAB key.

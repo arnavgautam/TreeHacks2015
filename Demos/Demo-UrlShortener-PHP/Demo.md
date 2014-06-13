@@ -1,5 +1,5 @@
-﻿<a name="title" />
-# Creating a URL Shortener in PHP with Windows Azure Web Sites #
+<a name="title" />
+# Creating a URL Shortener in PHP with Windows Azure Websites #
 
 ---
 
@@ -21,7 +21,7 @@ In this demo, you will see:
 <a name="technologies" />
 ### Key Technologies ###
 
-- [Windows Azure Web Sites](https://www.windowsazure.com/en-us/home/scenarios/web-sites/)
+- [Windows Azure Websites](https://www.windowsazure.com/en-us/home/scenarios/web-sites/)
 
 ---
 
@@ -178,7 +178,7 @@ CREATE TABLE url (
 	>
 	>  We can see at the Dashboard, a set of useful information about the Web Site. Such as access reports, hardware usage and database access.
 	>
-	> We also can find here multiple options to upload content to the Web Sites. We can do it using GIT, TFS or FTP.
+	> We also can find here multiple options to upload content to the Websites. We can do it using GIT, TFS or FTP.
 
 	> **Speaking Point**
 	>
