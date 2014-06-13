@@ -1,9 +1,9 @@
-ï»¿<a name="demo2" />
+<a name="demo2" />
 # ClipMeme Demo#
 
 ## Overview ##
 
-In this demo, we will showcase **Visual Studio** provisioning features to deploy **Azure Virtual Machines** and **Web Sites**, along with **PowerShell** script generation and editing to provision multiple geographic deployments using **Traffic Manager**, and background services using Web Jobs. It also reinforces our momentum with **Visual Studio** (using **Web Essentials**) as a great tool for creating powerful **HTML5** applications backed by **ASP.NET**.
+In this demo, we will showcase **Visual Studio** provisioning features to deploy **Azure Virtual Machines** and **Websites**, along with **PowerShell** script generation and editing to provision multiple geographic deployments using **Traffic Manager**, and background services using Web Jobs. It also reinforces our momentum with **Visual Studio** (using **Web Essentials**) as a great tool for creating powerful **HTML5** applications backed by **ASP.NET**.
 
 <a name="Goals" />
 ### Goals ###
@@ -102,7 +102,7 @@ This demo is composed of the following segments:
 
 1. Select the **Empty** template and select the **Host in the cloud** checkbox. Click **OK**.
 
-	> **Speaking Point:** Something new to point out: as you can see, we've made it really easy for you to provision both **Azure Web Sites** and **Virtual Machines** directly from this dialog box. 
+	> **Speaking Point:** Something new to point out: as you can see, we've made it really easy for you to provision both **Azure Websites** and **Virtual Machines** directly from this dialog box. 
 
 	![Web Site Empty Template](Images/web-site-empty-template.png?raw=true)	
 
@@ -114,7 +114,7 @@ This demo is composed of the following segments:
 
 2. Browse to https://manage.windowsazure.com and log in with your credentials.
  
-2. Click **Web sites** and verify that your site is created.
+2. Click **Websites** and verify that your site is created.
 
 	![Azure Web Site Created](Images/azure-web-site-created.png?raw=true)
 
@@ -126,7 +126,7 @@ This demo is composed of the following segments:
 
 2. Right-click the **PS1** file and click **Open with PowerShell ISE**
 
-	> **Speaking Point:** One neat feature is the context menu for PowerShell. If you right-click the PS1 file, you will notice the new context menu â€˜Open with PowerShell ISE, which allows you to open a PowerShell editor straight from Visual Studio.
+	> **Speaking Point:** One neat feature is the context menu for PowerShell. If you right-click the PS1 file, you will notice the new context menu ‘Open with PowerShell ISE, which allows you to open a PowerShell editor straight from Visual Studio.
 	
 	![Open with PowerShell ISE](Images/open-with-powershell-ise.png?raw=true)	
 
@@ -148,7 +148,7 @@ This demo is composed of the following segments:
 
 1. Place Visual Studio and Internet Explorer side by side.
 
-	>**Note**: This also works for changes we make using the browser developer tools. Iâ€™ve decided the header looks a little too plain, and Iâ€™d like to change the color interactively in the browser using the **F12** tools in my browser. 
+	>**Note**: This also works for changes we make using the browser developer tools. I’ve decided the header looks a little too plain, and I’d like to change the color interactively in the browser using the **F12** tools in my browser. 
 
 1. Right-click the header section and select **Inspect element**. This will open the developer tools.
 
@@ -196,7 +196,7 @@ This demo is composed of the following segments:
 	
 	_Typo - Duplicate and_
 
-	>**Speaking Point**: Oops, it looks like there is a text error in the header - we repeated the word **and**. Letâ€™s fix that. 
+	>**Speaking Point**: Oops, it looks like there is a text error in the header - we repeated the word **and**. Let’s fix that. 
 	
 1. Press the **Ctrl** key in the browser to enable the **Web Essentials Browser Link Overlay** or hover over the Web Essentials panel at the bottom of the browser.
 
@@ -233,7 +233,7 @@ This demo is composed of the following segments:
 
 1. In the Solution Explorer, expand the **Content** folder and select **share-facebook.png** and **share-twitter.png** holding the **Ctrl** key.
 
-1. Right-click on the images and select **Web Essentials | Create Image Sprite...**â€¦
+1. Right-click on the images and select **Web Essentials | Create Image Sprite...**…
 
 	![Create image sprite](Images/create-image-sprite.png?raw=true "Create image sprite")
 	
@@ -245,9 +245,9 @@ This demo is composed of the following segments:
 	
 	_Save as dialog box_
 
-	>**Note**: Adding a new sprite automatically generates example CSS, LESS and SASS to include these new images using standard CSS classes. Weâ€™ll update our CSS so that weâ€™re only making one image request for all of the images in the sprite.
+	>**Note**: Adding a new sprite automatically generates example CSS, LESS and SASS to include these new images using standard CSS classes. We’ll update our CSS so that we’re only making one image request for all of the images in the sprite.
 
-1. Open the â€œ**Content/Site.less**â€ file and do the following to use the image sprite we just generated:
+1. Open the “**Content/Site.less**” file and do the following to use the image sprite we just generated:
 	
 1. Add the following **@import** statement at the top of the file:
 	
@@ -333,7 +333,7 @@ This demo is composed of the following segments:
 	_Directive template_
 
 
-	>**Note**: This sets us up with a basic directive with some best practices, like the fact that is uses Strict Mode. Weâ€™ve also got JSHint running in the background so it can catch some common JavaScript coding issues as we type, for instance if we try to reuse a function parameter name.
+	>**Note**: This sets us up with a basic directive with some best practices, like the fact that is uses Strict Mode. We’ve also got JSHint running in the background so it can catch some common JavaScript coding issues as we type, for instance if we try to reuse a function parameter name.
 	
 1. Add another parameter named **scope** to the end of the **link** function and hover it to show that **JSHint** flags it as a _duplicated_ declaration.
 
@@ -364,7 +364,7 @@ This demo is composed of the following segments:
 <a name="azure-staged-published" />
 #### Task 4 - Azure Staged Published ####
 
-1. In the **Solution Explorer**, right-click the **Project** and select **Publishâ€¦**
+1. In the **Solution Explorer**, right-click the **Project** and select **Publish…**
 
 	![Publish](Images/publish.png?raw=true "Publish")
 	
@@ -376,7 +376,7 @@ This demo is composed of the following segments:
 	
 	_Publish Web dialog box_
 
-1. Select **Windows Azure Web Sites**.
+1. Select **Windows Azure Websites**.
  
 	![Select existing Web Site dialog box](Images/select-existing-web-site-dialog-box.png?raw=true "Select existing Web Site dialog box")
 	
