@@ -1,7 +1,7 @@
-﻿<a name="segment2" />
-### Segment 2: Windows Azure Media Services ###
+<a name="segment2" />
+### Segment 2: Microsoft Azure Media Services ###
 
-In this segment, you will configure Media Services in the Windows Azure Management portal and then you will update the application to submit an encoding job to Media Services when a video is uploaded.
+In this segment, you will configure Media Services in the Microsoft Azure Management portal and then you will update the application to submit an encoding job to Media Services when a video is uploaded.
 
 > **Important:**  Before proceeding with this segment you will either have to:
 
@@ -15,13 +15,13 @@ In this segment, you will configure Media Services in the Windows Azure Manageme
 
 --
 
-> **Speaking point:** What I'm going to do now is scale that app even further. The first way we're going to do that is by integrating another service called Windows Azure Media Services. And what Media Services allows you to do is very easily ingest, encode or transcode video, and then set up a streaming end point that you can use in order to stream your video to the cloud. Now, instead of storing it directly to storage, we're going to fire it off to Media Services, which will then encode it for us automatically, and then we're going to stand up a media streaming endpoint, which is going to allow our clients to be able to go ahead and stream it from a scalable back end.
-And the beauty about Windows Azure Media Services is that it exposes a REST API that makes it really easy for you as developers to integrate within your applications, and it takes care of all the infrastructure necessary for us. So we don't have to spin up VMs, we don't have to manage our own encoders or streaming servers. Instead, Windows Azure Media Services does all that for us.
+> **Speaking point:** What I'm going to do now is scale that app even further. The first way we're going to do that is by integrating another service called Microsoft Azure Media Services. And what Media Services allows you to do is very easily ingest, encode or transcode video, and then set up a streaming end point that you can use in order to stream your video to the cloud. Now, instead of storing it directly to storage, we're going to fire it off to Media Services, which will then encode it for us automatically, and then we're going to stand up a media streaming endpoint, which is going to allow our clients to be able to go ahead and stream it from a scalable back end.
+And the beauty about Microsoft Azure Media Services is that it exposes a REST API that makes it really easy for you as developers to integrate within your applications, and it takes care of all the infrastructure necessary for us. So we don't have to spin up VMs, we don't have to manage our own encoders or streaming servers. Instead, Microsoft Azure Media Services does all that for us.
 
-1. Start in the Windows Azure Management Portal, in the **All Items** node.
+1. Start in the Microsoft Azure Management Portal, in the **All Items** node.
 
 	> **Speaking Point:**
-	> So let's go ahead and look at some code and see how we do it. So you can see here this is the Windows Azure portal. Earlier, you saw how we could create a website.
+	> So let's go ahead and look at some code and see how we do it. So you can see here this is the Microsoft Azure portal. Earlier, you saw how we could create a website.
 
 	![](Images/portal-all-items.png?raw=true)
 
@@ -42,7 +42,7 @@ And the beauty about Windows Azure Media Services is that it exposes a REST API 
 1. Click **Upload** in the command bar and browse to **[working directory]\Assets\videos** folder. Select a video and click Ok to start uploading the new video.
 
 	> **Speaking Point:**
-	> With the new Windows Azure Management Portal, I can simply click on Upload on the command bar and browse to a video file that I have on my local machine. And this is now going to upload the video directly from my dev machine up in terms of the Windows Azure Media Service account. And once it's uploaded, then, I can go ahead and do various jobs on it.
+	> With the new Microsoft Azure Management Portal, I can simply click on Upload on the command bar and browse to a video file that I have on my local machine. And this is now going to upload the video directly from my dev machine up in terms of the Microsoft Azure Media Service account. And once it's uploaded, then, I can go ahead and do various jobs on it.
 
 	![Upload video from portal](Images/upload-video-from-portal.png?raw=true "Upload Video from portal")
 
@@ -54,14 +54,14 @@ And the beauty about Windows Azure Media Services is that it exposes a REST API 
 	![Encode video from portal](Images/encode-video-from-portal.png?raw=true "Encode video from portal")
 
 	> **Speaking Point:**
-	> So Windows Azure Media Services will automatically take that job, put it on dedicated machines that we run, and spin up and do that encoding job for you. Here you can see that my encoding job has started.  It will take a few minutes for this short video to finish encoding. In addition to uploading content and submitting encoding jobs from the new Windows Azure Management portal, I can also submit jobs to Windows Azure Media Services programmatically.
+	> So Microsoft Azure Media Services will automatically take that job, put it on dedicated machines that we run, and spin up and do that encoding job for you. Here you can see that my encoding job has started.  It will take a few minutes for this short video to finish encoding. In addition to uploading content and submitting encoding jobs from the new Microsoft Azure Management portal, I can also submit jobs to Microsoft Azure Media Services programmatically.
 
 	![Encoding job starting](Images/encoding-job-starting.png?raw=true "Encoding job starting")
 
 1. Select a previous video that is already encoded (ones starting with _JobOutputAsset_ prefix and currently not published). Click **Publish** and confirm to publish the video.
 
 	> **Speaking Point:**
-	> Once something is encoded, I can then choose to publish it. This is going to create a unique streaming end-point URL that I can use for this particular asset. And then I can go ahead and embed that within my application and start playing it directly. And then there's a media server that we're managing with Media Services that's doing all the back-end streaming for you. Since encoding will take a few minutes, here you can see a video that I encoded earlier. Once encoding is complete, I'll publish the video out to Windows Azure Storage. The publishing process makes the video available so it can be consumed from multiple applications and experiences.
+	> Once something is encoded, I can then choose to publish it. This is going to create a unique streaming end-point URL that I can use for this particular asset. And then I can go ahead and embed that within my application and start playing it directly. And then there's a media server that we're managing with Media Services that's doing all the back-end streaming for you. Since encoding will take a few minutes, here you can see a video that I encoded earlier. Once encoding is complete, I'll publish the video out to Microsoft Azure Storage. The publishing process makes the video available so it can be consumed from multiple applications and experiences.
 
 	![Confirm Publish](Images/confirm-publish.png?raw=true)
 
@@ -80,7 +80,7 @@ And the beauty about Windows Azure Media Services is that it exposes a REST API 
 	> **Speaking Point:** 
 	> But the cool thing about Media Services, again, isn't that you can do this all manually, it's the fact that you can actually code against it and just send REST calls and do all this from within your apps. Let's go ahead and do that. So I'm going to flip into Visual Studio. And what you're seeing here is that same project we were working on just a few minutes ago. So that same ASP.NET project.
 
-1. Install the Media Services NuGet. To do this, right click the **BuildClips** solution  and select **Manage NuGet packages for Solution**. Search for **Windows Azure Media Services SDK** package and click **Install**. Make sure both projects are selected and click **Ok**. Click **I Accept**. Once the package installation is completed, click **Close**.
+1. Install the Media Services NuGet. To do this, right click the **BuildClips** solution  and select **Manage NuGet packages for Solution**. Search for **Microsoft Azure Media Services SDK** package and click **Install**. Make sure both projects are selected and click **Ok**. Click **I Accept**. Once the package installation is completed, click **Close**.
 
 	> **Speaking Point:**
 	> Now, I'm going to go ahead and click on manage NuGet and I'm just going to use the NuGet package manager in .NET in order to install a little SDK library that is going to provide a nice .NET-managed object model on top of those REST end points. And so this is just installing it within my solution, makes it a little bit easier for me to code against.   
@@ -111,7 +111,7 @@ And the beauty about Windows Azure Media Services is that it exposes a REST API 
 	var jobId = mediaContext.ConvertAssetToSmoothStreaming(asset, true);
 	````
 
-	> **Speaking Point:** There we go. And then I'm just going to update some of the code I showed you earlier so that instead of storing that media inside a storage account, we're instead going to pass it off to Media Services to both store and code and publish. And doing that is really easy. So what I'm going to do here is just replace these four lines of code. This code right here. And what all this code is doing is connecting to my Windows Azure Media Services account. It's going to create a new asset in Media Services from the stream that was uploaded, get back a URL for it, and then kick off an encoding job to convert it to smooth streaming. Just a couple lines of code I can do that.
+	> **Speaking Point:** There we go. And then I'm just going to update some of the code I showed you earlier so that instead of storing that media inside a storage account, we're instead going to pass it off to Media Services to both store and code and publish. And doing that is really easy. So what I'm going to do here is just replace these four lines of code. This code right here. And what all this code is doing is connecting to my Microsoft Azure Media Services account. It's going to create a new asset in Media Services from the stream that was uploaded, get back a URL for it, and then kick off an encoding job to convert it to smooth streaming. Just a couple lines of code I can do that.
 
 1. Place the cursor over the **CloudMediaContext** type and press **CTRL+.** to add the using statement. Do the same with **CloudConfigurationManager** on the next line.
 
@@ -179,7 +179,7 @@ And the beauty about Windows Azure Media Services is that it exposes a REST API 
 
 	> **Note:** Please note that if you chose to open the begin solution for segment #2 you will need to import again the Web Site publish settings file.
 
-	> **Speaking Point:** Now, that was basically all the code we needed to do. I can then right-click and publish this back to the cloud. One of the things that we support with Windows Azure websites is a very nice incremental publishing story.
+	> **Speaking Point:** Now, that was basically all the code we needed to do. I can then right-click and publish this back to the cloud. One of the things that we support with Microsoft Azure websites is a very nice incremental publishing story.
 
 	![Publish web site](Images/publish-web-site.png?raw=true)
 
@@ -214,12 +214,12 @@ And the beauty about Windows Azure Media Services is that it exposes a REST API 
 	![Uploading a Video](Images/windows8-upload-video.png?raw=true)
 
 	> **Speaking Point:**
-	> Let me capture a title and description for my video, and then I'll press upload to pick the video. We're going to hit open, and this is now uploading this off to Windows Azure. We're going to use the exact same REST URL we published earlier with our Web APIs in the middle tier. And this is going to talk to that Web service on the back end, it's going to then fire off a REST call to Windows Azure Media Services and it's going to kick off an encoding job, which is then going to start encoding it. And then once it's done, and you can see it just completed, it will be able to be played through our streaming server in the cloud.
+	> Let me capture a title and description for my video, and then I'll press upload to pick the video. We're going to hit open, and this is now uploading this off to Microsoft Azure. We're going to use the exact same REST URL we published earlier with our Web APIs in the middle tier. And this is going to talk to that Web service on the back end, it's going to then fire off a REST call to Microsoft Azure Media Services and it's going to kick off an encoding job, which is then going to start encoding it. And then once it's done, and you can see it just completed, it will be able to be played through our streaming server in the cloud.
 
-1. Switch back to the **Windows Azure Management Portal** and navigate to your Media Service account.
+1. Switch back to the **Microsoft Azure Management Portal** and navigate to your Media Service account.
 
 	> **Speaking Point:**
-	> Now that my video is uploaded, let's switch back to the Windows Azure Management Portal.  
+	> Now that my video is uploaded, let's switch back to the Microsoft Azure Management Portal.  
 
 1. Go to the **Content** section of the media service and show the video uploaded and the running encoding job.
 

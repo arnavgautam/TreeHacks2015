@@ -1,5 +1,5 @@
-﻿<a name="Title" />
-# Creating and Configuring a SQL Server 2012 Database in a Windows Azure Virtual Machine #
+<a name="Title" />
+# Creating and Configuring a SQL Server 2012 Database in a Microsoft Azure Virtual Machine #
 ---
 
 <a name="Overview" />
@@ -7,14 +7,14 @@
 
 In this hands-on lab you will learn how to create and configure a SQL Server 2012 Database.	
 
-You will start by provisioning the Virtual Machine using the Windows Azure portal, and then you will configure the SQL Server instance.
+You will start by provisioning the Virtual Machine using the Microsoft Azure portal, and then you will configure the SQL Server instance.
 
 <a name="Objectives" />
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-1. Create a virtual machine using the Windows Azure portal
+1. Create a virtual machine using the Microsoft Azure portal
 1. Configure a SQL Server 2012 Virtual Machine
 
 <a name="Prerequisites" />
@@ -22,26 +22,26 @@ In this hands-on lab, you will learn how to:
 
 The following is required to complete this hands-on lab:
 
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 <a name="Exercises" />
 ## Exercises ##
 
 This hands-on lab includes the following exercises:
 
-1. [Creating and configuring Windows Server Virtual Machine with SQL Server 2012 using the Windows Azure portal](#Exercise1)
+1. [Creating and configuring Windows Server Virtual Machine with SQL Server 2012 using the Microsoft Azure portal](#Exercise1)
 
 Estimated time to complete this lab: **30 minutes**.
 
 <a name="Exercise1" />
-### Exercise 1: Creating and configuring Windows Server Virtual Machine with SQL Server 2012 using the Windows Azure portal ###
+### Exercise 1: Creating and configuring Windows Server Virtual Machine with SQL Server 2012 using the Microsoft Azure portal ###
 
 You will now create the Windows Server Virtual Machine and configure SQL Server.
 
 <a name="Ex1Task1" />
-#### Task 1 - Creating the Virtual Machine in the Windows Azure Portal ####
+#### Task 1 - Creating the Virtual Machine in the Microsoft Azure Portal ####
 
-1. Navigate to [http://manage.windowsazure.com/](http://manage.windowsazure.com/) using a Web browser and sign in using the Microsoft Account associated with your Windows Azure account.
+1. Navigate to [http://manage.windowsazure.com/](http://manage.windowsazure.com/) using a Web browser and sign in using the Microsoft Account associated with your Microsoft Azure account.
 
 	![Sign in](Images/sign-in.png?raw=true "Sign in")
 
@@ -86,7 +86,7 @@ You will now create the Windows Server Virtual Machine and configure SQL Server.
 <a name="Ex1Task2" />
 #### Task 2 - Configuring Disks for SQL Server ####
 
-1. In the **Windows Azure Portal**, click the _SQLServerVM1_ virtual machine name that you created in Task 1 to open its Dashboard.
+1. In the **Microsoft Azure Portal**, click the _SQLServerVM1_ virtual machine name that you created in Task 1 to open its Dashboard.
 
 	![Opening VM Dashboard](Images/opening-vm-dashboard.png?raw=true "Opening VM Dashboard")
 
@@ -153,7 +153,7 @@ You will now create the Windows Server Virtual Machine and configure SQL Server.
 <a name="Ex1Task3" />
 #### Task 3 - Updating the SQL Server Network Configuration ####
 
-1. If you are not already connected, connect to the _SQLServerVM_ virtual machine. To do this, in the **Windows Azure Portal**,open the _SQLServerVM_ virtual machine **Dashboard**. 
+1. If you are not already connected, connect to the _SQLServerVM_ virtual machine. To do this, in the **Microsoft Azure Portal**,open the _SQLServerVM_ virtual machine **Dashboard**. 
 
 	![Opening VM Dashboard](Images/opening-vm-dashboard.png?raw=true "Opening VM Dashboard")
 
@@ -221,4 +221,4 @@ You will now create the Windows Server Virtual Machine and configure SQL Server.
 <a name="summary" />
 ## Summary ##
 
-In this lab you learned how to create and configure a SQL Server 2012 Database by provisioning a Virtual Machine using the Windows Azure portal and then configuring the SQL Server instance. You can easily add additional virtual machines and use the connect to Virtual Machine feature to have connectivity between them.
+In this lab you learned how to create and configure a SQL Server 2012 Database by provisioning a Virtual Machine using the Microsoft Azure portal and then configuring the SQL Server instance. You can easily add additional virtual machines and use the connect to Virtual Machine feature to have connectivity between them.

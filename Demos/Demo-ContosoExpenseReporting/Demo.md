@@ -6,7 +6,7 @@
 <a name="Overview" />
 ## Overview ##
 
-This demo illustrates an end-to-end scenario highlighting the Windows Azure cloud-ready data services, including Windows Azure SQL Database, Windows Azure Storage, and SQL Server 2012 in a Windows Azure Virtual Machine. This demo will showcase the rich and powerful features of the Windows Azure data services including easy provisioning of the services, fluid migration options, and the high-performing, scalable and feature-rich data options.
+This demo illustrates an end-to-end scenario highlighting the Microsoft Azure cloud-ready data services, including Microsoft Azure SQL Database, Microsoft Azure Storage, and SQL Server 2012 in a Microsoft Azure Virtual Machine. This demo will showcase the rich and powerful features of the Microsoft Azure data services including easy provisioning of the services, fluid migration options, and the high-performing, scalable and feature-rich data options.
 
 <a id="goals" />
 ### Goals ###
@@ -14,13 +14,13 @@ In this demo, you will see the following:
 
 1. Contoso Expense Reporting application running on-premise.
 
-1. Provisioning a virtual machine in Windows Azure to run SQL Server 2012.
+1. Provisioning a virtual machine in Microsoft Azure to run SQL Server 2012.
 
-1. Deploying the application to a Windows Azure Web Site.
+1. Deploying the application to a Microsoft Azure Web Site.
 
-1. Connecting the application to a Windows Azure SQL Database.
+1. Connecting the application to a Microsoft Azure SQL Database.
 
-1. Connecting the application to use Windows Azure Storage.
+1. Connecting the application to use Microsoft Azure Storage.
 
 1. Creating SQL Database Federations.
 
@@ -44,15 +44,15 @@ In order to execute this demo, you need to set up your environment.
 <a name="Demo" />
 ## Demo ##
 
-Throughout the course of this session, we will show the power and flexibility of Windows Azure by taking an on-premises application and associated database, and migrate them to Windows Azure. We will first use our IaaS services to migrate the database to a virtual machine with SQL Server 2012 and the application to a Windows  Azure Cloud Service. We will then highlight our PaaS services by migrating the database to SQL Azure and extend the functionality of the application to use our Windows Azure storage services.
+Throughout the course of this session, we will show the power and flexibility of Microsoft Azure by taking an on-premises application and associated database, and migrate them to Microsoft Azure. We will first use our IaaS services to migrate the database to a virtual machine with SQL Server 2012 and the application to a Windows  Azure Cloud Service. We will then highlight our PaaS services by migrating the database to SQL Azure and extend the functionality of the application to use our Microsoft Azure storage services.
 
 This demo contains the following segments:
 
 1. [Contoso Expense Reporting Application Overview](#segment1).
-1. [Migrating to Windows Azure with Virtual Machines & SQL Server 2012](#segment2).
-1. [Windows Azure SQL Database](#segment3). 
-1. [Windows Azure SQL Federation](#segment4). 
-1. [Windows Azure Storage](#segment5). 
+1. [Migrating to Microsoft Azure with Virtual Machines & SQL Server 2012](#segment2).
+1. [Microsoft Azure SQL Database](#segment3). 
+1. [Microsoft Azure SQL Federation](#segment4). 
+1. [Microsoft Azure Storage](#segment5). 
 
 <a name="segment1" />
 ### Contoso Expense Reporting On-Premises ###
@@ -138,22 +138,22 @@ This demo contains the following segments:
 	> Standard MVC web application. Common to most of you. Most have running in enterprise.
 
 <a name="segment2" />
-### Migrating to Windows Azure with Virtual Machines & SQL Server 2012 ###
+### Migrating to Microsoft Azure with Virtual Machines & SQL Server 2012 ###
 
-1. Open the Web browser and go to the Windows Azure Portal at <http://windows.azure.com>
+1. Open the Web browser and go to the Microsoft Azure Portal at <http://windows.azure.com>
 
 1. Sign in with your Live ID.
 
 
-	![Sign in](Images/sign-in.png?raw=true "Windows Azure Portal Sign in")
+	![Sign in](Images/sign-in.png?raw=true "Microsoft Azure Portal Sign in")
 
-	_Windows Azure Portal sign in_
+	_Microsoft Azure Portal sign in_
 
 	>**Speaking Point**
 	>
-	> The first step in migrating our application to Windows Azure is to create a VM.
+	> The first step in migrating our application to Microsoft Azure is to create a VM.
 	>
-	> Let us first navigate to the Windows Azure portal and get signed in.
+	> Let us first navigate to the Microsoft Azure portal and get signed in.
 	>
 	> We use Live ID for authentication on the portal, so let’s log on.
 
@@ -228,7 +228,7 @@ This demo contains the following segments:
 	>
 	> Next, we need to supply a DNS name for this VM. 
 	> 
-	> These VMs are stored in blob storage and we need to specify whether our VM will use a Windows Azure account tied to our subscription, if we created one, or use an automatically generated storage account. Since we haven’t created a storage account yet, we’ll use the automatically generated account.
+	> These VMs are stored in blob storage and we need to specify whether our VM will use a Microsoft Azure account tied to our subscription, if we created one, or use an automatically generated storage account. Since we haven’t created a storage account yet, we’ll use the automatically generated account.
 Lastly, we need to specify in which region to create the VM. 
 
 
@@ -260,7 +260,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	Otherwise, you need to complete the following steps to configure the VM.
 
-1.	In the **Windows Azure Portal**, select the VM you created previously.
+1.	In the **Microsoft Azure Portal**, select the VM you created previously.
 1.	Select the **ENDPOINTS** view, and then click **ADD ENDPOINT** in the command bar.
 1.	In the **ADD ENDPOINT** dialog, select **Add Endpoint** and then click the right arrow to go to the next page.
 
@@ -278,7 +278,7 @@ Lastly, we need to specify in which region to create the VM.
 	>
 	> Highlight the fact that in order to gain access to SQL Server inside the VM from external, we needed to create an **Endpoint** for port 1433.
 	>
-	>**Virtual machines** use endpoints to communicate within Windows Azure and with other resources on the Internet
+	>**Virtual machines** use endpoints to communicate within Microsoft Azure and with other resources on the Internet
 	>
 	>Creating the endpoint allows us to access the VM remotely to connect to SQL Server.
 
@@ -404,7 +404,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	![Creating to SQL Server using VM's DNS Name](Images/creating-to-sql-server-using-vms-dns-name.png?raw=true "Creating to SQL Server using VM's DNS Name")
 
-	_Connecting to the SQL Server in Windows Azure using the VM's DNS name_
+	_Connecting to the SQL Server in Microsoft Azure using the VM's DNS name_
 
 	>**Speaking Point**
 	>
@@ -443,7 +443,7 @@ Lastly, we need to specify in which region to create the VM.
 	> **Highlight the following:**
 	>
 	>	- BACPACs - schema and data
-	>	- Save TO Windows Azure BLOB storage
+	>	- Save TO Microsoft Azure BLOB storage
 	>
 	> We will now import the bacpac into the SQL Server running in the VM.
 
@@ -475,7 +475,7 @@ Lastly, we need to specify in which region to create the VM.
 	> Again, highlight the following:
 	>
 	>	- BACPACs - schema and data
-	>	- Import FROM Windows Azure BLOB storage
+	>	- Import FROM Microsoft Azure BLOB storage
 	>
 	> POINT: No need to create the database! This process will create it for you!**
 
@@ -492,7 +492,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> We are going to deploy the application to Windows Azure, but we now want it to connect to our database in the VM, so the first thing we need to do is modify the connection string.
+	> We are going to deploy the application to Microsoft Azure, but we now want it to connect to our database in the VM, so the first thing we need to do is modify the connection string.
 
 1. Press **F5**.
 
@@ -540,7 +540,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> POINT: All of the information required to publish a Web application to a Windows Azure website is stored in an XML file known as a **publish profile**. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled.
+	> POINT: All of the information required to publish a Web application to a Microsoft Azure website is stored in an XML file known as a **publish profile**. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled.
 
 1.	Go back to **Visual Studio**, right-click the **Web Project** and then select **Publish**.
 1.	In the **Publish Web** dialog, click the **Import** button, browse to locate the **.PublishSettings** file that you downloaded previously, and then click **Open**.
@@ -568,9 +568,9 @@ Lastly, we need to specify in which region to create the VM.
 	> **POINT:** With a few clicks and using familiar tools we have deployed both the app and the database to the cloud with NO CODE except for changing the connection string. 
 
 <a name="segment3" />
-#### Windows Azure SQL Database ####
+#### Microsoft Azure SQL Database ####
 
-1.	Back in to the Windows Azure portal, select the **SQL DATABASES** option in the navigation pane.
+1.	Back in to the Microsoft Azure portal, select the **SQL DATABASES** option in the navigation pane.
 1. Click **New**.
 
 	![Azure Portal SQL Databases](Images/azure-portal-sql-databases.png?raw=true "Azure Portal SQL Databases")
@@ -597,7 +597,7 @@ Lastly, we need to specify in which region to create the VM.
 	- **LOGIN NAME**:  _AzureAdmin_
 	- **LOGIN PASSWORD**: _Passw0rd!_
 1. Choose a **REGION** that matches the region used by the web site that you created previously.
-1.	Ensure that the option labeled **Allow Windows Azure services to access the server** is selected.
+1.	Ensure that the option labeled **Allow Microsoft Azure services to access the server** is selected.
 
 	![Database server settings](Images/database-server-settings.png?raw=true "Database server settings")
 
@@ -608,7 +608,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> The admin account is much like the _sa_ account in the on-premises SQL Server. This account is the main administrator for the Windows Azure SQL Database server.
+	> The admin account is much like the _sa_ account in the on-premises SQL Server. This account is the main administrator for the Microsoft Azure SQL Database server.
 	> You can create other accounts and assign different permissions just like you can on-premises.
 
 1. Click the **CONFIGURE** menu option.
@@ -655,7 +655,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	![Connecting to Azure SQL Database](Images/connecting-to-azure-sql-database.png?raw=true "Connecting to Azure SQL Database")
 
-	_Connecting to Windows Azure SQL Database_
+	_Connecting to Microsoft Azure SQL Database_
 
 	>**Speaking Point**
 	>
@@ -663,10 +663,10 @@ Lastly, we need to specify in which region to create the VM.
 	>
 	>	- On-premises
 	>	- SQL Server in a VM
-	>	- Windows Azure SQL Database
+	>	- Microsoft Azure SQL Database
 
-1.	We now need to import the database into the Windows Azure SQL Database.
-1.	In Object Explorer, right-click the **Databases** node for the Windows Azure SQL Database connection and select **Import Data-Tier Application**.
+1.	We now need to import the database into the Microsoft Azure SQL Database.
+1.	In Object Explorer, right-click the **Databases** node for the Microsoft Azure SQL Database connection and select **Import Data-Tier Application**.
 1. In the **Introduction** page, click **Next**.
 
 
@@ -676,7 +676,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> Now, let’s use the same bacpac that we used earlier to also import the data into a Windows Azure SQL Database.
+	> Now, let’s use the same bacpac that we used earlier to also import the data into a Microsoft Azure SQL Database.
 
 1.	In the **Import Settings** page, click **Browse** to locate and select the saved **Expenses** bacpac file and then click **Open**.
 1. Click **Next**.
@@ -736,7 +736,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> We now need to deploy the application to Windows Azure, but we now want it to connect to our database in the VM, so the first thing we need to do is modify the connection string.
+	> We now need to deploy the application to Microsoft Azure, but we now want it to connect to our database in the VM, so the first thing we need to do is modify the connection string.
 
 1. Right-click the **Web Project** and then select **Publish**.
 
@@ -750,7 +750,7 @@ Lastly, we need to specify in which region to create the VM.
 
 
 <a name="segment4" />
-### Windows Azure SQL Federation ###
+### Microsoft Azure SQL Federation ###
 
 1. In SQL Server Management Studio, expand the SQL Azure Connection in Object Explorer and select the **Databases** node.
 
@@ -798,7 +798,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	![Azure SQL Database Connection](Images/azure-sql-database-connection.png?raw=true "Azure SQL Database Connection")
 	
-	_Windows Azure SQL Database connection_
+	_Microsoft Azure SQL Database connection_
 
 	>**Speaking Point**
 	>
@@ -852,17 +852,17 @@ Lastly, we need to specify in which region to create the VM.
 
 	![Log in to Azure SQL Database portal](Images/log-in-to-azure-sql-database-portal.png?raw=true "Log in to Azure SQL Database portal")
 
-	_Windows Azure SQL Database portal_
+	_Microsoft Azure SQL Database portal_
 
 1. In the **Summary Page** of the SQL Database portal, click the **right arrow** in the Federations section to show all federation members.
 
 	![SQL Portal showing federations](Images/sql-portal-showing-federations.png?raw=true "SQL Portal showing federations")
 
-	_Windows Azure SQL Database portal showing federations_
+	_Microsoft Azure SQL Database portal showing federations_
 
 	>**Speaking Point**
 	>
-	> Database sharding is a technique for horizontally partitioning data across multiple physical servers to provide application scale-out. Windows Azure SQL Database combined with database sharding techniques provides for virtually unlimited scalability of data for an application.
+	> Database sharding is a technique for horizontally partitioning data across multiple physical servers to provide application scale-out. Microsoft Azure SQL Database combined with database sharding techniques provides for virtually unlimited scalability of data for an application.
 
 1.	In the **Federation Member** grid, click the grey area.
 1.	In the **UserExpense_Federation** dialog, select the **Split** option and set the value to **40**.
@@ -881,9 +881,9 @@ Lastly, we need to specify in which region to create the VM.
 
 
 <a name="segment5" />
-### Windows Azure Storage ###
+### Microsoft Azure Storage ###
 
-1. Open the **Windows Azure Management portal** and select the **STORAGE ACCOUNTS** option in the **Navigation Pane**.
+1. Open the **Microsoft Azure Management portal** and select the **STORAGE ACCOUNTS** option in the **Navigation Pane**.
 
 	![Managing storage accounts](Images/selecting-the-storage-accounts.png?raw=true "Managing storage accounts")
 
@@ -891,7 +891,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> There are three options for unstructured and non-relational data storage in Windows Azure: **Blob**, **Table**, and **Queue** services.
+	> There are three options for unstructured and non-relational data storage in Microsoft Azure: **Blob**, **Table**, and **Queue** services.
 	>
 	> A storage account is scoped to a primary geographic region and is configured by default to seamlessly replicate itself to a secondary region in case of a major failure in the primary region.
 
@@ -920,13 +920,13 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> By running the following command in the **Package Manager Console**, we are adding the Windows Azure Storage Client libraries to the project.
+	> By running the following command in the **Package Manager Console**, we are adding the Microsoft Azure Storage Client libraries to the project.
 
 1. In the **Package Manager Console**, type: _Install-Package WindowsAzure.Storage_.
 
 	![Using the Package Manager Console](Images/using-the-package-manager-console.png?raw=true "Using the Package Manager Console")
 
-	_Installing the Windows Azure Storage Client library_
+	_Installing the Microsoft Azure Storage Client library_
 
 1. In Solution Explorer, right-click the **Helpers** folder, point to **Add** and select **Existing Item**. 
 1. Browse to the **Assets\storage** folder, select **StorageHelper.cs** and click **Add**.
@@ -1027,7 +1027,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	_Copying the primary access key_
 
-1. Open the **Web.config** file and find the comment that reads “**Windows Azure Storage Account**” within the **appSettings** section.
+1. Open the **Web.config** file and find the comment that reads “**Microsoft Azure Storage Account**” within the **appSettings** section.
 
 	>**Speaking Point**
 	>
@@ -1106,12 +1106,12 @@ Lastly, we need to specify in which region to create the VM.
 
 In this demo, you learned how to:
 
-1. Deploy applications to Windows Azure Websites.
+1. Deploy applications to Microsoft Azure Websites.
 
-1. Provision a virtual machine in Windows Azure to run SQL Server 2012.
+1. Provision a virtual machine in Microsoft Azure to run SQL Server 2012.
 
-1. Connect applications to a Windows Azure SQL Database.
+1. Connect applications to a Microsoft Azure SQL Database.
 
-1. Connect applications to use Windows Azure Storage.
+1. Connect applications to use Microsoft Azure Storage.
 
 1. Create SQL Database Federations.

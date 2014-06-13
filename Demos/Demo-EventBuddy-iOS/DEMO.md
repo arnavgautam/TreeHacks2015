@@ -1,12 +1,12 @@
-﻿<a name="title" />
-# Event Buddy - iOS - Windows Azure Mobile Services #
+<a name="title" />
+# Event Buddy - iOS - Microsoft Azure Mobile Services #
 
 ---
 
 <a name="Overview"/>
 ## Overview ##
 
-This demo demonstrates an iOS client that connects to a Windows Azure Mobile Service.  In this scenario, you should have already completed and set up the primary [EventBuddy Windows 8 demo](https://github.com/WindowsAzure-TrainingKit/Demo-EventBuddy).
+This demo demonstrates an iOS client that connects to a Microsoft Azure Mobile Service.  In this scenario, you should have already completed and set up the primary [EventBuddy Windows 8 demo](https://github.com/WindowsAzure-TrainingKit/Demo-EventBuddy).
 
 > **Note:** This demo was developed using Xcode 4.5 and iOS 6.  It may work with earlier or later versions of Xcode and iOS, though testing has not been performed.**.
 
@@ -23,7 +23,7 @@ This demo covers:
 This demo uses the following technologies:
 
 - [Xcode](https://developer.apple.com/xcode/)
-- [Windows Azure Management Portal](http://manage.windowsazure.com/)
+- [Microsoft Azure Management Portal](http://manage.windowsazure.com/)
 
 <a name="Setup" />
 ### Setup and Configuration ###
@@ -41,13 +41,13 @@ Currently the only area missing from this demo that is present in the Windows St
 <a name="Segment1" />
 ### Segment 1: Connecting the iOS app to Mobile Services ###
 
-> **Speaking Point:** Full support for the iOS platform, for developing apps for iPhones and iPads, is also fully supported by Windows Azure Mobile Services.  Now we'll connect an iOS version of the EventBuddy application to the same Mobile Service we just used with our Windows Store / Windows Phone application.
+> **Speaking Point:** Full support for the iOS platform, for developing apps for iPhones and iPads, is also fully supported by Microsoft Azure Mobile Services.  Now we'll connect an iOS version of the EventBuddy application to the same Mobile Service we just used with our Windows Store / Windows Phone application.
 
 1. Open the EventBuddy.xcodeproj file.
 
 1. Open EventBuddyService.m in the editor.
 
-1. Open the [Windows Azure Management Portal](http://manage.windowsazure.com).
+1. Open the [Microsoft Azure Management Portal](http://manage.windowsazure.com).
 
 1.  After logging in, navigate to the dashboard for the mobile service you created with the primary EventBuddy demo.  
 

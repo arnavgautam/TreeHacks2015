@@ -1,12 +1,12 @@
 <a name="title" />
-# Connecting an Android Geolocation App to a Backend in Windows Azure Websites #
+# Connecting an Android Geolocation App to a Backend in Microsoft Azure Websites #
 
 ---
 
 <a name="Overview" />
 ## Overview ##
 
-This demonstration shows how to connect a Android client to a backend service running in Windows Azure Websites.  
+This demonstration shows how to connect a Android client to a backend service running in Microsoft Azure Websites.  
 
 Widows Azure Websites enables developers to quickly get up and running with websites.  Websites may be developed in ASP.NET, Node.js and PHP.  In addition, websites may use SQL or MySQL for data storage.  Deployment can be accomplished in several ways including TFS, FTP, and GIT.
 
@@ -14,12 +14,12 @@ Widows Azure Websites enables developers to quickly get up and running with webs
 ### Goals ###
 In this demo, you will see:
 
-1. How easy is to connect an Android client to a backend running in Windows Azure Websites.
+1. How easy is to connect an Android client to a backend running in Microsoft Azure Websites.
 
 <a name="technologies" />
 ### Key Technologies ###
 
-- [Windows Azure Websites](https://www.windowsazure.com/en-us/home/scenarios/web-sites/)
+- [Microsoft Azure Websites](https://www.windowsazure.com/en-us/home/scenarios/web-sites/)
 - [Eclipse](http://eclipse.org/)
 - [Android](http://developer.android.com/index.html)
 
@@ -46,7 +46,7 @@ This demo is composed of the following segments:
 
 > **Speaking Point**
 >
-> During this demo we're going to connect an Android client to the Geolocation service that was just pushed to Windows Azure Websites.
+> During this demo we're going to connect an Android client to the Geolocation service that was just pushed to Microsoft Azure Websites.
 >
 > Lets start by opening the Android application in Eclipse.
 
@@ -316,4 +316,4 @@ This demo is composed of the following segments:
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw how easy it is to communicate with a service layer running in Windows Azure Websites.  You took a prebuilt Android application and pointed it at a web service that you previously deployed and demonstrated how it works.  In addition, you made use of Blob storage to store files.
+In this demo, you saw how easy it is to communicate with a service layer running in Microsoft Azure Websites.  You took a prebuilt Android application and pointed it at a web service that you previously deployed and demonstrated how it works.  In addition, you made use of Blob storage to store files.

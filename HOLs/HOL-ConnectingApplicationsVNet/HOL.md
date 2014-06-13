@@ -1,4 +1,4 @@
-﻿<a name="handsonlab"></a>
+<a name="handsonlab"></a>
 # Connecting a PaaS application to an IaaS Application with a Virtual Network #
 
 ---
@@ -6,7 +6,7 @@
 <a name="Overview"></a>
 ## Overview ##
 
-In this lab, you will create a virtual machine with SQL Server installed using Windows Azure Management Portal. Then you will modify and deploy a sample Web application to a new Cloud Service. By the end, you will communicate the Cloud Service and the SQL Server virtual machine through a Virtual Network.
+In this lab, you will create a virtual machine with SQL Server installed using Microsoft Azure Management Portal. Then you will modify and deploy a sample Web application to a new Cloud Service. By the end, you will communicate the Cloud Service and the SQL Server virtual machine through a Virtual Network.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -15,7 +15,7 @@ In this hands-on lab, you will learn how to:
 
 - Directly connect a Web Role to a SQL Server running in a virtual machine through a simple virtual network
 - Configure a SQL Server virtual machine
-- Update and deploy the sample Web application to a Cloud App in Windows Azure
+- Update and deploy the sample Web application to a Cloud App in Microsoft Azure
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
@@ -23,8 +23,8 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Visual Studio Express 2012 for Web](http://www.microsoft.com/visualstudio/) or greater
-- [Windows Azure Tools for Microsoft Visual Studio 1.8](http://www.microsoft.com/windowsazure/sdk/)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Microsoft Azure Tools for Microsoft Visual Studio 1.8](http://www.microsoft.com/windowsazure/sdk/)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 ---
 
@@ -52,7 +52,7 @@ For this lab, you will define a virtual network where you can assign the virtual
 
 The first task is to create a new Virtual Network to your subscription with a new affinity group.
 
-1. Open a browser and go to [https://manage.windowsazure.com/](https://manage.windowsazure.com/). When prompted, login with your **Windows Azure** credentials. In the Windows Azure Portal, click **New**, select **Networks** | **Virtual Network** and then click **Custom Create**.
+1. Open a browser and go to [https://manage.windowsazure.com/](https://manage.windowsazure.com/). When prompted, login with your **Microsoft Azure** credentials. In the Microsoft Azure Portal, click **New**, select **Networks** | **Virtual Network** and then click **Custom Create**.
 
 	![Virtual Network custom create](Images/virtual-network-custom-create.png?raw=true)
 
@@ -84,11 +84,11 @@ The first task is to create a new Virtual Network to your subscription with a ne
 In this exercise, you will create a new virtual machine with SQL Server and configure a public endpoint in order to access it remotely.
 
 <a name="Ex1Task1"></a>
-#### Task 1 - Creating a Virtual Machine Using Windows Azure Portal ####
+#### Task 1 - Creating a Virtual Machine Using Microsoft Azure Portal ####
 
-In this task, you will create a new virtual machine using the Windows Azure Portal.
+In this task, you will create a new virtual machine using the Microsoft Azure Portal.
 
-1. Navigate to the **Windows Azure Portal** using a Web browser and sign in using the **Microsoft Account** associated with your Windows Azure account.
+1. Navigate to the **Microsoft Azure Portal** using a Web browser and sign in using the **Microsoft Account** associated with your Microsoft Azure account.
 
 1. Click **New** and select **Virtual Machine** option and then **From Gallery**.
 
@@ -136,18 +136,18 @@ In this task, you will create a new virtual machine using the Windows Azure Port
 
 1. You will see three disks for the virtual machine: one for the **OS** and other two for **Data** and **Logs**.
 
-	> **Note:** It might take a few minutes until the data disks appear in the virtual machine's dashboard within the Windows Azure Portal.
+	> **Note:** It might take a few minutes until the data disks appear in the virtual machine's dashboard within the Microsoft Azure Portal.
 
 <a name="Ex1Task2"></a>
 #### Task 2 - Configuring SQL Server 2012 Instance ####
 
 In this task, you will set up SQL Server and configure it to enable remote access.
 
-1. In the Windows Azure Management Portal, click **Virtual Machines** on the left menu.
+1. In the Microsoft Azure Management Portal, click **Virtual Machines** on the left menu.
 
- 	![Windows Azure Portal](./Images/Windows-Azure-Portal.png?raw=true "Windows Azure Portal")
+ 	![Microsoft Azure Portal](./Images/Windows-Azure-Portal.png?raw=true "Microsoft Azure Portal")
  
-	_Windows Azure Portal_
+	_Microsoft Azure Portal_
 
 1. Select your virtual machine from the virtual machines list and click **Connect** to connect using **Remote Desktop Connection**.
 
@@ -163,7 +163,7 @@ In this task, you will set up SQL Server and configure it to enable remote acces
 
 1. After selecting Disk Management, an **Initialize Disk** dialog will be displayed. Leave the default values and click **OK**. 
 
-	> **Note**: If the Initialize Disk dialog is not displayed when selecting Disk Management, locate the disks you created using the **Attach Empty Disk** feature from the Windows Azure Management Portal, right-click the first disk and select **Initialize Disk**. Leave the default values and click **OK**.
+	> **Note**: If the Initialize Disk dialog is not displayed when selecting Disk Management, locate the disks you created using the **Attach Empty Disk** feature from the Microsoft Azure Management Portal, right-click the first disk and select **Initialize Disk**. Leave the default values and click **OK**.
 
 1. Right-click the first disk unallocated space and select **New Simple Volume**.
 
@@ -196,7 +196,7 @@ In this task, you will set up SQL Server and configure it to enable remote acces
 
 In this task, you will add the **AdventureWorks** database that will be used by the sample application in the following exercise.
 
-1. In order to enable downloads from IE you will need to update **Internet Explorer Enhanced Security Configuration**. In the Windows Azure virtual machine, open **Server Manager** from **Start | All Programs | Administrative Tools**.
+1. In order to enable downloads from IE you will need to update **Internet Explorer Enhanced Security Configuration**. In the Microsoft Azure virtual machine, open **Server Manager** from **Start | All Programs | Administrative Tools**.
 
 1. In the **Server Manager** window, click **Configure IE ESC** within the **Security Information** section.
 
@@ -230,7 +230,7 @@ In this task, you will add the **AdventureWorks** database that will be used by 
 
 1. Restart SQL Server. In the **Object Explorer**, right-click on the server node and select **Restart**. 
 
-1. This lab uses the **AdventureWorks2012** database. Open an **Internet Explorer** browser and go to <http://msftdbprodsamples.codeplex.com/> to download  the **SQL Server 2012** sample databases. Once on the page click _Download AdventureWorks Databases – 2008, 2008R2 and 2012_ and then download _AdventureWorks2012_Database.zip_ file. Download it to F:\Data.
+1. This lab uses the **AdventureWorks2012** database. Open an **Internet Explorer** browser and go to <http://msftdbprodsamples.codeplex.com/> to download  the **SQL Server 2012** sample databases. Once on the page click _Download AdventureWorks Databases � 2008, 2008R2 and 2012_ and then download _AdventureWorks2012_Database.zip_ file. Download it to F:\Data.
 
 1. Extract the files from the zip one into F:\Data, then right click the database file and open the properties. Click **Unblock**.
 
@@ -357,14 +357,14 @@ In this task, you will add the **AdventureWorks** database that will be used by 
 <a name="Exercise2"></a>
 ### Exercise 2: Deploying a Simple MVC4 Application ###
 
-In this exercise, you will configure a simple Web application to connect to the SQL Server instance you created in the previous exercise and publish the application to **Windows Azure** and run it in the Cloud.
+In this exercise, you will configure a simple Web application to connect to the SQL Server instance you created in the previous exercise and publish the application to **Microsoft Azure** and run it in the Cloud.
 
 <a name="Ex2Task1"></a>
 #### Task 1 - Configuring the MVC4 Application to Connect to an SQL Server Instance ####
 
 In this task, you will change the connection string to point to the SQL Server instance created in the previous exercise and update the configuration settings to enable network communication between the Web Role and the SQL Server instance.
 
-1. Navigate to the **Windows Azure Portal** using a Web browser and sign in using the **Microsoft Account** associated with your Windows Azure account.
+1. Navigate to the **Microsoft Azure Portal** using a Web browser and sign in using the **Microsoft Account** associated with your Microsoft Azure account.
 
 1. In the left side pane, click on **Virtual Machines** and locate the SQL Server virtual machine you created in the previous exercise. Select the virtual machine and then click **Connect**. 
 
@@ -420,9 +420,9 @@ In this task, you will change the connection string to point to the SQL Server i
 ````
 
 <a name="Ex2Task2"></a>
-#### Task 2 - Publishing the MVC4 Application to Windows Azure ####
+#### Task 2 - Publishing the MVC4 Application to Microsoft Azure ####
 
-In this task, you will publish the Web Application to Windows Azure using Visual Studio.
+In this task, you will publish the Web Application to Microsoft Azure using Visual Studio.
 
 1. In Visual Studio, right-click the **CloudShop.Azure** project and select **Package**.
 
@@ -430,15 +430,15 @@ In this task, you will publish the Web Application to Windows Azure using Visual
 
 	_Packaging the Cloud Application_
 
-1. In the **Package Windows Azure Application** dialog, make sure that _Service Configuration_ is set to **Cloud** and _Build Configuration_ is set to **Release**. Then click the **Package** button.
+1. In the **Package Microsoft Azure Application** dialog, make sure that _Service Configuration_ is set to **Cloud** and _Build Configuration_ is set to **Release**. Then click the **Package** button.
 
-	![Package Windows Azure Application dialog](Images/package-windows-azure-application-dialog.png?raw=true "Package Windows Azure Application dialog")
+	![Package Microsoft Azure Application dialog](Images/package-windows-azure-application-dialog.png?raw=true "Package Microsoft Azure Application dialog")
 
-	_Package Windows Azure Application dialog_
+	_Package Microsoft Azure Application dialog_
 
 1. Wait to the package process to finish to continue with the next step.
 
-1. Navigate to the **Windows Azure Portal** using a Web browser and sign in using the **Microsoft Account** associated with your Windows Azure account.
+1. Navigate to the **Microsoft Azure Portal** using a Web browser and sign in using the **Microsoft Account** associated with your Microsoft Azure account.
 
 1. Click the **New** link located at the bottom of the page, select **Compute** | **Cloud Service** and then **Custom Create**.
 
@@ -477,4 +477,4 @@ By completing this hands-on lab, you have learnt how to:
 
 - Directly connect a Web Role to a SQL Server running in a virtual machine through a simple virtual network
 - Configure a SQL Server virtual machine
-- Update and deploy the sample Web application to a Cloud App in Windows Azure
+- Update and deploy the sample Web application to a Cloud App in Microsoft Azure

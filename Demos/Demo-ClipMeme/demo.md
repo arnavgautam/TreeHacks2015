@@ -16,10 +16,10 @@ In this demo, you will see how to:
 
 <a name="Technologies" />
 ### Key Technologies ###
-- Windows Azure subscription
+- Microsoft Azure subscription
 - Microsoft Visual Studio 2013
 - Visual Studio 2013 Update 2
-- Windows Azure Websites
+- Microsoft Azure Websites
 
 <a name="Prerequisites" />
 ### System Prerequisites ###
@@ -376,7 +376,7 @@ This demo is composed of the following segments:
 	
 	_Publish Web dialog box_
 
-1. Select **Windows Azure Websites**.
+1. Select **Microsoft Azure Websites**.
  
 	![Select existing Web Site dialog box](Images/select-existing-web-site-dialog-box.png?raw=true "Select existing Web Site dialog box")
 	
@@ -439,7 +439,7 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** Using the WebJobs SDK makes it really easy to listen to any event that is happening in any of the Azure resources.
 
-1. In Solution Explorer, right-click the **ClipMeme** project node and select **Add > Windows Azure WebJob...**.
+1. In Solution Explorer, right-click the **ClipMeme** project node and select **Add > Microsoft Azure WebJob...**.
 
 	![Associating a WebJob project with your Website](Images/associating-a-webjob-project-with-your-websit.png?raw=true)
 	

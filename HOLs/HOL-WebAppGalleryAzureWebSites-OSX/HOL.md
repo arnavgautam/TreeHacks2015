@@ -1,18 +1,18 @@
 <a name="Title" />
-# Creating Websites in Windows Azure (OS X) #
+# Creating Websites in Microsoft Azure (OS X) #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-In this hands-on lab you will learn how to create a new web site in Windows Azure by using a template from the pre-packaged applications gallery. Once created, you will edit the site using a text editor and update the site using FTP.
+In this hands-on lab you will learn how to create a new web site in Microsoft Azure by using a template from the pre-packaged applications gallery. Once created, you will edit the site using a text editor and update the site using FTP.
 
 <a name="Objectives" />
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-* Create a new Web Site in Windows Azure by using a pre-packaged application from the templates Gallery
+* Create a new Web Site in Microsoft Azure by using a pre-packaged application from the templates Gallery
 * Update your Web Site by editing files using a text editor and update the site using FTP
 
 <a name="Prerequisites" />
@@ -20,7 +20,7 @@ In this hands-on lab, you will learn how to:
 
 The following is required to complete this hands-on lab:
 
-- A Windows Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 > **Note:** This lab was designed to use Mac OS X Operating System
 
@@ -31,19 +31,19 @@ The following is required to complete this hands-on lab:
 
 This hands-on lab includes the following exercises:
 
-1. [Exercise 1: Creating a Windows Azure Web Site using the Applications Gallery](#Exercise1)
+1. [Exercise 1: Creating a Microsoft Azure Web Site using the Applications Gallery](#Exercise1)
 1. [Exercise 2: Customizing a Web Site on OS X using a text editor and update the site using FTP](#Exercise2)
 
 <a name="Exercise1" />
-### Exercise 1: Creating a Windows Azure Web Site using the Applications Gallery ###
+### Exercise 1: Creating a Microsoft Azure Web Site using the Applications Gallery ###
 
 During this exercise you will create a new web site using the pre-packaged web applications from the Applications Gallery.
 
-1. Go to the [Windows Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
+1. Go to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
 
-	![Log on to Windows Azure portal](images/login.png?raw=true "Log on to Windows Azure portal")
+	![Log on to Microsoft Azure portal](images/login.png?raw=true "Log on to Microsoft Azure portal")
 
-	_Log on to Windows Azure Management Portal_
+	_Log on to Microsoft Azure Management Portal_
 
 1. Click **New** on the command bar.
 
@@ -87,7 +87,7 @@ During this exercise you will create a new web site using the pre-packaged web a
 
 	_WordPress Web Site Dashboard_
 
-1. Now you will configure **WordPress** for running on **Windows Azure**. Complete the **Site Title**, **Username**, **Password** and **E-mail** fields. Then, click **Install WordPress**.
+1. Now you will configure **WordPress** for running on **Microsoft Azure**. Complete the **Site Title**, **Username**, **Password** and **E-mail** fields. Then, click **Install WordPress**.
 
 	![Configuring WordPress Application](images/configuring-wordpress-application.png?raw=true "WordPress Web Site Administration")
 
@@ -122,7 +122,7 @@ During this exercise you will create a new web site using the pre-packaged web a
 
 During this exercise you will use the FTP publishing feature to update the web site by adding the Facebook's **Like** button to blog posts.
 
-1. Go to the Windows Azure portal dashboard and copy the **FTP HOSTNAME**.
+1. Go to the Microsoft Azure portal dashboard and copy the **FTP HOSTNAME**.
 	
 	![Obtaining the FTP deployment hostname](images/ftp-hostname.png?raw=true "Obtaining the FTP deployment hostname")
 
@@ -146,7 +146,7 @@ During this exercise you will use the FTP publishing feature to update the web s
 
 	_Providing FTP credentials_
 	
-	> **Note:** Deployment credentials are other than the Live ID associated with your Windows Azure subscription and are valid for use with all Windows Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
+	> **Note:** Deployment credentials are other than the Live ID associated with your Microsoft Azure subscription and are valid for use with all Microsoft Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
 
 	>
 	>![Entering the username and password](images/deployment-credentials.png?raw=true "Setting the user name and password")
@@ -204,4 +204,4 @@ During this exercise you will use the FTP publishing feature to update the web s
 <a name="Summary" />
 ## Summary ##
 
-In this hands-on lab you have learned how to create a new web site in Windows Azure by using a template from the pre-packaged applications gallery. Once created, you updated the site using a text editor and updated the site files using FTP.
+In this hands-on lab you have learned how to create a new web site in Microsoft Azure by using a template from the pre-packaged applications gallery. Once created, you updated the site using a text editor and updated the site files using FTP.

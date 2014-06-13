@@ -5,20 +5,20 @@
 <a name="Overview" />
 ## Overview ##
 
-In this demo, you will create a Windows Azure Web Site, and get an ASP Legacy page running in the cloud using an FTP client.
+In this demo, you will create a Microsoft Azure Web Site, and get an ASP Legacy page running in the cloud using an FTP client.
 
 <a id="goals" />
 ### Goals ###
 In this demo, you will see:
 
-1. How easy it is to create a new Web Site in Windows Azure.
+1. How easy it is to create a new Web Site in Microsoft Azure.
 
 1. How to get an existing ASP Web Site working in just a few minutes by uploading it with an FTP client.
 
 <a name="technologies" />
 ### Key Technologies ###
 
-- [Windows Azure Websites](https://www.windowsazure.com/en-us/home/scenarios/web-sites/)
+- [Microsoft Azure Websites](https://www.windowsazure.com/en-us/home/scenarios/web-sites/)
 
 ---
 
@@ -27,24 +27,24 @@ In this demo, you will see:
 
 This demo is composed of the following segments:
 
-1. [Create a New Web Site Hosted in Windows Azure](#segment1).
-1. [Upload an ASP page to the Windows Azure Web Site using an FTP](#segment2).
+1. [Create a New Web Site Hosted in Microsoft Azure](#segment1).
+1. [Upload an ASP page to the Microsoft Azure Web Site using an FTP](#segment2).
 1. [Set the ASP page as the Web Site Default Document](#segment3).
 
 <a name="segment1" />
-### Create a New Web site Hosted in Windows Azure ###
+### Create a New Web site Hosted in Microsoft Azure ###
 
 > **Speaking Point**
 >
-> During this demo we are going to create a Windows Azure Web Site.
+> During this demo we are going to create a Microsoft Azure Web Site.
 >
-> Lets start by opening Internet Explorer and accessing the Windows Azure Management Portal.
+> Lets start by opening Internet Explorer and accessing the Microsoft Azure Management Portal.
 
-1. Open **Internet Explorer**, go to the [Windows Azure Management portal](https://manage.windowsazure.com) and sign in using your **Microsoft Account** credentials associated with your subscription.
+1. Open **Internet Explorer**, go to the [Microsoft Azure Management portal](https://manage.windowsazure.com) and sign in using your **Microsoft Account** credentials associated with your subscription.
 
 	> **Speaking Point**
 	>
-	> Thanks to the Quick Create option from the Windows Azure Management Portal, we can now get a Web Site working in the cloud in just seconds.
+	> Thanks to the Quick Create option from the Microsoft Azure Management Portal, we can now get a Web Site working in the cloud in just seconds.
 
 1. Click **Compute**, **Web Site** and then **Quick Create** on the command bar. Provide an available URL (e.g. _hello-world-asp_) for the new web site and click **Create Web Site**.
 
@@ -63,7 +63,7 @@ This demo is composed of the following segments:
 	_Web site running_
 
 <a name="segment2" />
-### Upload an ASP page to the Windows Azure Web Site using an FTP ###
+### Upload an ASP page to the Microsoft Azure Web Site using an FTP ###
 
 > **Speaking Point**
 >
@@ -71,7 +71,7 @@ This demo is composed of the following segments:
 >
 > Lets go to the dashboard panel of the Web Site we have just created.
 
-1. Back in the Windows Azure Management Portal, click your Web Site name, under the **Name** column to access the Dashboard.
+1. Back in the Microsoft Azure Management Portal, click your Web Site name, under the **Name** column to access the Dashboard.
 
 	![Accessing the Web Site Dashboard](Images/accessing-the-web-site-dashboard.png?raw=true "Accessing the Web Site Dashboard")
 
@@ -170,7 +170,7 @@ This demo is composed of the following segments:
 >
 >  We are now going to set up the hello.asp page as the Default Web Site page, so that when we go to the root URL our page is displayed.
 
-1. Switch to the Windows Azure Management Portal and click **Configure** from the Web Site top menu.
+1. Switch to the Microsoft Azure Management Portal and click **Configure** from the Web Site top menu.
 
 	![Web Site Configure Options](Images/website-configure.png?raw=true "Web Site Configure Options")
 
@@ -205,4 +205,4 @@ This demo is composed of the following segments:
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw how to deploy your Web Site to the cloud with Windows Azure, and how easy it is to upload your own Web Site using an FTP client.
+In this demo, you saw how to deploy your Web Site to the cloud with Microsoft Azure, and how easy it is to upload your own Web Site using an FTP client.

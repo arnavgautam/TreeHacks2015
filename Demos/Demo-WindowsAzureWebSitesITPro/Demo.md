@@ -1,18 +1,18 @@
 <a name="title" />
-#Windows Azure Websites (PaaS)#
+#Microsoft Azure Websites (PaaS)#
 
 ---
 <a name="Overview" />
 ## Overview ##
-In this demo, you will learn how to use Microsoft WebMatrix 2 to quickly build and publish Websites in Windows Azure.  You do not need to be a developer in order to do this and it will help to illustrate the difference between Windows Azure IaaS and PaaS as well as show you one of the many non-IaaS services available on Windows Azure.
+In this demo, you will learn how to use Microsoft WebMatrix 2 to quickly build and publish Websites in Microsoft Azure.  You do not need to be a developer in order to do this and it will help to illustrate the difference between Microsoft Azure IaaS and PaaS as well as show you one of the many non-IaaS services available on Microsoft Azure.
 
-Microsoft WebMatrix is a free tool that allows you to create, customize and publish Websites. WebMatrix includes a range of built-in templates to make it quick and easy to get started with your Web site, and it provides built-in publishing support to help you easily publish your Websites to Windows Azure.
-In this demo, we will create a Web site from the Windows Azure portal, and start to build the Web site locally using WebMatrix.
+Microsoft WebMatrix is a free tool that allows you to create, customize and publish Websites. WebMatrix includes a range of built-in templates to make it quick and easy to get started with your Web site, and it provides built-in publishing support to help you easily publish your Websites to Microsoft Azure.
+In this demo, we will create a Web site from the Microsoft Azure portal, and start to build the Web site locally using WebMatrix.
 
 This is an example of Platform as a Service (PaaS).
 
-<a name="Demo 1: Creating your first Windows Azure Web Site" />
-## Demo 1: Creating your first Windows Azure Web Site ##
+<a name="Demo 1: Creating your first Microsoft Azure Web Site" />
+## Demo 1: Creating your first Microsoft Azure Web Site ##
 
 1. In the Azure portal, on the toolbar, click **New**.
 

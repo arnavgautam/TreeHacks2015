@@ -426,11 +426,11 @@ In this task you will use Azure PowerShell for Azure Resources to list the avail
 	Add-AzureAccount
 	````
 
-1. In the **Sign-in to Windows Azure** dialog box, enter your **Microsoft Account** and click **Continue**. You may be required to enter the password on the next step.
+1. In the **Sign-in to Microsoft Azure** dialog box, enter your **Microsoft Account** and click **Continue**. You may be required to enter the password on the next step.
 
-	![Sign in to Windows Azure dialog box](Images/sign-in-to-windows-azure-dialog-box.png?raw=true "Sign in to Windows Azure dialog box")
+	![Sign in to Microsoft Azure dialog box](Images/sign-in-to-windows-azure-dialog-box.png?raw=true "Sign in to Microsoft Azure dialog box")
 	
-	_Signing in to Windows Azure dialog box_
+	_Signing in to Microsoft Azure dialog box_
 
 1. Once the authentication process is complete, one of your subscriptions is set as the default subscription.
 

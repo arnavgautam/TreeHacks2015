@@ -1,21 +1,21 @@
-ï»¿<a name="HOLTop"></a>
-# Introduction to Windows Azure Virtual Machines #
+<a name="HOLTop"></a>
+# Introduction to Microsoft Azure Virtual Machines #
 
 ---
 
 <a name="Overview"></a>
 ## Overview ##
 
-Using Windows Azure as your Infrastructure as a Service (IaaS) platform, will enable you to create and manage your infrastructure quickly, provisioning and accessing any host ubiquitously. Grow your business through the cloud-based infrastructure, reducing the costs of licensing, provisioning and backup.
+Using Microsoft Azure as your Infrastructure as a Service (IaaS) platform, will enable you to create and manage your infrastructure quickly, provisioning and accessing any host ubiquitously. Grow your business through the cloud-based infrastructure, reducing the costs of licensing, provisioning and backup.
 
-In this hands-on Lab, you will learn how to deploy a simple ASP.NET MVC 4 Web application to a Web server hosted in Windows Azure, using SQL Server and configuring load balancing.
+In this hands-on Lab, you will learn how to deploy a simple ASP.NET MVC 4 Web application to a Web server hosted in Microsoft Azure, using SQL Server and configuring load balancing.
 
 <a name="Objectives"></a>
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-- Create a Web Farm using Windows Azure Management Portal
+- Create a Web Farm using Microsoft Azure Management Portal
 - Configure Load Balancing in IIS
 - Deploy a Simple MVC4 Application that consumes SQL Server Features
 - Create a Virtual Machine with SQL Server Full-Text Search feature to be consumed by the MVC Application
@@ -25,7 +25,7 @@ In this hands-on lab, you will learn how to:
 
 The following is required to complete this hands-on lab:
 
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 ---
 
@@ -43,14 +43,14 @@ Estimated time to complete this lab: **45 minutes**.
 <a name="Exercise1"></a>
 ### Exercise 1: Creating Virtual Machines for IIS ###
 
-In this exercise, you will learn how to create a Virtual Machine in Windows Azure. Then, you will configure an Internet Information Server adding roles to use later on in this lab.
+In this exercise, you will learn how to create a Virtual Machine in Microsoft Azure. Then, you will configure an Internet Information Server adding roles to use later on in this lab.
 
 <a name="Ex1Task1"></a>
 #### Task 1 - Creating IIS Virtual Machines ####
 
 In this task, you will provision a Virtual Machine and configure the Load Balancing to host an MVC4 application.
 
-1. Open Internet Explorer and browse to [https://manage.windowsazure.com/](https://manage.windowsazure.com/) to enter the Windows Azure portal. Then, log in with your credentials.
+1. Open Internet Explorer and browse to [https://manage.windowsazure.com/](https://manage.windowsazure.com/) to enter the Microsoft Azure portal. Then, log in with your credentials.
 
 1. In the menu located at the bottom, select **New | Compute | Virtual Machine | From Gallery** to start creating a new virtual machine.
 	 
@@ -60,13 +60,13 @@ In this task, you will provision a Virtual Machine and configure the Load Balanc
  
 1. In the **Virtual Machine OS Selection** page, click **Platform Images** on the left menu and select the **Windows Server 2008 R2 SP1** OS image from the list. Click the arrow to continue.	
 
-1. In the **Virtual Machine Configuration** page, leave the version release date by default (latest). Enter the Virtual Machine Name (i.e. "iisvm1"), provide a user name for the **New User Name** field and a password for the **New Password** and **Confirm Password** fields. This password needs to contain three of these â€“ lower case characters, uppercase characters, numbers and special characters. Make sure you remember your choice. Lastly, set the Virtual Machine **Size** to _Small_ and click **Next** to continue.
+1. In the **Virtual Machine Configuration** page, leave the version release date by default (latest). Enter the Virtual Machine Name (i.e. "iisvm1"), provide a user name for the **New User Name** field and a password for the **New Password** and **Confirm Password** fields. This password needs to contain three of these – lower case characters, uppercase characters, numbers and special characters. Make sure you remember your choice. Lastly, set the Virtual Machine **Size** to _Small_ and click **Next** to continue.
 
 	![Configuring a Custom Virtual Machine](Images/creating-a-vm-configuration.png?raw=true)
 	 
 	_Creating a Virtual Machine - Configuration_
  
-	>**Note:** It is suggested to use secure passwords for admin users, as Windows Azure virtual machines could be accessible from the Internet knowing just their DNS.
+	>**Note:** It is suggested to use secure passwords for admin users, as Microsoft Azure virtual machines could be accessible from the Internet knowing just their DNS.
 	>
 	>You can also read this document on the Microsoft Security website that will help you select a secure password:  [http://www.microsoft.com/security/online-privacy/passwords-create.aspx](http://www.microsoft.com/security/online-privacy/passwords-create.aspx)
  
@@ -227,7 +227,7 @@ In this exercise, you will create a new Virtual Machine and learn how to install
 <a name="Ex2Task1"></a>
 #### Task 1 - Creating a SQL Server Virtual Machine ####
 
-In this task, you will create a new Virtual Machine using the Windows Azure portal in the same Cloud App you deployed the IIS Virtual Machines.
+In this task, you will create a new Virtual Machine using the Microsoft Azure portal in the same Cloud App you deployed the IIS Virtual Machines.
 
 1. In the menu located at the bottom, select **New | Compute | Virtual Machine | From Gallery** to start creating a new virtual machine.
  
@@ -246,7 +246,7 @@ In this task, you will create a new Virtual Machine using the Windows Azure port
 <a name="Ex2Task2"></a> 
 #### Task 2 - Attaching Empty Disk Images ####
 
-In this task, you will create two empty data disks and attach them to an existing Virtual Machine using the Windows Azure Management Portal. You will use these data disks to split SQL Server Data and Logs.
+In this task, you will create two empty data disks and attach them to an existing Virtual Machine using the Microsoft Azure Management Portal. You will use these data disks to split SQL Server Data and Logs.
 
 1. Now, you will create and attach empty data disks to store the SQL Server logs and data files, and you will also add an endpoint. To do this, in the **Virtual Machines** section, select the SQL Server Virtual Machine you created in the previous task.
 
@@ -340,7 +340,7 @@ In this task, you will configure SQL Server 2012. You will create the database t
  
 	>**Note:** Modifying **Internet Explorer Enhanced Security** configurations is not good practice and is only for the purpose of this particular lab. The correct approach should be to download the files locally and then copy them to a shared folder or directly to the Virtual Machine.
 
-1. This lab uses the **AdventureWorks2012** database. Open an **Internet Explorer** browser and go to <http://msftdbprodsamples.codeplex.com/> to download  the **SQL Server 2012** sample databases. Once on the page click on **AdventureWorks Databases â€“ 2008, 2008R2 and 2012** and then download Adventure Works 2012 Data File. Download the file to F:\Data.
+1. This lab uses the **AdventureWorks2012** database. Open an **Internet Explorer** browser and go to <http://msftdbprodsamples.codeplex.com/> to download  the **SQL Server 2012** sample databases. Once on the page click on **AdventureWorks Databases – 2008, 2008R2 and 2012** and then download Adventure Works 2012 Data File. Download the file to F:\Data.
 
 	>**Note:** The **AdventureWorks2012** database can also be downloaded as a .zip file. If you choose this format, right-click the file to open its properties window and then click **Unblock**. Then, extract the database to F:\Data.
 
@@ -598,4 +598,4 @@ In this task, you will test the Cloud Shop MVC4 application you deployed in the 
 <a name="summary" />
 ## Summary ##
 
-In this hands-on Lab, you have learnt how to deploy a simple ASP.NET MVC 4 Web application to a Web server hosted in Windows Azure, using SQL Server and configuring load balancing.
+In this hands-on Lab, you have learnt how to deploy a simple ASP.NET MVC 4 Web application to a Web server hosted in Microsoft Azure, using SQL Server and configuring load balancing.

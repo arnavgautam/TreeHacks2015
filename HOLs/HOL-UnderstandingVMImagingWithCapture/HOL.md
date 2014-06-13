@@ -1,4 +1,4 @@
-﻿<a name="Title" />
+<a name="Title" />
 # Understanding Virtual Machine Imaging with Capture #
 ---
 
@@ -21,8 +21,8 @@ In this hands-on lab, you will learn how to:
 
 You must have the following items to complete this lab:
 
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
-- Complete the _Provisioning a Windows Azure Virtual Machine_ HOL.
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- Complete the _Provisioning a Microsoft Azure Virtual Machine_ HOL.
 
 <a name="Exercises" />
 ## Exercises ##
@@ -42,7 +42,7 @@ In this exercise we are going to customize the Virtual Machine by enabling the W
 <a name="Ex1Task1" />
 #### Task 1: Enabling Web Server role####
 
-1. Go to the **Virtual Machines** page within the Windows Azure Management portal and select the Virtual Machine you created by following the _Provisioning a Windows Azure Virtual Machine_ HOL.
+1. Go to the **Virtual Machines** page within the Microsoft Azure Management portal and select the Virtual Machine you created by following the _Provisioning a Microsoft Azure Virtual Machine_ HOL.
 
 	![Virtual Machine Created](Images/virtual-machine-created.png?raw=true "Virtual Machine Selected")
 
@@ -108,14 +108,14 @@ In this step we will run sysprep to generalize the image. It will allow multiple
 <a name="Exercise2" />
 ###Exercise 2: Saving an Image in the Image Library###
 
-In this exercise you are going to use the capture feature of Windows Azure IaaS to create a new image based off of an existing virtual machine (the previously created one).
+In this exercise you are going to use the capture feature of Microsoft Azure IaaS to create a new image based off of an existing virtual machine (the previously created one).
 
 >**Note:** Before proceeding, ensure the **DC01** Virtual Machine is off. Wait until the sysprep finishes and turns off the Virtual Machine
 
 <a name="Ex2Task1" />
 #### Task 1: Saving an Image in the Image Library ####
 
-1. Open the Windows Azure Portal and click **Virtual Machines**.
+1. Open the Microsoft Azure Portal and click **Virtual Machines**.
 
 1. Select the Virtual Machine you prepared in the previous exercise.
 
@@ -147,7 +147,7 @@ In this exercise you are going to create a new virtual machine using the image y
 <a name="Ex3Task1" />
 #### Task 1: Creating a Virtual Machine Based on an Image ####
 
-1. Log in to the Windows Azure Portal: https://manage.windowsazure.com.
+1. Log in to the Microsoft Azure Portal: https://manage.windowsazure.com.
 
 1. Click **New** | **Compute** | **Virtual Machine** | **From Gallery**.
 	![createvmfromimage](Images/createvmfromimage.png?raw=true)
@@ -177,7 +177,7 @@ In this exercise you are going to create a new virtual machine using the image y
 <a name="Ex3Task2" />
 #### Task 2: Creating an Endpoint to Allow Traffic to the Virtual Machine ####
 
-1. Open the Windows Azure Portal from https://manage.windowsazure.com and click **Virtual Machines**.
+1. Open the Microsoft Azure Portal from https://manage.windowsazure.com and click **Virtual Machines**.
 
 2. Click on the **customizedvm1** Virtual Machine to open its **Dashboard** and then click **Endpoints**.
 
@@ -196,7 +196,7 @@ In this exercise you are going to create a new virtual machine using the image y
 <a name="Ex3Task3" />
 #### Task 3: Navigating to the IIS default web page ####
 
-1. Log in to the Windows Azure Portal and go to your virtual machine's **Dashboard**.
+1. Log in to the Microsoft Azure Portal and go to your virtual machine's **Dashboard**.
 
 1. In the **Dashboard** page, locate and take note of the DNS.
 

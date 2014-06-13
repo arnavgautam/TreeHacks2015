@@ -1,26 +1,26 @@
-ï»¿<a name="HOLTitle"></a>
-# Web Services and Identity in Windows Azure #
+<a name="HOLTitle"></a>
+# Web Services and Identity in Microsoft Azure #
 
 ---
 
 <a name="Overview"></a>
 ## Overview ##
 
-Windows Identity Foundation can simplify access to your Windows Communication Foundation (WCF) services, by providing the usual claims-based identity arsenal of good practices: authentication externalization, location independence, decoupling from credential types and many others. There is no reason for you not to enjoy the same advantages when you host your WCF services in Windows Azure: there are few practicalities that are intrinsic to the hosting platform, but the steps you need to follow are largely the same whether you are deploying your services on-premises or in the cloud. If you want to be fully aware of the differences between the two cases, you can optionally go through the lab "Web Services and Identity for Visual Studio 2010 Developers" from the [Identity Training Course](http://msdn.microsoft.com/en-us/IdentityTrainingCourse) and learn about how to use WCF and WIF on-premises before starting the current lab: please note that it is entirely optional, as this HOL is self-contained and independent.
+Windows Identity Foundation can simplify access to your Windows Communication Foundation (WCF) services, by providing the usual claims-based identity arsenal of good practices: authentication externalization, location independence, decoupling from credential types and many others. There is no reason for you not to enjoy the same advantages when you host your WCF services in Microsoft Azure: there are few practicalities that are intrinsic to the hosting platform, but the steps you need to follow are largely the same whether you are deploying your services on-premises or in the cloud. If you want to be fully aware of the differences between the two cases, you can optionally go through the lab "Web Services and Identity for Visual Studio 2010 Developers" from the [Identity Training Course](http://msdn.microsoft.com/en-us/IdentityTrainingCourse) and learn about how to use WCF and WIF on-premises before starting the current lab: please note that it is entirely optional, as this HOL is self-contained and independent.
 
-This lab is a step by step guide that will help you to use claims-based identity for handling authentication and access management for your WCF services hosted in Windows Azure; it will show you how you can still take advantage of local identities for authenticating your users, despite the fact that your services are now hosted in the cloud. The lab will walk you through all the practicalities of taking advantage of the unique characteristics of the Windows Azure environment from your Windows Identity Foundation settings.
+This lab is a step by step guide that will help you to use claims-based identity for handling authentication and access management for your WCF services hosted in Microsoft Azure; it will show you how you can still take advantage of local identities for authenticating your users, despite the fact that your services are now hosted in the cloud. The lab will walk you through all the practicalities of taking advantage of the unique characteristics of the Microsoft Azure environment from your Windows Identity Foundation settings.
 
 More precisely, you will learn how to:
 
-- Use Windows Identity Foundation with WCF services hosted in Windows Azure
-- Trusting an on-premises STS from a WCF service hosted in Windows Azure
-- Using WIF & WCF tracing for a WCF service hosted in Windows Azure, taking advantage of blob storage for the traces
+- Use Windows Identity Foundation with WCF services hosted in Microsoft Azure
+- Trusting an on-premises STS from a WCF service hosted in Microsoft Azure
+- Using WIF & WCF tracing for a WCF service hosted in Microsoft Azure, taking advantage of blob storage for the traces
 - Configure a WCF service to use load balancing
-- Deploy a WCF service secured via WIF to the Windows Azure cloud
+- Deploy a WCF service secured via WIF to the Microsoft Azure cloud
 
 Windows Identity Foundation can do much more than what we cover in this lab: we hope that the skills you will learn here will help you in your further explorations of identity development.
 
-The first lab will show you the process to configure a weather service to trust an on-premises development STS, and run the entire solution in the Compute Emulator. The second lab will add diagnostics and load balancing features to the WCF service implemented in the first lab. Finally, the third lab will walk you through the steps for running the solution to Windows Azure, which trusts an on-premises STS, generates diagnostic logs, and provides load balancing facilities. As shown on the figure below, an already provided client will be used to consume the WCF service running on the Compute emulator and afterwards in Windows Azure.
+The first lab will show you the process to configure a weather service to trust an on-premises development STS, and run the entire solution in the Compute Emulator. The second lab will add diagnostics and load balancing features to the WCF service implemented in the first lab. Finally, the third lab will walk you through the steps for running the solution to Microsoft Azure, which trusts an on-premises STS, generates diagnostic logs, and provides load balancing facilities. As shown on the figure below, an already provided client will be used to consume the WCF service running on the Compute emulator and afterwards in Microsoft Azure.
 
  ![A visual summary of what you will build in this lab](./images/A-visual-summary-of-what-you-will-build-in-this-lab.png?raw=true "A visual summary of what you will build in this lab")
  
@@ -31,25 +31,25 @@ _A visual summary of what you will build in this lab_
 
 In this hands-on lab, you will learn how to:
 
-- Use Windows Identity Foundation for handling access to a WCF service hosted in the Windows Azure DevFabric by reusing on-premises identities
-- Add STS references on a WCF service hosted in Windows Azure
-- Add service references to a client which points to a WCF service hosted in Windows Azure
+- Use Windows Identity Foundation for handling access to a WCF service hosted in the Microsoft Azure DevFabric by reusing on-premises identities
+- Add STS references on a WCF service hosted in Microsoft Azure
+- Add service references to a client which points to a WCF service hosted in Microsoft Azure
 - Configure a WCF service to emit WIF and WCF traces in blob storage, and retrieve traces for offline analysis
 - Provide custom SecurityTokenHandler and ServiceBehavior classes for enabling a WCF service to take advantage of load balancers
-- Deploy to the Windows Azure staging and production evnironments a WCF service secured via WIF
+- Deploy to the Microsoft Azure staging and production evnironments a WCF service secured via WIF
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
 
 You must have the following items to complete this lab:
 
-- MicrosoftÂ© Internet Information Services (IIS) 7.0 (with ASP.NET component, Static Content Support, and a Localhost SSL certificate installed)
-- [MicrosoftÂ© .NET Framework 4.0](http://go.microsoft.com/fwlink/?linkid=186916)
-- [MicrosoftÂ© Visual Studio 2010](http://www.microsoft.com/visualstudio/en-us/products/2010-editions)
-- [Windows Azure Tools for Microsoft Visual Studio 1.7](http://www.microsoft.com/windowsazure/sdk/)
-- [MicrosoftÂ© Windows Identity Foundation Runtime](http://support.microsoft.com/kb/974405)
-- [MicrosoftÂ© Windows Identity Foundation SDK](http://www.microsoft.com/downloads/details.aspx?FamilyID=c148b2df-c7af-46bb-9162-2c9422208504)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- Microsoft© Internet Information Services (IIS) 7.0 (with ASP.NET component, Static Content Support, and a Localhost SSL certificate installed)
+- [Microsoft© .NET Framework 4.0](http://go.microsoft.com/fwlink/?linkid=186916)
+- [Microsoft© Visual Studio 2010](http://www.microsoft.com/visualstudio/en-us/products/2010-editions)
+- [Microsoft Azure Tools for Microsoft Visual Studio 1.7](http://www.microsoft.com/windowsazure/sdk/)
+- [Microsoft© Windows Identity Foundation Runtime](http://support.microsoft.com/kb/974405)
+- [Microsoft© Windows Identity Foundation SDK](http://www.microsoft.com/downloads/details.aspx?FamilyID=c148b2df-c7af-46bb-9162-2c9422208504)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 >**Note:** This lab was designed to use Windows 7 Operating System.
 
@@ -93,7 +93,7 @@ Throughout the lab document, you will be instructed to insert code blocks. For y
 
 The following exercises make up this hands-on lab:
 
-1. Using the Windows Identity Foundation with a WCF Service in Windows Azure
+1. Using the Windows Identity Foundation with a WCF Service in Microsoft Azure
 
  
 > **Note:** Each exercise is accompanied by a starting solution located in the Begin folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and that they will not necessarily work until you complete the exercise. Inside the source code for an exercise, you will also find an End folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
@@ -107,7 +107,7 @@ Estimated time to complete this lab: **60 minutes**
 <a name="GettingStartedTask1"></a>
 #### Task 1 - Generating the Required Certificates ####
 
-During this task, you will create an X.509 certificate used by the service you will implement in the Exercises of this lab. Your service will need a certificate in order to be able to publish endpoints on a SSL channel; the same certificate will be used for handling token encryption and decryption. Windows Azure expects to find X.509 certificates for cloud solutions in specific stores, hence it will be necessary to register your service certificate accordingly.
+During this task, you will create an X.509 certificate used by the service you will implement in the Exercises of this lab. Your service will need a certificate in order to be able to publish endpoints on a SSL channel; the same certificate will be used for handling token encryption and decryption. Microsoft Azure expects to find X.509 certificates for cloud solutions in specific stores, hence it will be necessary to register your service certificate accordingly.
 
 Note that in a real application you would probably obtain a certificate from a trusted certificate authority, and that the subject name would follow whatever DNS name you want to ultimately assign to your service. For the sake of simplicity, in this lab we will provide you with scripts for generating self-signed certificates which are not suitable for production use.
 
@@ -131,9 +131,9 @@ To do this, you will execute a script provided as part of the assets of the Lab.
 
 	>\- Create a certificate for your Relying Party (RP) application using the **MakeCert** command and store it in the **LocalMachine\Personal** store.
 
-	>\- Copy the generated certificate to the **CurrentUser\Personal** store so the Windows Azure Tools for Visual Studio can find it.
+	>\- Copy the generated certificate to the **CurrentUser\Personal** store so the Microsoft Azure Tools for Visual Studio can find it.
 
-	>\- Copy the localhost certificate generated by Windows Azure SDK to the **LocalMachine\Trusted Root** store, so svcutil and "Add Service Reference" (used later in the lab) can connect to HTTPS metadata endpoints hosted in Compute Emulator. Note that, if this is the first time that you use the Windows Azure SDK on your machine, the certificate here mentioned may not have been already created: in that case you may need to perform extra steps later in the exercise.
+	>\- Copy the localhost certificate generated by Microsoft Azure SDK to the **LocalMachine\Trusted Root** store, so svcutil and "Add Service Reference" (used later in the lab) can connect to HTTPS metadata endpoints hosted in Compute Emulator. Note that, if this is the first time that you use the Microsoft Azure SDK on your machine, the certificate here mentioned may not have been already created: in that case you may need to perform extra steps later in the exercise.
 
  	![A visual summary of what you will build in Exercise 1](./images/A-visual-summary-of-what-you-will-build-in-Exercise-1.png?raw=true "A visual summary of what you will build in Exercise 1")
  
@@ -216,7 +216,7 @@ Exercises in this lab need an STS to which you can outsource authentication to. 
 	</system.serviceModel>
 	````
 
-	>**Note:** Here we are changing the metadata retrieval to take place on https simply because it is good practice. It is by no means a Windows Azure-specific requirement; we may do the same on-premises.
+	>**Note:** Here we are changing the metadata retrieval to take place on https simply because it is good practice. It is by no means a Microsoft Azure-specific requirement; we may do the same on-premises.
 
 1. Also update the **Mex endpoint** to use the **mexHttpsBinding** binding (note the "s"):
 
@@ -239,16 +239,16 @@ Exercises in this lab need an STS to which you can outsource authentication to. 
 1. Press **Ctrl + S** to save the **Web.config** file and close it.
 
 <a name="Exercise1"></a>
-### Exercise 1: Using Windows Identity Foundation with a WCF Service in Windows Azure ###
+### Exercise 1: Using Windows Identity Foundation with a WCF Service in Microsoft Azure ###
 
-This exercise will walk you through the process of creating a WCF role, configure its service to trust an on-premises development STS, attach a client and run the entire solution in the Compute Emulator. This is easily accomplished with only minor modifications to the procedure you would have followed for obtaining the same result on premises. The main changes accommodate the fact that in Windows Azure a service is hosted at different addresses according to the environment (local, staging, production), a situation you would have to deal with in any multi-staged environment.
+This exercise will walk you through the process of creating a WCF role, configure its service to trust an on-premises development STS, attach a client and run the entire solution in the Compute Emulator. This is easily accomplished with only minor modifications to the procedure you would have followed for obtaining the same result on premises. The main changes accommodate the fact that in Microsoft Azure a service is hosted at different addresses according to the environment (local, staging, production), a situation you would have to deal with in any multi-staged environment.
 
-You will start in Task 1 by implementing a simple weather service and testing its behavior without authentication using a client provided by the lab. Afterwards in Task 2, you will use WIF tooling to establish a trust relationship between the weather service and a local STS, by configuring the WCF service binding and behaviors collection in a way that will make the service require tokens from LocalSTS from all its future callers. Then in Task 3 and 4, you will set up an HTTPS secure endpoint between the WCF service and the STS using an X.509 certificate, using the Windows Azure Visual Studio tooling UI for associating it to the RelyingParty WCF Service Role. You will also enable the weather service HTTPS endpoint port. Finally in the verification, you will update the client to test the HTTPS endpoint of the weather service.
+You will start in Task 1 by implementing a simple weather service and testing its behavior without authentication using a client provided by the lab. Afterwards in Task 2, you will use WIF tooling to establish a trust relationship between the weather service and a local STS, by configuring the WCF service binding and behaviors collection in a way that will make the service require tokens from LocalSTS from all its future callers. Then in Task 3 and 4, you will set up an HTTPS secure endpoint between the WCF service and the STS using an X.509 certificate, using the Microsoft Azure Visual Studio tooling UI for associating it to the RelyingParty WCF Service Role. You will also enable the weather service HTTPS endpoint port. Finally in the verification, you will update the client to test the HTTPS endpoint of the weather service.
 
 <a name="Ex1Task1"></a>
 #### Task 1 - Implementing the Weather Service ####
 
-The sample Relying Party application you will build in this lab will simulate a service providing weather-related information, hosted on a WCF Role of Windows Azure. In this task, you will open a Windows Azure Project project with a WCF Role already created. Then, you will implement the Weather Service and verify its behavior using a client provided by the lab.
+The sample Relying Party application you will build in this lab will simulate a service providing weather-related information, hosted on a WCF Role of Microsoft Azure. In this task, you will open a Microsoft Azure Project project with a WCF Role already created. Then, you will implement the Weather Service and verify its behavior using a client provided by the lab.
 
 > **Note:** You require an STS project and appropriate certificates to complete this exercise. If you have not already done so, complete the **Getting Started**  section.
 
@@ -288,7 +288,7 @@ The sample Relying Party application you will build in this lab will simulate a 
  
 	_Opening the Compute Emulator UI_
 
-1. Right-click the Azure icon tray and select Show **Compute Emulator UI**. In the **Windows Azure Compute Emulator**, ensure that the service has started successfully browsing the tree at the left panel looking for the **RelyingParty** role.
+1. Right-click the Azure icon tray and select Show **Compute Emulator UI**. In the **Microsoft Azure Compute Emulator**, ensure that the service has started successfully browsing the tree at the left panel looking for the **RelyingParty** role.
 
  	![Checking that the RelyingParty role is running correctly](./images/Checking-that-the-RelyingParty-role-is-running-correctly.png?raw=true "Checking that the RelyingParty role is running correctly")
  
@@ -482,7 +482,7 @@ Now that we have the WCF service running and the STS, it's time to establish a t
 <a name="Ex1Task3"></a>
 #### Task 3 - Adding the Certificates to the Relying Party ####
 
-In the following steps you are going to configure the certificate created on the [Getting Started: Setting up the Certificates and Local STS](#segment1) section, using the Windows Azure Visual Studio tooling UI for associating it to the RelyingParty WCF Service Role.
+In the following steps you are going to configure the certificate created on the [Getting Started: Setting up the Certificates and Local STS](#segment1) section, using the Microsoft Azure Visual Studio tooling UI for associating it to the RelyingParty WCF Service Role.
 
 1. In the **Solution Explorer**, double-click the **RelyingParty** node inside the **Roles** folder of the **CloudConfiguration** project to bring up its properties page.
 
@@ -564,7 +564,7 @@ In this task you will update the WCF Weather Service to use the HTTPS endpoint.
 	    </behaviors>
 	````
 
-	>**Note:** WCF 3.5 default metadata publishing mechanisms do not work too well in Windows Azure. The issue is in the way in which URIs are included in WSDL documents: the default behavior will include the internal ports used by the Windows Azure load balancer, which are not addressable from external callers. As a result, you cannot simply create a service reference using the standard tools (**svcutil** or **add service reference** in Visual Studio). The issue is described in a KB article, which provides a hotfix for resolving the problem. The hotfix is listed among the prerequisites for the lab. The **useRequestHeadersForMetadataAddress** behavior configuration enables the hotfix and induces WCF to use the load balancer's address instead of one internal node address.
+	>**Note:** WCF 3.5 default metadata publishing mechanisms do not work too well in Microsoft Azure. The issue is in the way in which URIs are included in WSDL documents: the default behavior will include the internal ports used by the Microsoft Azure load balancer, which are not addressable from external callers. As a result, you cannot simply create a service reference using the standard tools (**svcutil** or **add service reference** in Visual Studio). The issue is described in a KB article, which provides a hotfix for resolving the problem. The hotfix is listed among the prerequisites for the lab. The **useRequestHeadersForMetadataAddress** behavior configuration enables the hotfix and induces WCF to use the load balancer's address instead of one internal node address.
 
 	>You can find further information at [http://support.microsoft.com/kb/971842/](http://support.microsoft.com/kb/971842/).
 
@@ -607,7 +607,7 @@ In this task you will update the WCF Weather Service to use the HTTPS endpoint.
 </system.serviceModel>
 	````
 
-	>**Note:** The main reason for which we need a custom binding is that we want to set the attribute **requireSecurityContextCancellation** of the **\<security>** element to false hence moving to cookie mode. This will allow you, later in the lab, to take control of the session token and accommodate its processing to the load balanced environment of Windows Azure.
+	>**Note:** The main reason for which we need a custom binding is that we want to set the attribute **requireSecurityContextCancellation** of the **\<security>** element to false hence moving to cookie mode. This will allow you, later in the lab, to take control of the session token and accommodate its processing to the load balanced environment of Microsoft Azure.
 
 1. Add the **behaviorConfiguration** attribute to the **service** named **RelyingParty.WeatherService**. 
 
@@ -742,7 +742,7 @@ In order to verify that you have performed every step in the exercise correctly,
 
 	> **Note:** If it is the first time that you configure https bindings on Compute Emulator, you will see the following warning message: _"ID1025: A certificate chain processed, but terminated in a root certificate which is not trusted by the trust provider."_
 
-	>To work around it, you have to copy the 127.0.0.1 certificate created by Windows Azure Tools for Visual Studio (which is available at **LocalMachine\Personal** store) to the **LocalMachine\Trusted Root** store.  You can do that by using the certificates MMC in Windows.
+	>To work around it, you have to copy the 127.0.0.1 certificate created by Microsoft Azure Tools for Visual Studio (which is available at **LocalMachine\Personal** store) to the **LocalMachine\Trusted Root** store.  You can do that by using the certificates MMC in Windows.
 
 	>Another way to work around this is running again the **SetupCertificates.cmd** script, without providing any Cloud Service name. The script will copy the 127.0.0.1 certificate to **LocalMachine\Trusted Root** for you.
 
@@ -796,7 +796,7 @@ In order to verify that you have performed every step in the exercise correctly,
 
 1. Stop the WCF Service Web Role running on Compute Emulator from its UI. To do this, right-click the **Compute Emulator and Storage** icon on the **Windows' tray bar** and select **Show Compute Emulator UI**. In the tree at the left panel, right-click the current deployment and select **Remove**.
 
-	> **Note:** In this first set of tasks you developed a simple but complete scenario. You created a certificate for your service, a cloud project with your WCF role and a local development STS. You learned how to use the WIF tooling for outsourcing the service authentication to an STS, what practicalities need to be handled for preparing a WCF service to run in Windows Azure and how to develop a client for the service. Finally, you verified that everything works by running the service in the DevFabric environment. That's pretty much all you need to know for getting started to host in Windows Azure your own services and secure them; in the following Exercises we will explore more advanced aspects of the WIF and WCF synergy in Windows Azure.
+	> **Note:** In this first set of tasks you developed a simple but complete scenario. You created a certificate for your service, a cloud project with your WCF role and a local development STS. You learned how to use the WIF tooling for outsourcing the service authentication to an STS, what practicalities need to be handled for preparing a WCF service to run in Microsoft Azure and how to develop a client for the service. Finally, you verified that everything works by running the service in the DevFabric environment. That's pretty much all you need to know for getting started to host in Microsoft Azure your own services and secure them; in the following Exercises we will explore more advanced aspects of the WIF and WCF synergy in Microsoft Azure.
 
 ----
 
@@ -807,15 +807,15 @@ Taking advantage of existing identities in new applications is one of the fundam
 
 By completing this hands-on lab you have learned how to:
 
-- Use Windows Identity Foundation with WCF services hosted in Windows Azure
+- Use Windows Identity Foundation with WCF services hosted in Microsoft Azure
 
-- Trusting an on-premises STS from a WCF service hosted in Windows Azure
+- Trusting an on-premises STS from a WCF service hosted in Microsoft Azure
 
-- Using WIF & WCF diagnostics features for a WCF service hosted in Windows Azure, taking advantage of blob storage for saving traces
+- Using WIF & WCF diagnostics features for a WCF service hosted in Microsoft Azure, taking advantage of blob storage for saving traces
 
 - Configure WIF for a WCF service which uses load balancing
 
-- Deploy a WCF service secured via WIF to the Windows Azure
+- Deploy a WCF service secured via WIF to the Microsoft Azure
 
 As you have discovered while going through the lab, the claims-based approach to identity enabled by Windows Identity Foundation can be applied with little or no modification to both on-premises and cloud application.
 

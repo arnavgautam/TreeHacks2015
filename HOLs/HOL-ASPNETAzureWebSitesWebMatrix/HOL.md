@@ -1,22 +1,22 @@
 <a name="Title"></a>
-# Building and Publishing Web Applications with Windows Azure Websites and WebMatrix 2#
+# Building and Publishing Web Applications with Microsoft Azure Websites and WebMatrix 2#
 
 ---
 <a name="Overview"></a>
 ## Overview ##
 
-In this Hands-on Lab you will learn how to use Microsoft WebMatrix 2 to build and publish Websites in Windows Azure.
+In this Hands-on Lab you will learn how to use Microsoft WebMatrix 2 to build and publish Websites in Microsoft Azure.
 
-Microsoft WebMatrix is a free tool that allows you to create, customize and publish Websites. WebMatrix includes a range of built-in templates to make it quick and easy to get started with your web site code and provides built-in publishing support to help you easily publish your Websites to Windows Azure.
+Microsoft WebMatrix is a free tool that allows you to create, customize and publish Websites. WebMatrix includes a range of built-in templates to make it quick and easy to get started with your web site code and provides built-in publishing support to help you easily publish your Websites to Microsoft Azure.
 
-Following the exercises, you will create a new Web Site from the Windows Azure Management Portal and start to build your Web Site locally using WebMatrix. By using a WebMatrix out-of-the-box template, you will quickly create a photo gallery application and customize it by adding a Facebook Like button. Finally, you will publish the resulting web application to Windows Azure using WebMatrix built-in publishing support.
+Following the exercises, you will create a new Web Site from the Microsoft Azure Management Portal and start to build your Web Site locally using WebMatrix. By using a WebMatrix out-of-the-box template, you will quickly create a photo gallery application and customize it by adding a Facebook Like button. Finally, you will publish the resulting web application to Microsoft Azure using WebMatrix built-in publishing support.
 
 <a name="Objectives"></a>
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-- Create a Web Site from the Windows Azure Management Portal
+- Create a Web Site from the Microsoft Azure Management Portal
 - Download and install Microsoft WebMatrix
 - Take advantage of the WebMatrix Photo Gallery template
 - Publish the Photo Gallery application using WebMatrix publishing feature
@@ -25,7 +25,7 @@ In this hands-on lab, you will learn how to:
 <a name="Prerequisites"></a>
 ### Prerequisites ###
 
-- A Windows Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 ---
 <a name="Exercises"></a>
@@ -33,7 +33,7 @@ In this hands-on lab, you will learn how to:
 
 This hands-on lab includes the following exercises:
 
-1.	[Creating a Windows Azure Web Site and Installing WebMatrix 2](#Exercise1)
+1.	[Creating a Microsoft Azure Web Site and Installing WebMatrix 2](#Exercise1)
 1.	[Trying out the Photo Gallery Application](#Exercise2)
 1.	[Using NuGet Packages to Customize the Photo Gallery Application](#Exercise3)
 
@@ -41,16 +41,16 @@ This hands-on lab includes the following exercises:
 Estimated time to complete this lab: **45** minutes.
 
 <a name="Exercise1"></a>
-### Exercise 1: Creating a Windows Azure Web Site and Installing WebMatrix 2 ###
+### Exercise 1: Creating a Microsoft Azure Web Site and Installing WebMatrix 2 ###
 
-In this exercise, you will use the Windows Azure Management Portal to create a new Web Site. Then, you will download and install WebMatrix to publish the Photo Gallery template within your web site.
+In this exercise, you will use the Microsoft Azure Management Portal to create a new Web Site. Then, you will download and install WebMatrix to publish the Photo Gallery template within your web site.
 
 <a name="Ex1Task1"></a>
-#### Task 1 – Creating a New Windows Azure Web Site ####
+#### Task 1 – Creating a New Microsoft Azure Web Site ####
 
-In this task, you will create a new Web Site from the Windows Azure Management Portal.
+In this task, you will create a new Web Site from the Microsoft Azure Management Portal.
 
-1. Open [Windows Azure Management Portal](https://manage.windowsazure.com) and log in with your Windows Azure Account's credentials.
+1. Open [Microsoft Azure Management Portal](https://manage.windowsazure.com) and log in with your Microsoft Azure Account's credentials.
 
 1. Click **New** | **Web Site** | **Quick Create**. Select a unique **URL** for your web site, for example _WebMatrixWebSite_.
 
@@ -58,7 +58,7 @@ In this task, you will create a new Web Site from the Windows Azure Management P
 
 	_Creating a new Web Site_
 
-	> **Note:** A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
+	> **Note:** A Microsoft Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Microsoft Azure Web Site from outside the portal. It does not include steps for setting up a database.
 
 1. Wait until the Web Site is **Running** before continuing to the next task.
 
@@ -67,7 +67,7 @@ In this task, you will create a new Web Site from the Windows Azure Management P
 
 In this task, you will download and install WebMatrix  and then create a site using the Photo Gallery template.
 
-1. In the **Windows Azure Management Portal**, click Websites and then click the Web Site **name** you created in the previous task to go to its **Dashboard**.
+1. In the **Microsoft Azure Management Portal**, click Websites and then click the Web Site **name** you created in the previous task to go to its **Dashboard**.
 
 	![Websites page](images/web-sites-page.png?raw=true "Websites page")
 
@@ -143,7 +143,7 @@ In this task, you will download and install WebMatrix  and then create a site us
 <a name="Ex1Task3"></a>
 #### Task 3 - Publishing a Web Site from WebMatrix ####
 
-In this task, you will publish the Photo Gallery template you created in the previous task to your Windows Azure Web Site using WebMatrix.
+In this task, you will publish the Photo Gallery template you created in the previous task to your Microsoft Azure Web Site using WebMatrix.
 
 1. Click **Publish** to start publishing the **Photo Gallery** to the web site you created in the previous task.
 
@@ -159,7 +159,7 @@ In this task, you will publish the Photo Gallery template you created in the pre
 
 	> **Note:** 	The Photo Gallery template uses a SQL Server Compact 4.0 database for storing photo data. SQL Server Compact provides a free, embedded, database engine that enables easy data storage within a single file. It does not require you to install a full database on your local development box. To learn more about SQL Server Compact download [the books online](http://www.microsoft.com/en-us/download/details.aspx?id=21880). 
 
-1. Wait until the web site is published to Windows Azure. Once it finishes, click the link in the notification shown at the bottom to open the web site in a browser.
+1. Wait until the web site is published to Microsoft Azure. Once it finishes, click the link in the notification shown at the bottom to open the web site in a browser.
 
 	![Publishing Complete](images/publishing-complete.png?raw=true "Publishing Complete")
 
@@ -169,7 +169,7 @@ In this task, you will publish the Photo Gallery template you created in the pre
 
 	![Azure Photo Gallery Running](images/azure-photo-gallery-running.png?raw=true "Azure Photo Gallery Running")
 
-1. Back in the **Windows Azure Management Portal**, go to the web site's **Dashboard** and see how the metrics chart is now reflecting the recent activity.
+1. Back in the **Microsoft Azure Management Portal**, go to the web site's **Dashboard** and see how the metrics chart is now reflecting the recent activity.
 
 	![Metrics Chart](images/metrics-chart.png?raw=true "Metrics Chart")
 	
@@ -180,7 +180,7 @@ In this task, you will publish the Photo Gallery template you created in the pre
 
 In this task you will explore the Photo Gallery application you have published in [Exercise 1](#Exercise1). You will register as a photo gallery user and then explore the application to see how it works. You will upload some images, add comments to those pictures and see how thumbnails change according to the pictures you uploaded.
 
->**Note:** This exercise requires that you have the Photo Gallery application published in Windows Azure Websites as explained in Exercise 1.
+>**Note:** This exercise requires that you have the Photo Gallery application published in Microsoft Azure Websites as explained in Exercise 1.
 
 
 <a name="Ex2Task1"></a>
@@ -192,7 +192,7 @@ In this task you will explore the Photo Gallery application you have published i
 
 	_Opening the Photo Gallery web site_
 
-	> **Note:** You can also get the published web site URL from the Windows Azure Portal in the site's Dashboard.
+	> **Note:** You can also get the published web site URL from the Microsoft Azure Portal in the site's Dashboard.
 
 1. Click **Login** link and then click **Register** in order to register a new user. 
 
@@ -266,14 +266,14 @@ In this task you will explore the Photo Gallery application you have published i
 
 In this exercise, you will customize the Photo Gallery application you created in the previous exercise by using **NuGet Packages**.
 
->**Note:** This exercise requires that you have the Photo Gallery application published in Windows Azure Websites as explained in Exercise 1.
+>**Note:** This exercise requires that you have the Photo Gallery application published in Microsoft Azure Websites as explained in Exercise 1.
 
 <a name="Ex3Task1"></a>
 #### Task 1 – Installing the Facebook Helper NuGet Package####
 
 In this task you will use **NuGet Packages** to install the **Facebook Helper** package.
 
-1. If not already open, from the **Windows Azure Management Portal**, open **AzurePhotoGallery** project in **WebMatrix** using the **WebMatrix** icon within the Web Site's **Dashboard**.
+1. If not already open, from the **Microsoft Azure Management Portal**, open **AzurePhotoGallery** project in **WebMatrix** using the **WebMatrix** icon within the Web Site's **Dashboard**.
 
 	![Accessing WebMatrix from the Portal](images/accessing-webmatrix-from-the-portal.png?raw=true "Accessing WebMatrix from the Portal")
 

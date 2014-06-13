@@ -1,4 +1,4 @@
-﻿<a name="handsonlab"></a>
+<a name="handsonlab"></a>
 # Connecting a PaaS application to an IaaS Application #
 
 ---
@@ -6,7 +6,7 @@
 <a name="Overview"></a>
 ## Overview ##
 
-In this lab, you will create a Virtual Machine with SQL Server installed using Windows Azure Management Portal. Then you will modify a sample Web application to connect to the SQL Server using a public endpoint. By the end, you will have two different hosted services with different instances communicating with each other. This type of communication is known as **Simple Mixed Mode**.
+In this lab, you will create a Virtual Machine with SQL Server installed using Microsoft Azure Management Portal. Then you will modify a sample Web application to connect to the SQL Server using a public endpoint. By the end, you will have two different hosted services with different instances communicating with each other. This type of communication is known as **Simple Mixed Mode**.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -15,7 +15,7 @@ In this hands-on lab, you will learn how to:
 
 - Configure a SQL Server Virtual Machine
 - Connect a sample Web application with SQL Server using a public endpoint
-- Deploy the sample Web application to a Cloud App in Windows Azure
+- Deploy the sample Web application to a Cloud App in Microsoft Azure
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
@@ -23,8 +23,8 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Visual Studio Express 2012 for Web](http://www.microsoft.com/visualstudio/) or greater
-- [Windows Azure Tools for Microsoft Visual Studio 1.8](http://www.microsoft.com/windowsazure/sdk/)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Microsoft Azure Tools for Microsoft Visual Studio 1.8](http://www.microsoft.com/windowsazure/sdk/)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 ---
 <a name="Exercises"></a>
@@ -45,15 +45,15 @@ Estimated time to complete this lab: **45 minutes**.
 In this exercise, you will create a new Virtual Machine with SQL Server and configure a public endpoint to access it remotely.
 
 <a name="Ex1Task1"></a>
-#### Task 1 - Creating a Virtual Machine Using the Windows Azure Portal ####
+#### Task 1 - Creating a Virtual Machine Using the Microsoft Azure Portal ####
 
-In this task, you will create a new Virtual Machine using the Windows Azure Portal.
+In this task, you will create a new Virtual Machine using the Microsoft Azure Portal.
 
-1. Go to the [Windows Azure Management Portal](https://manage.windowsazure.com) and sign with your Windows account credentials.
+1. Go to the [Microsoft Azure Management Portal](https://manage.windowsazure.com) and sign with your Windows account credentials.
 
-	![Log on to Windows Azure portal](Images/login.png?raw=true "Log on to Windows Azure portal")
+	![Log on to Microsoft Azure portal](Images/login.png?raw=true "Log on to Microsoft Azure portal")
 
-	_Log on to Windows Azure Management Portal_
+	_Log on to Microsoft Azure Management Portal_
 	
 1. Click **New** and select **Compute** | **Virtual Machine** option and then **From Gallery**.
 
@@ -121,11 +121,11 @@ In this task, you will create a new Virtual Machine using the Windows Azure Port
 
 In this task, you will install an SQL Server and configure it to enable remote access.
 
-1. In the Windows Azure Management Portal menu, click **Virtual Machines** on the left menu.
+1. In the Microsoft Azure Management Portal menu, click **Virtual Machines** on the left menu.
 
- 	![Windows Azure Portal](./Images/Windows-Azure-Portal.png?raw=true "Windows Azure Portal")
+ 	![Microsoft Azure Portal](./Images/Windows-Azure-Portal.png?raw=true "Microsoft Azure Portal")
  
-	_Windows Azure Portal Menu_
+	_Microsoft Azure Portal Menu_
 
 1. Select your virtual machine from the Virtual Machines list and click **Connect** to connect using **Remote Desktop Connection**. An RDP file will be downloaded to your local machine, which needs to be opened to launch _Remote Desktop_.
 
@@ -139,7 +139,7 @@ In this task, you will install an SQL Server and configure it to enable remote a
 
 1. After selecting Disk Management, an **Initialize Disk** dialog will be displayed. Leave the default values and click **OK**. 
 
-	> **Note**: If the Initialize Disk dialog is not displayed when selecting Disk Management, locate the disks you created using the **Attach Empty Disk** feature from the Windows Azure Management Portal, right-click the first disk and select **Initialize Disk**. Leave the default values and click **OK**.
+	> **Note**: If the Initialize Disk dialog is not displayed when selecting Disk Management, locate the disks you created using the **Attach Empty Disk** feature from the Microsoft Azure Management Portal, right-click the first disk and select **Initialize Disk**. Leave the default values and click **OK**.
 
 1. Right-click the first disk unallocated space and select **New Simple Volume**.
 
@@ -331,7 +331,7 @@ In this task, you will add the **AdventureWorks** database that will be used by 
 <a name="Exercise2"></a>
 ### Exercise 2: Deploying a Simple MVC4 Application ###
 
-In this exercise, you will configure a simple Web application to connect to the SQL Server instance you created in the previous exercise, by using a public endpoint. You will test the application using the local Azure Emulator. Then, you will publish the application to **Windows Azure** and run it in the Cloud.
+In this exercise, you will configure a simple Web application to connect to the SQL Server instance you created in the previous exercise, by using a public endpoint. You will test the application using the local Azure Emulator. Then, you will publish the application to **Microsoft Azure** and run it in the Cloud.
 
 <a name="Ex2Task1"></a>
 #### Task 1 - Configuring the MVC4 Application to Connect to a SQL Server Instance ####
@@ -365,7 +365,7 @@ In this task, you will change the connection string to point to the SQL Server i
 1. Close the browser and go back to **Visual Studio**.
 
 <a name="Ex2Task2"></a>
-#### Task 2 - Publishing the MVC4 Application to Windows Azure ####
+#### Task 2 - Publishing the MVC4 Application to Microsoft Azure ####
 
 In this task you will download your account's publish settings and publish the Web Application from Visual Studio.
 
@@ -383,13 +383,13 @@ In this task you will download your account's publish settings and publish the W
  
 	_Publishing the Cloud Application_
 
-1. In the **Publish Windows Azure Application** wizard, click the **Import** button and select the publish settings file you have just downloaded. Make sure is selected in the drop-down list and click **Next**.
+1. In the **Publish Microsoft Azure Application** wizard, click the **Import** button and select the publish settings file you have just downloaded. Make sure is selected in the drop-down list and click **Next**.
 
  	![Importing the Publishing Settings](./Images/Importing-the-Publishing-Settings.png?raw=true "Importing the Publishing Settings")
  
 	_Importing the Publishing Settings_
 
-1. In the **Windows Azure Publish Settings** page, expand the **Cloud Service** drop-down list and select **Create New**. In the dialog, enter a name for the cloud service and select a location. Click **OK** to continue.
+1. In the **Microsoft Azure Publish Settings** page, expand the **Cloud Service** drop-down list and select **Create New**. In the dialog, enter a name for the cloud service and select a location. Click **OK** to continue.
 
  	![Creating a New Cloud Service](./Images/Creating-a-New-Cloud-Service.png?raw=true "Creating a New Cloud Service")
  
@@ -397,7 +397,7 @@ In this task you will download your account's publish settings and publish the W
 
 1. Make sure the **Environment** is set to _Production_, the **Build configuration** is set to _Release_ and the **Service configuration** is set to _Cloud._ Click **Next**.
 
-1. In the **Windows Azure Publish Summary** page, click **Publish**. Wait until the deployment is completed. Click the **Website URL** link.
+1. In the **Microsoft Azure Publish Summary** page, click **Publish**. Wait until the deployment is completed. Click the **Website URL** link.
 
  	![Deployment Activity Log](./Images/Deployment-Activity-Log.png?raw=true "Deployment Activity Log")
  
@@ -418,4 +418,4 @@ By completing this hands-on lab, you have learnt how to:
 
 - Configure a SQL Server Virtual Machine
 - Connect a sample Web application with the SQL Server using a public endpoint
-- Deploy a sample Web application to a Cloud App in Windows Azure
+- Deploy a sample Web application to a Cloud App in Microsoft Azure

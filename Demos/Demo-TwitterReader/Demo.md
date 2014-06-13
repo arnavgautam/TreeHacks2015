@@ -1,4 +1,4 @@
-ï»¿<a name="title" />
+<a name="title" />
 # Twitter Reader Demo #
 
 ---
@@ -6,21 +6,21 @@
 <a name="Overview" />
 ## Overview ##
 
-Windows Azure Caching is a distributed cache that can store your application's data in memory to improve application responsiveness, performance, and scale. It provides a low latency caching layer that allows data to be shared across multiple machines in a Windows Azure cloud service. Any data put into the cache by one server can be accessed by another server.
+Microsoft Azure Caching is a distributed cache that can store your application's data in memory to improve application responsiveness, performance, and scale. It provides a low latency caching layer that allows data to be shared across multiple machines in a Microsoft Azure cloud service. Any data put into the cache by one server can be accessed by another server.
 
 The cache is designed to dynamically grow and shrink allowing you to easily increase and decrease the cache size depending on the application's needs.
 
-When you enable multiple caching role nodes in your application, Windows Azure Caching supports high availability. Data placed in the cache is automatically copied to at least two other nodes so that the information exists in multiple servers and can be recovered even if one of the nodes crashes.
+When you enable multiple caching role nodes in your application, Microsoft Azure Caching supports high availability. Data placed in the cache is automatically copied to at least two other nodes so that the information exists in multiple servers and can be recovered even if one of the nodes crashes.
 
-Windows Azure Caching allows your application to take advantage of the full AppFabric API. Moreover, it also supports memcached--a popular open source caching protocol--so any code written against it can be used without changes.
+Microsoft Azure Caching allows your application to take advantage of the full AppFabric API. Moreover, it also supports memcached--a popular open source caching protocol--so any code written against it can be used without changes.
 
-In this demo, we will explore the caching capabilities built into Windows Azure and specifically, its low latency in-memory distributed cache.
+In this demo, we will explore the caching capabilities built into Microsoft Azure and specifically, its low latency in-memory distributed cache.
 
 <a id="goals" />
 ### Goals ###
 In this demo, you will see how to:
 
-1. Enable caching in your Windows Azure cloud service
+1. Enable caching in your Microsoft Azure cloud service
 
 1. Update your application to read from and write to the cache
 
@@ -29,7 +29,7 @@ In this demo, you will see how to:
 <a name="technologies" />
 ### Key Technologies ###
 - Microsoft Visual Studio 2012
-- [Windows Azure Caching][1]
+- [Microsoft Azure Caching][1]
 
 [1]: http://msdn.microsoft.com/en-us/library/windowsazure/hh914153
 
@@ -55,10 +55,10 @@ In order to execute this demo you need to set up your environment.
 
 This demo contains the following segments:
 
-1. [Improving Performance using Windows Azure Caching](#segment1)
+1. [Improving Performance using Microsoft Azure Caching](#segment1)
 
 <a name="segment1" />
-### Improving Performance using Windows Azure Caching ###
+### Improving Performance using Microsoft Azure Caching ###
 
 1. Launch Visual Studio 2012 **as an administrator**.
 
@@ -91,25 +91,25 @@ This demo contains the following segments:
 
 1. In the role properties window, click the **Caching** tab and then select **Enable Caching (Preview Release)**.
 
-	![Enabling Caching in a Windows Azure Role](Images/enabling-caching-in-windows-azure-role.png?raw=true "Enabling Caching in Windows Azure Role")
+	![Enabling Caching in a Microsoft Azure Role](Images/enabling-caching-in-windows-azure-role.png?raw=true "Enabling Caching in Microsoft Azure Role")
 
-	_Enabling Caching in a Windows Azure Role_
+	_Enabling Caching in a Microsoft Azure Role_
 
 	> **Speaking Point**
 	>
-	> Instead of retrieving the feed from Twitter each time, we could store the tweets in a cache and only invalidate the data periodically, say every 5 or 10 minutes. Using the distributed caching capability built into Windows Azure this is really easy to do. I can just edit the settings for my web role and enable the distributed cache. All I need to do is click the â€œEnable cachingâ€ checkbox. This sets up a cache in the VMs and allows me to choose how much memory I want to use. 
+	> Instead of retrieving the feed from Twitter each time, we could store the tweets in a cache and only invalidate the data periodically, say every 5 or 10 minutes. Using the distributed caching capability built into Microsoft Azure this is really easy to do. I can just edit the settings for my web role and enable the distributed cache. All I need to do is click the “Enable caching” checkbox. This sets up a cache in the VMs and allows me to choose how much memory I want to use. 
 
 1. In Solution Explorer, right-click the **TwitterReader** project, and then point to **Manage NuGet Packages**.
 
 1. Ensure **Online** is selected in the left pane. In the Search box, type _Microsoft.WindowsAzure.Caching_ and then press **Enter**.
 
-1. Now, in the results list, select **Windows Azure Caching Preview** and click **Install**.
+1. Now, in the results list, select **Microsoft Azure Caching Preview** and click **Install**.
 
 1. In the **License Acceptance** dialog, click **I Accept** to complete the installation.
 
-	![Windows Azure Caching Preview NuGet Package](Images/windows-azure-caching-preview-nuget-package.png?raw=true "Windows Azure Caching Preview NuGet Package")
+	![Microsoft Azure Caching Preview NuGet Package](Images/windows-azure-caching-preview-nuget-package.png?raw=true "Microsoft Azure Caching Preview NuGet Package")
 
-	_Windows Azure Caching Preview NuGet Package_
+	_Microsoft Azure Caching Preview NuGet Package_
 
 	> **Speaking Point** 
 	>
@@ -181,4 +181,4 @@ I am going to replace that code with one that checks whether or not the tweets a
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw how to take advantage of Windows Azure Caching to enable a distributed in-memory cache that can improve your application's responsiveness, performance, and scale. 
+In this demo, you saw how to take advantage of Microsoft Azure Caching to enable a distributed in-memory cache that can improve your application's responsiveness, performance, and scale. 

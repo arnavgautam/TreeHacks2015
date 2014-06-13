@@ -1,14 +1,14 @@
-﻿# Getting Started With Windows Azure Storage #
+# Getting Started With Microsoft Azure Storage #
 
 ## Hands-On Lab ##
 
 ### Introduction ###
 
-Hands-on labs are sets of step-by-step guides that are designed to help you learn how to use key Windows Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
+Hands-on labs are sets of step-by-step guides that are designed to help you learn how to use key Microsoft Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
 
-In this hand-on lab, you will learn the basics of Windows Azure Storage, how to create and configure storage accounts and how you can programmatically can access the different types of storage service. Blobs, Tables, and Queues are all available as part of the Windows Azure Storage account, and provide durable storage on the Windows Azure platform.
+In this hand-on lab, you will learn the basics of Microsoft Azure Storage, how to create and configure storage accounts and how you can programmatically can access the different types of storage service. Blobs, Tables, and Queues are all available as part of the Microsoft Azure Storage account, and provide durable storage on the Microsoft Azure platform.
 
-> **Note:** You can download the latest build of the Windows Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
+> **Note:** You can download the latest build of the Microsoft Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
 
 ### Repository Structure ###
 

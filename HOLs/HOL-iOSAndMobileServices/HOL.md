@@ -1,12 +1,12 @@
-﻿<a name="HOLTop"></a>
-# Getting started with Windows Azure Mobile Services and iOS #
+<a name="HOLTop"></a>
+# Getting started with Microsoft Azure Mobile Services and iOS #
 
 ---
 
 <a name="Overview"></a>
 ## Overview ##
 
-Windows Azure Mobile Services is designed to make it easy to create highly-functional mobile apps using Windows Azure. Mobile Services brings together a set of features that enable backend capabilities for your apps. These capabilities includes simple provisioning and management of tables for storing app data, integration with notification services, integration with well-known identity providers for authentication, among others. 
+Microsoft Azure Mobile Services is designed to make it easy to create highly-functional mobile apps using Microsoft Azure. Mobile Services brings together a set of features that enable backend capabilities for your apps. These capabilities includes simple provisioning and management of tables for storing app data, integration with notification services, integration with well-known identity providers for authentication, among others. 
 
 The following is a functional representation of the Mobile Services architecture.
 
@@ -14,14 +14,14 @@ The following is a functional representation of the Mobile Services architecture
 
 _Mobile Services Diagram_
 
-In this hands-on lab you will learn how to add a cloud-based backend service to an iOS app using Windows Azure Mobile Services. You will create both a new mobile service and a simple TodoList app that stores app data in the new mobile service.
+In this hands-on lab you will learn how to add a cloud-based backend service to an iOS app using Microsoft Azure Mobile Services. You will create both a new mobile service and a simple TodoList app that stores app data in the new mobile service.
 
 <a name="Objectives"></a>
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-- Create a Windows Azure Mobile Service for an iOS app.
+- Create a Microsoft Azure Mobile Service for an iOS app.
 - Store app data in the new mobile service.
 - Validate data server-side using Mobile Services Server Scripts feature.
 - Add support for push notifications to your applications.
@@ -36,9 +36,9 @@ The following is required to complete this hands-on lab:
 * [XCode 4.5](https://go.microsoft.com/fwLink/p/?LinkID=266532)
 * An iOS 5.0 (or later version) capable device (device required to test push notifications)
 * iOS Developer Program membership
-* Windows Azure account that has the Windows Azure Mobile Services feature enabled
+* Microsoft Azure account that has the Microsoft Azure Mobile Services feature enabled
 
-	>**Note:** If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Windows Azure Free Trial](http://aka.ms/WATK-FreeTrial).
+	>**Note:** If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Microsoft Azure Free Trial](http://aka.ms/WATK-FreeTrial).
 
 ---
 
@@ -59,12 +59,12 @@ Estimated time to complete this lab: **90 minutes**.
 <a name="Exercise1"></a>
 ## Exercise 1: Creating Your First Mobile Service ##
 
-This exercise shows you how to add a cloud-based backend service to an iOS app using Windows Azure Mobile Services. You will create both a new mobile service and a simple TodoList app that stores app data in the new mobile service. Lastly, you will explore your app code to see how it interacts with Windows Azure Mobile Services.
+This exercise shows you how to add a cloud-based backend service to an iOS app using Microsoft Azure Mobile Services. You will create both a new mobile service and a simple TodoList app that stores app data in the new mobile service. Lastly, you will explore your app code to see how it interacts with Microsoft Azure Mobile Services.
 
 ### Task 1 - Creating a New Mobile Service ###
 Follow these steps to create a new mobile service.
 
-1. Log into the [Windows Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services.
+1. Log into the [Microsoft Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services.
 
 1. At the bottom of the navigation pane, click **+NEW**.
 
@@ -159,7 +159,7 @@ In this section you will create a new iOS app that is connected to your mobile s
 
 1. Stop the application running in the IPhone Simulator.
 
-1. Back in the Windows Azure Management Portal, click the **Data** tab and then click the **TodoItem** table.
+1. Back in the Microsoft Azure Management Portal, click the **Data** tab and then click the **TodoItem** table.
 
 	![Todolist data](./Images/todolist-data.png?raw=true "Todolist data")
  
@@ -195,7 +195,7 @@ In this section you will create a new iOS app that is connected to your mobile s
 
 1. Stop the application running in the IPad Simulator.
 
-1. Back in the Windows Azure Management Portal, click the **Data** tab and then click the **TodoItems** table.
+1. Back in the Microsoft Azure Management Portal, click the **Data** tab and then click the **TodoItems** table.
 
 1. Check how _Sign-up for the free trial_ and Create the Mobile Service tasks have the **complete** flag as **true** while _Complete the Hands-On Lab_ task is **false**.
 
@@ -205,17 +205,17 @@ In this section you will create a new iOS app that is connected to your mobile s
 
 ### Task 4 - Exploring your App Code ###
 
-In this step we will explore To do list application code and see how simple the Windows Azure Mobile Services Client SDK makes it to interact with Windows Azure Mobile Services.
+In this step we will explore To do list application code and see how simple the Microsoft Azure Mobile Services Client SDK makes it to interact with Microsoft Azure Mobile Services.
 
 1. Switch back to the XCode editor.
 
-1. In Solution Explorer expand the **Frameworks** folder and see the Windows Azure Mobile Services Client SDK reference.
+1. In Solution Explorer expand the **Frameworks** folder and see the Microsoft Azure Mobile Services Client SDK reference.
 
-	![Windows Azure Mobile Services SDK](./Images/windows-sdk.png?raw=true"Windows Azure Mobile Services SDK")
+	![Microsoft Azure Mobile Services SDK](./Images/windows-sdk.png?raw=true"Microsoft Azure Mobile Services SDK")
 
-	_Windows Azure Mobile Services SDK_
+	_Microsoft Azure Mobile Services SDK_
 
-1. Open **QSTodoService.m** and show the MSClient class. This is the key class provided by the client SDK that provides a way for your application to interact with Windows Azure Mobile Services. The first parameter in the constructor is the Mobile Service endpoint and the second parameter is the Application Key for your Mobile Service.
+1. Open **QSTodoService.m** and show the MSClient class. This is the key class provided by the client SDK that provides a way for your application to interact with Microsoft Azure Mobile Services. The first parameter in the constructor is the Mobile Service endpoint and the second parameter is the Application Key for your Mobile Service.
 
 	![Application Key and endpoint](./Images/application-key-and-endpoint.png?raw=true"Application Key and endpoint")
 
@@ -239,7 +239,7 @@ In this step we will explore To do list application code and see how simple the 
 <a name="Exercise2"></a>
 ## Exercise 2: Validating Data Using Server Scripts ##
 
-This exercise shows you how to leverage server scripts in Windows Azure Mobile Services. Server scripts are registered in a mobile service and can be used to perform a wide range of operations on data being inserted and updated, including validation and data modification. In this exercise, you will define and register server scripts that validate and modify data. Because the behavior of server side scripts often affects the client, you will also update your iOS app to take advantage of these new behaviors.
+This exercise shows you how to leverage server scripts in Microsoft Azure Mobile Services. Server scripts are registered in a mobile service and can be used to perform a wide range of operations on data being inserted and updated, including validation and data modification. In this exercise, you will define and register server scripts that validate and modify data. Because the behavior of server side scripts often affects the client, you will also update your iOS app to take advantage of these new behaviors.
 
 
 This exercise requires that you've completed [Exercise 1](#Exercise1).
@@ -250,7 +250,7 @@ This exercise requires that you've completed [Exercise 1](#Exercise1).
 
 It is always a good practice to validate the length of data that is submitted by users. First, you register a script that validates the length of string data sent to the mobile service and rejects strings that are too long, in this case longer than 10 characters.
 
-1.	Log into the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services** and then click your Mobile Service.
+1.	Log into the [Microsoft Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services** and then click your Mobile Service.
 
 	![Mobile Service](./Images/mobile-service.png?raw=true "Mobile Service")
 
@@ -343,7 +343,7 @@ After this line of code, replace the remainder of the block with the following c
 <a name="Exercise3"></a>
 ## Exercise 3: Getting Started with Push Notifications ##
 
-This exercise shows you how to use Windows Azure Mobile Services to send push notifications to an iOS app. In this exercise you add push notifications using the iOS Provisioning Portal service to the quick start project. When complete, your mobile service will send a push notification each time a record is inserted.
+This exercise shows you how to use Microsoft Azure Mobile Services to send push notifications to an iOS app. In this exercise you add push notifications using the iOS Provisioning Portal service to the quick start project. When complete, your mobile service will send a push notification each time a record is inserted.
 
 ### Task 1 - Generating the Certificate Signing Request file###
 
@@ -511,7 +511,7 @@ Make a note of the file name and location of the exported certificate.
 
 	>**Note**: This hands-on lab creates a QuickstartPusher.p12 file. Your file name and location might be different.
 
-1.	Log on to the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
+1.	Log on to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
 
 1.	Click the **Push** tab and click **Upload**.
 
@@ -630,7 +630,7 @@ Make a note of the file name and location of the exported certificate.
 
 ###Task 6 - Updating the Registered Insert Script in the Management Portal###
 
-1.	In the Windows Azure Management Portal, click the **Data** tab and then click the **TodoItem** table.
+1.	In the Microsoft Azure Management Portal, click the **Data** tab and then click the **TodoItem** table.
 
 	![Todolist data](./Images/todolist-data.png?raw=true "Todolist data")
  
@@ -698,7 +698,7 @@ Make a note of the file name and location of the exported certificate.
 <a name="Exercise4"></a>
 ## Exercise 4: Getting Started with Auth ##
 
-In this exercise you will see how to authenticate users in Windows Azure Mobile Services from your app. You will add authentication to your project using an identity provider that is supported by Mobile Services. After being successfully authenticated and authorized by Mobile Services, you'll be able to use the app.
+In this exercise you will see how to authenticate users in Microsoft Azure Mobile Services from your app. You will add authentication to your project using an identity provider that is supported by Mobile Services. After being successfully authenticated and authorized by Mobile Services, you'll be able to use the app.
 
 ### Task 1 - Registering your App ###
 
@@ -708,7 +708,7 @@ To be able to authenticate users, you must register your iOS app at the Facebook
 
 1. Select **Website with Facebook Login** and for the **Site URL**, enter the URL of your Mobile Service. This can be found on the **Dashboard** tab in the portal under **Mobile Service URL** on the right side.
 
-1. Log on to the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your Mobile Service.
+1. Log on to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your Mobile Service.
 
 	![Mobile Service](./Images/mobile-service.png?raw=true "Mobile Service")
 
@@ -796,7 +796,7 @@ In this exercise you will see how to associate data with the user that saved it.
 
 Since we just set up authentication in our application, we are now sending a user object with each request to our Mobile Service.  We can use this to tie data that we're saving to the user.
 
-1. Log on to the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your Mobile Service.
+1. Log on to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your Mobile Service.
 
 	![Mobile Service](./Images/mobile-service.png?raw=true "Mobile Service")
 
@@ -872,7 +872,7 @@ In this exercise we'll take a look at another method of delivering push notifica
 
 ### Task 1 - Creating your Notification Hub ###
 
-1.	Log on to the [Windows Azure Management Portal](https://manage.windowsazure.com/).
+1.	Log on to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/).
 
 1.	Select **NEW** from the bottom left and then click **APP SERVICES**, **SERVICE BUS**, **NOTIFICATION HUB**, and **QUICK CREATE**.
 
@@ -951,7 +951,7 @@ In this exercise we'll take a look at another method of delivering push notifica
 
 ### Task 3 - Send a notification from your Notification Hub ###
 
-1. Log on to the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your Mobile Service.
+1. Log on to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your Mobile Service.
 
 	![Mobile Service](./Images/mobile-service.png?raw=true "Mobile Service")
 

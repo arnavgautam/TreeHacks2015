@@ -1,18 +1,18 @@
 <a name="Title"></a>
-# Creating Websites in Windows Azure Using WebMatrix #
+# Creating Websites in Microsoft Azure Using WebMatrix #
 
 ---
 <a name="Overview"></a>
 ## Overview ##
 
-In this hands-on lab you will learn how to create a new Web Site in Windows Azure by using a template from the pre-packaged applications gallery. Once created, you will update the site using Web Matrix and deploy the changes.
+In this hands-on lab you will learn how to create a new Web Site in Microsoft Azure by using a template from the pre-packaged applications gallery. Once created, you will update the site using Web Matrix and deploy the changes.
 
 <a name="Objectives"></a>
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-* Create a new Web Site in Windows Azure by using a pre-packaged application from the templates Gallery
+* Create a new Web Site in Microsoft Azure by using a pre-packaged application from the templates Gallery
 * Update your Web Site using Web Matrix 2 and deploy the changes 
 
 <a name="Prerequisites"></a>
@@ -21,7 +21,7 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Microsoft Web Matrix 2](http://www.microsoft.com/web/webmatrix/next/)
-- A Windows Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 >**Note:** This lab was designed to use Windows 7 Operating System.
 
@@ -43,19 +43,19 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 
 This hands-on lab includes the following exercises:
 
-1. [Exercise 1: Creating a Windows Azure Web Site using the Applications Gallery](#Exercise1)
+1. [Exercise 1: Creating a Microsoft Azure Web Site using the Applications Gallery](#Exercise1)
 1. [Exercise 2: Customizing a Web Site using Web Matrix 2](#Exercise2)
 
 <a name="Exercise1"></a>
-### Exercise 1: Creating a Windows Azure Web Site using the Applications Gallery ###
+### Exercise 1: Creating a Microsoft Azure Web Site using the Applications Gallery ###
 
 During this exercise you will create a new web site using the pre-packaged web applications from the Applications Gallery.
 
-1. Go to the [Windows Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
+1. Go to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
 
-	![Log on to Windows Azure portal](images/login.png?raw=true "Log on to Windows Azure portal")
+	![Log on to Microsoft Azure portal](images/login.png?raw=true "Log on to Microsoft Azure portal")
 
-	_Log on to Windows Azure Management Portal_
+	_Log on to Microsoft Azure Management Portal_
 
 1. Click **New** on the command bar.
 
@@ -89,7 +89,7 @@ During this exercise you will create a new web site using the pre-packaged web a
 
 	_Configuring the database settings_
 
-1. In the **Create a Server** page, configure your database server login username and password. Make sure the **Allow Windows Azure services to access the server** option is marked and the password matches the security requirements.
+1. In the **Create a Server** page, configure your database server login username and password. Make sure the **Allow Microsoft Azure services to access the server** option is marked and the password matches the security requirements.
 
 	![Configuring the database administrator account](images/database-admin.png?raw=true "Configuring the database administrator account")
 
@@ -108,7 +108,7 @@ During this exercise you will create a new web site using the pre-packaged web a
 	> _Umbraco Web Site Dashboard_
 	> 
 
-1. Now you will configure Umbraco to run on Windows Azure. Click **Install Umbraco 5.1**.
+1. Now you will configure Umbraco to run on Microsoft Azure. Click **Install Umbraco 5.1**.
 
 	![Installing the Umbraco application](images/configuring-umbraco-application.png?raw=true "Installing the Umbraco application")
 
@@ -126,7 +126,7 @@ During this exercise you will create a new web site using the pre-packaged web a
 
 	_Configuring the Umbraco Database_
 
-1. Go back to the Windows Azure Portal and select **SQL Databases** from the menu on the left. 
+1. Go back to the Microsoft Azure Portal and select **SQL Databases** from the menu on the left. 
 
 	![SQL Databases](images/umbraco-database.png?raw=true "SQL Databases")
 
@@ -193,15 +193,15 @@ During this exercise you will create a new web site using the pre-packaged web a
 
 During this exercise you will use Web Matrix 2 to update your application. You will add a Facebook's Like Button to the book view.
 
-1. Go to the [Windows Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
+1. Go to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
 
-	![Log on to Windows Azure portal](images/login.png?raw=true "Log on to Windows Azure portal")
+	![Log on to Microsoft Azure portal](images/login.png?raw=true "Log on to Microsoft Azure portal")
 
-	_Log on to Windows Azure Management Portal_
+	_Log on to Microsoft Azure Management Portal_
 
 1. Select the Umbraco Web Site (_umbracoSample_) to open the web site Dashboard and click the **Download publish profile** link. 
 
-	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. Both **Microsoft WebMatrix** and **Microsoft Visual Web Developer** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites. 
+	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Microsoft Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. Both **Microsoft WebMatrix** and **Microsoft Visual Web Developer** support reading publish profiles to automate configuration of these programs for publishing web applications to Microsoft Azure websites. 
 
 	![Download Publish Profile](images/download-publish-profile.png?raw=true "Downloading Publish Profile")
 
@@ -306,4 +306,4 @@ During this exercise you will use Web Matrix 2 to update your application. You w
 <a name="Summary"></a>
 ## Summary ##
 
-In this hands-on lab you have learned how to create a new Web Site in Windows Azure by using a template from the pre-packaged applications gallery. Once created, you updated the site using Web Matrix and deployed the changes. This hands-on lab offers a glimpse into how simple web site development is when using WebMatrix and Windows Azure Websites together. 
+In this hands-on lab you have learned how to create a new Web Site in Microsoft Azure by using a template from the pre-packaged applications gallery. Once created, you updated the site using Web Matrix and deployed the changes. This hands-on lab offers a glimpse into how simple web site development is when using WebMatrix and Microsoft Azure Websites together. 

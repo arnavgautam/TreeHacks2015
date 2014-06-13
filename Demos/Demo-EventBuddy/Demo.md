@@ -1,12 +1,12 @@
-﻿<a name="title" />
-# Event Buddy - Windows Azure Mobile Services #
+<a name="title" />
+# Event Buddy - Microsoft Azure Mobile Services #
 
 ---
 
 <a name="Overview"/>
 ## Overview ##
 
-In this demo you will start with a disconnected application that manages events and sessions to later connect it utilizing **Windows Azure Mobile Services** to provide structured storage for events and sessions. In order to use authentication within the application, you will add **Twitter** (or **Facebook**) to your application and services. Following this you will upload session decks to **SkyDrive** and finish by sending Live Tiles using push notifications every time an attendee rates a session.
+In this demo you will start with a disconnected application that manages events and sessions to later connect it utilizing **Microsoft Azure Mobile Services** to provide structured storage for events and sessions. In order to use authentication within the application, you will add **Twitter** (or **Facebook**) to your application and services. Following this you will upload session decks to **SkyDrive** and finish by sending Live Tiles using push notifications every time an attendee rates a session.
 
 > **Note:** This demo was designed for **Windows 8** and **Visual Studio Professional** or higher editions. However, it supports Visual Studio Express editions. In that case, the Windows 8 application must be opened with **Visual Studio 2012 Express for Windows 8** and the Windows Phone 8 application must be opened with **Visual Studio 2012 Express for Windows Phone**.
 
@@ -26,15 +26,15 @@ This demo uses the following technologies:
 
 - [Windows Phone SDK 8.0](https://dev.windowsphone.com/en-us/downloadsdk)
 - [Live SDK for Windows and Windows Phone](http://msdn.microsoft.com/en-us/live/ff621310)
-- [Windows Azure Mobile Services SDK for Windows 8](http://go.microsoft.com/fwlink/?LinkId=257545&clcid=0x409)
-- [Windows Azure Management Portal](http://manage.windowsazure.com/)
+- [Microsoft Azure Mobile Services SDK for Windows 8](http://go.microsoft.com/fwlink/?LinkId=257545&clcid=0x409)
+- [Microsoft Azure Management Portal](http://manage.windowsazure.com/)
 
 <a name="Setup" />
 ### Setup and Configuration ###
 
 In order to execute this demo you need to set up your environment. The setup for this demo is composed of three parts:
 
- - [Setup for the cloud environment](#SetupCloudEnvironment) - This consists of a set of steps that must be performed only one time for setting up the demo in your Windows Azure account.
+ - [Setup for the cloud environment](#SetupCloudEnvironment) - This consists of a set of steps that must be performed only one time for setting up the demo in your Microsoft Azure account.
 
  - [Setup for the local environment](#SetupLocalEnvironment) - This consists of a set of steps that must be performed only one time for setting up the demo in your local machine.
 
@@ -49,7 +49,7 @@ In order to execute this demo you need to set up your environment. The setup for
 	Register the application in the Windows Store by following the steps from the section **Register your app for the Windows Store** in this tutorial:
 https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-push-dotnet/#register
 
-	> **Note:** Take note of the **Client Secret** and **Package SID** since you will need them later to configure Push notifications on the Windows Azure Mobile Service.
+	> **Note:** Take note of the **Client Secret** and **Package SID** since you will need them later to configure Push notifications on the Microsoft Azure Mobile Service.
 
 	![Push Notifications Settings](images/push-notification-settings.png?raw=true "Push Notifications Settings")
 
@@ -67,9 +67,9 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 	Save the solution and close Visual Studio
 
-1. Create a new **Mobile Service** from the Windows Azure Management Portal.
+1. Create a new **Mobile Service** from the Microsoft Azure Management Portal.
 
-	To do this, log into the [Windows Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services and click **New**.
+	To do this, log into the [Microsoft Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services and click **New**.
 	
 	![New Button](images/new-button.png?raw=true)
 
@@ -111,7 +111,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 	
 	> ![Facebook Site URL](images/configure-mobile-service-url-facebook.png?raw=true "Facebook Site URL")	
 
-1. Back in the Windows Azure Portal go to the **Identity** tab from the Mobile Service and configure the corresponding settings, such as the application's consumer key and secret.
+1. Back in the Microsoft Azure Portal go to the **Identity** tab from the Mobile Service and configure the corresponding settings, such as the application's consumer key and secret.
 
 1. Configure Push Notifications.
 
@@ -203,7 +203,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 <a name="Reset" />
 ### Reset Environment ###
 
-1. If you previously executed the demo, delete the following tables (and their contents) in Windows Azure Mobile Services.
+1. If you previously executed the demo, delete the following tables (and their contents) in Microsoft Azure Mobile Services.
 	- Event table
 	- Rating table
 	- Session table
@@ -218,7 +218,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 	![Running reset Local script](images/running-reset-local-script.png?raw=true "Running reset Local script") 
 
-1. Switch to the **Internet Explorer** instance started by the reset script and log in the **Windows Azure Management Portal**.
+1. Switch to the **Internet Explorer** instance started by the reset script and log in the **Microsoft Azure Management Portal**.
 
 1. Deploy the Windows Phone 8 app to a **Windows Phone** device.
 
@@ -265,7 +265,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 <a name="OpeningStatement" />
 ### Opening Statement ###
 
-> **Speaking Point:** The best mobile apps are connected to the cloud. With Windows Azure Mobile Services, any developer can add the cloud services he needs into an application. And what I really love about mobile services is how quickly you can go from idea to execution.
+> **Speaking Point:** The best mobile apps are connected to the cloud. With Microsoft Azure Mobile Services, any developer can add the cloud services he needs into an application. And what I really love about mobile services is how quickly you can go from idea to execution.
 > 
 > I'm going to prove this to you now by doing a demonstration and connecting an offline application in just a few minutes.
 
@@ -292,7 +292,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 	
 	![EventBuddy-selectevent](images/eventbuddy-selectevent.png?raw=true)
 
-	> **Speaking Point:** Let's create a session on Windows Azure and save that.
+	> **Speaking Point:** Let's create a session on Microsoft Azure and save that.
 
 1. Swipe up to show that we can also add sessions.
 
@@ -307,11 +307,11 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 <a name="Segment2" />
 ### Segment 2: Structured Storage: Connecting your app using Mobile Services ###
 
-> **Speaking Point:** The end user experience for this application can be enriched by adding backend services to create scenarios and experiences that span multiple devices and users. I am now going to show you how you can do this with Windows Azure Mobile Services.
+> **Speaking Point:** The end user experience for this application can be enriched by adding backend services to create scenarios and experiences that span multiple devices and users. I am now going to show you how you can do this with Microsoft Azure Mobile Services.
 
-1. Switch to the Windows Azure Management Portal
+1. Switch to the Microsoft Azure Management Portal
 
-	> **Speaking Point:** So let's switch over to the Windows Azure portal. And you'll see here we're on the mobile services tab. And creating a new mobile service is incredibly easy. I click new, compute, mobile service, create. I enter the name of my mobile service, and this guide will take me through the steps, just two steps necessary. Only takes about 15 seconds.   
+	> **Speaking Point:** So let's switch over to the Microsoft Azure portal. And you'll see here we're on the mobile services tab. And creating a new mobile service is incredibly easy. I click new, compute, mobile service, create. I enter the name of my mobile service, and this guide will take me through the steps, just two steps necessary. Only takes about 15 seconds.   
 
 1. Click on the New link in the lower left corner and select Compute -> Mobile Service -> Create from the fly out menu.
 
@@ -343,7 +343,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 1. Click **OK** to close the confirmation panel.
 
 
-	> **Speaking Point** In just a few seconds our table is created and can be accessed through Windows Azure Mobile Services.
+	> **Speaking Point** In just a few seconds our table is created and can be accessed through Microsoft Azure Mobile Services.
 	![portal-createtable-confirmation](images/portal-createtable-confirmation.png?raw=true)
 
 1. Navigate back to the quick start page.
@@ -375,12 +375,12 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 	);
 	````
 
-	> **Speaking Point:** With one line of code we can simply establish a connection to Windows Azure Mobile Services from our Windows Store app.
+	> **Speaking Point:** With one line of code we can simply establish a connection to Microsoft Azure Mobile Services from our Windows Store app.
 
 1. Select the **MobileServiceClient** from the above code and add a using statement for the **Microsoft.WindowsAzure.MobileServices** namespace by entering ***CTRL + .*** and then Enter in the context menu. 
 
 
-	> **Speaking Point:** And then over in the events page, I'm going to add the code necessary to insert data into Windows Azure.
+	> **Speaking Point:** And then over in the events page, I'm going to add the code necessary to insert data into Microsoft Azure.
 
 1. Open **EventsPage.xaml.cs**
 
@@ -412,9 +412,9 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 	![eventbuddy-addevent-connected](images/eventbuddy-addevent-connected.png?raw=true)
 
-1. After saving the event, leave the Event Buddy Windows Store application running and return to the Windows Azure Management portal.
+1. After saving the event, leave the Event Buddy Windows Store application running and return to the Microsoft Azure Management portal.
 
-	> **Speaking Point:** And to prove that to you, I'm going to switch back to the portal, I'm going to drill into the event table, and right here in the browser we can see the data's stored in Windows Azure.
+	> **Speaking Point:** And to prove that to you, I'm going to switch back to the portal, I'm going to drill into the event table, and right here in the browser we can see the data's stored in Microsoft Azure.
 
 1. Navigate to the Data view for the Mobile Service and select the Event table. Show that the event has been saved.	
 		![portal-data-event](images/portal-data-event.png?raw=true)
@@ -426,7 +426,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 > **Speaking Point:** You'll see that we've preconfigured this service to work with Microsoft accounts, to work with Facebook, Twitter and Google. And, actually, logging in on the client is equally simple.
 
-1. In the Windows Azure Management Portal click on the **Identity** tab.
+1. In the Microsoft Azure Management Portal click on the **Identity** tab.
 
 	![portal-identity](images/portal-identity.png?raw=true)
 
@@ -520,7 +520,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 	![eventbuddy-add-session](images/eventbuddy-add-session.png?raw=true)
 
-1. Leave the Event Buddy app running, and switch back to the Windows Azure Management Portal.  
+1. Leave the Event Buddy app running, and switch back to the Microsoft Azure Management Portal.  
 
 	> **Speaking Point:** Let's switch back to the portal. And I'm going to go to the data tab here. If I drill into that session table, you'll see we have this script tab at the top. So I'm going to drill into that, and it allows me to alter JavaScript that runs securely on the server whenever a data operation changes. So you can see I can set a script on insert, update, delete and read.
 
@@ -594,7 +594,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 	![portal-session-script-save](images/portal-session-script-save.png?raw=true)
 
-	> **Speaking Point:** Just like that in a matter of seconds we've changed the behavior of the mobile services using some simply JavaScript and our changes are now live in Windows Azure.    
+	> **Speaking Point:** Just like that in a matter of seconds we've changed the behavior of the mobile services using some simply JavaScript and our changes are now live in Microsoft Azure.    
 
 1. Switch back to the running Event Buddy Windows Store app and now press Save to create the new session. 
 
@@ -648,7 +648,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 > **Speaking Point:** I now want to allow attendees to be able to rate sessions at the conference and once they rate a session I want the speaker to receive a live tile update that shows what that rating was.
 
-1. With the Event Buddy Windows Store app running, switch back to the Windows Azure Management portal.  Navigate to the Mobile Service view.  
+1. With the Event Buddy Windows Store app running, switch back to the Microsoft Azure Management portal.  Navigate to the Mobile Service view.  
 
 1. Select the **Push** tab for your mobile service and show the push credentials from the Windows Store.
 

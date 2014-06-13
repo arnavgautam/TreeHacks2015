@@ -1,22 +1,22 @@
-Ôªø<a name="title" />
-# Introduction to Windows Azure Media Services #
+<a name="title" />
+# Introduction to Microsoft Azure Media Services #
 
 ---
 
 <a name="Overview" />
 ## Overview ##
-Windows Azure Media Services allows you to build a media distribution solution that can stream audio and video to Windows, iOS, Android, and other devices and platforms. It offers the flexibility, scalability and reliability of a cloud platform to handle high quality media experiences for a global audience. Media Services includes cloud-based versions of many existing technologies from the Microsoft Media Platform and media partners including ingest, encoding, format conversion, content protection and both on-demand and live streaming capabilities.
+Microsoft Azure Media Services allows you to build a media distribution solution that can stream audio and video to Windows, iOS, Android, and other devices and platforms. It offers the flexibility, scalability and reliability of a cloud platform to handle high quality media experiences for a global audience. Media Services includes cloud-based versions of many existing technologies from the Microsoft Media Platform and media partners including ingest, encoding, format conversion, content protection and both on-demand and live streaming capabilities.
 
 ![Media Services Overview](Images/media-services-overview.png?raw=true "Media Services Overview")
 
-In this hands-on lab you will learn how you can use Visual Studio 2013 and Windows Azure Media Services to upload, encode, deliver and stream media content, as well as perform these operations from the portal. Additionally, you will learn how to add a media player to your Windows Store applications and how to monetize your application using advertisements in the media player.
+In this hands-on lab you will learn how you can use Visual Studio 2013 and Microsoft Azure Media Services to upload, encode, deliver and stream media content, as well as perform these operations from the portal. Additionally, you will learn how to add a media player to your Windows Store applications and how to monetize your application using advertisements in the media player.
 
 <a name="Objectives" />
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-- Create a Windows Azure Media Service
+- Create a Microsoft Azure Media Service
 - Manage media content: upload, encode and stream media
 - Programmatically upload, encode and stream content 
 - Use the Microsoft Media Platform Player Framework in a Windows 8.1 application
@@ -29,11 +29,11 @@ The following is required to complete this hands-on lab:
 
 - [Microsoft Visual Studio Express 2013 for Windows Desktop](http://www.visualstudio.com/downloads/download-visual-studio-vs#d-express-windows-desktop) or higher
 - [Microsoft Visual Studio Express 2013 for Windows](http://www.visualstudio.com/downloads/download-visual-studio-vs#d-express-windows-8) or higher
-- A Windows Azure subscription
+- A Microsoft Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial).
-	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
-	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
-	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Microsoft Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Microsoft Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Microsoft Azure at no charge.
 
 ---
 
@@ -50,14 +50,14 @@ This hands-on lab includes the following exercises:
 <a name="Exercise1" />
 ### Exercise 1: Uploading a Job from the Portal for HTML5 playback ###
 
-The Windows Azure Management Portal provides a way to quickly create a Windows Azure Media Services account. You can use your account to access Media Services that enable you to store, encrypt, encode, manage, and stream media content in Windows Azure. At the time you create a Media Services account, you also create an associated storage account (or use an existing one) in the same geographic region as the Media Services account.
+The Microsoft Azure Management Portal provides a way to quickly create a Microsoft Azure Media Services account. You can use your account to access Media Services that enable you to store, encrypt, encode, manage, and stream media content in Microsoft Azure. At the time you create a Media Services account, you also create an associated storage account (or use an existing one) in the same geographic region as the Media Services account.
 
 <a name="creating-a-media-service-account" />
 #### Task 1 - Creating a Media Services Account ####
 
 This task explains how to use the Quick Create method to create a new Media Services account and then associate it with a storage account.
 
-1. Log in to the [Windows Azure Management Portal](https://manage.windowsazure.com).
+1. Log in to the [Microsoft Azure Management Portal](https://manage.windowsazure.com).
 
 1. Click **New** | **App Services** | **Media Service**, and then click **Quick Create**.
 
@@ -85,9 +85,9 @@ The **media services** page opens with the new account displayed. When the statu
 <a name="uploading-content-to-media-services" />
 #### Task 2 - Uploading content to Media Services ####
 
-In this task you will upload content to the media service already created using the Windows Azure Management Portal.
+In this task you will upload content to the media service already created using the Microsoft Azure Management Portal.
 
-1. In the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?linkid=256666&clcid=0x409), click **Media Services** and then click the name of the media service created in the previous task.
+1. In the [Microsoft Azure Management Portal](http://go.microsoft.com/fwlink/?linkid=256666&clcid=0x409), click **Media Services** and then click the name of the media service created in the previous task.
 
 1. Click the **Content** view at the top of the page and then click **Upload** in the bottom toolbar.
 
@@ -118,7 +118,7 @@ In this task you will upload content to the media service already created using 
 <a name="encoding-content-in-media-services" />
 #### Task 3 - Encoding content in Media Services ####
 
-In this task you will encode a video previously uploaded in the Windows Azure Management Portal.
+In this task you will encode a video previously uploaded in the Microsoft Azure Management Portal.
 
 1. Click on the desired source video, in this case the one that you have just uploaded, and then click **Encode** in the bottom toolbar.
 
@@ -126,7 +126,7 @@ In this task you will encode a video previously uploaded in the Windows Azure Ma
 
 	_Encode Button_
 
-1. In the **Windows Azure Media Encoder** dialog box, choose from one of the common or advanced encoding presets. For the purpose of this task, choose **Playback via HTML5 (IE/Chrome/Safari)**. More information about the presets:
+1. In the **Microsoft Azure Media Encoder** dialog box, choose from one of the common or advanced encoding presets. For the purpose of this task, choose **Playback via HTML5 (IE/Chrome/Safari)**. More information about the presets:
 
 	**Common Presets**
 
@@ -146,30 +146,30 @@ In this task you will encode a video previously uploaded in the Windows Azure Ma
 
 	>**Note:** Currently, the portal does not support all the encoding formats that are supported by the Media Encoder. It also does not support media asset encryption/decryption. You can perform these tasks programmatically; for more information see [Building Applications with the Media Services SDK for .NET](http://go.microsoft.com/fwlink/?linkid=270866&clcid=0x409) and [Media Services Encoder System Presets]( http://go.microsoft.com/fwlink/?linkid=270865&clcid=0x409).
 
-1. In the **Windows Azure Media Encoder** dialog box, enter the desired friendly output content name or accept the default. Then click the check button to start the encoding operation.
+1. In the **Microsoft Azure Media Encoder** dialog box, enter the desired friendly output content name or accept the default. Then click the check button to start the encoding operation.
 
-	![Encoding media in Windows Azure](Images/encoding-media-in-windows-azure.png?raw=true "Encoding media in Windows Azure")
+	![Encoding media in Microsoft Azure](Images/encoding-media-in-windows-azure.png?raw=true "Encoding media in Microsoft Azure")
 
-	_Encoding media in Windows Azure_
+	_Encoding media in Microsoft Azure_
 
 <a name="publishing-and-playing-content" />
 #### Task 4 - Publishing and Playing content in Media Services ####
 
-In this task, you will publish the previously encoded video and play it directly in the Windows Azure Management Portal.
+In this task, you will publish the previously encoded video and play it directly in the Microsoft Azure Management Portal.
 
 1. Click an asset that is not published - in this case, the video that was just encoded. Then click the **Publish** button in the bottom toolbar to publish the encoded video to a public URL. When asked to confirm the operation, click **Yes**. Once the content is published, the URL can be used by a client player capable of rendering the encoded content.
 
-	![Publishing media in Windows Azure](Images/publish-button.png?raw=true "Publishing media in Windows Azure")
+	![Publishing media in Microsoft Azure](Images/publish-button.png?raw=true "Publishing media in Microsoft Azure")
 
-	_Publishing media in Windows Azure_
+	_Publishing media in Microsoft Azure_
 
 	>**Note**: It may take some minutes for the video to be available for publishing.
 
 1. Once the publishing process finishes, select the video and click the **Play** button in the bottom toolbar. Only content that has been published is playable from the portal. Also, the encoding must be supported by your browser.
 
-	![Playing media in Windows Azure](Images/playing-media.png?raw=true "Playing media in Windows Azure")
+	![Playing media in Microsoft Azure](Images/playing-media.png?raw=true "Playing media in Microsoft Azure")
 
-	_Playing media in Windows Azure_
+	_Playing media in Microsoft Azure_
 
 <a name="Exercise2" />
 ### Exercise 2: Building a Console app using the Media Services SDK that uploads, encodes, and streams a video programmatically ###
@@ -187,7 +187,7 @@ In this exercise, you will create a new console application that allows you to p
 
 1. Open the **Package Manager Console** by clicking **View | Other Windows | Package Manager Console**.
 
-1. In the console, type the following command to download and install the **Windows Azure Media Services** NuGet package and its dependencies.
+1. In the console, type the following command to download and install the **Microsoft Azure Media Services** NuGet package and its dependencies.
 
 	````Nuget
 	Install-Package windowsazure.mediaservices -Version 3.0.0.0
@@ -219,7 +219,7 @@ In this exercise, you will create a new console application that allows you to p
 	Console.ReadLine();
 	````
 
-1. Go to the **Windows Azure Management Portal**, click **Media Services** in the left menu, and then click your **Media Services** name. The quickstart page will be displayed.
+1. Go to the **Microsoft Azure Management Portal**, click **Media Services** in the left menu, and then click your **Media Services** name. The quickstart page will be displayed.
 
 1. Make sure that **C#** is selected in the **Choose a language** section. Under the **WRITE SOME CODE** section, click **UPLOAD A VIDEO PROGRAMMATICALLY**.
 
@@ -285,7 +285,7 @@ In this exercise, you will create a new console application that allows you to p
     IJob job = context.Jobs.Create("Encoding " + assetToEncode.Name + " to " + encodingPreset);
 
     IMediaProcessor latestWameMediaProcessor = (from p in context.MediaProcessors
-                                                where p.Name == "Windows Azure Media Encoder"
+                                                where p.Name == "Microsoft Azure Media Encoder"
                                                 select p).ToList()
                                                 .OrderBy(wame => new Version(wame.Version)).LastOrDefault();
     ITask encodeTask = job.Tasks.AddNew("Encoding", latestWameMediaProcessor, encodingPreset, TaskOptions.None);
@@ -363,7 +363,7 @@ In this exercise, you will create a new console application that allows you to p
 
 1. Press any key to close the console application when it shows that the publishing is completed.
 
-1. Go to the Windows Azure Management Portal and then to the **Content** section of your Media Services subscription.
+1. Go to the Microsoft Azure Management Portal and then to the **Content** section of your Media Services subscription.
 
 	![The portal showing the assets processed by the console app](Images/portal-showing-the-assets-processed-by-the-console-app.png?raw=true "The portal showing the assets processed by the console app")
 
@@ -382,7 +382,7 @@ In this exercise, you will create a new console application that allows you to p
 
 Microsoft Media Platform is a complete set of technologies for digital media encoding, delivery and playback, for virtually any network-connected device. The Player Framework is an open source video player available for Silverlight, HTML5 and Xbox, as well as Windows 8.1 and Windows Phone apps. It allows you to play both progressive download videos and Smooth Streaming videos.
 
-In this exercise you will first download and install the Microsoft Media Platform Player Framework and then build a simple Store app. Within the app you will consume a video previously uploaded to Windows Azure Media Services and play it in a video player control.
+In this exercise you will first download and install the Microsoft Media Platform Player Framework and then build a simple Store app. Within the app you will consume a video previously uploaded to Microsoft Azure Media Services and play it in a video player control.
 
 <a name="installing-MMPPF" />
 #### Task 1 - Installing Microsoft Media Platform Player Framework ####
@@ -408,7 +408,7 @@ In this task you will download and install the latest version of the Microsoft M
 <a name="adding-a-video-player-control-to-a-windows8-app" />
 #### Task 2 - Adding a video player control to a Windows 8.1 app ####
 
-In this task you will create a new store app from scratch and add video control linked to a smooth streaming video uploaded to Windows Azure Media Services.
+In this task you will create a new store app from scratch and add video control linked to a smooth streaming video uploaded to Microsoft Azure Media Services.
 
 1. Download and install the [Microsoft Smooth Streaming Client SDK for Windows 8.1] (http://visualstudiogallery.msdn.microsoft.com/0170c67c-c183-4fee-8dd4-c2b44d710d40).
 
@@ -822,7 +822,7 @@ In this task you will add an already pre-configured VMAP file to the local asset
 
 	**VASTData** tells video player what to play. All the ads to be displayed should be inside this container.
 
-	**TrackingEvents:** it‚Äôs used to track the start and end of an ad break and whether an error occurred during the ad break.
+	**TrackingEvents:** itís used to track the start and end of an ad break and whether an error occurred during the ad break.
 
 	> **Note:** The media files used in the VMAP file provided are videos already uploaded to a blob storage. Their URIs can be found inside the MediaFile elements of the vmap.xml file.
 
@@ -840,23 +840,23 @@ In this task you will add an already pre-configured VMAP file to the local asset
 
 ## Next Steps ##
 
-To learn more about configuring **Windows Azure Media Services**, please refer to the following articles:
+To learn more about configuring **Microsoft Azure Media Services**, please refer to the following articles:
 
 **Technical Reference**
 
 This is a list of articles that expand on the technologies explained on this lab:
 
-- [Developing Windows Azure Media Services Client Applications](http://aka.ms/S0u1ly): SDKs contain libraries and APIs that allow you to create client applications. Player Frameworks are built on top of the SDKs and contain user controls for common applications scenarios and out-of-the-box sample player applications and documentation. Both SDKs and Player Frameworks are available for multiple platforms.
+- [Developing Microsoft Azure Media Services Client Applications](http://aka.ms/S0u1ly): SDKs contain libraries and APIs that allow you to create client applications. Player Frameworks are built on top of the SDKs and contain user controls for common applications scenarios and out-of-the-box sample player applications and documentation. Both SDKs and Player Frameworks are available for multiple platforms.
 
 - [Smooth Streaming Technical Overview ](http://aka.ms/Soeygn): The **Smooth Streaming Technical Overview** provides a comprehensive history, context, introduction, and technical description of Smooth Streaming.
 
-- [Ingesting Assets in Bulk with the Media Services SDK for .NET](http://aka.ms/Fe4bp3): Uploading large asset files can be a bottleneck during asset creation. Ingesting Assets in Bulk or ‚ÄúBulk Ingesting‚Äù, involves decoupling asset creation from the upload process.
+- [Ingesting Assets in Bulk with the Media Services SDK for .NET](http://aka.ms/Fe4bp3): Uploading large asset files can be a bottleneck during asset creation. Ingesting Assets in Bulk or ìBulk Ingestingî, involves decoupling asset creation from the upload process.
 
-- [Inserting Ads into your Media](http://aka.ms/Q3t667): Windows Azure Media Services provides support for ad insertion through the Windows Media Platform: Player Frameworks. Player frameworks with ad support are available for Windows 8, Silverlight, Windows Phone 8, and iOS devices.
+- [Inserting Ads into your Media](http://aka.ms/Q3t667): Microsoft Azure Media Services provides support for ad insertion through the Windows Media Platform: Player Frameworks. Player frameworks with ad support are available for Windows 8, Silverlight, Windows Phone 8, and iOS devices.
 
 **Development**
 
-This is a list of developer-oriented articles related to **Windows Azure Media Services**:
+This is a list of developer-oriented articles related to **Microsoft Azure Media Services**:
 
 - [How to: Deliver an Asset by Download](http://aka.ms/Rtzki2): This topic discusses options for delivering media assets uploaded to Media Services. You can deliver Media Services content in numerous application scenarios. You can download media assets, or access them by using a locator. You can send media content to another application or to another content provider.
 
@@ -864,7 +864,7 @@ This is a list of developer-oriented articles related to **Windows Azure Media S
 
 - [How to: Deliver Apple HLS streaming content](http://aka.ms/G6w163): This topic shows how to create a locator to Apple HTTP Live Streaming (HLS) content on a Media Services origin server. Using this approach, you can build a URL to Apple HLS content, and provide it to Apple iOS devices for playback.
 
-- [Copying an Existing Blob into a Media Services Asset](http://aka.ms/X9koyj): This topic shows how to copy blobs from a storage account into a new Windows Azure Media Services asset.
+- [Copying an Existing Blob into a Media Services Asset](http://aka.ms/X9koyj): This topic shows how to copy blobs from a storage account into a new Microsoft Azure Media Services asset.
 
 ---
 
@@ -873,7 +873,7 @@ This is a list of developer-oriented articles related to **Windows Azure Media S
 In this hands-on lab you have learned how to:
 
 - Create a Media Services subscription.
-- Upload, encode, and publish media content from the Windows Azure portal.
+- Upload, encode, and publish media content from the Microsoft Azure portal.
 - Programmatically upload, encode, and publish media content using the Media Services SDK.
 - Use the Microsoft Media Platform Player Framework to play smooth streaming content.
 - Monetize your media content using ads defined in a VMAP file.

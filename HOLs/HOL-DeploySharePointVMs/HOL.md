@@ -1,5 +1,5 @@
-ï»¿<a name="Title" />
-# Deploying a SharePoint Farm with Windows Azure Virtual Machines #
+<a name="Title" />
+# Deploying a SharePoint Farm with Microsoft Azure Virtual Machines #
 
 ---
 
@@ -13,7 +13,7 @@ In this hands-on lab you will learn how to create a SharePoint farm, connected w
 
 In this hands-on lab, you will learn how to:
 
-1. Use the Windows Azure Portal to create a Sharepoint Image.
+1. Use the Microsoft Azure Portal to create a Sharepoint Image.
 1. Connect two virtual machines to the same cloud service for network connectivity.
 1. Create and Configure SharePoint Server Farm.
 
@@ -24,13 +24,13 @@ The following is required to complete this hands-on lab:
 
 - Complete the _Deploying Active Directory_ HOL
 - Complete the _Deploying SQL Server for SharePoint_ HOL
-- [Windows Azure PowerShell CmdLets](http://msdn.microsoft.com/en-us/library/windowsazure/jj156055)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Microsoft Azure PowerShell CmdLets](http://msdn.microsoft.com/en-us/library/windowsazure/jj156055)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 <a name='gettingstarted' /></a>
 ### Getting Started: Obtaining Subscription's Credentials ###
 
-In order to complete this lab, you will need your subscriptionâ€™s secure credentials. Windows Azure lets you download a Publish Settings file with all the information required to manage your account in your development environment.
+In order to complete this lab, you will need your subscription’s secure credentials. Microsoft Azure lets you download a Publish Settings file with all the information required to manage your account in your development environment.
 
 <a name='GSTask1' /></a>
 #### Task 1 - Downloading and Importing a Publish-settings File ####
@@ -38,11 +38,11 @@ In order to complete this lab, you will need your subscriptionâ€™s secure creden
 > **Note:** If you have done these steps in a previous lab on the same computer you can move on to Exercise 1.
 
 
-In this task, you will log on to the Windows Azure Portal and download the publish-settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription that you will use in your development environment. Therefore, you will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
+In this task, you will log on to the Microsoft Azure Portal and download the publish-settings file. This file contains the secure credentials and additional information about your Microsoft Azure Subscription that you will use in your development environment. Therefore, you will import this file using the Microsoft Azure Cmdlets in order to install the certificate and obtain the account information.
 
 1.	Open Internet Explorer and browse to <https://windows.azure.com/download/publishprofile.aspx>.
 
-1.	Sign in using the **Microsoft Account** associated with your **Windows Azure** account.
+1.	Sign in using the **Microsoft Account** associated with your **Microsoft Azure** account.
 
 1.	**Save** the publish-settings file to your local file system.
 
@@ -50,9 +50,9 @@ In this task, you will log on to the Windows Azure Portal and download the publi
 
 	_Downloading publish-settings file_
 
-	> **Note:** The download page shows you how to import the publish-settings file using the Visual Studio Publish box. This lab will show you how to import it using the Windows Azure PowerShell Cmdlets instead.
+	> **Note:** The download page shows you how to import the publish-settings file using the Visual Studio Publish box. This lab will show you how to import it using the Microsoft Azure PowerShell Cmdlets instead.
 
-1. Search for **Windows Azure PowerShell** in the Start screen and choose **Run as Administrator**.
+1. Search for **Microsoft Azure PowerShell** in the Start screen and choose **Run as Administrator**.
 
 1.	Change the PowerShell execution policy to **RemoteSigned**. When asked to confirm press **Y** and then **Enter**.
 	
@@ -71,7 +71,7 @@ In this task, you will log on to the Windows Azure Portal and download the publi
 	> For more information about Execution Policies refer to this TechNet article: <http://technet.microsoft.com/en-us/library/ee176961.aspx>
 
 
-1.	The following script imports your publish-settings file and generates an XML file with your account information. You will use these values during the lab to manage your Windows Azure Subscription. Replace the placeholder with the path to your publish-setting file and execute the script.
+1.	The following script imports your publish-settings file and generates an XML file with your account information. You will use these values during the lab to manage your Microsoft Azure Subscription. Replace the placeholder with the path to your publish-setting file and execute the script.
 
 	<!-- mark:1 -->
 	````PowerShell
@@ -135,9 +135,9 @@ Make sure you have this image created before starting with the lab.
 
 In this task, you will create a SharePoint virtual machine from an image using PowerShell and we will join it to the domain we created in Deploying Active Directory hands-on lab. You will later use this virtual machine to configure the SharePoint Farm.
 
-1. Navigate to the [Windows Azure Management Portal](https://manage.windowsazure.com) using a web browser, and sign in using your Microsoft account.
+1. Navigate to the [Microsoft Azure Management Portal](https://manage.windowsazure.com) using a web browser, and sign in using your Microsoft account.
 
-1. If you do not have the IP address of the Domain Controller Virtual Machine, Navigate to the **Windows Azure Portal** using a Web browser and sign in using the **Microsoft Account** associated with your Windows Azure account.
+1. If you do not have the IP address of the Domain Controller Virtual Machine, Navigate to the **Microsoft Azure Portal** using a Web browser and sign in using the **Microsoft Account** associated with your Microsoft Azure account.
 
 1. Go to **Virtual Machines**, select the virtual machine where you deployed the active directory and select the **Connect** button at the bottom panel.
 
@@ -153,7 +153,7 @@ In this task, you will create a SharePoint virtual machine from an image using P
 	
 	_Virtual Networks_	
 
-1. Open **Windows Azure PowerShell** from **Start** | **All Programs** | **Windows Azure** | **Windows Azure PowerShell**, right-click **Windows Azure Powershell** and choose **Run as Administrator**.
+1. Open **Microsoft Azure PowerShell** from **Start** | **All Programs** | **Microsoft Azure** | **Microsoft Azure PowerShell**, right-click **Microsoft Azure Powershell** and choose **Run as Administrator**.
 
 1. Execute the following command to obtain the names of the available OS Disk images. Take note of the **SharePoint** image disk name you created in the **Getting Started** section of this lab.
 
@@ -214,7 +214,7 @@ In this task, you will create a SharePoint virtual machine from an image using P
 	$affinityGroup = 'adag'
 	$adVNET = 'domainvnet'
 	# New Azure VM with VNET and DNS settings
-	New-AzureVM â€“ServiceName $serviceName -AffinityGroup $affinityGroup `
+	New-AzureVM –ServiceName $serviceName -AffinityGroup $affinityGroup `
 									-VMs $spvm1, $spvm2 -DnsSettings $dns1 -VNetName $adVNET
 	````
 
@@ -236,7 +236,7 @@ In this task, you will create a SharePoint virtual machine from an image using P
 
 In this task, you will configure the SharePoint virtual machine to create and a SharePoint Farm. 
 
-1. If not already opened, navigate to the [Windows Azure Management Portal](https://manage.windowsazure.com)  using a web browser, and sign in using your Windows account.
+1. If not already opened, navigate to the [Microsoft Azure Management Portal](https://manage.windowsazure.com)  using a web browser, and sign in using your Windows account.
 
 1. In the **Virtual Machines** section, select the first SharePoint Virtual Machine ( _spvm1_ ) and click **Connect** to connect using **Remote Desktop**.
 
@@ -264,7 +264,7 @@ In this task, you will configure the SharePoint virtual machine to create and a 
 		>
 		>Find more information about this topic [here](http://technet.microsoft.com/en-us/library/cc287960.aspx).
 	
-	1. **Password**: type the userâ€™s password.
+	1. **Password**: type the user’s password.
 
 		![Configuration Database Settings](Images/configuration-database-settings.png?raw=true)
 	 
@@ -338,7 +338,7 @@ In this task, you will configure the SharePoint virtual machine to create and a 
 ### Task 2 - Configure SharePoint to connect to the Farm ###
 In this task, you will configure the SharePoint virtual machine to  connect to the SharePoint Farm. 
 
-1. Go back to the **Windows Azure Portal** and go to **Virtual Machines** section.
+1. Go back to the **Microsoft Azure Portal** and go to **Virtual Machines** section.
 
 1. Select the second SharePoint virtual machine _(spvm2)_ and click **Connect** to connect using **Remote Desktop**.
 
@@ -352,7 +352,7 @@ In this task, you will configure the SharePoint virtual machine to  connect to t
  
 1. In the **Specify Configuration Database Settings** page, type the name of the SQL Server instance in the **Database Server** box and click **Retrieve Database Names**.
 
-1. In the **Database name** list, select the Configuration databaseâ€™s name and click **Next**.
+1. In the **Database name** list, select the Configuration database’s name and click **Next**.
 
 1. In the **Specify Farm Security Settings** page, type the **passphrase** you set in the SharePoint Server Farm and click **Next**.
 
@@ -400,7 +400,7 @@ In this task, you will verify that the SharePoint Server was correctly configure
 
 	![Site's Home Page](Images/sites-home-page.png?raw=true)
 	 
-	_Siteâ€™s Home Page_
+	_Site’s Home Page_
 
 1. Once in the site click **Set up Site Permissions** link 
 
@@ -412,7 +412,7 @@ In this task, you will verify that the SharePoint Server was correctly configure
 
 	_Configuring anonymous access_
 
-1. Now, test the SharePoint Farm connecting to the second SharePoint Virtual Machine _(spvm2)_. To do this, go back to the **Windows Azure Portal** and go to **Virtual Machines** section.
+1. Now, test the SharePoint Farm connecting to the second SharePoint Virtual Machine _(spvm2)_. To do this, go back to the **Microsoft Azure Portal** and go to **Virtual Machines** section.
 
 1. Select the second SharePoint virtual machine _(spvm2)_ and click **Connect** to connect using **Remote Desktop Connection**.
 
@@ -422,7 +422,7 @@ In this task, you will verify that the SharePoint Server was correctly configure
 
 1. Under **Site Collections** click **View all sites collections** link.
 
-1. Select the site you created in the first SharePoint server (SPFWebApp), copy the siteâ€™s URL and paste it in an Internet Explorer browser inside the Virtual Machine. If the site is working properly, you will be able to log on and access to the same home page you accessed from the first SharePoint server.
+1. Select the site you created in the first SharePoint server (SPFWebApp), copy the site’s URL and paste it in an Internet Explorer browser inside the Virtual Machine. If the site is working properly, you will be able to log on and access to the same home page you accessed from the first SharePoint server.
 
 ---
 
@@ -430,9 +430,9 @@ In this task, you will verify that the SharePoint Server was correctly configure
 ### Exercise 3: Configuring Load Balancing ###
 
 <a name="Ex3Task1" />
-#### Task 1 - Adding load balancing endpoints in Windows Azure portal ####
+#### Task 1 - Adding load balancing endpoints in Microsoft Azure portal ####
 
-1. In the Windows Azure Portal click on the first virtual machine **SPVM1 | Endpoints | Add Endpoint** to open the endpoint create wizard.
+1. In the Microsoft Azure Portal click on the first virtual machine **SPVM1 | Endpoints | Add Endpoint** to open the endpoint create wizard.
 
 	1. In the **Add endpoint to virtual machine** page, select the **Add Endpoint** option and then click the **right arrow** to continue.
 
@@ -481,7 +481,7 @@ In this task, you will verify that the SharePoint Server was correctly configure
 
 	_Virtual machine IP load balancing_
 
-1. Now enter SPVM2 dashboard and locate the quick glance section. Notice that the both virtual machines have the same virtual IP address and URL. That means, the load balancing is transparent for the user when a web site is retrieved. Internally, Windows Azure will redirect the traffic to either SPVM1 or SPVM2 hosts.
+1. Now enter SPVM2 dashboard and locate the quick glance section. Notice that the both virtual machines have the same virtual IP address and URL. That means, the load balancing is transparent for the user when a web site is retrieved. Internally, Microsoft Azure will redirect the traffic to either SPVM1 or SPVM2 hosts.
 
 	![VM IP load balancing 2](Images/vm-ip-load-balancing-2.png?raw=true "VM IP load balancing 2")
 

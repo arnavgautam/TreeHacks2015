@@ -1,18 +1,18 @@
-﻿<a name="title" />
+<a name="title" />
 # Using CSUpload #
 
 ---
 <a name="Overview" />
 ## Overview ##
-CSUpload allows you to upload VHDs as data disks or bootable OS disks. In this demonstration you will create a data disk and show how you can upload it to Windows Azure and also demonstrate how to attach it to an existing virtual machine.
+CSUpload allows you to upload VHDs as data disks or bootable OS disks. In this demonstration you will create a data disk and show how you can upload it to Microsoft Azure and also demonstrate how to attach it to an existing virtual machine.
 
 
 <a name="technologies" />
 ### Key Technologies ###
 
-- Windows Azure subscription - you can sign up for free trial [here][1]
-- Windows Azure Virtual Machines 
-- [CSUpload.exe part of the Windows Azure 1.8 SDK][2]
+- Microsoft Azure subscription - you can sign up for free trial [here][1]
+- Microsoft Azure Virtual Machines 
+- [CSUpload.exe part of the Microsoft Azure 1.8 SDK][2]
 
 [1]: http://bit.ly/WindowsAzureFreeTrial
 [2]: http://www.microsoft.com/windowsazure/sdk/
@@ -20,12 +20,12 @@ CSUpload allows you to upload VHDs as data disks or bootable OS disks. In this d
 <a name="GettingStarted" />
 ### Getting Started: Obtaining Subscription's Credentials ###
 
-In order to complete this lab, you will need your subscription’s secure credentials. In the following task, you will download the Publish Settings file with all the information required to manage your account in your development environment.
+In order to complete this lab, you will need your subscription�s secure credentials. In the following task, you will download the Publish Settings file with all the information required to manage your account in your development environment.
 
 <a name="GSTask1" />
 #### Task 1 - Downloading and Importing a Publish Settings File ####
 
-In this task, you will log on to the Windows Azure portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription to use in your development environment. Then, you will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
+In this task, you will log on to the Microsoft Azure portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Microsoft Azure Subscription to use in your development environment. Then, you will import this file using the Microsoft Azure Cmdlets in order to install the certificate and obtain the account information.
 
 1.	Open Internet Explorer and go to <https://windows.azure.com/download/publishprofile.aspx> and sign in using your Microsoft Account credentials.
 
@@ -35,9 +35,9 @@ In this task, you will log on to the Windows Azure portal and download the Publi
 
 	_Downloading Publish Settings file_
 
-	> **Note:** The download page shows you how to import the Publish Settings file using Visual Studio Publish box. This lab will show you how to import it using the Windows Azure PowerShell Cmdlets instead.
+	> **Note:** The download page shows you how to import the Publish Settings file using Visual Studio Publish box. This lab will show you how to import it using the Microsoft Azure PowerShell Cmdlets instead.
 
-1. Start **Windows Azure PowerShell** with administrator privileges by selecting **Run as Administrator**.
+1. Start **Microsoft Azure PowerShell** with administrator privileges by selecting **Run as Administrator**.
 
 1.	Change the PowerShell execution policy to **RemoteSigned**. When asked to confirm press **Y** and then **Enter**.
 
@@ -54,7 +54,7 @@ In this task, you will log on to the Windows Azure portal and download the Publi
 	>
 	> For more information about Execution Policies refer to this TechNet article: <http://technet.microsoft.com/en-us/library/ee176961.aspx>
 
-1.	The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Windows Azure subscription. Replace the placeholder with your publish-setting file's path and execute the script.
+1.	The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Microsoft Azure subscription. Replace the placeholder with your publish-setting file's path and execute the script.
 
 	````PowerShell
 	Import-AzurePublishSettingsFile '[YOUR-PUBLISH-SETTINGS-PATH]'
@@ -100,7 +100,7 @@ In this task, you will log on to the Windows Azure portal and download the Publi
 
 	![CreateVHD](Images/createvhd.png?raw=true)
 
-1. Give the name and location of the vhd (mydatadisk.vhd). Specify 50 MB for the size (small so you can demonstrate uploading). Note also that Windows Azure only supports VHD and Fixed size. 
+1. Give the name and location of the vhd (mydatadisk.vhd). Specify 50 MB for the size (small so you can demonstrate uploading). Note also that Microsoft Azure only supports VHD and Fixed size. 
 
 	![CreateVHDProps](Images/createvhdprops.png?raw=true)
 
@@ -129,13 +129,13 @@ In this task, you will log on to the Windows Azure portal and download the Publi
 	- [STORAGE ACCOUNT NAME]
 	- [CERT THUMB PRINT]
 
-	> **Note:** You can retrieve the certificate thumbprint value from the Windows Azure PowerShell cmdlets configuration settings file (C:\Users\\[YOUR-USER-NAME]\AppData\Roaming\Windows Azure Powershell\DefaultSubscriptionData.xml). Ensure the thumbprint comes from the same subscription that contains your storage account. Additionally, if you stored the VHD file in a different path, update that value.
+	> **Note:** You can retrieve the certificate thumbprint value from the Microsoft Azure PowerShell cmdlets configuration settings file (C:\Users\\[YOUR-USER-NAME]\AppData\Roaming\Microsoft Azure Powershell\DefaultSubscriptionData.xml). Ensure the thumbprint comes from the same subscription that contains your storage account. Additionally, if you stored the VHD file in a different path, update that value.
 	
-	> The paths to the commands in the cmd file depend on the Azure SDK version, therefore if you	 have a different version other than 1.8 make sure you update the following line: `C:\Program Files\Microsoft SDKs\Windows Azure\.NET SDK\2012-10\bin\csupload.exe`
+	> The paths to the commands in the cmd file depend on the Azure SDK version, therefore if you	 have a different version other than 1.8 make sure you update the following line: `C:\Program Files\Microsoft SDKs\Microsoft Azure\.NET SDK\2012-10\bin\csupload.exe`
 
 1. Run UploadDisk.cmd and in the output note how csupload.exe detects empty blocks in the file. It does not upload them for efficiency. 
 
-1. Once the upload has completed open IISVM1 in the Windows Azure Management portal. 
+1. Once the upload has completed open IISVM1 in the Microsoft Azure Management portal. 
 
 	>**Note:** The _IISVM1_ virtual machine is used in other demos of this training kit, you can use that one or any other virtual machine for this demo purposes.
 
@@ -151,7 +151,7 @@ In this task, you will log on to the Windows Azure portal and download the Publi
 
 1. RDP into IISVM1 and you should see the uploaded volume as an attached disk. 
 
-1. Explain that the same concept could work for uploading OS disks. The only difference is there is a -OS flag on the csupload.exe command line (Windows or Linux) that tells Windows Azure whether the disk is bootable or not. 
+1. Explain that the same concept could work for uploading OS disks. The only difference is there is a -OS flag on the csupload.exe command line (Windows or Linux) that tells Microsoft Azure whether the disk is bootable or not. 
 
 
 

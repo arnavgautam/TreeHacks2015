@@ -1,11 +1,11 @@
 <a name="Title" />
-# Building and Publishing Node.js Applications with Windows Azure Websites (Windows) #
+# Building and Publishing Node.js Applications with Microsoft Azure Websites (Windows) #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-In this hands-on lab, you will learn the basics of the Windows Azure Websites service for Node.js applications. In Exercise 1, you will see how to use the Windows Azure Management Portal for creating a web site and then publish a "Hello World" Node.js application using GIT. In Exercise 2, you will learn how to use the Windows Azure Command-Line Tools for publishing applications. Finally, in exercise 3 you will explore the WebMatrix 2 features for building and publishing Node.js web applications in Windows Azure.
+In this hands-on lab, you will learn the basics of the Microsoft Azure Websites service for Node.js applications. In Exercise 1, you will see how to use the Microsoft Azure Management Portal for creating a web site and then publish a "Hello World" Node.js application using GIT. In Exercise 2, you will learn how to use the Microsoft Azure Command-Line Tools for publishing applications. Finally, in exercise 3 you will explore the WebMatrix 2 features for building and publishing Node.js web applications in Microsoft Azure.
 
 <a name="Objectives" />
 ### Objectives ###
@@ -13,7 +13,7 @@ In this hands-on lab, you will learn the basics of the Windows Azure Websites se
 In this hands-on lab, you will learn how to create and publish a Node.js application using:
 
 - Git
-- Windows Azure Command-Line Tools
+- Microsoft Azure Command-Line Tools
 - WebMatrix 2
 
 <a name="Prerequisites" />
@@ -24,16 +24,16 @@ The following is required to complete this hands-on lab:
 - [Git Version Control System](http://git-scm.com/) 
 - [Microsoft WebMatrix 2](http://go.microsoft.com/?linkid=9809776) (for exercise 3 only)
 - [Node.js](http://nodejs.org/#download) 
-- [Windows Azure Command-Line Tools](https://www.windowsazure.com/en-us/develop/nodejs/how-to-guides/command-line-tools/) (for exercise 2 only)
+- [Microsoft Azure Command-Line Tools](https://www.windowsazure.com/en-us/develop/nodejs/how-to-guides/command-line-tools/) (for exercise 2 only)
 
-	>**Note:** If you do not have Windows Azure Command-Line Tools installed, open a command prompt with administrator privileges and run the following command:
+	>**Note:** If you do not have Microsoft Azure Command-Line Tools installed, open a command prompt with administrator privileges and run the following command:
 	>
 	>````PowerShell
 	>npm install azure-cli -g
 	>````
-	>By using -g, Windows Azure Command-Line Tools will install on your machine globally. That means, you will be able to execute azure commands from any location.
+	>By using -g, Microsoft Azure Command-Line Tools will install on your machine globally. That means, you will be able to execute azure commands from any location.
 
-- A Windows Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 >**Note:** This lab was designed to use Windows 7 Operating System.
 
@@ -59,16 +59,16 @@ This hands-on lab includes the following exercises:
 <a name="Exercise1" />
 ### Exercise 1: Building and Publishing a Node.js Web Site using GIT ###
 
-In the first exercise you will create a new web site from the Windows Azure portal, create a 'Hello World' Node.js application and finally deploy it taking advantage of the new GIT publishing feature provided by Windows Azure.
+In the first exercise you will create a new web site from the Microsoft Azure portal, create a 'Hello World' Node.js application and finally deploy it taking advantage of the new GIT publishing feature provided by Microsoft Azure.
 
 <a name="Ex1Task1" />
-#### Task 1 – Creating a New Web Site Hosted in Windows Azure ####
+#### Task 1 – Creating a New Web Site Hosted in Microsoft Azure ####
 
-1. Go to the [Windows Azure portal](https://manage.windowsazure.com/) and sign in using your **Microsoft Account** credentials associated with your subscription.
+1. Go to the [Microsoft Azure portal](https://manage.windowsazure.com/) and sign in using your **Microsoft Account** credentials associated with your subscription.
 
-	![Sign in to Windows Azure Management portal](images/log-in-into-windows-azure-portal.png?raw=true "Sign in to Windows Azure Management portal")
+	![Sign in to Microsoft Azure Management portal](images/log-in-into-windows-azure-portal.png?raw=true "Sign in to Microsoft Azure Management portal")
 
-	_Sign in to Windows Azure Management portal_
+	_Sign in to Microsoft Azure Management portal_
 
 1. Click **New** at the bottom of the page.
 
@@ -78,7 +78,7 @@ In the first exercise you will create a new web site from the Windows Azure port
 
 1. Click **Web Site** and then **Quick Create**.  Provide an available URL for the new Web Site and click **Create Web Site**.
 
-	> **Note:** A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
+	> **Note:** A Microsoft Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Microsoft Azure Web Site from outside the portal. It does not include steps for setting up a database.
 
 	![Creating a new Web Site using Quick Create ](images/creating-a-new-web-site-using-quick-create-op.png?raw=true "Creating a new Web Site using Quick Create")
 
@@ -116,7 +116,7 @@ In the first exercise you will create a new web site from the Windows Azure port
 
 1. Wait a few seconds until the Git repository is ready.
 
-	> **Tip:** After the Git repository is ready you will see a quick start page with the set of commands you need to execute for pushing your web application files to Windows Azure. 
+	> **Tip:** After the Git repository is ready you will see a quick start page with the set of commands you need to execute for pushing your web application files to Microsoft Azure. 
 
 	![Git repository created](images/git-repository-created.png?raw=true "Git repository created")
 
@@ -152,7 +152,7 @@ In the first exercise you will create a new web site from the Windows Azure port
 	}
 	```
 
-	>**Note:** The package.json file tells the Node.js package manager (npm) how your package is structured, and which are the module dependencies. As this application is very simple it does not require dependencies, but in more complex apps you will probably need to specify a "dependencies" property. When publishing apps with Git, Windows Azure platform automatically installs all the dependencies declared in this file.
+	>**Note:** The package.json file tells the Node.js package manager (npm) how your package is structured, and which are the module dependencies. As this application is very simple it does not require dependencies, but in more complex apps you will probably need to specify a "dependencies" property. When publishing apps with Git, Microsoft Azure platform automatically installs all the dependencies declared in this file.
  
 1. Create another text file with a text editor and add the following code. Save the file as **web.config** in your web site folder (in this case *C:\node*). This configuration indicates that the **server.js** file is a Node.js application
 to be handled by the iisnode module.
@@ -187,7 +187,7 @@ to be handled by the iisnode module.
 <a name="Ex1Task3" />
 #### Task 3 – Publishing the Node.js Application using Git####
 
-1. Go back to the Windows Azure Management Portal. Open the site's **Dashboard** and under the **quick glance** section, copy the **Git Clone Url** value.
+1. Go back to the Microsoft Azure Management Portal. Open the site's **Dashboard** and under the **quick glance** section, copy the **Git Clone Url** value.
 
 	![Git Clone Url](images/git-clone-url.png?raw=true)
 
@@ -203,7 +203,7 @@ to be handled by the iisnode module.
 
 	> **Note:** You can learn more about Git commands in the project documentation http://git-scm.com/documentation.
 
-1. To add the remote Windows Azure repository and push the files, run the following commands. Replace the _{Git Clone Url}_ placeholder with the value obtained from the portal.
+1. To add the remote Microsoft Azure repository and push the files, run the following commands. Replace the _{Git Clone Url}_ placeholder with the value obtained from the portal.
 
 	```CommandPrompt
 	git remote add azure {Git Clone Url}
@@ -212,7 +212,7 @@ to be handled by the iisnode module.
 
 1. Enter the deployment credentials when prompted.
 
-	> **Note:** Deployment credentials are other than the Microsoft Account associated with your Windows Azure subscription and are valid for use with all Windows Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site's **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
+	> **Note:** Deployment credentials are other than the Microsoft Account associated with your Microsoft Azure subscription and are valid for use with all Microsoft Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site's **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
 	>
 	>![Resetting the deployment credentials](images/setting-the-username-and-password.png?raw=true "Resetting the deployment credentials")
 	>
@@ -229,7 +229,7 @@ to be handled by the iisnode module.
 <a name="Exercise2" />
 ### Exercise 2: Building and Publishing a Node.js Web Site using the Command-Line Tools ###
 
-In this exercise, you will learn how to manage Websites using the Windows Azure Command-Line Tools. 
+In this exercise, you will learn how to manage Websites using the Microsoft Azure Command-Line Tools. 
 
 >**Note:** In the prerequisites section of this lab you will find the instructions to install the Command-Line Tools.
 
@@ -255,7 +255,7 @@ In this exercise, you will learn how to manage Websites using the Windows Azure 
 
 1. Open a Windows Command Prompt and CD to the folder where you placed the site (in this case *C:\NodeCLI*).
 
-1. Run the following command to create the Windows Azure hosted site.
+1. Run the following command to create the Microsoft Azure hosted site.
 
 	```CommandPrompt
 	azure site create --git
@@ -280,18 +280,18 @@ In this exercise, you will learn how to manage Websites using the Windows Azure 
 
 	_Pushing the site files_
 
-	> **Note:** Deployment credentials are other than the Microsoft Account associated with your Windows Azure subscription and are valid for use with all Windows Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site's **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
+	> **Note:** Deployment credentials are other than the Microsoft Account associated with your Microsoft Azure subscription and are valid for use with all Microsoft Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site's **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
 	>
 	>![Resetting the deployment credentials](images/reset-credentials-cli.png?raw=true "Resetting the deployment credentials")
 	>
 	>_Resetting the deployment credentials_
 
-1. Let's check that the publishing was successful. Run the following command to open the site in the Windows Azure Management portal and provide your Microsoft Account credentials associated with the subscription to sign in.
+1. Let's check that the publishing was successful. Run the following command to open the site in the Microsoft Azure Management portal and provide your Microsoft Account credentials associated with the subscription to sign in.
 
 	```CommandPrompt
 	azure site portal
 	```
-	In the Windows Azure portal, click your site in the Web Site list and open the **Deployments** page of the site. Check out the latest deployment.
+	In the Microsoft Azure portal, click your site in the Web Site list and open the **Deployments** page of the site. Check out the latest deployment.
 
 	![Web Site deployments](images/site-deployments.png?raw=true "Web Site deployments")
 
@@ -312,11 +312,11 @@ In this exercise, you will learn how to manage Websites using the Windows Azure 
 <a name="Exercise3" />
 ### Exercise 3: Building and Publishing a Node.js Web Site using WebMatrix 2 ###
 
-In this exercise you will learn how to build and publish Websites in Windows Azure with WebMatrix 2. You will use the new Node.js web site templates to create a simple Node.js web application and publish it to Windows Azure using WebMatrix publishing features.
+In this exercise you will learn how to build and publish Websites in Microsoft Azure with WebMatrix 2. You will use the new Node.js web site templates to create a simple Node.js web application and publish it to Microsoft Azure using WebMatrix publishing features.
 
 #### Task 1 - Creating a New Node.js Web Application in WebMatrix 2 ####
 
-1. Execute [Task 1 from Exercise 1](#Ex1Task1) to create a new Web Site (e.g. _web-matrix-test_) in the Windows Azure Management Portal.
+1. Execute [Task 1 from Exercise 1](#Ex1Task1) to create a new Web Site (e.g. _web-matrix-test_) in the Microsoft Azure Management Portal.
 
 1. Open **WebMatrix 2**.
 
@@ -343,9 +343,9 @@ In this exercise you will learn how to build and publish Websites in Windows Azu
 
 	_Running the web site_
 
-#### Task 2 - Publishing the Web Application to Windows Azure ####
+#### Task 2 - Publishing the Web Application to Microsoft Azure ####
 
-1. Go back to the Windows Azure Portal and open the **Dashboard** of the web site you've created.
+1. Go back to the Microsoft Azure Portal and open the **Dashboard** of the web site you've created.
 
 	![Opening the Dashboard](images/website-dashboard.png?raw=true "Opening the Dashboard")
 
@@ -353,7 +353,7 @@ In this exercise you will learn how to build and publish Websites in Windows Azu
 
 1. Click the **Download publish profile** link from the **quick glance** section and save the file to a known location.
 
-	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. Both **Microsoft WebMatrix** and **Microsoft Visual Web Developer** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites.
+	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Microsoft Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. Both **Microsoft WebMatrix** and **Microsoft Visual Web Developer** support reading publish profiles to automate configuration of these programs for publishing web applications to Microsoft Azure websites.
 
 	![Downloading the publish profile](images/download-publish-profile.png?raw=true "Downloading the publish profile")
 
@@ -402,4 +402,4 @@ In this exercise you will learn how to build and publish Websites in Windows Azu
 <a name="Summary" />
 ## Summary ##
 
-In this hands-on lab, you learned the basics of the Windows Azure Websites service for Node.js applications. In Exercise 1, you saw how to use the Windows Azure Management Portal for creating a web site and then published a "Hello World" Node.js application using GIT. In Exercise 2, you learned how to use the Windows Azure Command-Line Tools for publishing applications. Finally, in exercise 3 you explored the WebMatrix 2 features for building and publishing Node.js web applications in Windows Azure. At the end, you had a working Node.js site running on Windows Azure. 
+In this hands-on lab, you learned the basics of the Microsoft Azure Websites service for Node.js applications. In Exercise 1, you saw how to use the Microsoft Azure Management Portal for creating a web site and then published a "Hello World" Node.js application using GIT. In Exercise 2, you learned how to use the Microsoft Azure Command-Line Tools for publishing applications. Finally, in exercise 3 you explored the WebMatrix 2 features for building and publishing Node.js web applications in Microsoft Azure. At the end, you had a working Node.js site running on Microsoft Azure. 

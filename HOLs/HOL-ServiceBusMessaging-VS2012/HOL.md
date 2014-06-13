@@ -24,8 +24,8 @@ In this hands-on lab, you will learn how to:
 
 You must have the following items to complete this lab:
 
-- [Windows Azure SDK for .NET](http://www.windowsazure.com/en-us/downloads/?sdk=net)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Microsoft Azure SDK for .NET](http://www.windowsazure.com/en-us/downloads/?sdk=net)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 >**Note:** This lab was designed to use Windows 8 Operating System.
 
@@ -64,20 +64,20 @@ Estimated time to complete this lab: **60 minutes**.
 <a name="GettingStarted"></a>
 ### Getting Started: Creating a Service Bus Namespace ###
 
-To follow this lab and complete all the exercises, you first need to create a Windows Azure Service Bus namespace. Once created, it can be used for **all** of the labs that use Windows Azure Service Bus and for your own projects as well.
+To follow this lab and complete all the exercises, you first need to create a Microsoft Azure Service Bus namespace. Once created, it can be used for **all** of the labs that use Microsoft Azure Service Bus and for your own projects as well.
 
 <a name="GettingStartedTask1"></a>
 #### Task 1 - Creating your Service Bus Namespace ####
 
-In this task, you will create a new Windows Azure Service Bus Namespace.
+In this task, you will create a new Microsoft Azure Service Bus Namespace.
 
 1. Navigate to [http://manage.windowsazure.com/](http://manage.windowsazure.com). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
 
 1. Click **Service Bus** within the left pane.
 
- 	![Configuring Windows Azure Service bus](./Images/Configuring-Windows-Azure-Service-bus.png?raw=true "Configuring Windows Azure Service bus")
+ 	![Configuring Microsoft Azure Service bus](./Images/Configuring-Windows-Azure-Service-bus.png?raw=true "Configuring Microsoft Azure Service bus")
  
-	_Configuring Windows Azure Service bus_
+	_Configuring Microsoft Azure Service bus_
 
 1. Create a Service Namespace. A service namespace provides an application boundary for each application exposed through the Service Bus and is used to construct Service Bus endpoints for the application. To create a service namespace, click **Create** on the bottom bar. 
 
@@ -106,9 +106,9 @@ In this task, you will create a new Windows Azure Service Bus Namespace.
 	_Service Bus default keys_
 
  
-You have now created a new Windows Azure namespace for this hands-on lab. To sign in at any time, simply navigate to the Windows Azure Management Portal, click **Sign In** and provide your **Microsoft Account** credentials.
+You have now created a new Microsoft Azure namespace for this hands-on lab. To sign in at any time, simply navigate to the Microsoft Azure Management Portal, click **Sign In** and provide your **Microsoft Account** credentials.
 
-> **Note:** In this lab you will learn how to create and make use of Service Bus Queues and Topics from an ASP.NET MVC Application. You can also create Queues and Topics from the Windows Azure Management Portal, for more information see [Appendix A: Creating Queues and Topics using Windows Azure Management Portal](#appendixA).
+> **Note:** In this lab you will learn how to create and make use of Service Bus Queues and Topics from an ASP.NET MVC Application. You can also create Queues and Topics from the Microsoft Azure Management Portal, for more information see [Appendix A: Creating Queues and Topics using Microsoft Azure Management Portal](#appendixA).
 
 
 <a name="Exercise1"></a>
@@ -139,7 +139,7 @@ In this task, you will create a new Queue into your Service Bus namespace.
  
 	_Launching the service configuration editor_
 
-1. In the **Settings** tab, set _namespaceAddress_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to the ones you previously copied from the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
+1. In the **Settings** tab, set _namespaceAddress_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to the ones you previously copied from the [Microsoft Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
 
 	![Updating settings to the UsingQueues.Web Web Role](./Images/Updating-settings-to-the-UsingQueues.Web-Web-Role.png?raw=true "Updating settings to the UsingQueues.Web Web Role")
 
@@ -147,13 +147,13 @@ In this task, you will create a new Queue into your Service Bus namespace.
 
 1. Press **CTRL + S** to save the changes to the Web Role configuration.
 
-1. Next, you will add the required assemblies to the **ASP.NET MVC 4** Web project to connect to the **Windows Azure Service Bus** from your application. In **Solution Explorer**, right-click on **UsingQueues.Web** project node and select **Add Reference.**
+1. Next, you will add the required assemblies to the **ASP.NET MVC 4** Web project to connect to the **Microsoft Azure Service Bus** from your application. In **Solution Explorer**, right-click on **UsingQueues.Web** project node and select **Add Reference.**
 
 1. In the **Reference Manager** dialog, check the **System.Runtime.Serialization** assembly.  Then, select the **Extensions** assemblies from the left pane, check **Microsoft.ServiceBus** and ensure **Microsoft.WindowsAzure.ServiceRuntime** is checked as well. Click **OK** to add the references.
 
 1. Open the **HomeController.cs** file under the **Controllers** folder in the **UsingQueues.Web** project.
 
-1. Add the following namespace directives to declare the Service Bus and the Windows Azure supporting assemblies, and a reference to the **Models** namespace of the Web project, which you will use in the next tasks.
+1. Add the following namespace directives to declare the Service Bus and the Microsoft Azure supporting assemblies, and a reference to the **Models** namespace of the Web project, which you will use in the next tasks.
 
 	(Code Snippet - _Service Bus Messaging - Ex01 - Adding Namespace Directives_ - CS)
 	<!-- mark:1-4 -->
@@ -414,7 +414,7 @@ In the previous task, we instantiate a **QueueClient** in order to send messages
 <a name="Ex1Verification"></a>
 #### Verification ####
 
-You now launch the updated application in the Windows Azure compute emulator to verify that you can create a Queue, send messages to a specific Queue and also receive messages from a Queue.
+You now launch the updated application in the Microsoft Azure compute emulator to verify that you can create a Queue, send messages to a specific Queue and also receive messages from a Queue.
 
 1. In **Visual Studio**, configure the cloud project **UsingQueues** as the StartUp Project. To do this, in the **Solution Explorer**, right-click on **UsingQueues** and then select **Set as StartUp Project**.
 
@@ -474,7 +474,7 @@ In this task, you will learn how to create a new Topic and add several subscript
  
     _Launching the Service Configuration editor_
 
-1. In the **Settings** tab, set _namespaceAddress_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to the ones you previously copied from the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
+1. In the **Settings** tab, set _namespaceAddress_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to the ones you previously copied from the [Microsoft Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
 
  	![Updating settings to the UsingTopics.Web Web Role](./Images/Updating-settings-to-the-UsingTopics.Web-Web-Role.png?raw=true "Updating settings to the UsingTopics.Web Web Role")
  
@@ -746,7 +746,7 @@ In this task, you will learn how to receive messages from a subscription. You wi
 <a name="Ex2Verification"></a>
 #### Verification ####
 
-You will now launch the updated application in the Windows Azure compute emulator to verify that you can create a Topic with subscriptions, send and receive messages. You will verify that each message will go to the subscription that matches the correct filter.
+You will now launch the updated application in the Microsoft Azure compute emulator to verify that you can create a Topic with subscriptions, send and receive messages. You will verify that each message will go to the subscription that matches the correct filter.
 
 1. In **Visual Studio**, configure the cloud project **UsingTopics** as the StartUp Project. To do this, in the **Solution Explorer**, right-click on **UsingTopics** and then select **Set as StartUp Project**.
 
@@ -807,12 +807,12 @@ You will now launch the updated application in the Windows Azure compute emulato
 ---
 
 <a name="appendixA" />
-## Appendix A: Creating Queues and Topics using Windows Azure Management Portal ##
+## Appendix A: Creating Queues and Topics using Microsoft Azure Management Portal ##
 
-In this appendix you will learn how to create Service Bus Queues and Topics using the Windows Azure Management Portal.
+In this appendix you will learn how to create Service Bus Queues and Topics using the Microsoft Azure Management Portal.
 
 <a name="AppendixAQueues" />
-### Creating a Queue using Windows Azure Management Portal ###
+### Creating a Queue using Microsoft Azure Management Portal ###
 
 
 1. Make sure you have a Service Namespace created before continue. If you do not have a service namespace created, go to the [Getting Started](#GettingStarted) section of this lab.
@@ -850,7 +850,7 @@ In this appendix you will learn how to create Service Bus Queues and Topics usin
 	_Created Queue_
 
 <a name="AppendixATopics" />
-### Creating a Topic using Windows Azure Management Portal ###
+### Creating a Topic using Microsoft Azure Management Portal ###
 
 1. If not already open, navigate to  [http://manage.windowsazure.com](http://manage.windowsazure.com/). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
 

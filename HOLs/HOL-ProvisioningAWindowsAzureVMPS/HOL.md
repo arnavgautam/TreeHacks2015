@@ -1,12 +1,12 @@
-﻿<a name="Title" />
-# Provisioning a Windows Azure Virtual Machine (PowerShell) #
+<a name="Title" />
+# Provisioning a Microsoft Azure Virtual Machine (PowerShell) #
 
 ---
 
 <a name="Overview" />
 ## Overview ##
 
-In this lab, you will create a new virtual network and then a new Windows Server 2012 virtual machine from a gallery image using the Windows Azure PowerShell Cmdlets.  The virtual network creation is not necessary to create a new virtual machine from a gallery image, but is necessary to control the IP addresses assigned to the virtual machines or enable VPN connectivity back to a corporate on-premise network.
+In this lab, you will create a new virtual network and then a new Windows Server 2012 virtual machine from a gallery image using the Microsoft Azure PowerShell Cmdlets.  The virtual network creation is not necessary to create a new virtual machine from a gallery image, but is necessary to control the IP addresses assigned to the virtual machines or enable VPN connectivity back to a corporate on-premise network.
 
 >**Note:** If you are following this HOL for a second time, you can skip Exercise 1 and move to Exercise 2 to create an additional virtual machine on the existing virtual network you already created.
 
@@ -25,8 +25,8 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Windows PowerShell 3.0] (http://microsoft.com/powershell/)
-- [Windows Azure PowerShell Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj156055)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Microsoft Azure PowerShell Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj156055)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 >**Note:** In order to run through the complete hands-on lab, you must have network connectivity.
 
@@ -48,18 +48,18 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 <a name="gettingstarted" /></a>
 ### Getting Started: Obtaining Subscription's Credentials ###
 
-In order to complete this lab, you will need your subscription’s secure credentials. Windows Azure lets you download a Publish Settings file with all the information required to manage your account in your development environment.
+In order to complete this lab, you will need your subscription�s secure credentials. Microsoft Azure lets you download a Publish Settings file with all the information required to manage your account in your development environment.
 
 <a name="GSTask1" /></a>
 #### Task 1 - Downloading and Importing a Publish Settings file ####
 
 > **Note:** If you have done these steps in a previous lab on the same computer you can move on to Exercise 1.
 
-In this task, you will log on to the Windows Azure Portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription that you will use in your development environment. Therefore, you will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
+In this task, you will log on to the Microsoft Azure Portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Microsoft Azure Subscription that you will use in your development environment. Therefore, you will import this file using the Microsoft Azure Cmdlets in order to install the certificate and obtain the account information.
 
 1.	Open Internet Explorer and browse to <https://windows.azure.com/download/publishprofile.aspx>.
 
-1.	Sign in using the **Microsoft Account** associated with your **Windows Azure** account.
+1.	Sign in using the **Microsoft Account** associated with your **Microsoft Azure** account.
 
 1.	**Save** the Publish Settings file to your local file system.
 
@@ -67,9 +67,9 @@ In this task, you will log on to the Windows Azure Portal and download the Publi
 
 	_Downloading Publish Settings file_
 
-	> **Note:** The download page shows you how to import the Publish Settings file using the Visual Studio Publish box. This lab will show you how to import it using the Windows Azure PowerShell Cmdlets instead.
+	> **Note:** The download page shows you how to import the Publish Settings file using the Visual Studio Publish box. This lab will show you how to import it using the Microsoft Azure PowerShell Cmdlets instead.
 
-1. Search for **Windows Azure PowerShell** in the Start screen and choose **Run as Administrator**.
+1. Search for **Microsoft Azure PowerShell** in the Start screen and choose **Run as Administrator**.
 
 1.	Change the PowerShell execution policy to **RemoteSigned**. When asked to confirm press **Y** and then **Enter**.
 	
@@ -88,7 +88,7 @@ In this task, you will log on to the Windows Azure Portal and download the Publi
 	> For more information about Execution Policies refer to this TechNet article: <http://technet.microsoft.com/en-us/library/ee176961.aspx>
 
 
-1.	The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Windows Azure Subscription. Replace the placeholder with the path to your Publish Setting file and execute the script.
+1.	The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Microsoft Azure Subscription. Replace the placeholder with the path to your Publish Setting file and execute the script.
 
 	<!-- mark:1 -->
 	````PowerShell
@@ -146,7 +146,7 @@ Estimated time to complete this lab: **30 minutes**.
 <a name="Exercise1" /></a>
 ### Exercise 1: Creating a new Virtual Network ###
 
-The workload on many virtual machines requires persistent IP addresses and self-provided DNS name resolution. The default internal DNS service (iDNS) in Windows Azure is often not an acceptable solution because the IP address assigned to each virtual machine is not persistent. For this solution you will define a virtual network where you can assign the virtual machines to specific subnets.
+The workload on many virtual machines requires persistent IP addresses and self-provided DNS name resolution. The default internal DNS service (iDNS) in Microsoft Azure is often not an acceptable solution because the IP address assigned to each virtual machine is not persistent. For this solution you will define a virtual network where you can assign the virtual machines to specific subnets.
 
 The network configuration used for this lab defines the following:
 
@@ -233,7 +233,7 @@ The next step is to create a new virtual network to your subscription.
 
 	> **Note:** Replace _[YOUR-PATH-TO-FILE]_ placeholder with the full path to the domainvnet.xml file you created in the previous step.
 
-1. Open a browser and go to [https://manage.windowsazure.com/](https://manage.windowsazure.com/). When prompted, login with your **Windows Azure** credentials. In the Windows Azure portal, click **Networks**, and then click **domainvnet**. In the **Dashboard** tab you can see the virtual network that has been added and uses the affinity group you created earlier.
+1. Open a browser and go to [https://manage.windowsazure.com/](https://manage.windowsazure.com/). When prompted, login with your **Microsoft Azure** credentials. In the Microsoft Azure portal, click **Networks**, and then click **domainvnet**. In the **Dashboard** tab you can see the virtual network that has been added and uses the affinity group you created earlier.
 
 	![Verify The Virtual Network Creation](./Images/verify-the-virtual-network-creation.png?raw=true "Verify The Virtual Network Creation")
 
@@ -296,7 +296,7 @@ Exercise 2 contains 1 task:
 
 	> **Note:** The **New-AzureVM** cmdlet will create a new hosted service when the -Location or -AffinityGroup parameter is specified, or will use an existing hosted service when those parameters are not specified. 
 
-1. In the Windows Azure console, in the **Virtual Machines** section, wait a few minutes until the **DC01** virtual machine appears (or press **F5** to refresh the display).
+1. In the Microsoft Azure console, in the **Virtual Machines** section, wait a few minutes until the **DC01** virtual machine appears (or press **F5** to refresh the display).
 
 1. Click the **DC01** name.
 

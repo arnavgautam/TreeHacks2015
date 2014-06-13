@@ -1,5 +1,5 @@
 <a name="Title" />
-# Introduction to Windows Azure Access Control Service 2.0 #
+# Introduction to Microsoft Azure Access Control Service 2.0 #
 
 ---
 <a name="Overview" />
@@ -10,7 +10,7 @@ The emergence of standards is helping to break the silos that traditionally isol
 
 ![A functional view of the Access Control Service](Images/a-functional-view-of-the-access-control-servi.png?raw=true)
 
-Windows Azure Access Control Service (ACS) offers you a way to outsource authentication and decouple your application from the complexity of maintaining direct relationships with all the identity providers you want to tap from. ACS takes care of engaging every identity provider with its own authentication protocol, normalizing the authentication results in a protocol supported by the .NET framework tooling (namely the Windows Identity Foundation technology, or WIF) regardless of where the user is coming from. WIF allows you to elect the ACS as the authentication manager for your application with just few clicks. From that moment on ACS takes care of everything, including providing a UI for the user to choose among all the recognized identity providers. 
+Microsoft Azure Access Control Service (ACS) offers you a way to outsource authentication and decouple your application from the complexity of maintaining direct relationships with all the identity providers you want to tap from. ACS takes care of engaging every identity provider with its own authentication protocol, normalizing the authentication results in a protocol supported by the .NET framework tooling (namely the Windows Identity Foundation technology, or WIF) regardless of where the user is coming from. WIF allows you to elect the ACS as the authentication manager for your application with just few clicks. From that moment on ACS takes care of everything, including providing a UI for the user to choose among all the recognized identity providers. 
 
 Furthermore, ACS offers you greater control over which user attributes should be assigned for every authentication event.  Moreover, in synergy with WIF, those attributes (called claims) can be easily accessed for making authorization decisions without forcing the developer to understand or even be aware of the lower level mechanisms that the authentication protocols entail.
 
@@ -32,7 +32,7 @@ In this hands-on lab, you will learn how to:
 
 The following is required to complete this hands-on lab:
 
-- Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 - [Visual Studio 2012 Professional or Visual Studio 2012 Ultimate][1]
 - [Identity and Access Tools for Visual Studio 2012][2]
 
@@ -80,7 +80,7 @@ Estimated time to complete this lab: **45** minutes.
 In this first exercise you will familiarize yourself with ACS’ basic settings and terminology. The goal is to secure access to a newly created ASP.NET Web site. The Web site will accept users from Google, Yahoo! and Windows Live ID. As you will see in a minute, ACS makes it really easy.
 
 <a name="Ex1Task1" />
-#### Task 1 - Signing-up for Windows Azure Access Control Service and Creating the Service Namespace ####
+#### Task 1 - Signing-up for Microsoft Azure Access Control Service and Creating the Service Namespace ####
 
 In this task you are going to subscribe to ACS.
 
@@ -192,7 +192,7 @@ By now you know that ACS takes care of accepting tokens in different formats fro
 
 	_Switching Web App to use SSL_
 
-	> **Note:** Visual Studio configures your application to serve content through HTTP. However, that would not be suitable for establishing secure sessions, given that it would leave communications unprotected and allow potential attackers to steal cookies and tokens. This is not mandatory during the development phase, as Windows Azure will not strictly enforce use of HTTPS. However, it is always a good practice.
+	> **Note:** Visual Studio configures your application to serve content through HTTP. However, that would not be suitable for establishing secure sessions, given that it would leave communications unprotected and allow potential attackers to steal cookies and tokens. This is not mandatory during the development phase, as Microsoft Azure will not strictly enforce use of HTTPS. However, it is always a good practice.
 
 5.	Right-click the project and choose **Properties**. Choose the **Web** tab on the left, scroll down to the **Use Local IIS Web server** option and paste the HTTPS URL in the **Project Url** field. Save settings (CTRL+S) and close the property tab.
 
@@ -208,7 +208,7 @@ By now you know that ACS takes care of accepting tokens in different formats fro
  
 7.	In the **Identity and Access** window, go to **Providers** tab.
 
-8.	Check the **Use the Windows Azure Access Control Service** option.
+8.	Check the **Use the Microsoft Azure Access Control Service** option.
 
 9.	Click the **Configure** link to configure your ACS namespace.
 	 
@@ -302,7 +302,7 @@ In this task you will generate a new controller to handle logins for unauthentic
 
 1. From the _Choose how to handle unauthenticated requests_ section, select the **Generate a controller in your project to handle the authentication experience at the following address** radio button. Leave the remaining values as they are and click **OK**.
 
-	> **Note:** If a warning displays next to the "Use the Windows Azure Access Control Service" radio button after clicking OK, click the Configure link in the Providers tab and insert your ACS namespace and simmetric key. Then try again.
+	> **Note:** If a warning displays next to the "Use the Microsoft Azure Access Control Service" radio button after clicking OK, click the Configure link in the Providers tab and insert your ACS namespace and simmetric key. Then try again.
 
 	![Generating a Controller to Handle Logins](Images/generating-a-controller-to-handle-logins.png?raw=true)
 

@@ -1,12 +1,12 @@
 <a name="title" />
-# Creating a Mobile Geolocation Backend in PHP with Windows Azure Websites #
+# Creating a Mobile Geolocation Backend in PHP with Microsoft Azure Websites #
 
 ---
 
 <a name="Overview" />
 ## Overview ##
 
-This demonstration shows how to create a PHP backend for a mobile application.  In this case, the website will run in Windows Azure Website and will expose endpoints for finding tagged geocoordinates within a specific radius as well as adding new geocoordinates.
+This demonstration shows how to create a PHP backend for a mobile application.  In this case, the website will run in Microsoft Azure Website and will expose endpoints for finding tagged geocoordinates within a specific radius as well as adding new geocoordinates.
 
 Widows Azure Websites enables developers to quickly get up and running with websites.  Websites may be developed in ASP.NET, Node.js and PHP.  In addition, websites may use SQL or MySQL for data storage.  Deployment can be accomplished in several ways including TFS, FTP, and GIT.
 
@@ -14,7 +14,7 @@ Widows Azure Websites enables developers to quickly get up and running with webs
 ### Goals ###
 In this demo, you will see:
 
-1. How easy is to create a new Web Site in Windows Azure.
+1. How easy is to create a new Web Site in Microsoft Azure.
 
 1. How to add a new table to a MySQL database.
 
@@ -25,8 +25,8 @@ In this demo, you will see:
 <a name="technologies" />
 ### Key Technologies ###
 
-- [Windows Azure Websites](https://www.windowsazure.com/en-us/home/scenarios/web-sites/)
-- [Windows Azure Cloud Storage](https://www.windowsazure.com/en-us/home/features/data-management/)
+- [Microsoft Azure Websites](https://www.windowsazure.com/en-us/home/scenarios/web-sites/)
+- [Microsoft Azure Cloud Storage](https://www.windowsazure.com/en-us/home/features/data-management/)
 
 ---
 
@@ -35,26 +35,26 @@ In this demo, you will see:
 
 This demo is composed of the following segments:
 
-1. [Create a New Web Site Hosted in Windows Azure](#segment1).
+1. [Create a New Web Site Hosted in Microsoft Azure](#segment1).
 1. [Preparing the MySQL Database](#segment2).
 1. [Creating a Cloud Storage account](#segment3).
-1. [Upload an existing PHP Website into the Windows Azure Web Site using GIT](#segment4).
+1. [Upload an existing PHP Website into the Microsoft Azure Web Site using GIT](#segment4).
 1. [Configuring and updating the PHP Website](#segment5).
 
 <a name="segment1" />
-### Create a New Web Site Hosted in Windows Azure ###
+### Create a New Web Site Hosted in Microsoft Azure ###
 
 > **Speaking Point**
 >
-> During this demo we're going to create a Windows Azure Web Site.
+> During this demo we're going to create a Microsoft Azure Web Site.
 >
-> Lets start by opening the browser and accessing to the Windows Azure Management Portal.
+> Lets start by opening the browser and accessing to the Microsoft Azure Management Portal.
 
-1. Open browser, go to the [Windows Azure Management portal](https://manage.windowsazure.com) and sign in using your **Microsoft Account** credentials associated with your subscription.
+1. Open browser, go to the [Microsoft Azure Management portal](https://manage.windowsazure.com) and sign in using your **Microsoft Account** credentials associated with your subscription.
 
 	> **Speaking Point**
 	>
-	> Thanks to the Quick Create option from the Windows Azure Management Portal, we can now get a Web Site working on the cloud just in seconds.
+	> Thanks to the Quick Create option from the Microsoft Azure Management Portal, we can now get a Web Site working on the cloud just in seconds.
 
 1. Click **New | Web Site | Create with Database** on the command bar.
 
@@ -93,7 +93,7 @@ This demo is composed of the following segments:
 >
 > Let's go to the dashboard panel of the Web Site we have just created.
 
-1. Back to the Windows Azure Management Portal, click your Web Site name, under the **Name** column to access the Dashboard.
+1. Back to the Microsoft Azure Management Portal, click your Web Site name, under the **Name** column to access the Dashboard.
 
 	![Accessing the Web Site Dashboard](Images/goToDashboard.png?raw=true "Accessing the Web Site Dashboard")
 
@@ -148,9 +148,9 @@ CREATE TABLE geodata (
 
 > ***Speaking Point***
 >
->The mobile applications we're going to create to connect to this web site will be storing images and videos tied to geopoints.  To store those images and videos, we're going to create a Windows Azure Storage account.
+>The mobile applications we're going to create to connect to this web site will be storing images and videos tied to geopoints.  To store those images and videos, we're going to create a Microsoft Azure Storage account.
 
-1.  Return to the Windows Azure Portal.
+1.  Return to the Microsoft Azure Portal.
 
 1.  Go to New and select Storage.  Enter an available name (e.g. geostorage).
 
@@ -173,11 +173,11 @@ CREATE TABLE geodata (
 	_Storage Keys_
 
 <a name="segment4" />
-### Adding Depedent Libraries and Uploading an existing PHP Website into the Windows Azure Web Site using GIT ###
+### Adding Depedent Libraries and Uploading an existing PHP Website into the Microsoft Azure Web Site using GIT ###
 
 > **Speaking Point**
 >
-> Before we can push our site up to Windows Azure, we need to pull down a couple third party libraries.  This PHP site was built using Silex which is a micro-PHP framework.  Silex allows the site to easily set up web service end points.  Let's go get that library now.
+> Before we can push our site up to Microsoft Azure, we need to pull down a couple third party libraries.  This PHP site was built using Silex which is a micro-PHP framework.  Silex allows the site to easily set up web service end points.  Let's go get that library now.
 
 1.  Open a browser and go to http://silex.sensiolabs.org/
 
@@ -189,11 +189,11 @@ CREATE TABLE geodata (
 
 	> **Speaking Point**
 	>
-	> Now let's get our PHP site ready to push to Windows Azure Websites.
+	> Now let's get our PHP site ready to push to Microsoft Azure Websites.
 	>
 	> Lets go to the dashboard panel of the Web Site we have just created.
 
-1. Back to the Windows Azure Management Portal, click your Web Site name, under the **Name** column to access the Dashboard.
+1. Back to the Microsoft Azure Management Portal, click your Web Site name, under the **Name** column to access the Dashboard.
 
 	![Accessing the Web Site Dashboard](Images/goToDashboard.png?raw=true "Accessing the Web Site Dashboard")
 
@@ -267,14 +267,14 @@ CREATE TABLE geodata (
 1.  Return to the terminal and add a remote repo for your local GIT repository:
 	`git remote add azure https://azurepreviewlive@geolocationtest.scm.azurewebsites.net/geolocationtest.git	`
 
-1.  Push all your changes to Windows Azure:
+1.  Push all your changes to Microsoft Azure:
 	`git push azure master`
 
 1.  Return to your website in the browser and refresh.  The site should load.
 
 > **Speaking Point**
 >
-> Now that the site is running, we just need to complete one more step.  That is to configure our site to use our MySQL database and our Windows Azure storage account.Let's do that and update Windows Azure.
+> Now that the site is running, we just need to complete one more step.  That is to configure our site to use our MySQL database and our Microsoft Azure storage account.Let's do that and update Microsoft Azure.
 
 <a name="segment5" />
 ### Configuring and updating the PHP Website ###
@@ -328,7 +328,7 @@ define("STORAGE_ACCOUNT_KEY", "accountkey");
 1.  Commit your changes:
 	`git commit -m "Updated database configuration"`
 
-1.  Push your changes to Windows Azure:
+1.  Push your changes to Microsoft Azure:
 	`git push azure master`
 
 ---
@@ -336,4 +336,4 @@ define("STORAGE_ACCOUNT_KEY", "accountkey");
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw how to create a web site on Windows Azure, how to push your source code up using GIT, and how to configure and connect to your MySQL database.
+In this demo, you saw how to create a web site on Microsoft Azure, how to push your source code up using GIT, and how to configure and connect to your MySQL database.

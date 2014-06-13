@@ -1,4 +1,4 @@
-﻿# Building Real World Cloud Apps #
+# Building Real World Cloud Apps #
 
 ## Getting Started ##
 
@@ -10,9 +10,9 @@ In order to execute this demo you need to set up your environment.
 
 - Visual Studio 2013
 
-- Windows Azure PowerShell
+- Microsoft Azure PowerShell
 
-- Windows Azure Active Directory
+- Microsoft Azure Active Directory
 
 - New Relic account
 
@@ -22,7 +22,7 @@ In order to execute this demo you need to set up your environment.
 
 1. Open Internet Explorer, go to https://windows.azure.com/download/publishprofile.aspx and sign in using your Microsoft Account credentials. Save the publish settings file, you will use it in the following steps.
 
-1. Open **Windows Azure Powershell** as Administrator.
+1. Open **Microsoft Azure Powershell** as Administrator.
 
 1. Enable Powershell to run all scripts by executing the following command:
 
@@ -69,11 +69,11 @@ In order to execute this demo you need to set up your environment.
 1. Open **Web.config** on **.\Source\MyFixIt** and locate the **appSettings** section. Update the **StorageConnectionString** attribute with the storage account created with the pwoershell script.
 
 
-#### Configuring Windows Azure Active Directory Authentication ####
+#### Configuring Microsoft Azure Active Directory Authentication ####
 
-1. Make sure you create an application in your **Windows Azure Active Directory** to allow authentication for **MyFixIt** app. 
+1. Make sure you create an application in your **Microsoft Azure Active Directory** to allow authentication for **MyFixIt** app. 
 
-1. Open **Web.config** on **.\Source\MyFixIt** and locate the **appSettings** section. Update the **ida:FederationMetadataLocation**, **ida:Realm** and **ida:AudienceUri** attributes with your custom Windows Azure Active Directory settings.
+1. Open **Web.config** on **.\Source\MyFixIt** and locate the **appSettings** section. Update the **ida:FederationMetadataLocation**, **ida:Realm** and **ida:AudienceUri** attributes with your custom Microsoft Azure Active Directory settings.
 
 	````XML
 	<appSettings>
@@ -83,7 +83,7 @@ In order to execute this demo you need to set up your environment.
 	</appSettings>
 	````
 
-1. Scroll down to the **system.identityModel** section and update the **audienceUri** value with your custom Windows Azure Active Directory audience uri.
+1. Scroll down to the **system.identityModel** section and update the **audienceUri** value with your custom Microsoft Azure Active Directory audience uri.
 
 	````XML
 	 <system.identityModel>
@@ -99,7 +99,7 @@ In order to execute this demo you need to set up your environment.
 	````
 
 
-1. Scroll down to the **system.identityModel.services** section and update the **audienceUri** value with your custom Windows Azure Active Directory audience uri.
+1. Scroll down to the **system.identityModel.services** section and update the **audienceUri** value with your custom Microsoft Azure Active Directory audience uri.
 
 	````XML
 	<system.identityModel.services>
@@ -122,13 +122,13 @@ In order to execute this demo you need to set up your environment.
 	</configuration>
 	````
 
-#### Deploying the apps to Windows Azure ####
+#### Deploying the apps to Microsoft Azure ####
 
-1. Open **Windows Azure Powershell** as Administrator.
+1. Open **Microsoft Azure Powershell** as Administrator.
 
 1. Change directory to **.\Source\MyFixIt\Automation**.
 
-1. Execute the following script to deploy **MyFixIt** to Windows Azure Website:
+1. Execute the following script to deploy **MyFixIt** to Microsoft Azure Website:
 
 	````PowerShell
 	.\deploy-azure-website-devbox.ps1 ..\MyFixIt\MyFixIt.csproj -Launch

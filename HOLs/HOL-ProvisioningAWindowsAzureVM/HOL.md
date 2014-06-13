@@ -1,10 +1,10 @@
-﻿<a name="Provisioning a Windows Azure VM" />
-# Provisioning a Windows Azure VM #
+<a name="Provisioning a Microsoft Azure VM" />
+# Provisioning a Microsoft Azure VM #
 
 ---
 <a name="Overview" /></a>
 ## Overview ##
-In this lab, you will create a new virtual network and then a new Windows Server 2012 VM from a gallery image using the Windows Azure management console in your web browser.  The virtual network creation is not necessary to create a new virtual machine from a gallery image, but is necessary to control the IP addresses assigned to the virtual machines or enable VPN connectivity back to a corporate on-premise network.
+In this lab, you will create a new virtual network and then a new Windows Server 2012 VM from a gallery image using the Microsoft Azure management console in your web browser.  The virtual network creation is not necessary to create a new virtual machine from a gallery image, but is necessary to control the IP addresses assigned to the virtual machines or enable VPN connectivity back to a corporate on-premise network.
 
 >**Note:** If you are following this HOL for a second time, you can skip Exercise 1 and move to Exercise 2 to create an additional VM on the existing virtual network you already created.
 
@@ -21,7 +21,7 @@ In this hands-on lab, you will learn how to:
 
 The following is required to complete this hands-on lab:
 
-- A Windows Azure subscription [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 >**Note:** In order to run through the complete hands-on lab, you must have network connectivity. 
 
@@ -41,7 +41,7 @@ Estimated time to complete this lab: 30 minutes
 <a name="Exercise1" /></a>
 ### Exercise 1: Create a new Virtual Network ###
 
-The workload on many VMs requires persistent IP addresses and self-provided DNS name resolution. The default internal DNS service (iDNS) in Windows Azure is often not an acceptable solution because the IP address assigned to each virtual machine is not persistent. For this solution you will define a virtual network where you can assign the virtual machines to specific subnets. 
+The workload on many VMs requires persistent IP addresses and self-provided DNS name resolution. The default internal DNS service (iDNS) in Microsoft Azure is often not an acceptable solution because the IP address assigned to each virtual machine is not persistent. For this solution you will define a virtual network where you can assign the virtual machines to specific subnets. 
 
 The network configuration used for this lab defines the following:
 
@@ -58,7 +58,7 @@ Exercise 1 contains 1 task:
 
 The first task is to create a new Virtual Network to your subscription with a new affinity group.
 
-1. Open a browser a go to [https://manage.windowsazure.com/](https://manage.windowsazure.com/). When prompted, login with your **Windows Azure** credentials. In the Windows Azure Portal, click **New**, select **Networks** | **Virtual Network** and then click **Custom Create**.
+1. Open a browser a go to [https://manage.windowsazure.com/](https://manage.windowsazure.com/). When prompted, login with your **Microsoft Azure** credentials. In the Microsoft Azure Portal, click **New**, select **Networks** | **Virtual Network** and then click **Custom Create**.
 
 	![Virtual Network custom create](images/virtual-network-custom-create.png?raw=true)
 
@@ -95,7 +95,7 @@ Exercise 2 contains 1 task:
 <a name="Ex2Task1" /></a>
 #### Task 1 - Create a new Virtual Machine ####
 
-1. In the Windows Azure portal, select the **Virtual Machines** section.
+1. In the Microsoft Azure portal, select the **Virtual Machines** section.
 
 	![Selecting the Virtual Machines section](./images/selecting-the-virtual-machines-section.png?raw=true "Selecting the Virtual Machines section")
 

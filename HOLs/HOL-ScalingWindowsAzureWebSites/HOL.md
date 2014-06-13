@@ -1,18 +1,18 @@
 <a name="HOLTitle"></a>
-# Automatically Scaling Web Applications on Windows Azure Websites #
+# Automatically Scaling Web Applications on Microsoft Azure Websites #
 
 ---
 <a name="Overview"></a>
 ## Overview ##
 
-Windows Azure provides a set of features that allows you to monitor and scale your Web Site whenever is required. Moving static assets to a Storage account will leverage the load of your Web Site and with Auto-Scaling, your Windows Azure Websites will automatically scale accordingly with their CPU load. Additionally, you can use Endpoint monitoring to measure the response time of your Web site from different locations.
+Microsoft Azure provides a set of features that allows you to monitor and scale your Web Site whenever is required. Moving static assets to a Storage account will leverage the load of your Web Site and with Auto-Scaling, your Microsoft Azure Websites will automatically scale accordingly with their CPU load. Additionally, you can use Endpoint monitoring to measure the response time of your Web site from different locations.
 
 <a name="Objectives"></a>
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-- Move static assets from your Web Site to your Windows Azure Storage account.
+- Move static assets from your Web Site to your Microsoft Azure Storage account.
 - Configure an Endpoint Monitoring for your Storage account.
 - Set up Auto-Scaling for your Web Site.
 
@@ -22,7 +22,7 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Microsoft Visual Studio 2012 Express for Web][1]
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 [1]: http://msdn.microsoft.com/vstudio/products/
 
@@ -43,25 +43,25 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 
 This hands-on lab includes the following exercises:
 
-1. [Moving Static Assets to Windows Azure Storage](#Exercise1)
+1. [Moving Static Assets to Microsoft Azure Storage](#Exercise1)
 1. [Configure Endpoint Monitoring](#Exercise2)
 1. [Setting up Auto-Scaling for your Site](#Exercise3)
 
 Estimated time to complete this lab: **45** minutes.
 
 <a name="GettingStarted"></a>
-### Getting Started: Publishing Web Site to Windows Azure ###
+### Getting Started: Publishing Web Site to Microsoft Azure ###
 
-First, you will need to deploy a Web Site to Windows Azure. An MVC 4 Application is provided in the **Assets** folder of this lab.
+First, you will need to deploy a Web Site to Microsoft Azure. An MVC 4 Application is provided in the **Assets** folder of this lab.
 
 <a name="GettingStartedTask1"></a>
-#### Task 1 - Creating a New Web Site from the Windows Azure Portal ####
+#### Task 1 - Creating a New Web Site from the Microsoft Azure Portal ####
 
-1. Go to the [Windows Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
+1. Go to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
 
-	![Log on to Windows Azure portal](Images/logging-azure-portal.png?raw=true "Log on to the Windows Azure portal")
+	![Log on to Microsoft Azure portal](Images/logging-azure-portal.png?raw=true "Log on to the Microsoft Azure portal")
 
-	_Log on to the Windows Azure Management Portal_
+	_Log on to the Microsoft Azure Management Portal_
 
 1. Click **New** on the command bar.
 
@@ -79,7 +79,7 @@ First, you will need to deploy a Web Site to Windows Azure. An MVC 4 Application
 
 1. In the **Dashboard** page, under the **quick glance** section, click the **Download the publish profile** link.
 
-1. Download the publish profile file to a known location. Further in this exercise you will see how to use this file to publish a web application to a Windows Azure Websites from Visual Studio.
+1. Download the publish profile file to a known location. Further in this exercise you will see how to use this file to publish a web application to a Microsoft Azure Websites from Visual Studio.
 
 	![Saving the publish profile file](Images/save-link.png?raw=true "Saving the publish profile")
 	
@@ -108,19 +108,19 @@ First, you will need to deploy a Web Site to Windows Azure. An MVC 4 Application
 
 1. In the **Preview** page, click **Publish**.
 
-1. Once the publishing process finishes, your default browser will open the published web site. Verify that the web site was successfully published in Windows Azure.
+1. Once the publishing process finishes, your default browser will open the published web site. Verify that the web site was successfully published in Microsoft Azure.
 
 <a name="Exercise1"></a>
-### Exercise 1: Moving Static Assets to Windows Azure Storage ###
+### Exercise 1: Moving Static Assets to Microsoft Azure Storage ###
 
-In this exercise, you will move your Web Site assets, such as Images and videos, to your Windows Azure Storage account and redirect your links to target the new location.
+In this exercise, you will move your Web Site assets, such as Images and videos, to your Microsoft Azure Storage account and redirect your links to target the new location.
 
 <a name="Ex1Task1" />
 #### Task 1 - Creating a Storage Account from Management Portal ####
 
 In this task you will learn how to create a new Storage Account using the Management Portal.
 
-1. Navigate to http://manage.windowsazure.com using a Web browser and sign in using the Microsoft Account associated with your Windows Azure account.
+1. Navigate to http://manage.windowsazure.com using a Web browser and sign in using the Microsoft Account associated with your Microsoft Azure account.
 
 1. In the menu located at the bottom, select **New | Data Services | Storage | Quick Create** to start creating a new Storage Account. Enter a unique name for the account and select a **Region** from the list. Click **Create Storage Account** to continue.
 
@@ -214,7 +214,7 @@ In this task you will learn how to create a new Storage Account using the Manage
 <a name="Ex1Task3" />
 #### Task 3 - Updating Assets to target Storage ####
 
-In this task, you will update the location of the static assets in your Web Application to use the Windows Azure Storage blob URL instead.
+In this task, you will update the location of the static assets in your Web Application to use the Microsoft Azure Storage blob URL instead.
 
 1. Go back to **Visual Studio** and open the **Index** view under the **Views** folder.
 
@@ -239,7 +239,7 @@ In this task, you will update the location of the static assets in your Web Appl
 <a name="Exercise2"></a>
 ### Exercise 2: Configuring Endpoint Monitoring ###
 
-In this exercise, you will configure endpoint monitoring for your Windows Azure Web Site. Endpoint monitoring configures web tests from geo-distributed locations that test response time and uptime of web URLs. The test performs an HTTP get operation on the web URL to determine the response time and uptime from each location. Each configured location runs a test every five minutes.
+In this exercise, you will configure endpoint monitoring for your Microsoft Azure Web Site. Endpoint monitoring configures web tests from geo-distributed locations that test response time and uptime of web URLs. The test performs an HTTP get operation on the web URL to determine the response time and uptime from each location. Each configured location runs a test every five minutes.
 
 > **Note:** Before switching a web site from the free web site mode to the standard web site mode, you must first remove spending caps in place for your Web Site subscription. For more information on shared and standard mode pricing, see [Pricing Details](https://www.windowsazure.com/en-us/pricing/details/).
 
@@ -301,7 +301,7 @@ In this exercise, you will configure endpoint monitoring for your Windows Azure 
 <a name="Exercise3"></a>
 ### Exercise 3: Setting up Auto-Scaling for your Site ###
 
-In this exercise, you will enable auto scaling for your Windows Azure Web Site. You can configure the Web site to auto scale when the CPU reaches a target percentage, automatically increasing the instance count. You can configure the minimum and maximum number of instances.
+In this exercise, you will enable auto scaling for your Microsoft Azure Web Site. You can configure the Web site to auto scale when the CPU reaches a target percentage, automatically increasing the instance count. You can configure the minimum and maximum number of instances.
 
 <a name="Ex3Task1" />
 #### Task 1 - Enabling Auto-Scaling ####
@@ -316,7 +316,7 @@ In this exercise, you will enable auto scaling for your Windows Azure Web Site. 
 
 1. From the instance count slider, select the minimum and maximum instances that you want to target for your Web site. Change the target CPU range in order to increase or decrease the number of running instances. This automatically adds or removes an instance when the threshold is reached.
 
-	> **Note:** Windows Azure checks the CPU of your web site once every five minutes and adds instances as needed at that point in time. If CPU usage is low, Windows Azure will remove instances once every two hours to ensure that your website remains performant. Generally, putting the minimum instance count at 1 is appropriate. However, if you have sudden usage spikes on your web site, be sure that you have a sufficient minimum number of instances to handle the load. 
+	> **Note:** Microsoft Azure checks the CPU of your web site once every five minutes and adds instances as needed at that point in time. If CPU usage is low, Microsoft Azure will remove instances once every two hours to ensure that your website remains performant. Generally, putting the minimum instance count at 1 is appropriate. However, if you have sudden usage spikes on your web site, be sure that you have a sufficient minimum number of instances to handle the load. 
 
 	![websites-automatically-scaling](Images/websites-automatically-scaling.png?raw=true)
 
@@ -331,6 +331,6 @@ In this exercise, you will enable auto scaling for your Windows Azure Web Site. 
 
 By completing this hands-on lab you learned the following:
 
-* Moving static assets from your Web site to Windows Azure Storage.
+* Moving static assets from your Web site to Microsoft Azure Storage.
 * Configure endpoint monitoring to measure the availability and response time of your deployed Web site from different locations.
-* Configure Auto-Scaling for Windows Azure Websites by changing the range of CPU target and the instance count.
+* Configure Auto-Scaling for Microsoft Azure Websites by changing the range of CPU target and the instance count.

@@ -1,11 +1,11 @@
-ï»¿<a name="HOLTitle"></a>
-# Creating a Windows Azure Mobile Service with a Custom API #
+<a name="HOLTitle"></a>
+# Creating a Microsoft Azure Mobile Service with a Custom API #
 
 ---
 <a name="Overview"></a>
 ## Overview ##
 
-Windows Azure Mobile Services enables you to define custom business logic that runs on the server. This logic is provided as JavaScript code that is stored and executed on the server. In Mobile Services, a server script is either registered to an insert, read, update, or delete operation on a given table or is assigned to a scheduled job. Server scripts have a main function along with optional helper functions. The signature of the main function depends on the whether the script is registered as a custom API, to a table operation, or to run as a scheduled job.
+Microsoft Azure Mobile Services enables you to define custom business logic that runs on the server. This logic is provided as JavaScript code that is stored and executed on the server. In Mobile Services, a server script is either registered to an insert, read, update, or delete operation on a given table or is assigned to a scheduled job. Server scripts have a main function along with optional helper functions. The signature of the main function depends on the whether the script is registered as a custom API, to a table operation, or to run as a scheduled job.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -23,14 +23,14 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Visual Studio Express 2012 for Windows 8](http://www.microsoft.com/visualstudio/) or higher
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 <a name="Setup"/>
 ### Setup ###
 
 In order to execute the exercises in this hands-on lab you need to set up your environment.
 
-1. Open a Windows Explorer window and browse to the labâ€™s **Source** folder.
+1. Open a Windows Explorer window and browse to the lab’s **Source** folder.
 
 1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.
 
@@ -65,11 +65,11 @@ Estimated time to complete this lab: **60** minutes.
 In this exercise, you will create a new Mobile services and a Custom API for that service, which will be consumed in a Windows Store application.
 
 <a name="Ex1Task1"></a>
-#### Task 1 â€“ Creating a new Mobile Service ####
+#### Task 1 – Creating a new Mobile Service ####
 
-In this task, you will create a new Mobile Service using the Windows Azure Portal.
+In this task, you will create a new Mobile Service using the Microsoft Azure Portal.
 
-1. Log into the [Windows Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services.
+1. Log into the [Microsoft Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services.
 
 2. Click **+New** in the bottom toolbar.
 
@@ -139,7 +139,7 @@ Once you have created your mobile service, you can follow an easy quick start in
 
 
 <a name="Ex1Task3"></a>
-#### Task 3 â€“ Creating a Custom API for your mobile service ####
+#### Task 3 – Creating a Custom API for your mobile service ####
 
 In this task, you will create a custom API that will be consumed by your Windows Store application.
 
@@ -211,7 +211,7 @@ In this task, you will create a custom API that will be consumed by your Windows
 In this exercise, you are going to create custom APIs that manipulates data, and others that send pull notifications. Lastly, you will edit the permissions of the APIs to restrict its access.
 
 <a name="Ex2Task1"></a>
-#### Task 1 â€“ Manipulating Data ####
+#### Task 1 – Manipulating Data ####
 
 In this task, you will create a custom API that is used to query and add data into the mobile service database.
 
@@ -281,7 +281,7 @@ In this task, you will create a custom API that is used to query and add data in
 > **Note:** You are going to test this functionality at a later stage.
 
 <a name="Ex2Task2"></a>
-#### Task 2 â€“ Sending Pull Notifications ####
+#### Task 2 – Sending Pull Notifications ####
 
 In this task, you will create a custom API that is used to get pull notifications for your mobile service application.
 
@@ -349,7 +349,7 @@ To get the **push** object inside a custom API script, you can use **request.ser
 In the following exercise, you will modify the Windows Store application to start periodic notifications that update the live tile by requesting the new custom API.
 
 <a name="Ex2Task3"></a>
-#### Task 3 â€“ Authentication ####
+#### Task 3 – Authentication ####
 
 In this task, you will learn how to use authentication in custom APIs.
 
@@ -417,7 +417,7 @@ In this task, you will learn how to use authentication in custom APIs.
 In this exercise, you will wire up your Windows Store application to the different APIs that you have created in the previous exercises. 
 
 <a name="Ex3Task1"></a>
-#### Task 1 â€“ Invoking the Custom API to add new data ####
+#### Task 1 – Invoking the Custom API to add new data ####
 
 In this task, you will call the custom API created in exercise 2 using the Mobile Services SDK to add new items to the _todoitems_ table. 
 
@@ -521,7 +521,7 @@ In this task, you will call the custom API created in exercise 2 using the Mobil
 	> **Note:** As this custom API is invoked using the Mobile Services SDK, the application key is passed automatically in every request. Therefore this custom API works with the permissions set to **Anyone with the Application Key**.
 
 <a name="Ex3Task2"></a>
-#### Task 2 â€“ Using pull notifications to update the application live tile  ####
+#### Task 2 – Using pull notifications to update the application live tile  ####
 
 In this task, you will call the custom API to retrieve live tile updates for your Windows Store application.
 

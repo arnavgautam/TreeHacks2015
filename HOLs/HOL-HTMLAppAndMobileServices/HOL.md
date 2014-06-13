@@ -1,11 +1,11 @@
-ï»¿<a name="HOLTitle"></a>
-# Getting Started with Windows Azure Mobile Services and HTML Applications #
+<a name="HOLTitle"></a>
+# Getting Started with Microsoft Azure Mobile Services and HTML Applications #
 
 ---
 <a name="Overview"></a>
 ## Overview ##
 
-Windows Azure Mobile Services is a Windows Azure service offering designed to make it easy to create highly-functional mobile apps using Windows Azure. Mobile Services brings together a set of Windows Azure services that enable backend capabilities for your apps. These capabilities includes simple provisioning and management of tables for storing app data, integration with notification services, integration with well-known identity providers for authentication, among others.
+Microsoft Azure Mobile Services is a Microsoft Azure service offering designed to make it easy to create highly-functional mobile apps using Microsoft Azure. Mobile Services brings together a set of Microsoft Azure services that enable backend capabilities for your apps. These capabilities includes simple provisioning and management of tables for storing app data, integration with notification services, integration with well-known identity providers for authentication, among others.
 
 The following is a functional representation of the Mobile Services architecture.
 
@@ -13,7 +13,7 @@ The following is a functional representation of the Mobile Services architecture
 
 _Mobile Services Diagram_
 
-This hands-on lab shows you how to add a cloud-based backend service to an HTML app using Windows Azure Mobile Services. You will create both a new mobile service and a simple To do list app that stores app data in the new mobile service. Also you will perform server side validations and user authentication using Mobile Services features.
+This hands-on lab shows you how to add a cloud-based backend service to an HTML app using Microsoft Azure Mobile Services. You will create both a new mobile service and a simple To do list app that stores app data in the new mobile service. Also you will perform server side validations and user authentication using Mobile Services features.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -34,10 +34,10 @@ The following is required to complete this hands-on lab:
 	- On **MacOS X**: Python, which should already be installed.
 	- On **Linux**: Python. You must install the latest version of Python.
 - A web browser that supports HTML5
-- A Windows Azure subscription account that has the Windows Azure Mobile Services feature enabled
+- A Microsoft Azure subscription account that has the Microsoft Azure Mobile Services feature enabled
 
-	>**Note:** If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Windows Azure Free Trial](http://aka.ms/WATK-FreeTrial).
-	If you have an existing account but need to enable the Windows Azure Mobile Services preview, see [Enable Windows Azure preview features](http://www.windowsazure.com/en-us/develop/mobile/tutorials/create-a-windows-azure-account/#enable).
+	>**Note:** If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Microsoft Azure Free Trial](http://aka.ms/WATK-FreeTrial).
+	If you have an existing account but need to enable the Microsoft Azure Mobile Services preview, see [Enable Microsoft Azure preview features](http://www.windowsazure.com/en-us/develop/mobile/tutorials/create-a-windows-azure-account/#enable).
 
 [1]: http://www.microsoft.com/web/gallery/install.aspx?appid=IISExpress
 
@@ -46,7 +46,7 @@ The following is required to complete this hands-on lab:
 
 If you are performing this hands-on lab using Windows, you can follow these steps to check for dependencies. Otherwise, check the **Prerequisites** list above.
 
-1. Open a Windows Explorer window and browse to the labâ€™s **Source** folder.
+1. Open a Windows Explorer window and browse to the lab’s **Source** folder.
 
 1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment.
 
@@ -67,7 +67,7 @@ Estimated time to complete this lab: **45** minutes.
 <a name="Exercise1" />
 ## Exercise 1: Creating Your First Mobile Service ##
 
-In this exercise use the quick start within the portal to quickly demonstrate the structured storage capability of Windows Azure Mobile services.
+In this exercise use the quick start within the portal to quickly demonstrate the structured storage capability of Microsoft Azure Mobile services.
 
 A screenshot from the completed app is below:
 
@@ -78,7 +78,7 @@ A screenshot from the completed app is below:
 ### Task 1 - Creating a New Mobile Service ###
 Follow these steps to create a new mobile service.
 
-1. Log into the [Windows Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services.
+1. Log into the [Microsoft Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services.
 
 1. At the bottom of the navigation pane, click **NEW**.
 
@@ -119,7 +119,7 @@ _Mobile Service Ready_
 <a name="Ex1Task2" />
 ### Task 2 - Creating a New HTML App ###
 
-Once you have created your mobile service, you can follow an easy quickstart in the Windows Azure Management Portal to either create a new app or modify an existing app to connect to your mobile service.
+Once you have created your mobile service, you can follow an easy quickstart in the Microsoft Azure Management Portal to either create a new app or modify an existing app to connect to your mobile service.
 
 In this task you will create a new HTML app that is connected to your mobile service.
 
@@ -167,7 +167,7 @@ The final stage of this exercise is to host and run your new app on your local c
 
 	_Creating a New Task_
 
-	This sends a POST request to the new mobile service hosted in Windows Azure. Data from the request is inserted into the TodoItem table. Items stored in the table are returned by the mobile service, and the data is displayed in the second column in the app.
+	This sends a POST request to the new mobile service hosted in Microsoft Azure. Data from the request is inserted into the TodoItem table. Items stored in the table are returned by the mobile service, and the data is displayed in the second column in the app.
 
 	> **Note:** In the next task you will review the code that accesses your mobile service to query and insert data, which is found in the app.js file.
 
@@ -183,14 +183,14 @@ The final stage of this exercise is to host and run your new app on your local c
 
 	_TodoItems Table Data_
 
-	>**Note:** Mobile Services simplifies the process of storing data in a SQL Database. By default, you donâ€™t need to predefine the schema of tables in your database. Mobile Services automatically adds columns to a table based on the data you insert. To change this dynamic schema behavior, use the Dynamic Schema setting on the Configure tab. It is recommended that you disable dynamic schema support before publicly releasing your app.
+	>**Note:** Mobile Services simplifies the process of storing data in a SQL Database. By default, you don’t need to predefine the schema of tables in your database. Mobile Services automatically adds columns to a table based on the data you insert. To change this dynamic schema behavior, use the Dynamic Schema setting on the Configure tab. It is recommended that you disable dynamic schema support before publicly releasing your app.
 	>
 	> ![dynamic schema](Images/dynamic-schema.png?raw=true "dynamic schema")
 
 <a name="Ex1Task4" />
 ### Task 4 - Exploring your App Code ###
 
-In this task you will explore To do list application code and see how simple the Windows Azure Mobile Services Client SDK makes it to interact with Windows Azure Mobile Services.
+In this task you will explore To do list application code and see how simple the Microsoft Azure Mobile Services Client SDK makes it to interact with Microsoft Azure Mobile Services.
 
 1. Open **index.html** using a text editor. The file is located in the folder where you've extracted the application files. The file imports **MobileServices.Web-1.0.0.min.js** from your mobile services web page and the **app.js** file that is located in the same folder of **index.hml**
 	
@@ -200,7 +200,7 @@ In this task you will explore To do list application code and see how simple the
 	<script src='app.js'></script>
 	````
 
-1. Open **app.js** using a text editor. Check the MobileServiceClient class. This is the key class provided by the client SDK that provides a way for your application to interact with Windows Azure Mobile Services. The first parameter in the constructor is the Mobile Service endpoint and the second parameter is the Application Key for your Mobile Service.
+1. Open **app.js** using a text editor. Check the MobileServiceClient class. This is the key class provided by the client SDK that provides a way for your application to interact with Microsoft Azure Mobile Services. The first parameter in the constructor is the Mobile Service endpoint and the second parameter is the Application Key for your Mobile Service.
 
 	Additionally, the **getTable()** function creates a proxy object (todoItemTable) for the SQL Database TodoItem.
  
@@ -256,7 +256,7 @@ In this task you will explore To do list application code and see how simple the
 <a name="Exercise2"/>
 ## Exercise 2: Validating Data Using Server Scripts ##
 
-This exercise shows you how to leverage server scripts in Windows Azure Mobile Services. Server scripts are registered in a mobile service and can be used to perform a wide range of operations on data being inserted and updated, including validation and data modification. In this exercise, you will define and register server scripts that validate and modify data. Because the behavior of server side scripts often affects the client, you will also update your HTML app to take advantage of these new behaviors.
+This exercise shows you how to leverage server scripts in Microsoft Azure Mobile Services. Server scripts are registered in a mobile service and can be used to perform a wide range of operations on data being inserted and updated, including validation and data modification. In this exercise, you will define and register server scripts that validate and modify data. Because the behavior of server side scripts often affects the client, you will also update your HTML app to take advantage of these new behaviors.
 
 This exercise requires that you've completed [Exercise 1](#Exercise1).
 
@@ -268,7 +268,7 @@ This exercise requires that you've completed [Exercise 1](#Exercise1).
 
 It is always a good practice to validate the length of data that is submitted by users. In this task, you will register a script that validates the length of string data sent to the mobile service and rejects strings that are too long, in this case longer than 10 characters.
 
-1.	Log into the [Windows Azure Management Portal] (https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
+1.	Log into the [Microsoft Azure Management Portal] (https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
 
 	![Viewing the Mobile Services](Images/viewing-the-mobile-services.png?raw=true "Viewing the Mobile Services")
 
@@ -342,7 +342,7 @@ Now that the mobile service is validating data and sending error responses, you 
 <a name="Exercise3"/>
 ## Exercise 3: Getting Started with Authentication ##
 
-This exercise shows you how to authenticate users in Windows Azure Mobile Services from your HTML app. In this exercise, you add authentication to the quickstart project using an identity provider that is supported by Mobile Services. After being successfully authenticated and authorized by Mobile Services, the user ID value is displayed.
+This exercise shows you how to authenticate users in Microsoft Azure Mobile Services from your HTML app. In this exercise, you add authentication to the quickstart project using an identity provider that is supported by Mobile Services. After being successfully authenticated and authorized by Mobile Services, the user ID value is displayed.
 
 This exercise requires that you've completed [Exercise 1](#Exercise1).
 
@@ -351,7 +351,7 @@ This exercise requires that you've completed [Exercise 1](#Exercise1).
 
 To be able to authenticate users, you must register your app with an identity provider. You must then register the provider-generated client secret with Mobile Services.
 
-1.	Log on to the [Windows Azure Management Portal] (https://manage.windowsazure.com/), click **Mobile Services**, and then click your mobile service.
+1.	Log on to the [Microsoft Azure Management Portal] (https://manage.windowsazure.com/), click **Mobile Services**, and then click your mobile service.
 
 	![Viewing the Mobile Services](Images/viewing-the-mobile-services.png?raw=true "Viewing the Mobile Services")
 

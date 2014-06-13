@@ -1,14 +1,14 @@
-﻿# Building Windows Azure Cloud Services with Cache Service #
+# Building Microsoft Azure Cloud Services with Cache Service #
 
 ## Hands-on Lab ##
 
 ### Introduction ###
 
-Hands-On Labs are sets of step-by-step guides that are designed to help you learn how to use key Windows Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
+Hands-On Labs are sets of step-by-step guides that are designed to help you learn how to use key Microsoft Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
 
-In this lab, you will learn how easy it is to enable Cache Service on your Cloud Services roles, how to use Cache Service to provide high performance in-memory caching to your Cloud Services, and how to use WACEL as a high-level data structure built on top of Windows Azure Table Storage.
+In this lab, you will learn how easy it is to enable Cache Service on your Cloud Services roles, how to use Cache Service to provide high performance in-memory caching to your Cloud Services, and how to use WACEL as a high-level data structure built on top of Microsoft Azure Table Storage.
 
-> **Note:** You can download the latest build of the Windows Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
+> **Note:** You can download the latest build of the Microsoft Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
 
 ### Repository Structure ###
 

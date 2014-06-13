@@ -1,19 +1,19 @@
-﻿<a name="title" />
-# Deploying a Hybrid Network with Windows Azure Virtual Network #
+<a name="title" />
+# Deploying a Hybrid Network with Microsoft Azure Virtual Network #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-Click through demonstration of creating a Windows Azure site to site Virtual Network with a Cisco ASA 5505.
+Click through demonstration of creating a Microsoft Azure site to site Virtual Network with a Cisco ASA 5505.
 
 
 
 <a name="technologies" />
 ### Key Technologies ###
 
-- Windows Azure subscription - you can sign up for free trial [here][1]
-- Windows Azure Virtual Machines 
+- Microsoft Azure subscription - you can sign up for free trial [here][1]
+- Microsoft Azure Virtual Machines 
 
 [1]: http://bit.ly/WindowsAzureFreeTrial
 [2]: http://go.microsoft.com/?linkid=9811175&clcid=0x409

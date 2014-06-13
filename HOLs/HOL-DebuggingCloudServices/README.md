@@ -1,14 +1,14 @@
-﻿# Debugging Applications in Windows Azure #
+# Debugging Applications in Microsoft Azure #
 
 ## Hands-On Lab ##
 
 ### Introduction ###
 
-Hands-on labs are sets of step-by-step guides that are designed to help you learn how to use key Windows Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
+Hands-on labs are sets of step-by-step guides that are designed to help you learn how to use key Microsoft Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
 
-This hands-on lab is a step-by-step guide that is designed to help you debug a simple cloud service application by taking advantage of the different debugging techniques provided by Visual Studio and Windows Azure.
+This hands-on lab is a step-by-step guide that is designed to help you debug a simple cloud service application by taking advantage of the different debugging techniques provided by Visual Studio and Microsoft Azure.
 
-> **Note:** You can download the latest build of the Windows Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
+> **Note:** You can download the latest build of the Microsoft Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
 
 ### Repository Structure ###
 

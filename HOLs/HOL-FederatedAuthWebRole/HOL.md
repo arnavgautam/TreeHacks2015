@@ -1,30 +1,30 @@
 <a name="HOLTitle"></a>
-# Federated Authentication in a Windows Azure Cloud Service #
+# Federated Authentication in a Microsoft Azure Cloud Service #
 
 ---
 
 <a name="Overview"></a>
 ## Overview ##
 
-This hands-on lab provides step-by-step guides for hosting in Windows Azure a Cloud Service accepting identities from an external identity provider: with the authentication functions being performed by an external identity provider, you are now free to focus on the business function of your application instead of worrying of low level details. As you will learn while you go through the lab, this is easily accomplished by taking advantage of Windows Identity Foundation (WIF) for enhancing your services.
+This hands-on lab provides step-by-step guides for hosting in Microsoft Azure a Cloud Service accepting identities from an external identity provider: with the authentication functions being performed by an external identity provider, you are now free to focus on the business function of your application instead of worrying of low level details. As you will learn while you go through the lab, this is easily accomplished by taking advantage of Windows Identity Foundation (WIF) for enhancing your services.
 
 The text gives very concrete indications, and it is optimized for minimizing the number of steps that are necessary for getting up and running with the minimal scenario. We will occasionally add notes in the text to explain choices rationales and indicate alternatives for the reader who is interested in understanding how the solution works or wants to explore more advanced scenarios: if all you are interested in is getting the basic scenario up and running, you can safely skip those notes as you follow the lab instructions.
 
 <a name="essentialintro1"></a>
-### Essential Introduction to Windows Identity Foundation for Windows Azure developers ###
+### Essential Introduction to Windows Identity Foundation for Microsoft Azure developers ###
 
 Windows® Identity Foundation (WIF) is a developer framework which enhances the .NET Framework with advanced identity capabilities. Based on the concept of Claims Based access, WIF offers a series of classes that, while integrating seamlessly with the traditional .NET identity object model, gives developers control over every aspect of authentication, authorization and identity-driven application behavior. WIF point & click tooling and tight Visual Studio integration make very easy to externalize authentication to a federated partner, so that a developer can configure an ASP.NET application or a WCF service to rely on external entities for identity management. WIF allows application access using open protocols and standards, while hiding the complexity of the security plumbing behind a handy programming model. WIF will work with applications written with the .NET Framework 3.5 SP2 or higher.
 
 You can find further information at <http://www.microsoft.com/wif>.
 
 <a name="essentialintro2"></a>
-### Essential Introduction to Windows Azure for Windows Identity Foundation developers  ###
+### Essential Introduction to Microsoft Azure for Windows Identity Foundation developers  ###
 
-Windows® Azure is a cloud services operating system that serves as the development, service hosting and service management environment of either consumer Web or enterprise scenarios. Windows Azure provides developers with on-demand compute and storage to host, scale, and manages Web applications on the Internet through Microsoft® data centers.
+Windows® Azure is a cloud services operating system that serves as the development, service hosting and service management environment of either consumer Web or enterprise scenarios. Microsoft Azure provides developers with on-demand compute and storage to host, scale, and manages Web applications on the Internet through Microsoft® data centers.
 
-Windows Azure offers a set of Visual Studio templates that can be used to develop ASP.NET applications or worker services destined to be deployed in the cloud. The Windows Azure Tool for Visual Studio includes the Windows Azure compute emulator, a hosting environment that can be used for local simulation of execution in the fabric. The Windows Azure compute emulator gives you the chance to experiment with multiple concurrent instances and other cloud features without the need to be online, while still being able to use your familiar debugging and development tools.
+Microsoft Azure offers a set of Visual Studio templates that can be used to develop ASP.NET applications or worker services destined to be deployed in the cloud. The Microsoft Azure Tool for Visual Studio includes the Microsoft Azure compute emulator, a hosting environment that can be used for local simulation of execution in the fabric. The Microsoft Azure compute emulator gives you the chance to experiment with multiple concurrent instances and other cloud features without the need to be online, while still being able to use your familiar debugging and development tools.
 
-Windows Azure applications can be packaged via Visual Studio or command-line tooling, and then deployed in the cloud via the [Windows Azure management portal] (https://manage.windowsazure.com/). 
+Microsoft Azure applications can be packaged via Visual Studio or command-line tooling, and then deployed in the cloud via the [Microsoft Azure management portal] (https://manage.windowsazure.com/). 
 
 You can find further information at <http://www.windowsazure.com> in order to able to deploy your project. 
 
@@ -33,10 +33,10 @@ You can find further information at <http://www.windowsazure.com> in order to ab
 
 In this hands-on lab, you will learn how to:
 
-- Create a simple ASP.NET web site in a Windows Azure Web Role project, and configure it to rely on an external federated entity for authentication. The federated partner will be simulated by a local development security token service (STS).
-- Test the Windows Azure Web role project in the local Windows Azure compute emulator.
+- Create a simple ASP.NET web site in a Microsoft Azure Web Role project, and configure it to rely on an external federated entity for authentication. The federated partner will be simulated by a local development security token service (STS).
+- Test the Microsoft Azure Web role project in the local Microsoft Azure compute emulator.
 
-- [optional] Deploy the Windows Azure project in the cloud and test it with the local development STS both from staging and production environment.
+- [optional] Deploy the Microsoft Azure project in the cloud and test it with the local development STS both from staging and production environment.
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
@@ -48,8 +48,8 @@ The following is required to complete this hands-on lab:
 - [Microsoft® Visual Studio 2010][2]
 - [Microsoft® Windows Identity Foundation Runtime][3] 
 - [Microsoft® Windows Identity Foundation SDK 4.0][4]
-- [Windows Azure Tools for Microsoft Visual Studio 1.7][5]
-- A Windows Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Microsoft Azure Tools for Microsoft Visual Studio 1.7][5]
+- A Microsoft Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 [1]:http://go.microsoft.com/fwlink/?linkid=186916
 [2]:http://www.microsoft.com/visualstudio/en-us/products/2010-editions/
@@ -86,7 +86,7 @@ Throughout the lab document, you will be instructed to insert code blocks. For y
 
 This hands-on lab includes the following exercise:
 
-1. [Enabling Federated Authentication for ASP.NET applications in Windows Azure](#Exercise1)
+1. [Enabling Federated Authentication for ASP.NET applications in Microsoft Azure](#Exercise1)
 	
 Estimated time to complete this lab: **60 minutes**.
 
@@ -95,40 +95,40 @@ Estimated time to complete this lab: **60 minutes**.
 >When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.
 
 <a name="Exercise1"></a>
-### Exercise 1: Enabling Federated Authentication for ASP.NET applications in Windows Azure ###
+### Exercise 1: Enabling Federated Authentication for ASP.NET applications in Microsoft Azure ###
 
 Securing an ASP.NET web site with WIF is very simple. Within Visual Studio you right-click the project, run an easy wizard in which you indicate from which federated partner you want to accept identities, and you are done. You even have the option to generate on the fly a local development STS which can be used if you do not have federated partners available at development time.
 
-That simple procedure remains largely unchanged even when you are targeting Windows Azure as the deployment environment for your application: the few adjustments you need to apply are mainly related to the structural features of Windows Azure, such as the way in which X509 certificates are stored or how application URIs are handled across the different environments (Windows Azure compute emulator, Staging, Production).
+That simple procedure remains largely unchanged even when you are targeting Microsoft Azure as the deployment environment for your application: the few adjustments you need to apply are mainly related to the structural features of Microsoft Azure, such as the way in which X509 certificates are stored or how application URIs are handled across the different environments (Microsoft Azure compute emulator, Staging, Production).
 
-In the following tasks, you will see how to create a Windows Azure WebRole, configure it to use a local development STS and modify the Windows Azure project in order to work in the Windows Azure compute emulator by still referencing the local development STS. Finally, you will publish the project in the cloud and see how the application still works with the local development STS when running in the staging and production environments.
+In the following tasks, you will see how to create a Microsoft Azure WebRole, configure it to use a local development STS and modify the Microsoft Azure project in order to work in the Microsoft Azure compute emulator by still referencing the local development STS. Finally, you will publish the project in the cloud and see how the application still works with the local development STS when running in the staging and production environments.
 
-This hands-on lab demonstrates the minimal integration scenario between WIF and Windows Azure. You can easily extend what you will learn here to more realistic scenarios, such as the case in which you want to reuse on-premises identities exposed via AD FS 2.0 (formerly known as "Geneva" Server). You will discover that the process is even simpler.
+This hands-on lab demonstrates the minimal integration scenario between WIF and Microsoft Azure. You can easily extend what you will learn here to more realistic scenarios, such as the case in which you want to reuse on-premises identities exposed via AD FS 2.0 (formerly known as "Geneva" Server). You will discover that the process is even simpler.
 
 ![Exercise Summary](images/exercise-summary.png?raw=true "Exercise Summary")
 
 _A summary of the steps followed by this exercise_
 
-You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and an STS for it in the same Visual Studio solution and you establish trust between the two. Upon successful testing you publish & test the WebRole in staging and finally in production. The STS used at all stages is the one hosted by the local IIS: this is done to simplify the deployment of this guide on dev machines, but if you have a production STS available you can certainly use it in lieu of the test one._
+You start by creating an ASP.NET  website (RP) in a Microsoft Azure Web Role and an STS for it in the same Visual Studio solution and you establish trust between the two. Upon successful testing you publish & test the WebRole in staging and finally in production. The STS used at all stages is the one hosted by the local IIS: this is done to simplify the deployment of this guide on dev machines, but if you have a production STS available you can certainly use it in lieu of the test one._
 
 >**Note:** To reduce typing, you can right-click where you want to insert source code, select Insert Snippet, select My Code Snippets and then select the entry matching the current exercise step.
 
 <a name="Ex1Task1"></a>
-#### Task 1 - Creating a Windows Azure Project and Preparing it for Using Windows Identity Foundation ####
+#### Task 1 - Creating a Microsoft Azure Project and Preparing it for Using Windows Identity Foundation ####
 
 1. Open Microsoft Visual Studio 2010 with administrator privileges. In **Start | All Programs | Microsoft Visual Studio 2010**, right-click **Microsoft Visual Studio 2010** and select **Run as administrator**.
 1. In the **File** menu, choose **New** and then **Project**. 
 1. In the **New Project** dialog, select **Cloud** in the **Templates** list under **Visual C#** node.
-1. Select **Windows Azure Project** as project type.
-1. Choose a suitable name for your solution. Keep in mind that the name must be unique because it will be publicly visible when deployed to Windows Azure. Set the solution name “**Begin**” and the location to the **\Source\Ex1-AzureFederatedAuthentication\** folder. Make sure that **Create directory for solution** is checked and the framework is **.NET Framework 4**. Click **OK** to create the project.
+1. Select **Microsoft Azure Project** as project type.
+1. Choose a suitable name for your solution. Keep in mind that the name must be unique because it will be publicly visible when deployed to Microsoft Azure. Set the solution name “**Begin**” and the location to the **\Source\Ex1-AzureFederatedAuthentication\** folder. Make sure that **Create directory for solution** is checked and the framework is **.NET Framework 4**. Click **OK** to create the project.
 
-	![Creating a new Windows Azure Project](images/creating-a-new-windows-azure-project.png?raw=true "Creating a new Windows Azure Project")
+	![Creating a new Microsoft Azure Project](images/creating-a-new-windows-azure-project.png?raw=true "Creating a new Microsoft Azure Project")
 
-	_Creating a new Windows Azure Project_
+	_Creating a new Microsoft Azure Project_
 
 	> **Note:** **Why do we require you to choose your own project name, instead of providing a sample solution?**
 
-	> Every Windows Azure service is published on an URI of the form **\<projectname\>.cloudapp.net**.
+	> Every Microsoft Azure service is published on an URI of the form **\<projectname\>.cloudapp.net**.
 	
 	> The string \<projectname\> must be unique, since it has to be resolvable on the public internet. 
 	
@@ -136,11 +136,11 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 
 	> The steps in this guide are more easily understood if the naming convention is coherent, hence we suggest you adhere to it at least the first time you go through it. If you want to adapt the instructions to the name you will choose, simply substitute **fabrikamair** with your own project name when following a procedure.
 
-1. In the **New Windows Azure Project** dialog, expand the Roles panel for Visual C#, select **ASP.NET Web Role** from the list of available roles and click the arrow (**>**) to add an instance of this role to the solution. Before closing the dialog, select the new role in the right panel, click the pencil icon and rename the role to **FederatedIdentity_WebRole**. Click **OK** to create the Windows Azure project solution.
+1. In the **New Microsoft Azure Project** dialog, expand the Roles panel for Visual C#, select **ASP.NET Web Role** from the list of available roles and click the arrow (**>**) to add an instance of this role to the solution. Before closing the dialog, select the new role in the right panel, click the pencil icon and rename the role to **FederatedIdentity_WebRole**. Click **OK** to create the Microsoft Azure project solution.
 
-	![Assigning roles to the Windows Azure project](images/assigning-roles-to-the-windows-azure-project.png?raw=true "Assigning roles to the Windows Azure project")
+	![Assigning roles to the Microsoft Azure project](images/assigning-roles-to-the-windows-azure-project.png?raw=true "Assigning roles to the Microsoft Azure project")
 
-	_Assigning roles to the Windows Azure project_
+	_Assigning roles to the Microsoft Azure project_
 
 1. Generate a self-signed certificate for the application to use SSL. For your convenience, the lab material includes a script that performs the necessary actions. It creates the certificate using the subject you specify, installs it to the **LocalMachine/Personal** certificate store and adds the certificate to the **LocalMachine/Trusted Root Certification Authorities** store (to avoid the certificate error warning when browsing the site with IE). Open a Visual Studio command prompt as an administrator. To do this, open **Start | All Programs | Microsoft Visual Studio 2010 | Visual Studio Tools**, right-click **Visual Studio Command Prompt (2010)** and choose **Run as administrator**.
 
@@ -187,7 +187,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 
 	> Windows Identity Foundation relies on Windows Communication Foundation (WCF) for handling various cryptography and protocol related operations. Today those parts of WCF require full trust to execute correctly, hence the Enable Full Trust requirement.
 
-	> Furthermore, the Windows Identity Foundation assemblies are not available in the Global Assembly Cache seen by Windows Azure projects (see below); hence partial trust execution would not be possible in any case.
+	> Furthermore, the Windows Identity Foundation assemblies are not available in the Global Assembly Cache seen by Microsoft Azure projects (see below); hence partial trust execution would not be possible in any case.
 
 1. Go to the **Certificates** Tab and click on **Add Certificate**.
 
@@ -226,7 +226,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 
 	> **Note:** **Why do you need to set Copy Local to True for the reference to Microsoft.IdentityModel?**
 
-	> Microsoft.IdentityModel is the main Windows Identity Foundation assembly. As mentioned above, such assembly is not available in the Global Assembly Cache that is visible to Windows Azure applications. By setting its Copy Local property to True, you ensure that the bits of the assembly will be included in the project package. Therefore, once you deploy it in the cloud, this will ensure that the WIF is deployed too and available to your application.
+	> Microsoft.IdentityModel is the main Windows Identity Foundation assembly. As mentioned above, such assembly is not available in the Global Assembly Cache that is visible to Microsoft Azure applications. By setting its Copy Local property to True, you ensure that the bits of the assembly will be included in the project package. Therefore, once you deploy it in the cloud, this will ensure that the WIF is deployed too and available to your application.
 
 1. Update the using statements into **Default.aspx.cs** in **FederatedIdentity_WebRole**. 
 
@@ -300,7 +300,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 	  void WSFederationAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
 	  {
 		//
-		// In the Windows Azure environment, build a wreply parameter for  the SignIn request
+		// In the Microsoft Azure environment, build a wreply parameter for  the SignIn request
 		// that reflects the real address of the application.
 		//
 		HttpRequest request = HttpContext.Current.Request;
@@ -324,7 +324,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 	
 	> The federated sign on process implemented by WIF is based on the WS-Federation protocol. Unauthenticated users landing on the web site are redirected to the trusted STS for authentication and token issuance. The URI used for the redirection contains a number of parameters, mainly retrieved from the website Web.config: among those, there is the address to which the STS will have to redirect the user’s browser once successfully authenticated. In the default case, WIF retrieves that return address from the configuration settings generated by the Federation Utility wizard. 
 
-	> In Windows Azure this approach would not work as is: an application hosted in Windows Azure will have a different URI depending on the environment in which it is hosted (Windows Azure compute emulator, staging, production) hence one would have to continuously change the values in the Web.config before deploying. In fact, even that strategy would not work in all cases since in the staging environment you learn what URI has been assigned to your app only AFTER you deployed the project.
+	> In Microsoft Azure this approach would not work as is: an application hosted in Microsoft Azure will have a different URI depending on the environment in which it is hosted (Microsoft Azure compute emulator, staging, production) hence one would have to continuously change the values in the Web.config before deploying. In fact, even that strategy would not work in all cases since in the staging environment you learn what URI has been assigned to your app only AFTER you deployed the project.
 	
 	> The current solution to this is finding out at runtime what the address of the app is, and injecting it in the request to the STS as wreply parameter. An STS receiving a wreply would use its value as the return address, hence decoupling your application from its address at deploy time. 
 	
@@ -332,7 +332,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 	
 	> **Why do you use the Host header instead of just getting the Uri from HttpContext.Current.Request.Url**?
 
-	> Windows Azure uses various network artifacts in its infrastructure: as a result, the Url property of the current http request would contain ports that are not really meaningful outside Windows Azure internals and that would cause problems, for example mess up with session cookies. The code provided ensures that the URI in the browser address bar will be used. 
+	> Microsoft Azure uses various network artifacts in its infrastructure: as a result, the Url property of the current http request would contain ports that are not really meaningful outside Microsoft Azure internals and that would cause problems, for example mess up with session cookies. The code provided ensures that the URI in the browser address bar will be used. 
 
 1. On the **Global.asax.cs** file, add the **OnServiceConfigurationCreated** method.
 
@@ -362,7 +362,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 	
 	>**Note:** What does **ServiceConfigurationCreated** do?
 
-	>By default WIF **SessionTokens** use DPAPI to protect the content of Cookies that it sends to the client, however Windows Azure is a load balanced environment and as such, you need to ensure that every instance uses the same key, which is not the default behavior. In this case, we rely on **RsaEncryptionCookieTransform**, which we use for encrypting the cookies with the same certificate we are using for SSL in our website.
+	>By default WIF **SessionTokens** use DPAPI to protect the content of Cookies that it sends to the client, however Microsoft Azure is a load balanced environment and as such, you need to ensure that every instance uses the same key, which is not the default behavior. In this case, we rely on **RsaEncryptionCookieTransform**, which we use for encrypting the cookies with the same certificate we are using for SSL in our website.
 
 1. On the **Global.asax.cs** file, register the **OnServiceConfigurationCreated** handler in the **Application_Start** method.
 
@@ -399,7 +399,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 	  ...
 		/// <summary>
 		///   Validates replyTo and throws an exception if the replyTo refers to a 
-		///   RP that is not on the local machine or is not hosted in Windows Azure
+		///   RP that is not on the local machine or is not hosted in Microsoft Azure
 		/// </summary>
 		/// <param name="replyTo">
 		///   The replyTo parameter in the request that came in (RST)
@@ -481,7 +481,7 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 
 	>In Task 1, you modified the Global.asax of your application to ensure that it would send its actual URI to the STS, by storing it in the wreply parameter.
 	
-	>The ValidateReplyTo ensures that the address in the wreply refers to an application on your local machine (as in the Windows Azure compute emulator case) or from a host ending with “.cloudapp.net” (as in the Windows Azure staging or production environments case). This mitigates redirection attacks, as it limits the accepted ReplyTo values to addresses of Windows Azure applications. Note that this check would prevent you from using a domain name not matching the Windows Azure schema; hence, if you plan to map Windows Azure applications through a custom domain, you will have to adjust the code accordingly.
+	>The ValidateReplyTo ensures that the address in the wreply refers to an application on your local machine (as in the Microsoft Azure compute emulator case) or from a host ending with “.cloudapp.net” (as in the Microsoft Azure staging or production environments case). This mitigates redirection attacks, as it limits the accepted ReplyTo values to addresses of Microsoft Azure applications. Note that this check would prevent you from using a domain name not matching the Microsoft Azure schema; hence, if you plan to map Microsoft Azure applications through a custom domain, you will have to adjust the code accordingly.
 
 	>The assignment of scope.ReplyToAddress is modified to take the value of wreply, if present. If no wreply parameter is available in the request, the assignment will fold back to the default behavior (using the AppliesTo uri).
 
@@ -554,9 +554,9 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 	>- Retrieving the corresponding certificate
 	>- Using the certificate for checking the token signature
 	>- Verifying that the signer was indeed listed in the issuerNameRegistry element, hence trusted
-	In order to perform those operations, WIF can use the thumbprint for retrieving the bits of the STS certificate from the certificate store. However, certificate handling in Windows Azure requires extra operations, hence here we use an alternative method. Very often the request containing the token will also contain the bits of the certificate corresponding to the signature: this means that our application can use the thumbprint for retrieving the certificate from the request itself rather than relying on having the bits available locally. Setting the **certificateValidationMode** to **None** has the purpose of enabling the latter scenario.
+	In order to perform those operations, WIF can use the thumbprint for retrieving the bits of the STS certificate from the certificate store. However, certificate handling in Microsoft Azure requires extra operations, hence here we use an alternative method. Very often the request containing the token will also contain the bits of the certificate corresponding to the signature: this means that our application can use the thumbprint for retrieving the certificate from the request itself rather than relying on having the bits available locally. Setting the **certificateValidationMode** to **None** has the purpose of enabling the latter scenario.
 
-	>Note that the request does not have to contain the bits of the certificate, and for certain platforms this won’t be the default behavior: in those cases you will need to deploy in Windows Azure the public key (that is to say the certificate) of the STS as well, as shown in step 9 of task 5.
+	>Note that the request does not have to contain the bits of the certificate, and for certain platforms this won’t be the default behavior: in those cases you will need to deploy in Microsoft Azure the public key (that is to say the certificate) of the STS as well, as shown in step 9 of task 5.
  
 	[ASP.NET](http://ASP.NET) by default validates all the POSTs done to the web application. This validation checks that the input is not dangerous. For instance, a piece of XML that is not encoded is considered dangerous for [ASP.NET](http://ASP.NET). A token is a piece of XML that is not encoded. To avoid getting an exception when the token is posted, you will add a class that will check if the input is a token. If it is, it will return true and will let the request to continue. If not, it will throw the regular "A _potentially dangerous_ Request.Form value was detected..." exception.
 
@@ -574,24 +574,24 @@ You start by creating an ASP.NET  website (RP) in a Windows Azure Web Role and a
 	>**Note:** Make sure you add the **httpRuntime** element inside the general **system.web** element and not the one that is inside the element **\<location path =”FederationMetadata”>**.
 
 <a name="Ex1Task4"></a>
-#### Task 4 - Testing FabrikamAir in the Windows Azure Compute Emulator ####
+#### Task 4 - Testing FabrikamAir in the Microsoft Azure Compute Emulator ####
 
 
-In this task you will run the web application in the Windows Azure compute emulator, while the development STS we created in Task 2 will take care of authenticating users while running in the local IIS.
+In this task you will run the web application in the Microsoft Azure compute emulator, while the development STS we created in Task 2 will take care of authenticating users while running in the local IIS.
 
 ![Local Deployment](images/local-deployment.png?raw=true "Local Deployment")
 
 _Local Deployment_
 
-1. You are finally ready to test the application in the Windows Azure compute emulator. Set the cloud project as the startup project. To do this, in **Solution Explorer**, right-click the Windows Azure project and choose **Set as StartUp Project**.
+1. You are finally ready to test the application in the Microsoft Azure compute emulator. Set the cloud project as the startup project. To do this, in **Solution Explorer**, right-click the Microsoft Azure project and choose **Set as StartUp Project**.
 
-1. Press **F5** to build and run the application. A browser page will open, pointing to <https://127.0.0.1:8080>. In the first screen, you will observe a certificate warning because the Windows Azure compute emulator uses an IP address for navigating to your application, while the certificate you are using refers to the address that the application will have once deployed in production in the cloud. Click **Continue to this website**.
+1. Press **F5** to build and run the application. A browser page will open, pointing to <https://127.0.0.1:8080>. In the first screen, you will observe a certificate warning because the Microsoft Azure compute emulator uses an IP address for navigating to your application, while the certificate you are using refers to the address that the application will have once deployed in production in the cloud. Click **Continue to this website**.
 
 	![Certificate Warning](images/certificate-warning.png?raw=true "Certificate Warning")
 
 	_Certificate Warning_
 
-	> **Note:** The browser informs us that there is a discrepancy between the page address and the subject  of the certificate used for the SSL binding: this is expected given the way in which Windows Azure compute emulator handles addresses.
+	> **Note:** The browser informs us that there is a discrepancy between the page address and the subject  of the certificate used for the SSL binding: this is expected given the way in which Microsoft Azure compute emulator handles addresses.
 
 1. You will be redirected to the local STS page that is hosted on your local IIS. Click **Submit**.
 
@@ -601,17 +601,17 @@ _Local Deployment_
 
 	>**Note:** The default authentication page presented by local STS. Note the address bar: the STS still runs on the local IIS.
 
-1. The STS issues the token and redirects to the Web Role application hosted in the Windows Azure compute emulator; WIF validates the token and grants the user access to the site. The red address bar once again indicates that the certificate you are using is already the one you will use in the cloud, hence the subject does not correspond to the URL shown in the browser. Close the browser and go back to Visual Studio.
+1. The STS issues the token and redirects to the Web Role application hosted in the Microsoft Azure compute emulator; WIF validates the token and grants the user access to the site. The red address bar once again indicates that the certificate you are using is already the one you will use in the cloud, hence the subject does not correspond to the URL shown in the browser. Close the browser and go back to Visual Studio.
 
 	![Running Web application](images/running-web-application.png?raw=true "Running Web application")
 
-	> **Note:** The web application hosted in the Windows Azure compute emulator successfully authenticated the user, and correctly processed the incoming token as shown on the page. The address bar is red, as expected for applications in the Windows Azure compute emulator.
+	> **Note:** The web application hosted in the Microsoft Azure compute emulator successfully authenticated the user, and correctly processed the incoming token as shown on the page. The address bar is red, as expected for applications in the Microsoft Azure compute emulator.
 
 <a name="Ex1Task5"></a>
 #### Task 5 - Publishing CloudFabrikamAir in the Cloud and Testing it in Staging and Production ####
 
 
-Now that you verified that the application works as expected in the Windows Azure compute emulator, you are ready to deploy it to the cloud and test it there. 
+Now that you verified that the application works as expected in the Microsoft Azure compute emulator, you are ready to deploy it to the cloud and test it there. 
 	
 ![Cloud Deployment](images/exercise-summary.png?raw=true "Cloud Deployment")
 
@@ -673,13 +673,13 @@ In this task you will publish your project to the staging environment, test it, 
 
 	_Uploaded certificate_
 
-1. Now that the certificate was uploaded, we are ready to deploy the solution to Windows Azure. The certificates must be successfully deployed before uploading the solution, otherwise the solution deployment will fail. In **Solution Explorer**, right-click on the cloud project **\<yourprojectname\>**, and choose **Package**. 
+1. Now that the certificate was uploaded, we are ready to deploy the solution to Microsoft Azure. The certificates must be successfully deployed before uploading the solution, otherwise the solution deployment will fail. In **Solution Explorer**, right-click on the cloud project **\<yourprojectname\>**, and choose **Package**. 
 
-1. In the Package Windows Azure Project dialog, select **Cloud** as the **Service Configuration** and click **Package.** In this process, Visual Studio will generate the package and open the containing folder with the package and configuration file. You will use these files later.
+1. In the Package Microsoft Azure Project dialog, select **Cloud** as the **Service Configuration** and click **Package.** In this process, Visual Studio will generate the package and open the containing folder with the package and configuration file. You will use these files later.
 
-	![Publish Windows Azure Project dialog  choosing the Create Service Package Only option](images/publish-windows-azure-project-dialog-choosing.png?raw=true "Publish Windows Azure Project dialog  choosing the Create Service Package Only option")
+	![Publish Microsoft Azure Project dialog  choosing the Create Service Package Only option](images/publish-windows-azure-project-dialog-choosing.png?raw=true "Publish Microsoft Azure Project dialog  choosing the Create Service Package Only option")
 
-	_Publish Windows Azure Project dialog  choosing the Create Service Package Only option_
+	_Publish Microsoft Azure Project dialog  choosing the Create Service Package Only option_
 
 1. To continue deploying to Azure using the new portal, click **Take me to the new portal** at the bottom of the page.
 
@@ -746,9 +746,9 @@ Taking advantage of existing identities in new applications is one of the fundam
 
 By completing this hands-on lab you have learned:
 
-- How to externalize authentication for a Windows Azure Web Role application, by taking advantage of Windows Identity Foundation for federating with an external authority (here simulated by a development STS).
+- How to externalize authentication for a Microsoft Azure Web Role application, by taking advantage of Windows Identity Foundation for federating with an external authority (here simulated by a development STS).
 
-- [Optional] How to deploy such an application in Windows Azure and take care of the operations (such as deploying certificates) that are necessary for making the application work as expected in federated and SSO scenarios.
+- [Optional] How to deploy such an application in Microsoft Azure and take care of the operations (such as deploying certificates) that are necessary for making the application work as expected in federated and SSO scenarios.
 
 As you have discovered while going through the lab, the claims-based approach to identity enabled by Windows Identity Foundation can be applied with little or no modification to both on-premises or cloud application.
  

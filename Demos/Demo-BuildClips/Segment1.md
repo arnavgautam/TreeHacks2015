@@ -1,7 +1,7 @@
 <a name="segment1" />
 ### Segment 1: Building and Extending Web Apps to Windows 8 ###
 
-In this segment, we will extend the web site to include Web APIs that power a Windows 8 experience.  Finally, the web site project will be deployed to Windows Azure Websites and scaled using multiple paid shared instances.
+In this segment, we will extend the web site to include Web APIs that power a Windows 8 experience.  Finally, the web site project will be deployed to Microsoft Azure Websites and scaled using multiple paid shared instances.
 
 1.	Launch Visual Studio 2012 as **administrator** and open the **BuildClips.sln** solution in **[working directory]\BuildClips\BuildClips.Web**. Press **F5** to run the Web application locally.
 
@@ -125,7 +125,7 @@ In this segment, we will extend the web site to include Web APIs that power a Wi
 
 1. Close the browser.
 
-1.	Open the **Windows Azure Management** portal.
+1.	Open the **Microsoft Azure Management** portal.
 
 	> **Speaking Point**: So I've got this application set up. And now I'm going to go into the Azure portal and I can make a new website.
 
@@ -147,7 +147,7 @@ In this segment, we will extend the web site to include Web APIs that power a Wi
 
 	_Creating the database_
 
-1.	Navigate to your new web site in the **Windows Azure Management** portal and download the publishing profile.
+1.	Navigate to your new web site in the **Microsoft Azure Management** portal and download the publishing profile.
 
 	> **Speaking Point**: I'm going to download the publish profile and the publish profile is going to give me all the information that I could potentially need to publish this.
 
@@ -211,7 +211,7 @@ In this segment, we will extend the web site to include Web APIs that power a Wi
 
 	![portal manage domains](Images/portal-managedomains.png?raw=true)
 
-	_Manage domains using the Windows Azure portal_
+	_Manage domains using the Microsoft Azure portal_
 
 1. Navigate to the recently deployed application and upload a video that will be now stored in the cloud. You can use any of the videos from the **[working dir]\Assets\videos** folder.
 

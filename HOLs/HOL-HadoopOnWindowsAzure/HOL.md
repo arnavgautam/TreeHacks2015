@@ -1,5 +1,5 @@
-﻿<a name="Title" />
-#Running Hadoop Jobs on Windows Azure#
+<a name="Title" />
+#Running Hadoop Jobs on Microsoft Azure#
 
 ---
 <a name="Overview" />
@@ -9,9 +9,9 @@ This hands-on lab shows two ways to run MapReduce programs in a Hadoop on Azure 
 
 The first way to run a MapReduce program is with a Hadoop jar file using the **Create Job** UI. The second way is with a query using the fluent API layered on Pig that is provided by the **Interactive Console**. The first approach uses a MapReduce program written in Java; the second uses a script written in JavaScript. This lab also shows how to upload files to the HDFS cluster that are needed as input for a MapReduce program and how to read the MapReduce output files from the HDFS cluster to examine the results of an analysis.
 
-The Windows Azure Marketplace collects data, imagery, and real-time web services from leading commercial data providers and authoritative public data sources. It simplifies the purchase and consumption of a wide variety of data including demographic, environment, financial, retail and sports. This lab shows how to upload this data into a Hadoop on Azure cluster and query it using Hive scripts.
+The Microsoft Azure Marketplace collects data, imagery, and real-time web services from leading commercial data providers and authoritative public data sources. It simplifies the purchase and consumption of a wide variety of data including demographic, environment, financial, retail and sports. This lab shows how to upload this data into a Hadoop on Azure cluster and query it using Hive scripts.
 
-A key feature of Microsoft’s Big Data Solution is the integration of Hadoop with Microsoft Business Intelligence (BI) components. A good example of this is the ability for Excel to connect to the Hive data warehouse framework in the Hadoop cluster. This lab shows how to use Excel via the Hive ODBC driver to access and view data in the cluster. 
+A key feature of Microsoft�s Big Data Solution is the integration of Hadoop with Microsoft Business Intelligence (BI) components. A good example of this is the ability for Excel to connect to the Hive data warehouse framework in the Hadoop cluster. This lab shows how to use Excel via the Hive ODBC driver to access and view data in the cluster. 
 
 <a name="Objectives" />
 ### Objectives ###
@@ -24,7 +24,7 @@ In this hands-on lab, you will learn how to:
 
 * Run a JavaScript MapReduce script with a query using the fluent API on Pig that is provided by the Interactive JavaScript Console
 
-* Import data from the Windows Azure Marketplace into a Hadoop on Azure cluster using the Interactive Hive Console
+* Import data from the Microsoft Azure Marketplace into a Hadoop on Azure cluster using the Interactive Hive Console
 
 * Use Excel to query data stored in a Hadoop on Azure cluster
 
@@ -42,14 +42,14 @@ This hands-on lab includes the following exercises:
 - [Getting Started: Requesting a new cluster](#GettingStarted)
 - [Executing a basic Java MapReduce program using a Hadoop jar file](#Exercise1)
 - [Executing a JavaScript MapReduce script using the Interactive Console](#Exercise2)
-- [Importing data from the Windows Azure Marketplace using the Hive Interactive Console](#Exercise3)
+- [Importing data from the Microsoft Azure Marketplace using the Hive Interactive Console](#Exercise3)
 - [Connecting to and querying Hive data in a cluster using Excel](#Exercise4)
 
 
 <a name="GettingStarted" />
 ### Getting Started: Requesting a new cluster ###
 
-In this exercise, you will request a new Hadoop cluster through the Hadoop on Windows Azure  portal.
+In this exercise, you will request a new Hadoop cluster through the Hadoop on Microsoft Azure  portal.
 
 1. Go to the [Hadoop on Windows  Azure](http://www.hadooponazure.com) portal and login using your credentials.
 
@@ -76,7 +76,7 @@ In this exercise, you will learn how to execute a simple Java MapReduce program 
 <a name="Ex1Task1" />
 #### Task 1 - Deploying and Executing the Pi Estimator Sample  ####
 
-In this task, you will deploy and execute the Pi Estimator sample, available in the Hadoop on Windows Azure portal.
+In this task, you will deploy and execute the Pi Estimator sample, available in the Hadoop on Microsoft Azure portal.
 
 1. From your **Account** page, click on the **Create Job** icon in the **Your Tasks** section.
 
@@ -180,20 +180,20 @@ pig.from("/example/data/davinci.txt").mapReduce("WordCount.js", "word, count:lon
 ---
 
 <a name="Exercise3"/>
-### Exercise 3: Importing data from the Windows Azure Marketplace using the Hive Interactive Console ###
+### Exercise 3: Importing data from the Microsoft Azure Marketplace using the Hive Interactive Console ###
 
-In this exercise, you will learn how to subscribe and import data from the Windows Azure Marketplace.  You will also learn how to query data using the Hive Interactive Console.
+In this exercise, you will learn how to subscribe and import data from the Microsoft Azure Marketplace.  You will also learn how to query data using the Hive Interactive Console.
 
 <a name="Ex3Task1" />
 #### Task 1 -  Registering a new Account ####
 
-In this task, you will register a new account in the Windows Azure Marketplace.  You will then use this account to subscribe and import data.
+In this task, you will register a new account in the Microsoft Azure Marketplace.  You will then use this account to subscribe and import data.
 
-1. Open the [Windows Azure Marketplace](https://datamarket.azure.com/ "DataMarket") page in a browser and sign in with a valid Windows Live ID.
+1. Open the [Microsoft Azure Marketplace](https://datamarket.azure.com/ "DataMarket") page in a browser and sign in with a valid Windows Live ID.
 
-	![The Windows Azure Marketplace home page](images/the-windows-azure-marketplace-home-page.png?raw=true "The Windows Azure Marketplace home page")
+	![The Microsoft Azure Marketplace home page](images/the-windows-azure-marketplace-home-page.png?raw=true "The Microsoft Azure Marketplace home page")
 
-	_The Windows Azure Marketplace home page_
+	_The Microsoft Azure Marketplace home page_
 
 1. Click on the **MyAccount** tab and complete the Registration form to open a subscription account.
 
@@ -206,12 +206,12 @@ In this task, you will register a new account in the Windows Azure Marketplace. 
 
 	_Obtaining the account keys_
 
-	> **Note:** Account keys are used by applications to access your Windows Azure Marketplace dataset subscriptions.
+	> **Note:** Account keys are used by applications to access your Microsoft Azure Marketplace dataset subscriptions.
 
 <a name="Ex3Task2" />
 #### Task 2 -  Subscribing to Crime Data and Building a Query ####
 
-In this task, you will subscribe to crime data in the Windows Azure Marketplace, and you will build a query that will be used in the following tasks for importing data.
+In this task, you will subscribe to crime data in the Microsoft Azure Marketplace, and you will build a query that will be used in the following tasks for importing data.
 
 1. Click on the **Data** menu icon in the middle of the menu bar near the top of the page. Enter "crime" into the search the marketplace box on the upper right of the page and **Enter**.
 
@@ -250,7 +250,7 @@ In this task, you will subscribe to crime data in the Windows Azure Marketplace,
 
 
 <a name="Ex3Task3" />
-#### Task 3 - Importing Data from the Windows Azure Marketplace ####
+#### Task 3 - Importing Data from the Microsoft Azure Marketplace ####
 
 In this task, you will use the query you built in the previous task to import data to your cluster.
 
@@ -260,13 +260,13 @@ In this task, you will use the query you built in the previous task to import da
 
 	_Selecting the Manage Cluster option_
 
-1. Select the **DataMarket** icon option for importing data from Windows Azure Marketplace.
+1. Select the **DataMarket** icon option for importing data from Microsoft Azure Marketplace.
 
 	![Selecting the DataMarket option](images/selecting-the-data-market-option.png?raw=true "Selecting the DataMarket option")
 
 	_Selecting the DataMarket option_
 	
-1. Enter the subscription **User name** and **passkey**, **Query** and **Hive table name** obtained from your Windows Azure Marketplace account. Your user name is the email used for you Live ID. The value for the passkey is the account key default value assigned to you when you opened your Marketplace account. It can also be found as the Primary Account Key value on you Marketplace Account Details page.  Use the query you obtained earlier in Marketplace, but remove the trailing **top** parameter.  The query should look like this:
+1. Enter the subscription **User name** and **passkey**, **Query** and **Hive table name** obtained from your Microsoft Azure Marketplace account. Your user name is the email used for you Live ID. The value for the passkey is the account key default value assigned to you when you opened your Marketplace account. It can also be found as the Primary Account Key value on you Marketplace Account Details page.  Use the query you obtained earlier in Marketplace, but remove the trailing **top** parameter.  The query should look like this:
 
 	````
     https://api.datamarket.azure.com/Data.ashx/data.gov/Crimes/CityCrime?
@@ -274,9 +274,9 @@ In this task, you will use the query you built in the previous task to import da
 
 1. After the parameters are entered, press the **Import Data** button
 
-	![Importing data from the Windows Azure Marketplace](images/importing-data-from-the-marketplace.png?raw=true "Importing data from the Windows Azure Marketplace")
+	![Importing data from the Microsoft Azure Marketplace](images/importing-data-from-the-marketplace.png?raw=true "Importing data from the Microsoft Azure Marketplace")
 
-	_Importing data from the Windows Azure Marketplace_
+	_Importing data from the Microsoft Azure Marketplace_
 
 1. The progress made importing is reported on the Data Market Import page that appears.  Wait a few minutes until the process finishes.
 

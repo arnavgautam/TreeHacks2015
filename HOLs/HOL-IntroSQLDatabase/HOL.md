@@ -1,5 +1,5 @@
-ï»¿<a name="HOLTop"></a>
-# Introduction to Windows Azure SQL Database #
+<a name="HOLTop"></a>
+# Introduction to Microsoft Azure SQL Database #
 
 ---
 
@@ -8,9 +8,9 @@
 
 SQL Database makes the power of Microsoft SQL Server available in a Cloud Hosted offering. Working with SQL Database should be a familiar experience for most developers because, for the most part, it supports the same tooling and development practices currently used for on premises SQL Server applications.
 
-This hands-on lab will walk through a series of simple use cases for SQL Database such as provisioning your account, creating, and using a database. You will create a simple Windows Azure application to allow you to manipulate the data in the Contact table of a database running in SQL Database.
+This hands-on lab will walk through a series of simple use cases for SQL Database such as provisioning your account, creating, and using a database. You will create a simple Microsoft Azure application to allow you to manipulate the data in the Contact table of a database running in SQL Database.
 
-> **Note:** A Visual Studio 2012 version of this Hands-on Lab can be found in the latest build of the [Windows Azure training kit](http://bit.ly/WindowsAzureTK) or in [GitHub](https://github.com/WindowsAzure-TrainingKit/HOL-IntroSQLDatabase-VS2012).
+> **Note:** A Visual Studio 2012 version of this Hands-on Lab can be found in the latest build of the [Microsoft Azure training kit](http://bit.ly/WindowsAzureTK) or in [GitHub](https://github.com/WindowsAzure-TrainingKit/HOL-IntroSQLDatabase-VS2012).
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -29,14 +29,14 @@ In this hands-on lab, you will learn how to:
 
 The following is required to complete this hands-on lab:
 
-- A valid Windows Azure Subscription - You can sign up for a free trial [here][5].
+- A valid Microsoft Azure Subscription - You can sign up for a free trial [here][5].
 - [Microsoft .NET Framework 4.0][1]
 - [Microsoft Visual Studio 2010][2]
 - [SQL Server Management Studio 2012 Express Edition (or higher)][3]
-- [Windows Azure Tools for Microsoft Visual Studio 1.8][4]
+- [Microsoft Azure Tools for Microsoft Visual Studio 1.8][4]
 - Access to a **SQL Database** account with a server created
 - **SQL Database Firewall** enabled for machine running this lab
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 [1]: http://go.microsoft.com/fwlink/?linkid=186916
 [2]: http://msdn.microsoft.com/vstudio/products/
@@ -51,7 +51,7 @@ The following is required to complete this hands-on lab:
 
 In order to execute the exercises in this hands-on lab you need to set up your environment.
 
-1. Open a Windows Explorer window and browse to the labâ€™s **Source** folder.
+1. Open a Windows Explorer window and browse to the lab’s **Source** folder.
 
 1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.
 
@@ -75,7 +75,7 @@ This hands-on lab includes the following exercises:
 
 1. [Preparing Your SQL Database Account](#Exercise1)
 1. [Basic DDL and DML - Creating Tables and Indexes](#Exercise2)
-1. [Build a Windows Azure Application that Accesses SQL Database](#Exercise3)
+1. [Build a Microsoft Azure Application that Accesses SQL Database](#Exercise3)
 1. [Connecting via Client Libraries](#Exercise4)
 
 Estimated time to complete this lab: **60 minutes**.
@@ -91,7 +91,7 @@ In this exercise, you will connect to your SQL Database account and create a dat
 #### Task 1 - Retrieving your SQL Database Server Name ####
 In this task, you will log into the SQL Database portal to obtain the name of the SQL Database server assigned to your account.
 
-1. Open **Internet Explorer** and navigate to the Windows Azure portal at [https://manage.windowsazure.com](https://manage.windowsazure.com).
+1. Open **Internet Explorer** and navigate to the Microsoft Azure portal at [https://manage.windowsazure.com](https://manage.windowsazure.com).
 
 1. Log in to your Microsoft account.
 
@@ -99,7 +99,7 @@ In this task, you will log into the SQL Database portal to obtain the name of th
 
 	_Logging into the Azure Services Portal_
 
-1. At the Windows Azure portal home page, click **SQL Databases** from the left pane, and select **Servers** to list your SQL servers.
+1. At the Microsoft Azure portal home page, click **SQL Databases** from the left pane, and select **Servers** to list your SQL servers.
 	
 	 ![Viewing SQL Servers](images/viewing-sql-servers.png?raw=true)
 
@@ -113,7 +113,7 @@ In this task, you will log into the SQL Database portal to obtain the name of th
 
 	_Add a new SQL Server_ 
 
-1. Insert an **Admin Name** (e.g. SQLAdmin) and a **Password** for the database administrator. Select a **Region** where the server database will be created. Ensure **Allow Windows Azure Services to access the server** is checked, and click **Tick** to create the new server. You will configure firewall rules later on this exercise.
+1. Insert an **Admin Name** (e.g. SQLAdmin) and a **Password** for the database administrator. Select a **Region** where the server database will be created. Ensure **Allow Microsoft Azure Services to access the server** is checked, and click **Tick** to create the new server. You will configure firewall rules later on this exercise.
 	 
 	![Server settings](images/server-settings.png?raw=true)
 
@@ -147,7 +147,7 @@ In this task, you will log into the SQL Database portal to obtain the name of th
 
 	>**Note:** The **allowed ip addresses** allows you to specify a list of IP addresses that can access your SQL Database Server. The firewall will deny all connections by default, so **be sure to configure your allow list** so that existing clients can connect to the server.
 
-1. Click on **Add to allowed IP addresses** to allow yourself access the server. In **Windows Azure Services** make sure that _YES_ is selected to allow Azure accessing your SQL Server, and then click **Save**.
+1. Click on **Add to allowed IP addresses** to allow yourself access the server. In **Microsoft Azure Services** make sure that _YES_ is selected to allow Azure accessing your SQL Server, and then click **Save**.
 	
 	![Adding a new Allowed IP](images/adding-new-allowed-ip.png?raw=true)
 
@@ -160,12 +160,12 @@ In this task, you will log into the SQL Database portal to obtain the name of th
 <a name="Exercise2"></a>
 ### Exercise 2: Working with Data Basic DDL and DML ###
 
-In this exercise, you will create a new database and work with its data. This means you will create some tables, index those tables appropriately, and then insert and query data. For this purpose, you will use two different tools. The first tool, the Database Manager for SQL Database, is a browser based Silverlight database administration tool that you can access from the Windows Azure portal. The other tool is SQL Server Management Studio, a tool normally associated with SQL Server management. You will see that this tool is equally useful for managing your SQL Databases.
+In this exercise, you will create a new database and work with its data. This means you will create some tables, index those tables appropriately, and then insert and query data. For this purpose, you will use two different tools. The first tool, the Database Manager for SQL Database, is a browser based Silverlight database administration tool that you can access from the Microsoft Azure portal. The other tool is SQL Server Management Studio, a tool normally associated with SQL Server management. You will see that this tool is equally useful for managing your SQL Databases.
 
 <a name="Ex2Task1"></a>
 #### Task 1 - Creating a New Database ####
 
-1. In the Windows Azure Management portal UI, select **New** from the bottom pane, **Data Services** | **SQL Database** | **Custom Create**.
+1. In the Microsoft Azure Management portal UI, select **New** from the bottom pane, **Data Services** | **SQL Database** | **Custom Create**.
 	
 	![New SQL Database](images/new-sql-database.png?raw=true)
 
@@ -177,7 +177,7 @@ In this exercise, you will create a new database and work with its data. This me
 
 	_New database's features_
 	
-	>**Note:** In this hands-on lab, you create a database using the Windows Azure portal. Databases can also be created by executing a DDL query against your assigned server using the T-SQL CREATE DATABASE statement, specifying which SQL Database edition (Web or Business) to create as well as its maximum size. For example, to create a Business Edition database with a maximum size of 30GB, use the following T-SQL command: 
+	>**Note:** In this hands-on lab, you create a database using the Microsoft Azure portal. Databases can also be created by executing a DDL query against your assigned server using the T-SQL CREATE DATABASE statement, specifying which SQL Database edition (Web or Business) to create as well as its maximum size. For example, to create a Business Edition database with a maximum size of 30GB, use the following T-SQL command: 
 	>
 	>**CREATE DATABASE HolTestDB (MAXSIZE = 30GB)** 
 	>
@@ -188,7 +188,7 @@ In this exercise, you will create a new database and work with its data. This me
 
 In this task, you use the Database Manager for SQL Database, a Silverlight client that runs in your browser, to connect to your SQL Database, create and populate a table, and then query its contents.
 
-1. In the Windows Azure Management portal UI Home Page, select **SQL Databases** from the left pane, select _HoLTestDB_ database and click **Manage** on the bottom pane.
+1. In the Microsoft Azure Management portal UI Home Page, select **SQL Databases** from the left pane, select _HoLTestDB_ database and click **Manage** on the bottom pane.
 	 
 	![Managing a Database](images/manage-database.png?raw=true)
 
@@ -488,11 +488,11 @@ Much like SQL Server, SQL Database allows you to create additional logins and th
 	_Showing the query execution plan graphically_
 
 <a name="Exercise3"></a>
-### Exercise 3: Build a Windows Azure Application that Accesses SQL Database ###
+### Exercise 3: Build a Microsoft Azure Application that Accesses SQL Database ###
 
-In this exercise, you will create a simple Windows Azure application to manipulate the data in the _Customer_ table of the _AdventureWorksLT2008_ database.
+In this exercise, you will create a simple Microsoft Azure application to manipulate the data in the _Customer_ table of the _AdventureWorksLT2008_ database.
 
-The purpose of this exercise is to demonstrate just how simple it is to work with SQL Database and Windows Azure using the graphical Visual Studio 'drag and drop' approach.
+The purpose of this exercise is to demonstrate just how simple it is to work with SQL Database and Microsoft Azure using the graphical Visual Studio 'drag and drop' approach.
 
 <a name="Ex3Task1"></a>
 #### Task 1 - Loading the Sample Database into SQL Database ####
@@ -506,7 +506,7 @@ The purpose of this exercise is to demonstrate just how simple it is to work wit
 
 <a name="Ex3Task2"></a>
 #### Task 2 - Creating the Visual Studio Project ####
-In this task, you create a new Visual Studio project for a Windows Azure Web Site. 
+In this task, you create a new Visual Studio project for a Microsoft Azure Web Site. 
 
 1. Open Microsoft Visual Studio 2010 in elevated administrator mode. To do this, in **Start** | **All Programs** | **Microsoft Visual Studio 2010**, right-click the **Microsoft Visual Studio 2010** shortcut and choose **Run as Administrator**. 
 
@@ -516,13 +516,13 @@ In this task, you create a new Visual Studio project for a Windows Azure Web Sit
 
 1. In the **New Project** dialog, expand **Visual C#** in the **Installed Templates** list and select **Cloud**.
 
-1. In the **Templates** list, select **Windows Azure Cloud Service**. Set the name of the project to **"AdventureWorks"** and the location inside **Ex3-BuildingSQLAzureApp** in the **Source** folder of the lab. Ensure that **Create directory for solution** is checked and then set the name of the solution to **"Begin"**. Click **OK** to create the project.
+1. In the **Templates** list, select **Microsoft Azure Cloud Service**. Set the name of the project to **"AdventureWorks"** and the location inside **Ex3-BuildingSQLAzureApp** in the **Source** folder of the lab. Ensure that **Create directory for solution** is checked and then set the name of the solution to **"Begin"**. Click **OK** to create the project.
 	  
 	![CreatingNewWebCloudService](images/creatingnewwebcloudservice.png?raw=true)
 
 	_Creating a new Web Cloud Service_ 
 	
-1. In the **New Windows Azure Project** dialog, inside the **Roles** panel, expand the tab for Visual C#, select **ASP.NET Web Role** from the list of available roles and click the right button **(>)** to add an instance of this role to the solution. Before closing the dialog, select the new role in the right panel, click the pencil icon and rename the role as **AdventureWorksWeb**. Click **OK** to create the cloud service solution.
+1. In the **New Microsoft Azure Project** dialog, inside the **Roles** panel, expand the tab for Visual C#, select **ASP.NET Web Role** from the list of available roles and click the right button **(>)** to add an instance of this role to the solution. Before closing the dialog, select the new role in the right panel, click the pencil icon and rename the role as **AdventureWorksWeb**. Click **OK** to create the cloud service solution.
 	 
 	![AddingWebRoleSolution](images/addingwebrolesolution.png?raw=true)
 	
@@ -621,7 +621,7 @@ In this task, you create a new Visual Studio project for a Windows Azure Web Sit
 
 In this exercise, you will learn how to use ADO.NET, ODBC, OLEDB and LINQ to SQL technologies to connect to your SQL Database and perform some simple T-SQL operations. In addition, you will see how to connect to the database from other technologies like Java and PHP.
 
-Using Microsoft Technologies, you will see that the way in which you interact with your Windows Azure SQL Database from your applications is the same as a traditional SQL Database. The main differences between the technologies lie in the type of connection and the connection strings used to connect to Windows Azure SQL Database. After the connection is established, you can then use the appropriate inheritor of the â€˜DbCommandâ€™ to issue your commands.
+Using Microsoft Technologies, you will see that the way in which you interact with your Microsoft Azure SQL Database from your applications is the same as a traditional SQL Database. The main differences between the technologies lie in the type of connection and the connection strings used to connect to Microsoft Azure SQL Database. After the connection is established, you can then use the appropriate inheritor of the ‘DbCommand’ to issue your commands.
 
 <a name="Ex4Task1"></a>
 #### Task 1 - Opening the Begin Solution and Exploring the Common Functionalities ####
@@ -636,7 +636,7 @@ In this task, you will open the **ConnectDemoApp** solution and explore the **SQ
 	 
 	![ConnectDemoAppSolutionStructure](images/connectdemoappsolutionstructure.png?raw=true)  
 
-	_Connect Demo App solutionâ€™s structure_ 
+	_Connect Demo App solution’s structure_ 
 	 
 1. As mentioned before, you will create a class per technology inheriting from the **SQLDatabaseConnectionDemo** abstract class. This class provides common functionality to perform basic operations against SQL Database using the provider that you  implement in the derived class. The table below explains each of the methods in this class to understand how it works and determine which methods you need to implement in the derived classes: 
 
@@ -940,7 +940,7 @@ In this task, you will create a class that inherits from the **SQLDatabaseConnec
 	  //...
 	
 	  // Invoke the OleDB connection demo
-	  Console.WriteLine("Starting the OLEDB Connection Demoâ€¦");
+	  Console.WriteLine("Starting the OLEDB Connection Demo…");
 	  OleDbConnectionDemo demo3 = new OleDbConnectionDemo();
 	  demo3.ConnectToSQLDatabase(userName, password, datasource, databaseName);
 	  Console.WriteLine("Demo Complete... Press any key");
@@ -1115,10 +1115,10 @@ sqlConn.close();
 <a name="Summary"></a>
 ## Summary ##
 
-In this lab, you have looked at the basics of working with Windows Azure SQL Database. If you have any SQL Server experience, you may have found the lab familiar and that is, indeed, the point. Working with SQL Database should be very familiar to anyone who has worked with SQL Server.
+In this lab, you have looked at the basics of working with Microsoft Azure SQL Database. If you have any SQL Server experience, you may have found the lab familiar and that is, indeed, the point. Working with SQL Database should be very familiar to anyone who has worked with SQL Server.
 
 You learned to create new databases, logins and users for those databases. You saw that for the most part, you could simply create objects in SQL Database as you would with an on-premise SQL Server. 
 
-In addition, you created a simple Windows Azure application that is able to consume a SQL Database. 
+In addition, you created a simple Microsoft Azure application that is able to consume a SQL Database. 
 
 Finally, you saw that creating connections to SQL Database using Microsoft technologies is the same as creating connections to any normal on-premises database.

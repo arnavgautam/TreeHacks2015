@@ -1,11 +1,11 @@
-﻿<a name="Deploy-AD-in-Windows-Azure" />
-# Deploy Active Directory in Windows Azure using PowerShell#
+<a name="Deploy-AD-in-Windows-Azure" />
+# Deploy Active Directory in Microsoft Azure using PowerShell#
 
 ---
 <a name="Overview" /></a>
 ## Overview ##
 
-When deploying Active Directory in Windows Azure, there are two important aspects to point out.
+When deploying Active Directory in Microsoft Azure, there are two important aspects to point out.
 
 The first is the networking configuration. Domain members and domain controllers need to find the DNS server hosting the domain DNS information. You will use the Azure network configuration to set up the DNS service.
 
@@ -17,7 +17,7 @@ Secondly, it is important to prevent Active Directory database corruption. Activ
 In this hands-on lab, you will learn how to:
 
 - Provision a data disk to a Virtual Machine
-- Deploy a Domain Controller in Windows Azure
+- Deploy a Domain Controller in Microsoft Azure
 
 <a name="Prerequisites" />
 ### Prerequisites ###
@@ -25,15 +25,15 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
  
 - [Windows PowerShell 3.0]( http://microsoft.com/powershell/) (or higher)
-- Windows Azure PowerShell Cmdlets v0.7.1 (or higher)
-	- Follow the [Install Windows Azure PowerShell](http://www.windowsazure.com/en-us/manage/install-and-configure-windows-powershell/#Install) how-to guide to install the cmdlets.
-- A Windows Azure subscription
+- Microsoft Azure PowerShell Cmdlets v0.7.1 (or higher)
+	- Follow the [Install Microsoft Azure PowerShell](http://www.windowsazure.com/en-us/manage/install-and-configure-windows-powershell/#Install) how-to guide to install the cmdlets.
+- A Microsoft Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial).
-	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
-	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
-	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Microsoft Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Microsoft Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Microsoft Azure at no charge.
 - A Windows Server 2012 virtual machine
-	- Follow the [Quickly create a virtual machine](http://msdn.microsoft.com/en-us/library/windowsazure/jj835085.aspx#bk_Quick) section of the [Create or Delete Virtual Machines Using Windows Azure Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj835085.aspx) how-to guide to create a Windows Server virtual machine (make sure to pick a Windows Server 2012 image from the images list).
+	- Follow the [Quickly create a virtual machine](http://msdn.microsoft.com/en-us/library/windowsazure/jj835085.aspx#bk_Quick) section of the [Create or Delete Virtual Machines Using Microsoft Azure Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj835085.aspx) how-to guide to create a Windows Server virtual machine (make sure to pick a Windows Server 2012 image from the images list).
 
 		> **Note:**  You can use the following command to retrieve the name of the latest Windows Server 2012 image available.
 
@@ -56,16 +56,16 @@ This hands-on lab includes the following exercises:
 <a name="gettingstarted" /></a>
 ### Getting Started: Obtaining Subscription's Credentials ###
 
-In order to complete this lab, you will need your subscription’s secure credentials. Windows Azure lets you download a Publish Settings file with all the information required to manage your account in your development environment.
+In order to complete this lab, you will need your subscription�s secure credentials. Microsoft Azure lets you download a Publish Settings file with all the information required to manage your account in your development environment.
 
 <a name="GSTask1" /></a>
 #### Task 1 - Downloading and Importing a Publish Settings file ####
 
 > **Note:** If you have completed these steps in a previous lab on the same computer you can move on to Exercise 1.
 
-In this task, you will log on to the Windows Azure Portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription that you will use in your development environment. You will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
+In this task, you will log on to the Microsoft Azure Portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Microsoft Azure Subscription that you will use in your development environment. You will import this file using the Microsoft Azure Cmdlets in order to install the certificate and obtain the account information.
 
-1. Search for **Windows Azure PowerShell** in the Start screen and choose **Run as Administrator**.
+1. Search for **Microsoft Azure PowerShell** in the Start screen and choose **Run as Administrator**.
 
 1.	Change the PowerShell execution policy to **RemoteSigned**. When asked to confirm, press **Y** and then **Enter**.
 	
@@ -82,13 +82,13 @@ In this task, you will log on to the Windows Azure Portal and download the Publi
 	>
 	> For more information about Execution Policies, refer to this TechNet article: <http://technet.microsoft.com/en-us/library/ee176961.aspx>
 
-1.	Execute the following command to download the subscription information. This command will open a web page on the Windows Azure Management Portal.
+1.	Execute the following command to download the subscription information. This command will open a web page on the Microsoft Azure Management Portal.
 
 	````PowerShell
 	Get-AzurePublishSettingsFile
 	````
 
-1.	Sign in using the **Microsoft Account** associated with your **Windows Azure** account.
+1.	Sign in using the **Microsoft Account** associated with your **Microsoft Azure** account.
 
 1.	**Save** the Publish Settings file to your local file system.
 
@@ -96,13 +96,13 @@ In this task, you will log on to the Windows Azure Portal and download the Publi
 
 	_Downloading Publish Settings file_
 
-1.	The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Windows Azure Subscription. Replace the placeholder with the path to your Publish Settings file and execute the script.
+1.	The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Microsoft Azure Subscription. Replace the placeholder with the path to your Publish Settings file and execute the script.
 
 	````PowerShell
 	Import-AzurePublishSettingsFile '[YOUR-PUBLISH-SETTINGS-PATH]'   
 	````
 
-	> **Note:** It is recommended that you delete the publishing profile that you downloaded using _Get-AzurePublishSettingsFile_ after you import those settings. Because the management certificate includes security credentials, unauthorized users should not be allowed access. If needed, you can access information about your subscriptions from the Windows Azure Management Portal or the Microsoft Online Services Customer Portal.
+	> **Note:** It is recommended that you delete the publishing profile that you downloaded using _Get-AzurePublishSettingsFile_ after you import those settings. Because the management certificate includes security credentials, unauthorized users should not be allowed access. If needed, you can access information about your subscriptions from the Microsoft Azure Management Portal or the Microsoft Online Services Customer Portal.
 
 1. Execute the following command and take note of the subscription name you will use for this exercise.
  
@@ -139,7 +139,7 @@ You will now modify the virtual machine you already created. We will create and 
 <a name="Ex1Task1" /></a>
 #### Task 1 - Attaching a Data Disk to your Virtual Machine####
 
-1. Start **Windows Azure PowerShell**.
+1. Start **Microsoft Azure PowerShell**.
 
 1. Run the following command to add a data disk to the existing virtual machine. Make sure you replace the placeholder accordingly, using the service name and virtual machine name you provided when creating the virtual machine for this lab.
 
@@ -161,7 +161,7 @@ You will now modify the virtual machine you already created. We will create and 
 <a name="Ex1Task2" /></a>
 #### Task 2 - Configuring a new Data Disk on your Virtual Machine####
 
-1. In **Windows Azure PowerShell**, run the following command to save the DNS in a variable.
+1. In **Microsoft Azure PowerShell**, run the following command to save the DNS in a variable.
 
 	````PowerShell
 	$dnsName = (Get-AzureVM $cloudSvcName).DNSName.split('/')[2]
@@ -272,7 +272,7 @@ You have just created a base virtual machine, attached the necessary data disk, 
 <a name="Ex2Task3" /></a>
 #### Task 3 - Verifying the Domain Controller Installed Successfully ####
 
-1. If you lose the remote connection, wait two to three minutes for the Virtual Machine to restart and type the following command in Windows Azure PowerShell in order to connect again. Note that this command uses the _$dnsName_ and _$winRmHTTpsEndpoint_ variables obtained in Exercise 1. Replace _[YOUR-VM-USERNAME]_ with the administrator username provided when you created the virtual machine.
+1. If you lose the remote connection, wait two to three minutes for the Virtual Machine to restart and type the following command in Microsoft Azure PowerShell in order to connect again. Note that this command uses the _$dnsName_ and _$winRmHTTpsEndpoint_ variables obtained in Exercise 1. Replace _[YOUR-VM-USERNAME]_ with the administrator username provided when you created the virtual machine.
 
 	````PowerShell
 	Enter-PSSession -ComputerName $dnsName -Port $winRmHTTpsEndpoint.Port -Authentication Negotiate -Credential '[YOUR-VM-USERNAME]' -UseSSL -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
@@ -296,7 +296,7 @@ You have just created a base virtual machine, attached the necessary data disk, 
 
 ## Next Steps ##
 
-To learn more about configuring Windows virtual machines on Windows Azure, please refer to the following articles:
+To learn more about configuring Windows virtual machines on Microsoft Azure, please refer to the following articles:
 
 **Technical Reference**
 
@@ -304,29 +304,29 @@ This is a list of articles that expand on the technologies explained in this lab
 
 - You can continue reading the Hands-on lab **Understanding Virtual Machine Imaging with Capture (PowerShell)**.
 
-- [Windows Azure Management Cmdlets Reference](http://aka.ms/M6sfun): provides reference information on the cmdlet sets that are included in the Windows Azure PowerShell module.
+- [Microsoft Azure Management Cmdlets Reference](http://aka.ms/M6sfun): provides reference information on the cmdlet sets that are included in the Microsoft Azure PowerShell module.
 
-- [Windows Azure Virtual Networks](http://aka.ms/Tj1lj3): provides you with the capability to extend your network into Windows Azure and treat deployments in Windows as a natural extension of your on-premises network.
+- [Microsoft Azure Virtual Networks](http://aka.ms/Tj1lj3): provides you with the capability to extend your network into Microsoft Azure and treat deployments in Windows as a natural extension of your on-premises network.
 
-- [Add a Virtual Machine to a Virtual Network](http://aka.ms/pej5x8): walks you through the steps to create a Windows Azure storage account and virtual machine to add to a virtual network.
+- [Add a Virtual Machine to a Virtual Network](http://aka.ms/pej5x8): walks you through the steps to create a Microsoft Azure storage account and virtual machine to add to a virtual network.
 
 - [Load Balancing Virtual Machines](http://aka.ms/Vf3h6k): endpoints serve different purposes, such as balancing the load of network traffic to maintain high availability or to facilitate direct virtual machine connectivity using protocols such as RDP or SSH.
 
-- [How to use PowerShell to set up a SQL Server virtual machine in Windows Azure](http://aka.ms/ehtolo): shows how to create multiple SQL Server virtual machines in the same Cloud Service by using the PowerShell cmdlets.
+- [How to use PowerShell to set up a SQL Server virtual machine in Microsoft Azure](http://aka.ms/ehtolo): shows how to create multiple SQL Server virtual machines in the same Cloud Service by using the PowerShell cmdlets.
 
 **Development**
 
-This is a list of useful sample scripts from [Script Center](http://aka.ms/bv06qh) to manage Windows Azure Virtual Machines:
+This is a list of useful sample scripts from [Script Center](http://aka.ms/bv06qh) to manage Microsoft Azure Virtual Machines:
 
-- [Domain Joining Windows Azure Virtual Machines on Provision](http://aka.ms/M0v77a): shows how to configure domain join when provisioning virtual machines using the Windows Azure PowerShell cmdlets. Active Directory connectivity is required in order for this sample to work.
+- [Domain Joining Microsoft Azure Virtual Machines on Provision](http://aka.ms/M0v77a): shows how to configure domain join when provisioning virtual machines using the Microsoft Azure PowerShell cmdlets. Active Directory connectivity is required in order for this sample to work.
 
-- [Start Windows Azure Virtual Machines on a Schedule](http://aka.ms/dsgp6a): shows how to start a single Virtual Machine or set of Virtual Machines (using a wildcard pattern) within a Cloud Service by creating scheduled tasks to start the Virtual Machine(s) on a schedule at a specified time.
+- [Start Microsoft Azure Virtual Machines on a Schedule](http://aka.ms/dsgp6a): shows how to start a single Virtual Machine or set of Virtual Machines (using a wildcard pattern) within a Cloud Service by creating scheduled tasks to start the Virtual Machine(s) on a schedule at a specified time.
 
-- [Stop Windows Azure Virtual Machines on a Schedule](http://aka.ms/rx7dvy): shows how to stop a single Virtual Machine or set of Virtual Machines (using a wildcard pattern) within a Cloud Service by creating scheduled tasks to stop the Virtual Machine(s) on a schedule at a specified time.
+- [Stop Microsoft Azure Virtual Machines on a Schedule](http://aka.ms/rx7dvy): shows how to stop a single Virtual Machine or set of Virtual Machines (using a wildcard pattern) within a Cloud Service by creating scheduled tasks to stop the Virtual Machine(s) on a schedule at a specified time.
 
-- [Deploy Windows Azure VMs to an Availability Set and Load Balanced on an Endpoint](http://aka.ms/htx61t): shows how to deploy a specified number of Virtual Machines based on a given image name. The Virtual Machines are placed in the same availability set and load-balanced on a given endpoint name.
+- [Deploy Microsoft Azure VMs to an Availability Set and Load Balanced on an Endpoint](http://aka.ms/htx61t): shows how to deploy a specified number of Virtual Machines based on a given image name. The Virtual Machines are placed in the same availability set and load-balanced on a given endpoint name.
 
-- [Deploy Multiple Windows Azure VMs in the Same Windows Azure Virtual Network](http://aka.ms/yg0n7j): creates four Windows Server 2012 Virtual Machines across two separate cloud services and adds them to the same virtual network. If the virtual network indicated does not exist, it is then created.
+- [Deploy Multiple Microsoft Azure VMs in the Same Microsoft Azure Virtual Network](http://aka.ms/yg0n7j): creates four Windows Server 2012 Virtual Machines across two separate cloud services and adds them to the same virtual network. If the virtual network indicated does not exist, it is then created.
 
 
 ---
@@ -334,4 +334,4 @@ This is a list of useful sample scripts from [Script Center](http://aka.ms/bv06q
 <a name="Summary"/>
 ## Summary ##
 
-In this lab, you went through the steps of deploying a new Active Directory Domain controller in a new forest using Windows Azure virtual machines and remote PowerShell.
+In this lab, you went through the steps of deploying a new Active Directory Domain controller in a new forest using Microsoft Azure virtual machines and remote PowerShell.

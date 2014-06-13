@@ -1,5 +1,5 @@
-ï»¿<a name="Title" />
-# Configuring SQL Server 2012 for SharePoint in Windows Azure #
+<a name="Title" />
+# Configuring SQL Server 2012 for SharePoint in Microsoft Azure #
 
 ---
 <a name="Overview" />
@@ -12,13 +12,13 @@ In this hands-on lab you will learn how to create and configure a virtual machin
 
 In this hands-on lab, you will learn how to:
 
-1. Create a virtual machine using the Windows Azure portal that is hosted within the same cloud service as another virtual machine.
+1. Create a virtual machine using the Microsoft Azure portal that is hosted within the same cloud service as another virtual machine.
 1. Configure a SQL Server 2012
 
 <a name="Setup" />
 ### Setup ###
 
-The Windows Azure PowerShell Cmdlets are required for this lab. If you have not configured them yet, see the **Automating VM Management** hands-on lab in the **Automating Windows Azure with PowerShell** module. 
+The Microsoft Azure PowerShell Cmdlets are required for this lab. If you have not configured them yet, see the **Automating VM Management** hands-on lab in the **Automating Microsoft Azure with PowerShell** module. 
 
 >**Note:** In order to run through the complete hands-on lab, you must have network connectivity. 
 
@@ -28,8 +28,8 @@ The Windows Azure PowerShell Cmdlets are required for this lab. If you have not 
 The following is required to complete this hands-on lab:
 
 - Complete the Deploying Active Directory hands-on lab
-- [Windows Azure PowerShell CmdLets](http://msdn.microsoft.com/en-us/library/windowsazure/jj156055)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Microsoft Azure PowerShell CmdLets](http://msdn.microsoft.com/en-us/library/windowsazure/jj156055)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 
 <a name="Exercises" />
@@ -37,7 +37,7 @@ The following is required to complete this hands-on lab:
 
 This hands-on lab includes the following exercises:
 
-1. [Creating and configuring Windows Server Virtual Machine with SQL Server 2012 using the Windows Azure portal](#Exercise1)
+1. [Creating and configuring Windows Server Virtual Machine with SQL Server 2012 using the Microsoft Azure portal](#Exercise1)
  
 Estimated time to complete this lab: **30 minutes**.
 
@@ -45,18 +45,18 @@ Estimated time to complete this lab: **30 minutes**.
 <a name='gettingstarted' />
 ### Getting Started: Obtaining Subscription's Credentials ###
 
-In order to complete this lab, you will need your subscriptionâ€™s secure credentials. Windows Azure lets you download a Publish Settings file with all the information required to manage your account in your development environment.
+In order to complete this lab, you will need your subscription’s secure credentials. Microsoft Azure lets you download a Publish Settings file with all the information required to manage your account in your development environment.
 
 <a name='gettingstartedTask1' />
 #### Task 1 - Downloading and Importing a Publish-settings File ####
 
 > **Note:** If you have done these steps in a previous lab on the same computer you can move on to Exercise 1.
 
-In this task, you will log on to the Windows Azure Portal and download the publish-settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription to use in your development environment. Then, you will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
+In this task, you will log on to the Microsoft Azure Portal and download the publish-settings file. This file contains the secure credentials and additional information about your Microsoft Azure Subscription to use in your development environment. Then, you will import this file using the Microsoft Azure Cmdlets in order to install the certificate and obtain the account information.
 
 1.	Open an Internet Explorer browser and go to <https://windows.azure.com/download/publishprofile.aspx>.
 
-1.	Sign in using the credentials associated with your Windows Azure account.
+1.	Sign in using the credentials associated with your Microsoft Azure account.
 
 1.	**Save** the publish-settings file to your local machine.
 
@@ -64,9 +64,9 @@ In this task, you will log on to the Windows Azure Portal and download the publi
 
 	_Downloading publish-settings file_
 
-	> **Note:** The download page shows you how to import the publish-settings file using Visual Studio Publish box. This lab will show you how to import it using the Windows Azure PowerShell Cmdlets instead.
+	> **Note:** The download page shows you how to import the publish-settings file using Visual Studio Publish box. This lab will show you how to import it using the Microsoft Azure PowerShell Cmdlets instead.
 
-1. Start **Windows Azure PowerShell** with administrator privileges by selecting **Run as Administrator**.
+1. Start **Microsoft Azure PowerShell** with administrator privileges by selecting **Run as Administrator**.
 
 1.	Change the PowerShell execution policy to **RemoteSigned**. When asked to confirm press **Y** and then **Enter**.
 	
@@ -84,7 +84,7 @@ In this task, you will log on to the Windows Azure Portal and download the publi
 	> For more information about Execution Policies refer to this TechNet article: <http://technet.microsoft.com/en-us/library/ee176961.aspx>
 
 	
-1.	The following script imports your publish-settings file and generates an XML file with your account information. You will use these values during the lab to manage your Windows Azure Subscription. Replace the placeholder with your publish-setting fileâ€™s path and execute the script.
+1.	The following script imports your publish-settings file and generates an XML file with your account information. You will use these values during the lab to manage your Microsoft Azure Subscription. Replace the placeholder with your publish-setting file’s path and execute the script.
 
 	````PowerShell
 	Import-AzurePublishSettingsFile '[YOUR-PUBLISH-SETTINGS-PATH]'   
@@ -124,7 +124,7 @@ In this task, you will log on to the Windows Azure Portal and download the publi
 
 You will now create the Windows Server virtual machine and configure SQL Server. You will automatically provision a new virtual machine that is joined to the Active Directory domain at boot.
 
-1. If you do not have the IP address of the Domain Controller virtual machine, navigate to http://manage.windowsazure.com/ using a Web browser and sign in using the **Microsoft Account** associated with your Windows Azure account.
+1. If you do not have the IP address of the Domain Controller virtual machine, navigate to http://manage.windowsazure.com/ using a Web browser and sign in using the **Microsoft Account** associated with your Microsoft Azure account.
 
 1. Go to **Virtual Machines**, select the virtual machine where you deployed the AD and select the **Connect** button at the bottom panel.
 
@@ -136,7 +136,7 @@ You will now create the Windows Server virtual machine and configure SQL Server.
 
 	_IP Address_
 
-1. Open **Windows Azure PowerShell**. Start typing **Windows Azure PowerShell** in the **Start** screen, right-click **Windows Azure Powershell** and choose **Run as Administrator**.
+1. Open **Microsoft Azure PowerShell**. Start typing **Microsoft Azure PowerShell** in the **Start** screen, right-click **Microsoft Azure Powershell** and choose **Run as Administrator**.
 
 1. Execute the following command to obtain the names of the available OS Disk images. Take note of the **SQL Server 2012 Standard Edition** image disk name. This image is a Windows Server 2008 R2 that has a SQL Server 2012 Standard Edition already installed.
 
@@ -152,7 +152,7 @@ You will now create the Windows Server virtual machine and configure SQL Server.
 	$imgName = '[OS-IMAGE-NAME]'
 	````
 
-1. Set up the Virtual Machine's DNS settings. To do this, you will use the virtual machine you created in **Deploying Active Directory in Windows Azure** hands-on lab, were you configured the Active Directory. Replace the placeholders before executing the following command. Use the IP address you copied at the beginning of the exercise.
+1. Set up the Virtual Machine's DNS settings. To do this, you will use the virtual machine you created in **Deploying Active Directory in Microsoft Azure** hands-on lab, were you configured the Active Directory. Replace the placeholders before executing the following command. Use the IP address you copied at the beginning of the exercise.
 	
 	<!-- mark:1-4 -->
 	````PowerShell
@@ -191,7 +191,7 @@ You will now create the Windows Server virtual machine and configure SQL Server.
 	$affinityGroup = 'adag'
 	$adVNET = 'ADVNET'
 	# New Cloud Service with VNET and DNS settings
-	New-AzureVM â€“ServiceName $serviceName -AffinityGroup $affinityGroup -VMs $advm1 -DnsSettings $dns1 -VNetName $adVNET
+	New-AzureVM –ServiceName $serviceName -AffinityGroup $affinityGroup -VMs $advm1 -DnsSettings $dns1 -VNetName $adVNET
 	````
 
 	>**Note:** The previous command asumes that you used the proposed names for the Domain Name and the Subnets that are shown in the **Deploying Active Directory** hands on lab. You may need to update the values if you used different names.
@@ -201,7 +201,7 @@ You will now create the Windows Server virtual machine and configure SQL Server.
 <a name="Ex1Task2" />
 #### Task 2 - Configuring Disks for SQL Server ####
 
-1. In the **Windows Azure Portal**, select the _SQLServer2012VM_ virtual machine you created in Task 1, and click **Attach**.
+1. In the **Microsoft Azure Portal**, select the _SQLServer2012VM_ virtual machine you created in Task 1, and click **Attach**.
 
      ![attachemptydisk](Images/attachemptydisk.png?raw=true)
 
@@ -248,7 +248,7 @@ You will now create the Windows Server virtual machine and configure SQL Server.
 <a name="Ex1Task3" />
 #### Task 3 - Updating SQL Server Network Configuration ####
 
-1. In the **Windows Azure Portal**, select the _SQLServer2012VM_ virtual machine you created in Task 1, and click **Connect**, if you are not already logged into this machine.
+1. In the **Microsoft Azure Portal**, select the _SQLServer2012VM_ virtual machine you created in Task 1, and click **Connect**, if you are not already logged into this machine.
 
 1. Open the remote desktop file and log on using the Administrator credentials you defined when creating the virtual machine.
 
@@ -324,4 +324,4 @@ You will now create the Windows Server virtual machine and configure SQL Server.
 <a name="summary" />
 ## Summary ##
 
-In this lab you learned how to create and configure a SQL Server 2012 Database by provisioning a Virtual Machine in the Windows Azure portal and then applying the configuration in SQL Server. You also learned how to join a virtual machine to an existing cloud service and join a domain with that virtual machine.
+In this lab you learned how to create and configure a SQL Server 2012 Database by provisioning a Virtual Machine in the Microsoft Azure portal and then applying the configuration in SQL Server. You also learned how to join a virtual machine to an existing cloud service and join a domain with that virtual machine.
