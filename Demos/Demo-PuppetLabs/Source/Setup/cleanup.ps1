@@ -10,13 +10,23 @@ pushd ".."
 [xml] $xmlAzureSettings = Get-Content $azureSettingsFile
 
 # General Settings 
+[string] $azureSubscription = $xmlAzureSettings.configuration.generalSettings.azureSubscriptionName
+[string] $dclocation = $xmlAzureSettings.configuration.generalSettings.location
+[string] $adminUserName = $xmlAzureSettings.configuration.generalSettings.adminUserName
+[string] $adminPassword = $xmlAzureSettings.configuration.generalSettings.adminPassword
+[string] $storageAccount = $xmlAzureSettings.configuration.generalSettings.storageAccount
 
 # Puppet Master Settings
+[string] $masterCloudServiceName = $xmlAzureSettings.configuration.puppetMasterSettings.cloudServiceName
+[string] $masterVMName = $xmlAzureSettings.configuration.puppetMasterSettings.vmName
 
 # Puppet Agent Settings
+[string] $agentCloudServiceName = $xmlAzureSettings.configuration.puppetAgentSettings.cloudServiceName
+[string] $agentVMName = $xmlAzureSettings.configuration.puppetAgentSettings.vmName
 
 popd
 
-#Puppet VM Creation if they don't exists
+#Invoke Puppet VM Creation if they dont exists
+Invoke-Expression ".\tasks\puppetVMsCreation.ps1 -azureSubscription `"$azureSubscription`" -dclocation `"$dclocation`" -storageAccountName `"$storageAccount`" -adminUserName `"$adminUserName`" -adminPassword `"$adminPassword`" -masterCloudServiceName `"$masterCloudServiceName`" -masterVMName `"$masterVMName`" -agentCloudServiceName `"$agentCloudServiceName`" -agentVMName `"$agentVMName`""
 
 #VM Reset
