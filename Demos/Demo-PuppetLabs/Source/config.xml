@@ -3,18 +3,14 @@
 		<AzureSubscriptionName>{Location}</AzureSubscriptionName>
 		<Location>{Location}</Location>
 	</General>
-    <PuppetMaster>	
+    <Puppet>	
 		<StorageAccount>{StorageAccount}</StorageAccount>
 		<CloudServiceName>{CloudServiceName}</CloudServiceName>
-		<VMName>{VMName}</VMName>
+		<VMMaster>{VMName}</VMMaster>
+		<VMAgent>{VMName}</VMAgent>
 		<AdminUserName>{AdminUserName}</AdminUserName>
 		<AdminPassword>{AdminPassword}</AdminPassword>
-    </PuppetMaster>
-	<PuppetAgent>
-		<StorageAccount>{StorageAccount}</StorageAccount>
-		<CloudServiceName>{CloudServiceName}</CloudServiceName>
-		<VMName>{VMName}</VMName>
-		<AdminUserName>{AdminUserName}</AdminUserName>
-		<AdminPassword>{AdminPassword}</AdminPassword>
-	</PuppetAgent>
+		<ConsoleUsername>{ConsoleUsername}</ConsoleUsername>
+		<ConsolePassword>{ConsolePassword</ConsolePassword>
+    </Puppet>	
 </configuration>

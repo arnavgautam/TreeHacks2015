@@ -11,12 +11,19 @@ pushd ".."
 
 # General Settings 
 
-# Puppet Master Settings
+# Puppet Settings
+$cloudServiceName = $xmlAzureSettings.configuration.Puppet.CloudServiceName
+$adminUsername = $xmlAzureSettings.configuration.Puppet.AdminUserName
+$consoleUsername = $xmlAzureSettings.configuration.Puppet.ConsoleUsername
+$consolePassword = $xmlAzureSettings.configuration.Puppet.ConsolePassword
 
-# Puppet Agent Settings
+Write-Host $adminUsername
 
+$hostVM = "$adminUsername@$cloudServiceName.cloudapp.net"
+Write-Host $hostVM
 popd
 
 #Puppet VM Creation if they don't exists
 
 #VM Reset
+Invoke-Expression -Command ".\reset.sh '$hostVM' '$consoleUsername' '$consolePassword'"
