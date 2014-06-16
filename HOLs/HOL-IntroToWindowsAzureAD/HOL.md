@@ -612,68 +612,15 @@ In this task you will update the application configuration in the Management Por
 
 	_Generating Key for Read and Write_
 
-1. Click **Manage Manifest** in the bottom toolbar and select **Download Manifest**.
+1. In the **CONFIGURE** page, under the **permissions to other applications** section, select **Read directory data** in the **Delegated Permissions** dropdown for the **Windows Azure Active Directory** application.
 
-	![Download Manifest](Images/download-manifest.png?raw=true)
+	> **Note:** You can also set the application permissions by downloading, updating and uploading the JSON Manifest file. For more information see [Appendix A: Configuring permissions to other applications by updating the application manifest](#appendixA).
 
-	_Manage Manifest_
+	![Configure Application Permissions to Other Applications](Images/configure-application-permissions-to-other-ap.png?raw=true)
 
-1. In the Download Manifest dialog click **Download Manifest**. When prompted, save the file and close the dialog.
+1. Click **Save** in the bottom toolbar and wait until the configuration for the application has been updated successfully.
 
-	![download-manifest-dialog](Images/download-manifest-dialog.png?raw=true "Download Manifest")
-	
-	_Download Manifest_
-	
-1. Open the application manifest file with **Visual Studio**. Find the requiredResourceAccess section and add the section marked in bold below. Save the file.
-
-	<!-- mark:5-11 -->
-	````JSON
-	"requiredResourceAccess": [
-      {
-		"resourceAppId": "00000002-0000-0000-c000-000000000000",
-		"requiredAppPermissions": [
-		  {
-	          "permissionId": "5778995a-e1bf-45b8-affa-663a9f3f4d04",
-	          "directAccessGrant": true,
-	          "impersonationAccessGrants": [
-	            "User"
-	          ]
-		  },
-		  {
-			"permissionId": "311a71cc-e848-46a1-bdf8-97ff7156d8e6",
-			"directAccessGrant": false,
-			"impersonationAccessGrants": [
-				"User"
-			]
-		  }
-	     ]
-	  }
-	],
-	````
-
-1. In the Management Portal, click **Manage Manifest** and select **Upload Manifest**. 
-
-	![Upload Manifest button](Images/upload-manifest-button.png?raw=true "Upload Manifest button")
-	
-	_Upload Manifest button_
-
-1. Select the file you just updated and upload the manifest.
-
-	![Upload manifest dialog box](Images/upload-manifest-dialog-box.png?raw=true "Upload manifest dialog box")
-	
-	_Upload manifest dialog box_
-
-1. Wait until the operation completes and the pages refreshes.
-
-	![Upload Manifest completed](Images/upload-manifest-completed.png?raw=true "Upload Manifest completed")
-	
-	_Upload Manifest completed_
-
-1. Notice that in the **Permissions to other applications** section, both permissions has been updated.
-
-	![Permissions to other applications](Images/permissions-to-other-applications.png?raw=true "Permissions to other applications")
-	
-	_Permissions to other applications_
+	![Save Application Permissions](Images/save-application-permissions.png?raw=true)
 	
 <a name="Ex2Task2" />
 #### Task 2 - Including Graph Client Library in MVC App ####
@@ -942,3 +889,76 @@ By completing this hands-on lab you learned how to:
 * Provision an MVC application in the AD tenant
 * Explore the configuration of the application Authentication
 * Query Active Directory data using Graph AD API
+
+---
+
+<a name="appendixA" />
+## Appendix A: Configuring permissions to other applications by updating the application manifest ##
+
+In this appendix you will learn how to set up permissions to other applications by updating the JSON Manifest for an application.
+
+<a name="AppendixAQueues" />
+### Configuring permissions to other applications by updating the application manifest ###
+
+1. Click **Manage Manifest** in the bottom toolbar and select **Download Manifest**.
+
+	![Download Manifest](Images/download-manifest.png?raw=true)
+
+	_Manage Manifest_
+
+1. In the Download Manifest dialog click **Download Manifest**. When prompted, save the file and close the dialog.
+
+	![download-manifest-dialog](Images/download-manifest-dialog.png?raw=true "Download Manifest")
+	
+	_Download Manifest_
+	
+1. Open the application manifest file with **Visual Studio**. Find the requiredResourceAccess section and add the section marked in bold below. Save the file.
+
+	<!-- mark:5-11 -->
+	````JSON
+	"requiredResourceAccess": [
+      {
+		"resourceAppId": "00000002-0000-0000-c000-000000000000",
+		"requiredAppPermissions": [
+		  {
+	          "permissionId": "5778995a-e1bf-45b8-affa-663a9f3f4d04",
+	          "directAccessGrant": true,
+	          "impersonationAccessGrants": [
+	            "User"
+	          ]
+		  },
+		  {
+			"permissionId": "311a71cc-e848-46a1-bdf8-97ff7156d8e6",
+			"directAccessGrant": false,
+			"impersonationAccessGrants": [
+				"User"
+			]
+		  }
+	     ]
+	  }
+	],
+	````
+
+1. In the Management Portal, click **Manage Manifest** and select **Upload Manifest**. 
+
+	![Upload Manifest button](Images/upload-manifest-button.png?raw=true "Upload Manifest button")
+	
+	_Upload Manifest button_
+
+1. Select the file you just updated and upload the manifest.
+
+	![Upload manifest dialog box](Images/upload-manifest-dialog-box.png?raw=true "Upload manifest dialog box")
+	
+	_Upload manifest dialog box_
+
+1. Wait until the operation completes and the pages refreshes.
+
+	![Upload Manifest completed](Images/upload-manifest-completed.png?raw=true "Upload Manifest completed")
+	
+	_Upload Manifest completed_
+
+1. Notice that in the **Permissions to other applications** section, both permissions has been updated.
+
+	![Permissions to other applications](Images/permissions-to-other-applications.png?raw=true "Permissions to other applications")
+	
+	_Permissions to other applications_
