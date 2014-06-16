@@ -1,0 +1,20 @@
+<configuration>
+	<General>
+		<AzureSubscriptionName>{Location}</AzureSubscriptionName>
+		<Location>{Location}</Location>
+	</General>
+    <PuppetMaster>	
+		<StorageAccount>{StorageAccount}</StorageAccount>
+		<CloudServiceName>{CloudServiceName}</CloudServiceName>
+		<VMName>{VMName}</VMName>
+		<AdminUserName>{AdminUserName}</AdminUserName>
+		<AdminPassword>{AdminPassword}</AdminPassword>
+    </PuppetMaster>
+	<PuppetAgent>
+		<StorageAccount>{StorageAccount}</StorageAccount>
+		<CloudServiceName>{CloudServiceName}</CloudServiceName>
+		<VMName>{VMName}</VMName>
+		<AdminUserName>{AdminUserName}</AdminUserName>
+		<AdminPassword>{AdminPassword}</AdminPassword>
+	</PuppetAgent>
+</configuration>
