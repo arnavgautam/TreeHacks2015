@@ -1,20 +1,20 @@
 ﻿<a name="Title" />
-# Introduction to Microsoft Azure Active Directory #
+# Introduction to Azure Active Directory #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-In this hands-on lab you will learn how to use **Microsoft Azure Active Directory** to implement web single sign-on in an ASP.NET application. The instructions will focus on taking advantage of the directory tenant associated with your Microsoft Azure subscription, as that constitutes the obvious choice of identity providers for Line of Business (LoB) applications in your own organization. This lab will show you how to create an application with single sign-on enabled with Microsoft Azure Active Directory using the new Organizational Accounts authentication template that comes with MVC. Then you will explore all the configurations set in the application and in Microsoft Azure that make single sign-on possible. At the end of the lab, you will use the Graph RESTful API to query Active Directory data and display it in the application.
+In this hands-on lab you will learn how to use **Azure Active Directory** to implement web single sign-on in an ASP.NET application. The instructions will focus on taking advantage of the directory tenant associated with your Microsoft Azure subscription, as that constitutes the obvious choice of identity providers for Line of Business (LoB) applications in your own organization. This lab will show you how to create an application with single sign-on enabled with Azure Active Directory using the new Organizational Accounts authentication template that comes with MVC. Then you will explore all the configurations set in the application and in Microsoft Azure that make single sign-on possible. At the end of the lab, you will use the Graph RESTful API to query Active Directory data and display it in the application.
 
-![Microsoft Azure AD Architecture Overview](Images/windows-azure-ad-architecture-overview.png?raw=true)
+![Azure AD Architecture Overview](Images/windows-azure-ad-architecture-overview.png?raw=true)
 
 <a name="Objectives" />
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-* Create a new Microsoft Azure Active Directory tenant.
+* Create a new Azure Active Directory tenant.
 * Provision an MVC application in the AD tenant.
 * Explore the configuration of the application Authentication.
 * Query Active Directory data using Graph AD API.
@@ -57,8 +57,8 @@ Throughout the lab document, you will be instructed to insert code blocks. For y
 
 This hands-on lab includes the following exercises:
 
-1.	[Adding Sign-On to Your Web Application Using Microsoft Azure Active Directory](#Exercise1)
-1.	[Using the Graph API to Query Microsoft Azure Active Directory](#Exercise2)
+1.	[Adding Sign-On to Your Web Application Using Azure Active Directory](#Exercise1)
+1.	[Using the Graph API to Query Azure Active Directory](#Exercise2)
 
 > **Note:** Each exercise is accompanied by a starting solution. These solutions are missing some code sections that are completed throughout each exercise and will not necessarily work if you run them directly. Inside each exercise you will also find an end folder with the solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
 
@@ -67,22 +67,22 @@ Estimated time to complete this lab: **45** minutes
 > **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.
 
 <a name="Exercise1" />
-### Exercise 1: Adding Sign-On to Your Web Application Using Microsoft Azure Active Directory ###
+### Exercise 1: Adding Sign-On to Your Web Application Using Azure Active Directory ###
 
-In the first exercise you will learn how to provision a new **Microsoft Azure AD** tenant within your Microsoft Azure subscription and how to operate the **Microsoft Azure AD Management Portal** features to register an application.
+In the first exercise you will learn how to provision a new **Azure AD** tenant within your Microsoft Azure subscription and how to operate the **Azure AD Management Portal** features to register an application.
 
 <a name="Ex1Task1" />
 #### Task 1 - Creating a New Directory Tenant ####
 
-In this task, you will provision a new Microsoft Azure Active Directory Tenant from Microsoft Azure Management Portal.
+In this task, you will provision a new Azure Active Directory Tenant from Microsoft Azure Management Portal.
 
 1. Navigate to [Microsoft Azure Management Portal](https://manage.windowsazure.com) using a web browser and sign in using the Microsoft Account associated with your Microsoft Azure account.
 
 1. Select **Active Directory** from the left pane.
 
-	!["Accessing Microsoft Azure Active Directory"](Images/active-directory-menu-panel.png "Accessing Microsoft Azure Active Directory")
+	!["Accessing Azure Active Directory"](Images/active-directory-menu-panel.png "Accessing Azure Active Directory")
 
-	_Accessing Microsoft Azure Active Directory_
+	_Accessing Azure Active Directory_
 
 1.	Click the **New** button from the bottom toolbar, and select **App Services | Active Directory | Directory | Custom Create**.
 
@@ -237,7 +237,7 @@ In this task, you will create a new MVC Application using **Visual Studio Expres
 
 	_Signing in with Domain Administrator credentials_
 
-	> **Note:** No application can take advantage of Microsoft Azure AD without being registered. This is both for security reasons (only apps that are approved by the administrator should be allowed) and practical considerations (interaction with Microsoft Azure AD entails the use of specific open protocols, requiring knowledge of key parameters describing the app).
+	> **Note:** No application can take advantage of Azure AD without being registered. This is both for security reasons (only apps that are approved by the administrator should be allowed) and practical considerations (interaction with Azure AD entails the use of specific open protocols, requiring knowledge of key parameters describing the app).
 
 1. In the **New ASP.NET Project - ExpenseReport** window, note that the Authentication is now set to **Organizational Auth**. Click **OK** in order to create the project.
 
@@ -248,7 +248,7 @@ In this task, you will create a new MVC Application using **Visual Studio Expres
 <a name="Ex1Task3" />
 #### Task 3 - Exploring the generated MVC project ####
 
-In this task you will explore the code generated by Visual Studio to enable Single Sign-on with Microsoft Azure Active Directory. You will start by running the solution as is and access the application with the account you created in **Task 1**. Then you will go to the Microsoft Azure Management Portal to check that the application was created and go through the most relevant configuration settings in the application. Finally, you will go through all the code and configuration involved in enabling Single Sign-On.
+In this task you will explore the code generated by Visual Studio to enable Single Sign-on with Azure Active Directory. You will start by running the solution as is and access the application with the account you created in **Task 1**. Then you will go to the Microsoft Azure Management Portal to check that the application was created and go through the most relevant configuration settings in the application. Finally, you will go through all the code and configuration involved in enabling Single Sign-On.
 
 1. Go to **Solution Explorer** and explore the generated project. Notice that the solution has the common MVC structure with some configurations already in place.
 
@@ -270,13 +270,13 @@ In this task you will explore the code generated by Visual Studio to enable Sing
 
 	_Browser displaying Security Certificate Warning_
 
-1. The URL address bar is replaced by that of the authority, and the user is prompted to authenticate with the Microsoft Azure AD UI. Type the user credentials you created previously.
+1. The URL address bar is replaced by that of the authority, and the user is prompted to authenticate with the Azure AD UI. Type the user credentials you created previously.
 
-	![Microsoft Azure AD Login](Images/windows-azure-ad-login.png?raw=true)
+	![Azure AD Login](Images/windows-azure-ad-login.png?raw=true)
 
 	_Logging in to the Application_
 
-1.	You may recall that when you created the user in your Microsoft Azure AD tenant, the Microsoft Azure Management Portal assigned a temporary password for authentication. However, given that this password was meant to be temporary,  you will be asked to choose a new user password at this first sign-in attempt before moving forward with the authentication flow.
+1.	You may recall that when you created the user in your Azure AD tenant, the Microsoft Azure Management Portal assigned a temporary password for authentication. However, given that this password was meant to be temporary,  you will be asked to choose a new user password at this first sign-in attempt before moving forward with the authentication flow.
 
 	![Resetting AD password](Images/resetting-ad-password.png?raw=true)
 
@@ -310,7 +310,7 @@ In this task you will explore the code generated by Visual Studio to enable Sing
 
 	_Selecting the ExpenseReport application_
 
-1.	In the application dashboard click the **Enable Users To Sign On** link to display information to enable single sign-on with Microsoft Azure AD. You will then see where the **Federation Metadata Document URL** and **App ID URI** were configured by the MVC new project assistant.
+1.	In the application dashboard click the **Enable Users To Sign On** link to display information to enable single sign-on with Azure AD. You will then see where the **Federation Metadata Document URL** and **App ID URI** were configured by the MVC new project assistant.
 
 	![Application Dashboard](Images/application-dashboard.png?raw=true "Application Dashboard")
 
@@ -328,13 +328,13 @@ In this task you will explore the code generated by Visual Studio to enable Sing
 
 	_Properties section in Configure tab_
 
-	>**Note:** You need to use the **CLIENT ID** if your app calls another service, such as the Microsoft Azure AD Graph API, to read or write data.
+	>**Note:** You need to use the **CLIENT ID** if your app calls another service, such as the Azure AD Graph API, to read or write data.
 
 1. The **single sign-on** section shows the required **APP ID URI** and **REPLY URL** properties which the service needs to drive the sign-in protocol flow.
 	
-	The **APP ID URI** represents the identifier of your web application. Microsoft Azure AD uses this value at sign-on time to determine that the authentication request is meant to enable a user to access this particular application - among all those registered - so that the correct settings can be applied. The APP ID URI must be unique within the directory tenant. A good default value is the APP URL value itself, although the uniqueness constraint is not always easy to respect. Developing the app on local hosting environments such as IIS Express and the Microsoft Azure Fabric Emulator tends to produce a restricted range of addresses that may be reused by multiple developers or even multiple projects from the same developer.
+	The **APP ID URI** represents the identifier of your web application. Azure AD uses this value at sign-on time to determine that the authentication request is meant to enable a user to access this particular application - among all those registered - so that the correct settings can be applied. The APP ID URI must be unique within the directory tenant. A good default value is the APP URL value itself, although the uniqueness constraint is not always easy to respect. Developing the app on local hosting environments such as IIS Express and the Microsoft Azure Fabric Emulator tends to produce a restricted range of addresses that may be reused by multiple developers or even multiple projects from the same developer.
 
-	The **REPLY URL** represents the address of your web application. Microsoft Azure AD needs to know your application's address so that, after a user is successfully authenticated on Microsoft Azure AD's pages, it can direct the flow back to your application.
+	The **REPLY URL** represents the address of your web application. Azure AD needs to know your application's address so that, after a user is successfully authenticated on Azure AD's pages, it can direct the flow back to your application.
 
 	![Single sign-on section in Configure tab](Images/single-sign-on-section-in-configure-tab.png?raw=true "Single sign-on section in Configure tab")
 
@@ -390,7 +390,7 @@ In this task you will explore the code generated by Visual Studio to enable Sing
 	</system.identityModel.services>
 	````
 
-1.	The application is configured to handle authentication via blanket redirects. This means that, if you try to access this View after a successful sign out you will be immediately redirected to Microsoft Azure AD to sign in again. To avoid this behavior, the **\<location\>** element in the **Web.config** file is used to create an exception to the authentication policy.
+1.	The application is configured to handle authentication via blanket redirects. This means that, if you try to access this View after a successful sign out you will be immediately redirected to Azure AD to sign in again. To avoid this behavior, the **\<location\>** element in the **Web.config** file is used to create an exception to the authentication policy.
 
 	<!-- mark:4-10 -->
 	````XML
@@ -433,7 +433,7 @@ In this task you will explore the code generated by Visual Studio to enable Sing
 
 1. Open the **IdentityConfig.cs** file located in the **App_Start** folder.
 
-1. Your application accepts tokens coming from your Microsoft Azure AD tenant of choice. It is a common security practice to regularly renew cryptographic keys, and Microsoft Azure AD signing keys are no exception: at fixed time intervals the old keys will be retired, and new ones will take their place in the issuer's signing logic and in your tenant's metadata document. The **RefreshValidationSettings** method called in the **ConfigureIdentity** method saves the validation keys in a database by calling the **RefreshKeys** method of the **DatabaseIssuerNameRegistry** class.
+1. Your application accepts tokens coming from your Azure AD tenant of choice. It is a common security practice to regularly renew cryptographic keys, and Azure AD signing keys are no exception: at fixed time intervals the old keys will be retired, and new ones will take their place in the issuer's signing logic and in your tenant's metadata document. The **RefreshValidationSettings** method called in the **ConfigureIdentity** method saves the validation keys in a database by calling the **RefreshKeys** method of the **DatabaseIssuerNameRegistry** class.
 
 	<!-- mark:3,19-20 -->
 	````C#
@@ -544,7 +544,7 @@ In this task you will display the authenticated user information in the Home pag
 	}
 	````
 
-	> **Note:** Starting from .NET 4.5, every identity in .NET is represented with a **ClaimsPrincipal**. In this case, the current **ClaimsPrincipal** has been constructed during the validation of an authentication token generated by Microsoft Azure Active Directory and presented by the user at sign-on time.
+	> **Note:** Starting from .NET 4.5, every identity in .NET is represented with a **ClaimsPrincipal**. In this case, the current **ClaimsPrincipal** has been constructed during the validation of an authentication token generated by Azure Active Directory and presented by the user at sign-on time.
 
 1. Open the **Index.cshtml** file located in **Views** | **Home** and replace the content with the following code to display the **Message** property from the **ViewBag**.
 
@@ -581,9 +581,9 @@ In this task you will display the authenticated user information in the Home pag
 1. Switch back to Visual Studio and press **Shift + F5** to stop the solution.
 
 <a name="Exercise2"></a>
-### Exercise 2: Using the Graph API to Query Microsoft Azure Active Directory ###
+### Exercise 2: Using the Graph API to Query Azure Active Directory ###
 
-This builds on the previous exercise and will show how to add capability to read directory data using the **Microsoft Azure AD Graph API**. The Graph API is a new RESTful API that allows applications to access customers' data in Microsoft Azure directory.
+This builds on the previous exercise and will show how to add capability to read directory data using the **Azure AD Graph API**. The Graph API is a new RESTful API that allows applications to access customers' data in Microsoft Azure directory.
 
 <a name="Ex2Task1" />
 #### Task 1 - Configuring Application Authorization and Authentication for the Graph API ####
@@ -890,7 +890,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 <a name="Ex2Task4"></a>
 #### Task 4 – Verification ####
 
-1. Press **F5** to run the application. The single sign-on experience is the same as you saw in the previous exercise, requiring authentication using your Microsoft Azure AD credentials.
+1. Press **F5** to run the application. The single sign-on experience is the same as you saw in the previous exercise, requiring authentication using your Azure AD credentials.
 
 1. Once you have successfully authenticated using your credentials, click the **Users** tab in the top menu bar.
 
@@ -909,27 +909,27 @@ In this task you will update the **HomeController** of your MVC app to query the
 <a name="NextSteps" />
 ## Next Steps ##
 
-To learn more about **Microsoft Azure Active Directory**, please refer to the following articles:
+To learn more about **Azure Active Directory**, please refer to the following articles:
 
 **Technical Reference**
 
 This is a list of articles that expand on the technologies explained in this lab:
 
-- [Directory integration](http://aka.ms/Oe9k89): If your organization uses an on-premises directory service, you can integrate it with your Microsoft Azure Active Directory (Microsoft Azure AD) tenant to simplify your cloud-based administrative tasks and even provide your users with a more streamlined sign-in experience.
+- [Directory integration](http://aka.ms/Oe9k89): If your organization uses an on-premises directory service, you can integrate it with your Azure Active Directory (Azure AD) tenant to simplify your cloud-based administrative tasks and even provide your users with a more streamlined sign-in experience.
 
 - [Introducing Single Sign-on and Active Directory Integration (Video)](http://aka.ms/Uhh5bm): In this video you will see learn about the SSO configuration and end-user experience that WAAD offers and how to integrate WAAD into applications developed with Visual Studio 2013.
 
-- [Manage Microsoft Azure AD using Windows PowerShell](http://aka.ms/Xfpfmr): As an administrator, you can use the Microsoft Azure Active Directory Module for Windows PowerShell cmdlets to accomplish many Microsoft Azure AD tenant-based administrative tasks such as user management, domain management and for configuring single sign-on. This topic includes information on how to install these cmdlets to use with your tenant.
+- [Manage Azure AD using Windows PowerShell](http://aka.ms/Xfpfmr): As an administrator, you can use the Azure Active Directory Module for Windows PowerShell cmdlets to accomplish many Azure AD tenant-based administrative tasks such as user management, domain management and for configuring single sign-on. This topic includes information on how to install these cmdlets to use with your tenant.
 
 - [Microsoft Azure Identity](http://aka.ms/S14yvq): Managing identity is just as important in the public cloud as it is on-premises, and Microsoft Azure supports several different cloud identity technologies.
 
 **Development**
 
-This is a list of developer-oriented articles related to **Microsoft Azure Active Directory**:
+This is a list of developer-oriented articles related to **Azure Active Directory**:
 
-- [Using the Graph API to Query Microsoft Azure AD](http://aka.ms/Pk9n2r): This document explains how to configure a Microsoft .NET application to use the Microsoft Azure Active Directory Graph API to access data from a Microsoft Azure AD tenant directory.
+- [Using the Graph API to Query Azure AD](http://aka.ms/Pk9n2r): This document explains how to configure a Microsoft .NET application to use the Azure Active Directory Graph API to access data from a Azure AD tenant directory.
 
-- [Securing a Windows Store Application and REST Web Service Using Microsoft Azure AD (Preview)](http://aka.ms/t5ejfa): This document will show you how to create a simple web API resource and a Windows Store client application using the Microsoft Azure Authentication Library and Microsoft Azure AD.
+- [Securing a Windows Store Application and REST Web Service Using Azure AD (Preview)](http://aka.ms/t5ejfa): This document will show you how to create a simple web API resource and a Windows Store client application using the Microsoft Azure Authentication Library and Azure AD.
 
 ---
 
@@ -938,7 +938,7 @@ This is a list of developer-oriented articles related to **Microsoft Azure Activ
 
 By completing this hands-on lab you learned how to:
 
-* Create a new Microsoft Azure Active Directory tenant
+* Create a new Azure Active Directory tenant
 * Provision an MVC application in the AD tenant
 * Explore the configuration of the application Authentication
 * Query Active Directory data using Graph AD API
