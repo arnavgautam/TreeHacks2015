@@ -532,7 +532,7 @@ In this task you will display the authenticated user information in the Home pag
 
 1. Replace the **Index** method content with the following code.
 
-	(Code Snippet - _IntroductionToWindowsAzureAD - Ex1 - QueryingClaimsPrincipal_)
+	(Code Snippet - _IntroductionToAzureAD - Ex1 - QueryingClaimsPrincipal_)
 
 	<!-- mark:3-5 -->
 	````C#
@@ -548,7 +548,7 @@ In this task you will display the authenticated user information in the Home pag
 
 1. Open the **Index.cshtml** file located in **Views** | **Home** and replace the content with the following code to display the **Message** property from the **ViewBag**.
 
-	(Code Snippet - _IntroductionToWindowsAzureAD - Ex1 - DisplayMessageInIndexView_)
+	(Code Snippet - _IntroductionToAzureAD - Ex1 - DisplayMessageInIndexView_)
 
 	<!-- mark:1-8 -->
 	````HTML
@@ -738,7 +738,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 1. In the **Solution Explorer**, expand the **Controllers** folder of the **ExpenseReport** project and open **HomeController.cs**. Add the following assemblies to the file and then save it.
 
-	(Code Snippet - _IntroductionToWindowsAzureAD - Ex2 - HomeControllerReferences_)
+	(Code Snippet - _IntroductionToAzureAD - Ex2 - HomeControllerReferences_)
 	
 	````C#
 	using System.Configuration;
@@ -748,7 +748,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 1. Add the following declarations at the beginning of the **HomeController** class.
 
-	(Code Snippet - _IntroductionToWindowsAzureAD - Ex2 - HomeControllerDeclarations_)
+	(Code Snippet - _IntroductionToAzureAD - Ex2 - HomeControllerDeclarations_)
 	
 	````C#
 	private const string Resource = "https://graph.windows.net";
@@ -757,7 +757,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 	````
 1. Add the following action method at the end of the **HomeController** class, which will retrieve the list of users from the Active Directory tenant using the Graph API Client to obtain a JWT (JSON Web Token). This token is inserted in the Authorization header of subsequent requests from the Graph API.
 
-	(Code Snippet - _IntroductionToWindowsAzureAD - Ex2 - UsersActionMethod_)
+	(Code Snippet - _IntroductionToAzureAD - Ex2 - UsersActionMethod_)
 
 	<!-- mark: 5-57 -->
 	````C#
@@ -831,7 +831,7 @@ In this task you will update the **HomeController** of your MVC app to query the
 
 1. Replace the code of the **Users** view with the following block.
 
-	(Code Snippet - _IntroductionToWindowsAzureAD - Ex2 - UsersView_)
+	(Code Snippet - _IntroductionToAzureAD - Ex2 - UsersView_)
 
 	````CSHTML
 	@model IEnumerable<Microsoft.Azure.ActiveDirectory.GraphClient.User> 
