@@ -2,7 +2,7 @@
 <Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
 	<Id>WindowsAzureAD</Id>
 	<Technologies>
-		<Technology>Windows Azure</Technology>
+		<Technology>Microsoft Azure</Technology>
 		<Technology>Windows Identity Foundation</Technology>
 	</Technologies>
 	<Author>
@@ -10,10 +10,10 @@
 		<Email></Email>
 		<Name></Name>
 	</Author>
-	<Description>In this hands-on lab you will learn how to use Windows Azure Active Directory for implementing web single sign-on in an ASP.NET application. The instructions will focus on taking advantage of the directory tenant associated with your Windows Azure subscription, as that constitutes the obvious choice of identity providers for Line of Business (LoB) applications in your own organization. This lab will show you how to create an application with single sign-on enabled with Windows Azure Active Directory using the new Organizational Accounts authentication template that comes with MVC. Then you will explore all the configuration set in the application and in Windows Azure that made single sign-on possible. At the end of the lab, you will use the Graph RESTFull API to query Active Directory data and display it in the application.</Description>  
+	<Description>In this hands-on lab you will learn how to use Azure Active Directory to implement web single sign-on in an ASP.NET application. The instructions will focus on taking advantage of the directory tenant associated with your Microsoft Azure subscription, as that constitutes the obvious choice of identity providers for Line of Business (LoB) applications in your own organization. This lab will show you how to create an application with single sign-on enabled with Azure Active Directory using the new Organizational Accounts authentication template that comes with MVC. Then you will explore all the configurations set in the application and in Microsoft Azure that make single sign-on possible. At the end of the lab, you will use the Graph RESTful API to query Active Directory data and display it in the application.</Description>  
 	<Document ConversionType="Html">.\HOL.md</Document>
-	<Title>Introduction to Windows Azure Active Directory</Title>
-	<Version>2.0.0</Version>
+	<Title>Introduction to Azure Active Directory</Title>
+	<Version>2.1.0</Version>
 	<Source>.\Source</Source>
 	<DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
 	<CustomProperties>
