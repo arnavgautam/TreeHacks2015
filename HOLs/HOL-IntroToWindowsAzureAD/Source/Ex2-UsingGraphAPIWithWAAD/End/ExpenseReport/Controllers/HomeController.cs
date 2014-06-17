@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Security.Claims;
-using System.Configuration;
-using Microsoft.Azure.ActiveDirectory.GraphClient;
-using Microsoft.IdentityModel.Clients.ActiveDirectory;
-
-
-namespace ExpenseReport.Controllers
+﻿namespace ExpenseReport.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Linq;
+    using System.Security.Claims;
+    using System.Web;
+    using System.Web.Mvc;
+    using Microsoft.Azure.ActiveDirectory.GraphClient;
+    using Microsoft.IdentityModel.Clients.ActiveDirectory;
+
     public class HomeController : Controller
     {
         private const string Resource = "https://graph.windows.net";
@@ -21,21 +20,21 @@ namespace ExpenseReport.Controllers
         {
             ClaimsPrincipal cp = ClaimsPrincipal.Current;
             ViewBag.Message = string.Format("Dear \"{0}, {1}\", welcome to the Expense Note App", cp.FindFirst(ClaimTypes.Surname).Value, cp.FindFirst(ClaimTypes.GivenName).Value);
-            return View();
+            return this.View();
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return this.View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return this.View();
         }
 
         public ActionResult Users()
@@ -67,7 +66,7 @@ namespace ExpenseReport.Controllers
                         GraphDomainName = "graph.windows.net"
                     };
 
-                    //  get tenant information
+                    // get tenant information
                     var graphConnection = new GraphConnection(token, graphSettings);
                     var tenant = graphConnection.Get(typeof(TenantDetail), tenantId);
                     if (tenant != null)
@@ -78,7 +77,7 @@ namespace ExpenseReport.Controllers
 
                     // get the list of users
                     var pagedReslts = graphConnection.List<User>(null, new FilterGenerator());
-                    return View(pagedReslts.Results);
+                    return this.View(pagedReslts.Results);
                 }
             }
             catch (ActiveDirectoryAuthenticationException ex)
@@ -90,7 +89,7 @@ namespace ExpenseReport.Controllers
                 ViewBag.OtherMessage = string.Format("Failed to return the list of Users with Exception: {0}", e.ErrorMessage);                
             }
 
-            return View();
+            return this.View();
         }
     }
 }
