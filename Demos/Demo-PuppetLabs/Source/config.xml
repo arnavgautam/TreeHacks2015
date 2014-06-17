@@ -14,4 +14,11 @@
 		<cloudServiceName>{cloudServiceName}</cloudServiceName>
 		<vmName>{vmName}</vmName>
 	</puppetAgentSettings>
+  <Puppet>
+    <CloudServiceName>{CloudServiceName}</CloudServiceName>
+    <AdminUserName>{AdminUserName}</AdminUserName>
+    <AdminPassword>{AdminPassword}</AdminPassword>
+    <ConsoleUsername>{ConsoleUsername}</ConsoleUsername>
+    <ConsolePassword>{ConsolePassword</ConsolePassword>
+  </Puppet>
 </configuration>
