@@ -643,6 +643,8 @@ In this task you will add the Graph API Client library to your MVC app. This lib
 	>* The _[FEDERATION-METADATA-DOCUMENT]_ placeholder for the **ida:FederationMetadataLocation** key in **AppSettings** 
 	>* The _[APP-ID-URI]_ placeholder for the **ida:Realm** key in **AppSettings** 
 	>* The _[APP-ID-URI]_ placeholder for the **ida:AudienceUri** key in **AppSettings** 
+	>
+	>Press **CTRL + SHIFT + B** to build the solution and download the NuGet package dependencies.
 
 1. Open the **Web.config** file of the **ExpenseReport** project. Add the following key values to the **appSettings** section. Make sure you update the _[YOUR-CLIENT-ID]_ placeholder with the **Client ID** value obtained from the **Configure** tab of your application in the Microsoft Azure Management Portal and the _[YOUR-APPLICATION-KEY-VALUE]_ placeholder with the key that you generated in the previous task.
 
