@@ -612,7 +612,11 @@ In this task you will update the application configuration in the Management Por
 
 	_Generating Key for Read and Write_
 
-1. In the **CONFIGURE** page, under the **permissions to other applications** section, select **Read directory data** in the **Delegated Permissions** dropdown for the **Windows Azure Active Directory** application.
+1. In the **CONFIGURE** page, under the **permissions to other applications** section, select **Read directory data** in the **Application Permissions** dropdown for the **Windows Azure Active Directory** application. 
+
+	![Configure Application Permissions - Application Permissions](Images/configure-app-permissions---app-permissions.png?raw=true)
+
+1. Also in the **CONFIGURE** page and under the **permissions to other applications** section, select **Read directory data** in the **Delegated Permissions** dropdown. for the **Windows Azure Active Directory** application.
 
 	> **Note:** You can also set the application permissions by downloading, updating and uploading the JSON Manifest file. For more information see [Appendix A: Configuring permissions to other applications by updating the application manifest](#appendixA).
 
@@ -683,7 +687,7 @@ In this task you will add the Graph API Client library to your MVC app. This lib
 
 In this task you will update the **HomeController** of your MVC app to query the list of users from the Active Directory tenant using the Graph API Client, and create a view to display the results.
 
-1. In the **Solution Explorer**, expand the **Controllers** folder of the **ExpenseReport** project and open **HomeController.cs**. Add the following assemblies to the file and then save it.
+1. In the **Solution Explorer**, expand the **Controllers** folder of the **ExpenseReport** project and open **HomeController.cs**. Add the following references to assemblies to the file.
 
 	(Code Snippet - _IntroductionToAzureAD - Ex2 - HomeControllerReferences_)
 	
@@ -834,6 +838,8 @@ In this task you will update the **HomeController** of your MVC app to query the
 	</div>
 	````
 
+1. Press **Ctrl** + **Shift** + **S** to save the unsaved changes.
+	
 <a name="Ex2Task4"></a>
 #### Task 4 – Verification ####
 
