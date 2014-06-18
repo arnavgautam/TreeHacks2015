@@ -19,14 +19,9 @@ pushd ".."
 # Puppet Settings
 [string] $masterCloudServiceName = $xmlAzureSettings.configuration.puppetMasterSettings.cloudServiceName
 [string] $masterVMName = $xmlAzureSettings.configuration.puppetMasterSettings.vmName
-[string] $consoleUsername = $xmlAzureSettings.configuration.puppetMasterSettings.consoleUsername
-[string] $consolePassword = $xmlAzureSettings.configuration.puppetMasterSettings.consolePassword
-
-# Puppet Agent Settings
 [string] $agentCloudServiceName = $xmlAzureSettings.configuration.puppetAgentSettings.cloudServiceName
 [string] $agentVMName = $xmlAzureSettings.configuration.puppetAgentSettings.vmName
 
-$hostVM = "$adminUsername@$masterCloudServiceName.cloudapp.net"
 popd
 
 #Invoke Puppet VM Creation if they dont exists
