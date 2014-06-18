@@ -16,7 +16,7 @@ SET powerShellDir=%WINDIR%\system32\windowspowershell\v1.0
 echo.
 
 cls
-%powerShellDir%\powershell.exe -NonInteractive -ExecutionPolicy Unrestricted -command ".\Setup\cleanup.ps1" ".\config.xml"
+%powerShellDir%\powershell.exe -NonInteractive -ExecutionPolicy Unrestricted -command ".\Setup\cleanup.agent.ps1" ".\config.xml"
 echo.
 
 :exit
