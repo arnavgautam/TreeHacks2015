@@ -1,27 +1,27 @@
-﻿<a name="demo2" />
+<a name="demo2" />
 # Demo : BUILD Clips#
 
 ## Overview ##
 
-In this demo, we will show how to build and deploy an ASP.NET web site that enables users to browse, play, and upload their own personal videos.  We will then extend the web site to include Web APIs that power a Windows 8 experience.  Finally, the web site project will be deployed to Windows Azure Web Sites and scaled using multiple paid shared instances.
+In this demo, we will show how to build and deploy an ASP.NET web site that enables users to browse, play, and upload their own personal videos.  We will then extend the web site to include Web APIs that power a Windows 8 experience.  Finally, the web site project will be deployed to Microsoft Azure Websites and scaled using multiple paid shared instances.
 
 <a name="Goals" />
 ### Goals ###
 In this demo, you will see how to:
 
 1. Extend a Web application to communicate with a Windows 8 application
-1. Add Windows Azure Media Services to upload and encode videos
+1. Add Microsoft Azure Media Services to upload and encode videos
 1. Add real-time communication between Web and Windows 8 apps using SignalR
-1. Scale an application using Windows Azure Caching
-1. Deploy and manage Windows Azure apps using New Relic (optional)
+1. Scale an application using Microsoft Azure Caching
+1. Deploy and manage Microsoft Azure apps using New Relic (optional)
 
 <a name="Technologies" />
 ### Key Technologies ###
 
 - ASP.NET MVC 4 Web API
-- Windows Azure Media Services
-- Windows Azure Caching
-- Windows Azure Add-ons
+- Microsoft Azure Media Services
+- Microsoft Azure Caching
+- Microsoft Azure Add-ons
 
 <a name="Prerequisites" />
 ### System Prerequisites ###
@@ -30,7 +30,7 @@ In this demo, you will see how to:
 - [ASP.Net Fall 2012 Update] (http://www.asp.net/vnext/overview/fall-2012-update)
 - [Player Framework for Windows 8 (v1.0)](http://playerframework.codeplex.com/releases/view/97333)
 - [Smooth Streaming Client SDK](http://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6)
-- [Windows Azure Tools for Microsoft Visual Studio 1.8](http://www.microsoft.com/windowsazure/sdk/)
+- [Microsoft Azure Tools for Microsoft Visual Studio 1.8](http://www.microsoft.com/windowsazure/sdk/)
 
 <a name="Setup" />
 ### Setup and Configuration ###
@@ -45,7 +45,7 @@ In order to execute this demo, you first need to set up your environment by comp
 
 1. [Downloading the Publish Settings File for the Subscription](#setup4)
 
-1. [Configuring the Windows Azure Web Site](#setup5)
+1. [Configuring the Microsoft Azure Web Site](#setup5)
 
 1. [Configuring Identity Providers](#setup6)
 
@@ -62,13 +62,13 @@ In the **source** folder, you will find several scripts that carry out different
 
 	> **Note:** This script will not remove the following assets, which need to be removed manually:
 
-	> - Windows Azure Web Site
-	> - Windows Azure Media Services account
+	> - Microsoft Azure Web Site
+	> - Microsoft Azure Media Services account
 	> - Storage account used by Media Services
 	> - Service Bus namespace
 
 - **Reset.cmd**: executes the cleanup script to reset the environment and runs a reduced setup that does not verify dependencies. This script prepares the environment for running the demo again.
-- **Setup.Deployment.cmd**: configures the solution used by segment #5, creates a Storage account for diagnostics, creates a cloud service, creates a new Azure SQL database and deploys the solution to Windows Azure.
+- **Setup.Deployment.cmd**: configures the solution used by segment #5, creates a Storage account for diagnostics, creates a cloud service, creates a new Azure SQL database and deploys the solution to Microsoft Azure.
 - **Cleanup.Deployment.cmd**: deletes the cloud service, the Storage account for diagnostics and the Azure SQL database created by **Setup.Deployment.cmd**.
 
 <a name="setup1" />
@@ -76,13 +76,13 @@ In the **source** folder, you will find several scripts that carry out different
 
 To create a service namespace:
 
-1. Go to the **Windows Azure Management Portal**.
+1. Go to the **Microsoft Azure Management Portal**.
 
 1. In the navigation pane, select **SERVICE BUS** and then click **CREATE** in the command bar.
 
 1. In the **CREATE A NAMESPACE** dialog box, enter the **NAMESPACE NAME**, select a **REGION**, and then click the check mark to confirm the action.
 
-	> **Note:** Make sure to select the same region for all the assets that you create in Windows Azure for this demo, typically the one closest to you.
+	> **Note:** Make sure to select the same region for all the assets that you create in Microsoft Azure for this demo, typically the one closest to you.
 
 	![Creating a new Service Namespace](Images/service-bus-add-namespace.png?raw=true)
 
@@ -101,13 +101,13 @@ To create a service namespace:
 
 To create the storage account:
 
-1. Go to the **Windows Azure Management Portal**.
+1. Go to the **Microsoft Azure Management Portal**.
 
 1. In the navigation pane, select **STORAGE**, click **NEW** in the command bar, and then **QUICK CREATE**.
 
 1. Enter a unique subdomain for the **URL** of the storage account that you will use to store your media, select a **REGION/AFFINITY GROUP**, and then click the **CREATE STORAGE ACCOUNT** check mark.
 
-	> **Note:** Make sure to select the same region for all the assets that you create in Windows Azure for this demo, typically the one closest to you.
+	> **Note:** Make sure to select the same region for all the assets that you create in Microsoft Azure for this demo, typically the one closest to you.
 
 	![Creating a new Storage Account](Images/storage-account-create.png?raw=true)
 
@@ -126,13 +126,13 @@ To create the storage account:
 
 To create a new Media Services account:
 
-1. Go to the **Windows Azure Management Portal**.
+1. Go to the **Microsoft Azure Management Portal**.
 
 1. In the navigation pane, select **MEDIA SERVICES**, click **NEW** in the command bar, and then **QUICK CREATE**.
 
 1. Enter the **NAME** of the service, select a **REGION**, select the **STORAGE ACCOUNT** that you created previously to hold your media from the drop-down list, and then click the **CREATE MEDIA SERVICE** check mark.
 
-	> **Note:** Make sure to select the same region for all the assets that you create in Windows Azure for this demo, typically the one closest to you.
+	> **Note:** Make sure to select the same region for all the assets that you create in Microsoft Azure for this demo, typically the one closest to you.
 
 	![Creating the Media Service](Images/create-media-service.png?raw=true)
 
@@ -156,9 +156,9 @@ To create a new Media Services account:
 	- Locate the **subscriptionName** setting and replace the placeholders with the name of your Azure subscription.
 
 <a name="setup5" />
-**Configuring the Windows Azure Web Site**
+**Configuring the Microsoft Azure Web Site**
 
-1. In the **websiteName** setting of the **Config.Azure.xml** file, replace the placeholders with the name of the Windows Azure Web Site you will create in [Building and Extending Web Apps to Windows 8](#segment1).
+1. In the **websiteName** setting of the **Config.Azure.xml** file, replace the placeholders with the name of the Microsoft Azure Web Site you will create in [Building and Extending Web Apps to Windows 8](#segment1).
 
 	> **Note:** This information is required by the cleanup scripts to remove the underlying SQL Azure database used by the web site.
 
@@ -175,9 +175,9 @@ The application used in this demo allows users to log in using one of several co
 [1]: https://www.windowsazure.com/en-us/develop/mobile/how-to-guides/register-for-facebook-authentication/
 [2]: https://www.windowsazure.com/en-us/develop/mobile/how-to-guides/register-for-twitter-authentication/
 
-	Note that you need to create at least two entries in each provider, one for running the application locally using [http://127.0.0.1:81]() as the return (or callback) URL and the other for the URL of the site when deployed to Windows Azure Web Sites (e.g. [http://{YOUR-SITE-NAME}.azurewebsites.net/]()). 
+	Note that you need to create at least two entries in each provider, one for running the application locally using [http://127.0.0.1:81]() as the return (or callback) URL and the other for the URL of the site when deployed to Microsoft Azure Websites (e.g. [http://{YOUR-SITE-NAME}.azurewebsites.net/]()). 
 
-	>**Important:** Make sure that the URL for the Windows Azure Web Sites scenario that you specify to the identity provider is available when you deploy the site during the demo by choosing a site name that is unlikely to be in use. Alternatively, you may create the site in advance to reserve its name and, during the demo, simply walk through the process without creating the site. 
+	>**Important:** Make sure that the URL for the Microsoft Azure Websites scenario that you specify to the identity provider is available when you deploy the site during the demo by choosing a site name that is unlikely to be in use. Alternatively, you may create the site in advance to reserve its name and, during the demo, simply walk through the process without creating the site. 
 	
 	In addition, an (optional) segment in this demo requires you to deploy the application as a cloud service. If you intend to complete this segment, you also need to configure a third entry for the cloud service's URL (e.g. [http://{YOUR-CLOUD-SERVICE-NAME}.cloudapp.net]()). Use the cloud service name that you created earlier, as described in [Creating a Cloud Service](#setup4).
 
@@ -199,9 +199,9 @@ Once you have completed the previous tasks and updated the **Config.Local.xml** 
 <a name="setup8" />
 **Deploying the Application as a Cloud Service and Configuring New Relic (optional)**
 
-The following procedure sets up the deployment used for the final and optional segment of this demo, [Deploying and Managing Windows Azure Apps](#segment5). It shows how to acquire the New Relic (free) add-on from the Windows Azure Store, configure it for the solution, and deploy the application to a cloud service.
+The following procedure sets up the deployment used for the final and optional segment of this demo, [Deploying and Managing Microsoft Azure Apps](#segment5). It shows how to acquire the New Relic (free) add-on from the Microsoft Azure Store, configure it for the solution, and deploy the application to a cloud service.
 
-1. In the **Windows Azure Management Portal**, click **New** and then **Store**.
+1. In the **Microsoft Azure Management Portal**, click **New** and then **Store**.
 
 1. Select the **New Relic** from the list of available add-ons.
 
@@ -281,7 +281,7 @@ The following procedure sets up the deployment used for the final and optional s
 	- Locate the **sqlDatabase** section and replace the placeholders for the **name**, **username** and **password** settings with the name of the database you want to create, and the admin user and password for the SQL database server.  Additionally, specify the region in the **location** setting.
 	- In the **storageAccounts**, locate the **diagnosticsStorageAccount** subsection and replace the placeholder for the **name** setting with the name of the storage account you want to create. Additionally, specify the region in the **location** setting.
 
-	> **Note:** The setup script executed in the following steps will automatically create the assets specified above. Make sure to select the same region for all the assets that you create in Windows Azure for this demo, typically the one closest to you.
+	> **Note:** The setup script executed in the following steps will automatically create the assets specified above. Make sure to select the same region for all the assets that you create in Microsoft Azure for this demo, typically the one closest to you.
 
 1. Save the **Config.Azure.xml** file.
 
@@ -300,10 +300,10 @@ The following procedure sets up the deployment used for the final and optional s
 This demo is composed of the following segments:
 
 1. [Building and Extending Web Apps to Windows 8](#segment1)
-1. [Windows Azure Media Services](#segment2)
+1. [Microsoft Azure Media Services](#segment2)
 1. [Building N-Tier Cloud Services with Real-Time Communications](#segment3)
-1. [Scaling with Windows Azure Caching](#segment4)
-1. [Deploying and Managing Windows Azure apps](#segment5)
+1. [Scaling with Microsoft Azure Caching](#segment4)
+1. [Deploying and Managing Microsoft Azure apps](#segment5)
 
 $$$segment1
 

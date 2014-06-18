@@ -1,20 +1,20 @@
-ï»¿<a name="HOLTop"></a>
-# Migrating ASP.NET Applications to Windows Azure #
+<a name="HOLTop"></a>
+# Migrating ASP.NET Applications to Microsoft Azure #
 
 ---
 <a name="Overview"></a>
 ## Overview ##
 
 ASP.NET supports different implementations of the application providers for membership, role, profile and session management. Most providers come with a version that is based on a SQL database, or uses in-memory representations of data managed by the providers.
-The Windows Azure samples include provider implementations that make use of scalable and reliable blob and table storage services. Additionally, the providers deal with the problem of Web applications that are hosted on a variety of different machines inside the Windows Azure fabric.
-When you deploy your Web application in the Windows Azure data centers, the storage services for tables and blobs are readily available and are therefore easily accessible from your application.
+The Microsoft Azure samples include provider implementations that make use of scalable and reliable blob and table storage services. Additionally, the providers deal with the problem of Web applications that are hosted on a variety of different machines inside the Microsoft Azure fabric.
+When you deploy your Web application in the Microsoft Azure data centers, the storage services for tables and blobs are readily available and are therefore easily accessible from your application.
 
 <a name="objectives"></a>
 ### Objectives ###
 In this hands-on lab, you will learn how to:
 
-- Migrate ASP.NET Web Form and MVC applications to Windows Azure
-- Use Forms Authentication with Windows Azure
+- Migrate ASP.NET Web Form and MVC applications to Microsoft Azure
+- Use Forms Authentication with Microsoft Azure
 - Use Azure ASP.NET providers for membership, role, and session state support
 
 The lab shows how to use these features for both ASP.NET Web Form and ASP.NET MVC applications and has an exercise dedicated to each technology. Since both exercises use the same scenario and cover the same material, choose the one that is most relevant to your needs.
@@ -25,8 +25,8 @@ The lab shows how to use these features for both ASP.NET Web Form and ASP.NET MV
 The following is required to complete this hands-on lab:
 
 - [Microsoft Visual Studio 2012](http://msdn.microsoft.com/vstudio/products/)
-- [Windows Azure SDK](http://www.microsoft.com/windowsazure/sdk/)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Microsoft Azure SDK](http://www.microsoft.com/windowsazure/sdk/)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 > **Note:** This lab was designed to use Windows 8.
 
@@ -63,33 +63,33 @@ Estimated time to complete this lab: **45 minutes**.
 <a name="Exercise1"></a>
 ### Exercise 1: Moving a Web Application to the Cloud ###
 
-In this exercise, you configure a sample shopping cart application implemented with ASP.NET to run in Windows Azure.
+In this exercise, you configure a sample shopping cart application implemented with ASP.NET to run in Microsoft Azure.
 
 <a name="Ex1Task1"></a>
-#### Task 1 â€“ Preparing the Application to Run in Windows Azure ####
+#### Task 1 – Preparing the Application to Run in Microsoft Azure ####
 
 The Cloud Shop is a standard ASP.NET sample that mimics a simple commerce application. It presents a list of products that users can select and add to their shopping cart.
 
 Before you begin, you may wish to build and run the solution and become acquainted with its operation. In its initial state, the application runs outside the compute emulator.
 
-In this task, you create a Windows Azure project in Visual Studio to prepare the application to run in Windows Azure.
+In this task, you create a Microsoft Azure project in Visual Studio to prepare the application to run in Microsoft Azure.
 
 1. Open **Microsoft Visual Studio 2012 Express for Web** (or higher) in elevated administrator mode. If the **User Account Control** dialog appears, click **Yes**.
 1. In the **File** menu, choose **Open** and then **Project/Solution**. In the Open Project dialog, browse to **Ex1-MovingMVCAppsToAzure\Begin\** or **Ex1-MovingWebAppsToAzure\Begin\** in the Source folder of the lab, select **Begin.sln** and click **Open**.
 
-	> **Note:** Depending on your needs, you may wish to explore migrating ASP.NET MVC or ASP.NET Web Form applications to Windows Azure. The procedures in this exercise are common to both types of application. Choose the most appropriate solution.
+	> **Note:** Depending on your needs, you may wish to explore migrating ASP.NET MVC or ASP.NET Web Form applications to Microsoft Azure. The procedures in this exercise are common to both types of application. Choose the most appropriate solution.
 
-1. Next, add a new cloud service project to the solution. In **Solution Explorer**, right-click the **CloudShop** project and select **Add Windows Azure Cloud Service Project**.
+1. Next, add a new cloud service project to the solution. In **Solution Explorer**, right-click the **CloudShop** project and select **Add Microsoft Azure Cloud Service Project**.
 
-	![Configuring the application to run in Windows Azure](Images/configuring-the-application-to-run-in-windows.png?raw=true)
+	![Configuring the application to run in Microsoft Azure](Images/configuring-the-application-to-run-in-windows.png?raw=true)
 	
-	_Configuring the application to run in Windows Azure_
+	_Configuring the application to run in Microsoft Azure_
 
 	> **Note:** Visual Studio will create a new cloud service project named **CloudShop.Azure**, and associate the ASP.NET project to the cloud service project.
 
 1. Configure a **TraceListener** to enable diagnostics logging for the application. To do this, open the **Web.config** file of the **CloudShop** project and insert a **system.diagnostics** section as shown (highlighted) below	
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex1 DiagnosticMonitorTraceListener_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex1 DiagnosticMonitorTraceListener_)
 	<!--mark: 3-10-->
 	````XML
 	<configuration>
@@ -106,7 +106,7 @@ In this task, you create a Windows Azure project in Visual Studio to prepare the
 	````
 	
 	
-	>**Note:** These settings in the **system.diagnostics** section configure a trace listener specific to Windows Azure that allows the application to trace code execution using the classes and methods available in the [System.Diagnostics.Trace](http://msdn.microsoft.com/en-us/library/system.diagnostics.trace.aspx) class.
+	>**Note:** These settings in the **system.diagnostics** section configure a trace listener specific to Microsoft Azure that allows the application to trace code execution using the classes and methods available in the [System.Diagnostics.Trace](http://msdn.microsoft.com/en-us/library/system.diagnostics.trace.aspx) class.
 	This step is usually unnecessary for roles created in Visual Studio because they already include the necessary settings in their role templates.
 
 
@@ -120,7 +120,7 @@ In this task, you create a Windows Azure project in Visual Studio to prepare the
 	
 1. Next, find the **Application_Start** method and insert the following (highlighted) code at the start of the method to initialize the configuration settings publisher.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex1 SetConfigurationSettingPublisher_ )
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex1 SetConfigurationSettingPublisher_ )
 	<!--mark: 3-7-->
 	````C#
 	protected void Application_Start(object sender, EventArgs e)
@@ -136,19 +136,19 @@ In this task, you create a Windows Azure project in Visual Studio to prepare the
 
 	>**Note:** A configuration setting publisher simplifies the retrieval of storage account configuration settings. Applications only need to set up the publisher once using **CloudStorageAccount.SetConfigurationSettingPublisher**, and then elsewhere, whenever they require access to a storage account, they only require the name of the corresponding setting to access the storage account using **CloudStorageAccount.FromConfigurationSetting**.
 	
-	>Web roles can define a **WebRole** class with the entry point of the role. This class contains methods that Windows Azure calls at various stages during the roleâ€™s lifetime, for example, the **OnStart** method is called during role start up. You can use this method to initialize the role. Note, however, that for web roles executing in full IIS mode, Internet Information Server hosts the web application in a separate process (w3wp.exe), while the role entry point executes in a different process (WaIISHost.exe). Consequently, most web role initialization tasks need to be performed in the ASP.NET **Application_Start** method.
+	>Web roles can define a **WebRole** class with the entry point of the role. This class contains methods that Microsoft Azure calls at various stages during the role’s lifetime, for example, the **OnStart** method is called during role start up. You can use this method to initialize the role. Note, however, that for web roles executing in full IIS mode, Internet Information Server hosts the web application in a separate process (w3wp.exe), while the role entry point executes in a different process (WaIISHost.exe). Consequently, most web role initialization tasks need to be performed in the ASP.NET **Application_Start** method.
 	
 >**Note:** Depending on the type of application that you chose for the exercise that you have just completed, you may wish to proceed with Exercise 2: Using the Azure ASP.NET Providers with MVC Applications or Exercise 3: Using the Azure ASP.NET Providers with Web Form Applications.
 	
 <a name="Exercise2"></a>
 ### Exercise 2: Using the Azure ASP.NET Providers with MVC Applications ###
 
-In this exercise, you modify the ASP.NET MVC application to use the ASP.NET providers from the Windows Azure samples. You start by adding authentication to the site using the membership provider. Next, you implement the role provider to classify users and customize the products that the application offers. Finally, you configure the session state provider to store the contents of the shopping cart.
+In this exercise, you modify the ASP.NET MVC application to use the ASP.NET providers from the Microsoft Azure samples. You start by adding authentication to the site using the membership provider. Next, you implement the role provider to classify users and customize the products that the application offers. Finally, you configure the session state provider to store the contents of the shopping cart.
 
 > **Note:** The Account controller and views that you will find in this sample are based on the ones provided by the **ASP.NET MVC 3 Web Application Template**, which uses the ASP.NET Role and Membership provider system.
 
 <a name="Ex2Task1"></a>
-#### Task 1 â€“ Configuring Authenticated Access to the Application ####
+#### Task 1 – Configuring Authenticated Access to the Application ####
 
 In this task, you configure the application to require authenticated access to the pages that implement the shopping cart. 
 
@@ -169,11 +169,11 @@ In this task, you configure the application to require authenticated access to t
 1. Save the **HomeController.cs** file.
 
 <a name="Ex2Task2"></a>
-#### Task 2 â€“ Configuring Membership Support Using the Azure  TableStorageMembershipProvider ####
+#### Task 2 – Configuring Membership Support Using the Azure  TableStorageMembershipProvider ####
 
 In this task, you add and configure the Azure ASP.NET providers for membership, role, and session.
 
-1. Add the Windows Azure ASP.NET Providers project to the solution.  In **Solution Explorer**, right-click the **Begin** solution, point to **Add** and select **Existing Project**. Browse to **Assets\AspProviders** in the **Source** folder of the lab, select the **AspProviders.csproj** project and click **Open**.
+1. Add the Microsoft Azure ASP.NET Providers project to the solution.  In **Solution Explorer**, right-click the **Begin** solution, point to **Add** and select **Existing Project**. Browse to **Assets\AspProviders** in the **Source** folder of the lab, select the **AspProviders.csproj** project and click **Open**.
 
 	>**Note:** The **AspProviders** project is available as a sample. It is included as part of this training kit for your convenience and is based on the original source code found in the [MSDN Code Gallery](http://code.msdn.microsoft.com/windowsazuresamples). The project contains the implementation of ASP.NET application providers for membership, role, profile, and session state.
 
@@ -190,7 +190,7 @@ In this task, you add and configure the Azure ASP.NET providers for membership, 
 	
 	_Creating a new configuration setting for the role_
 	
-1. In the **Storage Account Connection String** dialog, choose the option labeled **Windows Azure storage emulator** and click **OK**.
+1. In the **Storage Account Connection String** dialog, choose the option labeled **Microsoft Azure storage emulator** and click **OK**.
  
 	![Configuring a storage connection string](Images/configuring-a-storage-connection-string.png?raw=true)
 	
@@ -201,9 +201,9 @@ In this task, you add and configure the Azure ASP.NET providers for membership, 
 1. Open the **Web.config** file located in the root folder of the **CloudShop** project.
 1. (Optional) Configure the storage account information required by the ASP.NET providers in the application configuration file. To do this, locate the \<**appSettings**> element and add the following (highlighted) configuration block. If the **appSettings** element is missing, insert it as a direct child of the \<**configuration**> element.
 
-	>**Note:** In addition to the service configuration file, you can also configure the Azure providers in the **Web.config** file of the application. This allows you to host the application outside the Azure fabric and still take advantage of the Azure ASP.NET providers and storage. However, when the application runs in the Windows Azure environment, configuration settings in the service configuration file for the ASP.NET providers take precedence over those in the **Web.config** file. By using the Windows Azure settings, you can avoid redeploying the application when changing provider settings.
+	>**Note:** In addition to the service configuration file, you can also configure the Azure providers in the **Web.config** file of the application. This allows you to host the application outside the Azure fabric and still take advantage of the Azure ASP.NET providers and storage. However, when the application runs in the Microsoft Azure environment, configuration settings in the service configuration file for the ASP.NET providers take precedence over those in the **Web.config** file. By using the Microsoft Azure settings, you can avoid redeploying the application when changing provider settings.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex2 DataConnectionString_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex2 DataConnectionString_)
 	<!--mark: 5-->
 	````XML
 	<configuration>
@@ -220,7 +220,7 @@ In this task, you add and configure the Azure ASP.NET providers for membership, 
 
 	>**Note:** The default ASP.NET MVC template in Visual Studio creates the configuration settings for the **AspNetSqlMembershipProvider**, which uses SQL Server for storage.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex2 TableStorageMembershipProvider_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex2 TableStorageMembershipProvider_)
 	<!--mark: 9-25-->
 	````XML
 	<configuration>
@@ -284,13 +284,13 @@ In this task, you add and configure the Azure ASP.NET providers for membership, 
 1. Close the browser window to stop the running application.
 
 <a name="Ex2Task3"></a>
-#### Task 3 â€“ Configuring Role Support Using the Azure TableStorageRoleProvider ####
+#### Task 3 – Configuring Role Support Using the Azure TableStorageRoleProvider ####
 
 In this task, you add role support to the application using the Azure role provider. This requires updating the registration process to capture the role of the user and configuring the settings for the role provider. To demonstrate the use of roles, you update the products page to filter the list of products based on the type of user.
 
 1. Add code to the startup routine to initialize the roles supported by the application. The code creates two roles, _Home_ and _Enterprise_, which the application uses to classify different types of user. Open **Global.asax.cs** and insert the following (highlighted) code into the **Application_Start** method.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex2 Initialize Roles_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex2 Initialize Roles_)
 	<!--mark: 7-15-->
 	````C#
 	protected void Application_Start()
@@ -313,7 +313,7 @@ In this task, you add role support to the application using the Azure role provi
 
 1. Change the **Index** action to filter the list of products based on the type of user. In the **Controllers** folder, open the **HomeController.cs** file and insert the following (highlighted) code into the **Index** method immediately below the line that declares and initializes the **filteredProducts** variable.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex2 Filter Products_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex2 Filter Products_)
 	<!--mark: 10-14-->
 	````C#
 	public ActionResult Index()
@@ -341,7 +341,7 @@ In this task, you add role support to the application using the Azure role provi
 
 	>**Note:** The default ASP.NET MVC template in Visual Studio creates the configuration settings for the **AspNetSqlRoleProvider**, which uses SQL Server for storage, and the **AspNetWindowsTokenRoleProvider**, which uses Windows groups.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex2 TableStorageRoleProvider_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex2 TableStorageRoleProvider_)
 	<!--mark: 5-22-->
 	````XML
 	<configuration>
@@ -407,7 +407,7 @@ In this task, you add role support to the application using the Azure role provi
 	
 	_Suspending the service role instance_
 
-	>**Note:** The preceding step, _recycling the role_ simulates what would happen in Windows Azure when a role instance is restarted.
+	>**Note:** The preceding step, _recycling the role_ simulates what would happen in Microsoft Azure when a role instance is restarted.
 
 1. Wait until the service is **destroyed** as indicated by the instance icon turning purple. Now, start the service instance once again. To do this, right-click the **CloudShop** node and choose **Run**, then wait for the service to start.
 1. Switch back to the browser window showing the checkout page and click **Refresh**. Notice that the order now appears empty.
@@ -417,14 +417,14 @@ In this task, you add role support to the application using the Azure role provi
 1. Close the browser window to stop the application.
 
 <a name="Ex2Task4"></a>
-#### Task 4 â€“ Configuring Session Support Using the Azure TableStorageSessionProvider ####
+#### Task 4 – Configuring Session Support Using the Azure TableStorageSessionProvider ####
 
-Windows Azure can potentially host a Web role on multiple machines inside the fabric, which makes in-memory session state unsuitable for such an environment. In contrast, the session state provider in the **AspProviders** project uses table storage to store configuration information about the session and blob storage to store the session state itself. 
+Microsoft Azure can potentially host a Web role on multiple machines inside the fabric, which makes in-memory session state unsuitable for such an environment. In contrast, the session state provider in the **AspProviders** project uses table storage to store configuration information about the session and blob storage to store the session state itself. 
 In this task, you configure the application to use the Azure session state provider.
 
 1. Configure the application to use the session provider in the **AspProviders** project. To do this, in the **Web.config** file of the **CloudShop** project, insert the following (highlighted) configuration block as a direct child of the <**system.web**> element.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex2 TableStorageSessionStateProvider_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex2 TableStorageSessionStateProvider_)
 	<!--mark: 5-14-->
 	````XML
 	<configuration>
@@ -460,17 +460,17 @@ In this task, you configure the application to use the Azure session state provi
 <a name="Exercise3"></a>
 ### Exercise 3: Using the Azure ASP.NET Providers with Web Form Applications ###
 
-In this exercise, you modify the ASP.NET Web Form application to use the ASP.NET providers from the Windows Azure samples. You start by adding authentication to the site using the membership provider. Next, you implement the role provider to classify users and customize the products that the application offers. Finally, you configure the session state provider to store the contents of the shopping cart.
+In this exercise, you modify the ASP.NET Web Form application to use the ASP.NET providers from the Microsoft Azure samples. You start by adding authentication to the site using the membership provider. Next, you implement the role provider to classify users and customize the products that the application offers. Finally, you configure the session state provider to store the contents of the shopping cart.
 
 <a name="Ex3Task1"></a>
-#### Task 1 â€“ Configuring Authenticated Access to the Application ####
+#### Task 1 – Configuring Authenticated Access to the Application ####
 In this task, you configure the application to require authenticated access to the pages that implement the shopping cart. 
 
 1. If necessary, open **Microsoft Visual Studio 2012 Express for Web** (or higher) in elevated administrator mode. 
 1. In the **File** menu, choose **Open Project**. In the **Open Project** dialog, browse to **Ex3-UsingAzureProvidersWithWebApps\Begin** in the **Source** folder of the lab, select **Begin.sln** and click **Open**. Alternatively, you may continue with the solution that you completed during Exercise 1 if you used the MVC application.
 1. Configure authorization for the **Store** folder to require authenticated access. Open the **Web.config** file of the **CloudShop** project and insert the following (highlighted) configuration block as a direct child of the <**configuration**> element.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex3 Configuring Authorization_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex3 Configuring Authorization_)
 	<!--mark: 4-11-->
 	````XML
 	<?xml version="1.0"?>
@@ -490,10 +490,10 @@ In this task, you configure the application to require authenticated access to t
 1. Press **CTRL + S** to save the **Web.config** file.
 	
 <a name="Ex3Task2"></a>
-#### Task 2 â€“ Configuring Membership Support Using the Azure TableStorageMembershipProvider ####
+#### Task 2 – Configuring Membership Support Using the Azure TableStorageMembershipProvider ####
 In this task, you add and configure the Azure ASP.NET providers for membership, role, and session.
 
-1. Add the Windows Azure ASP.NET Providers project to the solution.  In **Solution Explorer**, right-click the **Begin** solution, point to **Add** and select **Existing Project**. Browse to **Assets\AspProviders** in the **Source** folder of the lab, select the **AspProviders.csproj** project and click **Open**.
+1. Add the Microsoft Azure ASP.NET Providers project to the solution.  In **Solution Explorer**, right-click the **Begin** solution, point to **Add** and select **Existing Project**. Browse to **Assets\AspProviders** in the **Source** folder of the lab, select the **AspProviders.csproj** project and click **Open**.
 
 	>**Note:** The **AspProviders** project is available as a sample. It is included as part of this training kit for your convenience and is based on the original source code found in the [MSDN Code Gallery](http://code.msdn.microsoft.com/windowsazuresamples). The project contains the implementation of ASP.NET application providers for membership, role, profile, and session state.
 
@@ -510,7 +510,7 @@ In this task, you add and configure the Azure ASP.NET providers for membership, 
 	
 	_Creating a new configuration setting for the role_
 
-1. In the **Storage Account Connection String** dialog, choose the option labeled **Windows Azure storage emulator** and click **OK**.
+1. In the **Storage Account Connection String** dialog, choose the option labeled **Microsoft Azure storage emulator** and click **OK**.
  
 	![Configuring a storage connection string](Images/configuring-a-storage-connection-string.png?raw=true)
 	
@@ -520,9 +520,9 @@ In this task, you add and configure the Azure ASP.NET providers for membership, 
 1. Open the **Web.config** file located in the root folder of the **CloudShop** project.
 1. (Optional) Configure the storage account information required by the ASP.NET providers in the application configuration file. To do this, locate the <**appSettings**> element, which should be empty, and replace it with the following (highlighted) configuration block. If the **appSettings** element is missing, insert it as a direct child of the \<**configuration**> element.
 
-	>**Note:** In addition to the service configuration file, you can also configure the Azure providers in the **Web.config** file of the application. This allows you to host the application outside the Azure fabric and still take advantage of the Azure ASP.NET providers and storage. However, when the application runs in the Windows Azure environment, configuration settings in the service configuration file for the ASP.NET providers take precedence over those in the **Web.config** file. By using the Windows Azure settings, you can avoid redeploying the application when changing provider settings.
+	>**Note:** In addition to the service configuration file, you can also configure the Azure providers in the **Web.config** file of the application. This allows you to host the application outside the Azure fabric and still take advantage of the Azure ASP.NET providers and storage. However, when the application runs in the Microsoft Azure environment, configuration settings in the service configuration file for the ASP.NET providers take precedence over those in the **Web.config** file. By using the Microsoft Azure settings, you can avoid redeploying the application when changing provider settings.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex3 DataConnectionString_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex3 DataConnectionString_)
 	<!--mark: 3-5-->
 	````XML
 	<configuration>
@@ -538,7 +538,7 @@ In this task, you add and configure the Azure ASP.NET providers for membership, 
 
 	>**Note:** The default ASP.NET Web Application template in Visual Studio creates the configuration settings for the **AspNetSqlMembershipProvider**, which uses SQL Server for storage.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex3 TableStorageMembershipProvider_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex3 TableStorageMembershipProvider_)
 	<!--mark: 9-25-->
 	````XML
 	<configuration>
@@ -605,13 +605,13 @@ In this task, you add and configure the Azure ASP.NET providers for membership, 
 1. Close the browser window to stop the running application
 
 <a name="Ex3Task3"></a>
-#### Task 3 â€“ Configuring Role Support Using the Azure TableStorageRoleProvider ####
+#### Task 3 – Configuring Role Support Using the Azure TableStorageRoleProvider ####
 
 In this task, you add role support to the application using the Azure role provider. This requires updating the registration process to capture the role of the user and configuring the settings for the role provider. To demonstrate the use of roles, you update the products page to filter the list of products based on the type of user.
 
 1. Update the registration process to assign a role to the user. Open **Register.aspx** in the **Account** folder and insert the following (highlighted) markup to add a new step in the **CreateUserWizard** control.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex3 Role WizardStep_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex3 Role WizardStep_)
 	<!--mark: 3-8-->
 	````ASP.NET
 		...
@@ -631,7 +631,7 @@ In this task, you add role support to the application using the Azure role provi
 
 1. In **Solution Explorer**, right-click **Register.aspx.cs** and then select **View Code** to open its code-behind file. Insert the following (highlighted) code at the beginning of the **RegisterUser_CreatedUser** event handler.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex3 CreatedUser_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex3 CreatedUser_)
 	<!--mark: 3-7-->
 	````C#
 	protected void RegisterUser_CreatedUser(object sender, EventArgs e)
@@ -650,7 +650,7 @@ In this task, you add role support to the application using the Azure role provi
 
 1. Insert the following highlighted code into the body of the **Page_Load** method to initialize the **CreateUserWizard** control using the roles defined by the application.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex3 Page_Load_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex3 Page_Load_)
 	<!--mark: 4-16-->
 	````C#
 	protected void Page_Load(object sender, EventArgs e)
@@ -674,7 +674,7 @@ In this task, you add role support to the application using the Azure role provi
 
 1. Add code to the start-up routine to initialize the roles supported by the application. The code creates two roles, _Home_ and _Enterprise_, which the application uses to classify different types of user. Open **Global.asax.cs** and insert the following (highlighted) code into the **Application_Start** method.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex3 Initialize Roles_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex3 Initialize Roles_)
 	<!--mark: 6-15-->
 	````C#
 	protected void Application_Start(object sender, EventArgs e)
@@ -698,7 +698,7 @@ In this task, you add role support to the application using the Azure role provi
 
 1. Change the product page to filter the list of products based on the type of user. Open the  **Products.aspx.cs** code-behind file in the  **Store** folder and insert the following (highlighted) code into the **Page_Init** method, immediately below the line that declares and initializes the **filteredProducts** variable.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex3 Page_Init_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex3 Page_Init_)
 	<!--mark: 10-14-->
 	````C#
 	protected void Page_Init(object sender, EventArgs e)
@@ -730,7 +730,7 @@ In this task, you add role support to the application using the Azure role provi
 
 	>**Note:** The default ASP.NET Web Application template in Visual Studio creates the configuration settings for the  **AspNetSqlRoleProvider**, which uses SQL Server for storage, and the  **AspNetWindowsTokenRoleProvider**, which uses Windows groups.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex3 TableStorageRoleProvider_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex3 TableStorageRoleProvider_)
 	<!--mark: 5-22-->
 	````XML
 	<configuration>
@@ -797,7 +797,7 @@ In this task, you add role support to the application using the Azure role provi
 	_Suspending the service role instance_	
 
 
-	>**Note:** The preceding step, _recycling the role_ simulates what would happen in Windows Azure when a role instance is restarted.
+	>**Note:** The preceding step, _recycling the role_ simulates what would happen in Microsoft Azure when a role instance is restarted.
 
 1. Wait until the service is **destroyed** as indicated by the instance icon turning purple. Now, restart the service instance once again. To do this, right-click the **CloudShop** node and choose **Run**, then wait for the service to start.
 1. Switch back to the browser window showing the checkout page and click **Refresh**. Notice that the order now appears empty.
@@ -807,14 +807,14 @@ In this task, you add role support to the application using the Azure role provi
 1. Close the browser window to stop the application.
 
 <a name="Ex3Task4"></a>
-#### Task 4 â€“ Configuring Session Support Using the Azure TableStorageSessionProvider ####
+#### Task 4 – Configuring Session Support Using the Azure TableStorageSessionProvider ####
 
-Windows Azure can potentially host a Web role on multiple machines inside the fabric, which makes in-memory session state unsuitable for such an environment. In contrast, the session state provider in the **AspProviders** project uses table storage to store configuration information about the session and blob storage to store the session state itself. 
-In this task, you configure the application to use the Windows Azure session state provider.
+Microsoft Azure can potentially host a Web role on multiple machines inside the fabric, which makes in-memory session state unsuitable for such an environment. In contrast, the session state provider in the **AspProviders** project uses table storage to store configuration information about the session and blob storage to store the session state itself. 
+In this task, you configure the application to use the Microsoft Azure session state provider.
 
 1. Configure the application to use the session provider in the **AspProviders** project. To do this, in the **Web.config** file of the **CloudShop** project, insert the following (highlighted) configuration block as an immediate child of the <**system.web**> element.
 
-	(Code Snippet â€“ _Migrating ASP.NET Applications  - Ex3 TableStorageSessionStateProvider_)
+	(Code Snippet – _Migrating ASP.NET Applications  - Ex3 TableStorageSessionStateProvider_)
 	<!--mark: 5-14-->
 	````XML
 	<configuration>
@@ -847,7 +847,7 @@ In this task, you configure the application to use the Windows Azure session sta
 1. Switch back to the browser window showing the checkout page and click **Refresh**. Notice that the order is intact. This confirms that the session state can persist through application restarts when using the Azure provider.
 1. Close the browser window to stop the application.
 
-> **Note:** If you want to deploy an ASP.NET Web Forms application in Windows Azure, you need to set up the Start Page in the web role project. To do this, open the Web.Config file and add the following lines at the end of the System.WebServer section:
+> **Note:** If you want to deploy an ASP.NET Web Forms application in Microsoft Azure, you need to set up the Start Page in the web role project. To do this, open the Web.Config file and add the following lines at the end of the System.WebServer section:
 
 >```` XML
 >	<system.webServer>
@@ -866,4 +866,4 @@ In this task, you configure the application to use the Windows Azure session sta
 <a name="Summary"></a>
 ## Summary ##
 
-By completing this hands-on lab, you saw the changes that are necessary to run an existing ASP.NET application in the Windows Azure environment. You explored authentication and how to use membership, role, and session state providers that are based on scalable and reliable blob and table storage services to handle applications running on multiple machines inside the Windows Azure fabric.
+By completing this hands-on lab, you saw the changes that are necessary to run an existing ASP.NET application in the Microsoft Azure environment. You explored authentication and how to use membership, role, and session state providers that are based on scalable and reliable blob and table storage services to handle applications running on multiple machines inside the Microsoft Azure fabric.

@@ -1,12 +1,12 @@
-﻿<a name="HOLTop"></a>
-# Building a Social Game with Windows Azure #
+<a name="HOLTop"></a>
+# Building a Social Game with Microsoft Azure #
 
 ---
 
 <a name="Overview"></a>
 ## Overview ##
 
-Building a game has multiple challenges, more if we are building social games that require multiplayers, contacting your friends, leaderboards and multiple ways to authenticate a user. In this lab, you will see how to take advantage of the **Windows Azure** services benefits when building a Social Game. **Windows Azure** offers **Access Control** service to authenticate your users using multiple Social Providers, such as **Microsoft Account** or **Facebook**. You can take advantage of **Azure Table Storage** to create a Leaderboard or to use it as a game storage, where clients access to update the game status in their browsers. Additionally, you will see how to use **Node.JS** to emit and broadcast the players game moves to other clients in real time.
+Building a game has multiple challenges, more if we are building social games that require multiplayers, contacting your friends, leaderboards and multiple ways to authenticate a user. In this lab, you will see how to take advantage of the **Microsoft Azure** services benefits when building a Social Game. **Microsoft Azure** offers **Access Control** service to authenticate your users using multiple Social Providers, such as **Microsoft Account** or **Facebook**. You can take advantage of **Azure Table Storage** to create a Leaderboard or to use it as a game storage, where clients access to update the game status in their browsers. Additionally, you will see how to use **Node.JS** to emit and broadcast the players game moves to other clients in real time.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -25,11 +25,11 @@ The following is required to complete this hands-on lab:
 
 - [Microsoft .NET Framework 4.0][1]
 - [Microsoft Visual Studio 2010][2]
-- [Windows Azure SDK and Windows Azure Tools for Microsoft Visual Studio 1.7][3]
+- [Microsoft Azure SDK and Microsoft Azure Tools for Microsoft Visual Studio 1.7][3]
 - [ASP.NET and ASP.NET MVC 4][4]
 - [Microsoft(r) Windows Identity Foundation SDK 4.0][5]
 - [Microsoft(r) Windows Identity Foundation Runtime][6]
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 [1]: http://go.microsoft.com/fwlink/?linkid=186916
 [2]: http://msdn.microsoft.com/vstudio/products/
@@ -38,7 +38,7 @@ The following is required to complete this hands-on lab:
 [5]: http://www.microsoft.com/downloads/en/details.aspx?FamilyID=c148b2df-c7af-46bb-9162-2c9422208504
 [6]: http://www.microsoft.com/downloads/en/details.aspx?FamilyID=eb9c345f-e830-40b8-a5fe-ae7a864c4d76
  
->**Note:** This hands-on lab has been designed to use Windows 7 Operating System and the latest release of the Windows Azure Tools for Visual Studio 2010 (version 1.7).
+>**Note:** This hands-on lab has been designed to use Windows 7 Operating System and the latest release of the Microsoft Azure Tools for Visual Studio 2010 (version 1.7).
 
 <a name="Setup"></a> 
 ### Setup ###
@@ -134,7 +134,7 @@ In this task, you will run the solution and play a single-player Tic-Tac-Toe gam
 <a name="Exercise1"></a> 
 ### Exercise 1: Adding Social Providers and Inviting Friends ###
 
-In this exercise, you will use Windows Azure Access Control Service (ACS) to enable authentication in the Tic-Tac-Toe game. The Access Control Service takes care of engaging every identity provider with its own authentication protocol, normalizing the authentication results in a protocol supported by the .NET framework tooling. In order to simplify the flow of this exercise, you will add the necessary configuration to access the existing public namespace '_local-watgames_', which is used in the **Windows Azure Toolkit for Social Games**. Next, you will create a view to send invitations to other users and see the list of friends you added.
+In this exercise, you will use Microsoft Azure Access Control Service (ACS) to enable authentication in the Tic-Tac-Toe game. The Access Control Service takes care of engaging every identity provider with its own authentication protocol, normalizing the authentication results in a protocol supported by the .NET framework tooling. In order to simplify the flow of this exercise, you will add the necessary configuration to access the existing public namespace '_local-watgames_', which is used in the **Microsoft Azure Toolkit for Social Games**. Next, you will create a view to send invitations to other users and see the list of friends you added.
 
 >**Note:** In this exercise you will add social gaming features, but the multiplayer mode will be added in the following exercises.
 
@@ -143,7 +143,7 @@ In this exercise, you will use Windows Azure Access Control Service (ACS) to ena
 
 1. Open the **Begin.sln** solution located in the folder **\Source\Ex1-ACSAndInvite\Begin**. You can alternatively continue working with the solution from Exercise 0.
 
-1. Right-click the **TicTacToe.Web** project and select **Add Windows Azure Deployment Project**. This will create a Windows Azure deployment project that will host the **TicTacToe.Web** in the Cloud.
+1. Right-click the **TicTacToe.Web** project and select **Add Microsoft Azure Deployment Project**. This will create a Microsoft Azure deployment project that will host the **TicTacToe.Web** in the Cloud.
 
 1. Open the **Web.config** file from the **TicTacToe.Web** project. You will next add the necessary entries to configure ACS to use the public namespace '_local-watgames_'.
 
@@ -222,11 +222,11 @@ In this exercise, you will use Windows Azure Access Control Service (ACS) to ena
 <a name="Ex1Task2"></a>
 #### Task 2 - Adding Social Gaming APIs ####
 
-In this task, you will add the social gaming server APIs to enable a number of features on your game. This Server APIs (or Web APIs) are wrappers of a library named **SocialGames.Core**, which contains all the necessary logic to invite other users to your list of friends, as well as other features you will use throughout this lab. This library is based on the same library that is included in the **Windows Azure Toolkit for Social Games**.
+In this task, you will add the social gaming server APIs to enable a number of features on your game. This Server APIs (or Web APIs) are wrappers of a library named **SocialGames.Core**, which contains all the necessary logic to invite other users to your list of friends, as well as other features you will use throughout this lab. This library is based on the same library that is included in the **Microsoft Azure Toolkit for Social Games**.
 
->**Note:** The APIs provided in the **Assets** folder of this lab are using the same strategy and architecture than the one used in the **Windows Azure Toolkit for Social Games** projects. For more information, go to [https://github.com/WindowsAzure-Toolkits/wa-toolkit-games](https://github.com/WindowsAzure-Toolkits/wa-toolkit-games).
+>**Note:** The APIs provided in the **Assets** folder of this lab are using the same strategy and architecture than the one used in the **Microsoft Azure Toolkit for Social Games** projects. For more information, go to [https://github.com/WindowsAzure-Toolkits/wa-toolkit-games](https://github.com/WindowsAzure-Toolkits/wa-toolkit-games).
 
-1. In the **TicTacToe.Web.Azure** cloud project, open **Properties** for the **TicTacToe.Web** role and add a new setting with **Name** _DataConnectionString_, set **Type** to _Connection String_ and for the **Value** choose **Windows Azure Storage Emulator**. Save and close the **Properties** page.
+1. In the **TicTacToe.Web.Azure** cloud project, open **Properties** for the **TicTacToe.Web** role and add a new setting with **Name** _DataConnectionString_, set **Type** to _Connection String_ and for the **Value** choose **Microsoft Azure Storage Emulator**. Save and close the **Properties** page.
 
  	![Adding a new setting](images/adding-a-new-setting.png?raw=true)
  
@@ -871,7 +871,7 @@ In this task, you will create a Friends list consuming the server APIs to invite
 
 1. Go to the **Friends** page. In the Friends list, you will see the user id of your first account.
 
- 	![Showing the Friend’s user id](images/showing-the-friends-user-id.png?raw=true)
+ 	![Showing the Friend�s user id](images/showing-the-friends-user-id.png?raw=true)
  
 	_Showing the Friend's user id_
 
@@ -1091,7 +1091,7 @@ In this task, you will add an existing project that will be in charge of process
 
 1. In the **TicTacToe.Web.Azure** cloud project, associate the recently added project as a Worker Role in the **Roles** folder.
 
-1. Open the role **Properties** for the **SocialGames.Worker** and add a new setting with **Name** _DataConnectionString_, set the **Type** to _Connection String_ and for **Value** choose **Windows Azure Storage Emulator**. Save and close the **Properties** page.
+1. Open the role **Properties** for the **SocialGames.Worker** and add a new setting with **Name** _DataConnectionString_, set the **Type** to _Connection String_ and for **Value** choose **Microsoft Azure Storage Emulator**. Save and close the **Properties** page.
 
 <a name="Ex2Task3"></a>
 #### Task 3 - Showing Game Invitation Messages from Friends ####
@@ -1231,7 +1231,7 @@ In this task, you will add an existing project that includes a Node.JS Worker Ro
 
 1. In the **TicTacToe.Web.Azure** cloud project, associate the recently added project as a Worker Role in the **Roles** folder.
 
-1. Open the role **Properties** for the **SocialGames.Worker** and add a new setting with **Name** _DataConnectionString_, set the **Type** _Connection String_ and for **Value** choose **Windows Azure Storage Emulator**. Save and close the **Properties** page.
+1. Open the role **Properties** for the **SocialGames.Worker** and add a new setting with **Name** _DataConnectionString_, set the **Type** _Connection String_ and for **Value** choose **Microsoft Azure Storage Emulator**. Save and close the **Properties** page.
 
 1. Open the **ServiceDefinition.csdef** file and replace the **WorkerRole** block with the following:
 
@@ -2059,7 +2059,7 @@ In this task, you will update the Web project to implement all the functionality
 <a name="Summary" />
 ## Summary ##
 
-In this hands-on lab, you have seen how to take advantage of the **Windows Azure** services benefits when building a Social Game.
+In this hands-on lab, you have seen how to take advantage of the **Microsoft Azure** services benefits when building a Social Game.
 You have seen how to add **Access Control** service support to an existing application, to allow your users authenticate using multiple Social Providers, such as **Microsoft Account** or **Facebook**.
 You have also seen how to enable Multi-Player using **Storage Polling** and **Node.JS** to emit and broadcast the players game moves to other clients in real time.
 Finally, you have seen how to create a leaderboard using **Azure Table Storage**.

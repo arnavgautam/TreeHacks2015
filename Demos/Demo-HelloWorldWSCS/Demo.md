@@ -1,20 +1,20 @@
-﻿<a name="title" />
-# Windows Azure Web Sites and Cloud Services #
+<a name="title" />
+# Microsoft Azure Websites and Cloud Services #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-Windows Azure Web Sites let you build highly scalable Web Sites on Windows Azure. Quickly and easily deploy sites to a highly scalable cloud environment that allows you to start small and scale as traffic grows. Use the languages and apps of your choice then deploy with FTP, Git and TFS. 
+Microsoft Azure Websites let you build highly scalable Websites on Microsoft Azure. Quickly and easily deploy sites to a highly scalable cloud environment that allows you to start small and scale as traffic grows. Use the languages and apps of your choice then deploy with FTP, Git and TFS. 
 
-With Windows Azure Cloud Services you can quickly deploy and manage powerful applications and services. Simply upload your application and Windows Azure handles the deployment details from provisioning and load balancing to health monitoring for continuous availability.
+With Microsoft Azure Cloud Services you can quickly deploy and manage powerful applications and services. Simply upload your application and Microsoft Azure handles the deployment details from provisioning and load balancing to health monitoring for continuous availability.
 
-In this demo you will see how to deploy an MVC 4 web application to a Windows Azure Web Site by using the Publish Web wizard in Visual Studio 2012, and then how you can deploy the same application to a Windows Azure Cloud Service by using the Windows Azure SDK for .NET in Visual Studio 2012.
+In this demo you will see how to deploy an MVC 4 web application to a Microsoft Azure Web Site by using the Publish Web wizard in Visual Studio 2012, and then how you can deploy the same application to a Microsoft Azure Cloud Service by using the Microsoft Azure SDK for .NET in Visual Studio 2012.
 
 <a name="technologies" />
 ### Key Technologies ###
 
-- Windows Azure subscription - you can sign up for a free trial [here][1]
+- Microsoft Azure subscription - you can sign up for a free trial [here][1]
 - Microsoft Visual Studio 2012
 - [Git][3]
 
@@ -38,11 +38,11 @@ In order to execute this demo you need to set up your environment.
 <a name="segment1" />
 ### Creating a new  Web Site ###
 
-1. In Windows Azure Management Portal, click **New** in the bottom menu, select **Web Site** and then **Quick Create**.
+1. In Microsoft Azure Management Portal, click **New** in the bottom menu, select **Web Site** and then **Quick Create**.
 
 	> 	**Speaking Point:** 
 	>
-	Now I will show you how to create a new Web Site using the Windows Azure Management Portal. You will see how fast the site gets created.
+	Now I will show you how to create a new Web Site using the Microsoft Azure Management Portal. You will see how fast the site gets created.
 
 1. Enter the URL for the new site and click **Create Web Site**.
 
@@ -64,11 +64,11 @@ In order to execute this demo you need to set up your environment.
 
 	_The new site's default page_
 
-1. In Windows Azure Management Portal go to **Web Sites** and click the name of the Web Site you just created.
+1. In Microsoft Azure Management Portal go to **Websites** and click the name of the Web Site you just created.
 
 	> **Speaking Point:** 
 	>
-	Now I will go back to Windows Azure and go to the site's Dashboard in order to download the Publish Profile. We will use this to deploy applications to our Web Site.
+	Now I will go back to Microsoft Azure and go to the site's Dashboard in order to download the Publish Profile. We will use this to deploy applications to our Web Site.
 
 1. Once on the **Dashboard** page, click the **Download publish profile** link and then click **Save** in the dialog box that appears
 
@@ -114,7 +114,7 @@ In order to execute this demo you need to set up your environment.
 
 	_The new site loaded_
 
-1. Go Back to Windows Azure Management Portal. In the Web Site's dashboard, click **Set up Git publishing**.
+1. Go Back to Microsoft Azure Management Portal. In the Web Site's dashboard, click **Set up Git publishing**.
 
 	> **Speaking point:** 
 	>
@@ -158,7 +158,7 @@ git push azure master
 
 	_The updated Site_
 
-1. In Windows Azure portal, go the Web Site's dashboard and select **Scale**.
+1. In Microsoft Azure portal, go the Web Site's dashboard and select **Scale**.
 
 	![Selecting Scale options](Images/selecting-scale-options.png?raw=true "Selecting Scale options")
 
@@ -172,22 +172,22 @@ git push azure master
 
 	> **Speaking point:** 
 	>
-	Here we can manage the scaling options of our Web Site, such as the Web Site mode which can be Shared or Reserved .In Shared mode, all Web Sites share the servers and are created in the same geographical-region; Reserved mode implies that all Web Sites in a given region run on dedicated virtual machines. Reserved mode provides your sites more processing power and performance and allows you to scale your instance count and size. We can also change the Shared Instance count, denoting the number of processes dedicated to a Web Site. By changing this setting, you can scale out your Web Site for increased throughput and availability. Similarly, we can adjust the Instance size and Instance count for Reserved mode.
+	Here we can manage the scaling options of our Web Site, such as the Web Site mode which can be Shared or Reserved .In Shared mode, all Websites share the servers and are created in the same geographical-region; Reserved mode implies that all Websites in a given region run on dedicated virtual machines. Reserved mode provides your sites more processing power and performance and allows you to scale your instance count and size. We can also change the Shared Instance count, denoting the number of processes dedicated to a Web Site. By changing this setting, you can scale out your Web Site for increased throughput and availability. Similarly, we can adjust the Instance size and Instance count for Reserved mode.
 	>
-	Now we will see how we can publish our Web Site as a **Cloud Service** in **Windows Azure**
+	Now we will see how we can publish our Web Site as a **Cloud Service** in **Microsoft Azure**
 
 1. Go back to Visual Studio. In Solution Explorer right-click the **NewAzureWebSite** project and select 
-**Add Windows Azure Cloud Service Project**.
+**Add Microsoft Azure Cloud Service Project**.
 
 	![Adding a Cloud Service Project](Images/adding-a-cloud-service-project.png?raw=true "Adding a Cloud Service Project")
 
 	_Adding a Cloud Service Project_
 
-1. Press **F5** to run the solution in **Windows Azure Emulator**.
+1. Press **F5** to run the solution in **Microsoft Azure Emulator**.
 
-	![Running application in Windows Azure Emulator](Images/running-application-in-windows-azure-emulator.png?raw=true "Running application in Windows Azure Emulator")
+	![Running application in Microsoft Azure Emulator](Images/running-application-in-windows-azure-emulator.png?raw=true "Running application in Microsoft Azure Emulator")
 
-	_Running application in Windows Azure Emulator_
+	_Running application in Microsoft Azure Emulator_
 
 1. Close the browser.
 
@@ -227,9 +227,9 @@ git push azure master
 
 	_Completed Deployment_
 
-    >**Note:** The connection string used in this MVC application points to a local database to store the membership information. This connection string will not work when you run this application in Windows Azure. To access a different database, you should update the connection string in the web.config file.
+    >**Note:** The connection string used in this MVC application points to a local database to store the membership information. This connection string will not work when you run this application in Microsoft Azure. To access a different database, you should update the connection string in the web.config file.
 
-1. In Windows Azure portal, go to **Cloud Services** and click the name of the cloud service where you deployed the MVC4 site.
+1. In Microsoft Azure portal, go to **Cloud Services** and click the name of the cloud service where you deployed the MVC4 site.
 
 1. Once on the Dashboard page, click the **Site URL** to load the site.
 
@@ -237,13 +237,13 @@ git push azure master
 
 	_Storage Account Dashboard_
 
-1. Wait for the site to load. Check that the MVC site is running in Windows Azure.
+1. Wait for the site to load. Check that the MVC site is running in Microsoft Azure.
 
 	![The site running in the cloud](Images/the-site-running-in-the-cloud.png?raw=true "The site running in the cloud")
 
 	_The site running in the cloud_
 
-1. In Windows Azure portal, go to the cloud service's dashboard. Then go to the **Configure** tab and show the audience the monitoring options.
+1. In Microsoft Azure portal, go to the cloud service's dashboard. Then go to the **Configure** tab and show the audience the monitoring options.
 	
 	![Storage Account monitoring options](Images/storage-account-monitoring-options.png?raw=true "Storage Account monitoring options")
 

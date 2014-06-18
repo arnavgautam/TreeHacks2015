@@ -1,4 +1,4 @@
-Ôªø<a name="HOLTop"></a>
+<a name="HOLTop"></a>
 # Service Bus Queues #
 ---
 
@@ -9,7 +9,7 @@
 
 **Queues** offer First In, First Out (FIFO) message delivery to one or more competing consumers. That is, messages are typically expected to be received and processed by the receivers in the temporal order in which they were added to the queue, and each message is received and processed by only one message consumer. Using queues to intermediate between message producers and consumers provides an inherent loose coupling between both components. Because producers and consumers are not aware of each other, consumers can be upgraded without having any effect on the producer.
 
-In this hands-on lab, you will learn how to create a Service Bus namespace using Windows Azure Management Portal. Then you will explore how to create a cloud-based application that writes and reads messages through a queue. Finally, you will see how different platforms and languages can interact seamlessly using the Advanced Messaging Queue Protocol (AMQP) with Windows Azure Service Bus Queues.
+In this hands-on lab, you will learn how to create a Service Bus namespace using Microsoft Azure Management Portal. Then you will explore how to create a cloud-based application that writes and reads messages through a queue. Finally, you will see how different platforms and languages can interact seamlessly using the Advanced Messaging Queue Protocol (AMQP) with Microsoft Azure Service Bus Queues.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -28,12 +28,12 @@ In this hands-on lab, you will learn how to:
 You must have the following items to complete this lab:
 
 - [Visual Studio Express 2013 for Web][1] or greater
-- [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)][2]
-- A Windows Azure subscription
+- [Microsoft Azure Tools for Microsoft Visual Studio 2.2 (or later)][2]
+- A Microsoft Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
-	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start developing and testing on Windows Azure.
-	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
-	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly Windows Azure credits at no charge.
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start developing and testing on Microsoft Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Microsoft Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly Microsoft Azure credits at no charge.
 
 [1]: http://www.microsoft.com/visualstudio/
 [2]: http://www.microsoft.com/windowsazure/sdk/
@@ -76,20 +76,20 @@ Estimated time to complete this lab: **60 minutes**
 <a name="Exercise1"></a>
 ### Exercise 1: Creating a Queue ###
 
-In this exercise, you will learn how to create a Windows Azure Service Bus Queue. Queues provide messaging capabilities that enable a large and heterogeneous class of applications running on premises or in the cloud to exchange messages in a flexible, secure and reliable fashion across network and trust boundaries.
+In this exercise, you will learn how to create a Microsoft Azure Service Bus Queue. Queues provide messaging capabilities that enable a large and heterogeneous class of applications running on premises or in the cloud to exchange messages in a flexible, secure and reliable fashion across network and trust boundaries.
 
 <a name="Ex1Task1"></a>
 #### Task 1 - Creating your Service Bus Namespace ####
 
-In this task, you will create a new Windows Azure Service Bus Namespace.
+In this task, you will create a new Microsoft Azure Service Bus Namespace.
 
-1. Navigate to [Windows Azure Management Portal](http://manage.windowsazure.com/). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
+1. Navigate to [Microsoft Azure Management Portal](http://manage.windowsazure.com/). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
 
 1. Click **Service Bus** within the left pane.
 
- 	![Configuring Windows Azure Service bus](Images/configuring-windows-azure-service-bus.png?raw=true "Configuring Windows Azure Service bus")
+ 	![Configuring Microsoft Azure Service bus](Images/configuring-windows-azure-service-bus.png?raw=true "Configuring Microsoft Azure Service bus")
  
-	_Configuring Windows Azure Service bus_
+	_Configuring Microsoft Azure Service bus_
 
 1. Create a Service Namespace. A service namespace provides an application boundary for each application exposed through the Service Bus and is used to construct Service Bus endpoints for the application. To create a service namespace, click **Create** on the bottom bar. 
 
@@ -118,28 +118,28 @@ In this task, you will create a new Windows Azure Service Bus Namespace.
 	_Service Bus default keys_
 
  
-You have now created a new Windows Azure namespace for this hands-on lab. To sign in at any time, simply navigate to the Windows Azure Management Portal, click **Sign In** and provide your **Microsoft Account** credentials.
+You have now created a new Microsoft Azure namespace for this hands-on lab. To sign in at any time, simply navigate to the Microsoft Azure Management Portal, click **Sign In** and provide your **Microsoft Account** credentials.
 
 
->**Note**: In this lab you will learn how to create and make use of Service Bus queues from both Visual Studio and an ASP.NET MVC application. You can also create queues from the Windows Azure Management Portal; for more information see [How to Manage Service Bus Messaging Entities ](http://www.windowsazure.com/en-us/documentation/articles/service-bus-manage-message-entities/)
+>**Note**: In this lab you will learn how to create and make use of Service Bus queues from both Visual Studio and an ASP.NET MVC application. You can also create queues from the Microsoft Azure Management Portal; for more information see [How to Manage Service Bus Messaging Entities ](http://www.windowsazure.com/en-us/documentation/articles/service-bus-manage-message-entities/)
 
 
 <a name="Ex1Task2"></a>
 #### Task 2 - Creating a Queue in Visual Studio ####
 
-The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including queues. In this task, you will use Server Explorer to connect to the service bus namespace you created previously and create a queue.
+The Microsoft Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including queues. In this task, you will use Server Explorer to connect to the service bus namespace you created previously and create a queue.
 
 1. Open **Visual Studio 2013 Express for Web** (or greater) as Administrator.
 
 1. From the menu bar, select **View** and then click **Server Explorer**.
 
-1. In **Server Explorer**, expand the  **Windows Azure** node, right-click **Service Bus** and select **Add New Connection...**.
+1. In **Server Explorer**, expand the  **Microsoft Azure** node, right-click **Service Bus** and select **Add New Connection...**.
 
 	![Adding new Service Bus connection](Images/adding-new-service-bus-connection.png?raw=true)
 
 	_Adding new Service Bus connection_
 
-1. In the **Add Connection** dialog box, make sure the **Windows Azure Service Bus** option is selected. Enter the **Namespace name**, the **Issuer Name** and the **Issuer Key** using the values obtained in the previous task. Finally, click **OK**.
+1. In the **Add Connection** dialog box, make sure the **Microsoft Azure Service Bus** option is selected. Enter the **Namespace name**, the **Issuer Name** and the **Issuer Key** using the values obtained in the previous task. Finally, click **OK**.
 
 	> **Note:** Alternatively, you can check the **Use connection string** checkbox and provide the service bus connection string.
 
@@ -161,7 +161,7 @@ The Windows Azure Tools for Microsoft Visual Studio includes Server Explorer sup
 
 1. The new queue should be added to your Service Bus Namespace.
 
-	> **Note:** You can also use the Windows Azure Tools for Microsoft Visual Studio to send and receive test messages, as well as to define subscription rules. In the next exercises, you will learn how to perform those operations from code by using the **WindowsAzure.ServiceBus** NuGet package.
+	> **Note:** You can also use the Microsoft Azure Tools for Microsoft Visual Studio to send and receive test messages, as well as to define subscription rules. In the next exercises, you will learn how to perform those operations from code by using the **WindowsAzure.ServiceBus** NuGet package.
 
 	![New queue created](Images/new-queue-created.png?raw=true "New queue created")
 
@@ -189,7 +189,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
  
 	_Launching the service configuration editor_
 
-1. In the **Settings** tab, set the _namespaceName_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to those you previously copied from the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
+1. In the **Settings** tab, set the _namespaceName_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to those you previously copied from the [Microsoft Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
 
 	![Updating settings to the UsingQueues Web Role](Images/updating-settings-to-the-usingqueues-web-role.png?raw=true "Updating settings to the UsingQueues Web Role")
 
@@ -197,13 +197,13 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 1. Press **CTRL + S** to save the changes to the Web Role configuration.
 
-1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to the **Windows Azure Service Bus** from your application. In **Solution Explorer**, right-click the **UsingQueues** project node and select **Add | Reference...**.
+1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to the **Microsoft Azure Service Bus** from your application. In **Solution Explorer**, right-click the **UsingQueues** project node and select **Add | Reference...**.
 
 1. In the **Reference Manager** dialog box, check the **System.Runtime.Serialization** assembly.  Then, select the **Extensions** assemblies from the left pane, check **Microsoft.ServiceBus** and ensure **Microsoft.WindowsAzure.ServiceRuntime** is checked as well. Click **OK** to add the references.
 
 1. Open the **HomeController.cs** file under the **Controllers** folder in the **UsingQueues** project.
 
-1. Add the following namespace directives to declare the Service Bus and the Windows Azure supporting assemblies.
+1. Add the following namespace directives to declare the Service Bus and the Microsoft Azure supporting assemblies.
 
 	(Code Snippet - _Service Bus Messaging - Ex01 - Adding Namespace Directives_ - CS)
 
@@ -287,7 +287,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 <a name="Ex1Task3"></a>
 #### Task 3 - Verification ####
 
-You will now launch the updated application in the Windows Azure Compute Emulator to verify that you can create a queue.
+You will now launch the updated application in the Microsoft Azure Compute Emulator to verify that you can create a queue.
 
 1. In **Visual Studio**, configure the cloud project **UsingQueues.Azure** as the startup Project. To do this, in the **Solution Explorer**, right-click **UsingQueues.Azure** and then select **Set as StartUp Project**.
 
@@ -535,7 +535,7 @@ In the previous task, we instantiate a **QueueClient** in order to write message
 <a name="Ex2Task3"></a>
 #### Task 3 - Verification ####
 
-You will now launch the updated application in the Windows Azure compute emulator to verify that you can create, read, and write messages in the queue.
+You will now launch the updated application in the Microsoft Azure compute emulator to verify that you can create, read, and write messages in the queue.
 
 1. Press **F5** to launch the application. 
 
@@ -691,7 +691,7 @@ In this task you will update the solution you created in last exercise to suppor
 
 In this task you will create a Linux Virtual Machine with Java already installed which you will use to then deploy a Java application that reads messages from the Queue.
 
-1. Navigate to [Windows Azure Management Portal](http://manage.windowsazure.com/). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
+1. Navigate to [Microsoft Azure Management Portal](http://manage.windowsazure.com/). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
 
 1. Click **NEW** at the bottom of the Page.
 
@@ -750,9 +750,9 @@ In this task you will deploy a Java application that reads from the Queue to a L
 	>
 	>**amqps://[username]:[password]@[namespace].servicebus.windows.net** Where [namespace], [username] and [password] have the following meanings:
 	>
-	>- **[namespace]** The Service Bus namespace obtained from the Windows Azure Management Portal.
-	>- **[username]** The Service Bus issuer name obtained from the Windows Azure Management Portal.
-	>- **[password]** URL encoded form of the Service Bus issuer key obtained from the Windows Azure Management Portal. A useful URL-encoding utility is available at http://www.w3schools.com/tags/ref_urlencode.asp.
+	>- **[namespace]** The Service Bus namespace obtained from the Microsoft Azure Management Portal.
+	>- **[username]** The Service Bus issuer name obtained from the Microsoft Azure Management Portal.
+	>- **[password]** URL encoded form of the Service Bus issuer key obtained from the Microsoft Azure Management Portal. A useful URL-encoding utility is available at http://www.w3schools.com/tags/ref_urlencode.asp.
 
 1. Update the **queue.QUEUE** value with the name of the queue you created in the previous exercise. Save the file.
 
@@ -785,7 +785,7 @@ In this task you will deploy a Java application that reads from the Queue to a L
 <a name="Ex3Task4"></a>
 #### Task 4 - Verification ####
 
-You will now launch the updated application in the Windows Azure Compute Emulator to verify that you can send a message with a .NET application and receive it from a Java application running on Linux. **Windows Azure Service Bus Queues** helps you achieve interoperability by using **AMQP**.
+You will now launch the updated application in the Microsoft Azure Compute Emulator to verify that you can send a message with a .NET application and receive it from a Java application running on Linux. **Microsoft Azure Service Bus Queues** helps you achieve interoperability by using **AMQP**.
 
 1. In **Visual Studio**, configure the cloud project **UsingQueues.Azure** as the startup project.
 
@@ -822,11 +822,11 @@ To learn more about **Service Bus Queues** please refer to the following article
 
 This is a list of articles that expand on the technologies explained on this lab:
 
-- [Windows Azure Queues and Windows Azure Service Bus Queues - Compared and Contrasted](http://aka.ms/Nofjzt): This article analyzes the differences and similarities between the two types of queues offered by Windows Azure today: Windows Azure Queues and Windows Azure Service Bus Queues. By using this information, you can compare and contrast the respective technologies and make a more informed decision about which solution best meets your needs.
+- [Microsoft Azure Queues and Microsoft Azure Service Bus Queues - Compared and Contrasted](http://aka.ms/Nofjzt): This article analyzes the differences and similarities between the two types of queues offered by Microsoft Azure today: Microsoft Azure Queues and Microsoft Azure Service Bus Queues. By using this information, you can compare and contrast the respective technologies and make a more informed decision about which solution best meets your needs.
 
-- [Service Bus Queues, Topics, and Subscriptions](http://aka.ms/Jed5rg): The new release of the Windows Azure Service Bus adds a set of cloud-based, message-oriented-middleware technologies including reliable message queuing and durable publish/subscribe messaging. These ‚Äúbrokered‚Äù messaging capabilities can be thought of as asynchronous, or decoupled messaging features that support publish-subscribe, temporal decoupling, and load balancing scenarios using the Service Bus messaging fabric. 
+- [Service Bus Queues, Topics, and Subscriptions](http://aka.ms/Jed5rg): The new release of the Microsoft Azure Service Bus adds a set of cloud-based, message-oriented-middleware technologies including reliable message queuing and durable publish/subscribe messaging. These ìbrokeredî messaging capabilities can be thought of as asynchronous, or decoupled messaging features that support publish-subscribe, temporal decoupling, and load balancing scenarios using the Service Bus messaging fabric. 
 
-- [How to Manage Service Bus Messaging Entities](http://aka.ms/Yndr05): This topic describes how to create and manage your Service Bus entities using the Windows Azure Management Portal. You can use the portal to create new service namespaces or messaging entities (queues, topics, or subscriptions). You can also delete entities or change the status of entities.
+- [How to Manage Service Bus Messaging Entities](http://aka.ms/Yndr05): This topic describes how to create and manage your Service Bus entities using the Microsoft Azure Management Portal. You can use the portal to create new service namespaces or messaging entities (queues, topics, or subscriptions). You can also delete entities or change the status of entities.
 
 **Development**
 

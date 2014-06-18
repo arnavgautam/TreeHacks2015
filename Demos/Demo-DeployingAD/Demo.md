@@ -1,19 +1,19 @@
-﻿<a name="title" />
+<a name="title" />
 # Deploying Active Directory #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-In this demonstration you will walk through the process of deploying a domain controller in Windows Azure. To deploy an Active Directory domain controller you must first configure a Windows Azure Virtual Network for IP persistence (non VNET deployments DHCP leases are short where a VNET deployment is perpetual). In many real world scenarios the VNET deployment would likely be connected with a site to site VPN tunnel. For this example you will only deploy a cloud only AD environment. 
+In this demonstration you will walk through the process of deploying a domain controller in Microsoft Azure. To deploy an Active Directory domain controller you must first configure a Microsoft Azure Virtual Network for IP persistence (non VNET deployments DHCP leases are short where a VNET deployment is perpetual). In many real world scenarios the VNET deployment would likely be connected with a site to site VPN tunnel. For this example you will only deploy a cloud only AD environment. 
 
 <a name="technologies" />
 ### Key Technologies ###
 
-- Windows Azure subscription - you can sign up for free trial [here][1]
-- Windows Azure Virtual Machines 
-- Windows Azure Virtual Networks
-- [Windows Azure PowerShell Cmdlets][2]
+- Microsoft Azure subscription - you can sign up for free trial [here][1]
+- Microsoft Azure Virtual Machines 
+- Microsoft Azure Virtual Networks
+- [Microsoft Azure PowerShell Cmdlets][2]
 
 [1]: http://bit.ly/WindowsAzureFreeTrial
 [2]: http://go.microsoft.com/?linkid=9811175&clcid=0x409
@@ -25,30 +25,30 @@ In this demonstration you will walk through the process of deploying a domain co
 
 In order to execute this demo you need to set up your environment.
 
-1. Download, install and configure the Windows Azure PowerShell cmdlets. Instructions on how to configure the cmdlets with your subscription can be found here: http://msdn.microsoft.com/en-us/library/windowsazure/jj554332.aspx
+1. Download, install and configure the Microsoft Azure PowerShell cmdlets. Instructions on how to configure the cmdlets with your subscription can be found here: http://msdn.microsoft.com/en-us/library/windowsazure/jj554332.aspx
 
 1. Download and install the latest node.js library from: http://nodejs.org 
 
-1. Install the node.js command line tools for Windows Azure by running the following command at a command prompt:
+1. Install the node.js command line tools for Microsoft Azure by running the following command at a command prompt:
 
 	````PowerShell
 	npm install azure-cli -g
 	````
 
-1. Modify the Config.Azure.xml located in **Source** folder for your Windows Azure Subscription. The following values are needed:
+1. Modify the Config.Azure.xml located in **Source** folder for your Microsoft Azure Subscription. The following values are needed:
 	- Target Storage Account Name, Container and Key where the demo VHDs will be copied to. 
 	- The Storage Account should be in West US to allow the VHDs to copy in a timely manner.
 	- Subscription Name - value can be retrieved from PowerShell by running **Get-AzureSubscription | select SubscriptionName**.
 	- Unique name for the Cloud Service container that will be used when creating the domain controller in the PowerShell Demo (does not need to be pre-created).	
 	- Unique name for the Cloud Service container that will be used when creating domain joined member servers using the PowerShell demo (does not need to be pre-created and must be different than the DC cloud service).
 
-1. If you have not used Windows Azure PowerShell before you need to download a publish settings file. To do this, run the following script. Sign in to the Windows Azure Management Portal, and then follow the instructions to download your Windows Azure publish settings. Use your browser to save the file with extension _.publishsettings_ file to your local computer. Take a note of the location of the file.
+1. If you have not used Microsoft Azure PowerShell before you need to download a publish settings file. To do this, run the following script. Sign in to the Microsoft Azure Management Portal, and then follow the instructions to download your Microsoft Azure publish settings. Use your browser to save the file with extension _.publishsettings_ file to your local computer. Take a note of the location of the file.
 
 	````PowerShell
 	Get-AzurePublishSettingsFile
 	````
 
-1. Then replace the placeholder with your publish settings file’s path and execute this script.
+1. Then replace the placeholder with your publish settings file�s path and execute this script.
 
 	````PowerShell
 	Import-AzurePublishSettingsFile '[YOUR-PUBLISH-SETTINGS-PATH]'   

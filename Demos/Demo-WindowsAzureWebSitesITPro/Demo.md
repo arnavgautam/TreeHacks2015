@@ -1,18 +1,18 @@
-ï»¿<a name="title" />
-#Windows Azure Web Sites (PaaS)#
+<a name="title" />
+#Microsoft Azure Websites (PaaS)#
 
 ---
 <a name="Overview" />
 ## Overview ##
-In this demo, you will learn how to use Microsoft WebMatrix 2 to quickly build and publish Web sites in Windows Azure.  You do not need to be a developer in order to do this and it will help to illustrate the difference between Windows Azure IaaS and PaaS as well as show you one of the many non-IaaS services available on Windows Azure.
+In this demo, you will learn how to use Microsoft WebMatrix 2 to quickly build and publish Websites in Microsoft Azure.  You do not need to be a developer in order to do this and it will help to illustrate the difference between Microsoft Azure IaaS and PaaS as well as show you one of the many non-IaaS services available on Microsoft Azure.
 
-Microsoft WebMatrix is a free tool that allows you to create, customize and publish Web sites. WebMatrix includes a range of built-in templates to make it quick and easy to get started with your Web site, and it provides built-in publishing support to help you easily publish your Web sites to Windows Azure.
-In this demo, we will create a Web site from the Windows Azure portal, and start to build the Web site locally using WebMatrix.
+Microsoft WebMatrix is a free tool that allows you to create, customize and publish Websites. WebMatrix includes a range of built-in templates to make it quick and easy to get started with your Web site, and it provides built-in publishing support to help you easily publish your Websites to Microsoft Azure.
+In this demo, we will create a Web site from the Microsoft Azure portal, and start to build the Web site locally using WebMatrix.
 
 This is an example of Platform as a Service (PaaS).
 
-<a name="Demo 1: Creating your first Windows Azure Web Site" />
-## Demo 1: Creating your first Windows Azure Web Site ##
+<a name="Demo 1: Creating your first Microsoft Azure Web Site" />
+## Demo 1: Creating your first Microsoft Azure Web Site ##
 
 1. In the Azure portal, on the toolbar, click **New**.
 
@@ -57,9 +57,9 @@ This is an example of Platform as a Service (PaaS).
 	
 	> Azure will create a new Web site.
 
-	> Notice how quickly the new Web site is provisioned. Usually this only takes a few seconds. The reason for the quick provisioning is that Azure has pre-started Web sites in the datacenter already.
+	> Notice how quickly the new Web site is provisioned. Usually this only takes a few seconds. The reason for the quick provisioning is that Azure has pre-started Websites in the datacenter already.
 
-1. In the Web sites window, click on the link to **[http://demo-NNNN.azurewebsites.net]().**
+1. In the Websites window, click on the link to **[http://demo-NNNN.azurewebsites.net]().**
 
 	![Verifying-Web-Site-Creation](images/Verifying-Web-Site-Creation.png?raw=true "Verifying Web Site Creation")
 
@@ -152,11 +152,11 @@ In the demo, we will use the **Photo Gallery** template.
 
 	> **Speaking Point:**
 
-	> Now letâ€™s do a quick check of whatâ€™s going on under the hood here with this Website that is running as a PaaS instance.
+	> Now let’s do a quick check of what’s going on under the hood here with this Website that is running as a PaaS instance.
 
 	> Remember earlier we showed you how to create a VM (IaaS) and the fact we can connect directly to the console of that VM.  We would need to manage, patch, and secure the OS ourselves.
 
-	> In the dashboard, you can see the statistics of CPU, Data, storage, and memory usage, but you wonâ€™t see on the toolbar at the bottom the ability to connect to the website using RDP because it is PaaS.
+	> In the dashboard, you can see the statistics of CPU, Data, storage, and memory usage, but you won’t see on the toolbar at the bottom the ability to connect to the website using RDP because it is PaaS.
 
 1. Select the **Scale** tab, Click on **Reserved** and Open on the **Instance Size** drop-down box.
 
@@ -166,9 +166,9 @@ In the demo, we will use the **Photo Gallery** template.
 
 	> Here we can see that we have the ability to change the website mode from Free to Shared or Reserved.
 
-	> Letâ€™s choose **Reserved** that will dedicate compute and memory resources to this website alone behind-the-scenes.
+	> Let’s choose **Reserved** that will dedicate compute and memory resources to this website alone behind-the-scenes.
 
-	> Youâ€™ll also notice you have the ability to choose from a number of options with the # of cores and size of memory.  Weâ€™ll stick with the default of **Small**.
+	> You’ll also notice you have the ability to choose from a number of options with the # of cores and size of memory.  We’ll stick with the default of **Small**.
 
 1. Click **Save**, click **Yes** to upgrade, and show in the details how this was upgraded.
 
@@ -180,7 +180,7 @@ In the demo, we will use the **Photo Gallery** template.
 
 	> **Speaking Point:**
 
-	> Now letâ€™s increase the instance count.  As you can see this is a big advantage over IaaS since you canâ€™t simply increase the # of identical VMs to scale a service in this manner.
+	> Now let’s increase the instance count.  As you can see this is a big advantage over IaaS since you can’t simply increase the # of identical VMs to scale a service in this manner.
 
 1. On the Scale tab, change the Web site Mode back to **Free**, click **Save**, and click **Yes** to downgrade.
 

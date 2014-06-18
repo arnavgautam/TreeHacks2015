@@ -1,4 +1,4 @@
-﻿<a name="title" />
+<a name="title" />
 # Service Bus Relay #
 
 ---
@@ -8,7 +8,7 @@
 
 This demonstration shows how to configure Service Bus Relay service.
 
-The Service Bus Relay service enables you to build hybrid applications that run in both a Windows Azure datacenter and your own on-premises enterprise environment. The Service Bus relay facilitates this by enabling you to securely expose Windows Communication Foundation (WCF) services that reside within a corporate enterprise network to the public cloud, without having to open up a firewall connection or requiring intrusive changes to a corporate network infrastructure.
+The Service Bus Relay service enables you to build hybrid applications that run in both a Microsoft Azure datacenter and your own on-premises enterprise environment. The Service Bus relay facilitates this by enabling you to securely expose Windows Communication Foundation (WCF) services that reside within a corporate enterprise network to the public cloud, without having to open up a firewall connection or requiring intrusive changes to a corporate network infrastructure.
 
 
 > **Note:** In order to run through this complete demo, you must have network connectivity and a Microsoft account.
@@ -26,7 +26,7 @@ In this demo, you will see how to:
 
 This demo uses the following technologies:
 
-- [Windows Azure Management Portal] [1]
+- [Microsoft Azure Management Portal] [1]
 
 [1]: https://manage.windowsazure.com/
 

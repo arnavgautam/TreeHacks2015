@@ -1,0 +1,19 @@
+<configuration>
+	<generalSettings>
+		<azureSubscriptionName>Azdem169F29744N</azureSubscriptionName>
+		<location>West US</location>
+		<adminUserName>useradmin</adminUserName>
+		<adminPassword>Passw0rd!</adminPassword>
+		<storageAccount>falvpsstorage2</storageAccount>
+	</generalSettings>
+	<puppetMasterSettings>	
+		<cloudServiceName>falvpsservice2</cloudServiceName>
+		<vmName>falvpspuppet2</vmName>
+		<consoleUsername>falvarisqueta@falvpsservice.cloudapp.net</consoleUsername>
+		<consolePassword>Passw0rd!</consolePassword>
+	</puppetMasterSettings>
+	<puppetAgentSettings>
+		<cloudServiceName>psagentservice2</cloudServiceName>
+		<vmName>falvpsagent2</vmName>
+	</puppetAgentSettings>
+</configuration>

@@ -6,13 +6,13 @@
 <a name="Overview"></a>
 ## Overview ##
 	
-When Windows Azure was first released, there were a few, but significant restrictions in the programming model. Things like Full Trust, Administrative Access, and the full IIS feature-set were initially restricted for security reasons. This impacted the types of applications that could be created in Windows Azure because even small changes to things like configuration settings were often blocked by lack of administrative control over the VM Instances. Over time, those restrictions were lifted - first Full Trust, and now the ultimate control: Administrative access and Full IIS support.
+When Microsoft Azure was first released, there were a few, but significant restrictions in the programming model. Things like Full Trust, Administrative Access, and the full IIS feature-set were initially restricted for security reasons. This impacted the types of applications that could be created in Microsoft Azure because even small changes to things like configuration settings were often blocked by lack of administrative control over the VM Instances. Over time, those restrictions were lifted - first Full Trust, and now the ultimate control: Administrative access and Full IIS support.
 
-Now, you can choose to run your web sites under IIS7, not in Hosted Web Core as in the past, but in full IIS. This means you can use all the facilities of IIS now like custom modules, multiple websites, VDIR support, application pool isolation, and more.
+Now, you can choose to run your Websites under IIS7, not in Hosted Web Core as in the past, but in full IIS. This means you can use all the facilities of IIS now like custom modules, multiple websites, VDIR support, application pool isolation, and more.
 
 Additionally, you can now choose two different ways to exercise your administrative control. You can bootstrap the machine as an administrator using something called “Startup Tasks” shown in this lab. This temporarily raises your permissions to administrative and allows you perform small setups, update configuration settings, or other bootstrapping tasks. Once completed, your code will run as a normal, unprivileged user. The second method is that you can now configure your role to simply run as an administrator the entire time. In most cases, the Startup Tasks are the right choice as running your role with administrative permissions the entire time has security implications.
 
-This lab introduces these new capabilities that are unlocked in Windows Azure and allow more advanced application scenarios.
+This lab introduces these new capabilities that are unlocked in Microsoft Azure and allow more advanced application scenarios.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -28,7 +28,7 @@ In this hands-on lab, you will learn how to:
 - Install complex components required by a web role, such as a scripting language's binary files.
 	
 
->**Note:** This lab shows advanced features of Web and Worker roles in Windows Azure; it assumes that you have sufficient knowledge of Windows Azure. If you are beginner in Windows Azure, see the **Introduction to Windows Azure** lab first.
+>**Note:** This lab shows advanced features of Web and Worker roles in Microsoft Azure; it assumes that you have sufficient knowledge of Microsoft Azure. If you are beginner in Microsoft Azure, see the **Introduction to Microsoft Azure** lab first.
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
@@ -44,11 +44,11 @@ The following is required to complete this hands-on lab:
 
 	- Microsoft Visual C++ 2010 (required for Exercise 2 of the lab)
 
-- [Windows Azure Tools for Microsoft Visual Studio 1.7][3]
+- [Microsoft Azure Tools for Microsoft Visual Studio 1.7][3]
 
 - [SQL Server 2012 Express Edition][4]
 
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 
 [1]:http://go.microsoft.com/fwlink/?linkid=186916
@@ -101,7 +101,7 @@ Estimated time to complete this lab: **60 minutes**.
 <a name="Exercise1"></a>
 ### Exercise 1: Registering Sites, Applications, and Virtual Directories ###
 
-When hosted in [IIS Hosted Web Core (HWC)] (http://technet.microsoft.com/en-us/library/cc735238\(WS.10\).aspx), Windows Azure Web roles can support a single application bound to no more than a single HTTP and a single HTTPS endpoint. This model is enabled with minimal configuration and was the only one originally supported in Windows Azure when it was first introduced. To use HWC, you only need to specify the HTTP and HTTPS endpoints bound to the Web application in the service model, as shown in the figure below.
+When hosted in [IIS Hosted Web Core (HWC)] (http://technet.microsoft.com/en-us/library/cc735238\(WS.10\).aspx), Microsoft Azure Web roles can support a single application bound to no more than a single HTTP and a single HTTPS endpoint. This model is enabled with minimal configuration and was the only one originally supported in Microsoft Azure when it was first introduced. To use HWC, you only need to specify the HTTP and HTTPS endpoints bound to the Web application in the service model, as shown in the figure below.
 
 ![XML Code simplified service model for Hosted Web Core hosting](images/simplified-service-model-for-hosted-web-core-hosting.png?raw=true "Simplified service model for Hosted Web Core hosting")
 	
@@ -109,7 +109,7 @@ When hosted in [IIS Hosted Web Core (HWC)] (http://technet.microsoft.com/en-us/l
 _Simplified service model for Hosted Web Core hosting_ 
 
 
-While this approach is still valid and you can use it in many scenarios where a single application per role is sufficient or does not require multiple endpoints, more advanced capabilities are now available that provide full access to all IIS features. In this advanced model, applications are hosted in IIS instead, both in Windows Azure and in the compute emulator, allowing each role to support multiple sites, virtual applications and virtual directories, as well as providing support for binding each site to multiple endpoints.
+While this approach is still valid and you can use it in many scenarios where a single application per role is sufficient or does not require multiple endpoints, more advanced capabilities are now available that provide full access to all IIS features. In this advanced model, applications are hosted in IIS instead, both in Microsoft Azure and in the compute emulator, allowing each role to support multiple sites, virtual applications and virtual directories, as well as providing support for binding each site to multiple endpoints.
 
 To enable the Full IIS capabilities, the service model defines a **Sites** element that can contain one or more **Site** definitions, where each site is bound to one or more endpoints, as shown in the following figure.
 	 
@@ -124,7 +124,7 @@ In this exercise, you will learn how to define different sites, applications, an
 <a name="Ex1Task1"></a>
 #### Task 1 - Defining Multiple Sites in a Web Role Using the Service Model ####
 
-The service model in Windows Azure is determined by the service definition file, which defines the roles that comprise a service, optional local storage resources, configuration settings, certificates for SSL endpoints, and, as you will see in the following exercise, start-up tasks. 
+The service model in Microsoft Azure is determined by the service definition file, which defines the roles that comprise a service, optional local storage resources, configuration settings, certificates for SSL endpoints, and, as you will see in the following exercise, start-up tasks. 
 
 In this task, you edit the service model to define three separate sites that map to the same Web application, namely, _Contoso_, _Fabrikam_, and _Litware_. These sites are all bound to a single endpoint and use host headers to isolate them.
 
@@ -134,7 +134,7 @@ In this task, you edit the service model to define three separate sites that map
 
 1. Open the **Begin** solution located in **Ex1-FullIIS** in the **Source** folder of the lab.
 
-1. In the Windows Azure project, open the service model file, **ServiceDefinition.csdef**. Notice that it defines a single Web role named **SampleWebApp**, which in turn defines a site named **Web**. 
+1. In the Microsoft Azure project, open the service model file, **ServiceDefinition.csdef**. Notice that it defines a single Web role named **SampleWebApp**, which in turn defines a site named **Web**. 
 
 1. In the **Sites** element of the **SampleWebApp** Web role, locate the nested **Site** element named _Web_ and change its **name** attribute to _Fabrikam_. Next, add a **physicalDirectory** attribute to this element that points to "_..\SampleWebApp_".
 
@@ -209,13 +209,13 @@ In this task, you edit the service model to define three separate sites that map
 		
 	>**Note:** All three sites are mapped to the same physical directory ("_..\SampleWebApp_") and bound to the same HTTP endpoint (_HttpIn)_. The endpoint binding, however, specifies a different host header value for each site.
 
-1. Press **F5** to build and run the Windows Azure project. Wait for the application to launch in the compute emulator and for the browser to open pointing at the default site address. Notice that it shows an error page with a status **HTTP 400 Bad Request**.
+1. Press **F5** to build and run the Microsoft Azure project. Wait for the application to launch in the compute emulator and for the browser to open pointing at the default site address. Notice that it shows an error page with a status **HTTP 400 Bad Request**.
 	
-	>**Note:** By default, the Windows Azure Tools for Visual Studio opens the default Web site in your browser. In this case, however, you have removed the default mapping and there is no longer any site accessible without the use of a host header, which explains the error response.
+	>**Note:** By default, the Microsoft Azure Tools for Visual Studio opens the default Web site in your browser. In this case, however, you have removed the default mapping and there is no longer any site accessible without the use of a host header, which explains the error response.
 
 1. Start Internet Information Services (IIS) Manager.
 
-1. Browse to the **Sites** node and notice that three new sites were created for _Fabrikam_, _Contoso_ and _Litware_. The name of the site is derived from the Windows Azure deployment ID, the Web role name, the instance ID, and the name of the site in the service model file.
+1. Browse to the **Sites** node and notice that three new sites were created for _Fabrikam_, _Contoso_ and _Litware_. The name of the site is derived from the Microsoft Azure deployment ID, the Web role name, the instance ID, and the name of the site in the service model file.
 	 
 
 	![Internet Information Services Manager showing the sites created by the Web role](images/iis-manager-showing-the-sites-created-by-the-web-role.png?raw=true "Internet Information Services \(IIS\) Manager showing the sites created by the Web role")
@@ -292,7 +292,7 @@ In this task, you create a new Virtual Application for an application that you o
 
 1. In Visual Studio, add the sample **CRM** application project located in the **Assets** folder of the lab to the solution. 
 
-1. Now, in the Windows Azure project, open the service model file **ServiceDefinition.csdef**.
+1. Now, in the Microsoft Azure project, open the service model file **ServiceDefinition.csdef**.
 
 1. Locate to the **Site** element for the _Contoso_ site and insert the **VirtualApplication** definition, as shown (highlighted) below. 
 	
@@ -392,7 +392,7 @@ In this task, you create a start-up task that registers the COM component requir
 	
 1. Start Microsoft Visual Studio 2010 as an administrator.
 
-1. Open the **Begin** solution located in **Ex2-StartupTasks** in the **Source** folder of the lab. The solution contains a Windows Azure project and a Web role that makes use of the **LegacyCOM** component.
+1. Open the **Begin** solution located in **Ex2-StartupTasks** in the **Source** folder of the lab. The solution contains a Microsoft Azure project and a Web role that makes use of the **LegacyCOM** component.
 	
 	>**Note:** The **LegacyCOM** project, located in the **Assets** folder of the lab, implements a very simple COM library using Active Template Library (ATL). The library contains a single component class with a method that receives a name parameter and returns a greeting message. 
 	
@@ -443,7 +443,7 @@ In this task, you create a start-up task that registers the COM component requir
 
 1. Close the browser window to stop debugging and shut down the application.
 
-1. Next, define a startup task to set up the role and register the COM component. To do this, open the **ServiceDefinition.csdef** file in the Windows Azure project, locate the **WebRole** element in the service model and inside it, insert a **Startup** element with a single task, as shown below.
+1. Next, define a startup task to set up the role and register the COM component. To do this, open the **ServiceDefinition.csdef** file in the Microsoft Azure project, locate the **WebRole** element in the service model and inside it, insert a **Startup** element with a single task, as shown below.
 	
 	(Code Snippet - _AdvancedWebAndWorkerRoles-Ex2-01-StartUpTask-XML_)
 	
@@ -495,11 +495,11 @@ In this task, you create a start-up task that registers the COM component requir
 	regsvr32.exe /s "%~dp0%PROCESSOR_ARCHITECTURE%\LegacyCOM.dll"
 	````
 
-	>**Note:** The script shown above registers the COM component using the **regsvr32.exe** utility that is normally present in any Windows distribution and is available in the Windows Azure Guest OS.
+	>**Note:** The script shown above registers the COM component using the **regsvr32.exe** utility that is normally present in any Windows distribution and is available in the Microsoft Azure Guest OS.
 	
-	>It registers the version of the component appropriate to the platform where the role is running. Notice that the path that specifies the component to register uses the _%PROCESSOR_ARCHITECTURE%_ environment variable to select the folder that matches the current platform, either _amd64_ for 64-bit systems or _x86_ for 32-bit systems. This allows you to run the same script locally, during development, if you are working on a 32-bit OS, or in the cloud, when you deploy the application to the 64-bit Windows Azure environment. Note that the lab setup procedure builds the COM component for both platforms.
+	>It registers the version of the component appropriate to the platform where the role is running. Notice that the path that specifies the component to register uses the _%PROCESSOR_ARCHITECTURE%_ environment variable to select the folder that matches the current platform, either _amd64_ for 64-bit systems or _x86_ for 32-bit systems. This allows you to run the same script locally, during development, if you are working on a 32-bit OS, or in the cloud, when you deploy the application to the 64-bit Microsoft Azure environment. Note that the lab setup procedure builds the COM component for both platforms.
 
-	>Normally, during registration, the **regsvr32.exe** utility produces a message box that requires confirmation. When hosted in the compute emulator, you can close the dialog and proceed with the startup process. However, when deploying to Windows Azure, if the task stops to wait for user input, it will block, causing the role to remain in a busy state and never start. For this reason, the registration is performed in silent mode by appending an **/s** parameter to the command line.
+	>Normally, during registration, the **regsvr32.exe** utility produces a message box that requires confirmation. When hosted in the compute emulator, you can close the dialog and proceed with the startup process. However, when deploying to Microsoft Azure, if the task stops to wait for user input, it will block, causing the role to remain in a busy state and never start. For this reason, the registration is performed in silent mode by appending an **/s** parameter to the command line.
 	
 1. Set the **Copy to Output Directory** property of the script file to **Copy always** and make sure that its **Build Action** property is set to **None**.
 	 
@@ -514,9 +514,9 @@ In this task, you create a start-up task that registers the COM component requir
 
 1. Close the browser window.
 
-1. Optionally, you may want to deploy the service package to Windows Azure and test the COM registration process in the cloud.
+1. Optionally, you may want to deploy the service package to Microsoft Azure and test the COM registration process in the cloud.
 
-	>**Note:** For this lab, you have access to the source code for the COM component and are able to build and deploy the 64-bit version when deploying to Windows Azure. If you need to register a COM component for which you do not have source code, be aware that 32-bit components cannot be accessed directly by a 64-bit role process, and instead need to be launched in a separate surrogate process. 
+	>**Note:** For this lab, you have access to the source code for the COM component and are able to build and deploy the 64-bit version when deploying to Microsoft Azure. If you need to register a COM component for which you do not have source code, be aware that 32-bit components cannot be accessed directly by a 64-bit role process, and instead need to be launched in a separate surrogate process. 
 
 <a name="Exercise3"></a>
 ### Exercise 3: Using Start-Up tasks to install PHP with the Web Platform Installer ###
@@ -532,7 +532,7 @@ In this task, you will use multiple start-up tasks to install the Web Platform I
 
 1. Start Microsoft Visual Studio 2010 as an administrator.
 
-1. Open the **Begin** solution located in **Ex3-InstallPHP** in the **Source** folder of the lab. The solution contains a Windows Azure project and a Web role to which you will add a PHP page.
+1. Open the **Begin** solution located in **Ex3-InstallPHP** in the **Source** folder of the lab. The solution contains a Microsoft Azure project and a Web role to which you will add a PHP page.
 
 1. Add a new PHP page at the root of the **PHPWebRole** project named **info**.**php**. To do this, you can select the **Text** **File** template in the **Add** **New** **Item** dialog and type _info.php_ in the **Name** field.
 	 
@@ -585,7 +585,7 @@ In this task, you will use multiple start-up tasks to install the Web Platform I
 
 	_Startup script to install PHP using the Web Platform Installer_ 
 
-	>**Note:** The **InstallPHP.cmd** script installs the most recent version of PHP using the Web Platform Installer command line tool [http://msdn.microsoft.com/en-us/library/gg433092.aspx](http://msdn.microsoft.com/en-us/library/gg433092.aspx). This tool simplifies the installation of the latest components of the Microsoft Web Platform, such as IIS, PHP, and SQL Server Express, among others, and enables you to automate the application and service installation of a Windows Azure role.
+	>**Note:** The **InstallPHP.cmd** script installs the most recent version of PHP using the Web Platform Installer command line tool [http://msdn.microsoft.com/en-us/library/gg433092.aspx](http://msdn.microsoft.com/en-us/library/gg433092.aspx). This tool simplifies the installation of the latest components of the Microsoft Web Platform, such as IIS, PHP, and SQL Server Express, among others, and enables you to automate the application and service installation of a Microsoft Azure role.
 
 	>The script first enables the Windows Update service to allow the Web Platform Installer to use it for downloading components required by the PHP installation. Next, it launches the Web PI command line tool to install PHP. Once the installation is complete, it stops the Windows Update service and restores its startup mode to disabled.
 	
@@ -593,7 +593,7 @@ In this task, you will use multiple start-up tasks to install the Web Platform I
 	
 1. In Visual Studio, open the **ServiceDefinition.csdef** file in the **InstallPHP** Web role project.
 
-1. Add the (highlighted) **Startup** configuration elements in the following code snippet, below the **ConfigurationSettings** element closing tag. In general, this section defines startup tasks and, in this case, includes the script required to install PHP on a Windows Azure host.
+1. Add the (highlighted) **Startup** configuration elements in the following code snippet, below the **ConfigurationSettings** element closing tag. In general, this section defines startup tasks and, in this case, includes the script required to install PHP on a Microsoft Azure host.
 
 	(Code Snippet - _AdvancedWebAndWorkerRoles-Ex3-02-StartUpTasks-XML_)
 	
@@ -642,4 +642,4 @@ In this task, you will use multiple start-up tasks to install the Web Platform I
 
 ## Summary##
 
-In this Hands-on Lab, you reviewed some advanced Windows Azure service model features. You saw how to enable hosting a Web role in Internet Information Server (IIS) to access its full set of features. By enabling IIS, you were able to host multiple sites in a single Web role and create virtual applications and directories. Additionally, you explored start-up tasks that you can use to prepare the role environment, and how to use them to register a COM component, as well as installing entire binary file sets for a scripting language.
+In this Hands-on Lab, you reviewed some advanced Microsoft Azure service model features. You saw how to enable hosting a Web role in Internet Information Server (IIS) to access its full set of features. By enabling IIS, you were able to host multiple sites in a single Web role and create virtual applications and directories. Additionally, you explored start-up tasks that you can use to prepare the role environment, and how to use them to register a COM component, as well as installing entire binary file sets for a scripting language.

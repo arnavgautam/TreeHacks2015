@@ -1,10 +1,10 @@
-﻿<a name="title" />
-# Getting Started With Windows Azure Mobile Services and Android #
+<a name="title" />
+# Getting Started With Microsoft Azure Mobile Services and Android #
 
 ---
 <a name="Overview" />
 ## Overview ##
-Windows Azure Mobile Services is a Windows Azure service offering designed to make it easy to create highly-functional mobile apps using Windows Azure. Mobile Services brings together a set of Windows Azure services that enable backend capabilities for your apps. These capabilities includes simple provisioning and management of tables for storing app data, integration with notification services, integration with well-known identity providers for authentication, among others.
+Microsoft Azure Mobile Services is a Microsoft Azure service offering designed to make it easy to create highly-functional mobile apps using Microsoft Azure. Mobile Services brings together a set of Microsoft Azure services that enable backend capabilities for your apps. These capabilities includes simple provisioning and management of tables for storing app data, integration with notification services, integration with well-known identity providers for authentication, among others.
 
 The following is a functional representation of the Mobile Services architecture:
 
@@ -12,11 +12,11 @@ The following is a functional representation of the Mobile Services architecture
 
 _Mobile Services Diagram_
 
-In this hands-on lab you will learn how to add a cloud-based backend service to an Android app using Windows Azure Mobile Services. You will create both a new mobile service and a simple _TodoList_ app that stores app data in the new mobile service. Also you will perform server side validation, send push notifications and add user authentication using Mobile Services features.
+In this hands-on lab you will learn how to add a cloud-based backend service to an Android app using Microsoft Azure Mobile Services. You will create both a new mobile service and a simple _TodoList_ app that stores app data in the new mobile service. Also you will perform server side validation, send push notifications and add user authentication using Mobile Services features.
 
 <a name="Objectives" />
 ### Objectives ###
-- Create a Windows Azure Mobile Service
+- Create a Microsoft Azure Mobile Service
 - Store app data in the new mobile service
 - Validate data server-side using Mobile Services Server Scripts feature
 - Add support for push notifications to your applications
@@ -31,10 +31,10 @@ The following is required to complete this hands-on lab:
 - [Java Runtime Environment (JRE) or Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 - Android 4.2 or higher
 - An active [Google account](accounts.google.com) (for sending Push Notifications)
-- A Windows Azure subscription account that has the Windows Azure Mobile Services feature enabled
+- A Microsoft Azure subscription account that has the Microsoft Azure Mobile Services feature enabled
 
-	>**Note:** If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Windows Azure Free Trial](http://aka.ms/WATK-FreeTrial).
-	If you have an existing account but need to enable the Windows Azure Mobile Services preview, see [Enable Windows Azure preview features](http://www.windowsazure.com/en-us/develop/mobile/tutorials/create-a-windows-azure-account/#enable).
+	>**Note:** If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Microsoft Azure Free Trial](http://aka.ms/WATK-FreeTrial).
+	If you have an existing account but need to enable the Microsoft Azure Mobile Services preview, see [Enable Microsoft Azure preview features](http://www.windowsazure.com/en-us/develop/mobile/tutorials/create-a-windows-azure-account/#enable).
 
 [2]: https://go.microsoft.com/fwLink/?LinkID=280125&clcid=0x409
 
@@ -55,13 +55,13 @@ Estimated time to complete this lab: **60** minutes.
 <a name="Exercise1" />
 ## Exercise 1: Creating Your First Mobile Service ##
 
-This exercise shows you how to add a cloud-based backend service to an Android app using Windows Azure Mobile Services. You will create both a new mobile service and a simple _TodoList_ app that stores app data in the new mobile service. Lastly, you will explore your app code to see how it interacts with Windows Azure Mobile Services.
+This exercise shows you how to add a cloud-based backend service to an Android app using Microsoft Azure Mobile Services. You will create both a new mobile service and a simple _TodoList_ app that stores app data in the new mobile service. Lastly, you will explore your app code to see how it interacts with Microsoft Azure Mobile Services.
 
 <a name="creating-a-new-mobile-service" />
 ### Task 1 - Creating a New Mobile Service ###
 Follow these steps to create a new mobile service.
 
-1. Log into the [Windows Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services.
+1. Log into the [Microsoft Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services.
 
 1. At the bottom of the navigation pane, click **+NEW**.
 
@@ -200,9 +200,9 @@ In this task you will build and run your new app.
 
 	_Application Running_
 
-	This sends POST requests to the new mobile service hosted in Windows Azure. Data from the request is inserted into the TodoItem table. Items stored in the table are returned by the mobile service, and then data is displayed in the list.
+	This sends POST requests to the new mobile service hosted in Microsoft Azure. Data from the request is inserted into the TodoItem table. Items stored in the table are returned by the mobile service, and then data is displayed in the list.
 
-1. Back in the Windows Azure Management Portal, go to the mobile service you created earlier. Click the **Data** tab and then click the **TodoItem** table.
+1. Back in the Microsoft Azure Management Portal, go to the mobile service you created earlier. Click the **Data** tab and then click the **TodoItem** table.
 
 	![Accessing the TodoItem Table](Images/acessing-todo-item-table.png?raw=true)
 
@@ -214,18 +214,18 @@ In this task you will build and run your new app.
 
 	_Browsing the Todo Item Table_
 
-	> **Note:** Mobile Services simplifies the process of storing data in a SQL Database. By default, you don’t need to predefine the schema of tables in your database. Mobile Services automatically adds columns to a table based on the data you insert. To change this dynamic schema behavior, use the Dynamic Schema setting on the Configure tab. It is recommended that you disable dynamic schema support before publicly releasing your app.
+	> **Note:** Mobile Services simplifies the process of storing data in a SQL Database. By default, you don�t need to predefine the schema of tables in your database. Mobile Services automatically adds columns to a table based on the data you insert. To change this dynamic schema behavior, use the Dynamic Schema setting on the Configure tab. It is recommended that you disable dynamic schema support before publicly releasing your app.
 
 <a name="create-a-new-mobile-service" />
 ### Task 4 - Exploring Your App Code ###
 
-In this task you will explore _TodoList_ application code and see how simple the Windows Azure Mobile Services Client SDK makes it to interact with Windows Azure Mobile Services.
+In this task you will explore _TodoList_ application code and see how simple the Microsoft Azure Mobile Services Client SDK makes it to interact with Microsoft Azure Mobile Services.
 
 1. Return to the downloaded _TodoList_ application in Eclipse.
 
-1. In Package Explorer expand your project folder, and then expand the **libs** folder. Here you will find the Windows Azure Mobile Services jars.  
+1. In Package Explorer expand your project folder, and then expand the **libs** folder. Here you will find the Microsoft Azure Mobile Services jars.  
 
-	**Note:** you may also add the Windows Azure Mobile Services framework to any existing Android project by dropping these jar files in that project's **libs** folder.
+	**Note:** you may also add the Microsoft Azure Mobile Services framework to any existing Android project by dropping these jar files in that project's **libs** folder.
 
 	![Mobile Services Jar Files](Images/mobile-services-jars.png?raw=true)
 
@@ -299,7 +299,7 @@ In this task you will explore _TodoList_ application code and see how simple the
 <a name="Exercise2" />
 ## Exercise 2: Validating Data Using Server Scripts ##
 
-This exercise shows you how to leverage server scripts in Windows Azure Mobile Services. Server scripts are registered in a mobile service and can be used to perform a wide range of operations on data being inserted and updated, including validation and data modification. In this exercise, you will define and register server scripts that validate and modify data. Because the behavior of server side scripts often affects the client, you will also update your Android app to take advantage of these new behaviors.
+This exercise shows you how to leverage server scripts in Microsoft Azure Mobile Services. Server scripts are registered in a mobile service and can be used to perform a wide range of operations on data being inserted and updated, including validation and data modification. In this exercise, you will define and register server scripts that validate and modify data. Because the behavior of server side scripts often affects the client, you will also update your Android app to take advantage of these new behaviors.
 
 > **Note:** For more information on server scripts check this [How-to](How-to <http://www.windowsazure.com/en-us/develop/mobile/how-to-guides/work-with-server-scripts/>).
 
@@ -307,7 +307,7 @@ This exercise shows you how to leverage server scripts in Windows Azure Mobile S
 ### Task 1 - Adding validation ###
 It is always a good practice to validate the length of data that is submitted by users. First, you register a script that validates the length of string data sent to the mobile service and rejects strings that are too long, in this case longer than 10 characters.
 
-1. Log into the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
+1. Log into the [Microsoft Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
 
 	![Accessing Your Mobile Service](Images/accessing-your-mobile-service.png?raw=true)
 
@@ -366,7 +366,7 @@ Now that the mobile service is validating data and sending error responses, you 
 <a name="Exercise3" />
 ## Exercise 3: Getting Started with Push Notifications ##
 
-This exercise shows you how to use Windows Azure Mobile Services to send push notifications to an Android app. In this hands-on lab you add push notifications using the Google Cloud Messaging (GCM) service to the quick start project. When complete, your mobile service will send a push notification each time a record is inserted.
+This exercise shows you how to use Microsoft Azure Mobile Services to send push notifications to an Android app. In this hands-on lab you add push notifications using the Google Cloud Messaging (GCM) service to the quick start project. When complete, your mobile service will send a push notification each time a record is inserted.
 
 <a name="register-your-app-for-push-notifications" />
 ### Task 1 - Register Your App for Push Notifications ###
@@ -415,7 +415,7 @@ Next, you will use this API key value to enable Mobile Services to authenticate 
 <a name="configure-mobile-services-to-send-push-requests" />
 ### Task 2 - Configure Mobile Services to Send Push Requests ###
 
-1.	Log on to the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
+1.	Log on to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
 
 	![Accessing Your Mobile Service](Images/accessing-your-mobile-service.png?raw=true)
 
@@ -672,14 +672,14 @@ You mobile service is now configured to work with GCM to send push notifications
 <a name="Exercise4" />
 ## Exercise 4: Getting Started with Authentication ##
 
-In this exercise you will see how to authenticate users in Windows Azure Mobile Services from your app. You will add authentication to your project using an identity provider that is supported by Mobile Services. After being successfully authenticated and authorized by Mobile Services, the user ID value is displayed.
+In this exercise you will see how to authenticate users in Microsoft Azure Mobile Services from your app. You will add authentication to your project using an identity provider that is supported by Mobile Services. After being successfully authenticated and authorized by Mobile Services, the user ID value is displayed.
 
 <a name="registering-your-app-for-authentication-and-configure-mobile-services" />
 ### Task 1 - Registering Your App for Authentication and Configure Mobile Services ###
 
 To be able to authenticate users, you must register your app with an identity provider. You must then register the provider-generated client secret with Mobile Services.
 
-1.	Log into the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your mobile service.
+1.	Log into the [Microsoft Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your mobile service.
 
 	![Accessing Your Mobile Service](Images/accessing-your-mobile-service.png?raw=true)
 
@@ -711,7 +711,7 @@ You may need to provide this value to the identity provider when you register yo
 <a name="restricting-permissions-to-authenticated-users" />
 ### Task 2 - Restricting Permissions to Authenticated Users ###
 
-1.	In the Windows Azure Management Portal, click the **Data** tab, and then click the **TodoItem** table.
+1.	In the Microsoft Azure Management Portal, click the **Data** tab, and then click the **TodoItem** table.
 
 	![Accessing the TodoItem Table](Images/acessing-todo-item-table.png?raw=true)
 

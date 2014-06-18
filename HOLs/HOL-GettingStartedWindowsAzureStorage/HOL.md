@@ -1,11 +1,11 @@
-﻿<a name="Title" />
-# Getting Started With Windows Azure Storage #
+<a name="Title" />
+# Getting Started With Microsoft Azure Storage #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-In this lab, you will learn the basics of **Windows Azure Storage**, how to create and configure storage accounts and how you can programmatically access the different types of storage services. **Blobs**, **Tables**, and **Queues** are all available as part of the **Windows Azure Storage** account and provide durable storage on the Windows Azure platform. These services are accessible from both inside and outside the Windows Azure platform by using the [Windows Azure Storage Client SDK](http://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storageclient.aspx), or via URI using [REST APIs]  (http://msdn.microsoft.com/en-us/library/dd179355.aspx).
+In this lab, you will learn the basics of **Microsoft Azure Storage**, how to create and configure storage accounts and how you can programmatically access the different types of storage services. **Blobs**, **Tables**, and **Queues** are all available as part of the **Microsoft Azure Storage** account and provide durable storage on the Microsoft Azure platform. These services are accessible from both inside and outside the Microsoft Azure platform by using the [Microsoft Azure Storage Client SDK](http://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storageclient.aspx), or via URI using [REST APIs]  (http://msdn.microsoft.com/en-us/library/dd179355.aspx).
 
 You will learn how the following services work.
 
@@ -13,7 +13,7 @@ You will learn how the following services work.
 
 **Table Storage**
 
-Table Storage is a collection of row-like entities, each of which can contain up to 255 properties. There is no schema that enforces a certain set of values in all the rows within a table, unlike tables in a database; it does not provide a way to represent relationships between data. Windows Azure Storage tables are more like rows within a spreadsheet application such as Excel rather than rows within a database such as SQL Database, in that each row can contain a different number of columns with data types different from other rows in the same table.
+Table Storage is a collection of row-like entities, each of which can contain up to 255 properties. There is no schema that enforces a certain set of values in all the rows within a table, unlike tables in a database; it does not provide a way to represent relationships between data. Microsoft Azure Storage tables are more like rows within a spreadsheet application such as Excel rather than rows within a database such as SQL Database, in that each row can contain a different number of columns with data types different from other rows in the same table.
 
 **Blob Storage**
 
@@ -31,7 +31,7 @@ In this hands-on lab, you will learn how to:
 
 * Create a Storage Account.
 * Learn the different configuration options for Geo-Replication, Monitoring and Logging.
-* Access Tables, Blobs and Queues using **Windows Azure SDK 2.2** in an MVC Web Application.
+* Access Tables, Blobs and Queues using **Microsoft Azure SDK 2.2** in an MVC Web Application.
 
 <a name="Prerequisites" />
 ### Prerequisites ###
@@ -39,12 +39,12 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Microsoft Visual Studio Express 2013 for Web] (http://www.visualstudio.com/en-us/downloads/)
-- [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)] (http://www.microsoft.com/windowsazure/sdk/)
-- A Windows Azure subscription
+- [Microsoft Azure Tools for Microsoft Visual Studio 2.2 (or later)] (http://www.microsoft.com/windowsazure/sdk/)
+- A Microsoft Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial).
-	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Windows Azure.
-	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
-	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start development and test on Microsoft Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Microsoft Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly credits of Microsoft Azure at no charge.
 
 <a name="Setup" />
 ### Setup ###
@@ -68,9 +68,9 @@ Throughout the lab document, you will be instructed to insert code blocks. For y
 
 This hands-on lab includes the following exercises:
 
-1.	[Creating a Windows Azure Storage Account](#Exercise1)
-1.	[Managing a Windows Azure Storage Account](#Exercise2)
-1.	[Understanding the Windows Azure Storage Abstractions](#Exercise3)
+1.	[Creating a Microsoft Azure Storage Account](#Exercise1)
+1.	[Managing a Microsoft Azure Storage Account](#Exercise2)
+1.	[Understanding the Microsoft Azure Storage Abstractions](#Exercise3)
 1.	[Introducing SAS (Shared Access Signature)](#Exercise4)
 1.	[Updating SAS to use Stored Access Policies](#Exercise5)
 
@@ -82,18 +82,18 @@ Estimated time to complete this lab: **60** minutes.
 > **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.
 
 <a name="Exercise1" />
-### Exercise 1: Creating a Windows Azure Storage Account ###
+### Exercise 1: Creating a Microsoft Azure Storage Account ###
 
-This exercise describes how to create a storage account in the Windows Azure Management Portal. To store files and data in the storage services in Windows Azure, you must create a storage account in the geographic region where you want to store the data.
+This exercise describes how to create a storage account in the Microsoft Azure Management Portal. To store files and data in the storage services in Microsoft Azure, you must create a storage account in the geographic region where you want to store the data.
 
-> **Note:** A storage account can contain up to 100 TB of blob, table, and queue data. You can create up to five storage accounts for each Windows Azure subscription.
+> **Note:** A storage account can contain up to 100 TB of blob, table, and queue data. You can create up to five storage accounts for each Microsoft Azure subscription.
 
 <a name="Ex1Task1" />
-#### Task 1 - Creating a Storage Account from Windows Azure Management Portal ####
+#### Task 1 - Creating a Storage Account from Microsoft Azure Management Portal ####
 
-In this task you will learn how to create a new Storage Account using the Windows Azure Management Portal.
+In this task you will learn how to create a new Storage Account using the Microsoft Azure Management Portal.
 
-1. Navigate to http://manage.windowsazure.com and sign in using the Microsoft Account associated with your Windows Azure account.
+1. Navigate to http://manage.windowsazure.com and sign in using the Microsoft Account associated with your Microsoft Azure account.
 
 	![logging-azure-portal](Images/logging-azure-portal.png?raw=true)
 
@@ -117,7 +117,7 @@ In this task you will learn how to create a new Storage Account using the Window
 	_Displaying the Storage Account Dashboard_
 
 <a name="Exercise2" />
-### Exercise 2: Managing a Windows Azure Storage Account ###
+### Exercise 2: Managing a Microsoft Azure Storage Account ###
 
 In this exercise, you will configure the common settings for your Storage Account. You will manage your **Access Keys**, enable **Geo-Replication**, and configure **Monitoring** and **Logging**.
 
@@ -143,7 +143,7 @@ Geo-replication replicates the stored content to a secondary location to enable 
 <a name="Ex2Task2" />
 #### Task 2 - Configuring Monitoring ####
 
-From the **Monitoring** section, you can monitor your storage accounts in the Windows Azure Management Portal. For each storage service associated with the storage account (Blob, Queue, and Table), you can choose the level of monitoring - minimal or verbose - and specify the appropriate data retention policy.
+From the **Monitoring** section, you can monitor your storage accounts in the Microsoft Azure Management Portal. For each storage service associated with the storage account (Blob, Queue, and Table), you can choose the level of monitoring - minimal or verbose - and specify the appropriate data retention policy.
 
 1. In the **Configure** page, scroll to the **Monitoring** section.
 
@@ -155,7 +155,7 @@ From the **Monitoring** section, you can monitor your storage accounts in the Wi
 
 	**Minimal** - Collects metrics such as ingress/egress, availability, latency, and success percentages, which are aggregated for the Blob, Table, and Queue services.
 
-	**Verbose** - In addition to the minimal metrics, this setting collects the same set of metrics for each storage operation in the Windows Azure Storage Service API. Verbose metrics enable closer analysis of issues that occur during application operations.
+	**Verbose** - In addition to the minimal metrics, this setting collects the same set of metrics for each storage operation in the Microsoft Azure Storage Service API. Verbose metrics enable closer analysis of issues that occur during application operations.
 
 	**Off** - Turns off monitoring. Existing monitoring data is persisted through the end of the retention period.
 
@@ -234,7 +234,7 @@ You can save diagnostic logs for Read Requests, Write Requests, and/or Delete Re
 <a name="Ex2Task4" />
 #### Task 4 - Managing Account Keys ####
 
-When you create a storage account, Windows Azure generates two 512-bit storage access keys which are used for authentication when the storage account is accessed. By providing two storage access keys, Windows Azure enables you to regenerate the keys with no interruption to your storage service.
+When you create a storage account, Microsoft Azure generates two 512-bit storage access keys which are used for authentication when the storage account is accessed. By providing two storage access keys, Microsoft Azure enables you to regenerate the keys with no interruption to your storage service.
 
 1.	In the Storage Account Dashboard, select the option **Manage Access Keys** in the bottom menu.
 
@@ -252,12 +252,12 @@ When you create a storage account, Windows Azure generates two 512-bit storage a
 
 	> **Note:** Regenerating your access keys affects virtual machines, media services, and any applications that are dependent on the storage account.
 
-	In the next exercise, you will consume Windows Azure Storage services from an MVC application.
+	In the next exercise, you will consume Microsoft Azure Storage services from an MVC application.
 
 <a name="Exercise3"></a>
-###Exercise 3: Understanding the Windows Azure Storage Abstractions ###
+###Exercise 3: Understanding the Microsoft Azure Storage Abstractions ###
 
-This sample application is comprised of five Views, one for each CRUD operation (Create, Read, Update, Delete) and one to list all the entities from the Table Storage. In this exercise, you will update the MVC application actions to perform operations against each storage service (Table, Blob and Queue) using **Windows Azure SDK v2.2**. You will also learn how to use the new **async** methods built into the SDK.
+This sample application is comprised of five Views, one for each CRUD operation (Create, Read, Update, Delete) and one to list all the entities from the Table Storage. In this exercise, you will update the MVC application actions to perform operations against each storage service (Table, Blob and Queue) using **Microsoft Azure SDK v2.2**. You will also learn how to use the new **async** methods built into the SDK.
 
 <a name="Ex3Task1" />
 #### Task 1 - Configuring Storage Account in the Cloud Project ####
@@ -1006,11 +1006,11 @@ In this task, you will use queues to simulate a notification service, where a me
 
 1. Press **F5** to run the application, and log in if you have not already. Once the browser has opened, upload a new image.
 
-1. Open the **Compute Emulator**. To do so, right-click the Windows Azure icon tray and select **Show Compute Emulator UI**.
+1. Open the **Compute Emulator**. To do so, right-click the Microsoft Azure icon tray and select **Show Compute Emulator UI**.
 
-	![Windows Azure Tray Icon](Images/windows-azure-tray-icon.png?raw=true "Windows Azure Tray Icon")
+	![Microsoft Azure Tray Icon](Images/windows-azure-tray-icon.png?raw=true "Microsoft Azure Tray Icon")
 
-	_Windows Azure Tray Icon_
+	_Microsoft Azure Tray Icon_
 
 1. Select the worker role instance. Wait until the process reads the message from the queue.
 
@@ -1021,19 +1021,19 @@ In this task, you will use queues to simulate a notification service, where a me
 <a name="Ex3Task5" />
 #### Task 5 - Verification with Visual Studio####
 
-In this task, you will use Visual Studio to inspect the Windows Azure Storage Account.
+In this task, you will use Visual Studio to inspect the Microsoft Azure Storage Account.
 
 1. If not already opened, open **Visual Studio Express 2013 for Web**.
 
 1. Go to the **View** menu, and open **Server Explorer**.
 
-1. In the Database Explorer pane, right-click **Windows Azure** and select **Connect to Windows Azure**.
+1. In the Database Explorer pane, right-click **Microsoft Azure** and select **Connect to Microsoft Azure**.
 
 	![Server Explorer](Images/server-explorer.png?raw=true "Server Explorer")
 
 	_Server Explorer_
 
-1. Enter your **Live ID credentials** associated with the Storage Account you are using and sign in to Windows Azure.
+1. Enter your **Live ID credentials** associated with the Storage Account you are using and sign in to Microsoft Azure.
 
 1. Expand the **Storage** drop-down menu and within it your account name. Notice that there is an entry for Tables, Blobs and Queues.
 
@@ -1070,11 +1070,11 @@ In this exercise you will learn how to use Shared Access Signatures with the thr
 <a name="Ex4Task1" />
 #### Task 1 - Adding SAS at Table level  ####
 
-In this task you will learn how to create SAS for Windows Azure Tables. As the account owner, you can create SAS when you want to grant access to your storage without sharing your account key and also restrict the operations in several ways.
+In this task you will learn how to create SAS for Microsoft Azure Tables. As the account owner, you can create SAS when you want to grant access to your storage without sharing your account key and also restrict the operations in several ways.
 
 You can grant access to an entire table, a table range (for example, to all the rows under a particular partition key), or specific rows. Additionally, you can grant execution rights to specific methods such as _Query_, _Add_, _Update_, _Delete_. Finally, you can specify the SAS token start and expiration time.
 
-1. Continue working with the end solution of the previous exercise or open the solution located at _Source/Ex04-IntroducingSAS/Begin_. Remember to run Visual Studio **as administrator** to be able to use the Windows Azure Storage Emulator.
+1. Continue working with the end solution of the previous exercise or open the solution located at _Source/Ex04-IntroducingSAS/Begin_. Remember to run Visual Studio **as administrator** to be able to use the Microsoft Azure Storage Emulator.
 
 1. Press **F5** to run the application, and register a new user. Notice that you are able see what you have uploaded with the previous user.
 
@@ -1158,7 +1158,7 @@ You can grant access to an entire table, a table range (for example, to all the 
        
 	````
 
-	>**Note**: Replace _http://127.0.0.1:10002/devstoreaccount1_ with your storage account table URI in order to work against Windows Azure.
+	>**Note**: Replace _http://127.0.0.1:10002/devstoreaccount1_ with your storage account table URI in order to work against Microsoft Azure.
 
 1. Add the following _using_ statements to the **HomeController.cs** file.
 
@@ -1396,7 +1396,7 @@ In this task you will use SAS at queue level to restrict access to the Queue Sto
 	}
 	````
 
-	>**Note**: Replace _<http://127.0.0.1:10001/devstoreaccount1>_ with your storage account table URI in order to work against Windows Azure.
+	>**Note**: Replace _<http://127.0.0.1:10001/devstoreaccount1>_ with your storage account table URI in order to work against Microsoft Azure.
 
 1. Scroll down to the **GetCloudQueue** method and update the line where you create the **CloudQueueClient** with the following code. 
 
@@ -1495,11 +1495,11 @@ In this task you will use SAS at queue level to restrict access to the Queue Sto
 
 1. Press **F5** to run the application. Once the browser is opened, upload a new image.
 
-1. Open the **Compute Emulator**. To do so, right-click the Windows Azure icon tray and select **Show Compute Emulator UI**.
+1. Open the **Compute Emulator**. To do so, right-click the Microsoft Azure icon tray and select **Show Compute Emulator UI**.
 
-	![Windows Azure Tray Icon](Images/windows-azure-tray-icon.png?raw=true "Windows Azure Tray Icon")
+	![Microsoft Azure Tray Icon](Images/windows-azure-tray-icon.png?raw=true "Microsoft Azure Tray Icon")
 
-	_Windows Azure Tray Icon_
+	_Microsoft Azure Tray Icon_
 
 1. Log in to the application and upload a new photo. Wait until the process reads the message from the queue and shows the _"Photo uploaded"_ message.
 
@@ -1520,7 +1520,7 @@ A stored access policy gives you greater control over Shared Access Signatures y
 
 In this task you will update table security to use Stored Access Policy.
 
-1. Continue working with the end solution of the previous exercise, or open the solution located at _/Source/Ex5-UpdatingSASToUseStoredAccessPolicies/Begin_. Remember to run Visual Studio **as administrator** to be able to use the Windows Azure storage emulator.
+1. Continue working with the end solution of the previous exercise, or open the solution located at _/Source/Ex5-UpdatingSASToUseStoredAccessPolicies/Begin_. Remember to run Visual Studio **as administrator** to be able to use the Microsoft Azure storage emulator.
 
 1. Open **Global.asax.cs** and add the following using directive.
 
@@ -1610,7 +1610,7 @@ In this task you will update table security to use Stored Access Policy.
 	}
 	````
 
-	>**Note**: Replace the _<http://127.0.0.1:10002/devstoreaccount1>_ with your storage account table URI in order to work against Windows Azure if not already replaced.
+	>**Note**: Replace the _<http://127.0.0.1:10002/devstoreaccount1>_ with your storage account table URI in order to work against Microsoft Azure if not already replaced.
 
 1. Open the **SasService.cs** class and replace the _GetReadonlyUriWithSasForBlob_ method with the following code. Notice you added a new **policyId** parameter which you are using when getting the shared access signature for given blob.
 
@@ -1885,7 +1885,7 @@ In this task you will update table security to use Stored Access Policy.
 
 1. Press **F5** to start debugging the solution.
 
-	>**Note**: The Windows Azure Emulator should start.
+	>**Note**: The Microsoft Azure Emulator should start.
 
 1. Log in to the application with the user you created in Exercise 3.
 
@@ -1912,7 +1912,7 @@ In this task you will update table security to use Stored Access Policy.
 <a name="NextSteps" />
 ## Next Steps ##
 
-To learn more about **Windows Azure Storage**, please refer to the following articles which expand on the technologies explained in this lab:
+To learn more about **Microsoft Azure Storage**, please refer to the following articles which expand on the technologies explained in this lab:
 
 - [Shared Access Signatures, Part 1: Understanding the SAS Model](http://aka.ms/Fkjgzx): In Part 1 of this tutorial on shared access signatures, you will see an overview of the SAS model and review SAS best practices.
 
@@ -1920,19 +1920,19 @@ To learn more about **Windows Azure Storage**, please refer to the following art
 
 - [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS](http://aka.ms/Yaqi4e): In this blog post, we will see usage scenarios for these features along with sample code.
 
-- [How to use the Table Storage Service](http://aka.ms/Yf1l4c): This guide will show you how to perform common scenarios using the Windows Azure Table Storage Service.
+- [How to use the Table Storage Service](http://aka.ms/Yf1l4c): This guide will show you how to perform common scenarios using the Microsoft Azure Table Storage Service.
 
-- [How to use the Windows Azure Blob Storage Service in .NET](http://aka.ms/Uguxow): This guide will demonstrate how to perform common scenarios using the Windows Azure Blob storage service.
+- [How to use the Microsoft Azure Blob Storage Service in .NET](http://aka.ms/Uguxow): This guide will demonstrate how to perform common scenarios using the Microsoft Azure Blob storage service.
 
-- [Browsing Storage Resources with Server Explorer](http://aka.ms/Gouc3c): This guide will show you how to display data from your local storage emulator account and also from storage accounts that you've created for Windows Azure by using the Windows Azure Storage node in Server Explorer.
+- [Browsing Storage Resources with Server Explorer](http://aka.ms/Gouc3c): This guide will show you how to display data from your local storage emulator account and also from storage accounts that you've created for Microsoft Azure by using the Microsoft Azure Storage node in Server Explorer.
 
-- [Storage Services REST API Reference](http://aka.ms/V84kea): The reference of the Storage Services REST API gives insight into the underlying HTTP-based infrastructure that supports Windows Azure Storage.
+- [Storage Services REST API Reference](http://aka.ms/V84kea): The reference of the Storage Services REST API gives insight into the underlying HTTP-based infrastructure that supports Microsoft Azure Storage.
 
 - [Set and Retrieve Properties and Metadata](http://aka.ms/Nd1yuv): This guide will show you how to set and retrieve properties and metadata from blobs and blob containers.
 
-- [New Azure Tools in Visual Studio 2013 (Video)](http://aka.ms/Uh25d9): In this episode Paul Yuknewicz, Dennis Angeline and Boris Scholl show how the Windows Azure SDK 2.2 adds new levels of productivity to Visual Studio for cloud development.
+- [New Azure Tools in Visual Studio 2013 (Video)](http://aka.ms/Uh25d9): In this episode Paul Yuknewicz, Dennis Angeline and Boris Scholl show how the Microsoft Azure SDK 2.2 adds new levels of productivity to Visual Studio for cloud development.
 
-- [Getting Started with Windows Azure, the SDK, and Visual Studio (Video)](http://aka.ms/Y1ln6z): In this episode you will be guided through deploying an Azure Web Site and debugging it in the cloud.
+- [Getting Started with Microsoft Azure, the SDK, and Visual Studio (Video)](http://aka.ms/Y1ln6z): In this episode you will be guided through deploying an Azure Web Site and debugging it in the cloud.
 
 ---
 

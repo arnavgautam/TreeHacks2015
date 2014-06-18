@@ -1,4 +1,4 @@
-﻿<a name="title" />
+<a name="title" />
 # Service Bus Message Me #
 
 ---
@@ -6,23 +6,23 @@
 <a name="Overview" />
 ## Overview ##
 
-The Windows Azure Service Bus provides a hosted, secure, and widely available infrastructure for widespread communication, large-scale event distribution, naming, and service publishing.
+The Microsoft Azure Service Bus provides a hosted, secure, and widely available infrastructure for widespread communication, large-scale event distribution, naming, and service publishing.
 
-This demo is designed to show how the Windows Azure Service Bus messaging can be used by applications to exchange messages in a loosely coupled way for improved scale and resiliency. This is a fun example that consists of a simple ASP.NET MVC Mobile Web Application that sends messages to a Service Bus queue and a console application that reads from the queue and displays the messages. 
+This demo is designed to show how the Microsoft Azure Service Bus messaging can be used by applications to exchange messages in a loosely coupled way for improved scale and resiliency. This is a fun example that consists of a simple ASP.NET MVC Mobile Web Application that sends messages to a Service Bus queue and a console application that reads from the queue and displays the messages. 
 
 
 <a id="goals" />
 ### Goals ###
 In this demo, you will see how to:
 
-1.	Create & Deploy Windows Azure Web Site
-1.	Monitoring & Scaling an existing Windows Azure Web Site
-1. Improve your application adding Windows Azure Service Bus capabilities
+1.	Create & Deploy Microsoft Azure Web Site
+1.	Monitoring & Scaling an existing Microsoft Azure Web Site
+1. Improve your application adding Microsoft Azure Service Bus capabilities
 
 <a name="technologies" />
 ### Key Technologies ###
 
-- Windows Azure subscription with the Web Sites enabled - you can sign up for free trial [here][1]
+- Microsoft Azure subscription with the Websites enabled - you can sign up for free trial [here][1]
 - [Microsoft Visual Studio 2012][2]
 - [ASP.NET MVC 4][3]
 
@@ -79,12 +79,12 @@ In order to execute this demo you need to set up your environment.
 
 This demo is composed of the following segments:
 
-1. [Create, Deploy, and Scale Windows Azure Web Site](#segment1).
+1. [Create, Deploy, and Scale Microsoft Azure Web Site](#segment1).
 1. [Add Services Bus and Send Messages](#segment2).
 
 
 <a name="segment1" />
-### Create, Deploy, and Scale Windows Azure Web Site ###
+### Create, Deploy, and Scale Microsoft Azure Web Site ###
 
 1. Launch Visual Studio 2012. Click the Start button and type _Visual Studio_, then press **ENTER**.
 
@@ -94,7 +94,7 @@ This demo is composed of the following segments:
 
 	>**Speaking Point:** 
 	>
-	> During this demo we're going to build a mobile Web application that we'll be hosted in the cloud using Windows Azure. For building this application we'll use ASP.net and Visual Studio 2012.
+	> During this demo we're going to build a mobile Web application that we'll be hosted in the cloud using Microsoft Azure. For building this application we'll use ASP.net and Visual Studio 2012.
 	>
 	>Let's start by launching Visual Studio 2012.
 	>
@@ -128,18 +128,18 @@ This demo is composed of the following segments:
 
 	_Application Running Locally_
 
-1. Open Windows Azure Management Portal.
+1. Open Microsoft Azure Management Portal.
 
-	![Windows Azure Management Portal Home Page](Images/windows-azure-management-portal-home-page.png?raw=true "Windows Azure Management Portal Home Page")
+	![Microsoft Azure Management Portal Home Page](Images/windows-azure-management-portal-home-page.png?raw=true "Microsoft Azure Management Portal Home Page")
 
-	_Windows Azure Management Portal Home Page_
+	_Microsoft Azure Management Portal Home Page_
 
 	>**Speaking Point:** 
 	>
-	>Now, let's switch to the Windows Azure Management Portal. I'm going to create a Web Site, which is a new Windows Azure feature.
+	>Now, let's switch to the Microsoft Azure Management Portal. I'm going to create a Web Site, which is a new Microsoft Azure feature.
 	> I can choose which data center I want to create it in. This is going to provision for me a website that I can use to deploy any Web-based application.
 
-1. Within Windows Azure Portal, click **New** | **Compute** | **Web Site** | **Click Create**. Enter a descriptive title (e.g. _MessageMeDemo_) and then click **Create Web Site**.
+1. Within Microsoft Azure Portal, click **New** | **Compute** | **Web Site** | **Click Create**. Enter a descriptive title (e.g. _MessageMeDemo_) and then click **Create Web Site**.
 
 	![Creating a new Web Site](Images/creating-a-new-web-site.png?raw=true "Creating a new Web Site")
 
@@ -159,9 +159,9 @@ This demo is composed of the following segments:
 
 	>**Speaking Point:** 
 	>
-	> You'll notice how fast it is now inside Windows Azure. We have just stood up a new website in one of Azure data centers. We can see the website's Dashboard page, which doesn't show any monitoring data yet, because I don't actually have my website deployed.
+	> You'll notice how fast it is now inside Microsoft Azure. We have just stood up a new website in one of Azure data centers. We can see the website's Dashboard page, which doesn't show any monitoring data yet, because I don't actually have my website deployed.
 	>
-	> Let's deploy the application to the website I've just created. For this purpose, we could choose between different approaches like using standard FTP tools and just copy the bits up; use our Team Foundation Server to link the project to the web site and any time someone checks in source-code into that project automatically do a build, run your unit tests and, if they succeed, deploy the project into Windows Azure; or, what will be our choice, directly use Visual Studio IDE for the deployment.
+	> Let's deploy the application to the website I've just created. For this purpose, we could choose between different approaches like using standard FTP tools and just copy the bits up; use our Team Foundation Server to link the project to the web site and any time someone checks in source-code into that project automatically do a build, run your unit tests and, if they succeed, deploy the project into Microsoft Azure; or, what will be our choice, directly use Visual Studio IDE for the deployment.
 
 1. Save the **Publish Profile** file to your computer.
 
@@ -210,11 +210,11 @@ This demo is composed of the following segments:
 
 	>**Speaking Point:** 
 	>
-	>This is going to cause Visual Studio to package up our files, upload them into Windows Azure data center and after that launch a browser with our application.
+	>This is going to cause Visual Studio to package up our files, upload them into Microsoft Azure data center and after that launch a browser with our application.
 	>
-	> You can see here, our application running in Windows Azure.
+	> You can see here, our application running in Microsoft Azure.
 
-1. Now that we have our Website running in the cloud, we'll go back to the Windows Azure Portal. Click **Monitor**.
+1. Now that we have our Website running in the cloud, we'll go back to the Microsoft Azure Portal. Click **Monitor**.
 
 	![Web Site's Monitor](Images/web-sites-monitor.png?raw=true "Web Site's Monitor")
 
@@ -224,7 +224,7 @@ This demo is composed of the following segments:
 	>
 	> If we go back to the portal we can see dashboard statistics around the application I've just deployed. One of the things you'll notice here is a number of statistics in terms of number of request that have hit so, I actually start getting real-time statistics around this deployment.
 
-1. In the Windows Azure Portal, click **Scale** and update the number of instances to _3_. Click **Save** to reflect the changes.
+1. In the Microsoft Azure Portal, click **Scale** and update the number of instances to _3_. Click **Save** to reflect the changes.
 
 	![Increasing Web Site's instances](Images/increasing-web-sites-instances.png?raw=true "Increasing Web Site's instances")
 
@@ -248,18 +248,18 @@ This demo is composed of the following segments:
 
 	>**Speaking Point:** 
 	>
-	> The Service Bus is another very interesting feature of Windows Azure, a really powerful messaging capability that allows me to link code running in the cloud with code running on premise.
+	> The Service Bus is another very interesting feature of Microsoft Azure, a really powerful messaging capability that allows me to link code running in the cloud with code running on premise.
 	>
 	> Let's make this application a little bit richer; I'll now extend this application by including some additional capabilities to it.
 	> I'll start by adding Service Bus references using the package manager in .NET. in order to get all the APIs that I need to program.
 
 1. Select **NuGet official package source** and search for **WindowsAzure.ServiceBus** package.
 
-1. Select **Windows Azure Service Bus** and click **Install**.
+1. Select **Microsoft Azure Service Bus** and click **Install**.
 
-	![Windows Azure Service Bus NuGet Package](Images/windows-azure-service-bus-nuget-package.png?raw=true "Windows Azure Service Bus NuGet Package")
+	![Microsoft Azure Service Bus NuGet Package](Images/windows-azure-service-bus-nuget-package.png?raw=true "Microsoft Azure Service Bus NuGet Package")
 
-	_Windows Azure Service Bus NuGet Package_
+	_Microsoft Azure Service Bus NuGet Package_
 
 1. Read and **Accept** the **License Acceptance**.
 
@@ -315,7 +315,7 @@ This demo is composed of the following segments:
 
 	>**Speaking Point:** 
 	>
-	> Before trying out our new social application, let's redeploy it to our Windows Azure website.
+	> Before trying out our new social application, let's redeploy it to our Microsoft Azure website.
 	> From Visual Studio we can re deploy applications; this means that instead of redeploying all the application when we want to actually supply an update, we can just go ahead and hit **redeploy**. 
 	> When I do that, it will just deploy the incremental changes to the existing website application.
 
@@ -356,4 +356,4 @@ This demo is composed of the following segments:
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw how to create, deploy, monitor and scale a Windows Azure Web Site. Additionally, you improved your application by adding Windows Azure Service Bus messaging capabilities.
+In this demo, you saw how to create, deploy, monitor and scale a Microsoft Azure Web Site. Additionally, you improved your application by adding Microsoft Azure Service Bus messaging capabilities.

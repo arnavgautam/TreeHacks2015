@@ -1,18 +1,18 @@
-﻿<a name="title" />
+<a name="title" />
 # Migrating a Web Farm #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-Windows Azure allows you to easily migrate an application that currently runs on-premises or in another virtualization provider straight to the cloud. The demo is implemented by showing the user how to user PowerShell to provision multiple virtual machines complete with load balanced endpoints and data disks. From there you will show the audience how to configure a SQL Server and deploy an MVC4 web application for the web farm. 
+Microsoft Azure allows you to easily migrate an application that currently runs on-premises or in another virtualization provider straight to the cloud. The demo is implemented by showing the user how to user PowerShell to provision multiple virtual machines complete with load balanced endpoints and data disks. From there you will show the audience how to configure a SQL Server and deploy an MVC4 web application for the web farm. 
 
 <a name="technologies" />
 ### Key Technologies ###
 
-- Windows Azure subscription - you can sign up for free trial [here][1]
-- Windows Azure Virtual Machines 
-- [Windows Azure PowerShell Cmdlets][2]
+- Microsoft Azure subscription - you can sign up for free trial [here][1]
+- Microsoft Azure Virtual Machines 
+- [Microsoft Azure PowerShell Cmdlets][2]
 
 [1]: http://bit.ly/WindowsAzureFreeTrial
 [2]: http://go.microsoft.com/?linkid=9811175&clcid=0x409
@@ -22,33 +22,33 @@ Windows Azure allows you to easily migrate an application that currently runs on
 
 In order to execute this demo you need to set up your environment.
 
-1. Download, install and configure the Windows Azure PowerShell cmdlets. Instructions on how to configuration the cmdlets with your subscription can be found here: http://msdn.microsoft.com/en-us/library/windowsazure/jj554332.aspx
+1. Download, install and configure the Microsoft Azure PowerShell cmdlets. Instructions on how to configuration the cmdlets with your subscription can be found here: http://msdn.microsoft.com/en-us/library/windowsazure/jj554332.aspx
 
 1. Download and install the latest node.js library from: http://nodejs.org 
 
-1. Then install the node.js command line tools for Windows Azure by running the following command at an elevated command prompt:
+1. Then install the node.js command line tools for Microsoft Azure by running the following command at an elevated command prompt:
 
 	````PowerShell
 	npm install azure -g
 	````
 
-	> **Note:** Alternatively, you can install the **Windows Azure Cross-platform Command Line Tools** from Web Platform Installer (which will install node.js)
+	> **Note:** Alternatively, you can install the **Microsoft Azure Cross-platform Command Line Tools** from Web Platform Installer (which will install node.js)
 
-1. Modify the **Config.Azure.xml** for your Windows Azure Subscription. The following values are needed:
+1. Modify the **Config.Azure.xml** for your Microsoft Azure Subscription. The following values are needed:
 	- Target Storage Account Name, Container (does not need to be pre-created) and Key where the demo VHDs will be copied to (just the storage account name not the url). 
 	- The Storage Account should be in **West US** to allow the VHDs to copy in a timely manner.
-	- Subscription Name - value can be retrieved from Windows Azure PowerShell by running **Get-AzureSubscription | select SubscriptionName**.
+	- Subscription Name - value can be retrieved from Microsoft Azure PowerShell by running **Get-AzureSubscription | select SubscriptionName**.
 	- Unique name for the Cloud Service container that will be used when creating the virtual machines using the setup script (does not need to be pre-created).
 	- Unique name for the Cloud Service container that will be used when creating the virtual machines using the PowerShell demo (does not need to be pre-created).
 
 
-1. If you have not used Windows Azure PowerShell before you need to download a publish settings file. To do this, run the following script. Sign in to the Windows Azure Management Portal, and then follow the instructions to download your Windows Azure publishing settings. Use your browser to save the file as a .publishsettings file to your local computer. Note the location of the file.
+1. If you have not used Microsoft Azure PowerShell before you need to download a publish settings file. To do this, run the following script. Sign in to the Microsoft Azure Management Portal, and then follow the instructions to download your Microsoft Azure publishing settings. Use your browser to save the file as a .publishsettings file to your local computer. Note the location of the file.
 
 	````PowerShell
 	Get-AzurePublishSettingsFile
 	````
 
-1. Then replace the placeholder with your publish-setting file’s path and execute this script.
+1. Then replace the placeholder with your publish-setting file�s path and execute this script.
 
 	````PowerShell
 	Import-AzurePublishSettingsFile '[YOUR-PUBLISH-SETTINGS-PATH]'   
@@ -75,7 +75,7 @@ In order to execute this demo you need to set up your environment.
 1. Run **powershell_ise.exe** (open the Run dialog using WINDOWS+R) and paste in the following script. Replace the subscription placeholders.
 
 	````PowerShell
-	Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Windows Azure\PowerShell\Azure\Azure.psd1' 
+	Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Microsoft Azure\PowerShell\Azure\Azure.psd1' 
 	Set-AzureSubscription [SUBSCRIPTION-NAME] -CurrentStorageAccount [STORAGE-ACCOUNT-NAME]
 	Select-AzureSubscription [SUBSCRIPTION-NAME]
  	
@@ -86,7 +86,7 @@ In order to execute this demo you need to set up your environment.
 1. In the console window run the following PowerShell commands to retrieve available image names.
 
 	````PowerShell
-	Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Windows Azure\PowerShell\Azure\Azure.psd1' 
+	Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Microsoft Azure\PowerShell\Azure\Azure.psd1' 
 	Get-AzureVMImage | ft imagename
 	````
    	![powershell_ise_get_azurevmimage](Images/powershellisegetazurevmimage.png?raw=true)
@@ -138,7 +138,7 @@ In order to execute this demo you need to set up your environment.
 <a name="segment2" />
 ### Segment 2: Virtual Machine Configuration - Configuring SQL Server ###
 
-1. Next use the Windows Azure Portal to login via remote desktop to the **SQLVM1** virtual machine that was created by the setup script. Use _sqladmin_ as username and _pass@word1_ as the password.
+1. Next use the Microsoft Azure Portal to login via remote desktop to the **SQLVM1** virtual machine that was created by the setup script. Use _sqladmin_ as username and _pass@word1_ as the password.
 
 1. Start **SQL Server Management Studio** and connect to the default server.
 

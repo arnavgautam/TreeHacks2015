@@ -1,4 +1,4 @@
-﻿Before executing the end solution provided for Exercise 1, execute the following steps:
+Before executing the end solution provided for Exercise 1, execute the following steps:
 
 - **Enable SSL** from the properties of the ExpenseReport project.
 - Update the **project URL** in the **Web** tab of the ExpenseReport project properties in the _Use Local IIS Web server_ section with the SSL URL obtained from the previous step.

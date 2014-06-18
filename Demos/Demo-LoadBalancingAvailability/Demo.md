@@ -1,4 +1,4 @@
-﻿<a name="title" />
+<a name="title" />
 # Load Balancing and Availability Sets #
 
 In this demo, you will demonstrate how easy it is to set up load-balancing between two Web servers. 
@@ -14,22 +14,22 @@ The demo starts by creating two new Windows Server 2012 VMs. After starting the 
 In this demo, you will see three things:
 
 1. How to create Virtual Machines
-1.	How to configure the Windows Azure Load Balancer
-1.	How to configure Windows Azure Availability Sets
+1.	How to configure the Microsoft Azure Load Balancer
+1.	How to configure Microsoft Azure Availability Sets
 
 <a name="technologies" />
 ### Key Technologies ###
 
 This demo uses the following technologies:
 
-- [Windows Azure Management Portal] [1]
+- [Microsoft Azure Management Portal] [1]
 
 [1]: https://manage.windowsazure.com/
 
 <a name="Demo" />
 ## Demo ##
 
-1. In a Windows Azure PowerShell window, type the following commands:
+1. In a Microsoft Azure PowerShell window, type the following commands:
 
 	````PowerShell
 	$svcname = "ITC-" + $(Get-Random -Minimum 10000 -Maximum 99999)
@@ -132,7 +132,7 @@ Install-WindowsFeature -Name  Web-WebServer
 
 	> While the role installed, we can enable load-balancing on the two Virtual Machines.
 
-1. In the Windows Azure PowerShell window, type the following commands:
+1. In the Microsoft Azure PowerShell window, type the following commands:
 
 	````Powershell
 	Get-AzureVM -ServiceName $svcname -Name "iisvm1" | `
@@ -279,7 +279,7 @@ This is called **port forwarding**.
 
 1. In the Azure portal, on the **issvm1** page, on the **Configure** tab, in the **Availability Set** drop-down list box, select **Create availability set**. In the text box, type **webavset**.
 
-	![Changing availability set of IISVM1 VM using the Windows Azure Portal](./Images/Changing-availability-set-of-IISVM1-VM-using-the-Windows-Azure-Portal.png?raw=true "Changing availability set of IISVM1 VM using the Windows Azure Portal")
+	![Changing availability set of IISVM1 VM using the Microsoft Azure Portal](./Images/Changing-availability-set-of-IISVM1-VM-using-the-Windows-Azure-Portal.png?raw=true "Changing availability set of IISVM1 VM using the Microsoft Azure Portal")
 
 	> **Speaking Point:**
 
@@ -303,7 +303,7 @@ This is called **port forwarding**.
 
 1. On the **issvm2** page, on the **Configure** tab, in the **Availability Set** drop-down list box, select **webavset**.
 
-	![Changing availability set of IISVM2 VM using the Windows Azure Portal](./Images/Changing-availability-set-of-IISVM2-VM-using-the-Windows-Azure-Portal.png?raw=true "Changing availability set of IISVM2 VM using the Windows Azure Portal")
+	![Changing availability set of IISVM2 VM using the Microsoft Azure Portal](./Images/Changing-availability-set-of-IISVM2-VM-using-the-Windows-Azure-Portal.png?raw=true "Changing availability set of IISVM2 VM using the Microsoft Azure Portal")
 
 	> **Speaking Point:**
 

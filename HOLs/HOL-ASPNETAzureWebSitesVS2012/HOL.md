@@ -1,13 +1,13 @@
-ï»¿<a name="Title"></a>
-# Building and Publishing ASP.NET Applications with Windows Azure Web Sites and Visual Studio 2012 #
+<a name="Title"></a>
+# Building and Publishing ASP.NET Applications with Microsoft Azure Websites and Visual Studio 2012 #
 
 ---
 <a name="Overview"></a>
 ## Overview ##
 
-Web site publication and deployment has never been easier in Windows Azure. Using familiar tools such as Web Deploy or Git, and virtually no changes to the development workflow, Windows Azure Web Sites is the next step in the Microsoft Azure platform for web developers. 
+Web site publication and deployment has never been easier in Microsoft Azure. Using familiar tools such as Web Deploy or Git, and virtually no changes to the development workflow, Microsoft Azure Websites is the next step in the Microsoft Azure platform for web developers. 
 
-In this hands-on lab, you will explore the basic elements of the **Windows Azure Web Sites** service by creating a simple [ASP.NET MVC 4](http://www.asp.net/mvc/mvc4) application, which uses scaffolding to automatically generate the baseline of your application's CRUD (Create, Read, Update and Delete). Then, you will deploy it using Web Deploy from Microsoft Visual Studio 2012 and Git commit.
+In this hands-on lab, you will explore the basic elements of the **Microsoft Azure Websites** service by creating a simple [ASP.NET MVC 4](http://www.asp.net/mvc/mvc4) application, which uses scaffolding to automatically generate the baseline of your application's CRUD (Create, Read, Update and Delete). Then, you will deploy it using Web Deploy from Microsoft Visual Studio 2012 and Git commit.
 
 Starting from a simple model class and without writing a single line of code, you will create a controller that will contain all the CRUD operations, as well as all the necessary views. After publishing and running the solution, you will have the application database generated in your SQL Database server, together with the MVC logic and views for data manipulation.
 
@@ -16,7 +16,7 @@ Starting from a simple model class and without writing a single line of code, yo
 
 In this hands-on lab, you will learn how to:
 
-- Create a Web Site from the Windows Azure Management Portal
+- Create a Web Site from the Microsoft Azure Management Portal
 - Use Microsoft Visual Studio 2012 to build a new ASP.NET MVC 4 application
 - Deploy the application using Web Deploy from Visual Studio
 - Create a new Web Site with Git Repository enabled to publish the ASP.NET MVC 4 application using Git
@@ -28,7 +28,7 @@ The following is required to complete this hands-on lab:
 
 - [Microsoft Visual Studio 2012](http://msdn.microsoft.com/vstudio/products/)
 - [GIT Version Control System](http://git-scm.com/download)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 <a name="Setup"></a>
 ### Setup ###
@@ -57,7 +57,7 @@ This hands-on lab includes the following exercises:
 In this section, you will create a simple ASP.NET MVC 4 web application, using MVC 4 scaffolding with Entity Framework code first to create the CRUD methods.
 
 <a name="GettingStartedTask1"></a>
-#### Task 1 â€“ Creating an ASP.NET MVC 4 Application in Visual Studio ####
+#### Task 1 – Creating an ASP.NET MVC 4 Application in Visual Studio ####
 
 1. Open **Microsoft Visual Studio 2012** and click the **New Project** link in the start page. Otherwise use  **File** | **New** | **Project**.
 
@@ -174,16 +174,16 @@ In this section, you will create a simple ASP.NET MVC 4 web application, using M
 <a name="Exercise1"></a>
 ### Exercise 1: Publishing an MVC 4 Application using Web Deploy ###
 
-In this exercise, you will create a new web site in the Windows Azure Management Portal and publish the application you obtained in the Getting Started section, taking advantage of the Web Deploy publishing feature provided by Windows Azure.
+In this exercise, you will create a new web site in the Microsoft Azure Management Portal and publish the application you obtained in the Getting Started section, taking advantage of the Web Deploy publishing feature provided by Microsoft Azure.
 
 <a name="Ex1Task1"></a>
-#### Task 1 â€“ Creating a New Web Site from the Windows Azure Portal ####
+#### Task 1 – Creating a New Web Site from the Microsoft Azure Portal ####
 
-1. Go to the [Windows Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
+1. Go to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
 
-	![Log on to Windows Azure portal](Images/login.png?raw=true "Log on to the Windows Azure portal")
+	![Log on to Microsoft Azure portal](Images/login.png?raw=true "Log on to the Microsoft Azure portal")
 
-	_Log on to the Windows Azure Management Portal_
+	_Log on to the Microsoft Azure Management Portal_
 
 1. Click **New** on the command bar.
 
@@ -193,7 +193,7 @@ In this exercise, you will create a new web site in the Windows Azure Management
 
 1. Click **Compute**, **Web Site** and then **Quick Create**. Provide an available URL for the new web site and click **Create Web Site**.
 
-	> **Note:** A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
+	> **Note:** A Microsoft Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Microsoft Azure Web Site from outside the portal. It does not include steps for setting up a database.
 
 	![Creating a new Web Site using Quick Create](Images/quick-create.png?raw=true "Creating a new Web Site using Quick Create")
 
@@ -201,9 +201,9 @@ In this exercise, you will create a new web site in the Windows Azure Management
 
 1. Wait until the new **Web Site** is created.
 	
-	> **Note:** By default, Windows Azure provides domains at _azurewebsites.net_, but also gives you the possibility to set custom domains using the Windows Azure Management Portal. However, you can only manage custom domains if you are using certain Web Site modes.
+	> **Note:** By default, Microsoft Azure provides domains at _azurewebsites.net_, but also gives you the possibility to set custom domains using the Microsoft Azure Management Portal. However, you can only manage custom domains if you are using certain Web Site modes.
 	
-	> Windows Azure offers 3 modes for users to run their web sites - Free, Shared, and Reserved. In Free and Shared mode, all web sites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are Free (strict quotas) vs. Shared (more relaxed quotas). The maximum number of free sites may vary with your plan. The Reserved mode applies to ALL of your sites and makes them run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Web Sites Mode configuration in the **Scale** menu of your Web Site.
+	> Microsoft Azure offers 3 modes for users to run their Websites - Free, Shared, and Reserved. In Free and Shared mode, all Websites run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are Free (strict quotas) vs. Shared (more relaxed quotas). The maximum number of free sites may vary with your plan. The Reserved mode applies to ALL of your sites and makes them run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the Websites Mode configuration in the **Scale** menu of your Web Site.
 
 	> ![Web Site Modes](Images/web-site-modes.png?raw=true "Web Site Modes")
 
@@ -231,20 +231,20 @@ In this exercise, you will create a new web site in the Windows Azure Management
 
 1. In the **Dashboard** page, under the **quick glance** section, click the **Download the publish profile** link.
 
-	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Web Developer** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites. 
+	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Microsoft Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Web Developer** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Microsoft Azure websites. 
 
 	![Downloading the web site publish profile](Images/download-publish-profile.png?raw=true "Downloading the web site publish profile")
 	
 	_Downloading the Web Site publish profile_
 
-1. Download the publish profile file to a known location. Further in this exercise you will see how to use this file to publish a web application to a Windows Azure Web Sites from Visual Studio.
+1. Download the publish profile file to a known location. Further in this exercise you will see how to use this file to publish a web application to a Microsoft Azure Websites from Visual Studio.
 
 	![Saving the publish profile file](Images/save-link.png?raw=true "Saving the publish profile")
 	
 	_Saving the publish profile file_
 
 <a name="Ex1Task2"></a>
-#### Task 2 â€“ Configuring the Database Server ####
+#### Task 2 – Configuring the Database Server ####
 
 1. You will need a SQL Database server for storing the application database. You can view the SQL Database servers from your subscription in the portal at **Sql Databases** | **Servers**. If you do not have a server created, you can create one using the **Add** button at the bottom of the page. Make note of the server **NAME**, **MANAGE URL**, and **ADMINISTRATOR LOGIN**, and obtain the server's password, which is not shown in the portal. You will use this information next.
 Do not create the database yet, as it will be created by Entity Framework when running the application.
@@ -266,7 +266,7 @@ Do not create the database yet, as it will be created by Entity Framework when r
 	_Confirm Changes_
 
 <a name="Ex1Task3"></a>
-#### Task 3 â€“ Publishing an ASP.NET MVC 4 Application using Web Deploy ####
+#### Task 3 – Publishing an ASP.NET MVC 4 Application using Web Deploy ####
 
 1. Go back to the MVC 4 solution. In the **Solution Explorer**,  right-click the web site project and select **Publish**.
 
@@ -316,11 +316,11 @@ Do not create the database yet, as it will be created by Entity Framework when r
 
 	_Publishing the web application_
 
-1. Once the publishing process finishes, your default browser will open the published web site. Verify that the web site was successfully published in Windows Azure.
+1. Once the publishing process finishes, your default browser will open the published web site. Verify that the web site was successfully published in Microsoft Azure.
 
-	![Application published to Windows Azure](Images/application-published-to-windows-azure.png?raw=true "Application published to Windows Azure")
+	![Application published to Microsoft Azure](Images/application-published-to-windows-azure.png?raw=true "Application published to Microsoft Azure")
 
-	_Application published to Windows Azure_
+	_Application published to Microsoft Azure_
 
 1. Go to **/Customer** to verify that the Customers views are working as expected. You can try adding a new Customer to verify it is successfully saved to the database.
 
@@ -338,9 +338,9 @@ In this exercise you will publish again the web application you created in exerc
 > **Note:** If you did not execute exercise 1 you can still perform this exercise by deploying the site located in the **Source\Assets** folder of this lab.
 
 <a name="Ex2Task1"></a>  
-#### Task 1 â€“ Setting up Git Publishing ####
+#### Task 1 – Setting up Git Publishing ####
 
-1. Go back to the Windows Azure Management Portal. In the **Web Sites** section, locate the web site you created in the previous exercise and open its dashboard. To do this, click the web site's **Name**. 
+1. Go back to the Microsoft Azure Management Portal. In the **Websites** section, locate the web site you created in the previous exercise and open its dashboard. To do this, click the web site's **Name**. 
 
 1. Under the quick glance section, click **Set up deployment from source control** link.
 
@@ -371,7 +371,7 @@ In this exercise you will publish again the web application you created in exerc
 1. Copy the **Git URL** value. You will use it later in this exercise.
 
 <a name="Ex2Task2"></a>  
-#### Task 2 â€“ Pushing the Application to Windows Azure using Git ####
+#### Task 2 – Pushing the Application to Microsoft Azure using Git ####
 
 1. Open the solution you have obtained in [exercise 1](#Exercise1) with Visual Studio. Alternatively, you can open the **MVC4Sample.Web** solution located in the **Source\Assets** folder of this lab.
 
@@ -403,7 +403,7 @@ In this exercise you will publish again the web application you created in exerc
 
 	_Git initialization and first commit_
 
-1. Push your web site to the remote **Git** repository by running the following command. Replace the placeholder with the URL you obtained from the Windows Azure Management Portal. You will be prompted for your deployment password.
+1. Push your web site to the remote **Git** repository by running the following command. Replace the placeholder with the URL you obtained from the Microsoft Azure Management Portal. You will be prompted for your deployment password.
 
 	<!-- mark:1-2 -->
 	````CommandPrompt
@@ -411,13 +411,13 @@ In this exercise you will publish again the web application you created in exerc
 	git push azure master
 	````
 
-	![Pushing to Windows Azure](Images/pushing-to-windows-azure.png?raw=true "Pushing to Windows Azure")
+	![Pushing to Microsoft Azure](Images/pushing-to-windows-azure.png?raw=true "Pushing to Microsoft Azure")
 
-	_Pushing to Windows Azure_
+	_Pushing to Microsoft Azure_
 
-	> **Note:** When you deploy content to the FTP host or GIT repository of a Windows Azure website you must authenticate using **deployment credentials** that you create from the websiteâ€™s **Quick Start** or **Dashboard** management pages.  If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset your deployment credentials** link. Provide a new password and click **OK**. Deployment credentials are valid for use with all Windows Azure websites associated with your subscription. 
+	> **Note:** When you deploy content to the FTP host or GIT repository of a Microsoft Azure website you must authenticate using **deployment credentials** that you create from the website’s **Quick Start** or **Dashboard** management pages.  If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset your deployment credentials** link. Provide a new password and click **OK**. Deployment credentials are valid for use with all Microsoft Azure websites associated with your subscription. 
 
-1. In order to verify the web site was successfully pushed to Windows Azure, go back to the **Windows Azure Management Portal** and click **Web Sites**.
+1. In order to verify the web site was successfully pushed to Microsoft Azure, go back to the **Microsoft Azure Management Portal** and click **Websites**.
 
 1. Locate your **Web Site** (where you deployed the application) and click its **Name** to see the **Dashboard**.
 
@@ -435,9 +435,9 @@ In this exercise you will publish again the web application you created in exerc
 
 1. If the application was successfully deployed, you will see the ASP.NET MVC 4 template's default home page.
 
-	![Application Running in Windows Azure](Images/application-published-to-windows-azure.png?raw=true "Application Running in Windows Azure")
+	![Application Running in Microsoft Azure](Images/application-published-to-windows-azure.png?raw=true "Application Running in Microsoft Azure")
 
-	_Application Running in Windows Azure_
+	_Application Running in Microsoft Azure_
 	
 1. Go to **/Customer** to verify that the Customers views are working as expected. You can try adding a new Customer to verify it is successfully saved to the database.
 
@@ -448,4 +448,4 @@ In this exercise you will publish again the web application you created in exerc
 ---
 <a name="Summary"></a>
 ## Summary ##
-In this hands-on lab, you have created a new MVC web site using MVC 4 Scaffolding and published it to Windows Azure Web Sites. Web site publication and deployment has never been easier in Windows Azure. Using familiar tools such as Web Deploy or Git, and virtually no changes to the development workflow, Windows Azure Web Sites is the next step in the Microsoft Azure platform for web developers. 
+In this hands-on lab, you have created a new MVC web site using MVC 4 Scaffolding and published it to Microsoft Azure Websites. Web site publication and deployment has never been easier in Microsoft Azure. Using familiar tools such as Web Deploy or Git, and virtually no changes to the development workflow, Microsoft Azure Websites is the next step in the Microsoft Azure platform for web developers. 

@@ -1,4 +1,4 @@
-﻿# Introduction to Azure Active Directory #
+# Introduction to Azure Active Directory #
 
 ## Hands-On Lab ##
 

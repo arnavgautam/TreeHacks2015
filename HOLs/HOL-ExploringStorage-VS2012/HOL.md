@@ -1,12 +1,12 @@
-Ôªø<a name="handsonlab"></a>
-# Exploring Windows Azure Storage - for Visual Studio 2012 #
+<a name="handsonlab"></a>
+# Exploring Microsoft Azure Storage - for Visual Studio 2012 #
 ---
 
 <a name="Overview"></a>
 ## Overview ##
 
-Storage services provide persistent, durable storage in the Windows Azure compute emulator, and include blob and table service and the queue service. In addition, using Windows Azure Drives, your Windows Azure applications running in the cloud can use existing NTFS APIs to access a durable drive backed by blob storage.
-In this lab, you will examine the basic process of working with Windows Azure storage on the local compute emulator, and explore some of the features that are available to developers.
+Storage services provide persistent, durable storage in the Microsoft Azure compute emulator, and include blob and table service and the queue service. In addition, using Microsoft Azure Drives, your Microsoft Azure applications running in the cloud can use existing NTFS APIs to access a durable drive backed by blob storage.
+In this lab, you will examine the basic process of working with Microsoft Azure storage on the local compute emulator, and explore some of the features that are available to developers.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -17,14 +17,14 @@ In this hands-on lab, you will learn how to:
 -	Use the Blob service
 -	Use the Queue service
 -	Create and read metadata
--	Use Windows Azure Drives
+-	Use Microsoft Azure Drives
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
 
 - [Microsoft Visual Studio 2012 Express for Web] [1] or higher
-- [Windows Azure Tools for Microsoft Visual Studio 1.8] [2]
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Microsoft Azure Tools for Microsoft Visual Studio 1.8] [2]
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 [1]: http://www.microsoft.com/visualstudio/
 [2]: http://www.microsoft.com/windowsazure/sdk/
@@ -36,7 +36,7 @@ In this hands-on lab, you will learn how to:
 
 In order to execute the exercises in this hands-on lab you need to set up your environment.
 
-1. Open a Windows Explorer window and browse to the lab‚Äôs **Source** folder.
+1. Open a Windows Explorer window and browse to the labís **Source** folder.
 
 1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process. This process will configure your environment and install the Visual Studio code snippets for this lab.
 1. If the User Account Control dialog is shown, confirm the action to proceed.
@@ -69,11 +69,11 @@ Estimated time to complete this lab: **90 minutes**.
 <a name="Exercise1"></a>
 ### Exercise 1: Working with Tables ###
 
-In this exercise, you use the Windows Azure Table Service API to create a simple application that stores and retrieves data in structured storage. It consists of a simple chat Web application that can save, retrieve and display messages stored in a Windows Azure table.
+In this exercise, you use the Microsoft Azure Table Service API to create a simple application that stores and retrieves data in structured storage. It consists of a simple chat Web application that can save, retrieve and display messages stored in a Microsoft Azure table.
 
-Windows Azure tables store data as collections of entities, which are similar to rows in a database. An entity has a primary key and a set of properties composed by a name/value pair, similar to a column.
+Microsoft Azure tables store data as collections of entities, which are similar to rows in a database. An entity has a primary key and a set of properties composed by a name/value pair, similar to a column.
 
-To access Windows Azure Table Service, you use a REST API that is compatible with [WCF Data Services][5] (formerly ADO.NET Data Services Framework). This exercise uses the [WCF Data Services Client Library][6] (formerly .NET Client Library) to read and write data to table service.
+To access Microsoft Azure Table Service, you use a REST API that is compatible with [WCF Data Services][5] (formerly ADO.NET Data Services Framework). This exercise uses the [WCF Data Services Client Library][6] (formerly .NET Client Library) to read and write data to table service.
 
 [5]: http://msdn.microsoft.com/en-us/library/cc668792.aspx
 [6]: http://msdn.microsoft.com/en-us/library/cc668772.aspx
@@ -89,11 +89,11 @@ In this task, you configure the settings required to make a connection to the Ta
 
 1. In the **File** menu, choose **Open Project**. In the **Open Project** dialog, browse to **\\Source\\Ex1-WorkingWithTables\\Begin** and open the **Begin.sln** file.
 
- 	![Solution Explorer showing the Windows Azure Chat application](Images/solutionexplorer.png?raw=true)
+ 	![Solution Explorer showing the Microsoft Azure Chat application](Images/solutionexplorer.png?raw=true)
  
- 	_Solution Explorer showing the Windows Azure Chat application_
+ 	_Solution Explorer showing the Microsoft Azure Chat application_
 
-	>**Note:**  The solution contains a Windows Azure WebRole project.
+	>**Note:**  The solution contains a Microsoft Azure WebRole project.
 
 1. Make sure **RdChat** is the startup project by right-clicking it in **Solution Explorer** and selecting **Set as StartUp Project**.
 
@@ -101,13 +101,13 @@ In this task, you configure the settings required to make a connection to the Ta
 
  	_Setting the startup project_
 
-1. Update the service definition to define the configuration settings required to access Windows Azure Table service.  To do this, expand the **Roles** folder of the **RdChat** project in **Solution Explorer**, right-click **RdChat_WebRole**, and then select **Properties**.
+1. Update the service definition to define the configuration settings required to access Microsoft Azure Table service.  To do this, expand the **Roles** folder of the **RdChat** project in **Solution Explorer**, right-click **RdChat_WebRole**, and then select **Properties**.
 
  	![Launching the service configuration editor](Images/configurationeditor.png?raw=true)
 
  	_Launching the service configuration editor_
 
-1. Select the **Settings** tab, click **Add Setting** and create a new configuration setting named _DataConnectionString_. Set its type to **Connection String**, then click the button labeled with an ellipsis and configure the storage connection string to _Windows Azure storage emulator_.
+1. Select the **Settings** tab, click **Add Setting** and create a new configuration setting named _DataConnectionString_. Set its type to **Connection String**, then click the button labeled with an ellipsis and configure the storage connection string to _Microsoft Azure storage emulator_.
 
  	![Creating a storage connection string](Images/webroleconfiguration.png?raw=true)
 
@@ -119,16 +119,16 @@ In this task, you configure the settings required to make a connection to the Ta
 
 1. Press **CTRL + S** to save your configuration changes.
 
-> **Note:** The StorageClient library uses these settings to access Windows Azure Storage. 
-**DataConnectionString**: This is the connection string to the Window Azure account, through which we can programmatically access data storage and other functionalities in Windows Azure. This connection string can point to a Windows Azure Account in the cloud as well as the local compute emulator.
-**Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString**: This is the connection string to Windows Azure server, same as _DataConnectionString_, however this one is dedicated for logging diagnostics.
+> **Note:** The StorageClient library uses these settings to access Microsoft Azure Storage. 
+**DataConnectionString**: This is the connection string to the Window Azure account, through which we can programmatically access data storage and other functionalities in Microsoft Azure. This connection string can point to a Microsoft Azure Account in the cloud as well as the local compute emulator.
+**Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString**: This is the connection string to Microsoft Azure server, same as _DataConnectionString_, however this one is dedicated for logging diagnostics.
 
 <a name="Ex1Task2"></a>
 #### Task 2 - Creating Classes to Model the Table Schema ####
 
 When working locally against the Storage Emulator service for Table Service, you use WCF Data Services client library.
 
-To use Windows Azure table service in .NET, you construct a class that models the desired schema. In addition to the properties required by your model, the class must include a **Timestamp**, a **PartitionKey** and a **RowKey** property and it must be decorated with a **DataServiceKey** _("PartitionKey", "RowKey")_ custom attribute. To simplify this, the **Microsoft.WindowsAzure.StorageClient** namespace includes a **TableServiceEntity** class that already defines the mandatory properties and attributes and can easily be derived from in your class.
+To use Microsoft Azure table service in .NET, you construct a class that models the desired schema. In addition to the properties required by your model, the class must include a **Timestamp**, a **PartitionKey** and a **RowKey** property and it must be decorated with a **DataServiceKey** _("PartitionKey", "RowKey")_ custom attribute. To simplify this, the **Microsoft.WindowsAzure.StorageClient** namespace includes a **TableServiceEntity** class that already defines the mandatory properties and attributes and can easily be derived from in your class.
 
 In this task, you create the model where the data is stored for the Chat application.
 
@@ -145,7 +145,7 @@ In this task, you create the model where the data is stored for the Chat applica
 	}	
 	````
 
-	> **Note:** The **TableServiceEntity** class is included as part of the **Microsoft.WindowsAzure.StorageClient** library. It defines the **PartititionKey, RowKey** and **TimeStamp** system properties required by every entity stored in a Windows Azure table.
+	> **Note:** The **TableServiceEntity** class is included as part of the **Microsoft.WindowsAzure.StorageClient** library. It defines the **PartititionKey, RowKey** and **TimeStamp** system properties required by every entity stored in a Microsoft Azure table.
 Together, the **PartitionKey** and **RowKey** define the **DataServiceKey** that uniquely identifies every entity within a table.
 
 1. Add a default constructor to the **Message** class that initializes its **PartitionKey** and **RowKey** properties.
@@ -240,9 +240,9 @@ Together, the **PartitionKey** and **RowKey** define the **DataServiceKey** that
 1. In the Build menu, select Build Solution.
 
 <a name="Ex1Task3"></a>
-#### Task 3 ‚Äì Creating the Chat User Interface ####
+#### Task 3 ñ Creating the Chat User Interface ####
 
-In this task, you add the code necessary to store messages in a Windows Azure table and display them on the Web page.
+In this task, you add the code necessary to store messages in a Microsoft Azure table and display them on the Web page.
 
 1. Locate the **Application_Start** method in **Global.asax.cs** file and insert the following code (shown in **bold**) into it. This creates storage tables from **MessageDataServiceContext** that we created earlier.
 
@@ -328,7 +328,7 @@ In this task, you add the code necessary to store messages in a Windows Azure ta
 
 To test your service running in the Compute Emulator:
 
-1. In Visual Studio, press **F5** to build and run the application. The compute emulator starts and a new deployment containing the **RdChat** Web Role initializes. A browser window opens to display the Windows Azure Chat Web page. 
+1. In Visual Studio, press **F5** to build and run the application. The compute emulator starts and a new deployment containing the **RdChat** Web Role initializes. A browser window opens to display the Microsoft Azure Chat Web page. 
 
 	![Application after connecting successfully to the storage emulator table server](Images/application-after-connecting-successfully.png?raw=true)
 	
@@ -344,33 +344,33 @@ To test your service running in the Compute Emulator:
 
 1. In Internet Explorer, press **Ctrl + N** to open a second browser window. Enter a different name and type a few more messages. Notice how the chat box updates the conversation after sending a new message.
 
-	![Using the Windows Azure chat application](Images/using-the-windows-azure-chat-application.png?raw=true)
+	![Using the Microsoft Azure chat application](Images/using-the-windows-azure-chat-application.png?raw=true)
 	
-	_Using the Windows Azure chat application_
+	_Using the Microsoft Azure chat application_
 	
 <a name="Exercise2"></a>
 ### Exercise 2: Working with Blobs ###
 
-In this exercise, you will use the Windows Azure Blob Service API to create an application that saves and retrieves image data stored as blobs in Windows Azure storage. It consists of a simple image gallery Web site that can display, upload and remove images in Windows Azure storage, and allows you to enter and display related metadata. The application uses a single container to store its image content as blobs.
+In this exercise, you will use the Microsoft Azure Blob Service API to create an application that saves and retrieves image data stored as blobs in Microsoft Azure storage. It consists of a simple image gallery Web site that can display, upload and remove images in Microsoft Azure storage, and allows you to enter and display related metadata. The application uses a single container to store its image content as blobs.
 
-When you create a blob in Windows Azure, you associate a content type that specifies the format in which the API returns it and allows you to retrieve an image directly from the URL of the corresponding blob.
+When you create a blob in Microsoft Azure, you associate a content type that specifies the format in which the API returns it and allows you to retrieve an image directly from the URL of the corresponding blob.
 
 <a name="Ex2Task1"></a>
-#### Task 1 ‚Äì Retrieving Blob Data from Storage ####
+#### Task 1 ñ Retrieving Blob Data from Storage ####
 
-In this task, you will create an image gallery web page to display images retrieved from Windows Azure storage. The provided solution consists of a web site project with a single page that contains the elements required to display images and enter metadata.  You will add the necessary functionality by editing the code-behind file.
+In this task, you will create an image gallery web page to display images retrieved from Microsoft Azure storage. The provided solution consists of a web site project with a single page that contains the elements required to display images and enter metadata.  You will add the necessary functionality by editing the code-behind file.
 
 1. Open Microsoft Visual Studio 2012 Express for Web elevated as **Administrator**.
 
 1. In the **File** menu, choose **Open Project**. In the **Open Project** dialog, browse to **\\Source\\Ex2-WorkingWithBlobs\\Begin** and open the **Begin.sln** file.
 
-1. Update the service definition to define the configuration settings required to access Windows Azure Table service.  To do this, expand the Roles folder of the **RDImageGallery** project in **Solution Explorer**, right-click **RDImageGallery_WebRole**, and then select **Properties**.
+1. Update the service definition to define the configuration settings required to access Microsoft Azure Table service.  To do this, expand the Roles folder of the **RDImageGallery** project in **Solution Explorer**, right-click **RDImageGallery_WebRole**, and then select **Properties**.
 
 	![Setting role configuration settings](Images/setting-role-configuration-settings.png?raw=true)
 
 	_Setting role configuration settings_
 	
-1. In the **Settings** tab, click **Add Setting** and create a **ConnectionString** type named _DataConnectionString_. Click the button labeled with an ellipsis and set the connection string to **Windows Azure storage emulator**.
+1. In the **Settings** tab, click **Add Setting** and create a **ConnectionString** type named _DataConnectionString_. Click the button labeled with an ellipsis and set the connection string to **Microsoft Azure storage emulator**.
 
 	![Configuring a storage connection string](Images/configuring-a-storage-connection-string.png?raw=true)
 	
@@ -504,7 +504,7 @@ In this task, you will create an image gallery web page to display images retrie
 	}
 	````
 	
-1. Press **F5** to build and run the application. A browser window launches and displays the contents of the image gallery. Note that at this point, the container is empty and the list view displays a ‚ÄúNo Data Available‚Äù message. In the next task, you will implement the functionality required to store images as blobs in Windows Azure storage.
+1. Press **F5** to build and run the application. A browser window launches and displays the contents of the image gallery. Note that at this point, the container is empty and the list view displays a ìNo Data Availableî message. In the next task, you will implement the functionality required to store images as blobs in Microsoft Azure storage.
 
 	>**Note:** Make sure the cloud project is set as the startup project by right-clicking it in **Solution Explorer** and selecting **Set as StartUp Project**.
 
@@ -514,20 +514,20 @@ In this task, you will create an image gallery web page to display images retrie
 
 	> **Note:** If you have not configured the storage settings correctly or if the storage service is not running, an error similar to the one shown below is displayed.
 	
-	![An error caused by an invalid Windows Azure storage configuration or a service problem](Images/error--invalid-azure-storage.png?raw=true)
+	![An error caused by an invalid Microsoft Azure storage configuration or a service problem](Images/error--invalid-azure-storage.png?raw=true)
 	
-	_An error caused by an invalid Windows Azure storage configuration or a service problem_
+	_An error caused by an invalid Microsoft Azure storage configuration or a service problem_
 	
 1. Press **SHIFT+F5** in Visual Studio to stop debugging and delete the deployment from the compute emulator.
 
 <a name="Ex2Task2"></a>
-#### Task 2 ‚Äì Uploading Blob Data to Storage ####
+#### Task 2 ñ Uploading Blob Data to Storage ####
 
-In this task, you add functionality to the image gallery Web page to enter metadata and upload image files to Windows Azure storage. The page contains text controls that you can use to enter descriptive metadata for the selected image. An **asp:FileUpload** control on the page retrieves images from disk and posts them to the page, where they are stored in blob storage.
+In this task, you add functionality to the image gallery Web page to enter metadata and upload image files to Microsoft Azure storage. The page contains text controls that you can use to enter descriptive metadata for the selected image. An **asp:FileUpload** control on the page retrieves images from disk and posts them to the page, where they are stored in blob storage.
 
 1. Open the **Default.aspx.cs** file in the Visual Studio text editor. To do this, right-click the **Default.aspx** file in Solution Explorer and select **View Code**.
 
-1. Add a method at the bottom of the page to save images and their metadata as blobs in Windows Azure storage. The method uses the **GetBlobReference** method in the **CloudBlobContainer** object to create a blob from the image data array and the metadata properties.
+1. Add a method at the bottom of the page to save images and their metadata as blobs in Microsoft Azure storage. The method uses the **GetBlobReference** method in the **CloudBlobContainer** object to create a blob from the image data array and the metadata properties.
 
 	(Code Snippet - _ExploringStorage-Ex2-06-SaveImageMethod-CS_)
 	<!--mark: 4-22-->
@@ -591,7 +591,7 @@ In this task, you add functionality to the image gallery Web page to enter metad
 	}
 	````
 
-	The code retrieves metadata from the text controls and from properties in the **asp:FileUpload** control on the page, which include the content type of the posted file, its file name, and the array of bytes containing the image data. It then calls the **SaveImage** method to store the image and its metadata to Windows Azure storage. 
+	The code retrieves metadata from the text controls and from properties in the **asp:FileUpload** control on the page, which include the content type of the posted file, its file name, and the array of bytes containing the image data. It then calls the **SaveImage** method to store the image and its metadata to Microsoft Azure storage. 
 
 1. Press **F5** to build and run the application and open the image gallery page in a browser window.
 
@@ -601,7 +601,7 @@ In this task, you add functionality to the image gallery Web page to enter metad
 	
 	_Entering metadata to store with the image in blob storage_
 	
-1. Click **Upload Image** to post the image to the Web application. The page refreshes and the newly added image displays in the list view. A status message shows the file name, content type and size of the uploaded file. Note that at this point, no metadata is displayed for the image. In the next task, you will implement the functionality required to retrieve and display metadata for blobs stored in Windows Azure.
+1. Click **Upload Image** to post the image to the Web application. The page refreshes and the newly added image displays in the list view. A status message shows the file name, content type and size of the uploaded file. Note that at this point, no metadata is displayed for the image. In the next task, you will implement the functionality required to retrieve and display metadata for blobs stored in Microsoft Azure.
 
 	![The image gallery showing the uploaded image](Images/the-image-gallery-showing-the-uploaded-image.png?raw=true)
 	
@@ -610,9 +610,9 @@ In this task, you add functionality to the image gallery Web page to enter metad
 1. In Visual Studio, press **SHIFT+F5** to stop debugging and delete the deployment from the Compute Emulator.
 
 <a name="Ex2Task3"></a>
-#### Task 3 ‚Äì Retrieving Metadata for Blobs in Storage ####
+#### Task 3 ñ Retrieving Metadata for Blobs in Storage ####
 
-Blobs can have metadata attached to them. Metadata headers can be set on a request that creates a new container or blob resource, or on a request that explicitly creates a property on an existing resource. In this task, you will add functionality to the image gallery page to retrieve and display metadata associated with images stored in a Windows Azure container.
+Blobs can have metadata attached to them. Metadata headers can be set on a request that creates a new container or blob resource, or on a request that explicitly creates a property on an existing resource. In this task, you will add functionality to the image gallery page to retrieve and display metadata associated with images stored in a Microsoft Azure container.
 
 1. Add an event handler to retrieve metadata for each blob displayed in the list view control that displays images. To do this, go to **Default.aspx**, right-click **View Designer**, select the **images ListView** control, and in the **Properties** Window (you may need to make it visible by right-clicking the control and choosing Properties) click the **Events** button. Locate the **ItemDataBound** event in the Data category, type **OnBlobDataBound** and press **ENTER**. Alternatively, you may edit the ASP.NET markup directly to insert the required event handler.
 
@@ -678,9 +678,9 @@ Blobs can have metadata attached to them. Metadata headers can be set on a reque
 1. Press **SHIFT+F5** to stop debugging and delete the deployment from the compute emulator.
 
 <a name="Ex2Task4"></a>
-#### Task 4 ‚Äì Deleting Blobs from Storage ####
+#### Task 4 ñ Deleting Blobs from Storage ####
 
-In this task, you will add functionality to the image gallery Web page to delete blobs containing image data from Windows Azure storage.
+In this task, you will add functionality to the image gallery Web page to delete blobs containing image data from Microsoft Azure storage.
 
 1. Update the image list view to add an **asp:LinkButton** control that is used to delete images from the gallery container. To do this, right-click **Default.aspx**, and select **View Markup** and locate the **ItemTemplate** for the images **asp:ListView** control. Uncomment the ASP.NET markup located immediately following the **blobMetadata** repeater control (shown **bolded** below).
 
@@ -752,9 +752,9 @@ In this task, you will add functionality to the image gallery Web page to delete
 1. Press **SHIFT+F5** to stop debugging and delete the deployment from the Compute Emulator.
 
 <a name="Ex2Task5"></a>
-#### Task 5 ‚Äì Copying Blobs ####
+#### Task 5 ñ Copying Blobs ####
 
-Windows Azure Blob service has support for making copies of existing blobs. In this task, you will add functionality to the image gallery Web page to copy blobs containing image data from Windows Azure storage that you added earlier.
+Microsoft Azure Blob service has support for making copies of existing blobs. In this task, you will add functionality to the image gallery Web page to copy blobs containing image data from Microsoft Azure storage that you added earlier.
 
 1.	Update the image list view to add an **asp:LinkButton** control that is used to copy images from the gallery container. Open the **Default.aspx** page in Markup mode and locate the **ItemTemplate** for the images **asp:ListView** control. Uncomment the ASP.NET markup located immediately following the delete blob link button control (shown in **bold** text below.)
 
@@ -788,7 +788,7 @@ Windows Azure Blob service has support for making copies of existing blobs. In t
 	...
 	````
 
-1. Add code (shown in **bold**) to **Default.aspx.cs** to implement the command handler for the _copyBlob_ **asp:LinkButton** control. The code creates a copy of a blob based on an existing blob. It also updates the *‚ÄúImageName‚Äù* attribute in its metadata to reflect that it is a copy.
+1. Add code (shown in **bold**) to **Default.aspx.cs** to implement the command handler for the _copyBlob_ **asp:LinkButton** control. The code creates a copy of a blob based on an existing blob. It also updates the *ìImageNameî* attribute in its metadata to reflect that it is a copy.
  
 	(Code Snippet - _ExploringStorage-Ex2-10-OnCopyImageMethod-CS_)
 	<!--mark: 6-31-->
@@ -846,11 +846,11 @@ Windows Azure Blob service has support for making copies of existing blobs. In t
 1. Press **SHIFT+F5** to stop debugging and delete the deployment from the Compute Emulator.
 
 <a name="Ex2Task6"></a>
-#### Task 6 ‚Äì Taking Blob Snapshots ####
+#### Task 6 ñ Taking Blob Snapshots ####
 
-Windows Azure Blob service has support for taking snapshots of blobs. The different between a snapshot and a copy is that snapshots are read-only and the original blob maintains a relationship to its snapshots; blob copies on the other hand are editable. Once a snapshot has been taken for a blob, this source blob can no longer be deleted. Before a source blob can be deleted, all of its snapshots must be deleted first.
+Microsoft Azure Blob service has support for taking snapshots of blobs. The different between a snapshot and a copy is that snapshots are read-only and the original blob maintains a relationship to its snapshots; blob copies on the other hand are editable. Once a snapshot has been taken for a blob, this source blob can no longer be deleted. Before a source blob can be deleted, all of its snapshots must be deleted first.
 
-In this task, you add functionality to take a snapshot of a blob that contains image data from Windows Azure storage.
+In this task, you add functionality to take a snapshot of a blob that contains image data from Microsoft Azure storage.
 
 1. Update the image list view to add an **asp:LinkButton** control that is used to snapshot images from the gallery container. Open the **Default.aspx** page in Markup mode and locate the **ItemTemplate** for the images **asp:ListView** control. Uncomment the ASP.NET markup located immediately following the copy blob link button control (shown in **bold**).
 
@@ -942,31 +942,31 @@ In this task, you add functionality to take a snapshot of a blob that contains i
 <a name="Exercise3"></a>
 ### Exercise 3: Working with Queues ###
 
-In this exercise, you create a simple Web application to send messages to a Windows Azure queue. A Worker role in the solution retrieves the messages and writes them to the compute emulator log.
+In this exercise, you create a simple Web application to send messages to a Microsoft Azure queue. A Worker role in the solution retrieves the messages and writes them to the compute emulator log.
 
 Queue service is a great way to send messages between front-end roles and worker roles. A queue can contain an unlimited number of messages, each of which can be up to 64 KB in size. Messages are pushed to the end of the queue and popped from the front of the queue.
 
 <a name="Ex3Task1"></a>
-#### Task 1 ‚Äì Creating the Initial Solution ####
+#### Task 1 ñ Creating the Initial Solution ####
 
-In this task, you create and configure the initial solution to work with queues in Windows Azure.
+In this task, you create and configure the initial solution to work with queues in Microsoft Azure.
 
 1. Open Visual Studio 2012 Express for Web elevated as **Administrator**.
 
 1. From the **File** menu, choose **New Project**. 
 
-1. In the **New Project** dialog, expand the **Visual C#** language in the Installed Templates list and select **Cloud**. Choose the **Windows Azure Cloud Service** project template, set the **Name** of the project to **RdStorage**, set the location to **Ex3-WorkingWithQueues\Begin** in the **Source** folder of the lab, change the solution name to **Begin**, and ensure that **Create directory for solution** is checked. Click **OK** to create the project.
+1. In the **New Project** dialog, expand the **Visual C#** language in the Installed Templates list and select **Cloud**. Choose the **Microsoft Azure Cloud Service** project template, set the **Name** of the project to **RdStorage**, set the location to **Ex3-WorkingWithQueues\Begin** in the **Source** folder of the lab, change the solution name to **Begin**, and ensure that **Create directory for solution** is checked. Click **OK** to create the project.
 
 	![Creating a WindowsAzure Project](Images/creating-a-windowsazure-project.png?raw=true)
 	
 	_Creating a WindowsAzure Project_
 	
-1. In the **New Windows Azure Project** dialog, select **ASP.NET Web Role** from the list of available roles and click the arrow **(>)** to add an instance of this role to the solution. Change the name of the role to **RdStorage_WebRole**.  To do this, select the role in the right panel, click the pencil icon and enter the new name.  Do not close the dialog. You will add a second role in the next step.
+1. In the **New Microsoft Azure Project** dialog, select **ASP.NET Web Role** from the list of available roles and click the arrow **(>)** to add an instance of this role to the solution. Change the name of the role to **RdStorage_WebRole**.  To do this, select the role in the right panel, click the pencil icon and enter the new name.  Do not close the dialog. You will add a second role in the next step.
 
-	![Adding a Web Role to the windows azure project](Images/adding-a-web-role-to-the-windows-azure-projec.png?raw=true)
+	![Adding a Web Role to the Microsoft Azure project](Images/adding-a-web-role-to-the-windows-azure-projec.png?raw=true)
 	
 
-	*Adding a Web Role to the windows azure project*
+	*Adding a Web Role to the Microsoft Azure project*
 	
 1. Next, add a second role to the solution. Choose a **Worker Role** and change its name to **RdStorage_WorkerRole**. 	
 	
@@ -974,7 +974,7 @@ In this task, you create and configure the initial solution to work with queues 
 	
 	*Adding a new Worker Role to the cloud service project*
 	
-1. Click **OK** to close the **New Windows Azure Project** dialog and create the solution.
+1. Click **OK** to close the **New Microsoft Azure Project** dialog and create the solution.
 
 1. Right-click each role under the **Roles** folder from the **RdStorage** cloud project.  Choose **Properties**.
 
@@ -989,7 +989,7 @@ In this task, you create and configure the initial solution to work with queues 
 	_Configuring a connection string to use Compute Emulator_
 
 <a name="Ex3Task2"></a>
-#### Task 2 ‚Äì Sending Messages to the Queue ####
+#### Task 2 ñ Sending Messages to the Queue ####
 
 In this task, you implement the **RdStorage_WebRole** web application to send messages to the queue.
 
@@ -1094,7 +1094,7 @@ In this task, you implement the **RdStorage_WebRole** web application to send me
 	````
 
 <a name="Ex3Task3"></a>
-#### Task 3 ‚Äì Retrieving Messages from the Queue ####
+#### Task 3 ñ Retrieving Messages from the Queue ####
 
 In this task, you update the worker role to retrieve messages from the queue and show them in the compute emulator log.
 
@@ -1252,11 +1252,11 @@ To test your service running in the compute emulator:
 <a name="Exercise4"></a>
 ### Exercise 4: Working with Drives ###
 	
-A Windows Azure Drive is an NTFS formatted virtual hard disk (VHD) file that is stored in a page blob. You can mount this VHD into a Windows Azure Compute instance to provide persistent storage exposed to applications via the Windows file system. The content of an Azure Drive will persist even if the compute role to which it is mounted is recycled.
+A Microsoft Azure Drive is an NTFS formatted virtual hard disk (VHD) file that is stored in a page blob. You can mount this VHD into a Microsoft Azure Compute instance to provide persistent storage exposed to applications via the Windows file system. The content of an Azure Drive will persist even if the compute role to which it is mounted is recycled.
 
-In this exercise, you take an existing application that makes use of regular Windows file system APIs to access information in local disk storage and run it as a Windows Azure service.  You will see that by using a Windows Azure Drive, no changes to the code are necessary to run the same application in the Azure cloud and have it access information stored in Azure storage.
+In this exercise, you take an existing application that makes use of regular Windows file system APIs to access information in local disk storage and run it as a Microsoft Azure service.  You will see that by using a Microsoft Azure Drive, no changes to the code are necessary to run the same application in the Azure cloud and have it access information stored in Azure storage.
 
-In the first part of the exercise, you execute the original application in the ASP.NET development server to familiarize yourself with its operation. Next, you create a cloud service project, associate the application as a Web role, and run it in the compute emulator using simulated Azure Drives. Finally, you create a VHD on your local machine, upload it to blob storage, deploy the application to Windows Azure and mount the drive in a Windows Azure instance.
+In the first part of the exercise, you execute the original application in the ASP.NET development server to familiarize yourself with its operation. Next, you create a cloud service project, associate the application as a Web role, and run it in the compute emulator using simulated Azure Drives. Finally, you create a VHD on your local machine, upload it to blob storage, deploy the application to Microsoft Azure and mount the drive in a Microsoft Azure instance.
 	
 <a name="Ex4Task1"></a>
 #### Task 1 - Exploring the PhotoAlbum Application####
@@ -1301,27 +1301,27 @@ PhotoAlbum is a sample application that uses standard file system APIs to obtain
 1. Close the browser window. You have now seen that the application uses standard file system APIs to access the files in its store. In the next task, you will update the application to run as a cloud service.
 
 <a name="Ex4Task2"></a>
-#### Task 2 - Using a Windows Azure Drive to Move the Application to the Cloud####
+#### Task 2 - Using a Microsoft Azure Drive to Move the Application to the Cloud####
 
-When moving the application to Windows Azure, the natural choice is to relocate the image store to blob storage. Regardless, the application expects its images to be stored in the file system. You can always update the code that accesses the images in the store and change it to use the Blob service APIs instead. For a simple application such as this one, this would not be too challenging, but it can represent a barrier for a more complex application. Using Windows Azure Drives enables you to move the application to the cloud without any changes to its code, other than mounting the drive on a page blob.
+When moving the application to Microsoft Azure, the natural choice is to relocate the image store to blob storage. Regardless, the application expects its images to be stored in the file system. You can always update the code that accesses the images in the store and change it to use the Blob service APIs instead. For a simple application such as this one, this would not be too challenging, but it can represent a barrier for a more complex application. Using Microsoft Azure Drives enables you to move the application to the cloud without any changes to its code, other than mounting the drive on a page blob.
 
-In this task, you update the application to run as a Windows Azure cloud service and to use a Windows Azure Drive for its image store.
+In this task, you update the application to run as a Microsoft Azure cloud service and to use a Microsoft Azure Drive for its image store.
 
 1. Add a cloud service project to the solution. In **Solution Explorer**, right-click the root solution node, point to **Add** and then select **New Project**. 
 
-1. In the **Add** **New Project** dialog, expand **Visual C#** in the **Installed Templates** list and select **Cloud**. Choose the **Windows Azure Cloud Service** template, set the **Name** of the project to **PhotoAlbumService**, leave the proposed location unchanged and then click **OK**.
+1. In the **Add** **New Project** dialog, expand **Visual C#** in the **Installed Templates** list and select **Cloud**. Choose the **Microsoft Azure Cloud Service** template, set the **Name** of the project to **PhotoAlbumService**, leave the proposed location unchanged and then click **OK**.
 
-	![Creating a Windows Azure Project ](Images/creating-a-windows-azure-project.png?raw=true)
+	![Creating a Microsoft Azure Project ](Images/creating-a-windows-azure-project.png?raw=true)
 
-	_Creating a Windows Azure Project_
+	_Creating a Microsoft Azure Project_
 
-1. In the **New Windows Azure Project** dialog, click **OK** without adding any new roles. You will use the existing application as a web role.
+1. In the **New Microsoft Azure Project** dialog, click **OK** without adding any new roles. You will use the existing application as a web role.
 
-1. Add a reference to the Windows Azure support assemblies. In **Solution Explorer**, right-click the **PhotoAlbum** project and select **Add Reference**. In the **Reference Manager** dialog, search for **Microsoft.WindowsAzure.CloudDrive**, **Microsoft.WindowsAzure.Diagnostics**, **Microsoft.WindowsAzure.ServiceRuntime**, and **Microsoft.WindowsAzure.StorageClient** assemblies, select them and then click **OK**.
+1. Add a reference to the Microsoft Azure support assemblies. In **Solution Explorer**, right-click the **PhotoAlbum** project and select **Add Reference**. In the **Reference Manager** dialog, search for **Microsoft.WindowsAzure.CloudDrive**, **Microsoft.WindowsAzure.Diagnostics**, **Microsoft.WindowsAzure.ServiceRuntime**, and **Microsoft.WindowsAzure.StorageClient** assemblies, select them and then click **OK**.
 
-	![Adding a reference to the Windows Azure support assemblies](Images/adding-a-reference-to-the-windows-azure-suppo.png?raw=true)
+	![Adding a reference to the Microsoft Azure support assemblies](Images/adding-a-reference-to-the-windows-azure-suppo.png?raw=true)
 
-	_Adding a reference to the Windows Azure support assemblies_
+	_Adding a reference to the Microsoft Azure support assemblies_
 
 	
 1. Now, in **Solution Explorer**, right-click the **Roles** node in the **PhotoAlbumService** project, point to **Add** and then select **Web Role Project in solution**.
@@ -1330,7 +1330,7 @@ In this task, you update the application to run as a Windows Azure cloud service
 
 1. You will now configure the web role. To do this, double-click the **PhotoAlbum** role under the **Roles** node in the **PhotoAlbumService** project.
 
-1. In the **PhotoAlbum \[Role\]** properties window, switch to the **Settings** tab and then click **Add Setting**. Set the **Name** of the new setting to _DataConnectionString_, set the **Type** as _Connection String_, and then click the button labeled with an ellipsis located on the right side of the **Value** column. In the **Storage Connection String** dialog, choose the option labeled **Windows Azure storage emulator** and click **OK**.
+1. In the **PhotoAlbum \[Role\]** properties window, switch to the **Settings** tab and then click **Add Setting**. Set the **Name** of the new setting to _DataConnectionString_, set the **Type** as _Connection String_, and then click the button labeled with an ellipsis located on the right side of the **Value** column. In the **Storage Connection String** dialog, choose the option labeled **Microsoft Azure storage emulator** and click **OK**.
 
 1. Add a second setting to configure the URL of the cloud drive in blob storage. For this setting, set the **Name** to _ImageStoreBlobUri_, the **Type** as _String_, and the **Value** as _mydrives/SamplePictures.vhd_. 
 
@@ -1348,12 +1348,12 @@ In this task, you update the application to run as a Windows Azure cloud service
 
 	> **Note:** When **Clean on Role Recycled** is disabled, the contents of the cache will persist even if the role instance is recycled.
 	
-	> Due to the way that the system allocates local storage resources, part of the requested space is unavailable for cache usage. Beginning with Windows Azure Guest OS 1.8, the entire Windows Azure Drive cache is allocated up-front and if there is not enough space in the local resource for the cache, the call to Mount will fail. To avoid this issue when configuring the size of the local resource destined for the drive cache, specify an additional 20MB to the required size. For example, to use a 1000MB cache size, set the size of the local resource to 1020MB.
+	> Due to the way that the system allocates local storage resources, part of the requested space is unavailable for cache usage. Beginning with Microsoft Azure Guest OS 1.8, the entire Microsoft Azure Drive cache is allocated up-front and if there is not enough space in the local resource for the cache, the call to Mount will fail. To avoid this issue when configuring the size of the local resource destined for the drive cache, specify an additional 20MB to the required size. For example, to use a 1000MB cache size, set the size of the local resource to 1020MB.
 
 	
 1. Press **CTRL+S** to save the changes to the role configuration.
 
-1. Configure a trace listener to output diagnostics information to the Windows Azure log. To do this, double-click **Web.config** in **Solution Explorer** to open this file and insert the following **system.diagnostics** section into the configuration after configSections, as shown below.
+1. Configure a trace listener to output diagnostics information to the Microsoft Azure log. To do this, double-click **Web.config** in **Solution Explorer** to open this file and insert the following **system.diagnostics** section into the configuration after configSections, as shown below.
 
 	(Code Snippet - _ExploringStorage-Ex4-01-DiagnosticMonitorTraceListener_)
 	<!--mark: 5-14-->
@@ -1378,7 +1378,7 @@ In this task, you update the application to run as a Windows Azure cloud service
 	
 1. Add a class to the Web role project to manage its initialization and shutdown. In **Solution Explorer**, right-click the **PhotoAlbum** project, point to **Add** and then select **Existing Item**. In the **Add Existing Item** dialog, browse to **Ex4-WorkingWithDrives\Assets**, select **WebRole.cs** and then click **Add**.
 
-	> **Note:** The **WebRole.cs** file contains a standard **RoleEntryPoint** derived class, similar to the one generated when you select a new Windows Azure Web Role project template in Visual Studio.
+	> **Note:** The **WebRole.cs** file contains a standard **RoleEntryPoint** derived class, similar to the one generated when you select a new Microsoft Azure Web Role project template in Visual Studio.
 
 
 1. Locate the **Application_Start** method in **Global.asax.cs** file and insert the following code (shown in **bold**) to this method. 
@@ -1423,7 +1423,7 @@ In this task, you update the application to run as a Windows Azure cloud service
 				mountedDrive.Unmount();
 			}
   
-			// create the Windows Azure drive and its associated page blob
+			// create the Microsoft Azure drive and its associated page blob
 			CloudDrive imageStoreDrive = account.CreateCloudDrive(imageStoreBlobUri);
 
 			if (CloudDrive.GetMountedDrives().Count() == 0)
@@ -1448,7 +1448,7 @@ In this task, you update the application to run as a Windows Azure cloud service
 	}
 	````
 
-	> **Note:** The preceding code retrieves the path to the local storage that you defined earlier, when you configured the Web role, and then uses this path to initialize the drive cache and set the maximum amount of local disk space it will use. Next, it creates a **CloudDrive** object specifying the URL of the page blob, which you also defined earlier in the role configuration settings. Finally, it mounts the formatted page blob to a drive letter for the Windows Azure application to start using. 
+	> **Note:** The preceding code retrieves the path to the local storage that you defined earlier, when you configured the Web role, and then uses this path to initialize the drive cache and set the maximum amount of local disk space it will use. Next, it creates a **CloudDrive** object specifying the URL of the page blob, which you also defined earlier in the role configuration settings. Finally, it mounts the formatted page blob to a drive letter for the Microsoft Azure application to start using. 
 	
 	> Notice that the cache assigned to the drive is only half the total amount of storage reserved for the cache. Later in the exercise, you will create a second drive and assign the remainder to that drive.
 	
@@ -1463,7 +1463,7 @@ In this task, you update the application to run as a Windows Azure cloud service
 	using Microsoft.WindowsAzure.StorageClient;
 	````
  
-1. Next, insert the following highlighted code into the **Application_End** method to unmount the Windows Azure Drive when the Web role shuts down.  Place the code at the start of the method.
+1. Next, insert the following highlighted code into the **Application_End** method to unmount the Microsoft Azure Drive when the Web role shuts down.  Place the code at the start of the method.
 	
 	(Code Snippet - _ExploringStorage-Ex4-04-ApplicationEndMethod-CS_)
 	<!--mark: 3-7-->
@@ -1480,13 +1480,13 @@ In this task, you update the application to run as a Windows Azure cloud service
 
 	> **Note:** The code above retrieves a reference to the previously mounted cloud drive and then unmounts it. 
 
-1. The application is now ready to run as a Windows Azure service. Press **F5** to build and launch the application in the Compute Emulator. When the application starts, it displays the contents for the Windows Azure Drive, which is initially empty. Notice that the page shows that the Image Store Drive is mapped to a drive letter. Keep the browser window open for the moment.
+1. The application is now ready to run as a Microsoft Azure service. Press **F5** to build and launch the application in the Compute Emulator. When the application starts, it displays the contents for the Microsoft Azure Drive, which is initially empty. Notice that the page shows that the Image Store Drive is mapped to a drive letter. Keep the browser window open for the moment.
 
 	![Running the application in the compute emulator with an empty image store drive](Images/running-the-application-in-the-compute-emulat.png?raw=true)
 
 	_Running the application in the compute emulator with an empty image store drive_
 	
-1. Next, you determine the location of the folder used by storage emulator to simulate the cloud drive. To display the compute emulator UI, right-click the Windows Azure tray icon and then select **Show Storage Emulator UI**.
+1. Next, you determine the location of the folder used by storage emulator to simulate the cloud drive. To display the compute emulator UI, right-click the Microsoft Azure tray icon and then select **Show Storage Emulator UI**.
 
 	![Showing the Compute Emulator UI](Images/viewing-the-status-of-storage-emulator.png?raw=true)
 
@@ -1498,7 +1498,7 @@ In this task, you update the application to run as a Windows Azure cloud service
 
 	_Opening the Azure Drive simulation folder_
 
-	> **Note:** When running locally, the storage emulator does not use blob storage to simulate the cloud drive. Instead, it maps the drive to a local folder. From the storage emulator UI, you can open a Windows Explorer window pointing at the temporary folder used by storage emulator to store simulated Windows Azure drives.
+	> **Note:** When running locally, the storage emulator does not use blob storage to simulate the cloud drive. Instead, it maps the drive to a local folder. From the storage emulator UI, you can open a Windows Explorer window pointing at the temporary folder used by storage emulator to store simulated Microsoft Azure drives.
 
 1. Inside the Azure Drive folder, navigate to **devstoreaccount1\mydrives\SamplePictures.vhd**. Note that this path matches the URI of the blob in the storage emulator.
 
@@ -1514,9 +1514,9 @@ In this task, you update the application to run as a Windows Azure cloud service
 
 1. Switch back to the browser window showing the contents of the image store and refresh the page. Notice that the updated page shows the files that you copied in the previous step.
 
-	![Application showing the updated contents of the Windows Azure Drive](Images/application-showing-the-updated-contents-of-t.png?raw=true)
+	![Application showing the updated contents of the Microsoft Azure Drive](Images/application-showing-the-updated-contents-of-t.png?raw=true)
 
-	_Application showing the updated contents of the Windows Azure Drive_
+	_Application showing the updated contents of the Microsoft Azure Drive_
 
 1. Close the browser window.
 
@@ -1552,12 +1552,12 @@ In this task, you update the application to create a new drive in the cloud, mou
 	...
 	````
 
-	> **Note:** The markup above displays a drop down list that enumerates the drives that the web role has mounted as well as a link button that triggers the creation of a new Windows Azure drive.
+	> **Note:** The markup above displays a drop down list that enumerates the drives that the web role has mounted as well as a link button that triggers the creation of a new Microsoft Azure drive.
 
 
 1. In **Solution Explorer**, right-click **Default.aspx** and then select **View Code** to open its code-behind file.
 
-1. Add the following namespace directives at the top of the file to declare the Windows Azure supporting assemblies.
+1. Add the following namespace directives at the top of the file to declare the Microsoft Azure supporting assemblies.
 	
 	(Code Snippet - _ExploringStorage-Ex4-06-AzureNamespaces-CS_)
 	<!--mark: 1-4-->
@@ -1690,19 +1690,19 @@ In this task, you update the application to create a new drive in the cloud, mou
 
 	_Unmounting the drive and deleting it_
 
-1. Close the browser window. You will now deploy and test the application in Windows Azure.
+1. Close the browser window. You will now deploy and test the application in Microsoft Azure.
 
 <a name="Ex4Task4"></a>
 #### Task 4 - Creating an NTFS Formatted VHD on Your Local Machine####
 
-So far, you have explored Windows Azure Drives using the simulated environment provided by the compute emulator. When you deploy the application to the Windows Azure environment, you need a mechanism to upload the information used by the application to blob storage. One alternative is creating a Virtual Hard Drive (VHD) locally in your machine, copying the required information, and then uploading the VHD file to a Windows Azure page blob.
+So far, you have explored Microsoft Azure Drives using the simulated environment provided by the compute emulator. When you deploy the application to the Microsoft Azure environment, you need a mechanism to upload the information used by the application to blob storage. One alternative is creating a Virtual Hard Drive (VHD) locally in your machine, copying the required information, and then uploading the VHD file to a Microsoft Azure page blob.
 
-In this task, you create an NTFS-formatted VHD file to contain sample images that you can upload to Windows Azure Storage and then use as the backing store for a Windows Azure Drive.
+In this task, you create an NTFS-formatted VHD file to contain sample images that you can upload to Microsoft Azure Storage and then use as the backing store for a Microsoft Azure Drive.
 
 >**Note:** This task is optional and is dependent on a feature that is currently available only in Windows 7 and Windows Server 2008 R2. If you do not have these operating system versions, you may skip this task and use the pre-built VHD included in the lab's _Assets_ folder instead.
  
->**Important:** To complete the remaining tasks in this exercise, you require a valid Windows Azure subscription.
-For more information, visit the [Windows Azure Portal][9].
+>**Important:** To complete the remaining tasks in this exercise, you require a valid Microsoft Azure subscription.
+For more information, visit the [Microsoft Azure Portal][9].
 
 [9]:http://www.microsoft.com/windowsazure/
 
@@ -1766,7 +1766,7 @@ For more information, visit the [Windows Azure Portal][9].
 
 	_Formatting the new disk partition_
 
-	> **Note:** Currently, Windows Azure Drives require an NTFS-formatted Virtual Hard Drive (VHD). 
+	> **Note:** Currently, Microsoft Azure Drives require an NTFS-formatted Virtual Hard Drive (VHD). 
 
 1. Finally, verify the information presented by the wizard in its summary screen and click **Finish** to create the new volume.
 
@@ -1796,18 +1796,18 @@ For more information, visit the [Windows Azure Portal][9].
 
 	_Detaching a virtual hard disk_
 
-1. You are now ready to upload the virtual hard disk (VHD) file to Windows Azure Storage.
+1. You are now ready to upload the virtual hard disk (VHD) file to Microsoft Azure Storage.
 
 <a name="Ex4Task5"></a>
-#### Task 5 - Deploying the Application and Uploading the Drive to Windows Azure####
+#### Task 5 - Deploying the Application and Uploading the Drive to Microsoft Azure####
 
-In this task, you upload the NTFS-formatted Virtual Hard Drive (VHD) created previously to a Windows Azure Page Blob. The lab material includes a tool that you can use for this purpose.
+In this task, you upload the NTFS-formatted Virtual Hard Drive (VHD) created previously to a Microsoft Azure Page Blob. The lab material includes a tool that you can use for this purpose.
 
-1. Before you access your Windows Azure Storage account to upload the VHD file, you need to determine the name and primary key of the account. To obtain your storage account information, sign in at the Windows Azure Management Portal <http://manage.windowsazure.com/>.
+1. Before you access your Microsoft Azure Storage account to upload the VHD file, you need to determine the name and primary key of the account. To obtain your storage account information, sign in at the Microsoft Azure Management Portal <http://manage.windowsazure.com/>.
 
 1. Click **Storage** and then select your account from the list. Take note of the account **name**.
 
-	![Viewing Windows Azure storage accounts](Images/viewing-windows-azure-storage-accounts.png?raw=true "Viewing Windows Azure storage accounts")
+	![Viewing Microsoft Azure storage accounts](Images/viewing-windows-azure-storage-accounts.png?raw=true "Viewing Microsoft Azure storage accounts")
 
 	_Viewing storage accounts_
 
@@ -1817,13 +1817,13 @@ In this task, you upload the NTFS-formatted Virtual Hard Drive (VHD) created pre
 
 	_Manage Keys_
 
-	![Viewing Windows Azure storage account information](Images/viewing-windows-azure-storage-account-informa.png?raw=true)
+	![Viewing Microsoft Azure storage account information](Images/viewing-windows-azure-storage-account-informa.png?raw=true)
 
-	_Viewing Windows Azure storage account information_
+	_Viewing Microsoft Azure storage account information_
 
 1. Next, open a command prompt and change the current directory to _\\Source\\Assets\\VHDUpload_.
 
-1. At the command prompt, type the following command line replacing _\<vhdFilePath\>_ with the path to the VHD file created in task 4, and **\<accountName\>** and **\<accountKey\>** with the name and the primary access key of your Windows Azure storage account , respectively. 
+1. At the command prompt, type the following command line replacing _\<vhdFilePath\>_ with the path to the VHD file created in task 4, and **\<accountName\>** and **\<accountKey\>** with the name and the primary access key of your Microsoft Azure storage account , respectively. 
 
 	>**Note:** If you are currently on a platform that does not support creating and mounting VHD files and you were unable to complete the previous task, use the **SamplePictures.vhd** file located in the same folder as the tool instead.
 
@@ -1836,9 +1836,9 @@ In this task, you upload the NTFS-formatted Virtual Hard Drive (VHD) created pre
 
 1. Press **Enter** to start uploading the virtual hard disk (VHD) file to blob storage. Wait for the process to complete; it may take several minutes
 
-	![Uploading a VHD file to a Windows Azure page blob](Images/uploading-a-vhd-file-to-a-windows-azure-page.png?raw=true)
+	![Uploading a VHD file to a Microsoft Azure page blob](Images/uploading-a-vhd-file-to-a-windows-azure-page.png?raw=true)
 
-	_Uploading a VHD file to a Windows Azure page blob_
+	_Uploading a VHD file to a Microsoft Azure page blob_
 
 1. Now that you have uploaded the VHD file to Azure Storage, you are ready to deploy the application.
 
@@ -1846,7 +1846,7 @@ In this task, you upload the NTFS-formatted Virtual Hard Drive (VHD) created pre
 
 1. First, you need to update the web role configuration with your storage account information. To do this, expand the **Roles** node in the **PhotoAlbumService** project and double-click the **PhotoAlbum** role to open its properties window. 
 
-1. In the **PhotoAlbum \[Role\]** window, switch to the **Settings** tab, locate the _Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString_ setting and then click the button labeled with an ellipsis, on the right edge of the row. In the **Storage Connection String** dialog, choose **Manually entered credentials** and enter the **Account name** and **Account key** for your Windows Azure storage account. In the **Connection** area, make sure that the **Use HTTP** option is selected, and click **OK**.
+1. In the **PhotoAlbum \[Role\]** window, switch to the **Settings** tab, locate the _Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString_ setting and then click the button labeled with an ellipsis, on the right edge of the row. In the **Storage Connection String** dialog, choose **Manually entered credentials** and enter the **Account name** and **Account key** for your Microsoft Azure storage account. In the **Connection** area, make sure that the **Use HTTP** option is selected, and click **OK**.
 
 1. Repeat the previous step to configure the _DataConnectionString_ setting. Enter the same information used previously except for the **Connection** setting, which should be set to **Use HTTP**.
 
@@ -1854,17 +1854,17 @@ In this task, you upload the NTFS-formatted Virtual Hard Drive (VHD) created pre
 
 	_Configuring the storage account for the cloud drive to use HTTP endpoints_
 
-	> **Note:** Windows Azure Drives only support HTTP endpoints currently.
+	> **Note:** Microsoft Azure Drives only support HTTP endpoints currently.
 
 1. Now that you have configured the application with the settings for your storage account, you can proceed to deploy it. To create a service package, right-click the **PhotoAlbumService** cloud service project and select **Package**. 
 
-	>**Note:** For additional information about deploying your application to Windows Azure, see the **Windows Azure Deployment** hands-on lab in this training kit. In particular, Exercise 3 of this lab discusses deploying applications from Visual Studio.
+	>**Note:** For additional information about deploying your application to Microsoft Azure, see the **Microsoft Azure Deployment** hands-on lab in this training kit. In particular, Exercise 3 of this lab discusses deploying applications from Visual Studio.
 
 	![Creating a service package in Visual Studio](Images/creating-a-service-package-in-visual-studio.png?raw=true)
 
 	_Creating a service package in Visual Studio_
 
-1. In the **Package Windows Azure Application** dialog box, click **Package** to generate the package. This opens Windows Explorer to a folder within your solution folders that contains the generated package. Although you could use the integrated deployment feature in the Windows Azure Tools to publish the service to Windows Azure directly from Visual Studio, in this lab, you deploy it using the Windows Azure Management Portal.
+1. In the **Package Microsoft Azure Application** dialog box, click **Package** to generate the package. This opens Windows Explorer to a folder within your solution folders that contains the generated package. Although you could use the integrated deployment feature in the Microsoft Azure Tools to publish the service to Microsoft Azure directly from Visual Studio, in this lab, you deploy it using the Microsoft Azure Management Portal.
 
 1. To deploy the service package, go to the [Management Portal][10] and sign in. 
 
@@ -1895,25 +1895,25 @@ In this task, you upload the NTFS-formatted Virtual Hard Drive (VHD) created pre
 	_Publish your cloud service_
 
 
-	> **Note:** A Windows Azure virtual machine runs a guest operating system into which your service application is deployed. To support the Windows Azure Drive feature, the operating system version must be compatible with the Windows Azure SDK version 1.8. For information on available versions of the Windows Azure guest operating system, see [http://msdn.microsoft.com/en-us/library/ee924680(v=MSDN.10).aspx](http://msdn.microsoft.com/en-us/library/ee924680\(v=MSDN.10\).aspx).
+	> **Note:** A Microsoft Azure virtual machine runs a guest operating system into which your service application is deployed. To support the Microsoft Azure Drive feature, the operating system version must be compatible with the Microsoft Azure SDK version 1.8. For information on available versions of the Microsoft Azure guest operating system, see [http://msdn.microsoft.com/en-us/library/ee924680(v=MSDN.10).aspx](http://msdn.microsoft.com/en-us/library/ee924680\(v=MSDN.10\).aspx).
 	
-	> In general, it is recommended to use the latest available OS to take advantage of new features and security fixes. If you do not specify a version in your configuration file, the OS upgrade method is set to automatic and Windows Azure automatically upgrades your VMs to the latest release of the guest OS, once it becomes available. For this lab, you will not choose a specific version and instead use automatic upgrade mode to ensure that the application runs under a guest OS that supports Windows Azure Drives.
+	> In general, it is recommended to use the latest available OS to take advantage of new features and security fixes. If you do not specify a version in your configuration file, the OS upgrade method is set to automatic and Microsoft Azure automatically upgrades your VMs to the latest release of the guest OS, once it becomes available. For this lab, you will not choose a specific version and instead use automatic upgrade mode to ensure that the application runs under a guest OS that supports Microsoft Azure Drives.
 
 
 1. Wait for the transfer to complete. The status of the service should show **Created** when completed.
 
 1. Now, click **URL** link within your recently deployed service to open the application in your browser. The application should behave in essentially the same manner as it did when you deployed it locally. However, notice that the URL of the page blob for the mounted drive is now pointing to the page blob where you uploaded the VHD file.
 
-	![Running the application in the Windows Azure environment](Images/running-the-application-in-the-windows-azure.png?raw=true)
+	![Running the application in the Microsoft Azure environment](Images/running-the-application-in-the-windows-azure.png?raw=true)
 
-	_Running the application in the Windows Azure environment_
+	_Running the application in the Microsoft Azure environment_
 
 ---
 	
 <a name="Summary"></a>
 ## Summary ##
 
-In this lab, you have learned how to work with the Windows Azure Storage using tables, blobs, queues and drives.
+In this lab, you have learned how to work with the Microsoft Azure Storage using tables, blobs, queues and drives.
 
 Tables store data as collections of entities. Entities are similar to rows. An entity has a primary key and a set of properties. A property is a name/value pair, similar to a column.
 
@@ -1921,4 +1921,4 @@ Blobs can store any binary data. In this lab, you have used the Blob service to 
 
 Using queues, you have seen how to dispatch simple messages (with string, xml or binary content). This is an excellent way of enabling communication between web and worker roles.
 
-Finally, you explored the use of Windows Azure Drives that allow you to read and write data to blob storage using standard file system functions.
+Finally, you explored the use of Microsoft Azure Drives that allow you to read and write data to blob storage using standard file system functions.

@@ -1,14 +1,14 @@
-﻿# Building Windows 8 Applications using Windows Azure Web Sites #
+# Building Windows 8 Applications using Microsoft Azure Websites #
 
 ## Hands-on Lab ##
 
 ### Introduction ###
 
-Hands-on Labs are sets of step-by-step guides that are designed to help you learn how to use key Windows Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
+Hands-on Labs are sets of step-by-step guides that are designed to help you learn how to use key Microsoft Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
 
-In this Hands-on Lab, you will learn how to combine the fluency of Windows 8 applications with the power of Windows Azure: from a Windows Store application, you will consume an ASP.NET Web API service published in Windows Azure Web Sites, and store your data in a Windows Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app using Windows Azure Notification Hubs to send toast notifications from your service to all the registered clients.
+In this Hands-on Lab, you will learn how to combine the fluency of Windows 8 applications with the power of Microsoft Azure: from a Windows Store application, you will consume an ASP.NET Web API service published in Microsoft Azure Websites, and store your data in a Microsoft Azure SQL Database. In addition, you will learn how to configure the Windows Push Notification Services (WNS) in your app using Microsoft Azure Notification Hubs to send toast notifications from your service to all the registered clients.
 
-> **Note:** You can download the latest build of the Windows Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
+> **Note:** You can download the latest build of the Microsoft Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
 
 ### Repository Structure ###
 

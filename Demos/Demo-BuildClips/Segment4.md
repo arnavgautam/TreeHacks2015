@@ -1,7 +1,7 @@
-﻿<a name="segment4" />
-### Segment 4: Scaling with Windows Azure Caching ###
+<a name="segment4" />
+### Segment 4: Scaling with Microsoft Azure Caching ###
 
-In this segment, you will improve the scalability and performance of your Windows 8 and web applications by using the new Windows Azure Caching support.  
+In this segment, you will improve the scalability and performance of your Windows 8 and web applications by using the new Microsoft Azure Caching support.  
 
 1. The BuildClips Web app and the Windows 8 application should be running from the previous demo.  
 
@@ -13,7 +13,7 @@ In this segment, you will improve the scalability and performance of your Window
 
 1. Set **Enable Profiling** to **On**.
 
-	> **Speaking Point:** After you enable profiling, you can see the execution time for calling out to the Web APIs in the application.  We will use Windows Azure Caching to improve the response time for these calls and improve the scalability for our application by not querying the database on each request. 
+	> **Speaking Point:** After you enable profiling, you can see the execution time for calling out to the Web APIs in the application.  We will use Microsoft Azure Caching to improve the response time for these calls and improve the scalability for our application by not querying the database on each request. 
 
 	> It should be pointed out that we are not measuring the overall response time of the request from the client application's perspective. Instead, we'll just show the impact that caching has on the service by measuring the execution time on the server. In other words, the time taken to process a request, from the moment it's received until a response is ready to be sent out to the network.
 
@@ -23,7 +23,7 @@ In this segment, you will improve the scalability and performance of your Window
 
 1. Switch to the Visual Studio 2012 instance that has the BuildClips web project already open and stop the solution.  
 
-	> **Speaking Point:** Let's enable Windows Azure Caching for our cloud service. 
+	> **Speaking Point:** Let's enable Microsoft Azure Caching for our cloud service. 
 
 1. Expand the **BuildClips.Azure** project and double-click the **BuildClips** web role to open its **Properties** window. Switch to the **Caching** page and then select **Enable Caching** for the web role.
 
@@ -33,19 +33,19 @@ In this segment, you will improve the scalability and performance of your Window
 
 	_Enabling caching in Web Role properties_
 
-	> **Speaking point:** We can tell Windows Azure to use a percentage of the available memory in the web role. 
+	> **Speaking point:** We can tell Microsoft Azure to use a percentage of the available memory in the web role. 
 	
 1. Press **CTRL** + **S** to save the changes and close the Properties window.
 
 1. Right-click the **solution** and then open the **NuGet Package Manager**.
 
-	> **Speaking point:** Now we need to reference the Windows Azure Caching assemblies so we can interact with the cache from our application.  To do this, we'll simply right-click our solution to pull up the Manage NuGet Packages dialog and install the Windows Azure Caching NuGet package into our projects.
+	> **Speaking point:** Now we need to reference the Microsoft Azure Caching assemblies so we can interact with the cache from our application.  To do this, we'll simply right-click our solution to pull up the Manage NuGet Packages dialog and install the Microsoft Azure Caching NuGet package into our projects.
 
 	![Manage nuget packages for solution](Images/manage-nuget-packages-for-solution.png?raw=true)
 
 	_Manage nuget packages for solution_
 
-1. In the **NuGet Package Manager**, expand the **Online** node and search for the **Windows Azure Caching** package.
+1. In the **NuGet Package Manager**, expand the **Online** node and search for the **Microsoft Azure Caching** package.
 
 1. Select package, click **Install** and confirm to install the package **in the three projects**. Close the package manager.
 	
@@ -94,7 +94,7 @@ In this segment, you will improve the scalability and performance of your Window
 	  </cacheDiagnostics>
 	  <system.web>
 ````
-	> **Speaking point:** Now let's write some code in our service layer to store data in Windows Azure Caching when we retrieve the list of videos from the database.
+	> **Speaking point:** Now let's write some code in our service layer to store data in Microsoft Azure Caching when we retrieve the list of videos from the database.
 
 1. Open **VideoService.cs** in the service library and replace the current implementation of the **GetAll** method with the following code.
 	

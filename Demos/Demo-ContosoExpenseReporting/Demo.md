@@ -1,4 +1,4 @@
-ï»¿<a name="title" />
+<a name="title" />
 # Contoso Expense Reporting Demo #
 
 ---
@@ -6,7 +6,7 @@
 <a name="Overview" />
 ## Overview ##
 
-This demo illustrates an end-to-end scenario highlighting the Windows Azure cloud-ready data services, including Windows Azure SQL Database, Windows Azure Storage, and SQL Server 2012 in a Windows Azure Virtual Machine. This demo will showcase the rich and powerful features of the Windows Azure data services including easy provisioning of the services, fluid migration options, and the high-performing, scalable and feature-rich data options.
+This demo illustrates an end-to-end scenario highlighting the Microsoft Azure cloud-ready data services, including Microsoft Azure SQL Database, Microsoft Azure Storage, and SQL Server 2012 in a Microsoft Azure Virtual Machine. This demo will showcase the rich and powerful features of the Microsoft Azure data services including easy provisioning of the services, fluid migration options, and the high-performing, scalable and feature-rich data options.
 
 <a id="goals" />
 ### Goals ###
@@ -14,13 +14,13 @@ In this demo, you will see the following:
 
 1. Contoso Expense Reporting application running on-premise.
 
-1. Provisioning a virtual machine in Windows Azure to run SQL Server 2012.
+1. Provisioning a virtual machine in Microsoft Azure to run SQL Server 2012.
 
-1. Deploying the application to a Windows Azure Web Site.
+1. Deploying the application to a Microsoft Azure Web Site.
 
-1. Connecting the application to a Windows Azure SQL Database.
+1. Connecting the application to a Microsoft Azure SQL Database.
 
-1. Connecting the application to use Windows Azure Storage.
+1. Connecting the application to use Microsoft Azure Storage.
 
 1. Creating SQL Database Federations.
 
@@ -44,15 +44,15 @@ In order to execute this demo, you need to set up your environment.
 <a name="Demo" />
 ## Demo ##
 
-Throughout the course of this session, we will show the power and flexibility of Windows Azure by taking an on-premises application and associated database, and migrate them to Windows Azure. We will first use our IaaS services to migrate the database to a virtual machine with SQL Server 2012 and the application to a Windows  Azure Cloud Service. We will then highlight our PaaS services by migrating the database to SQL Azure and extend the functionality of the application to use our Windows Azure storage services.
+Throughout the course of this session, we will show the power and flexibility of Microsoft Azure by taking an on-premises application and associated database, and migrate them to Microsoft Azure. We will first use our IaaS services to migrate the database to a virtual machine with SQL Server 2012 and the application to a Windows  Azure Cloud Service. We will then highlight our PaaS services by migrating the database to SQL Azure and extend the functionality of the application to use our Microsoft Azure storage services.
 
 This demo contains the following segments:
 
 1. [Contoso Expense Reporting Application Overview](#segment1).
-1. [Migrating to Windows Azure with Virtual Machines & SQL Server 2012](#segment2).
-1. [Windows Azure SQL Database](#segment3). 
-1. [Windows Azure SQL Federation](#segment4). 
-1. [Windows Azure Storage](#segment5). 
+1. [Migrating to Microsoft Azure with Virtual Machines & SQL Server 2012](#segment2).
+1. [Microsoft Azure SQL Database](#segment3). 
+1. [Microsoft Azure SQL Federation](#segment4). 
+1. [Microsoft Azure Storage](#segment5). 
 
 <a name="segment1" />
 ### Contoso Expense Reporting On-Premises ###
@@ -66,9 +66,9 @@ This demo contains the following segments:
 
 	>**Speaking Point**
 	>
-	> Weâ€™re first going to log in as a user and submit a simple expense report.
+	> We’re first going to log in as a user and submit a simple expense report.
 	>
-	> As part of this, weâ€™re going to highlight some of the challenges the company has today with the system, including the challenge of attaching receipts and verifying expenses.
+	> As part of this, we’re going to highlight some of the challenges the company has today with the system, including the challenge of attaching receipts and verifying expenses.
 
 1. Click **Login as user**.
 
@@ -78,7 +78,7 @@ This demo contains the following segments:
 
 	>**Speaking Point**
 	>
-	> Weâ€™re first going to log in as a user to illustrate some of the pain points we have with this application in submitting expense reports and highlight some of the areas where this application can be expanded and improved.
+	> We’re first going to log in as a user to illustrate some of the pain points we have with this application in submitting expense reports and highlight some of the areas where this application can be expanded and improved.
 
 1. Select **My Reports** in the toolbar. 
 
@@ -138,24 +138,24 @@ This demo contains the following segments:
 	> Standard MVC web application. Common to most of you. Most have running in enterprise.
 
 <a name="segment2" />
-### Migrating to Windows Azure with Virtual Machines & SQL Server 2012 ###
+### Migrating to Microsoft Azure with Virtual Machines & SQL Server 2012 ###
 
-1. Open the Web browser and go to the Windows Azure Portal at <http://windows.azure.com>
+1. Open the Web browser and go to the Microsoft Azure Portal at <http://windows.azure.com>
 
 1. Sign in with your Live ID.
 
 
-	![Sign in](Images/sign-in.png?raw=true "Windows Azure Portal Sign in")
+	![Sign in](Images/sign-in.png?raw=true "Microsoft Azure Portal Sign in")
 
-	_Windows Azure Portal sign in_
+	_Microsoft Azure Portal sign in_
 
 	>**Speaking Point**
 	>
-	> The first step in migrating our application to Windows Azure is to create a VM.
+	> The first step in migrating our application to Microsoft Azure is to create a VM.
 	>
-	> Let us first navigate to the Windows Azure portal and get signed in.
+	> Let us first navigate to the Microsoft Azure portal and get signed in.
 	>
-	> We use Live ID for authentication on the portal, so letâ€™s log on.
+	> We use Live ID for authentication on the portal, so let’s log on.
 
 1. In the portal, click **New** | **Virtual Machine** | **From Gallery**.
 
@@ -165,11 +165,11 @@ This demo contains the following segments:
 
 	>**Speaking Point**
 	>
-	> Now that weâ€™re logged in, creating a virtual machine via the portal is easy. Letâ€™s select the virtual machines option in the navigation pane.
+	> Now that we’re logged in, creating a virtual machine via the portal is easy. Let’s select the virtual machines option in the navigation pane.
 	>
-	> At least one virtual machine will be created, but weâ€™re going to create a new virtual machine that has SQL Server 2012. To do that, weâ€™re going to select the **FROM GALLERY** option.
+	> At least one virtual machine will be created, but we’re going to create a new virtual machine that has SQL Server 2012. To do that, we’re going to select the **FROM GALLERY** option.
 	>
-	>You can use **Quick Create** if you only need one virtual machine that doesnâ€™t need to be load-balanced or joined to a virtual network or
+	>You can use **Quick Create** if you only need one virtual machine that doesn’t need to be load-balanced or joined to a virtual network or
 **From Gallery** if you have more complex solution. With the latter, you have more flexibility in how the machine is used in advanced scenarios.
 
 1.	In the **CREATE VIRTUAL MACHINE** dialog, select the **Microsoft SQL Server 2012 Evaluation** option.
@@ -182,9 +182,9 @@ This demo contains the following segments:
 
 	>**Speaking Point**
 	>
-	> Notice all the different VMâ€™s that we have in our gallery. As you can see, we have many VMs that include Linux, as well as several Server 2008 R2 and Server 2012 VMs.
+	> Notice all the different VM’s that we have in our gallery. As you can see, we have many VMs that include Linux, as well as several Server 2008 R2 and Server 2012 VMs.
 	>
-	>We also have, as you can see, a SQL Server 2012 VM. This VM is running SQL Server 2012 Enterprise Evaluation edition which is the VM we want to create, so letâ€™s select that one.
+	>We also have, as you can see, a SQL Server 2012 VM. This VM is running SQL Server 2012 Enterprise Evaluation edition which is the VM we want to create, so let’s select that one.
 
 1.	The second page of the **Create Virtual Machine** wizard is the **VM Configuration**. Enter the following:
 	- **Virtual Machine Name**: _ContosExpenseVM_
@@ -224,11 +224,11 @@ This demo contains the following segments:
 
 	>**Speaking Point**
 	>
-	> Now, we need to select the type of virtual machine. In other words, is this going to be new standalone virtual machine, or are we connecting to an existing virtual machine? With the new IaaS domain features, we have the ability to join this VM to an existing domain. However, for the purposes of this demo, weâ€™ll simply create a standalone VM.
+	> Now, we need to select the type of virtual machine. In other words, is this going to be new standalone virtual machine, or are we connecting to an existing virtual machine? With the new IaaS domain features, we have the ability to join this VM to an existing domain. However, for the purposes of this demo, we’ll simply create a standalone VM.
 	>
 	> Next, we need to supply a DNS name for this VM. 
 	> 
-	> These VMs are stored in blob storage and we need to specify whether our VM will use a Windows Azure account tied to our subscription, if we created one, or use an automatically generated storage account. Since we havenâ€™t created a storage account yet, weâ€™ll use the automatically generated account.
+	> These VMs are stored in blob storage and we need to specify whether our VM will use a Microsoft Azure account tied to our subscription, if we created one, or use an automatically generated storage account. Since we haven’t created a storage account yet, we’ll use the automatically generated account.
 Lastly, we need to specify in which region to create the VM. 
 
 
@@ -246,7 +246,7 @@ Lastly, we need to specify in which region to create the VM.
 	>
 	> An availability set is a group of machines that are deployed across multiple locations (commonly called fault domains). Availability sets are used to protect from outages.
 	> 
-	>So, weâ€™ll select the **Create Availability Set** option and name the availability set as _MyAvailSet_.
+	>So, we’ll select the **Create Availability Set** option and name the availability set as _MyAvailSet_.
 	>
 	>Great, we are done! We can see in the portal that our VM is being provisioned.
 
@@ -260,7 +260,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	Otherwise, you need to complete the following steps to configure the VM.
 
-1.	In the **Windows Azure Portal**, select the VM you created previously.
+1.	In the **Microsoft Azure Portal**, select the VM you created previously.
 1.	Select the **ENDPOINTS** view, and then click **ADD ENDPOINT** in the command bar.
 1.	In the **ADD ENDPOINT** dialog, select **Add Endpoint** and then click the right arrow to go to the next page.
 
@@ -278,7 +278,7 @@ Lastly, we need to specify in which region to create the VM.
 	>
 	> Highlight the fact that in order to gain access to SQL Server inside the VM from external, we needed to create an **Endpoint** for port 1433.
 	>
-	>**Virtual machines** use endpoints to communicate within Windows Azure and with other resources on the Internet
+	>**Virtual machines** use endpoints to communicate within Microsoft Azure and with other resources on the Internet
 	>
 	>Creating the endpoint allows us to access the VM remotely to connect to SQL Server.
 
@@ -298,7 +298,7 @@ Lastly, we need to specify in which region to create the VM.
 	>
 	> However, before we connect to the VM, we need to grab some information from it. 
 	>
-	> In order to connect to SQL Server in the VM, we need its DNS name. Weâ€™ll be using it shortly to connect to SQL Server.
+	> In order to connect to SQL Server in the VM, we need its DNS name. We’ll be using it shortly to connect to SQL Server.
 
 1.	Now, click **Connect** on the command bar.
 1.	Save the RDP file to the desktop or another suitable location.
@@ -310,7 +310,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> Weâ€™re going to connect to this VM and to do that, we simply select the VM in the portal and click **CONNECT**, which downloads a Remote Desktop Connection file and asks us to open it or save it to disk. 
+	> We’re going to connect to this VM and to do that, we simply select the VM in the portal and click **CONNECT**, which downloads a Remote Desktop Connection file and asks us to open it or save it to disk. 
 	>
 	> For our existing VM, we will save this shortcut to our desktop.
 
@@ -325,7 +325,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> Letâ€™s log into the virtual machine by entering the password we configured earlier. 
+	> Let’s log into the virtual machine by entering the password we configured earlier. 
 
 1.	Inside the remote desktop session, click **Run** on the **Start** menu, type **WF.msc**, and then click **OK**.
 1.	In the **Windows Firewall with Advanced Security** management console, select **Inbound Rules** in the left pane, and then click **New Rule** in the action pane.
@@ -404,7 +404,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	![Creating to SQL Server using VM's DNS Name](Images/creating-to-sql-server-using-vms-dns-name.png?raw=true "Creating to SQL Server using VM's DNS Name")
 
-	_Connecting to the SQL Server in Windows Azure using the VM's DNS name_
+	_Connecting to the SQL Server in Microsoft Azure using the VM's DNS name_
 
 	>**Speaking Point**
 	>
@@ -443,7 +443,7 @@ Lastly, we need to specify in which region to create the VM.
 	> **Highlight the following:**
 	>
 	>	- BACPACs - schema and data
-	>	- Save TO Windows Azure BLOB storage
+	>	- Save TO Microsoft Azure BLOB storage
 	>
 	> We will now import the bacpac into the SQL Server running in the VM.
 
@@ -470,12 +470,12 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> Now, weâ€™re going to import from the exported bacpac file. 
+	> Now, we’re going to import from the exported bacpac file. 
 	>
 	> Again, highlight the following:
 	>
 	>	- BACPACs - schema and data
-	>	- Import FROM Windows Azure BLOB storage
+	>	- Import FROM Microsoft Azure BLOB storage
 	>
 	> POINT: No need to create the database! This process will create it for you!**
 
@@ -492,7 +492,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> We are going to deploy the application to Windows Azure, but we now want it to connect to our database in the VM, so the first thing we need to do is modify the connection string.
+	> We are going to deploy the application to Microsoft Azure, but we now want it to connect to our database in the VM, so the first thing we need to do is modify the connection string.
 
 1. Press **F5**.
 
@@ -500,7 +500,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> Letâ€™s build our application to ensure weâ€™re good.
+	> Let’s build our application to ensure we’re good.
 
 1.	Go back to the portal.
 1.	Click **NEW** | **WEB SITE** | **QUICK CREATE**. 
@@ -514,7 +514,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> **Quick Create** when you donâ€™t need database connectivity or you will be setting up a database separately.
+	> **Quick Create** when you don’t need database connectivity or you will be setting up a database separately.
 	>
 	> **From Gallery** when you want to quickly build a web site from one of several available templates.
 	>
@@ -540,7 +540,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> POINT: All of the information required to publish a Web application to a Windows Azure website is stored in an XML file known as a **publish profile**. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled.
+	> POINT: All of the information required to publish a Web application to a Microsoft Azure website is stored in an XML file known as a **publish profile**. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled.
 
 1.	Go back to **Visual Studio**, right-click the **Web Project** and then select **Publish**.
 1.	In the **Publish Web** dialog, click the **Import** button, browse to locate the **.PublishSettings** file that you downloaded previously, and then click **Open**.
@@ -568,9 +568,9 @@ Lastly, we need to specify in which region to create the VM.
 	> **POINT:** With a few clicks and using familiar tools we have deployed both the app and the database to the cloud with NO CODE except for changing the connection string. 
 
 <a name="segment3" />
-#### Windows Azure SQL Database ####
+#### Microsoft Azure SQL Database ####
 
-1.	Back in to the Windows Azure portal, select the **SQL DATABASES** option in the navigation pane.
+1.	Back in to the Microsoft Azure portal, select the **SQL DATABASES** option in the navigation pane.
 1. Click **New**.
 
 	![Azure Portal SQL Databases](Images/azure-portal-sql-databases.png?raw=true "Azure Portal SQL Databases")
@@ -590,14 +590,14 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> From here, weâ€™ll click the **SERVERS** option because we simply need to provision a server.
+	> From here, we’ll click the **SERVERS** option because we simply need to provision a server.
 
 1. Now, click **ADD**.
 1.	In the **SQL Database server settings** page, enter the following:
 	- **LOGIN NAME**:  _AzureAdmin_
 	- **LOGIN PASSWORD**: _Passw0rd!_
 1. Choose a **REGION** that matches the region used by the web site that you created previously.
-1.	Ensure that the option labeled **Allow Windows Azure services to access the server** is selected.
+1.	Ensure that the option labeled **Allow Microsoft Azure services to access the server** is selected.
 
 	![Database server settings](Images/database-server-settings.png?raw=true "Database server settings")
 
@@ -608,7 +608,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> The admin account is much like the _sa_ account in the on-premises SQL Server. This account is the main administrator for the Windows Azure SQL Database server.
+	> The admin account is much like the _sa_ account in the on-premises SQL Server. This account is the main administrator for the Microsoft Azure SQL Database server.
 	> You can create other accounts and assign different permissions just like you can on-premises.
 
 1. Click the **CONFIGURE** menu option.
@@ -655,7 +655,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	![Connecting to Azure SQL Database](Images/connecting-to-azure-sql-database.png?raw=true "Connecting to Azure SQL Database")
 
-	_Connecting to Windows Azure SQL Database_
+	_Connecting to Microsoft Azure SQL Database_
 
 	>**Speaking Point**
 	>
@@ -663,10 +663,10 @@ Lastly, we need to specify in which region to create the VM.
 	>
 	>	- On-premises
 	>	- SQL Server in a VM
-	>	- Windows Azure SQL Database
+	>	- Microsoft Azure SQL Database
 
-1.	We now need to import the database into the Windows Azure SQL Database.
-1.	In Object Explorer, right-click the **Databases** node for the Windows Azure SQL Database connection and select **Import Data-Tier Application**.
+1.	We now need to import the database into the Microsoft Azure SQL Database.
+1.	In Object Explorer, right-click the **Databases** node for the Microsoft Azure SQL Database connection and select **Import Data-Tier Application**.
 1. In the **Introduction** page, click **Next**.
 
 
@@ -676,7 +676,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> Now, letâ€™s use the same bacpac that we used earlier to also import the data into a Windows Azure SQL Database.
+	> Now, let’s use the same bacpac that we used earlier to also import the data into a Microsoft Azure SQL Database.
 
 1.	In the **Import Settings** page, click **Browse** to locate and select the saved **Expenses** bacpac file and then click **Open**.
 1. Click **Next**.
@@ -736,7 +736,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> We now need to deploy the application to Windows Azure, but we now want it to connect to our database in the VM, so the first thing we need to do is modify the connection string.
+	> We now need to deploy the application to Microsoft Azure, but we now want it to connect to our database in the VM, so the first thing we need to do is modify the connection string.
 
 1. Right-click the **Web Project** and then select **Publish**.
 
@@ -750,7 +750,7 @@ Lastly, we need to specify in which region to create the VM.
 
 
 <a name="segment4" />
-### Windows Azure SQL Federation ###
+### Microsoft Azure SQL Federation ###
 
 1. In SQL Server Management Studio, expand the SQL Azure Connection in Object Explorer and select the **Databases** node.
 
@@ -760,7 +760,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> The database we have been using up to this point is a single Azure SQL Database. Since we've just discussed SQL Federations, weâ€™re going to illustrate how to create a federated version of our expense report database.
+	> The database we have been using up to this point is a single Azure SQL Database. Since we've just discussed SQL Federations, we’re going to illustrate how to create a federated version of our expense report database.
 	> In SSMS, we need to create a new database from which we will create our federations. 
 
 1.	Right-click the **Databases** node, and select **New Database** to open a new query window connected to the _master_ database. 
@@ -772,7 +772,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> Letâ€™s open a new query window and create a new database. Weâ€™ll call this database ContosoFed. 
+	> Let’s open a new query window and create a new database. We’ll call this database ContosoFed. 
 	>
 	> We need to make sure that the connection for this query window is connected to the master database.
 
@@ -785,20 +785,20 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> Before we run the script that will create our federation and federated objects, letâ€™s spend a minute looking at the script and Federation syntax. 
+	> Before we run the script that will create our federation and federated objects, let’s spend a minute looking at the script and Federation syntax. 
 	>
 	>	- CREATE FED statement
 	>	- USE FED statement
 	>	- Table changes for FEDs
 	>	- Use of GUIDS and why
 	>
-	> With our root database created, letâ€™s run the script that will create our federation and associated federated objects.
+	> With our root database created, let’s run the script that will create our federation and associated federated objects.
 
 1. In Object Explorer in SSMS, expand the **Federations** node of the new database and right-click the **UserExpense_Federation**.
 
 	![Azure SQL Database Connection](Images/azure-sql-database-connection.png?raw=true "Azure SQL Database Connection")
 	
-	_Windows Azure SQL Database connection_
+	_Microsoft Azure SQL Database connection_
 
 	>**Speaking Point**
 	>
@@ -812,7 +812,7 @@ Lastly, we need to specify in which region to create the VM.
 
 1.	Now, open the **ContosoExpenseFed_Split.sql** script located in the **Assets\Federations** folder. Ensure that the query window connection is for the new database.
 1.	Execute the first statement.
-1.	Execute the 2nd set of statements (the DMVâ€™s).
+1.	Execute the 2nd set of statements (the DMV’s).
 1. Execute the SELECT queries.
 
 	![Execute Federation Script](Images/execute-federation-script.png?raw=true "Execute Federation Script")
@@ -852,17 +852,17 @@ Lastly, we need to specify in which region to create the VM.
 
 	![Log in to Azure SQL Database portal](Images/log-in-to-azure-sql-database-portal.png?raw=true "Log in to Azure SQL Database portal")
 
-	_Windows Azure SQL Database portal_
+	_Microsoft Azure SQL Database portal_
 
 1. In the **Summary Page** of the SQL Database portal, click the **right arrow** in the Federations section to show all federation members.
 
 	![SQL Portal showing federations](Images/sql-portal-showing-federations.png?raw=true "SQL Portal showing federations")
 
-	_Windows Azure SQL Database portal showing federations_
+	_Microsoft Azure SQL Database portal showing federations_
 
 	>**Speaking Point**
 	>
-	> Database sharding is a technique for horizontally partitioning data across multiple physical servers to provide application scale-out. Windows Azure SQL Database combined with database sharding techniques provides for virtually unlimited scalability of data for an application.
+	> Database sharding is a technique for horizontally partitioning data across multiple physical servers to provide application scale-out. Microsoft Azure SQL Database combined with database sharding techniques provides for virtually unlimited scalability of data for an application.
 
 1.	In the **Federation Member** grid, click the grey area.
 1.	In the **UserExpense_Federation** dialog, select the **Split** option and set the value to **40**.
@@ -874,16 +874,16 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> Here, weâ€™re going to specify the value on which to split the federation, thus creating a second federation member.
+	> Here, we’re going to specify the value on which to split the federation, thus creating a second federation member.
 
 1.	Go back to SSMS
 1. Talk through the **USE FEDERATION** statements to query the different **Federation Members**.
 
 
 <a name="segment5" />
-### Windows Azure Storage ###
+### Microsoft Azure Storage ###
 
-1. Open the **Windows Azure Management portal** and select the **STORAGE ACCOUNTS** option in the **Navigation Pane**.
+1. Open the **Microsoft Azure Management portal** and select the **STORAGE ACCOUNTS** option in the **Navigation Pane**.
 
 	![Managing storage accounts](Images/selecting-the-storage-accounts.png?raw=true "Managing storage accounts")
 
@@ -891,7 +891,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> There are three options for unstructured and non-relational data storage in Windows Azure: **Blob**, **Table**, and **Queue** services.
+	> There are three options for unstructured and non-relational data storage in Microsoft Azure: **Blob**, **Table**, and **Queue** services.
 	>
 	> A storage account is scoped to a primary geographic region and is configured by default to seamlessly replicate itself to a secondary region in case of a major failure in the primary region.
 
@@ -920,13 +920,13 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> By running the following command in the **Package Manager Console**, we are adding the Windows Azure Storage Client libraries to the project.
+	> By running the following command in the **Package Manager Console**, we are adding the Microsoft Azure Storage Client libraries to the project.
 
 1. In the **Package Manager Console**, type: _Install-Package WindowsAzure.Storage_.
 
 	![Using the Package Manager Console](Images/using-the-package-manager-console.png?raw=true "Using the Package Manager Console")
 
-	_Installing the Windows Azure Storage Client library_
+	_Installing the Microsoft Azure Storage Client library_
 
 1. In Solution Explorer, right-click the **Helpers** folder, point to **Add** and select **Existing Item**. 
 1. Browse to the **Assets\storage** folder, select **StorageHelper.cs** and click **Add**.
@@ -943,7 +943,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> Letâ€™s add the code to show the **Attach Receipt** link/icon for each expense line item.
+	> Let’s add the code to show the **Attach Receipt** link/icon for each expense line item.
 
 1. Insert a new line after the comment that reads "**Attach Link Here**" and type the text **attachreceiptlink** in this line. Then, press **TAB** to install the corresponding code snippet.
 
@@ -955,7 +955,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> Next, letâ€™s add the **Submit Receipt** form.
+	> Next, let’s add the **Submit Receipt** form.
 
 1. Insert a new line after the comment that reads "**Attach Form Here**" and type the text **attachreceiptform** in this line. Then, press **TAB** to install the corresponding code snippet.	
 
@@ -967,7 +967,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> Next, letâ€™s add the code to **save the receipt to blob storage**.
+	> Next, let’s add the code to **save the receipt to blob storage**.
 
 1. In the **ReportsController** class, Insert a new line immediately below the **Summary** action method, type **attachreceiptmethod** and press **TAB** to install the code snippet.
 
@@ -1027,11 +1027,11 @@ Lastly, we need to specify in which region to create the VM.
 
 	_Copying the primary access key_
 
-1. Open the **Web.config** file and find the comment that reads â€œ**Windows Azure Storage Account**â€ within the **appSettings** section.
+1. Open the **Web.config** file and find the comment that reads “**Microsoft Azure Storage Account**” within the **appSettings** section.
 
 	>**Speaking Point**
 	>
-	> Letâ€™s add the storage account snippet. This information allows us to securely access our storage services.
+	> Let’s add the storage account snippet. This information allows us to securely access our storage services.
 
 1. Press **CTL+K**, **CTL+X** and select **My XML Snippets**.
 1. Insert the **StorageAccountInfo** snippet and replace the storage account name with the name of your storage account and the key with the value you copied from the portal.
@@ -1052,7 +1052,7 @@ Lastly, we need to specify in which region to create the VM.
 
 	>**Speaking Point**
 	>
-	> Finally, letâ€™s redeploy the application.
+	> Finally, let’s redeploy the application.
 
 1. In the expense App, log in as a user and modify the expense report to attach a receipt.
 
@@ -1106,12 +1106,12 @@ Lastly, we need to specify in which region to create the VM.
 
 In this demo, you learned how to:
 
-1. Deploy applications to Windows Azure Web sites.
+1. Deploy applications to Microsoft Azure Websites.
 
-1. Provision a virtual machine in Windows Azure to run SQL Server 2012.
+1. Provision a virtual machine in Microsoft Azure to run SQL Server 2012.
 
-1. Connect applications to a Windows Azure SQL Database.
+1. Connect applications to a Microsoft Azure SQL Database.
 
-1. Connect applications to use Windows Azure Storage.
+1. Connect applications to use Microsoft Azure Storage.
 
 1. Create SQL Database Federations.

@@ -1,4 +1,4 @@
-﻿<a name="title" />
+<a name="title" />
 # Scaling Up or Down #
 
 ---
@@ -13,9 +13,9 @@ The scenario could be an application where the majority of the users use the app
 <a name="technologies" />
 ### Key Technologies ###
 
-- Windows Azure subscription - you can sign up for free trial [here][1]
-- Windows Azure Virtual Machines 
-- [Windows Azure PowerShell Cmdlets][2]
+- Microsoft Azure subscription - you can sign up for free trial [here][1]
+- Microsoft Azure Virtual Machines 
+- [Microsoft Azure PowerShell Cmdlets][2]
 
 [1]: http://bit.ly/WindowsAzureFreeTrial
 [2]: http://go.microsoft.com/?linkid=9811175&clcid=0x409

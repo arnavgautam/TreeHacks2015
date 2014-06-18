@@ -1,18 +1,18 @@
-ï»¿<a name="Title" />
-# Building and Publishing Node.js Applications with Windows Azure Web Sites (OS X) #
+<a name="Title" />
+# Building and Publishing Node.js Applications with Microsoft Azure Websites (OS X) #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-In this hands-on lab, you will learn the basics of the Windows Azure Web Sites service for Node.js applications. In Exercise 1, you will see how to use the Windows Azure portal for creating a web site and then publish a "Hello World" Node.js application using GIT. In Exercise 2, you will learn how to use the Windows Azure Command-Line Tools for publishing applications. 
+In this hands-on lab, you will learn the basics of the Microsoft Azure Websites service for Node.js applications. In Exercise 1, you will see how to use the Microsoft Azure portal for creating a web site and then publish a "Hello World" Node.js application using GIT. In Exercise 2, you will learn how to use the Microsoft Azure Command-Line Tools for publishing applications. 
 <a name="Objectives" />
 ### Objectives ###
 
 In this hands-on lab, you will learn how to create and publish a Node.js application using:
 
 * Git
-* Windows Azure Command-Line Tools for Mac and Linux
+* Microsoft Azure Command-Line Tools for Mac and Linux
 
 <a name="Prerequisites" />
 ### Prerequisites ###
@@ -21,17 +21,17 @@ The following is required to complete this hands-on lab:
 
 - [Git Version Control System](http://git-scm.com/) 
 - [Node.js](http://nodejs.org/#download) 
-- [Windows Azure Command-Line Tools for Mac and Linux](https://www.windowsazure.com/en-us/develop/nodejs/how-to-guides/command-line-tools/) (for Exercise 2 only)
+- [Microsoft Azure Command-Line Tools for Mac and Linux](https://www.windowsazure.com/en-us/develop/nodejs/how-to-guides/command-line-tools/) (for Exercise 2 only)
 
-	>**Note:** If you do not have Windows Azure Command-Line Tools for Mac and Linux installed, open a terminal and run the following command:
+	>**Note:** If you do not have Microsoft Azure Command-Line Tools for Mac and Linux installed, open a terminal and run the following command:
 	>
 	>````ShellScript
 	>sudo npm install azure-cli -g
 	>````
 	>
-	>By using -g, Windows Azure Command-Line Tools will install on your machine globally. That means, you will be able to execute azure commands from any location.
+	>By using -g, Microsoft Azure Command-Line Tools will install on your machine globally. That means, you will be able to execute azure commands from any location.
 
-- A Windows Azure subscription with the Web Sites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 >**Note:** This lab was designed to use the OS X Operating System.
 
@@ -49,18 +49,18 @@ This hands-on lab includes the following exercises:
 <a name="Exercise1" />
 ### Exercise 1: Building and Publishing a Node.js Web Site using GIT ###
 
-In the first exercise you will create a new web site from the Windows Azure portal, create a 'Hello World' Node.js application and finally publish it, taking advantage of the new GIT publishing feature provided by Windows Azure.
+In the first exercise you will create a new web site from the Microsoft Azure portal, create a 'Hello World' Node.js application and finally publish it, taking advantage of the new GIT publishing feature provided by Microsoft Azure.
 
 <a name="Ex1Task1" />
-#### Task 1 â€“ Creating a New Web Site Hosted in Windows Azure ####
+#### Task 1 – Creating a New Web Site Hosted in Microsoft Azure ####
 
-1. Go to the [Windows Azure portal](https://manage.windowsazure.com/) **Windows Azure portal** and sign in using the **Microsoft Account** credentials associated with your subscription.
+1. Go to the [Microsoft Azure portal](https://manage.windowsazure.com/) **Microsoft Azure portal** and sign in using the **Microsoft Account** credentials associated with your subscription.
 
-	![Log in into Windows Azure portal](images/log-in-into-windows-azure-portal.png?raw=true "Log in into Windows Azure portal")
+	![Log in into Microsoft Azure portal](images/log-in-into-windows-azure-portal.png?raw=true "Log in into Microsoft Azure portal")
 
-	_Log on into Windows Azure portal_
+	_Log on into Microsoft Azure portal_
 
-1. In Windows Azure portal home page, click the **New** button located on the bottom bar.
+1. In Microsoft Azure portal home page, click the **New** button located on the bottom bar.
 
 	![Creating a new web site](images/creating-a-new-web-site.png?raw=true "Creating a new Web Site")
 
@@ -136,7 +136,7 @@ In the first exercise you will create a new web site from the Windows Azure port
 	}
 	```
 
-	>**Note:** The package.json file tells the Node.js package manager (npm) how your package is structured, and which are the module dependencies. As this application is very simple it does not require dependencies, but in more complex applications you will probably need to specify a "dependencies" property. When publishing applications with Git, the Windows Azure platform automatically installs all the dependencies declared in this file.
+	>**Note:** The package.json file tells the Node.js package manager (npm) how your package is structured, and which are the module dependencies. As this application is very simple it does not require dependencies, but in more complex applications you will probably need to specify a "dependencies" property. When publishing applications with Git, the Microsoft Azure platform automatically installs all the dependencies declared in this file.
  
 1. In the text editor create a new file and paste the following code. This configuration indicates that the **server.js** file is a Node.js application
 that should be handled by the **iisnode** module.
@@ -171,7 +171,7 @@ that should be handled by the **iisnode** module.
 1. Save the file as **web.config** in your web site folder.
 
 <a name="Ex1Task3" />
-#### Task 3 â€“ Publishing the Node.js application using Git####
+#### Task 3 – Publishing the Node.js application using Git####
 
 1. Go back to the portal. Open the site's **Dashboard** and copy the **Git Clone Url** value from the bottom of the page.
 
@@ -189,7 +189,7 @@ that should be handled by the **iisnode** module.
 
 	> **Note:** You can learn more about Git commands in http://git-scm.com/documentation.
 
-1. To add the remote Windows Azure repository and push the files, run the following commands. Replace the _{Git Clone Url}_ placeholder with the value obtained from the portal.
+1. To add the remote Microsoft Azure repository and push the files, run the following commands. Replace the _{Git Clone Url}_ placeholder with the value obtained from the portal.
 
 	```Terminal
 	git remote add azure {Git Clone Url}
@@ -198,7 +198,7 @@ that should be handled by the **iisnode** module.
 
 1. Enter the deployment credentials when prompted.
 
-	> **Note:** Deployment credentials are other than the **Microsoft Account** associated with your Windows Azure subscription and are valid for use with all Windows Azure web sites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
+	> **Note:** Deployment credentials are other than the **Microsoft Account** associated with your Microsoft Azure subscription and are valid for use with all Microsoft Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
 	>
 	>![Resetting the deployment credentials](images/deployment-credentials.png?raw=true "Resetting the deployment credentials")
 	>
@@ -215,11 +215,11 @@ that should be handled by the **iisnode** module.
 <a name="Exercise2" />
 ### Exercise 2: Building and Publishing a Node.js Web Site using the Command-Line Tools ###
 
-In this exercise, you will learn how manage web sites using the Windows Azure Command-Line Tools for Mac and Linux.
+In this exercise, you will learn how manage Websites using the Microsoft Azure Command-Line Tools for Mac and Linux.
 
-> **Note:** These steps assume you have the Windows Azure Command-Line Tools for Mac and Linux installed.
+> **Note:** These steps assume you have the Microsoft Azure Command-Line Tools for Mac and Linux installed.
 
-1. Open a **Terminal** console and execute the following command to download your account's **publish settings** file. A new browser window will pop up. Log on using your **Microsoft Account** credentials associated with your Windows Azure subscription.
+1. Open a **Terminal** console and execute the following command to download your account's **publish settings** file. A new browser window will pop up. Log on using your **Microsoft Account** credentials associated with your Microsoft Azure subscription.
     
 	```Terminal
 	azure account download
@@ -241,7 +241,7 @@ In this exercise, you will learn how manage web sites using the Windows Azure Co
 
 1. Go back to the **Terminal** console and change directories in order to go to the folder where you placed the files.
 
-1. Run the following command to create the Windows Azure Web Site with **GIT publishing** feature enabled.
+1. Run the following command to create the Microsoft Azure Web Site with **GIT publishing** feature enabled.
 
 	```Terminal
 	azure site create --git
@@ -253,9 +253,9 @@ In this exercise, you will learn how manage web sites using the Windows Azure Co
 
 	_Creating a new Web Site and enabling GIT publishing_
 
-	> **Note:** By specifying **--git** when running the command **site create** you don't need to run additional commands to initialize the Git repository or add the git remote, since these two tasks will be done automatically by the Windows Azure Command-Line Tools.
+	> **Note:** By specifying **--git** when running the command **site create** you don't need to run additional commands to initialize the Git repository or add the git remote, since these two tasks will be done automatically by the Microsoft Azure Command-Line Tools.
 
-1. Now you will add the application files to a Git repository and push them to the Windows Azure Web Site. To do this, go back to the command prompt and execute the following commands. When prompted provide your deployment credentials.
+1. Now you will add the application files to a Git repository and push them to the Microsoft Azure Web Site. To do this, go back to the command prompt and execute the following commands. When prompted provide your deployment credentials.
 
 	```Terminal
 	git add .
@@ -266,19 +266,19 @@ In this exercise, you will learn how manage web sites using the Windows Azure Co
 
 	_Pushing the site files_
 
-	> **Note:** Deployment credentials are other than the **Microsoft Account** associated with your Windows Azure subscription and are valid for use with all Windows Azure web sites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
+	> **Note:** Deployment credentials are other than the **Microsoft Account** associated with your Microsoft Azure subscription and are valid for use with all Microsoft Azure Websites associated with your subscription. If you don't know your deployment credentials you can easily reset them using the management portal. Open the web site **Dashboard** page and click the **Reset deployment credentials** link. Provide a new password and click Ok.
 	>
 	>![Resetting the deployment credentials](images/deployment-credentials.png?raw=true "Resetting the deployment credentials")
 	>
 	>_Resetting the deployment credentials_
 
-1. Run the following command to open the published deployments for your site in Windows Azure portal.
+1. Run the following command to open the published deployments for your site in Microsoft Azure portal.
 
 	```Terminal
 	azure site portal
 	```
 
-	In Windows Azure portal, select your site from the list and open the **Deployments** page of the site. Check out the latest deployment.
+	In Microsoft Azure portal, select your site from the list and open the **Deployments** page of the site. Check out the latest deployment.
 
 	![Site deployments](images/site-deployments.png?raw=true "Site deployments")
 

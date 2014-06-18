@@ -1,14 +1,14 @@
-﻿# Building and Publishing ASP.NET Applications with Windows Azure Web Sites #
+# Building and Publishing ASP.NET Applications with Microsoft Azure Websites #
 
 ## Hands-on Lab ##
 
 ### Introduction ###
 
-Hands-on labs are sets of step-by-step guides that are designed to help you learn how to use key Windows Azure services and features. Each lab provides instructions to guide you through the process of developing and deploying applications.
+Hands-on labs are sets of step-by-step guides that are designed to help you learn how to use key Microsoft Azure services and features. Each lab provides instructions to guide you through the process of developing and deploying applications.
 
-In this hands-on lab, you will explore the basic elements of the Windows Azure Web Sites service by creating a simple ASP.NET MVC 5 application, which uses scaffolding to automatically generate the baseline of your application's CRUD (Create, Read, Update and Delete). Then, you will deploy it using Web Deploy from Microsoft Visual Studio and finally, you will enable source control and use Git to publish directly from your local computer.
+In this hands-on lab, you will explore the basic elements of the Microsoft Azure Websites service by creating a simple ASP.NET MVC 5 application, which uses scaffolding to automatically generate the baseline of your application's CRUD (Create, Read, Update and Delete). Then, you will deploy it using Web Deploy from Microsoft Visual Studio and finally, you will enable source control and use Git to publish directly from your local computer.
 
-> **Note:** You can download the latest build of the Windows Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
+> **Note:** You can download the latest build of the Microsoft Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
 
 ### Repository Structure ###
 

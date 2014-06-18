@@ -1,14 +1,14 @@
-﻿# Deploying Active Directory in Windows Azure (PowerShell) #
+# Deploying Active Directory in Microsoft Azure (PowerShell) #
 
 ## Hands-on Lab ##
 
 ### Introduction ###
 
-Hands-on Labs are sets of step-by-step guides that are designed to help you learn how to use key Windows Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
+Hands-on Labs are sets of step-by-step guides that are designed to help you learn how to use key Microsoft Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
 
 In this Hands-on Lab, you will walk through the steps necessary to deploy an Active Directory domain in the cloud using PowerShell.
 
-> **Note:** You can download the latest build of the Windows Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
+> **Note:** You can download the latest build of the Microsoft Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
 
 ### Repository Structure ###
 

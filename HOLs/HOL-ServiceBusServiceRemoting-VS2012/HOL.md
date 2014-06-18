@@ -1,14 +1,14 @@
-﻿<a name="Title"></a>
-#Service Remoting With Windows Azure Service Bus#
+<a name="Title"></a>
+#Service Remoting With Microsoft Azure Service Bus#
 
 <a name="Overview"></a>
 ## Overview ##
 
 Due to recent bank regulation, the Fictional Bank is ordered to split into two separate banking entities: Fictional Investment and Fictional Retail. The IT department needs to restructure the existing customer relationship management (CRM) such that both banking entities can continue to share customer data even though they are no longer within the same corporate network boundary. The existing CRM Web services in Fictional Bank are largely written using Windows Communication Foundation and hosted on-premises.
 
-Initially, the IT department decides to continue hosting the CRM Web services on-premises, at Fictional Investment. To achieve the goal of providing services to both entities, they choose to expose a subset of the CRM functionality through a second service, which they publish externally using the Windows Azure Service Bus, thus allowing clients at Fictional Retail access to the required functionality. This solution enables them to accomplish their objective with minimal changes to the service and client applications, which are mostly limited to WCF configuration changes.
+Initially, the IT department decides to continue hosting the CRM Web services on-premises, at Fictional Investment. To achieve the goal of providing services to both entities, they choose to expose a subset of the CRM functionality through a second service, which they publish externally using the Microsoft Azure Service Bus, thus allowing clients at Fictional Retail access to the required functionality. This solution enables them to accomplish their objective with minimal changes to the service and client applications, which are mostly limited to WCF configuration changes.
 
-In a second phase, Fictional Investment outsources its application services hosting. As a result, they relocate the service that they share with Fictional Retail to Windows Azure and host it in a worker role. Despite its new location, and because the Service Bus namespace allows the service to continue to be published at its present location, clients remain unaware of the change.
+In a second phase, Fictional Investment outsources its application services hosting. As a result, they relocate the service that they share with Fictional Retail to Microsoft Azure and host it in a worker role. Despite its new location, and because the Service Bus namespace allows the service to continue to be published at its present location, clients remain unaware of the change.
 
 This hands-on lab walks you through this scenario using a sample application that replicates, albeit in a simplistic manner, the application architecture at Fictional Bank.
 
@@ -17,13 +17,13 @@ This hands-on lab walks you through this scenario using a sample application tha
 
 In this hands-on lab, you will learn how to:
 
-- Provision Windows Azure projects and service namespaces
+- Provision Microsoft Azure projects and service namespaces
 
 - Manage Access Control Service issuers and rules to provide service and client authentication
 
 - Host services on-premises and publish then remotely using the Service Bus
 
-- Publish services hosted in Windows Azure using the Service Bus
+- Publish services hosted in Microsoft Azure using the Service Bus
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
@@ -32,8 +32,8 @@ The following is required to complete this hands-on Lab:
 
 - IIS (with ASP.NET, WCF HTTP Activation)
 - [Visual Studio Express 2012 for Web][2] or greater.
-- [Windows Azure SDK for .NET][3]
-- A Windows Azure subscription - [sign up for a free trial][4]
+- [Microsoft Azure SDK for .NET][3]
+- A Microsoft Azure subscription - [sign up for a free trial][4]
 
 [1]: http://go.microsoft.com/fwlink/?linkid=186916
 [2]: http://www.microsoft.com/visualstudio/
@@ -73,7 +73,7 @@ This hands-on lab includes the following exercises:
 
 1. [Using the Service Bus to Host Services Remotely](#Exercise1)
 
-1. [Publishing Services Hosted in Windows Azure with the Service Bus](#Exercise2)
+1. [Publishing Services Hosted in Microsoft Azure with the Service Bus](#Exercise2)
 
 
 Estimated time to complete this lab: **45 minutes**.
@@ -140,15 +140,15 @@ In this task, you run the solution and test it locally using a **NetTcpBinding**
 <a name="Ex1Task2"></a>
 #### Task 2 - Provisioning and Configuring the Service Bus Namespace ####
 
-In this task, you will create a new Windows Azure Service Bus Namespace.
+In this task, you will create a new Microsoft Azure Service Bus Namespace.
 
 1. Navigate to [http://manage.windowsazure.com/](http://manage.windowsazure.com). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
 
 1. Click **Service Bus** within the left pane.
 
- 	![Configuring Windows Azure Service bus](./Images/Configuring-Windows-Azure-Service-bus.png?raw=true "Configuring Windows Azure Service bus")
+ 	![Configuring Microsoft Azure Service bus](./Images/Configuring-Windows-Azure-Service-bus.png?raw=true "Configuring Microsoft Azure Service bus")
  
-	_Configuring Windows Azure Service bus_
+	_Configuring Microsoft Azure Service bus_
 
 1. Create a Service Namespace. A service namespace provides an application boundary for each application exposed through the Service Bus and is used to construct Service Bus endpoints for the application. To create a service namespace, click **Create** on the bottom bar. 
 
@@ -180,7 +180,7 @@ In this task, you will create a new Windows Azure Service Bus Namespace.
 #### Task 3 - Configuring Access Control Service for Authentication ####
 
 
-The Windows Azure Access Control Service (ACS) service controls Service Bus authentication. You can take advantage of ACS to authenticate a host that listens on the Service Bus as well as clients that use the bus to connect to the service.
+The Microsoft Azure Access Control Service (ACS) service controls Service Bus authentication. You can take advantage of ACS to authenticate a host that listens on the Service Bus as well as clients that use the bus to connect to the service.
 
 An issuer in Access Control Service represents a trusted application. Using ACS, you can create rules to map incoming claims, from trusted identity providers, into claims issued by ACS that an application or service consumes. More specifically, in the case of the Service Bus, these rules map the identity of the issuer into a series of claims that Service Bus uses to determine which actions the issuer is allowed to perform. For example, a _Listen_ claim issued by AC allows an application to expose services on the Service Bus, while a _Send_ claim allows it to send messages.
 
@@ -188,10 +188,10 @@ The Management Portal allows you to administer Access Control Service resources,
 
 In this task, you will use the Management Portal to create two issuers, one issuer for Fictional Investment and another one for Fictional Retail. Then, you will create rules to map the identity of the Fictional Investment issuer to the _Listen_ and _Send_ claims, allowing it to publish a service and send messages, and a second rule to map the identity of the Fictional Retail issuer to the _Send_ claim, so that it can connect and send messages to services published on the Service Bus.
 
->**Note:** For an alternative procedure that uses the command line tool to create issuers and Access Control Service rules, see Appendix 1 - Using the Windows Azure Access Control Management Command Line Tool.  
+>**Note:** For an alternative procedure that uses the command line tool to create issuers and Access Control Service rules, see Appendix 1 - Using the Microsoft Azure Access Control Management Command Line Tool.  
   
 
-1. In the Windows Azure Management Portal, go to **Service Bus** and select your recently created namespace.
+1. In the Microsoft Azure Management Portal, go to **Service Bus** and select your recently created namespace.
 
 1. Select **Access Key** from the menu at the bottom of the screen.
 
@@ -245,7 +245,7 @@ In this task, you will use the Management Portal to create two issuers, one issu
  
 	_Adding Rule Groups_  
 
-	>**Note:** A rule describes the logic executed when a request from a certain issuer to obtain a token for a certain resource is received. Given an incoming claim type and value, it specifies which claim type and value is included in the token that the Windows Azure AC issues in response. The value of the outgoing claim specifies whether the service allows access to the resource or action being requested (if access is denied, there will not be an outgoing claim).     
+	>**Note:** A rule describes the logic executed when a request from a certain issuer to obtain a token for a certain resource is received. Given an incoming claim type and value, it specifies which claim type and value is included in the token that the Microsoft Azure AC issues in response. The value of the outgoing claim specifies whether the service allows access to the resource or action being requested (if access is denied, there will not be an outgoing claim).     
 In this case, the rule maps the issuer ID for Fictional Investment into a _Listen_ Service Bus action.
 
 1. In the **Rule Groups** page, click the **Default Rule Group for ServiceBus** group name under **Rule Groups** in order to edit it.  
@@ -272,7 +272,7 @@ In this case, the rule maps the issuer ID for Fictional Investment into a _Liste
  
 	_Adding a Send Claim Rule_  
 
-	>**Note:** Granting _Send_ rights to the _fictionalInvestment_ issuer is in preparation for Exercise 2, when the FI Public Service is relocated to Windows Azure and the CRM Data Service is published on the Service Bus to allow the first service to access it.
+	>**Note:** Granting _Send_ rights to the _fictionalInvestment_ issuer is in preparation for Exercise 2, when the FI Public Service is relocated to Microsoft Azure and the CRM Data Service is published on the Service Bus to allow the first service to access it.
 
 1. Finally, add a "Send" rule _fictionalRetail_ issuer. In the **Edit Rule Group** page, click **Add** to add a new rule. Then in the **Add Claim Rule** page, under **If** select "Access Controls Service" as **Input claim issuer**. Under **Input claim type** select "Select Type" and leave the default value for the combo box. Under **Input claim value** select **Enter value** and enter "fictionalRetail". Under **Then** select **Enter type** as **Output claim type** and enter "net.windows.servicebus.action". Select **Enter value** as **Output claim value** and enter "Send". Then click the **Save** button.  
 
@@ -289,7 +289,7 @@ In this case, the rule maps the issuer ID for Fictional Investment into a _Liste
 	_Saving Rule Group changes_  
 
 <a name="Ex1Task4"></a>
-#### Task 4 - Configuring the Service to Listen on the Windows Azure Service Bus ####
+#### Task 4 - Configuring the Service to Listen on the Microsoft Azure Service Bus ####
 
 The FI Public Service registers its endpoint with the Service Bus, which exposes the service through specific, discoverable URIs and makes it available to anyone regardless of where they are located, even when the service sits behind a firewall.  
  ![Application architecture with services and clients connected via the Service Bus](Images/Application-architecture-with-services-and-clients-connected-via-the-Service-Bus.png?raw=true "Application architecture with services and clients connected via the Service Bus")  
@@ -312,7 +312,7 @@ In this task, you update the Fictional Bank application to publish and consume t
 
 1. For this endpoint, update the value of the **address** attribute to _**sb://[YOUR-NAMESPACE].servicebus.windows.net/CrmPublicService**_, where **[YOUR_NAMESPACE]** is the Service Bus namespace that you defined for your project.
 
-	>**Note:** The service namespace provides an application boundary for each application exposed through the Service Bus. You define namespaces at the Windows Azure portal.
+	>**Note:** The service namespace provides an application boundary for each application exposed through the Service Bus. You define namespaces at the Microsoft Azure portal.
 
 1. Next, change the value of the **binding** attribute for this endpoint from **netTcpBinding** to **netTcpRelayBinding**.
 
@@ -396,10 +396,10 @@ In this task, you update the Fictional Bank application to publish and consume t
 	}
 	````
 
-	>**Note:** The default connection mode between the listener service and Windows Azure Service Bus is TCP. However, if the network environment does not allow outbound TCP connections beyond HTTP, for example, because of changes in Fictional Investment's IT policy, you can configure the corresponding binding to use an HTTP connection to communicate with Service Bus. For most scenarios, it is recommended that you set the Mode to AutoDetect. This indicates that your application will attempt to use TCP to connect to the Service Bus, but will use HTTP if it is unable to do so.    
+	>**Note:** The default connection mode between the listener service and Microsoft Azure Service Bus is TCP. However, if the network environment does not allow outbound TCP connections beyond HTTP, for example, because of changes in Fictional Investment's IT policy, you can configure the corresponding binding to use an HTTP connection to communicate with Service Bus. For most scenarios, it is recommended that you set the Mode to AutoDetect. This indicates that your application will attempt to use TCP to connect to the Service Bus, but will use HTTP if it is unable to do so.    
  
 <a name="Ex1Task5"></a>
-#### Task 5 - Configuring the Client Application to Connect to a Service on the Windows Azure Service Bus ####
+#### Task 5 - Configuring the Client Application to Connect to a Service on the Microsoft Azure Service Bus ####
 
 In the previous task, you configured the service to listen on the Service Bus.  In this task, you set up the client application in a similar manner to allow it to connect to the service.
 
@@ -523,23 +523,23 @@ You are now ready to test the application using the Service Bus.
 1. Press **ENTER** in both console windows to terminate the services and then exit the client application.
 
 <a name="Exercise2"></a>
-### Exercise 2: Publishing Services Hosted in Windows Azure with the Service Bus ###
+### Exercise 2: Publishing Services Hosted in Microsoft Azure with the Service Bus ###
 
  Azure Cloud services can publish their endpoints using the Service Bus too.   
- ![Application architecture with services deployed to Windows Azure and listening on the Service Bus](Images/Application-architecture-with-services-deployed-to-Windows-Azure-and-listening-on-the-Service-Bus.png?raw=true "Application architecture with services deployed to Windows Azure and listening on the Service Bus")  
+ ![Application architecture with services deployed to Microsoft Azure and listening on the Service Bus](Images/Application-architecture-with-services-deployed-to-Windows-Azure-and-listening-on-the-Service-Bus.png?raw=true "Application architecture with services deployed to Microsoft Azure and listening on the Service Bus")  
   
-_Application architecture with services deployed to Windows Azure and listening on the Service Bus_  
+_Application architecture with services deployed to Microsoft Azure and listening on the Service Bus_  
 
-In this exercise, you update the FI Public Service project and convert it into a worker role. This allows you to host the service in Windows Azure. Because the service is already listening via the Service Bus, clients remain unaware of the change and continue to run with no changes to their code or their configuration. Nevertheless, in this scenario, the CRM Data Service remains on-premises and you now need to configure it to listen on the Service Bus in order for the FI Public Service-now hosted in Windows Azure-to access it.
+In this exercise, you update the FI Public Service project and convert it into a worker role. This allows you to host the service in Microsoft Azure. Because the service is already listening via the Service Bus, clients remain unaware of the change and continue to run with no changes to their code or their configuration. Nevertheless, in this scenario, the CRM Data Service remains on-premises and you now need to configure it to listen on the Service Bus in order for the FI Public Service-now hosted in Microsoft Azure-to access it.
 
 <a name="Ex2Task1"></a>
-#### Task 1 - Hosting the Service in a Windows Azure Worker Role ####
+#### Task 1 - Hosting the Service in a Microsoft Azure Worker Role ####
 
 In this task, you update the FI Public Service project, which is currently a Windows Console application, and convert it into a worker role.
 
 1. Open Visual Studio Express 2012 for Web or superior in elevated administrator mode. 
 
-	>**Note:** Running in elevated administrator mode is required to run Windows Azure projects in the Compute Emulator.
+	>**Note:** Running in elevated administrator mode is required to run Microsoft Azure projects in the Compute Emulator.
 
 1. In the **File** menu, choose **Open Project**. In the **Open Project** dialog, browse to **Source\Ex2-AzureServices\Begin** folder of this lab, select **ServiceRemoting.sln** and click **Open**. Alternatively, you may continue with the solution that you obtained after completing the previous exercise.
 
@@ -547,25 +547,25 @@ In this task, you update the FI Public Service project, which is currently a Win
 
 1. In **Solution Explorer**, right-click the **FictionalInvestment.PublicServices** project and select **Add Reference**. Open **Assemblies\Extensions** and locate the **Microsoft.WindowsAzure.Diagnostics, Microsoft.WindowsAzure.ServiceRuntime and Microsoft.WindowsAzure.StorageClient** assemblies. Check the references and click **OK**.
 
-1. Some assemblies required by the service are not ordinarily present in a Windows Azure VM; therefore, you must ship these assemblies with the service package to ensure that they are available. You do this by configuring the Copy Local property of the corresponding assembly reference. To configure a reference, expand the **References** node for the **FictionalInvestment.PublicServices** project in **Solution Explorer**, right-click the corresponding reference in the **References** list, and select **Properties**.
+1. Some assemblies required by the service are not ordinarily present in a Microsoft Azure VM; therefore, you must ship these assemblies with the service package to ensure that they are available. You do this by configuring the Copy Local property of the corresponding assembly reference. To configure a reference, expand the **References** node for the **FictionalInvestment.PublicServices** project in **Solution Explorer**, right-click the corresponding reference in the **References** list, and select **Properties**.
 
 	To add the assembly to the service package, in the **Properties** window of the assembly, change the value of the **Copy Local** setting to _True_.
 
-	Use this procedure to include the **Microsoft.ServiceBus** assembly in the Windows Azure service package and ensure that both **Microsoft.WindowsAzure.Diagnostics** and **Microsoft.WindowsAzure.StorageClient** are deployed locally too.  
+	Use this procedure to include the **Microsoft.ServiceBus** assembly in the Microsoft Azure service package and ensure that both **Microsoft.WindowsAzure.Diagnostics** and **Microsoft.WindowsAzure.StorageClient** are deployed locally too.  
 
- 	![Including an assembly in the Windows Azure service package](Images/Including-an-assembly-in-the-Windows-Azure-service-package.png?raw=true "Including an assembly in the Windows Azure service package")  
+ 	![Including an assembly in the Microsoft Azure service package](Images/Including-an-assembly-in-the-Windows-Azure-service-package.png?raw=true "Including an assembly in the Microsoft Azure service package")  
   
-	_Including an assembly in the Windows Azure service package_  
+	_Including an assembly in the Microsoft Azure service package_  
 
 1. Next, you will create a new cloud service project. If you are using the Express Edition of Visual Studio, open **Visual Studio Express 2012 for Web**. 
 
-1. In the **File** menu, point to **Add** (or **New** if using the Express edition) and then select **New Project**. In the **New Project** dialog, expand Visual C# language in the **Installed Templates** list and select **Cloud**. Choose the **Windows Azure Cloud Service** template, set the **Name** of the project to **CloudService** and accept the proposed location in the folder of the solution. Click **OK** to create the project.  
+1. In the **File** menu, point to **Add** (or **New** if using the Express edition) and then select **New Project**. In the **New Project** dialog, expand Visual C# language in the **Installed Templates** list and select **Cloud**. Choose the **Microsoft Azure Cloud Service** template, set the **Name** of the project to **CloudService** and accept the proposed location in the folder of the solution. Click **OK** to create the project.  
 
- 	![Creating a new Windows Azure Cloud Service project](Images/Creating-a-new-Windows-Azure-Cloud-Service-project.png?raw=true "Creating a new Windows Azure Cloud Service project")  
+ 	![Creating a new Microsoft Azure Cloud Service project](Images/Creating-a-new-Windows-Azure-Cloud-Service-project.png?raw=true "Creating a new Microsoft Azure Cloud Service project")  
  
-	_Creating a new Windows Azure Cloud Service project_  
+	_Creating a new Microsoft Azure Cloud Service project_  
 
-1. In the **New Windows Azure Project** dialog, click **OK** without adding any new roles. You will repurpose the existing service project and use it as a worker role.  
+1. In the **New Microsoft Azure Project** dialog, click **OK** without adding any new roles. You will repurpose the existing service project and use it as a worker role.  
 
   	![No additional roles are required](Images/No-additional-roles-are-required.png?raw=true "No additional roles are required")  
  
@@ -589,12 +589,12 @@ In this task, you update the FI Public Service project, which is currently a Win
   
 	_Solution Explorer showing the new worker role entry point class_  
 
-	>**Note:** The **WorkerRole** class is a **RoleEntryPoint** derived class modified to host the service. It contains methods that Windows Azure calls at various stages during the lifetime of the role.
+	>**Note:** The **WorkerRole** class is a **RoleEntryPoint** derived class modified to host the service. It contains methods that Microsoft Azure calls at various stages during the lifetime of the role.
 	>    
-	> Windows Azure invokes the **OnStart** method when the role starts. You can use this method to initialize the role. In the provided class, the **OnStart** method contains code to set up diagnostics settings that schedule an automatic transfer of the worker role logs to a Storage account in Windows Azure, where you can retrieve them. Note that the code initializes the Windows Azure Diagnostics configuration from a connection string in the service configuration file **(ServiceConfiguration.cscfg)**, which is currently set to use the storage emulator. If you deploy the service to Windows Azure, you need to update this configuration with your own Storage account settings.    
+	> Microsoft Azure invokes the **OnStart** method when the role starts. You can use this method to initialize the role. In the provided class, the **OnStart** method contains code to set up diagnostics settings that schedule an automatic transfer of the worker role logs to a Storage account in Microsoft Azure, where you can retrieve them. Note that the code initializes the Microsoft Azure Diagnostics configuration from a connection string in the service configuration file **(ServiceConfiguration.cscfg)**, which is currently set to use the storage emulator. If you deploy the service to Microsoft Azure, you need to update this configuration with your own Storage account settings.    
 	>  
 	> The **Run** method of the **WorkerRole** class contains the code executed by the role to provide its functionality. In this case, it sets up a WCF **ServiceHost** for the FI Public Service and starts listening for requests on the Service Bus.  
-Finally, Windows Azure calls the **OnStop** method just before it shuts down the worker role. Here, it is used to close the WCF service.
+Finally, Microsoft Azure calls the **OnStop** method just before it shuts down the worker role. Here, it is used to close the WCF service.
 
 1. Open the **App.config** file in the **FictionalInvestment.PublicServices** project and replace the entry for the existing listener, named **configConsoleListener**, with the entry shown (highlighted) in the following configuration fragment.
 
@@ -616,18 +616,18 @@ Finally, Windows Azure calls the **OnStop** method just before it shuts down the
 	</configuration>
 	````
 
-	> **Note:** In order to provide diagnostics information, the service uses the **Trace** class in **System.Diagnostics** to write informational events and status messages to the log. Previously, the service used a **ConsoleTraceListener** to display this information in its console window. Now, when hosted in Windows Azure, the service needs to write this information to a place where you can view it. It uses a **TraceListener** specific to the Windows Azure environment that writes trace data to the Azure application logs.
+	> **Note:** In order to provide diagnostics information, the service uses the **Trace** class in **System.Diagnostics** to write informational events and status messages to the log. Previously, the service used a **ConsoleTraceListener** to display this information in its console window. Now, when hosted in Microsoft Azure, the service needs to write this information to a place where you can view it. It uses a **TraceListener** specific to the Microsoft Azure environment that writes trace data to the Azure application logs.
 
-1. Service  Bus requires Full Trust to run in Windows Azure. To enable full-trust, in **Solution Explorer**, expand the **Roles** node in the **CloudService** project and double-click the **FictionalInvestment.PublicServices** role. In the role properties page, select the **Configuration** tab and ensure that the **.NET trust level** is set to **Full Trust**.  
+1. Service  Bus requires Full Trust to run in Microsoft Azure. To enable full-trust, in **Solution Explorer**, expand the **Roles** node in the **CloudService** project and double-click the **FictionalInvestment.PublicServices** role. In the role properties page, select the **Configuration** tab and ensure that the **.NET trust level** is set to **Full Trust**.  
 
  	![Configuring the trust level of the worker role](Images/Configuring-the-trust-level-of-the-worker-role.png?raw=true "Configuring the trust level of the worker role")  
  
  	_Configuring the trust level of the worker role_  
  
 <a name="Ex2Task2"></a>
-#### Task 2 - (Optional) Configuring the CRM Data Service to Listen on the Windows Azure Service Bus ####
+#### Task 2 - (Optional) Configuring the CRM Data Service to Listen on the Microsoft Azure Service Bus ####
 
-Because the FI Public Service now runs in Windows Azure and relies on the CRM Data Service, which continues to be hosted on-premises, it is necessary to update the latter to listen on the Service Bus.
+Because the FI Public Service now runs in Microsoft Azure and relies on the CRM Data Service, which continues to be hosted on-premises, it is necessary to update the latter to listen on the Service Bus.
 
 > **Note:** The procedure required to do this is no different from the one that you performed in Exercise 1, when you published the FI Public Service itself via the Service Bus. If you started the current exercise from the solution that you obtained after completing Exercise 1, then, you need to complete this task; otherwise, if you used  the begin solution provided for the current exercise, then you can safely skip this task. All the necessary changes are already included in the begin solution.
 >
@@ -710,7 +710,7 @@ Because the FI Public Service now runs in Windows Azure and relies on the CRM Da
  
 **Verification**
 
-Before you begin, you need to ensure that you have configured the service endpoints and the issuer credentials correctly. Depending on how you arrived at the current solution, some of these values may already have been set. Note that this is necessary because these settings are specific to your Service Bus project. After that, you will run the Windows Azure project in the Compute Emulator and test it using the client application.
+Before you begin, you need to ensure that you have configured the service endpoints and the issuer credentials correctly. Depending on how you arrived at the current solution, some of these values may already have been set. Note that this is necessary because these settings are specific to your Service Bus project. After that, you will run the Microsoft Azure project in the Compute Emulator and test it using the client application.
 
 1. Open the **App.config** file of the **FictionalInvestment.PublicServices** project. Locate the single **endpoint** element in the **services** section of **system.ServiceModel** and replace the placeholder identified as **[YOUR_NAMESPACE]** in the **address** attribute of the endpoint with the Service Bus namespace that you defined for your project. 
 
@@ -751,14 +751,14 @@ Before you begin, you need to ensure that you have configured the service endpoi
 <a name="Summary"></a>
 ## Summary ##
 
-By completing this hands-on lab, you saw how, with minimal changes to code and configuration, you can take an existing service and make it reachable from anywhere using the Service Bus. During the course of the lab, you learnt how to provision a Service Bus account and configure namespaces for you service. You took advantage of Windows Azure Access Control Service to provide claims-based authentication, creating rules that map an identity into claims that determine what actions an issuer is allowed to perform. Finally, you relocated a service to Windows Azure and saw how its clients are not affected by the change because the service continues to listen at the same URL, whether it is hosted on-premises or in the cloud.
+By completing this hands-on lab, you saw how, with minimal changes to code and configuration, you can take an existing service and make it reachable from anywhere using the Service Bus. During the course of the lab, you learnt how to provision a Service Bus account and configure namespaces for you service. You took advantage of Microsoft Azure Access Control Service to provide claims-based authentication, creating rules that map an identity into claims that determine what actions an issuer is allowed to perform. Finally, you relocated a service to Microsoft Azure and saw how its clients are not affected by the change because the service continues to listen at the same URL, whether it is hosted on-premises or in the cloud.
 
 <a name="AppendixA"></a>
 ## Appendix - Using the SBAzTool Command Line Tool ##
 
 The following procedure describes the steps required to create issuers and rules using the SBAzTool Command Line Tool. For an alternative that uses the Access Control Service Management Portal, see **Task 3** in [Exercise 1: Using the Service Bus to Host Services Remotely](#Exercise1). Note that you do not need to complete this procedure if you have already created the issuers and set up Access Control Service rules using the Access Control Service Management Portal.
 
-1. Download the SBAzTool from the [Windows Azure samples site](http://code.msdn.microsoft.com/windowsazure/site/search?f%5B0%5D.Type=Technology&f%5B0%5D.Value=Service%20Bus) and then unzip the content in any folder on your hard drive.
+1. Download the SBAzTool from the [Microsoft Azure samples site](http://code.msdn.microsoft.com/windowsazure/site/search?f%5B0%5D.Type=Technology&f%5B0%5D.Value=Service%20Bus) and then unzip the content in any folder on your hard drive.
 
 1. Open Visual Studio with elevated privileges and open the Authorization solution located at the C# folder. Select **Build** from the Visual Studio Menu and then **Rebuild Solution**.  
 

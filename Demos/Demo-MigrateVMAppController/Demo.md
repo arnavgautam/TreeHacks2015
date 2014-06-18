@@ -1,11 +1,11 @@
-﻿<a name="title" />
+<a name="title" />
 # Migrate a Virtual Machine Using AppController #
 
 ---
 <a name="Overview" />
 ## Overview ##
 
-Click through demonstration of using System Center Virtual Machine Manager and AppController Beta 1 to migrate a virtual machine from on-premises to Windows Azure. 
+Click through demonstration of using System Center Virtual Machine Manager and AppController Beta 1 to migrate a virtual machine from on-premises to Microsoft Azure. 
 
 > **Note:** For this click through a site to site virtual network has already been configured to provide hybrid connectivity to the cloud. 
 
@@ -13,8 +13,8 @@ Click through demonstration of using System Center Virtual Machine Manager and A
 <a name="technologies" />
 ### Key Technologies ###
 
-- Windows Azure subscription - you can sign up for free trial [here][1]
-- Windows Azure Virtual Machines 
+- Microsoft Azure subscription - you can sign up for free trial [here][1]
+- Microsoft Azure Virtual Machines 
 
 [1]: http://bit.ly/WindowsAzureFreeTrial
 [2]: http://go.microsoft.com/?linkid=9811175&clcid=0x409

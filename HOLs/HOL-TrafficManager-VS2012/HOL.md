@@ -1,12 +1,12 @@
-Ôªø<a name="AzureTrafficManager"></a>
-# Windows Azure Traffic Manager - for Visual Studio 2012#
+<a name="AzureTrafficManager"></a>
+# Microsoft Azure Traffic Manager - for Visual Studio 2012#
 
 ---
 
 <a name="Overview"></a>
 ## Overview ##
 
-The Traffic Manager is a load balancing solution that enables the distribution of incoming traffic among different cloud services in your Windows Azure subscription, regardless of their physical location. Traffic routing occurs as a the result of policies that you define and that are based on one of the following criteria:
+The Traffic Manager is a load balancing solution that enables the distribution of incoming traffic among different cloud services in your Microsoft Azure subscription, regardless of their physical location. Traffic routing occurs as a the result of policies that you define and that are based on one of the following criteria:
 
 - **Performance** - traffic is forwarded to the closest cloud service in terms of network latency
 - **Round Robin** - traffic is distributed equally across all cloud services
@@ -25,7 +25,7 @@ If the TTL of a DNS host entry in the cache expires, new requests for the same h
 
 Throughout the lab, you will be required to access policy endpoints repeatedly to evaluate their behavior. To ensure predictable results, it is essential that you do not use a cached entry. Restarting the browser is one way to guarantee this condition, but requires closing every open browser window before each request, even those that display other sites.
 
-To make this process simpler, the lab provides a registry script to shorten the lifetime of entries in the browser‚Äôs DNS cache. After executing the script and restarting the browser, evaluating a policy is simply a matter of waiting for the duration of the TTL and then refreshing the browser window. Note, however, that because this script changes Internet Explorer's configuration, you will only execute it inside a remote desktop session connected to one of the cloud services in the application.
+To make this process simpler, the lab provides a registry script to shorten the lifetime of entries in the browserís DNS cache. After executing the script and restarting the browser, evaluating a policy is simply a matter of waiting for the duration of the TTL and then refreshing the browser window. Note, however, that because this script changes Internet Explorer's configuration, you will only execute it inside a remote desktop session connected to one of the cloud services in the application.
 
 For more information, see [Appendix B: Configuring the DNS Cache of the Browser](#AppendixB).
 
@@ -38,11 +38,11 @@ Some of these features are:
 
 1. A customizable background and caption that allows you to determine, at a glance, which of the cloud services responds to a request
 
-1. A timer-restarted with every page refresh-that shows the remaining time on the DNS host entry‚Äôs TTL and when it is safe to refresh the page to observe the result of a policy
+1. A timer-restarted with every page refresh-that shows the remaining time on the DNS host entryís TTL and when it is safe to refresh the page to observe the result of a policy
 
 1. A control panel showing the status of each cloud service deployed including commands to enable or disable traffic to individual services
 
-1. Download links for registry scripts to configure the lifetime of DNS host entries in the browser‚Äôs cache
+1. Download links for registry scripts to configure the lifetime of DNS host entries in the browserís cache
 
 1. A timer-restarted after every change in the status of a service-that shows elapsed time since a change in the state of a service and estimating how long it takes Traffic Manager to become aware of the change
 
@@ -70,8 +70,8 @@ The following is required to complete this hands-on lab:
 
 - [Microsoft .NET Framework 4.0](http://go.microsoft.com/fwlink/?linkid=186916)
 - [Microsoft Visual Studio 2012](http://msdn.microsoft.com/vstudio/products/)
-- [Windows Azure SDK and Windows Azure Tools for Microsoft Visual Studio 1.7](http://www.microsoft.com/windowsazure/sdk/)
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Microsoft Azure SDK and Microsoft Azure Tools for Microsoft Visual Studio 1.7](http://www.microsoft.com/windowsazure/sdk/)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 >**Note:** This lab was designed to use Windows 8 Operating System.
 
@@ -100,10 +100,10 @@ During this hands-on lab, you will evaluate Traffic Manager by publishing a samp
 
 Before you begin, you need to configure the application to enable remote desktop. This will allow you to open a remote desktop session to each of your cloud services and test access to the application from other regions. 
 
-In this exercise, you publish the application to multiple cloud services in your Windows Azure subscription. For each cloud service, you configure the application with settings appropriate to its region, create a cloud service in the Windows Azure Management Portal, upload the remote desktop certificate, and then deploy the application.
+In this exercise, you publish the application to multiple cloud services in your Microsoft Azure subscription. For each cloud service, you configure the application with settings appropriate to its region, create a cloud service in the Microsoft Azure Management Portal, upload the remote desktop certificate, and then deploy the application.
 
 <a name="GettingStartedTask1"></a>
-#### Task 1 ‚Äì Preparing for Deployment ####
+#### Task 1 ñ Preparing for Deployment ####
 
 In this task, you prepare the application for deployment by enabling remote desktop access.
 
@@ -159,7 +159,7 @@ In this task, you configure the credentials used by the application to access yo
 <a name="GettingStartedTask3"></a>
 #### Task 3 - Publishing the Application to Multiple Regions ####
 
-In this task, you create the necessary cloud services in your Windows Azure subscription and then publish the application to different regions. You need to create at least two cloud services to be able to complete the steps in this lab, but three is the recommended number.
+In this task, you create the necessary cloud services in your Microsoft Azure subscription and then publish the application to different regions. You need to create at least two cloud services to be able to complete the steps in this lab, but three is the recommended number.
 
 Before publishing each cloud service, you update its configuration to specify a number of settings that will allow you to identify which cloud service responds to a given request.
 
@@ -171,19 +171,19 @@ The following procedure describes the steps required to create a cloud service a
 [appname]-us-northcentral | North Central US | _#ff9900_      |
 [appname]-asia-east       | East Asia        | _#993333_      |
 
-The pattern followed by the cloud service URL prefix is **_[appname]-[region]_**, where **_[appname]_** is a unique identifier common to all cloud services that you deploy during this hands-on lab and **_[region]_** is the Windows Azure region where the service is created. The full URL of a cloud service is based on its URL prefix and public so you must choose the **_[appname]_** portion to avoid colliding with cloud services from other users.
+The pattern followed by the cloud service URL prefix is **_[appname]-[region]_**, where **_[appname]_** is a unique identifier common to all cloud services that you deploy during this hands-on lab and **_[region]_** is the Microsoft Azure region where the service is created. The full URL of a cloud service is based on its URL prefix and public so you must choose the **_[appname]_** portion to avoid colliding with cloud services from other users.
 
 To create a cloud service and deploy the application:
 
-1. Navigate to the [Windows Azure Management Portal](http://manage.windowsazure.com/) and log in with your Microsoft Account's credentials.
+1. Navigate to the [Microsoft Azure Management Portal](http://manage.windowsazure.com/) and log in with your Microsoft Account's credentials.
 
 1. Click **New** | **Compute** | **Cloud Service** | **Quick Create**. Select a unique **URL** for your service, for example _worldapp-north-europe_. Refer to the table at the start of this task for suggested values. The dialog validates the URL prefix as you type it and warns you if the one you choose is unavailable.
 
 1. To choose a region for the service, expand the drop down list labeled **Region / Affinity Group** and pick the region that corresponds to the service name and URL prefix used. Click **Create Cloud Service**.
 
-	![Creating a new Cloud Service in Windows Azure](Images/creating-a-new-cloud-service-in-windows-azure.png?raw=true "Creating a new Cloud Service in Windows Azure")
+	![Creating a new Cloud Service in Microsoft Azure](Images/creating-a-new-cloud-service-in-windows-azure.png?raw=true "Creating a new Cloud Service in Microsoft Azure")
 
-	_Creating a new Cloud Service in Windows Azure_
+	_Creating a new Cloud Service in Microsoft Azure_
 
 1. Upload the certificate used to encrypt the Remote Desktop password to the newly created service. To do this, select **Cloud Services** from the left pane, and click the name of the service you just created. Then, click **Certificates** from the top of the cloud service.
 
@@ -199,29 +199,29 @@ To create a cloud service and deploy the application:
 
 1. Return to Visual Studio and update the configuration settings used to identify the region where the service is located. To do this, in **Solution Explorer**, expand the **Roles** node of the **WorldAppService** project, double-click **WorldApp** to open the properties window for this role, and then select the **Settings** tab.
 
-	> **Note:** The application includes several configuration settings that you update based on the Windows Azure region where you deploy the service, namely its region label, its URL prefix, and the background color for the UI. The latter setting allows you to identify which cloud service responds to a given request very easily.
+	> **Note:** The application includes several configuration settings that you update based on the Microsoft Azure region where you deploy the service, namely its region label, its URL prefix, and the background color for the UI. The latter setting allows you to identify which cloud service responds to a given request very easily.
 
 1. In the **Settings** page, set the _HostedServiceRegion_, _HostedServiceUrlPrefix_, and _HostedServiceBackgroundColor_ settings to the values in the table at the start of this task that match the region chosen for this service.
 
-	![Configuring the application based on its Windows Azure deployment region](Images/configuring-the-application-based-on-its-wind.png?raw=true "Configuring the application based on its Windows Azure deployment region")
+	![Configuring the application based on its Microsoft Azure deployment region](Images/configuring-the-application-based-on-its-wind.png?raw=true "Configuring the application based on its Microsoft Azure deployment region")
 
-	_Configuring the application based on its Windows Azure deployment region_
+	_Configuring the application based on its Microsoft Azure deployment region_
 
 1. Once you configure the application, you can proceed to publish it. To do this, right-click the **WorldAppService** project in **Solution Explorer** and then select **Publish**.
 
-1. In the **Publish Windows Azure Application** dialog, select the credentials for your Windows Azure subscription from the drop down list and click **Next**. 
+1. In the **Publish Microsoft Azure Application** dialog, select the credentials for your Microsoft Azure subscription from the drop down list and click **Next**. 
 
-	> **Note:** If you have not previously deployed an application to Windows Azure from Visual Studio, you first need to create and configure the necessary credentials. For more information, see [Appendix A: Configuring your Windows Azure Management Portal Credentials in Visual Studio](#AppendixA).
+	> **Note:** If you have not previously deployed an application to Microsoft Azure from Visual Studio, you first need to create and configure the necessary credentials. For more information, see [Appendix A: Configuring your Microsoft Azure Management Portal Credentials in Visual Studio](#AppendixA).
 
 1. Next, select the cloud service you created for this region and set its **environment** to **Production**. Click **Publish** to begin the deployment.
 
-	![Deploying the application to Windows Azure](Images/deploying-the-application-to-windows-azure.png?raw=true "Deploying the application to Windows Azure")
+	![Deploying the application to Microsoft Azure](Images/deploying-the-application-to-windows-azure.png?raw=true "Deploying the application to Microsoft Azure")
 
-	_Deploying the application to Windows Azure_
+	_Deploying the application to Microsoft Azure_
 
 	> **Note:** Traffic Manager policies only apply to cloud services in the production environment. You cannot route to services running in the staging environment.
 
-1. After you start a deployment, you can examine the Windows Azure activity log window to determine the status of the operation. If this window is not visible, in the **View** menu, point to **Other Windows**, and then select **Windows Azure Activity Log**.  By default, the log shows a descriptive message and a progress bar to indicate the status of the deployment operation. To view detailed information about the operation in progress, click the green arrow on the left side of the activity log entry.
+1. After you start a deployment, you can examine the Microsoft Azure activity log window to determine the status of the operation. If this window is not visible, in the **View** menu, point to **Other Windows**, and then select **Microsoft Azure Activity Log**.  By default, the log shows a descriptive message and a progress bar to indicate the status of the deployment operation. To view detailed information about the operation in progress, click the green arrow on the left side of the activity log entry.
 
 	![Monitoring the progress of the deployment operation](Images/monitoring-the-progress-of-the-deployment-ope.png?raw=true "Monitoring the progress of the deployment operation")
 
@@ -229,17 +229,17 @@ To create a cloud service and deploy the application:
 
 1. Repeat the procedure described in this task to deploy the service to other regions referring to the previous steps for a detailed description. These steps have been summarized below:
 
-	1. In the [Windows Azure Management Portal](http://manage.windowsazure.com/), create a cloud service in a different region than the one chosen previously. 
+	1. In the [Microsoft Azure Management Portal](http://manage.windowsazure.com/), create a cloud service in a different region than the one chosen previously. 
 
 	1. Upload the certificate used to encrypt the remote desktop credentials. Use the same certificate that you created previously.
 
-	1. Before proceeding, examine the **Windows Azure Activity Log** to ensure that the previous deployment has completed its _‚ÄúUploading‚Ä¶‚Äù_ phase. This is a precaution to avoid overwriting the service configuration file before it has been completely uploaded.
+	1. Before proceeding, examine the **Microsoft Azure Activity Log** to ensure that the previous deployment has completed its _ìUploadingÖî_ phase. This is a precaution to avoid overwriting the service configuration file before it has been completely uploaded.
 
 	1. Next, open the **Settings** page for the **WorldApp** role and update the _HostedServiceRegion_, _HostedServiceUrlPrefix_, and _HostedServiceBackgroundColor_ settings to reflect your choices when creating the current cloud service. Refer to the table at the start of this task for suggested configuration settings.
 
 	1. Publish the project to the cloud service.
 
-1. After you complete this task, the **Cloud Services** view in the Windows Azure Management Portal should list the cloud services for all regions that you deployed. You should have at least two cloud services in different regions. Make sure that the portal shows the status of all these services as _**Ready**_.
+1. After you complete this task, the **Cloud Services** view in the Microsoft Azure Management Portal should list the cloud services for all regions that you deployed. You should have at least two cloud services in different regions. Make sure that the portal shows the status of all these services as _**Ready**_.
 
 <a name="GettingStartedTask4"></a>
 #### Task 4 - Configuring the DNS Cache for Testing ####
@@ -268,19 +268,19 @@ In this task, you open a remote desktop session to a role instance in each of th
 
 1. Inside the remote desktop session, open a browser window and navigate to the URL of the cloud service in the same region, namely _http://[appname]-[region].cloudapp.net_, where _[appname]-[region]_ is the URL prefix name that you configured for the cloud service. 
 
-1. If access to the site is blocked by Internet Explorer‚Äôs enhanced security configuration, click **Add**.
+1. If access to the site is blocked by Internet Explorerís enhanced security configuration, click **Add**.
 
 	![Internet Explorer enhanced security configuration warning](Images/internet-explorer-enhanced-security-configura.png?raw=true "Internet Explorer enhanced security configuration warning")
 
 	_Internet Explorer enhanced security configuration warning_
 
-1. In the **Trusted Sites** dialog, click **Add** to insert the URL that you typed in the browser‚Äôs address bar to the trusted websites list. 
+1. In the **Trusted Sites** dialog, click **Add** to insert the URL that you typed in the browserís address bar to the trusted websites list. 
 
 	![Adding the Traffic Manager to the trusted sites zone](Images/adding-the-traffic-manager-to-the-trusted-sit.png?raw=true "Adding the Traffic Manager to the trusted sites zone")
 
 	_Adding the Traffic Manager to the trusted sites zone_
 	
-	>**Note:**  You can also add the URL for the Traffic Manager‚Äôs domain to the list of trusted websites. To do this, type _http://*.[appname].trafficmanager.net,_ where _[appname]_ is the prefix chosen for your application and then click **Add**.
+	>**Note:**  You can also add the URL for the Traffic Managerís domain to the list of trusted websites. To do this, type _http://*.[appname].trafficmanager.net,_ where _[appname]_ is the prefix chosen for your application and then click **Add**.
 
 1. Click **Close** twice to dismiss the enhanced security configuration dialogs and display the home page of the application.
 
@@ -304,9 +304,9 @@ In this task, you open a remote desktop session to a role instance in each of th
 
 1. Click **OK** to close the message box confirming the successful update of the registry.
 
-	![Successful update of the browser‚Äôs configuration](Images/successful-update-of-the-browsers-configurati.png?raw=true "Successful update of the browser‚Äôs configuration")
+	![Successful update of the browserís configuration](Images/successful-update-of-the-browsers-configurati.png?raw=true "Successful update of the browserís configuration")
 
-	_Successful update of the browser‚Äôs configuration_
+	_Successful update of the browserís configuration_
 
 1. Close all open browser windows and restart the browser for the changes to take effect.
 1. Repeat the previous steps until you have configured the browser in each of your cloud services, one for each region.
@@ -318,14 +318,14 @@ In this task, you open a remote desktop session to a role instance in each of th
 <a name="Exercise1"></a>
 ### Exercise 1: Routing Traffic for Enhanced Performance ###
 
-Traffic Manager maintains a network performance table that it updates periodically and contains the round trip time between various IP addresses around the world and each Windows Azure data center. For the performance load balancing method, Traffic Manager forwards requests to the closest cloud service in terms of its network latency.
+Traffic Manager maintains a network performance table that it updates periodically and contains the round trip time between various IP addresses around the world and each Microsoft Azure data center. For the performance load balancing method, Traffic Manager forwards requests to the closest cloud service in terms of its network latency.
 
 Fully evaluating the results of this policy requires accessing the application from different geographic locations. Fortunately, this does not require you to travel around the world to complete this exercise. Instead, because you are deploying the application to multiple cloud services in various regions, you can take advantage of remote desktop to log into a cloud service in each of these regions and then access the application from within the remote session. In this case, the role instance acts as both the client and the server.
 
 <a name="Ex1Task1"></a>
 #### Task 1 - Creating a Traffic Manager Performance Policy ####
 
-In this task, you define a Traffic Manager policy that maximizes performance by forwarding traffic to the cloud service that offers the best performance for any given client. The load balancer bases its decision on performance tables that measure the round trip time of different IP addresses around the globe to each Windows Azure data center.
+In this task, you define a Traffic Manager policy that maximizes performance by forwarding traffic to the cloud service that offers the best performance for any given client. The load balancer bases its decision on performance tables that measure the round trip time of different IP addresses around the globe to each Microsoft Azure data center.
 
 1. To use the Traffic Manager, you need to access the previous management portal version. In order to do this, hover the mouse pointer over **Preview** in the main page header and click **Take me to the previous portal**.
 
@@ -349,9 +349,9 @@ In this task, you define a Traffic Manager policy that maximizes performance by 
 
 1. Set the **Relative path and filename** of the monitoring endpoint to _/AppHealth_.
 
-	> **Note:** Traffic Manager performs an HTTP (GET) request against the monitoring endpoint every 30 seconds to determine the service‚Äôs health. The service must respond with a 200 OK HTTP status code within 5 seconds; otherwise, Traffic Manager considers the service unhealthy and removes it from the load balancer rotation.
+	> **Note:** Traffic Manager performs an HTTP (GET) request against the monitoring endpoint every 30 seconds to determine the serviceís health. The service must respond with a 200 OK HTTP status code within 5 seconds; otherwise, Traffic Manager considers the service unhealthy and removes it from the load balancer rotation.
 
-	> _/AppHealth_ is the URL of the monitoring endpoint for the lab‚Äôs application that can be disabled on demand to simulate a failure.
+	> _/AppHealth_ is the URL of the monitoring endpoint for the labís application that can be disabled on demand to simulate a failure.
 
 1. Next, choose a name for the **Traffic Manager DNS prefix**, for example, _performance.[appname]_, where _[appname]_ is the name chosen for your service.
 
@@ -380,9 +380,9 @@ In this task, you test the performance policy defined previously. First, you tes
 
 	_Testing the Traffic Manager performance policy in your own machine_
 
-	> **Note:** For a performance policy, the load balancer determines which cloud service responds to a client request based on tables that record the round trip time between various IP addresses around the globe and each Windows Azure data center. Note, however, that while there is a strong correlation between distance and network latency and you would normally receive a response from the cloud service closest to your current location, other factors such as network topology and congestion could determine that you receive a response from a service that is further away.
+	> **Note:** For a performance policy, the load balancer determines which cloud service responds to a client request based on tables that record the round trip time between various IP addresses around the globe and each Microsoft Azure data center. Note, however, that while there is a strong correlation between distance and network latency and you would normally receive a response from the cloud service closest to your current location, other factors such as network topology and congestion could determine that you receive a response from a service that is further away.
 
-1. Now, in the navigation pane of the Windows Azure Management Portal, select the **Hosted Services, Storage Accounts & CDN** tab and then the **Hosted Services** option.
+1. Now, in the navigation pane of the Microsoft Azure Management Portal, select the **Hosted Services, Storage Accounts & CDN** tab and then the **Hosted Services** option.
 
 1. Locate one of the cloud services created for this hands-on lab and expand its node to show its instances. Select one of the instances and then click **Connect** on the ribbon to open a remote desktop session to that instance.
 
@@ -449,14 +449,14 @@ In this task, you place the cloud service that is currently servicing your reque
 
 The round robin load balancing method distributes load evenly among each of the cloud services assigned to the policy. It keeps track of the last cloud service that received traffic and sends traffic to the next one in the list of cloud services.
 
-Traffic Manager removes a cloud service from the load balancer‚Äôs rotation if it determines that it is offline. Note, however, that if all services assigned to a policy are unavailable, Traffic Manager will ignore their status and return a response as if they were online.
+Traffic Manager removes a cloud service from the load balancerís rotation if it determines that it is offline. Note, however, that if all services assigned to a policy are unavailable, Traffic Manager will ignore their status and return a response as if they were online.
 
 <a name="Ex2Task1"></a>
-#### Task 1 ‚Äì Creating a Traffic Manager Round Robin Policy ####
+#### Task 1 ñ Creating a Traffic Manager Round Robin Policy ####
 
 In this task, you create a Traffic Manager policy that balances traffic evenly across all cloud services assigned to the policy.
 
-1. In the Windows Azure Management Portal, select the **Virtual Network** tab. Then, choose the **Policies** option under **Traffic Manager** and click **Create** on the ribbon.
+1. In the Microsoft Azure Management Portal, select the **Virtual Network** tab. Then, choose the **Policies** option under **Traffic Manager** and click **Create** on the ribbon.
 
 1. In the **Create Traffic Manager Policy** dialog, pick the subscription where you created the cloud services for this hands-on lab.
 
@@ -481,7 +481,7 @@ In this task, you create a Traffic Manager policy that balances traffic evenly a
 > **Note:** After creating a policy, wait for 2 minutes before you run any tests to allow the policy to propagate to all DNS servers.
 
 <a name="Ex2Task2"></a>
-#### Task 2 ‚Äì Testing the Round Robin Policy ####
+#### Task 2 ñ Testing the Round Robin Policy ####
 
 In this task, you test the round robin policy created during the previous task.
 
@@ -526,11 +526,11 @@ In this task, you test the round robin policy created during the previous task.
 When using a failover policy, if the primary cloud service is offline, traffic is sent to the next one in a sequence defined by the policy. To test this policy, the application provided with the lab includes a monitoring endpoint that Traffic Manager polls to determine whether the cloud service is available. 
 
 <a name="Ex3Task1"></a>
-#### Task 1 ‚Äì Creating a Traffic Manager Failover Policy ####
+#### Task 1 ñ Creating a Traffic Manager Failover Policy ####
 
-In this task, you create a Traffic Manager policy that contains an ordered list of cloud services. Traffic is normally forwarded to the first service in this list‚Äîthe primary service. If a service becomes unavailable, the load balancer switches to the next service in the list, and if that fails too, it will continue with the next in order.
+In this task, you create a Traffic Manager policy that contains an ordered list of cloud services. Traffic is normally forwarded to the first service in this listóthe primary service. If a service becomes unavailable, the load balancer switches to the next service in the list, and if that fails too, it will continue with the next in order.
 
-1. In the Windows Azure Management Portal, select the **Virtual Network** tab. Then, choose the **Policies** option under **Traffic Manager** and click **Create** on the ribbon.
+1. In the Microsoft Azure Management Portal, select the **Virtual Network** tab. Then, choose the **Policies** option under **Traffic Manager** and click **Create** on the ribbon.
 
 1. In the **Create Traffic Manager Policy** dialog, pick the subscription where you created the cloud services for this hands-on lab.
 
@@ -557,7 +557,7 @@ In this task, you create a Traffic Manager policy that contains an ordered list 
 > **Note:** After creating a policy, wait for 2 minutes before you run any tests to allow the policy to propagate to all DNS servers.
 
 <a name="Ex3Task2"></a>
-#### Task 2 ‚Äì Testing the Failover Policy ####
+#### Task 2 ñ Testing the Failover Policy ####
 
 In this task, you test the failover policy created previously.
 
@@ -686,7 +686,7 @@ You can temporarily disable a Traffic Manager policy to prevent it from routing 
 
 	_Enabling a Traffic Manager policy_ 
 
-1. Refresh the page and confirm that the application is once again available at the policy‚Äôs URL.
+1. Refresh the page and confirm that the application is once again available at the policyís URL.
 
 	> **Note:** It may take up to 2 minutes for the policy to propagate to all DNS servers.
 
@@ -695,34 +695,34 @@ You can temporarily disable a Traffic Manager policy to prevent it from routing 
 <a name="Summary"></a>
 ## Summary ##
 
-Windows Azure Traffic Manager enables you to manage and distribute incoming traffic to your Windows Azure cloud services whether they are deployed in the same data center or in different regions across the world.
+Microsoft Azure Traffic Manager enables you to manage and distribute incoming traffic to your Microsoft Azure cloud services whether they are deployed in the same data center or in different regions across the world.
 
 In this hands-on lab, you explored available load balancing policies and learned how to use them to enhance performance, increase availability, and balance traffic to your cloud services.
 
 ---
 
 <a name="AppendixA"></a>
-## Appendix A: Configuring your Windows Azure Management Portal Credentials in Visual Studio ##
+## Appendix A: Configuring your Microsoft Azure Management Portal Credentials in Visual Studio ##
 
-Follow these steps to save the credentials that allow you to deploy an application to your Windows Azure subscription from Visual Studio. The credentials are stored in your Visual Studio configuration so will only need to do this once for each subscription.
+Follow these steps to save the credentials that allow you to deploy an application to your Microsoft Azure subscription from Visual Studio. The credentials are stored in your Visual Studio configuration so will only need to do this once for each subscription.
 
-1. In **Solution Explorer**, right-click the Windows Azure project and select **Publish**.
+1. In **Solution Explorer**, right-click the Microsoft Azure project and select **Publish**.
 
-	> **Note:** Ensure that you click the Windows Azure cloud project and not one of its associated roles.
+	> **Note:** Ensure that you click the Microsoft Azure cloud project and not one of its associated roles.
 
-1. It will prompt the **Publish Windows Azure Application** dialog. To publish an application, you first need to create the necessary credentials to access your Microsoft account. To add a new set of credentials to your configuration, expand the **Subscription** drop down list and select **Manage**. If you have already added your credentials, chose them and skip this task.
+1. It will prompt the **Publish Microsoft Azure Application** dialog. To publish an application, you first need to create the necessary credentials to access your Microsoft account. To add a new set of credentials to your configuration, expand the **Subscription** drop down list and select **Manage**. If you have already added your credentials, chose them and skip this task.
 
-	![Adding Subscription‚Äôs credentials in Visual Studio](Images/adding-subscriptions-credentials-in-visual-st.png?raw=true "Adding Subscription‚Äôs credentials in Visual Studio")
+	![Adding Subscriptionís credentials in Visual Studio](Images/adding-subscriptions-credentials-in-visual-st.png?raw=true "Adding Subscriptionís credentials in Visual Studio")
 
-	_Adding Subscription‚Äôs credentials in Visual Studio_
+	_Adding Subscriptionís credentials in Visual Studio_
 
-1. It will prompt a dialog to manage your Windows Azure authentication settings. Click **New** to define you authentication settings.
+1. It will prompt a dialog to manage your Microsoft Azure authentication settings. Click **New** to define you authentication settings.
 
 	![Adding Authentication Settings](Images/adding-authentication-settings.png?raw=true "Adding Authentication Settings")
 
 	_Adding Authentication Settings_
 
-1. To create the credentials, you require a certificate. If Visual Studio cannot find a suitable certificate in your personal certificate store, it will prompt you to create a new one; otherwise, in the **Windows Azure Project Management Authentication** dialog, expand the drop down list labeled **Create or select an existing certificate for authentication** and then select **Create**.
+1. To create the credentials, you require a certificate. If Visual Studio cannot find a suitable certificate in your personal certificate store, it will prompt you to create a new one; otherwise, in the **Microsoft Azure Project Management Authentication** dialog, expand the drop down list labeled **Create or select an existing certificate for authentication** and then select **Create**.
 
 	![Creating a new certificate for authentication](Images/creating-a-new-certificate-for-authentication.png?raw=true "Creating a new certificate for authentication")
 
@@ -736,7 +736,7 @@ Follow these steps to save the credentials that allow you to deploy an applicati
 
 	_Creating a new management certificate_
 
-1. Back in the **Windows Azure Project Management Authentication** dialog, ensure that the newly created certificate is selected. Notice that the issuer for this certificate is the Windows Azure Tools.
+1. Back in the **Microsoft Azure Project Management Authentication** dialog, ensure that the newly created certificate is selected. Notice that the issuer for this certificate is the Microsoft Azure Tools.
 
 	![Selecting a certificate for the credentials](Images/selecting-a-certificate-for-the-credentials.png?raw=true "Selecting a certificate for the credentials")
 
@@ -756,7 +756,7 @@ Follow these steps to save the credentials that allow you to deploy an applicati
 
 	_Confirmation that the file path was copied to the clipboard successfully_
 
-1. Now, in the **Windows Azure Project Management Authentication** dialog, click the link labeled **Windows Azure Portal** to open a browser window and navigate to the Management Portal.
+1. Now, in the **Microsoft Azure Project Management Authentication** dialog, click the link labeled **Microsoft Azure Portal** to open a browser window and navigate to the Management Portal.
 
 	![Opening the Developer Portal in your browser](Images/opening-the-developer-portal-in-your-browser.png?raw=true "Opening the Developer Portal in your browser")
 
@@ -768,7 +768,7 @@ Follow these steps to save the credentials that allow you to deploy an applicati
 
 	At the **API Certificates** page, when selecting a certificate file from your local storage, make sure to use the path that you copied earlier from your clipboard to specify the certificate public key file to upload. 
 
-1. To complete the setup of your credentials, switch back to the **Windows Azure Project Management Authentication** dialog, enter your **subscription ID** and a name to identify the credentials and then click **OK**. 
+1. To complete the setup of your credentials, switch back to the **Microsoft Azure Project Management Authentication** dialog, enter your **subscription ID** and a name to identify the credentials and then click **OK**. 
 
 	![Completing the credential setup procedure](Images/completing-the-credential-setup-procedure.png?raw=true "Completing the credential setup procedure")
 
@@ -780,7 +780,7 @@ Follow these steps to save the credentials that allow you to deploy an applicati
 
 	_Authentication failure while accessing the management service_ 
 
-1. In the **Windows Azure Project Management Settings** dialog, you will see the recently created Authentication setting. Click **Close** to return to the Publish Wizard. You will continue with the publishing process in the next task.
+1. In the **Microsoft Azure Project Management Settings** dialog, you will see the recently created Authentication setting. Click **Close** to return to the Publish Wizard. You will continue with the publishing process in the next task.
  
 	![Managing Authentication settings](Images/managing-authentication-settings.png?raw=true "Managing Authentication settings")
 
@@ -791,13 +791,13 @@ Follow these steps to save the credentials that allow you to deploy an applicati
 <a name="AppendixB"></a>
 ## Appendix B: Configuring the DNS Cache of the Browser ##
 
-The following steps describe how to configure the lifetime of DNS host entries in the browser‚Äôs cache using a registry script that you download from the home page of the lab‚Äôs application.
+The following steps describe how to configure the lifetime of DNS host entries in the browserís cache using a registry script that you download from the home page of the labís application.
 
 This procedure is optional. If you choose not to execute it, you can force the browser to clear its DNS cache by closing all open windows and restarting the browser before each request.
 
 > **Important:** Running this script makes changes to your browser that can have an effect on your browsing experience. **You should only execute this script inside a remote desktop session to one of your cloud services.** 
 
-> Nevertheless, if you choose to apply the script in your local machine, you can undo its changes by applying a complementary script that is also provided. Note that both scripts assume that you have not previously customized Internet Explorer‚Äôs DNS cache configuration. Otherwise, running these scripts could overwrite your original configuration.
+> Nevertheless, if you choose to apply the script in your local machine, you can undo its changes by applying a complementary script that is also provided. Note that both scripts assume that you have not previously customized Internet Explorerís DNS cache configuration. Otherwise, running these scripts could overwrite your original configuration.
 
 > For more information, see [How Internet Explorer uses the cache for DNS host entries](http://support.microsoft.com/kb/263558).
 
@@ -807,7 +807,7 @@ This procedure is optional. If you choose not to execute it, you can force the b
 
 #### How to configure the DNS Cache to decrease the lifetime of host entries to 30 seconds ####
 
-1. In the home page of the application, download the registry script to shorten the lifetime of host entries in the browser‚Äôs DNS cache.
+1. In the home page of the application, download the registry script to shorten the lifetime of host entries in the browserís DNS cache.
 
 1. In the **File Download** dialog, click **Run** to launch the registry configuration script.
 
@@ -819,7 +819,7 @@ This procedure is optional. If you choose not to execute it, you can force the b
 
 #### How to restore the DNS Cache configuration ####
 
-1. In the home page of the application, download the registry script to restore the browser‚Äôs DNS cache configuration.
+1. In the home page of the application, download the registry script to restore the browserís DNS cache configuration.
 
 1. In the **File Download** dialog, click **Run** to launch the registry configuration script.
 

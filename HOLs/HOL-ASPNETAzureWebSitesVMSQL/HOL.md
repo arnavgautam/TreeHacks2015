@@ -1,25 +1,25 @@
-﻿<a name="handsonlab"></a>
-# Windows Azure Web Sites and Virtual Machines using ASP.NET and SQL Server #
+<a name="handsonlab"></a>
+# Microsoft Azure Websites and Virtual Machines using ASP.NET and SQL Server #
 
 ---
 
 <a name="Overview"></a>
 ## Overview ##
 
-In this lab, you will learn how to create ASP.NET web applications that connect to virtual machines running in Windows Azure. First, you will create a virtual machine with SQL Server 2012 installed using the Windows Azure Management Portal and configure it to allow external connections. Then, you will create a simple ASP.NET MVC 4 web application using Entity Framework that accesses the database in the SQL Server virtual machine. The web application will take advantage of Full-Text Search features in SQL Server 2012 to search for contacts data.  You will complete the lab by deploying the application to Windows Azure Web Sites using Visual Studio.
+In this lab, you will learn how to create ASP.NET web applications that connect to virtual machines running in Microsoft Azure. First, you will create a virtual machine with SQL Server 2012 installed using the Microsoft Azure Management Portal and configure it to allow external connections. Then, you will create a simple ASP.NET MVC 4 web application using Entity Framework that accesses the database in the SQL Server virtual machine. The web application will take advantage of Full-Text Search features in SQL Server 2012 to search for contacts data.  You will complete the lab by deploying the application to Microsoft Azure Websites using Visual Studio.
 
-> **Note:** A Visual Studio 2012 version of this Hands-on Lab can be found in the latest build of the [Windows Azure training kit](http://bit.ly/WindowsAzureTK) or in [GitHub](https://github.com/WindowsAzure-TrainingKit/HOL-ASPNETAzureWebSitesVMSQL-VS2012).
+> **Note:** A Visual Studio 2012 version of this Hands-on Lab can be found in the latest build of the [Microsoft Azure training kit](http://bit.ly/WindowsAzureTK) or in [GitHub](https://github.com/WindowsAzure-TrainingKit/HOL-ASPNETAzureWebSitesVMSQL-VS2012).
 
 <a name="Objectives"></a>
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-- Create and configure a SQL Server 2012 Virtual Machine in Windows Azure
+- Create and configure a SQL Server 2012 Virtual Machine in Microsoft Azure
 - Create a public endpoint for the virtual machine to allow web applications
 - Create an ASP.NET web application using Entity Framework that connects to the SQL Server Virtual Machine
 - Configure full-text search in SQL Server 2012 database and perform full-text search queries from a web application
-- Publish the web application to Windows Azure Web Sites using Visual Studio publishing feature
+- Publish the web application to Microsoft Azure Websites using Visual Studio publishing feature
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
@@ -28,7 +28,7 @@ The following is required to complete this hands-on lab:
 
 - [Microsoft Visual Studio 2010](http://msdn.microsoft.com/vstudio/products/) with Service Pack 1
 - [ASP.NET MVC 4](http://www.asp.net/mvc/mvc4)
-- A Windows Azure subscription with the Web Sites and Virtual Machines Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription with the Websites and Virtual Machines Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 - [Microsoft Web Publish for Visual Studio 2010 (June 2012)] (http://www.microsoft.com/web/gallery/install.aspx?appid=WebToolsExtensionPublishingVS2010_Only_1_0)
 
 > **Note:** This lab was designed to use Windows 7 Operating System.
@@ -78,13 +78,13 @@ In this exercise, you will create a new Virtual Machine with SQL Server and conf
 You will also create a database in the SQL Server that will be used by the MVC 4 application you will create in [Exercise 2](#Ex2).
 
 <a name="Ex1Task1"></a>
-#### Task 1 - Creating a Virtual Machine Using the Windows Azure Portal ####
+#### Task 1 - Creating a Virtual Machine Using the Microsoft Azure Portal ####
 
-In this task, you will create a new Virtual Machine using the Windows Azure Portal.
+In this task, you will create a new Virtual Machine using the Microsoft Azure Portal.
 
-A virtual machine in Windows Azure is a server in the cloud that you can control and manage. After you create a virtual machine in Windows Azure, you can start, stop, and delete it whenever you need to, and you can access the virtual machine just as you do with a server in your office.
+A virtual machine in Microsoft Azure is a server in the cloud that you can control and manage. After you create a virtual machine in Microsoft Azure, you can start, stop, and delete it whenever you need to, and you can access the virtual machine just as you do with a server in your office.
 
-1. Go to the [Windows Azure Management Portal] (https://manage.windowsazure.com) and sign in using your Windows account.
+1. Go to the [Microsoft Azure Management Portal] (https://manage.windowsazure.com) and sign in using your Windows account.
 
 1. Click **New** and select **Virtual Machine** option and then **Quick Create**. Select the **SQL Server 2012 Evaluation** virtual machine and type a **DNS Name** for the virtual machine that is available (for example, _SQLServer12_). Also provide a password. Finally, click **Create Virtual Machine**.
 
@@ -104,7 +104,7 @@ A virtual machine in Windows Azure is a server in the cloud that you can control
 
 1. In the **Virtual Machines** section, locate the Virtual Machine you just created and click on its name. Once in the **Dashboard** page, click **Endpoints**.
 
-	Virtual machines use endpoints to communicate within Windows Azure and with other resources on the Internet. All virtual machines that you create in Windows Azure can automatically communicate with other virtual machines in the same cloud service or virtual network. However, you need to add an endpoint to a machine for other resources on the Internet, like web applications, or other virtual networks to communicate with it.
+	Virtual machines use endpoints to communicate within Microsoft Azure and with other resources on the Internet. All virtual machines that you create in Microsoft Azure can automatically communicate with other virtual machines in the same cloud service or virtual network. However, you need to add an endpoint to a machine for other resources on the Internet, like web applications, or other virtual networks to communicate with it.
 
 1. Click **Add Endpoint**, select **Add Endpoint** and then click the next button to continue.
 
@@ -134,11 +134,11 @@ A virtual machine in Windows Azure is a server in the cloud that you can control
 
 In this task, you will install an SQL Server and configure it to enable external access. This means, you will make sure the SQL Server is has the TCP/IP protocol enabled and you will configure the virtual machine firewall for allowing external connections to the SQL Server port.
 
-1. In the Windows Azure Management Portal, click **Virtual Machines** on the left menu.
+1. In the Microsoft Azure Management Portal, click **Virtual Machines** on the left menu.
 
- 	![Windows Azure Portal](./images/Windows-Azure-Portal.png?raw=true "Windows Azure Portal")
+ 	![Microsoft Azure Portal](./images/Windows-Azure-Portal.png?raw=true "Microsoft Azure Portal")
  
-	_Windows Azure Portal_
+	_Microsoft Azure Portal_
 
 1. Click the row of the virtual machine you created in the previous task from the virtual machines list and click **Connect** from the command bar below to connect using a Remote Desktop Connection. Download and open the _.rdp_ file when prompted.
 
@@ -148,7 +148,7 @@ In this task, you will install an SQL Server and configure it to enable external
 
 1. When prompted for credentials, type the password you've configured when creating the virtual machine. Wait until the remote connection is ready.
 
- 	![Entering virtual machine credentials](./images/entering-vm-credentials.png?raw=true "Windows Azure Portal")
+ 	![Entering virtual machine credentials](./images/entering-vm-credentials.png?raw=true "Microsoft Azure Portal")
  
 	_Entering virtual machine credentials_
 
@@ -307,7 +307,7 @@ GO
 <a name="Exercise2"></a>
 ### Exercise 2: Creating an MVC 4 Web Application that Connects to the SQL Server 2012 Virtual Machine ###
 
-In this exercise you will create a simple ASP.NET MVC 4 Web application that will connect to the SQL Server created previously using a public endpoint. By the end of the exercise, you will deploy the application to Windows Azure Web Sites using Visual Studio publishing feature and Web Deploy.
+In this exercise you will create a simple ASP.NET MVC 4 Web application that will connect to the SQL Server created previously using a public endpoint. By the end of the exercise, you will deploy the application to Microsoft Azure Websites using Visual Studio publishing feature and Web Deploy.
 
 >**Note:** To reduce typing, you can right-click where you want to insert source code, select Insert Snippet, select My Code Snippets and then select the entry matching the current exercise step.
 
@@ -328,7 +328,7 @@ In this task you will create a simple MVC 4 Web application.
 
 1. Replace all the code in the class with following code.
 
-	(Code Snippet - Web Sites and Virtual Machines using ASP.NET - _Ex2 Contact class_)
+	(Code Snippet - Websites and Virtual Machines using ASP.NET - _Ex2 Contact class_)
 
 	````C#
 	namespace ContactManager.Web.Models
@@ -385,7 +385,7 @@ In this task you will create a simple MVC 4 Web application.
 
 1. Replace all the code in the class with the following code.
 
-	(Code Snippet - Web Sites and Virtual Machines using ASP.NET - _Ex2 ContactContext class_)
+	(Code Snippet - Websites and Virtual Machines using ASP.NET - _Ex2 ContactContext class_)
 
 	````C#
 	namespace ContactManager.Web.Models
@@ -411,7 +411,7 @@ In this task you will create a simple MVC 4 Web application.
 
 1. Now you will create a method for calling the stored procedure that performs the **full text search**. To do this, add the highlighted code at the end of the **ContactContext** class.
 
-	(Code Snippet - Web Sites and Virtual Machines using ASP.NET - _Ex2 SearchContacts method_)
+	(Code Snippet - Websites and Virtual Machines using ASP.NET - _Ex2 SearchContacts method_)
 
 	<!-- mark:5-9 -->
 	````C#
@@ -444,7 +444,7 @@ In this task you will create a simple MVC 4 Web application.
 
 1. Add the following code at the end of the **ContactController** class to create a method that will return a list  of contacts based on search criteria.
 
-	(Code Snippet - Web Sites and Virtual Machines using ASP.NET - _Ex2 List Contacts Controller Method_)
+	(Code Snippet - Websites and Virtual Machines using ASP.NET - _Ex2 List Contacts Controller Method_)
 
 	````C#
 	// GET: /Contact/List
@@ -510,7 +510,7 @@ In this task you will create a simple MVC 4 Web application.
 		 <div class="content-wrapper">
 			  <hgroup class="title">
 					<h1>Contact Manager Sample</h1>
-					<h2>for Windows Azure Web Sites</h2>
+					<h2>for Microsoft Azure Websites</h2>
 			  </hgroup>
 			  <p>
 				  Create and search for contacts using Full-Text Search in SQL Server 2012 - try queries like &quot;Joh*&quot; (with the quotation marks) and john OR smith OR contoso
@@ -607,7 +607,7 @@ In this task you will create a simple MVC 4 Web application.
 
 1. Open the **ContactController** class and add the following code to create methods that will handle the **Create** Action.
 
-	(Code Snippet - Web Sites and Virtual Machines using ASP.NET - _Ex2 Create Contact Controller Method_)
+	(Code Snippet - Websites and Virtual Machines using ASP.NET - _Ex2 Create Contact Controller Method_)
 
 	````C#
 	// GET: /Contact/Create
@@ -671,7 +671,7 @@ In this task you will create a simple MVC 4 Web application.
 
 1. Open the **ContactController** class and replace the **Index** method with the following code to show the contacts list when you load the site.
 
-	(Code Snippet - Web Sites and Virtual Machines using ASP.NET - _Ex2 Index Controller Method_)
+	(Code Snippet - Websites and Virtual Machines using ASP.NET - _Ex2 Index Controller Method_)
 
 	````C#
 	// GET: /Contact/
@@ -690,7 +690,7 @@ In this task you will create a simple MVC 4 Web application.
 	</connectionStrings>
 	````
 
-	> **Note:** You can grab your server address from Windows Azure Portal by going to **Virtual Machines**, then clicking on your virtual machine name and then going to **Dashboard**. Once there, under **Quick glance**, locate **DNS Name** 
+	> **Note:** You can grab your server address from Microsoft Azure Portal by going to **Virtual Machines**, then clicking on your virtual machine name and then going to **Dashboard**. Once there, under **Quick glance**, locate **DNS Name** 
 > and copy the URL without the _http://_ prefix.
 > 
 > ![SQL Server Virtual Machine Dashboard](images/sql-server-vm-dashboard.png?raw=true "SQL Server Virtual Machine Dashboard")
@@ -707,17 +707,17 @@ In this task you will create a simple MVC 4 Web application.
 <a name="Ex2Task2"></a>
 #### Task 2 - Publishing the Web Application using Visual Studio ####
 
-In this task you will publish using Windows Azure Web Sites the ASP.NET MVC 4 application you have created on the previous task. To do this, you will use Visual Studio web publishing to deploy the web application through Web Deploy.
+In this task you will publish using Microsoft Azure Websites the ASP.NET MVC 4 application you have created on the previous task. To do this, you will use Visual Studio web publishing to deploy the web application through Web Deploy.
 
-1. Go to the [Windows Azure Management Portal](https://manage.windowsazure.com) and sign with your Windows account credentials.
+1. Go to the [Microsoft Azure Management Portal](https://manage.windowsazure.com) and sign with your Windows account credentials.
 
-	![Log on to Windows Azure portal](images/login.png?raw=true "Log on to Windows Azure portal")
+	![Log on to Microsoft Azure portal](images/login.png?raw=true "Log on to Microsoft Azure portal")
 
-	_Log on to Windows Azure Management Portal_
+	_Log on to Microsoft Azure Management Portal_
 
 1. Click **New** on the command bar. Click **Web Site** and then **Quick Create**. Provide a URL for the new web site that is available (e.g. _contactmanager_) and click **Create Web Site**. You can leave the **Region** by default.
 
-	> **Note:** A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to Windows Azure Web Sites from outside the portal. It does not include steps for setting up a database.
+	> **Note:** A Microsoft Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to Microsoft Azure Websites from outside the portal. It does not include steps for setting up a database.
 
 	![Creating a new Web Site using Quick Create](images/create-website.png?raw=true "Creating a new Web Site using Quick Create")
 
@@ -725,17 +725,17 @@ In this task you will publish using Windows Azure Web Sites the ASP.NET MVC 4 ap
 
 	> **Note:** The **Quick Create** option doesn't give you options for setting up a database. In this lab you don't require it as you are using a Virtual Machine with SQL Server 2012 as database server.
 
-1. Wait until the new web site is created. In the **web sites** list, click the new Web Site under the Name column to access the **Dashboard**.
+1. Wait until the new web site is created. In the **Websites** list, click the new Web Site under the Name column to access the **Dashboard**.
 
 1. In the **Dashboard** page, under the **quick glance** section, click **Download publish profile**.
 
-	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Windows Azure Web Site for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft Visual Studio** supports reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure Web Sites. 
+	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Microsoft Azure Web Site for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft Visual Studio** supports reading publish profiles to automate configuration of these programs for publishing web applications to Microsoft Azure Websites. 
 
 	![Downloading the web site publish profile](images/download-publish-profile.png?raw=true "Downloading the web site publish profile")
 	
 	_Downloading the web site publish profile_
 
-1. Download the publish profile file to a known location. Later on in this exercise you will see how to use this file to publish a web application to Windows Azure Web Sites from Visual Studio.
+1. Download the publish profile file to a known location. Later on in this exercise you will see how to use this file to publish a web application to Microsoft Azure Websites from Visual Studio.
 
 	![Saving the publish profile file](images/save-link.png?raw=true "Saving the publish profile")
 	
@@ -775,7 +775,7 @@ In this task you will publish using Windows Azure Web Sites the ASP.NET MVC 4 ap
 	>
 	>![Publish web application certificate](images/publish-web-application-certificate.png?raw=true "Publish web application certificate")
 
-1. Once the publishing process finishes, switch back to the Windows Azure Management Portal.
+1. Once the publishing process finishes, switch back to the Microsoft Azure Management Portal.
 
 1. In the **Dashboard** page of the web site, under the **quick glance** section, click the **Site URL** link in order to browse to your published web site.
 
@@ -783,15 +783,15 @@ In this task you will publish using Windows Azure Web Sites the ASP.NET MVC 4 ap
 
 	_Opening the published web site_
 
-1. Verify that the web site was successfully published in Windows Azure and then close the browser.
+1. Verify that the web site was successfully published in Microsoft Azure and then close the browser.
 
-	![Application published to Windows Azure](images/application-published-to-windows-azure.png?raw=true "Application published to Windows Azure")
+	![Application published to Microsoft Azure](images/application-published-to-windows-azure.png?raw=true "Application published to Microsoft Azure")
 
-	_Application published to Windows Azure Web Sites_
+	_Application published to Microsoft Azure Websites_
 
 ---
 
 <a name="Summary"></a>
 ## Summary ##
 
-In this lab, you have learned how to create ASP.NET web applications that connect to virtual machines running in Windows Azure. First, created a virtual machine with SQL Server 2012 installed using the Windows Azure Management Portal and configured it to allow external connections. Then, you created a simple ASP.NET MVC 4 web application using Entity Framework that accessed the database in the SQL Server virtual machine. The web application took advantage of Full-Text Search features in SQL Server 2012 to search for contact data.  You completed the lab by deploying the application to Windows Azure Web Sites using Visual Studio.
+In this lab, you have learned how to create ASP.NET web applications that connect to virtual machines running in Microsoft Azure. First, created a virtual machine with SQL Server 2012 installed using the Microsoft Azure Management Portal and configured it to allow external connections. Then, you created a simple ASP.NET MVC 4 web application using Entity Framework that accessed the database in the SQL Server virtual machine. The web application took advantage of Full-Text Search features in SQL Server 2012 to search for contact data.  You completed the lab by deploying the application to Microsoft Azure Websites using Visual Studio.

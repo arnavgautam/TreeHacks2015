@@ -1,4 +1,4 @@
-﻿<a name="title" />
+<a name="title" />
 # Mobile Services Demo #
 
 ---
@@ -22,7 +22,7 @@ In this demo, you will see how to:
 
 - [Microsoft Visual Studio 2013][2]
 - [Visual Studio 2013 Update 2][3]
-- [Windows Azure Mobile Services][6]
+- [Microsoft Azure Mobile Services][6]
 - [Active Directory Authentication Library][4] (ADAL)
 - Mac iOS 7.0 (A Mac computer is required to run Xamarin)
 - [Xamarin Studio for iOS][5]
@@ -70,13 +70,13 @@ Once you finish signing up for your **Office 365** subscription, follow these st
 	
 #### Task 2 - Setting Azure + Office 365 Subscription ####
 
-> **Note:** If you have a MSDN subscription, a free Azure subscription is included. Go to the msdn.com subscription dashboard and follow the **Activate Windows Azure** option.
+> **Note:** If you have a MSDN subscription, a free Azure subscription is included. Go to the msdn.com subscription dashboard and follow the **Activate Microsoft Azure** option.
 
 1. Open a browser and go to http://manage.windowsazure.com.
 
 1. When prompted, enter your Office 365 credentials.
 
-1. You will see a screen asking you to get a subscription before you can start using Azure. Click **Sign Up for Windows Azure**.
+1. You will see a screen asking you to get a subscription before you can start using Azure. Click **Sign Up for Microsoft Azure**.
 
 	![Sign up for Azure](Images/sign-up-for-azure.png?raw=true)
 	
@@ -328,13 +328,13 @@ This demo is composed of the following segments:
 	
 	_Creating new Project_
 
-3. Make sure that **Visual C# > Cloud** is selected in the **Templates** list. Choose **Windows Azure Mobile Services** and click **OK**.
+3. Make sure that **Visual C# > Cloud** is selected in the **Templates** list. Choose **Microsoft Azure Mobile Services** and click **OK**.
 
-	![Windows Azure Mobile Services Project](Images/windows-azure-mobile-services-project.png?raw=true)
+	![Microsoft Azure Mobile Services Project](Images/windows-azure-mobile-services-project.png?raw=true)
 	
-	_Cloud > Windows Azure Mobile Service project_
+	_Cloud > Microsoft Azure Mobile Service project_
 
-4. Select the **Windows Azure Mobile Service** template and explain how this template can be used. **Do not click OK**. Click **Cancel**.
+4. Select the **Microsoft Azure Mobile Service** template and explain how this template can be used. **Do not click OK**. Click **Cancel**.
 
 	![New ASP.NET Project](Images/new-aspnet-project.png?raw=true)
 
@@ -442,7 +442,7 @@ This demo is composed of the following segments:
 
 	> **Speaking Point:** By default we use Entity Framework backed by a SQL Server database, but there are a number of backend choices such as MongoDB and Table Storage.
 
-9. Right-click the **Controllers** folder, select **Add**, and click **Controller**. Select **Windows Azure Mobile Services Table Controller** as the Scaffold and add a new **TableController** named _FacilityRequestController_. Select **FacilityRequest** as the Model class, and **MobileServiceContext** as the Data Context class.
+9. Right-click the **Controllers** folder, select **Add**, and click **Controller**. Select **Microsoft Azure Mobile Services Table Controller** as the Scaffold and add a new **TableController** named _FacilityRequestController_. Select **FacilityRequest** as the Model class, and **MobileServiceContext** as the Data Context class.
 
 	![Add Controller](Images/add-controller.png?raw=true)
 	
@@ -451,7 +451,7 @@ This demo is composed of the following segments:
 	> **Speaking Point:** We have first class support for Mobile Services Table Controller right in the scaffolding dialog.
 
 <a name="segment2" />
-### Integrating with ADAL and Deploying to Windows Azure Mobile Services###
+### Integrating with ADAL and Deploying to Microsoft Azure Mobile Services###
 
 1. Right-click the **MobileService** project and click **Manage NuGet Packages...**.
 
@@ -493,17 +493,17 @@ This demo is composed of the following segments:
 	
 	_Publish Mobile Service Project to Azure_
 
-3. In the dialog box, select **Windows Azure Mobile Services**. Click **Sign In** in the dialog box, and sign in with your credentials.
+3. In the dialog box, select **Microsoft Azure Mobile Services**. Click **Sign In** in the dialog box, and sign in with your credentials.
 
-	![Sign In to Windows Azure](Images/sign-in-to-windows-azure.png?raw=true)
+	![Sign In to Microsoft Azure](Images/sign-in-to-windows-azure.png?raw=true)
 	
-	_Sign In to Windows Azure_
+	_Sign In to Microsoft Azure_
 
 4. From the dropdown list, select an existing Mobile Service previously created for the demo.
 
-	![Select Windows Azure Mobile Service](Images/select-windows-azure-mobile-service.png?raw=true)
+	![Select Microsoft Azure Mobile Service](Images/select-windows-azure-mobile-service.png?raw=true)
 	
-	_Select Windows Azure Mobile Service_
+	_Select Microsoft Azure Mobile Service_
 	
 	> **Speaking Point:** We can use an existing service, or create a new one right from VS. Let's pick one we've already created.
 
@@ -511,7 +511,7 @@ This demo is composed of the following segments:
 
 	![Publish Web Mobile Service](Images/publish-web-mobile-service.png?raw=true)
 	
-	_Windows Azure Mobile Service Settings_
+	_Microsoft Azure Mobile Service Settings_
 
 	> **Speaking Point:** We will deploy this to Mobile Services, which provides a first class hosting environment for our APIs.
 

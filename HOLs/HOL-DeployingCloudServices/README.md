@@ -1,14 +1,14 @@
-﻿# Deploying Cloud Services in Windows Azure #
+# Deploying Cloud Services in Microsoft Azure #
 
 ## Hands-on Lab ##
 
 ### Introduction ###
 
-Hands-On Labs are sets of step-by-step guides that are designed to help you learn how to use key Windows Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
+Hands-On Labs are sets of step-by-step guides that are designed to help you learn how to use key Microsoft Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
 
-In this hands-on lab, you will learn how to deploy your first application in Windows Azure. The lab walks through the process using a simple application named myTODO, which is a simple list creation and management application built using ASP.NET MVC. The lab shows the steps required for provisioning the required components in the Windows Azure Management Portal, uploading the service package, and configuring the service. You will see how you can test your application in a staging environment and then promote it to production once you are satisfied that it is operating according to your expectations.
+In this hands-on lab, you will learn how to deploy your first application in Microsoft Azure. The lab walks through the process using a simple application named myTODO, which is a simple list creation and management application built using ASP.NET MVC. The lab shows the steps required for provisioning the required components in the Microsoft Azure Management Portal, uploading the service package, and configuring the service. You will see how you can test your application in a staging environment and then promote it to production once you are satisfied that it is operating according to your expectations.
 
-> **Note:** You can download the latest build of the Windows Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
+> **Note:** You can download the latest build of the Microsoft Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
 
 ### Repository Structure ###
 

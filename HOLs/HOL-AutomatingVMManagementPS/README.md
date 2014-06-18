@@ -1,14 +1,14 @@
-﻿# Managing Virtual Machines with the Windows Azure PowerShell Cmdlets #
+# Managing Virtual Machines with the Microsoft Azure PowerShell Cmdlets #
 
 ## Hands-on Lab ##
 
 ### Introduction ###
 
-Hands-On Labs are sets of step-by-step guides that are designed to help you learn how to use key Windows Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
+Hands-On Labs are sets of step-by-step guides that are designed to help you learn how to use key Microsoft Azure services and features.  Each Lab provides instructions to guide you through the process of developing a complete application.
 
-In this hands-on lab you will understand the capabilities of automating the deployment and management of virtual machines in Windows Azure.
+In this hands-on lab you will understand the capabilities of automating the deployment and management of virtual machines in Microsoft Azure.
 
-> **Note:** You can download the latest build of the Windows Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
+> **Note:** You can download the latest build of the Microsoft Azure Training Kit which includes a tested version of this HOL from here: http://bit.ly/WindowsAzureTK.
 
 ### Repository Structure ###
 

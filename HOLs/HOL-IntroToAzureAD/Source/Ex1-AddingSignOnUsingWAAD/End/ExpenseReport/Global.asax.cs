@@ -20,7 +20,7 @@
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        private void WSFederationAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
+        void WSFederationAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
         {
             if (!string.IsNullOrEmpty(IdentityConfig.Realm))
             {

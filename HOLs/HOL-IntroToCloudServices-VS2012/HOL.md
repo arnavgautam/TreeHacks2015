@@ -1,17 +1,17 @@
-ï»¿<a name="HOLTitle"></a>
+<a name="HOLTitle"></a>
 # Introduction to Cloud Services #
 
 ---
 <a name="Overview"></a>
 ## Overview ##
 
-When you create an application and run it in Windows Azure, the code and configuration together are called a Windows Azure cloud service. By creating a cloud service, you can deploy a multi-tier application in Windows Azure, defining multiple roles to distribute processing and allow flexible scaling of your application.
+When you create an application and run it in Microsoft Azure, the code and configuration together are called a Microsoft Azure cloud service. By creating a cloud service, you can deploy a multi-tier application in Microsoft Azure, defining multiple roles to distribute processing and allow flexible scaling of your application.
 
 A cloud service consists of one or more web roles and/or worker roles, each with its own application files and configuration. Web roles provide a dedicated Internet Information Services (IIS) web server that can be used for hosting the web front-end of your cloud service. Application code hosted within worker roles can run tasks in the background that are asynchronous, long-running, or perpetual.
 
 Storage services provide storage in the cloud, which includes Blob services for storing text and binary data, Table services for structured storage that can be queried, and Queue services for reliable and persistent messaging between services.
 
-In this hands-on lab, you will explore the basic elements of a Windows Azure Cloud Service by creating a simple GuestBook application that demonstrates many features of web and worker roles, blob storage, table storage, and queues.
+In this hands-on lab, you will explore the basic elements of a Microsoft Azure Cloud Service by creating a simple GuestBook application that demonstrates many features of web and worker roles, blob storage, table storage, and queues.
 
 In the GuestBook application, a web role provides the front-end that allows users to view the contents of the guest book and submit new entries. Each entry contains a name, a message, and an associated picture. The application also contains a worker role that can generate thumbnails for the images that users submit.
 
@@ -24,9 +24,9 @@ After storing the image and creating the entry, the web role posts a work item t
 
 In this hands-on lab, you will learn how to:
 
-- Create applications in Windows Azure using web roles and worker roles
+- Create applications in Microsoft Azure using web roles and worker roles
 - Use Storage services including blobs, queues and tables
-- Publish an application to Windows Azure Cloud Services
+- Publish an application to Microsoft Azure Cloud Services
 
 <a name="Prerequisites"></a>
 ### Prerequisites ###
@@ -34,8 +34,8 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Microsoft Visual Studio 2012 Express for Web][1]
-- [Windows Azure Tools for Microsoft Visual Studio 2.0][2]
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- [Microsoft Azure Tools for Microsoft Visual Studio 2.0][2]
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 [1]: http://msdn.microsoft.com/vstudio/products/
 [2]: http://www.microsoft.com/windowsazure/sdk/
@@ -45,7 +45,7 @@ The following is required to complete this hands-on lab:
 
 In order to execute the exercises in this hands-on lab you need to set up your environment.
 
-1. Open a Windows Explorer window and browse to the labâ€™s **Source** folder.
+1. Open a Windows Explorer window and browse to the lab’s **Source** folder.
 
 1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.
 
@@ -66,25 +66,25 @@ Throughout the lab document, you will be instructed to insert code blocks. For y
 
 This hands-on lab includes the following exercises:
 
-1. [Building Your First Windows Azure Application](#Exercise1)
+1. [Building Your First Microsoft Azure Application](#Exercise1)
 
 1. [Background Processing with Worker Roles and Queues](#Exercise2)
 
-1. [Publishing a Windows Azure Application](#Exercise3)
+1. [Publishing a Microsoft Azure Application](#Exercise3)
 
 Estimated time to complete this lab: **120** minutes.
 
 >**Note:** Each exercise is accompanied by a starting solution located in the Begin folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and that they will not necessarily work until you complete the exercise. Inside the source code for an exercise, you will also find an End folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
 
 <a name="Exercise1"></a>
-### Exercise 1: Building Your First Windows Azure Application ###
+### Exercise 1: Building Your First Microsoft Azure Application ###
 
-In this exercise, you create a guest book application and execute it in the local development fabric. For this purpose, you will use the Windows Azure Tools for Microsoft Visual Studio to create the project using the Cloud Service project template. These tools extend Visual Studio to enable the creation, building and running of Windows Azure services. You will continue to work with this project throughout the remainder of the lab.
+In this exercise, you create a guest book application and execute it in the local development fabric. For this purpose, you will use the Microsoft Azure Tools for Microsoft Visual Studio to create the project using the Cloud Service project template. These tools extend Visual Studio to enable the creation, building and running of Microsoft Azure services. You will continue to work with this project throughout the remainder of the lab.
 
 >**Note:**  To reduce typing, you can right-click where you want to insert source code, select Insert Snippet, select My Code Snippets and then select the entry matching the current exercise step.
 
 <a name="Ex1Task1"></a>
-#### Task 1 â€“ Creating the Visual Studio Project ####
+#### Task 1 – Creating the Visual Studio Project ####
 
 In this task, you create a new Cloud Service project in Visual Studio.
 
@@ -94,13 +94,13 @@ In this task, you create a new Cloud Service project in Visual Studio.
 
 1. From the **File** menu, choose **New Project**.  
 
-1. In the **New Project dialog**, expand **Visual C#** in the **Installed** list and select **Cloud**. Choose the **Windows Azure Cloud Service** template, set the Name of the project to **GuestBook**, the location to **\Source\Ex1-BuildingYourFirstWindowsAzureApp**, change the solution name to **Begin**, and ensure that **Create directory for solution** is checked. Click **OK** to create the project.
+1. In the **New Project dialog**, expand **Visual C#** in the **Installed** list and select **Cloud**. Choose the **Microsoft Azure Cloud Service** template, set the Name of the project to **GuestBook**, the location to **\Source\Ex1-BuildingYourFirstWindowsAzureApp**, change the solution name to **Begin**, and ensure that **Create directory for solution** is checked. Click **OK** to create the project.
 
-	![Creating a new Windows Azure Cloud Service project](Images/new-cloud-service-project.png?raw=true "Creating a new Windows Azure Cloud Service project")
+	![Creating a new Microsoft Azure Cloud Service project](Images/new-cloud-service-project.png?raw=true "Creating a new Microsoft Azure Cloud Service project")
 
-	_Creating a new Windows Azure Cloud Service project_
+	_Creating a new Microsoft Azure Cloud Service project_
 
-1. In the **New Windows Azure Cloud Service** dialog, inside the **Roles** panel, expand the **Visual C#** tab. Select **ASP.NET Web Role** from the list of available roles and click the arrow **(>)** to add an instance of this role to the solution. Before closing the dialog, select the new role in the right panel, click the pencil icon and rename the role as **GuestBook_WebRole**. Click **OK** to create the cloud service solution.
+1. In the **New Microsoft Azure Cloud Service** dialog, inside the **Roles** panel, expand the **Visual C#** tab. Select **ASP.NET Web Role** from the list of available roles and click the arrow **(>)** to add an instance of this role to the solution. Before closing the dialog, select the new role in the right panel, click the pencil icon and rename the role as **GuestBook_WebRole**. Click **OK** to create the cloud service solution.
 
 	![Assigning roles to a Cloud Service project](Images/assigning-a-webrole-to-a-cloud-service-project.png?raw=true "Assigning roles to a Cloud Service project")
 	
@@ -112,16 +112,16 @@ In this task, you create a new Cloud Service project in Visual Studio.
 
 	_Solution Explorer showing the GuestBook application_
 
-	>**Note:** The generated solution contains two separate projects. The first project, named **GuestBook**, holds the configuration for the web and worker roles that compose the cloud application. It includes the service definition file, **ServiceDefinition.csdef**, which contains metadata needed by the Windows Azure fabric to understand the requirements of your application, such as which roles are used, their trust level, the endpoints exposed by each role, the local storage requirements and the certificates used by the roles. The service definition also establishes configuration settings specific to the application. The service configuration files specify the number of instances to run for each role and sets the value of configuration settings defined in the service definition file. This separation between service definition and configuration allows you to update the settings of a running application by uploading a new service configuration file.
+	>**Note:** The generated solution contains two separate projects. The first project, named **GuestBook**, holds the configuration for the web and worker roles that compose the cloud application. It includes the service definition file, **ServiceDefinition.csdef**, which contains metadata needed by the Microsoft Azure fabric to understand the requirements of your application, such as which roles are used, their trust level, the endpoints exposed by each role, the local storage requirements and the certificates used by the roles. The service definition also establishes configuration settings specific to the application. The service configuration files specify the number of instances to run for each role and sets the value of configuration settings defined in the service definition file. This separation between service definition and configuration allows you to update the settings of a running application by uploading a new service configuration file.
 
 	>You can create many configuration files, each one intended for a specific scenario such as production, development, or QA, and select which to use when publishing the application. By default, Visual Studio creates two files **ServiceConfiguration.Local.cscfg** and **ServiceConfiguration.Cloud.cscfg**.
 
 	>The Roles node in the cloud service project enables you to configure which roles the service includes (web, worker or both) as well as which projects to associate with these roles. Adding and configuring roles through the Roles node will update the **ServiceDefinition.csdef** and **ServiceConfiguration.cscfg** files.
 
-	>The second project, named **GuestBook_WebRole**, is a standard ASP.NET Web Application project template modified for the Windows Azure environment. It contains an additional class that provides the entry point for the web role and contains methods to manage the initialization, starting, and stopping of the role.
+	>The second project, named **GuestBook_WebRole**, is a standard ASP.NET Web Application project template modified for the Microsoft Azure environment. It contains an additional class that provides the entry point for the web role and contains methods to manage the initialization, starting, and stopping of the role.
 
 <a name="Ex1Task2"></a>  
-#### Task 2 â€“ Creating a Data Model for Entities in Table Storage ####
+#### Task 2 – Creating a Data Model for Entities in Table Storage ####
 
 The application stores guest book entries in Table storage. The Table service offers semi-structured storage in the form of tables that contain collections of entities. Entities have a primary key and a set of properties, where a property is a name, typed-value pair. 
 
@@ -152,7 +152,7 @@ In this task, you model the schema of the entities stored by the GuestBook appli
 
 	_Adding a reference to the System.Data.Service.Client component_
 
-1. Add a reference to the Windows Azure Storage Client in the **GuestBook_Data project**. In **Solution Explorer**, right-click the **GuestBook_Data** project node, select **Add Reference**, click the **Extensions** tab, select the **Microsoft.WindowsAzure.Storage** and **Microsoft.WindowsAzure.Configuration** component and click **OK**.
+1. Add a reference to the Microsoft Azure Storage Client in the **GuestBook_Data project**. In **Solution Explorer**, right-click the **GuestBook_Data** project node, select **Add Reference**, click the **Extensions** tab, select the **Microsoft.WindowsAzure.Storage** and **Microsoft.WindowsAzure.Configuration** component and click **OK**.
 
 	![Adding a reference to the Microsoft.WindowsAzure.Storage and Microsoft.WindowsAzure.Configuration component](Images/adding-reference-windowszurestorageclient.png?raw=true "Adding a reference to the Microsoft.WindowsAzure.Storage and Microsoft.WindowsAzure.Configuration component")
 
@@ -175,13 +175,13 @@ In this task, you model the schema of the entities stored by the GuestBook appli
 	}
 	````
 
-	>**Note:** **TableServiceEntity** is a class found in the Storage Client API. This class defines the **PartititionKey**, **RowKey** and **TimeStamp** system properties required by every entity stored in a Windows Azure table. 
+	>**Note:** **TableServiceEntity** is a class found in the Storage Client API. This class defines the **PartititionKey**, **RowKey** and **TimeStamp** system properties required by every entity stored in a Microsoft Azure table. 
 
 	>Together, the **PartitionKey** and **RowKey** define the **DataServiceKey** that uniquely identifies every entity within a table.
 
 1. Add a default constructor to the **GuestBookEntry** class that initializes its **PartitionKey** and **RowKey** properties.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 GuestBookEntry constructor_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 GuestBookEntry constructor_ – CS)
 
 	<!-- mark:1-7 -->
 	````C#
@@ -200,7 +200,7 @@ In this task, you model the schema of the entities stored by the GuestBook appli
 
 1. To complete the definition of the **GuestBookEntry** class, add properties for **Message**, **GuestName**, **PhotoUrl**, and **ThumbnailUrl** to hold information about the entry.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 Table Schema Properties_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 Table Schema Properties_ – CS)
 
 	<!-- mark:1-7 -->
 	```` C#
@@ -229,7 +229,7 @@ In this task, you model the schema of the entities stored by the GuestBook appli
 
 1. Now, add a default constructor to initialize the base class with storage account information.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 GuestBookDataContext Class_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 GuestBookDataContext Class_ – CS)
 
 	<!-- mark:4-7 -->
 	````C#
@@ -246,7 +246,7 @@ In this task, you model the schema of the entities stored by the GuestBook appli
 
 1. Add a property to the **GuestBookDataContext** class to expose the **GuestBookEntry** table. To do this, insert the following (highlighted) code into the class. 
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 GuestBookEntry Property_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 GuestBookEntry Property_ – CS)
 
 	<!-- mark:6-12 -->
 	````C#
@@ -279,7 +279,7 @@ In this task, you model the schema of the entities stored by the GuestBook appli
 
 1. In the **GuestBookDataSource** class, make the class **public** and define member fields for the data context and the storage account information, as shown below.
 	
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 GuestBookDataSource Fields_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 GuestBookDataSource Fields_ – CS)
 
 	<!-- mark:3-4 -->
 	````C#
@@ -292,7 +292,7 @@ In this task, you model the schema of the entities stored by the GuestBook appli
 
 1. Now, add a static constructor to the data source class as shown in the following (highlighted) code. This code creates the tables from the **GuestBookDataContext** class.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 GuestBookDataSource Static Constructor_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 GuestBookDataSource Static Constructor_ – CS)
 	
 	<!-- mark:5-12 -->
 	````C#
@@ -315,7 +315,7 @@ In this task, you model the schema of the entities stored by the GuestBook appli
 
 1. Add a default constructor to the **GuestBookDataSource** class to initialize the data context class used to access table storage.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 GuestBookDataSource Constructor_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 GuestBookDataSource Constructor_ – CS)
 
 	<!-- mark:5-8 -->
 	```` C#
@@ -332,7 +332,7 @@ In this task, you model the schema of the entities stored by the GuestBook appli
 
 1. Next, insert the following method to return the contents of the **GuestBookEntry** table. 
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 GuestBookDataSource Select_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 GuestBookDataSource Select_ – CS)
 
 	<!-- mark:5-13 -->
 	````C#
@@ -356,7 +356,7 @@ In this task, you model the schema of the entities stored by the GuestBook appli
 
 1. Now, add the following method to insert new entries into the **GuestBookEntry** table.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 GuestBookDataSource AddGuestBookEntry_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 GuestBookDataSource AddGuestBookEntry_ – CS)
 
 	<!-- mark:5-10 -->
 	````C#
@@ -377,7 +377,7 @@ In this task, you model the schema of the entities stored by the GuestBook appli
 
 1. Finally, add a method to the data source class to update the **Thumbnail URL** property for an entry.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 GuestBookDataSource UpdateImageThumbnail_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 GuestBookDataSource UpdateImageThumbnail_ – CS)
 
 	<!-- mark:5-20 -->
 	````C#
@@ -409,9 +409,9 @@ In this task, you model the schema of the entities stored by the GuestBook appli
 1. Save the **GuestBookDataSource.cs** file.
 
 <a name="Ex1Task3"></a>
-#### Task 3 â€“ Creating a Web Role to Display the Guest Book and Process User Input ####
+#### Task 3 – Creating a Web Role to Display the Guest Book and Process User Input ####
 
-In this task, you update the web role project that you generated in Task 1, when you created the Windows Azure Cloud Service solution. This involves updating the UI to render the list of guest book entries. For this purpose, you will find a page that has the necessary elements in the **Assets** folder of this exercise, which you will add to the project. Next, you implement the code necessary to store submitted entries in table storage and images in blob storage. To complete this task, you configure the storage account used by the Web role.
+In this task, you update the web role project that you generated in Task 1, when you created the Microsoft Azure Cloud Service solution. This involves updating the UI to render the list of guest book entries. For this purpose, you will find a page that has the necessary elements in the **Assets** folder of this exercise, which you will add to the project. Next, you implement the code necessary to store submitted entries in table storage and images in blob storage. To complete this task, you configure the storage account used by the Web role.
 
 1. Add a reference in the web role to the **GuestBook** project. In **Solution Explorer**, right-click the **GuestBook_WebRole** project node and select **Add Reference**, switch to the **Solution** tab, select the **GuestBook_Data** project, and then click **OK**.
 
@@ -425,7 +425,7 @@ In this task, you update the web role project that you generated in Task 1, when
 
 1. In the code-behind file, insert the following namespace declarations.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 Web Role Namespace Declarations_  â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 Web Role Namespace Declarations_  – CS)
 
 	<!-- mark:1-8 -->
 	```` C#
@@ -441,7 +441,7 @@ In this task, you update the web role project that you generated in Task 1, when
 
 1. Declare the following member fields in the **_Default** class.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 Web Role Member Fields_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 Web Role Member Fields_ – CS)
 
 	<!-- mark:3-5 -->
 	````C#
@@ -457,7 +457,7 @@ In this task, you update the web role project that you generated in Task 1, when
 
 1. Locate the **SignButton_Click** event handler in the code-behind file and insert the following code.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 SignButton_Click_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 SignButton_Click_ – CS)
 
 	<!-- mark:7-28 -->
 	````C#
@@ -502,7 +502,7 @@ In this task, you update the web role project that you generated in Task 1, when
 
 1. Update the body of the **Timer1_Tick** method with the code shown below. 
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 Timer1_Tick_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 Timer1_Tick_ – CS)
 
 	<!-- mark:7 -->
 	````C#
@@ -523,7 +523,7 @@ In this task, you update the web role project that you generated in Task 1, when
 
 1. Locate the **Page_Load** event handler and update its body with the following code to enable the page refresh timer.
 	
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 Page_Load_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 Page_Load_ – CS)
 	
 	<!-- mark:7-10 -->
 	````C#
@@ -545,7 +545,7 @@ In this task, you update the web role project that you generated in Task 1, when
 
 1. Implement the **InitializeStorage** method by replacing its body with the following (highlighted) code.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 InitializeStorage_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 InitializeStorage_ – CS)
 
 	<!-- mark:7-42 -->
 	````C#
@@ -603,15 +603,15 @@ In this task, you update the web role project that you generated in Task 1, when
 
 	_Configuring the storage account settings_
 
-1. In the **Create Storage Connection String** dialog, choose the option labeled **Windows Azure storage emulator** and then click **OK**. 
+1. In the **Create Storage Connection String** dialog, choose the option labeled **Microsoft Azure storage emulator** and then click **OK**. 
 
 	![Creating a connection string for the storage emulator](Images/connection-string-storage-emulator.png?raw=true "Creating a connection string for the storage emulator")
 
 	_Creating a connection string for the storage emulator_ 
 
-	>**Note:** A storage account is a unique endpoint for the Windows Azure Blob, Queue, and Table services. You must create a storage account in the Management Portal to use these services. In this exercise, you use Storage emulator, which is included in the Windows Azure SDK development environment to simulate the Blob, Queue, and Table services available in the cloud. If you are building a cloud service that employs storage services or writing any external application that calls storage services, you can test locally against the Storage emulator.
+	>**Note:** A storage account is a unique endpoint for the Microsoft Azure Blob, Queue, and Table services. You must create a storage account in the Management Portal to use these services. In this exercise, you use Storage emulator, which is included in the Microsoft Azure SDK development environment to simulate the Blob, Queue, and Table services available in the cloud. If you are building a cloud service that employs storage services or writing any external application that calls storage services, you can test locally against the Storage emulator.
 
-	>To use the storage emulator, you set the value of the **UseDevelopmentStorage** keyword in the connection string for the storage account to true. When you publish your application to Windows Azure, you need to update the connection string to specify storage account settings including your account name and shared key. For example,
+	>To use the storage emulator, you set the value of the **UseDevelopmentStorage** keyword in the connection string for the storage account to true. When you publish your application to Microsoft Azure, you need to update the connection string to specify storage account settings including your account name and shared key. For example,
 	
 	>\<Setting name="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName=YourAccountName;AccountKey=YourAccountKey" /\>
 	
@@ -620,7 +620,7 @@ In this task, you update the web role project that you generated in Task 1, when
 1. Press **CTRL + S** to save changes to the role configuration.
 
 <a name="Ex1Task4"></a>
-#### Task 4 â€“ Queuing Work Items for Background Processing ####
+#### Task 4 – Queuing Work Items for Background Processing ####
 
 In preparation for the next exercise, you now update the front-end web role to dispatch work items to an Azure queue for background processing. These work items will remain in the queue until you add a worker role that picks items from the queue and generates thumbnails for each uploaded image.
 
@@ -628,7 +628,7 @@ In preparation for the next exercise, you now update the front-end web role to d
 
 1. Declare a queue client member by inserting the following (highlighted) declaration into the **Default** class.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 CloudQueueClient member_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 CloudQueueClient member_ – CS)
 
 	<!-- mark:6 -->
 	````C#
@@ -645,7 +645,7 @@ In preparation for the next exercise, you now update the front-end web role to d
 
 1. Now, update the storage initialization code to create the queue, if it does not exist, and then initialize the queue reference created in the previous step. To do this, locate the **InitializeStorage** method and insert the following (highlighted) code into this method immediately after the code that configures the blob container for public access.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 Create Queue_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 Create Queue_ – CS)
 
 	<!-- mark:13-16 -->
 	````C#
@@ -680,7 +680,7 @@ In preparation for the next exercise, you now update the front-end web role to d
 
 1. Finally, add code to post a work item to the queue. To do this, locate the **SignButton_Click** event handler and insert the following (highlighted) code immediately after the lines that create a new entry in table storage.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex1 Queueing work items_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex1 Queueing work items_ – CS)
 
 	<!-- mark:7-11 -->
 	````C#
@@ -704,22 +704,22 @@ In preparation for the next exercise, you now update the front-end web role to d
 	}
 	````
 
-	>**Note:** The updated code obtains a reference to the _â€œguestthumbsâ€_ queue. It constructs a new message that consists of a comma-separated string with the name of the blob that contains the image, the partition key, and the row key of the entity that was added. The worker role can easily parse messages with this format. The method then submits the message to the queue.
+	>**Note:** The updated code obtains a reference to the _“guestthumbs”_ queue. It constructs a new message that consists of a comma-separated string with the name of the blob that contains the image, the partition key, and the row key of the entity that was added. The worker role can easily parse messages with this format. The method then submits the message to the queue.
 
 <a name="Ex1Verification"></a>
 #### Verification ####
 
-The Windows Azure compute emulator, formerly Development Fabric or devfabric, is a simulated environment for developing and testing Windows Azure applications in your machine. In this task, you launch the GuestBook application in the emulator and create one or more guest book entries.
+The Microsoft Azure compute emulator, formerly Development Fabric or devfabric, is a simulated environment for developing and testing Microsoft Azure applications in your machine. In this task, you launch the GuestBook application in the emulator and create one or more guest book entries.
 
-Among the features available in the Windows Azure Tools for Microsoft Visual Studio is a Storage browser that allows you to connect to a storage account and browse the blobs and tables it contains. If you are using this version of Visual Studio, you will use it during this task to examine the storage resources created by the application.
+Among the features available in the Microsoft Azure Tools for Microsoft Visual Studio is a Storage browser that allows you to connect to a storage account and browse the blobs and tables it contains. If you are using this version of Visual Studio, you will use it during this task to examine the storage resources created by the application.
 
-1. Press **F5** to execute the service. The service builds and then launches the local Windows Azure compute emulator. To show the Compute Emulator UI, right-click its icon located in the system tray and select **Show Compute Emulator UI**.
+1. Press **F5** to execute the service. The service builds and then launches the local Microsoft Azure compute emulator. To show the Compute Emulator UI, right-click its icon located in the system tray and select **Show Compute Emulator UI**.
 
 	![Showing the Compute Emulator UI](Images/showing-the-compute-emulator-ui.png?raw=true "Showing the Compute Emulator UI")
 
 	_Showing the Compute Emulator UI_
 
-	>**Note:** If it is the first time you run the **Windows Azure Emulator**, the System will show a **Windows Security Alert** dialog indicating the Firewall has blocked some features. Click **Allow Access** to continue.
+	>**Note:** If it is the first time you run the **Microsoft Azure Emulator**, the System will show a **Windows Security Alert** dialog indicating the Firewall has blocked some features. Click **Allow Access** to continue.
 
 	>![Unblocking the Firewall](Images/warning-unblocking-firewall.png?raw=true "Unblocking the Firewall")
 
@@ -733,9 +733,9 @@ Among the features available in the Windows Azure Tools for Microsoft Visual Stu
 
 1. Add a new entry to the guest book. To do this, type your name and a message, choose an image to upload from the **Pictures\Sample Pictures** library, and then click the pencil icon to submit the entry.
 
-	![Windows Azure GuestBook home page](Images/guestbook-home-page.png?raw=true "Windows Azure GuestBook home page")
+	![Microsoft Azure GuestBook home page](Images/guestbook-home-page.png?raw=true "Microsoft Azure GuestBook home page")
 
-	_Windows Azure GuestBook home page_
+	_Microsoft Azure GuestBook home page_
 
 	>**Note:** It is a good idea to choose a large hi-resolution image because, once the application is complete, the guestbook service will resize uploaded images.
 
@@ -746,7 +746,7 @@ Among the features available in the Windows Azure Tools for Microsoft Visual Stu
 
 	_GuestBook application showing an uploaded image in its original size_
 
-1. To open the Storage Explorer in Visual Studio 2012 Exrpess for Web, open the **View** menu, select **Database Explorer**, and then expand the **Windows Azure Storage node**. The **Windows Azure Storage** node lists the storage accounts that you have currently registered and, by default, includes an entry for the storage emulator account labeled as **(Development)**.
+1. To open the Storage Explorer in Visual Studio 2012 Exrpess for Web, open the **View** menu, select **Database Explorer**, and then expand the **Microsoft Azure Storage node**. The **Microsoft Azure Storage** node lists the storage accounts that you have currently registered and, by default, includes an entry for the storage emulator account labeled as **(Development)**.
 
 	> **Note:** If you are using **Microsoft Visual Studio 2012 Professional** edition or higher, to access the Storage Explorer open the **View** menu and select **Server Explorer**. 
 
@@ -756,17 +756,17 @@ Among the features available in the Windows Azure Tools for Microsoft Visual Stu
 
 	_Viewing tables in the Storage emulator_
 
-1. Double-click the _GuestBookEntry_ node in the **Windows Azure Storage** explorer to show the contents of this table. The _GuestBookEntry_ table contains information for the entry that you created earlier in this task, including its _GuestName_, _Message_, _PhotoUrl_, and _ThumbnailUrl_ properties, as well as the _PartitionKey_, _RowKey_, and _Timestamp_ properties common to all table storage entities. Notice that the _PhotoUrl_ and _ThumbnailUrl_ properties are currently the same. In the next exercise, you will modify the application to generate image thumbnails and to update the corresponding URL.
+1. Double-click the _GuestBookEntry_ node in the **Microsoft Azure Storage** explorer to show the contents of this table. The _GuestBookEntry_ table contains information for the entry that you created earlier in this task, including its _GuestName_, _Message_, _PhotoUrl_, and _ThumbnailUrl_ properties, as well as the _PartitionKey_, _RowKey_, and _Timestamp_ properties common to all table storage entities. Notice that the _PhotoUrl_ and _ThumbnailUrl_ properties are currently the same. In the next exercise, you will modify the application to generate image thumbnails and to update the corresponding URL.
 
-	![Viewing tables in the Storage emulator](Images/storage-emulator-tables.png?raw=true "Viewing tables in the Windows Azure storage emulator")
+	![Viewing tables in the Storage emulator](Images/storage-emulator-tables.png?raw=true "Viewing tables in the Microsoft Azure storage emulator")
 
 	_Viewing tables in the Storage emulator_
 
-1. Now, expand the **Blobs** node in the **Windows Azure Storage** explorer. Inside this node, you will find an entry for a container named _guestbookpics_ that contains blobs with raw data for the images uploaded by the application. 
+1. Now, expand the **Blobs** node in the **Microsoft Azure Storage** explorer. Inside this node, you will find an entry for a container named _guestbookpics_ that contains blobs with raw data for the images uploaded by the application. 
 
-	![Viewing blobs using the Windows Azure Tools for Visual Studio](Images/viewing-blobs.png?raw=true "Viewing blobs using the Windows Azure Tools for Visual Studio")
+	![Viewing blobs using the Microsoft Azure Tools for Visual Studio](Images/viewing-blobs.png?raw=true "Viewing blobs using the Microsoft Azure Tools for Visual Studio")
 
-	_Viewing blobs using the Windows Azure Tools for Visual Studio_
+	_Viewing blobs using the Microsoft Azure Tools for Visual Studio_
 
 1. Double-click the node for the _guestbookpics_ container to list the blobs it contains. It should include an entry for the image that you uploaded earlier
 
@@ -785,7 +785,7 @@ A worker role runs in the background to provide services or execute time related
 In this exercise, you create a worker role to read work items posted to a queue by the web role front-end. To process the work item, the worker role extracts information about a guest book entry from the message and then retrieves the corresponding entity from table storage. It then fetches the associated image from blob storage and creates its thumbnail, which it also stores as a blob. Finally, to complete the processing, it updates the URL of the generated thumbnail blob in the guest book entry.
 
 <a name="Ex2Task1"></a>
-#### Task 1 â€“ Creating a Worker Role to Process Images in the Background ####
+#### Task 1 – Creating a Worker Role to Process Images in the Background ####
 
 In this task, you add a worker role project to the solution and update it so that it reads items posted by the front-end from the queue and processes them.
 
@@ -807,7 +807,7 @@ In this task, you add a worker role project to the solution and update it so tha
 
 1. Now, open the **WorkerRole.cs** file of the **GuestBook_WorkerRole** project and insert the followings namespace declarations.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex2 WorkerRole Namespaces_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex2 WorkerRole Namespaces_ – CS)
 
 	````C#
 	using System.Drawing;
@@ -821,7 +821,7 @@ In this task, you add a worker role project to the solution and update it so tha
 
 1. Add member fields to the **WorkerRole** class for the blob container and the queue, as shown below.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex2 WorkerRole Fields_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex2 WorkerRole Fields_ – CS)
 
 	<!-- mark:3-4 -->
 	````C#
@@ -836,7 +836,7 @@ In this task, you add a worker role project to the solution and update it so tha
 
 1. Insert the following code into the body of the **OnStart** method immediately after the line that subscribes the **RoleEnvironmentChanging** event and before the call to the **OnStart** method in the base class.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex2 WorkerRole OnStart_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex2 WorkerRole OnStart_ – CS)
 
 	<!-- mark:10-58 -->
 	````C#
@@ -906,7 +906,7 @@ In this task, you add a worker role project to the solution and update it so tha
 
 1. Replace the body of the **Run** method with the code shown below.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex2 WorkerRole Run_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex2 WorkerRole Run_ – CS)
 
 	<!-- mark:7-58 -->
 	````C#
@@ -976,7 +976,7 @@ In this task, you add a worker role project to the solution and update it so tha
 	
 1. Finally, add the following method to the **WorkerRole** class to create thumbnails from a given image.
 
-	(Code Snippet â€“ _Introduction to Cloud Services - Ex2 ProcessImage_ â€“ CS)
+	(Code Snippet – _Introduction to Cloud Services - Ex2 ProcessImage_ – CS)
 
 	<!-- mark:5-45 -->
 	````C#
@@ -1028,14 +1028,14 @@ In this task, you add a worker role project to the solution and update it so tha
 	}
 	````
 		
-	>**Note:** Even though the code shown above uses classes in the System.Drawing namespace for simplicity, you should be aware that the classes in this namespace were designed for use with Windows Forms. They are not supported for use within a Windows or ASP.NET service. You should conduct exhaustive testing if you intend to use these classes in your own Windows Azure applications.
+	>**Note:** Even though the code shown above uses classes in the System.Drawing namespace for simplicity, you should be aware that the classes in this namespace were designed for use with Windows Forms. They are not supported for use within a Windows or ASP.NET service. You should conduct exhaustive testing if you intend to use these classes in your own Microsoft Azure applications.
 
-1. The worker role also uses Storage services and you need to configure your storage account settings, just as you did in the case of the web role. To create the storage account setting, in **Solution Explorer**, expand the **Roles** node of the **GuestBook** project, double-click **GuestBook_WorkerRole** to open the properties for this role and select the **Settings** tab. Click **Add Setting**, type _"DataConnectionString"_ in the **Name** column, change the **Type** to _Connection String_, and then click the button labeled with an ellipsis. In the **Create Storage Connection String** dialog, choose the option labeled **Windows Azure storage emulator** and click **OK**. Press **CTRL + S** to save your changes.
+1. The worker role also uses Storage services and you need to configure your storage account settings, just as you did in the case of the web role. To create the storage account setting, in **Solution Explorer**, expand the **Roles** node of the **GuestBook** project, double-click **GuestBook_WorkerRole** to open the properties for this role and select the **Settings** tab. Click **Add Setting**, type _"DataConnectionString"_ in the **Name** column, change the **Type** to _Connection String_, and then click the button labeled with an ellipsis. In the **Create Storage Connection String** dialog, choose the option labeled **Microsoft Azure storage emulator** and click **OK**. Press **CTRL + S** to save your changes.
 
 <a name="Ex2Verification"></a>
 #### Verification ####
 
-You now launch the updated application in the Windows Azure compute emulator to verify that the worker role can retrieve queued work items and generate the corresponding thumbnails.
+You now launch the updated application in the Microsoft Azure compute emulator to verify that the worker role can retrieve queued work items and generate the corresponding thumbnails.
 
 1. Press **F5** to launch the service in the local compute emulator. 
 
@@ -1047,7 +1047,7 @@ You now launch the updated application in the Windows Azure compute emulator to 
 
 	_Home page showing the thumbnail generated by the worker role_
 
-1. In **Database Explorer**, expand the **Blobs** node in the **Windows Azure Storage / (Development)** node, and then double-click the _guestbookpics_ container. Notice that it now contains an additional blob for the generated thumbnail image.
+1. In **Database Explorer**, expand the **Blobs** node in the **Microsoft Azure Storage / (Development)** node, and then double-click the _guestbookpics_ container. Notice that it now contains an additional blob for the generated thumbnail image.
 
 	![Blob container showing the blob for the generated thumbnail](Images/thumbnail-blob.png?raw=true "Blob container showing the blob for the generated thumbnail")
 
@@ -1058,25 +1058,25 @@ You now launch the updated application in the Windows Azure compute emulator to 
 1. Press **SHIFT + F5** to stop the debugger and shut down the deployment in the compute emulator.
 
 <a name="Exercise3"></a>
-### Exercise 3: Publishing a Windows Azure Application ###
+### Exercise 3: Publishing a Microsoft Azure Application ###
 
-In this exercise, you publish the application created in the previous exercise to Windows Azure using the Management Portal. First, you provision the required service components, upload the application package to the staging area and configure it. You then execute the application in the staging area to verify its operation. Finally, you promote the application to production.
+In this exercise, you publish the application created in the previous exercise to Microsoft Azure using the Management Portal. First, you provision the required service components, upload the application package to the staging area and configure it. You then execute the application in the staging area to verify its operation. Finally, you promote the application to production.
 
->**Note:** In order to complete this exercise, you need to sign up for a Windows Azure account and purchase a subscription. 
->For a description of the provisioning process, see [Provisioning Windows Azure](http://blogs.msdn.com/david_sayed/archive/2010/01/07/provisioning-windows-azure.aspx).
+>**Note:** In order to complete this exercise, you need to sign up for a Microsoft Azure account and purchase a subscription. 
+>For a description of the provisioning process, see [Provisioning Microsoft Azure](http://blogs.msdn.com/david_sayed/archive/2010/01/07/provisioning-windows-azure.aspx).
 
 <a name="Ex3Task1"></a>
-#### Task 1 â€“ Creating a Storage Account and a Cloud Service Component ####
+#### Task 1 – Creating a Storage Account and a Cloud Service Component ####
 
-The application you publish in this exercise requires both compute and storage services. In this task, you create a new Windows Azure affinity group where your services will reside. In addition, you create  a new storage account to allow the application to persist its data and a cloud service component to execute application code.
+The application you publish in this exercise requires both compute and storage services. In this task, you create a new Microsoft Azure affinity group where your services will reside. In addition, you create  a new storage account to allow the application to persist its data and a cloud service component to execute application code.
 
-1. Navigate to [https://manage.windowsazure.com](https://manage.windowsazure.com) using a web browser and sign in using the Microsoft Account associated with your Windows Azure account.
+1. Navigate to [https://manage.windowsazure.com](https://manage.windowsazure.com) using a web browser and sign in using the Microsoft Account associated with your Microsoft Azure account.
 
-	![Signing in to the Windows Azure Management Portal](Images/sign-in.png?raw=true "Signing in to the Windows Azure Management Portal")
+	![Signing in to the Microsoft Azure Management Portal](Images/sign-in.png?raw=true "Signing in to the Microsoft Azure Management Portal")
 
-	_Signing in to the Windows Azure Management Portal_
+	_Signing in to the Microsoft Azure Management Portal_
 
-1. First, you create a new virtual network and an affinity group where your services will be deployed. In the Windows Azure menu, click **NEW**.
+1. First, you create a new virtual network and an affinity group where your services will be deployed. In the Microsoft Azure menu, click **NEW**.
 
 	![New button](Images/new-button.png?raw=true "New button")
 
@@ -1119,7 +1119,7 @@ The application you publish in this exercise requires both compute and storage s
 
 	_New button_
 
-1. Go to **Compute | Cloud Service | Quick Create**. In the textbox labeled **URL**, enter the name for your cloud service, for example, **\<yourname\>guestbook**, where _\<yourname\>_ is a unique name. Windows Azure uses this value to generate the endpoint URLs for the storage account services. Then, select the drop down list labeled **Region/Affinity group** and pick the affinity group you created in the previous step. Click **Create cloud service** to start creating it.
+1. Go to **Compute | Cloud Service | Quick Create**. In the textbox labeled **URL**, enter the name for your cloud service, for example, **\<yourname\>guestbook**, where _\<yourname\>_ is a unique name. Microsoft Azure uses this value to generate the endpoint URLs for the storage account services. Then, select the drop down list labeled **Region/Affinity group** and pick the affinity group you created in the previous step. Click **Create cloud service** to start creating it.
 
 	![New Cloud Service](Images/new-cloud-service.png?raw=true "New Cloud Service")
 
@@ -1163,9 +1163,9 @@ The application you publish in this exercise requires both compute and storage s
 1. Do not close the browser window. You will use the portal for the next task.
 
 <a name="Ex3Task2"></a>
-#### Task 2 â€“ Publishing the Application to the Windows Azure Management Portal ####
+#### Task 2 – Publishing the Application to the Microsoft Azure Management Portal ####
 
-There are several alternatives for publishing applications to Windows Azure. The Windows Azure Tools for Visual Studio allow you to both create and publish the service package to the Windows Azure environment directly from Visual Studio. Another deployment option is the [Windows Azure Service Management PowerShell Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj156055) that enable a scripted deployment of your application. Lastly, the Windows Azure Management Portal provides the means to publish and manage your service using only your browser. For more information about publishing applications, see the **Windows Azure Deployment** lab in this training kit.
+There are several alternatives for publishing applications to Microsoft Azure. The Microsoft Azure Tools for Visual Studio allow you to both create and publish the service package to the Microsoft Azure environment directly from Visual Studio. Another deployment option is the [Microsoft Azure Service Management PowerShell Cmdlets](http://msdn.microsoft.com/en-us/library/windowsazure/jj156055) that enable a scripted deployment of your application. Lastly, the Microsoft Azure Management Portal provides the means to publish and manage your service using only your browser. For more information about publishing applications, see the **Microsoft Azure Deployment** lab in this training kit.
 
 In this task, you publish the application to the staging environment using the Management Portal but first, you generate the service package using Visual Studio.
 
@@ -1194,14 +1194,14 @@ Alternatively, you may continue with the solution that you obtained after comple
 
 1. Follow steps 5 to 7 to configure the connection string for the **Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString** in the Web Role and configure the same connection strings for the Worker Role.
 
-1. Generate the package to publish to the cloud. To do this, right-click the **GuestBook** cloud project and select **Package**. In the **Package Windows Azure Application** dialog, select the **Service Configuration** and the **Build Configuration** you will use from the dropdowns and then click **Package**. 
+1. Generate the package to publish to the cloud. To do this, right-click the **GuestBook** cloud project and select **Package**. In the **Package Microsoft Azure Application** dialog, select the **Service Configuration** and the **Build Configuration** you will use from the dropdowns and then click **Package**. 
 After Visual Studio builds the project and generates the service package, Windows Explorer opens with the current folder set to the location where the generated package is stored.
 
 	![Creating a service package in Visual Studio](Images/creating-a-service-package.png?raw=true "Creating a service package in Visual Studio")
 	
 	_Creating a service package in Visual Studio_
 
-	>**Note:** Although the procedure is not shown here, you can use the Publish Cloud Service feature in the Windows Azure Tools to publish your service package directly from Visual Studio. To use this feature, you need to configure a set of credentials that you use to authenticate access to the management service using a self-issued certificate that you upload to the Management Portal.
+	>**Note:** Although the procedure is not shown here, you can use the Publish Cloud Service feature in the Microsoft Azure Tools to publish your service package directly from Visual Studio. To use this feature, you need to configure a set of credentials that you use to authenticate access to the management service using a self-issued certificate that you upload to the Management Portal.
 
 1. Now, switch back to the browser window with the Management Portal opened.
 
@@ -1217,7 +1217,7 @@ After Visual Studio builds the project and generates the service package, Window
 
 	_Deploy to staging environment_
 
-	>**Note:** A cloud service is a service that runs your code in the Windows Azure environment. It has two separate deployment slots: staging and production. The staging deployment slot allows you to test your service in the Windows Azure environment before you deploy it to production.
+	>**Note:** A cloud service is a service that runs your code in the Microsoft Azure environment. It has two separate deployment slots: staging and production. The staging deployment slot allows you to test your service in the Microsoft Azure environment before you deploy it to production.
 
 1. In the **Upload a Package** dialog, enter a label to identify the deployment; for example, use **FirstVersion**.
 
@@ -1231,7 +1231,7 @@ After Visual Studio builds the project and generates the service package, Window
 
 1. Finally, check the option labeled **Deploy even if one or more roles contain a single instance**. Click the **Tick** to start the deployment. 
 
-	>**Note:** In this particular case, only a single instance is being deployed for at least one of the roles. This is not recommended because it does not guarantee the serviceâ€™s availability. In the next task, you will increase the number of instances to overcome this issue.
+	>**Note:** In this particular case, only a single instance is being deployed for at least one of the roles. This is not recommended because it does not guarantee the service’s availability. In the next task, you will increase the number of instances to overcome this issue.
 
 	![Upload package to staging](Images/upload-package-to-staging.png?raw=true "Upload package to staging")
 
@@ -1245,7 +1245,7 @@ After Visual Studio builds the project and generates the service package, Window
 
 1. Wait until the deployment process finishes, which may take several minutes. At this point, you have already uploaded the package and it is in a **Ready** state.
 
-	>**Note:** During deployment, Windows Azure analyzes the configuration file and copies the service to the correct number of machines, and starts all the instances. Load balancers, network devices and monitoring are also configured during this time.
+	>**Note:** During deployment, Microsoft Azure analyzes the configuration file and copies the service to the correct number of machines, and starts all the instances. Load balancers, network devices and monitoring are also configured during this time.
 
 1. After succesfull deployment, go to the **Cloud Services** pages and click your cloud service name to view its dashboard. Notice the **Site Url** assigned to your deployment under the **quick glance** section.
 	
@@ -1256,7 +1256,7 @@ After Visual Studio builds the project and generates the service package, Window
 	>**Note:** Your new cloud service has a **DNS name** asigned, an URL that points to your web role home page.
 
 <a name="Ex3Task3"></a>
-#### Task 3 â€“ Configuring the Application to Increase the Number of Instances ####
+#### Task 3 – Configuring the Application to Increase the Number of Instances ####
 
 Before you can test the deployed application, you need to configure it. In this task, you define the storage account settings for the application.
 
@@ -1278,7 +1278,7 @@ Before you can test the deployed application, you need to configure it. In this 
 
 	> **Note:** Alternatively, you can change the instance count entering the new number into the text boxes at right.
 
-	> This setting controls the number of roles that Windows Azure starts and is used to scale the service. For a token-based subscriptionâ€”currently only available in countries that are not provisioned for billingâ€”this number is limited to a maximum of two instances. However, in the commercial offering, you can change it to any number that you are willing to pay for.
+	> This setting controls the number of roles that Microsoft Azure starts and is used to scale the service. For a token-based subscription—currently only available in countries that are not provisioned for billing—this number is limited to a maximum of two instances. However, in the commercial offering, you can change it to any number that you are willing to pay for.
 
 1. Click **Save** at bottom pane to update the configuration and wait for the cloud service to apply the new settings. 
 
@@ -1297,7 +1297,7 @@ Before you can test the deployed application, you need to configure it. In this 
 	>_Scale in progress_
 
 <a name="Ex3Task4"></a>
-#### Task 4 â€“ Testing the Application in the Staging Environment ####
+#### Task 4 – Testing the Application in the Staging Environment ####
 
 In this task, you run the application in the staging environment and access its public endpoint to test that it operates correctly.
 
@@ -1307,7 +1307,7 @@ In this task, you run the application in the staging environment and access its 
 
 	_Site URL_
 
-	>**Note:** The link shown for Site URL name has the form _\<guid\>.cloudapp.net_, where _<guid>_ is some random identifier. This is different from the address where the application will run once it is in production. Although the application executes in a staging area that is separate from the production environment, there is no actual physical difference between staging and production â€“ it is simply a matter of where the load balancer is connected. 
+	>**Note:** The link shown for Site URL name has the form _\<guid\>.cloudapp.net_, where _<guid>_ is some random identifier. This is different from the address where the application will run once it is in production. Although the application executes in a staging area that is separate from the production environment, there is no actual physical difference between staging and production – it is simply a matter of where the load balancer is connected. 
 
 1. If you wish, you may test the application by signing the guest book and uploading an image.
 
@@ -1316,9 +1316,9 @@ In this task, you run the application in the staging environment and access its 
 	_Application running in the staging environment_
 
 <a name="Ex3Task5"></a>
-#### Task 5 â€“ Promoting the Application to Production ####
+#### Task 5 – Promoting the Application to Production ####
 
-Now that you have verified that the service is working correctly in the staging environment, you are ready to promote it to final production. When you deploy the application to production, Windows Azure reconfigures its load balancers so that the application is available at its production URL.
+Now that you have verified that the service is working correctly in the staging environment, you are ready to promote it to final production. When you deploy the application to production, Microsoft Azure reconfigures its load balancers so that the application is available at its production URL.
 
 1. In **Cloud Services**, click on your service and then click **Swap** at the bottom menu.
 
@@ -1350,13 +1350,13 @@ Now that you have verified that the service is working correctly in the staging 
 
 	_Application running in the production environment_
 
-	>**Note:** If you visit the production site shortly after its promotion, the DNS name might not be ready. If you encounter a DNS error (404), wait a few minutes and try again. Keep in mind that Windows Azure creates DNS name entries dynamically and that the changes might take few minutes to propagate.
+	>**Note:** If you visit the production site shortly after its promotion, the DNS name might not be ready. If you encounter a DNS error (404), wait a few minutes and try again. Keep in mind that Microsoft Azure creates DNS name entries dynamically and that the changes might take few minutes to propagate.
 
-1. Even when a deployment is in a suspended state, Windows Azure still needs to allocate a virtual machine for each instance and charge you for it. Once you have completed testing the application, you need to remove the deployment from Windows Azure to avoid an unnecessary expense. To remove a running deployment, go to **Cloud Services**, select the deployment slot where the service is currently hosted, staging or production, then click **Stop** on the bottom pane and accept the confirmation prompt. Once the service has stopped, click **Delete** on the bottom pane and click **Delete the production deployment for cloud service yourusernameguestbook** to remove it.
+1. Even when a deployment is in a suspended state, Microsoft Azure still needs to allocate a virtual machine for each instance and charge you for it. Once you have completed testing the application, you need to remove the deployment from Microsoft Azure to avoid an unnecessary expense. To remove a running deployment, go to **Cloud Services**, select the deployment slot where the service is currently hosted, staging or production, then click **Stop** on the bottom pane and accept the confirmation prompt. Once the service has stopped, click **Delete** on the bottom pane and click **Delete the production deployment for cloud service yourusernameguestbook** to remove it.
 
 ---
 
 <a name="summary"></a>
 ## Summary ##
 
-By completing this hands-on lab, you have reviewed the basic elements of Windows Azure applications. You have seen that services consist of one or more web roles and worker roles. You have learned about Storage services and in particular, Blob, Table and Queue services. Finally, you have explored a basic architectural pattern for cloud applications that allows front-end processes to communicate with back-end processes using queues.
+By completing this hands-on lab, you have reviewed the basic elements of Microsoft Azure applications. You have seen that services consist of one or more web roles and worker roles. You have learned about Storage services and in particular, Blob, Table and Queue services. Finally, you have explored a basic architectural pattern for cloud applications that allows front-end processes to communicate with back-end processes using queues.

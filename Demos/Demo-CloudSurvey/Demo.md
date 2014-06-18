@@ -1,5 +1,5 @@
-﻿<a name="title" />
-# Web Sites - CloudSurvey#
+<a name="title" />
+# Websites - CloudSurvey#
 
 ---
 
@@ -26,13 +26,13 @@ This demo uses the following technologies:
 
 - [Git Source Control](http://git-scm.com/)
 - [Node.js](http://nodejs.org/#download)
-- Windows Azure Command-Line Tools
+- Microsoft Azure Command-Line Tools
 
-	> **Note:** If you do not have Windows Azure Command-Line Tools installed, open a command prompt with administrator privileges and run the following command:
+	> **Note:** If you do not have Microsoft Azure Command-Line Tools installed, open a command prompt with administrator privileges and run the following command:
 	> 
 	> `npm install azure-cli -g`
 	> 
-	> By using -g, Windows Azure Command-Line Tools will install on your machine globally. That means, you will be able to execute azure commands from any location.
+	> By using -g, Microsoft Azure Command-Line Tools will install on your machine globally. That means, you will be able to execute azure commands from any location.
 
 <a name="setup" />
 ### Setup and Configuration ###
@@ -42,11 +42,11 @@ To run the demo, you need to have configured a SQL Database in Azure and install
 1. Run the **Setup.Local.cmd** script located at the **\Source** folder. This script will perform the following tasks:
 	* Copy the demo solution to a working directory.
 	* Configure the SQL Azure connection string in the demo solution.
-	* Install Windows Azure SDK for Node.js.
+	* Install Microsoft Azure SDK for Node.js.
 	* Download and import the publish profile file from your Azure account.
 
 <a name="segment1" />
-### Publishing an application into a Windows Azure Web Site ###
+### Publishing an application into a Microsoft Azure Web Site ###
 
 1. Open a Git Bash command line and CD to the folder where you have the CloudSurvey application (in this case *c:/projects/cloudsurvey*).
 
@@ -70,7 +70,7 @@ To run the demo, you need to have configured a SQL Database in Azure and install
 	>
 	> This way, we don't need to run additional commands to initialize the Git repository or add the Git remote, since these two tasks will be done automatically by the command line tool.
 
-1. Run the following command to create the Windows Azure hosted site.
+1. Run the following command to create the Microsoft Azure hosted site.
 
 	```CommandPrompt
 	azure site create --git
@@ -101,7 +101,7 @@ To run the demo, you need to have configured a SQL Database in Azure and install
 	> **Speaking point:**
 	> Let's check that the Git deployment was successful, by opening the Azure Management Portal and browsing to the Web Site Deployments page.
 
-1. Run the following command to open the site in the Windows Azure Management portal and provide your Microsoft Account credentials associated with the subscription to sign in.
+1. Run the following command to open the site in the Microsoft Azure Management portal and provide your Microsoft Account credentials associated with the subscription to sign in.
 
 	```CommandPrompt
 	azure site portal

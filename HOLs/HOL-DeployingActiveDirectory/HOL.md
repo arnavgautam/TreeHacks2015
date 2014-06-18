@@ -1,14 +1,14 @@
 <a name="Deploy-AD-in-Windows-Azure" />
-# Deploy Active Directory using GUI in Windows Azure #
+# Deploy Active Directory using GUI in Microsoft Azure #
 
 ---
 
 <a name="Overview" /></a>
 ## Overview ##
 
-In this lab, you will provision a newly created Windows Server 2012 Virtual Machine called DC01 in Windows Azure using the Windows Azure management console in your web browser and then deploy Active Directory using Server Manager on DC01. DC01 will be the first domain controller in a new forest.
+In this lab, you will provision a newly created Windows Server 2012 Virtual Machine called DC01 in Microsoft Azure using the Microsoft Azure management console in your web browser and then deploy Active Directory using Server Manager on DC01. DC01 will be the first domain controller in a new forest.
 
-When deploying Active Directory in Windows Azure, two aspects are important to point out.
+When deploying Active Directory in Microsoft Azure, two aspects are important to point out.
 
 The first one is the networking configuration. Domain members and domain controllers need to find the DNS server hosting the domain DNS information. You will configure the Azure network configuration, so that the correct DNS server is configured.
 
@@ -20,12 +20,12 @@ Secondly, it is important to avoid the possibility of Active Directory database 
 In this hands-on lab, you will learn how to:
 
 - Provision a data disk to a Virtual Machine
-- Deploy a Domain Controller in Windows Azure
+- Deploy a Domain Controller in Microsoft Azure
 
 <a name="Prerequisites" /></a>
 ### Prerequisites ###
 
-1. Complete the Provisioning a Windows Azure Virtual Machine HOL
+1. Complete the Provisioning a Microsoft Azure Virtual Machine HOL
 
 >**Note:** In order to run through the complete hands-on lab, you must have network connectivity. 
 
@@ -52,7 +52,7 @@ Exercise 1 contains 2 tasks:
 <a name="Ex1Task1" /></a>
 #### Task 1 - Attach a data disk to DC01 ####
 
-1. In the **Virtual Machines** section of the Windows Azure portal, select the **DC01** virtual machine, and then on the bottom toolbar, click **Attach | Attach empty disk**.
+1. In the **Virtual Machines** section of the Microsoft Azure portal, select the **DC01** virtual machine, and then on the bottom toolbar, click **Attach | Attach empty disk**.
 
 	![Attaching an empty disk](./Images/attaching-an-empty-disk.png?raw=true "Attaching an empty disk")
 
@@ -71,7 +71,7 @@ Exercise 1 contains 2 tasks:
 <a name="Ex1Task2" /></a>
 #### Task 2 - Configure a new data disk ####
 
-1. In the **Virtual Machines** section of the Windows Azure portal, select the **DC01** virtual machine, and then on the toolbar, click the **Connect** icon to connect using **Remote Desktop Connection**.
+1. In the **Virtual Machines** section of the Microsoft Azure portal, select the **DC01** virtual machine, and then on the toolbar, click the **Connect** icon to connect using **Remote Desktop Connection**.
 
 	![Connecting to the DC01 Virtual Machine](./Images/connecting-to-the-dc01-vm.png?raw=true "Connecting to the DC01 Virtual Machine")
 
@@ -251,7 +251,7 @@ Exercise 2 contains 3 tasks:
 #### Task 3 - Verify the Domain Controller Installed Successfully ####
 > **Note:** You will need to wait about 2-3 minutes after clicking install in the previous step for the DC01 Virtual Machine to restart in order to be able to connect.
 
-1. In the **Virtual Machines** section of the Windows Azure portal, select the **DC01** virtual machine, and then on the toolbar, click the **Connect** icon to connect using **Remote Desktop Connection**.
+1. In the **Virtual Machines** section of the Microsoft Azure portal, select the **DC01** virtual machine, and then on the toolbar, click the **Connect** icon to connect using **Remote Desktop Connection**.
 
 	![Connecting to the DC01 Virtual Machine](./Images/connecting-to-the-dc01-vm.png?raw=true "Connecting to the DC01 Virtual Machine")
 
@@ -279,4 +279,4 @@ Exercise 2 contains 3 tasks:
 <a name="Summary"/></a>
 ## Summary ##
 
-In this lab, you walked through the steps of deploying a new Active Directory Domain controller in a new forest using Windows Azure virtual machines.
+In this lab, you walked through the steps of deploying a new Active Directory Domain controller in a new forest using Microsoft Azure virtual machines.

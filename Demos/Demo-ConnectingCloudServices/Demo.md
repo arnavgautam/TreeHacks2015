@@ -1,11 +1,11 @@
-﻿<a name="title" />
+<a name="title" />
 # Connecting Cloud Services #
 
 ---
 
 <a name="Overview" />
 ## Overview ##
-This demonstration will show how to connect a traditional Windows Azure web role to a virtual machine running SQL server using a virtual network. 
+This demonstration will show how to connect a traditional Microsoft Azure web role to a virtual machine running SQL server using a virtual network. 
 
 > **Note:** In order to run through this complete demo, you must have network connectivity and a Microsoft account.
 
@@ -15,7 +15,7 @@ In this demo, you will see these things:
 
 1.	Configuring a simple virtual network. 
 1.	Configure a SQL server virtual machine.
-1.	Connecting a web role to the Windows Azure Virtual Network.
+1.	Connecting a web role to the Microsoft Azure Virtual Network.
 1.	Taking advantage of full SQL server from a web role.
 1.	This configuration is low latency and highly secure as the web role and the virtual machine are on the same virtual network.
 
@@ -24,7 +24,7 @@ In this demo, you will see these things:
 
 This demo uses the following technologies:
 
-- [Windows Azure Management Portal] [1]
+- [Microsoft Azure Management Portal] [1]
 - [Visual Studio 2012] [2]
 
 [1]: https://manage.windowsazure.com/
@@ -45,14 +45,14 @@ This demo is composed of the following segments:
 
 1. [Configure a virtual network](#segment1)
 1. [Deploy a SQL server into the Virtual Network](#segment2)
-1. [Configure Windows Azure Cloud Service Project](#segment3)
+1. [Configure Microsoft Azure Cloud Service Project](#segment3)
 
 <a name="segment1" />
 ### Segment 1: Configure a Virtual Network  ###
 
-> **Speaking Point:** In the next 7 minutes, I will configure a simple Windows Azure virtual network and deploy Windows Azure application to connect directly to a SQL Server running on a virtual machine. The application we are going to deploy has a dependency on SQL Server Full Text Search. To solve this problem we will create a virtual network, deploy a SQL Server and configure the Windows Azure Web Role to connect directly through the virtual network.
+> **Speaking Point:** In the next 7 minutes, I will configure a simple Microsoft Azure virtual network and deploy Microsoft Azure application to connect directly to a SQL Server running on a virtual machine. The application we are going to deploy has a dependency on SQL Server Full Text Search. To solve this problem we will create a virtual network, deploy a SQL Server and configure the Microsoft Azure Web Role to connect directly through the virtual network.
 
-1. Follow the steps to configure the virtual network in the Windows Azure Management portal.
+1. Follow the steps to configure the virtual network in the Microsoft Azure Management portal.
 
 	> **Note:**  Refer to section **Getting Started - Configuring Virtual Networking** of the **Connecting a PaaS application to an IaaS Application with a Virtual Network** hands-on lab.
 	
@@ -83,7 +83,7 @@ This demo is composed of the following segments:
 
 
 <a name="segment3" />
-### Segment 3: Configure Windows Azure Cloud Service Project ###
+### Segment 3: Configure Microsoft Azure Cloud Service Project ###
 
 > **Speaking Point:** I have previously configured this SQL Server with the database for the application, enabled full text search and have configured the data disks and firewall rules. 
 
@@ -97,7 +97,7 @@ This demo is composed of the following segments:
 	
 	_Getting the IP of the SQL Server virtual machine_
 
-1. Open the **Windows Azure Project** from the **Connecting a PaaS application to an IaaS Application with a Virtual Network** hands-on lab. 
+1. Open the **Microsoft Azure Project** from the **Connecting a PaaS application to an IaaS Application with a Virtual Network** hands-on lab. 
 
 1. In Visual Studio, open the **Web.config** and modify the connection strings to use the new IP Address for the SQL Server. 
 
@@ -120,4 +120,4 @@ This demo is composed of the following segments:
 <a name="summary" />
 ## Summary ##
 
-In this demonstration you saw how to provision a simple cloud only virtual network that allows you to directly connect a cloud service with a traditional Windows Azure PaaS webrole directly to a cloud service hosting full SQL Server. 
+In this demonstration you saw how to provision a simple cloud only virtual network that allows you to directly connect a cloud service with a traditional Microsoft Azure PaaS webrole directly to a cloud service hosting full SQL Server. 

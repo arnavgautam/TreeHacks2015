@@ -1,15 +1,15 @@
-﻿<a name="title" />
-# Introduction to Building Windows Store Apps with Windows Azure Mobile Services (JS) #
+<a name="title" />
+# Introduction to Building Windows Store Apps with Microsoft Azure Mobile Services (JS) #
 
 ---
 <a name="Overview" />
 ## Overview ##
-In this HOL you will learn how you can leverage Visual Studio 2012 and Windows Azure Mobile Services to add structured storage, push notifications, integrated authentication and scheduled jobs to your Windows Store applications.
+In this HOL you will learn how you can leverage Visual Studio 2012 and Microsoft Azure Mobile Services to add structured storage, push notifications, integrated authentication and scheduled jobs to your Windows Store applications.
 
 <a name="Objectives" />
 ### Objectives ###
-- Create a Windows Azure Mobile Service
-- Use the Windows Azure Mobile Services SDK
+- Create a Microsoft Azure Mobile Service
+- Use the Microsoft Azure Mobile Services SDK
 - Learn how to Insert, Update, Read and Delete rows from a Mobile Service
 - Add Push Notifications to your application
 - Lock down your Mobile Service such that only authenticated users can consume it
@@ -18,7 +18,7 @@ In this HOL you will learn how you can leverage Visual Studio 2012 and Windows A
 <a name="technologies" />
 ### Prerequisites ###
 
-- Windows Azure subscription with Mobile Services preview enabled - [Create a Windows Azure account and enable preview features][1]
+- Microsoft Azure subscription with Mobile Services preview enabled - [Create a Microsoft Azure account and enable preview features][1]
 - [Visual Studio Express 2012 for Windows 8](http://www.microsoft.com/visualstudio/) or higher
 
 [1]: http://www.windowsazure.com/en-us/develop/mobile/tutorials/create-a-windows-azure-account/
@@ -36,7 +36,7 @@ This hands-on lab includes the following exercises:
 <a name="Exercise1" />
 ## Exercise 1: Creating your first Mobile Service ##
 
-This exercise shows you how to add a cloud-based backend service to a Windows 8 app using Windows Azure Mobile Services.  You will create both a new mobile service and a simple _To do list_ app that stores app data in the new mobile service.
+This exercise shows you how to add a cloud-based backend service to a Windows 8 app using Microsoft Azure Mobile Services.  You will create both a new mobile service and a simple _To do list_ app that stores app data in the new mobile service.
 
 A screenshot from the completed app is below:
 
@@ -46,7 +46,7 @@ A screenshot from the completed app is below:
 ### Task 1- Create a new mobile service ###
 Follow these steps to create a new mobile service.
 
-1. Log into the [Windows Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services.
+1. Log into the [Microsoft Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services.
 
 1. Click the **+New** button.
 
@@ -104,13 +104,13 @@ Once you have created your mobile service, you can follow an easy quick start in
 
 1. Press the **F5** key to rebuild the project and start the app.
 
-	> **Note:** The Windows Azure Mobile Services client library for JavaScript is now provided via NuGet packages. When you compile your solution for the first time, the package will be downloaded automatically.
+	> **Note:** The Microsoft Azure Mobile Services client library for JavaScript is now provided via NuGet packages. When you compile your solution for the first time, the package will be downloaded automatically.
 
 1. In the app, type meaningful text, such as _Complete the lab_, in the **Insert a TodoItem** textbox, and then click **Save**.
 
 	![Image 9](Images/image-9.png?raw=true)
 
-	This sends a POST request to the new mobile service hosted in Windows Azure. Data from the request is inserted into the TodoItem table. Items stored in the table are returned by the mobile service, and the data is displayed in the second column in the app.
+	This sends a POST request to the new mobile service hosted in Microsoft Azure. Data from the request is inserted into the TodoItem table. Items stored in the table are returned by the mobile service, and the data is displayed in the second column in the app.
 
 	> **Note:** You can review the code that accesses your mobile service to query and insert data, which is found in either the MainPage.xaml.cs file (C#/XAML project) or the default.js (JavaScript/HTML project) file.
 
@@ -125,11 +125,11 @@ Once you have created your mobile service, you can follow an easy quick start in
 <a name="Explore-your-app-code" />
 ### Task 4 - Explore your app code ###
 
-In this step we explore _To do list_ application code and see how simple the Windows Azure Mobile Services Client SDK makes it to interact with Windows Azure Mobile Services.
+In this step we explore _To do list_ application code and see how simple the Microsoft Azure Mobile Services Client SDK makes it to interact with Microsoft Azure Mobile Services.
 
 1. Return to the downloaded _To do list_ application Visual Studio 2012
 
-1. Open **default.js** under **js** folder.  This is the key JavaScript function provided by the Mobile Services client SDK that provides a way for your application to interact with **Windows Azure Mobile Services**. Locate the portion of code where a new **MobileServiceClient** class is instantiated. The first parameter in the constructor is the Mobile Service endpoint and the second parameter is the Application Key for your Mobile Service.
+1. Open **default.js** under **js** folder.  This is the key JavaScript function provided by the Mobile Services client SDK that provides a way for your application to interact with **Microsoft Azure Mobile Services**. Locate the portion of code where a new **MobileServiceClient** class is instantiated. The first parameter in the constructor is the Mobile Service endpoint and the second parameter is the Application Key for your Mobile Service.
 
 	````JavaScript
 	 var client = new Microsoft.WindowsAzure.MobileServices.MobileServiceClient(
@@ -235,7 +235,7 @@ Now you will add push notifications, using the **Windows Push Notification servi
 
 	> **Note:** The client secret and package SID are important security credentials. Do not share these secrets with anyone or distribute them with your app.
 	
-1. Log on to the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
+1. Log on to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
 
 	![Image 13](Images/image-13.png?raw=true)
 
@@ -304,7 +304,7 @@ Now that we have the client wired up to request a channel and write it to our Mo
 
 In this section we add a Channel table and server side scripts to send push notifications every time someone inserts into our Todo-List.  
 
-1. Return to the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
+1. Return to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
 
 1. Select the **Data** tab
 
@@ -397,7 +397,7 @@ Next we will move on to look at how you can secure your Mobile Service endpoints
 <a name="Exercise3" />
 ## Exercise 3: Adding Auth to Your App and Services ##
 
-This exercise shows you how to authenticate users in Windows Azure Mobile Services from a Windows 8 app. You will add authentication to the quickstart project using Live Connect. When successfully authenticated by Live Connect, a logged-in will be able to consume your Mobile Service.
+This exercise shows you how to authenticate users in Microsoft Azure Mobile Services from a Windows 8 app. You will add authentication to the quickstart project using Live Connect. When successfully authenticated by Live Connect, a logged-in will be able to consume your Mobile Service.
 
 <a name="Register-your-app" />
 ### Task 1 - Register your app ###
@@ -430,7 +430,7 @@ The supported identity providers are listed below. In this exercise you will use
 
 1. In **Redirect domain**, enter the domain of your mobile service, in the format **https://****service-name****.azure-mobile.net/**, where _service-name_ is the name of your mobile service, then click **Save**.
 
-1. Return to the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
+1. Return to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
 
 	![Image 26](Images/image-26.png?raw=true)
 
@@ -505,7 +505,7 @@ Next, you will update the app to authenticate users with your Microsoft Account 
 <a name="Exercise4" />
 ## Exercise 4: Adding a Scheduled Job to your Mobile Service ##
 
-In this demo you learn how to execute script on a scheduled basis using **Windows Azure Mobile Services**.  In this scenario we will configure the scheduler to poll Twitter every 15 minutes and then send a Tile update with the latest tweets.
+In this demo you learn how to execute script on a scheduled basis using **Microsoft Azure Mobile Services**.  In this scenario we will configure the scheduler to poll Twitter every 15 minutes and then send a Tile update with the latest tweets.
 
 <a name="configure-wide-tiles" />
 ### Task 1 - Configure your Windows store app for Wide Tiles ###
@@ -579,7 +579,7 @@ In this demo you learn how to execute script on a scheduled basis using **Window
  
 1. In Visual Studio, press **F5** to build and run the application.  This will ensure your channel URI is up to date and will ensure the Default Wide tile is now on your Start screen
 
-1. Go back to the Windows Azure Management Portal, select the **Scheduler** tab of your mobile service, and then click **Enable** in the command bar to allow the job to run.
+1. Go back to the Microsoft Azure Management Portal, select the **Scheduler** tab of your mobile service, and then click **Enable** in the command bar to allow the job to run.
 
 	![Image 44](Images/image-44.png?raw=true)
 
@@ -596,8 +596,8 @@ In this demo you learn how to execute script on a scheduled basis using **Window
 ## Summary ##
 By completing this hands-on lab you have learnt how to:
 
-- Create a Windows Azure Mobile Service
-- Use the Windows Azure Mobile Services SDK
+- Create a Microsoft Azure Mobile Service
+- Use the Microsoft Azure Mobile Services SDK
 - Learn how to Insert, Update, Read and Delete rows from a Mobile Service
 - Add Push Notifications to your application
 - Lock down your Mobile Service such that only authenticated users can consume it

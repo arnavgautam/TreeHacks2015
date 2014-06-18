@@ -1,11 +1,11 @@
-ï»¿<a name='HOLTop' />
-# Managing Virtual Machines with the Windows Azure PowerShell Cmdlets #
+<a name='HOLTop' />
+# Managing Virtual Machines with the Microsoft Azure PowerShell Cmdlets #
 
 ---
 
 <a name='Overview' />
 ## Overview ##
-In this hands-on lab you will understand the capabilities of automating the deployment and management of virtual machines in Windows Azure.
+In this hands-on lab you will understand the capabilities of automating the deployment and management of virtual machines in Microsoft Azure.
 
 
 <a name='Objectives' />
@@ -25,13 +25,13 @@ In this hands-on lab, you will learn how to:
 The following is required to complete this hands-on lab:
 
 - [Windows PowerShell 3.0]( <http://microsoft.com/powershell/>) (or higher)
-- Windows Azure PowerShell Cmdlets v0.7.1 (or higher)
-	- Follow the [Install Windows Azure PowerShell](<http://www.windowsazure.com/en-us/manage/install-and-configure-windows-powershell/#Install>) how-to guide to install the Cmdlets 
-- A Windows Azure subscription
+- Microsoft Azure PowerShell Cmdlets v0.7.1 (or higher)
+	- Follow the [Install Microsoft Azure PowerShell](<http://www.windowsazure.com/en-us/manage/install-and-configure-windows-powershell/#Install>) how-to guide to install the Cmdlets 
+- A Microsoft Azure subscription
 	- Sign up for a [Free Trial](<http://aka.ms/watk-freetrial>).
-	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](<http://aka.ms/watk-msdn>) now to start development and test on Windows Azure.
-	- [BizSpark](<http://aka.ms/watk-bizspark>) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
-	- Members of the [Microsoft Partner Network](<http://aka.ms/watk-mpn>) Cloud Essentials program receive monthly credits of Windows Azure at no charge.
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](<http://aka.ms/watk-msdn>) now to start development and test on Microsoft Azure.
+	- [BizSpark](<http://aka.ms/watk-bizspark>) members automatically receive the Microsoft Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](<http://aka.ms/watk-mpn>) Cloud Essentials program receive monthly credits of Microsoft Azure at no charge.
 
 ---
 
@@ -40,22 +40,22 @@ The following is required to complete this hands-on lab:
 
 This hands-on lab includes the following exercises:
 
-1. [Provisioning a Virtual Machine using Windows Azure PowerShell Cmdlets](#Exercise1)
+1. [Provisioning a Virtual Machine using Microsoft Azure PowerShell Cmdlets](#Exercise1)
 1. [Using PowerShell Cmdlets for Advanced Provisioning](#Exercise2)
 
 <a name="gettingstarted" /></a>
 ### Getting Started: Obtaining Subscription Credentials ###
 
-In order to complete this lab, you will need your subscriptionâ€™s secure credentials. Windows Azure lets you download a Publish Settings file with all the information required to manage your account in your development environment.
+In order to complete this lab, you will need your subscription’s secure credentials. Microsoft Azure lets you download a Publish Settings file with all the information required to manage your account in your development environment.
 
 <a name="GSTask1" /></a>
 #### Task 1 - Downloading and Importing a Publish Settings file ####
 
 > **Note:** If you have completed these steps in a previous lab on the same computer, you can move on to Exercise 1.
 
-In this task, you will log on to the Windows Azure Management Portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Windows Azure Subscription that you will use in your development environment. Therefore, you will import this file using the Windows Azure Cmdlets in order to install the certificate and obtain the account information.
+In this task, you will log on to the Microsoft Azure Management Portal and download the Publish Settings file. This file contains the secure credentials and additional information about your Microsoft Azure Subscription that you will use in your development environment. Therefore, you will import this file using the Microsoft Azure Cmdlets in order to install the certificate and obtain the account information.
 
-1. Search for **Windows Azure PowerShell** in the Start screen and choose **Run as Administrator**.
+1. Search for **Microsoft Azure PowerShell** in the Start screen and choose **Run as Administrator**.
 
 1. Change the PowerShell execution policy to **RemoteSigned**. When asked to confirm, press **Y** and then **Enter**.
             
@@ -72,13 +72,13 @@ In this task, you will log on to the Windows Azure Management Portal and downloa
 	>
 	> For more information about Execution Policies, refer to this TechNet article: <http://technet.microsoft.com/en-us/library/ee176961.aspx>
 
-1. Execute the following command to download the subscription information. This command will open a web page on the Windows Azure Management Portal.
+1. Execute the following command to download the subscription information. This command will open a web page on the Microsoft Azure Management Portal.
 
 	````PowerShell
 	Get-AzurePublishSettingsFile
 	````
 
-1. Sign in using the **Microsoft Account** associated with your **Windows Azure** account.
+1. Sign in using the **Microsoft Account** associated with your **Microsoft Azure** account.
 
 1. **Save** the Publish Settings file to your local file system.
 
@@ -86,13 +86,13 @@ In this task, you will log on to the Windows Azure Management Portal and downloa
 
 	_Downloading Publish Settings file_
 
-1. The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Windows Azure Subscription. Replace the placeholder with the path to your Publish Settings file and execute the script.
+1. The following script imports your Publish Settings file and generates an XML file with your account information. You will use these values during the lab to manage your Microsoft Azure Subscription. Replace the placeholder with the path to your Publish Settings file and execute the script.
 
 	````PowerShell
 	Import-AzurePublishSettingsFile '[YOUR-PUBLISH-SETTINGS-PATH]'   
 	````
 
-	> **Note:** It is recommended that you delete the publishing profile that you downloaded using _Get-AzurePublishSettingsFile_ after you import those settings. Because the management certificate includes security credentials, unauthorized users should not have access. If needed, you can access information about your subscriptions from the Windows Azure Management Portal or the Microsoft Online Services Customer Portal.
+	> **Note:** It is recommended that you delete the publishing profile that you downloaded using _Get-AzurePublishSettingsFile_ after you import those settings. Because the management certificate includes security credentials, unauthorized users should not have access. If needed, you can access information about your subscriptions from the Microsoft Azure Management Portal or the Microsoft Online Services Customer Portal.
 
 1. Execute the following commands and take note of the Subscription name and storage account name you will use for the exercise.
 
@@ -128,16 +128,16 @@ In this task, you will log on to the Windows Azure Management Portal and downloa
 		````
 
 <a name='Exercise1' />
-### Exercise 1: Provisioning a Virtual Machine using Windows Azure PowerShell Cmdlets###
+### Exercise 1: Provisioning a Virtual Machine using Microsoft Azure PowerShell Cmdlets###
 
-In this exercise, you will learn how to provision a simple virtual machine in Windows Azure using PowerShell. 
+In this exercise, you will learn how to provision a simple virtual machine in Microsoft Azure using PowerShell. 
 
 <a name='Ex1Task1'></a>
 #### Task 1 - Provisioning a Virtual Machine ####
 
-The first step to create a virtual machine in Windows Azure is to define the virtual machine configuration for items such as endpoints or data disks, and then define which cloud service and data center the virtual machine will reside in. 
+The first step to create a virtual machine in Microsoft Azure is to define the virtual machine configuration for items such as endpoints or data disks, and then define which cloud service and data center the virtual machine will reside in. 
 
-1. If not already opened, start **Windows Azure PowerShell** with administrator privileges.
+1. If not already opened, start **Microsoft Azure PowerShell** with administrator privileges.
 
 1. Define the **$dclocation** variable with the location of the storage account you've configured in the getting started section (for example, *East US*).
 
@@ -209,7 +209,7 @@ The first step to create a virtual machine in Windows Azure is to define the vir
 	Get-AzureVM -ServiceName $cloudSvcName -Name $vmname
 	````
 
-1. The **Windows Azure PowerShell Cmdlets** support restart, stop and start operations as well as using the **Restart-AzureVM**, **Stop-AzureVM** and **Start-AzureVM** commands. 
+1. The **Microsoft Azure PowerShell Cmdlets** support restart, stop and start operations as well as using the **Restart-AzureVM**, **Stop-AzureVM** and **Start-AzureVM** commands. 
 
 	With the following commands you will be able to start, stop and restart your virtual machine.
 
@@ -395,7 +395,7 @@ Some changes require the virtual machine to be **restarted** when applied. Makin
 <a name='Ex2Task4'></a>
 #### Task 4 - Managing Disk Images ####
 
-An image is a VHD that you use as a template to create a new virtual machine. An image is a template because, unlike a running virtual machine, it doesnâ€™t have specific settings such as the computer name and user account settings. When you create a virtual machine from an image, an operating system disk is automatically created for the new virtual machine. 
+An image is a VHD that you use as a template to create a new virtual machine. An image is a template because, unlike a running virtual machine, it doesn’t have specific settings such as the computer name and user account settings. When you create a virtual machine from an image, an operating system disk is automatically created for the new virtual machine. 
 
 It is simple to view all of the data disks or images in the disk and image repository with PowerShell.
 Running the **Get-AzureDisk** command will enumerate all of the data disks in your subscription.
@@ -434,9 +434,9 @@ Running the **Get-AzureDisk** command will enumerate all of the data disks in yo
 	}
 	````
 
-	> **Note:** If you get an exception saying the disk is in use when trying to delete, wait a few minutes until the virtual machine has been completely deleted from Windows Azure.
+	> **Note:** If you get an exception saying the disk is in use when trying to delete, wait a few minutes until the virtual machine has been completely deleted from Microsoft Azure.
 
-1. Similar functionality exists for managing the image repository on your subscription. With this script you will identify user created images (as opposed to images provided by Windows Azure in the Image Gallery).
+1. Similar functionality exists for managing the image repository on your subscription. With this script you will identify user created images (as opposed to images provided by Microsoft Azure in the Image Gallery).
 
 	````PowerShell
 	Get-AzureVMImage | Where { $_.Category -eq 'User' }
@@ -445,7 +445,7 @@ Running the **Get-AzureDisk** command will enumerate all of the data disks in yo
 <a name='Ex2Task5' />
 ####Task 5 - Imaging, Exporting and Importing Virtual Machine Configurations ####
 
-Windows Azure IaaS provides the capability to customize a virtual machine, generalize it using a tool like sysprep, and then capture the virtual machine to the image library. This functionality allows you to create customized images that you can then reuse to generate multiple identical virtual machines. The steps to accomplish this using PowerShell are relatively simple.
+Microsoft Azure IaaS provides the capability to customize a virtual machine, generalize it using a tool like sysprep, and then capture the virtual machine to the image library. This functionality allows you to create customized images that you can then reuse to generate multiple identical virtual machines. The steps to accomplish this using PowerShell are relatively simple.
 
 1. Execute the following script to create a virtual machine that will be the start of the image.
 
@@ -499,7 +499,7 @@ Windows Azure IaaS provides the capability to customize a virtual machine, gener
 
 	>**Note:** The **Save-AzureVMImage** Cmdlet makes a running persistent virtual machine available as an image for reuse. For Windows virtual machines, the image should be sysprepped before capture. After performing the capture, you can delete or reprovision the virtual machine using the PostCaptureAction parameter with Delete|Reprovision value.
 
-	> **Known issue:** Version **0.7.2.1** of the Windows Azure PowerShell has a known bug that causes the above command to return an **error message** even after being successfully run. This issue has **already been addressed** in the development branch but has not been included in the public package at the time of writing.
+	> **Known issue:** Version **0.7.2.1** of the Microsoft Azure PowerShell has a known bug that causes the above command to return an **error message** even after being successfully run. This issue has **already been addressed** in the development branch but has not been included in the public package at the time of writing.
 
 1. Verify the image was created by running the following script.
 
@@ -510,7 +510,7 @@ Windows Azure IaaS provides the capability to customize a virtual machine, gener
 <a name='Ex2Task6' />
 #### Task 6 - Exporting and Importing Virtual Machine Configuration ####
 
-The Windows Azure PowerShell Cmdlets provide the capability of saving the configuration of a virtual machine. 
+The Microsoft Azure PowerShell Cmdlets provide the capability of saving the configuration of a virtual machine. 
 This is useful in scenarios where you need to completely remove the virtual machine but also need to be able to easily restore it at some point. It works by understanding the fact that when you remove a virtual machine by default, the underlying data and OS disk in storage is not removed. The **Export-AzureVM** Cmdlet saves all of the configuration of the virtual machine including disk names, endpoint settings and so on, to an XML file. This allows you to delete the virtual machine and then later recreate it using the saved configuration.
 
 
@@ -536,7 +536,7 @@ This is useful in scenarios where you need to completely remove the virtual mach
 <a name='Ex2Task7' />
 #### Task 7 - Managing Remote Desktop (RDP) and SSH Connectivity ####
 
-By default, all new virtual machines created from the Windows Azure PowerShell Cmdlets will allow RDP for Windows or SSH. However, you can add or remove endpoints by using the **Remove-AzureEndpoint/Add-AzureEndpoints** Cmdlets.
+By default, all new virtual machines created from the Microsoft Azure PowerShell Cmdlets will allow RDP for Windows or SSH. However, you can add or remove endpoints by using the **Remove-AzureEndpoint/Add-AzureEndpoints** Cmdlets.
 
 To discover the ports for these endpoints you can use the **Get-AzureEndpoint** to learn the public port of the Remote Desktop (RDP) or SSH input endpoint.
 
@@ -549,7 +549,7 @@ To discover the ports for these endpoints you can use the **Get-AzureEndpoint** 
 1. Remove the Remote Desktop endpoint by using the following script.
 
 	````PowerShell
-	Get-AzureVM -ServiceName $cloudSvcName -Name $vmname | Remove-AzureEndpoint â€“Name "RemoteDesktop" | Update-AzureVM
+	Get-AzureVM -ServiceName $cloudSvcName -Name $vmname | Remove-AzureEndpoint –Name "RemoteDesktop" | Update-AzureVM
 	````
 
 1. Rerun the script to verify that the endpoint was removed.
@@ -567,39 +567,39 @@ To discover the ports for these endpoints you can use the **Get-AzureEndpoint** 
 <a name='NextSteps' />
 ## Next Steps ##
 
-To learn more about configuring Windows virtual machines on Windows Azure, please refer to the following articles:
+To learn more about configuring Windows virtual machines on Microsoft Azure, please refer to the following articles:
 
 **Technical Reference**
 
 This is a list of articles that expand on the technologies explained on this lab:
 
-- You can continue reading the Hands-on labs **Understanding Virtual Machine Imaging with Capture (PowerShell)** and **Deploy Active Directory in Windows Azure using PowerShell**.
+- You can continue reading the Hands-on labs **Understanding Virtual Machine Imaging with Capture (PowerShell)** and **Deploy Active Directory in Microsoft Azure using PowerShell**.
 
-- [Windows Azure Management Cmdlets Reference](http://aka.ms/Bnma6w): This topic provides reference information on the cmdlet sets that are included in the Windows Azure PowerShell module.
+- [Microsoft Azure Management Cmdlets Reference](http://aka.ms/Bnma6w): This topic provides reference information on the cmdlet sets that are included in the Microsoft Azure PowerShell module.
 
-- [How to use PowerShell to set up a SQL Server virtual machine in Windows Azure](http://aka.ms/Ehtolo): In this tutorial, you can learn how to create multiple SQL Server virtual machines in the same Cloud Service by using the PowerShell cmdlets.
+- [How to use PowerShell to set up a SQL Server virtual machine in Microsoft Azure](http://aka.ms/Ehtolo): In this tutorial, you can learn how to create multiple SQL Server virtual machines in the same Cloud Service by using the PowerShell cmdlets.
 
-- [Add a Virtual Machine to a Virtual Network](http://aka.ms/Pej5x8): This tutorial walks you through the steps to create a Windows Azure storage account and virtual machine (VM) to add to a virtual network.
+- [Add a Virtual Machine to a Virtual Network](http://aka.ms/Pej5x8): This tutorial walks you through the steps to create a Microsoft Azure storage account and virtual machine (VM) to add to a virtual network.
 
-- [Windows Azure Virtual Networks](http://aka.ms/tj1lj3): Windows Azure Virtual Network provides you with the capability to extend your network into Windows Azure and treat deployments in Windows as a natural extension of your on-premises network.
+- [Microsoft Azure Virtual Networks](http://aka.ms/tj1lj3): Microsoft Azure Virtual Network provides you with the capability to extend your network into Microsoft Azure and treat deployments in Windows as a natural extension of your on-premises network.
 
 **Development**
 
-This is a list of useful sample scripts from [Script Center](http://aka.ms/Bv06qh) to manage Windows Azure Virtual Machines:
+This is a list of useful sample scripts from [Script Center](http://aka.ms/Bv06qh) to manage Microsoft Azure Virtual Machines:
 
-- [Start Windows Azure Virtual Machines on a Schedule](http://aka.ms/Dsgp6a): Demonstrates starting a single Virtual Machine or set of Virtual Machines (using a wildcard pattern) within a Cloud Service. This is done by creating scheduled tasks to start the Virtual Machine(s) on a schedule at a specified time.
+- [Start Microsoft Azure Virtual Machines on a Schedule](http://aka.ms/Dsgp6a): Demonstrates starting a single Virtual Machine or set of Virtual Machines (using a wildcard pattern) within a Cloud Service. This is done by creating scheduled tasks to start the Virtual Machine(s) on a schedule at a specified time.
 
-- [Stop Windows Azure Virtual Machines on a Schedule](http://aka.ms/Rx7dvy): Demonstrates stopping a single Virtual Machine or set of Virtual Machines (using a wildcard pattern) within a Cloud Service. This is done by creating scheduled tasks to stop the Virtual Machine(s) on a schedule at a specified time.
+- [Stop Microsoft Azure Virtual Machines on a Schedule](http://aka.ms/Rx7dvy): Demonstrates stopping a single Virtual Machine or set of Virtual Machines (using a wildcard pattern) within a Cloud Service. This is done by creating scheduled tasks to stop the Virtual Machine(s) on a schedule at a specified time.
 
-- [Deploy Windows Azure VMs to an Availability Set and Load Balanced on an Endpoint](http://aka.ms/Htx61t): Deploy a specified number of Virtual Machines based on a given image name. The Virtual Machines are placed in the same availability set and load balanced on a given endpoint name.
+- [Deploy Microsoft Azure VMs to an Availability Set and Load Balanced on an Endpoint](http://aka.ms/Htx61t): Deploy a specified number of Virtual Machines based on a given image name. The Virtual Machines are placed in the same availability set and load balanced on a given endpoint name.
 
-- [Deploy Multiple Windows Azure VMs in the Same Windows Azure Virtual Network](http://aka.ms/Yg0n7j): Creates four Windows Server 2012 Virtual Machines across two separate cloud services and adds them to the same virtual network. If the virtual network indicated does not exist, it is then created.
+- [Deploy Multiple Microsoft Azure VMs in the Same Microsoft Azure Virtual Network](http://aka.ms/Yg0n7j): Creates four Windows Server 2012 Virtual Machines across two separate cloud services and adds them to the same virtual network. If the virtual network indicated does not exist, it is then created.
 
 ---
 
 <a name='Summary' />
 ## Summary ##
 
-In this hands-on lab you learned how to configure your subscription ID and certificate to manage Windows Azure Virtual Machines. You were also shown the basics of how to provision virtual machines and modify them with hot add capabilities and changes that require rebooting, such as changing the instance size. 
+In this hands-on lab you learned how to configure your subscription ID and certificate to manage Microsoft Azure Virtual Machines. You were also shown the basics of how to provision virtual machines and modify them with hot add capabilities and changes that require rebooting, such as changing the instance size. 
 
-In addition, you were shown how you can use the Windows Azure PowerShell Cmdlets to manage your disk and image libraries along with exporting and importing virtual machine configurations.
+In addition, you were shown how you can use the Microsoft Azure PowerShell Cmdlets to manage your disk and image libraries along with exporting and importing virtual machine configurations.

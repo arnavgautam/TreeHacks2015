@@ -1,11 +1,11 @@
-Ôªø<a name="HOLTop"></a>
+<a name="HOLTop"></a>
 # Service Bus Topics#
 ---
 
 <a name="Overview"></a>
 ## Overview ##
 
-**Windows Azure Service Bus Messaging** contains a brand-new set of cloud-based, message-oriented middleware technologies including a fully-featured **Service Bus queue** with support for arbitrary content types, rich message properties, correlation, reliable binary transfer, and grouping. Another important feature is **Service Bus topics** which provide a set of publish-and-subscribe capabilities and are based on the same backend infrastructure as **Service Bus queues**. A **topic** consists of a sequential message store just like a **queue** but allows for many concurrent and durable **subscriptions** that can independently yield copies of the published messages to consumers. Each **subscription** can define a set of rules with simple expressions that specify which messages from the published sequence are selected into the subscription.
+**Microsoft Azure Service Bus Messaging** contains a brand-new set of cloud-based, message-oriented middleware technologies including a fully-featured **Service Bus queue** with support for arbitrary content types, rich message properties, correlation, reliable binary transfer, and grouping. Another important feature is **Service Bus topics** which provide a set of publish-and-subscribe capabilities and are based on the same backend infrastructure as **Service Bus queues**. A **topic** consists of a sequential message store just like a **queue** but allows for many concurrent and durable **subscriptions** that can independently yield copies of the published messages to consumers. Each **subscription** can define a set of rules with simple expressions that specify which messages from the published sequence are selected into the subscription.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -26,13 +26,13 @@ You must have the following items to complete this lab:
 
 - [Visual Studio Express 2013 for Web][1] or greater
 
-- [Windows Azure Tools for Microsoft Visual Studio 2.2 (or later)][2]
+- [Microsoft Azure Tools for Microsoft Visual Studio 2.2 (or later)][2]
 
-- A Windows Azure subscription
+- A Microsoft Azure subscription
 	- Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
-	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start developing and testing on Windows Azure.
-	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Windows Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
-	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly Windows Azure credits at no charge.
+	- If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start developing and testing on Microsoft Azure.
+	- [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Microsoft Azure benefit through their Visual Studio Ultimate with MSDN subscriptions.
+	- Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly Microsoft Azure credits at no charge.
 
 [1]: http://www.microsoft.com/visualstudio/
 [2]: http://www.microsoft.com/windowsazure/sdk/
@@ -75,20 +75,20 @@ Estimated time to complete this lab: **40 minutes**
 <a name="Exercise1"></a>
 ### Exercise 1: Creating a Topic and Adding Subscriptions ###
 
-In this exercise, you will learn how to create a Windows Azure Service Bus topic and add subscriptions to it. Topics and subscriptions provide a one-to-many form of communication, in a "publish/subscribe" pattern. Useful for scaling to very large numbers of recipients, each published message is made available to each subscription registered with the topic.
+In this exercise, you will learn how to create a Microsoft Azure Service Bus topic and add subscriptions to it. Topics and subscriptions provide a one-to-many form of communication, in a "publish/subscribe" pattern. Useful for scaling to very large numbers of recipients, each published message is made available to each subscription registered with the topic.
 
 <a name="Ex1Task1"></a>
 #### Task 1 - Creating your Service Bus Namespace ####
 
-To work with Service Bus topics and subscriptions, you first need to create a Windows Azure Service Bus namespace. Once created, it can be used for **all** the labs that use Windows Azure Service Bus and for your own projects as well.
+To work with Service Bus topics and subscriptions, you first need to create a Microsoft Azure Service Bus namespace. Once created, it can be used for **all** the labs that use Microsoft Azure Service Bus and for your own projects as well.
 
-1. Navigate to [Windows Azure Management Portal](http://manage.windowsazure.com). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
+1. Navigate to [Microsoft Azure Management Portal](http://manage.windowsazure.com). You will be prompted for your **Microsoft Account** credentials if you are not already signed in.
 
 1. Click **Service Bus** in the left pane.
 
-	![Configuring Windows Azure Service Bus](Images/configuring-windows-azure-service-bus.png?raw=true)
+	![Configuring Microsoft Azure Service Bus](Images/configuring-windows-azure-service-bus.png?raw=true)
  
-	_Configuring Windows Azure Service Bus_
+	_Configuring Microsoft Azure Service Bus_
 
 1. Create a Service Namespace. A service namespace provides an application boundary for each application exposed through the Service Bus and is used to construct Service Bus endpoints for the application. To create a service namespace, click **Create** in the bottom bar. 
 
@@ -116,26 +116,26 @@ To work with Service Bus topics and subscriptions, you first need to create a Wi
  
 	_Service Bus default keys_
 
-You have now created a new Windows Azure Service Bus namespace for this hands-on lab. To sign in at any time, simply navigate to the Windows Azure Management Portal, click **Sign In** and provide your **Microsoft Account** credentials.
+You have now created a new Microsoft Azure Service Bus namespace for this hands-on lab. To sign in at any time, simply navigate to the Microsoft Azure Management Portal, click **Sign In** and provide your **Microsoft Account** credentials.
 
-> **Note:** In this lab you will learn how to create and make use of Service Bus topics and subscriptions from both Visual Studio and an ASP.NET MVC application. You can also create topics and subscriptions from the Windows Azure Management Portal; for more information see [How to Manage Service Bus Messaging Entities](http://www.windowsazure.com/en-us/documentation/articles/service-bus-manage-message-entities/).
+> **Note:** In this lab you will learn how to create and make use of Service Bus topics and subscriptions from both Visual Studio and an ASP.NET MVC application. You can also create topics and subscriptions from the Microsoft Azure Management Portal; for more information see [How to Manage Service Bus Messaging Entities](http://www.windowsazure.com/en-us/documentation/articles/service-bus-manage-message-entities/).
 
 <a name="Ex1Task2"></a>
 #### Task 2 - Creating a Topic and Adding Subscriptions in Visual Studio ####
 
-Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including topics and subscriptions. In this task, you will use Server Explorer to connect to the Service Bus namespace you created previously, create a topic and add a subscription to it.
+Microsoft Azure Tools for Microsoft Visual Studio includes Server Explorer support for managing Service Bus messaging entities, including topics and subscriptions. In this task, you will use Server Explorer to connect to the Service Bus namespace you created previously, create a topic and add a subscription to it.
 
 1. Open **Visual Studio 2013 Express for Web** (or greater) as Administrator.
 
 1. From the menu bar, select **View** and then click **Server Explorer**.
 
-1. In **Server Explorer**, expand the  **Windows Azure** node, right-click **Service Bus** and select **Add New Connection...**.
+1. In **Server Explorer**, expand the  **Microsoft Azure** node, right-click **Service Bus** and select **Add New Connection...**.
 
 	![Adding new Service Bus connection](Images/adding-new-service-bus-connection.png?raw=true)
 
 	_Adding new Service Bus connection_
 
-1. In the **Add Connection** dialog box, make sure the **Windows Azure Service Bus** option is selected. Enter the **Namespace name**, the **Issuer Name** and the **Issuer Key** using the values obtained in the previous task. Finally, click **OK**.
+1. In the **Add Connection** dialog box, make sure the **Microsoft Azure Service Bus** option is selected. Enter the **Namespace name**, the **Issuer Name** and the **Issuer Key** using the values obtained in the previous task. Finally, click **OK**.
 
 	> **Note:** Alternatively, you can select the **Use connection string** check box and provide the service bus connection string.
 
@@ -167,7 +167,7 @@ Windows Azure Tools for Microsoft Visual Studio includes Server Explorer support
 
 1. The new subscription should be added to your topic.
 
-	> **Note:** You can also use Windows Azure Tools for Microsoft Visual Studio to send and receive test messages, as well as to define subscription rules. In the upcoming exercises, you will learn how to perform these operations from code by using the **WindowsAzure.ServiceBus** NuGet package.
+	> **Note:** You can also use Microsoft Azure Tools for Microsoft Visual Studio to send and receive test messages, as well as to define subscription rules. In the upcoming exercises, you will learn how to perform these operations from code by using the **WindowsAzure.ServiceBus** NuGet package.
 
 	![New subscription created](Images/new-subscription-created.png?raw=true)
 
@@ -194,7 +194,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
  
     _Launching the Service Configuration editor_
 
-1. In the **Settings** tab, set the _namespaceName_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to those you previously copied from the [Windows Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
+1. In the **Settings** tab, set the _namespaceName_ value to the name of your Service Bus namespace, and set the _issuerName_ and _issuerKey_ values to those you previously copied from the [Microsoft Azure Management Portal](http://go.microsoft.com/fwlink/?LinkID=129428).
 
 	![Updating settings to the UsingTopics web role](Images/updating-settings-to-the-usingtopics-web-role.png?raw=true)
 
@@ -202,13 +202,13 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 1. Press **CTRL + S** to save the changes to the Web Role configuration.
 
-1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to **Windows Azure Service Bus** from your application. In **Solution Explorer**, right-click the **UsingTopics** project node and select **Add | Reference...**.
+1. Next, you will add the required assemblies to the **ASP.NET MVC 5** Web project to connect to **Microsoft Azure Service Bus** from your application. In **Solution Explorer**, right-click the **UsingTopics** project node and select **Add | Reference...**.
 
 1. In the **Reference Manager** dialog box, select the **System.Runtime.Serialization** assembly. Then, select the **Extensions** assemblies from the left pane, select **Microsoft.ServiceBus** and ensure **Microsoft.WindowsAzure.ServiceRuntime** is selected as well. Click **OK** to add the references.
 
 1. Open the **HomeController.cs** file under the **Controllers** folder in the **UsingTopics** project.
 
-1. Add the following namespace directives to declare the Service Bus and the Windows Azure supporting assemblies.
+1. Add the following namespace directives to declare the Service Bus and the Microsoft Azure supporting assemblies.
 
 	(Code Snippet - _Service Bus Topics - Ex01 - Adding Namespace Directives_ - CS)
 	<!-- mark:1-2 -->
@@ -285,7 +285,7 @@ In this task, you will learn how to use the **Mircosoft.ServiceBus.NamespaceMana
 
 <a name="Ex1Task4"></a>
 #### Task 4 - Verification ####
-You will now launch the updated application in the Windows Azure compute emulator to verify that you can create a topic with subscriptions.
+You will now launch the updated application in the Microsoft Azure compute emulator to verify that you can create a topic with subscriptions.
 
 1. In **Visual Studio**, configure the cloud project **UsingTopics.Azure** as the StartUp Project. To do this, in **Solution Explorer** right-click **UsingTopics.Azure** and then select **Set as StartUp Project**.
 
@@ -322,7 +322,7 @@ You will now launch the updated application in the Windows Azure compute emulato
 <a name="Exercise2"></a>
 ### Exercise 2: Sending and Receiving Messages ###
 
-In Exercise 1, you added the necessary code to the application in order to create Windows Azure Service Bus topics and subscriptions. You will now update the application to send messages to a topic and receive the messages that arrive to the subscriptions.
+In Exercise 1, you added the necessary code to the application in order to create Microsoft Azure Service Bus topics and subscriptions. You will now update the application to send messages to a topic and receive the messages that arrive to the subscriptions.
 
 <a name="Ex2Task1"></a>
 #### Task 1 - Sending Messages ####
@@ -657,7 +657,7 @@ This is a list of articles that expand on the technologies explained in this lab
 
 - [An Introduction to Service Bus Topics article on the AppFabrik Team Blog](http://aka.ms/Qfzy2g): provides an introduction to the publish/subscribe capabilities offered by Service Bus Topics.
 
-- [Service Bus Queues, Topics, and Subscriptions](http://aka.ms/Jed5rg): the new release of the Windows Azure Service Bus adds a set of cloud-based, message-oriented middleware technologies including reliable message queuing and durable publish/subscribe messaging. These ‚Äúbrokered‚Äù messaging capabilities can be thought of as asynchronous or decoupled messaging features that support publish/subscribe, temporal decoupling, and load balancing scenarios using the Service Bus messaging fabric. 
+- [Service Bus Queues, Topics, and Subscriptions](http://aka.ms/Jed5rg): the new release of the Microsoft Azure Service Bus adds a set of cloud-based, message-oriented middleware technologies including reliable message queuing and durable publish/subscribe messaging. These ìbrokeredî messaging capabilities can be thought of as asynchronous or decoupled messaging features that support publish/subscribe, temporal decoupling, and load balancing scenarios using the Service Bus messaging fabric. 
 
 - [Partitioned Service Bus Queues and Topics](http://aka.ms/Sy2ssi): whereas a conventional queue or topic is handled by a single message broker and stored in one messaging store, a partitioned queue or topic is handled by multiple message brokers and stored in multiple messaging stores. This means that the overall throughput of a partitioned queue or topic is no longer limited by the performance of a single message broker or messaging store
 

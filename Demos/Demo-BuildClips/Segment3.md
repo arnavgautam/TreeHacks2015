@@ -1,25 +1,25 @@
-﻿<a name="segment3" />
+<a name="segment3" />
 ### Segment 3: Building N-Tier Cloud Services with Real-Time Communications ###
 
-In this segment, you will evolve the Video web project into an n-tier solution that includes a background service for monitoring the status of encoding jobs.  We will also enable real-time updates to users for both the web and Windows 8 apps using SignalR, Web Sockets in IIS8, and the Windows Azure Service Bus.
+In this segment, you will evolve the Video web project into an n-tier solution that includes a background service for monitoring the status of encoding jobs.  We will also enable real-time updates to users for both the web and Windows 8 apps using SignalR, Web Sockets in IIS8, and the Microsoft Azure Service Bus.
 
 > **Speaking Point:** Uploading a nice seven-second clip of video is good for some scenarios. But for a lot of media scenarios, you might be uploading, you know, hundreds of megabytes of video content. And it's going to take minutes or hours even to encode all of that in all the formats within the cloud. And what we're going to want to be able to do for our client experience to make it a lot richer is be able to provide real-time feedback to the users as to the status of their different encoding jobs. And to do that, we're going to take advantage of a cool library called SignalR. And what SignalR does is to maintain a continuous connection with your clients, and we can use this now to be able to provide continuous feedback from the server to the client in a very efficient, scalable way. And SignalR will scale even to hundreds of thousands or millions of client connections. Now, to make this thing even more scalable, I'm going to also, then, introduce another tier into my application. This is going to be a background service. It's going to be a non-UI service. And what it's going to do is it's going to monitor our Media Services accounts. It's going to look at all the encoding jobs that are going on within it, and it's then just going to feed messages to my Web app with SignalR, which will then broadcast it to the client. And then my UI on the client can just provide a nice, continuous update UI feedback to my users.
 
 1. Check if IIS Express is running in the System Tray. If this is the case, right-click the IIS Express icon and select Exit (confirm to stop all the working processes).
 
-	> **Note:** This is required to stop all running sites and prevent the Windows Azure emulator from deploying the web roles created during this segment in an unexpected port.
+	> **Note:** This is required to stop all running sites and prevent the Microsoft Azure emulator from deploying the web roles created during this segment in an unexpected port.
 
 1. Switch to the **Visual Studio 2012** instance with the **BuildClips** Web Site project opened.
 
-    > **Speaking Point:** Let's go back to the Web Application. Now, the first step we're going to do is we're going to convert this from being a single-tier website to, instead, being a multitier what we call cloud service inside Windows Azure. So a cloud service can have multiple tiers that run on multiple machines and kind of provide a nice way to compose them together.
+    > **Speaking Point:** Let's go back to the Web Application. Now, the first step we're going to do is we're going to convert this from being a single-tier website to, instead, being a multitier what we call cloud service inside Microsoft Azure. So a cloud service can have multiple tiers that run on multiple machines and kind of provide a nice way to compose them together.
 
-1. Right click on the **BuildClips** Web project and select **Add Windows Azure Cloud Service Project**.
+1. Right click on the **BuildClips** Web project and select **Add Microsoft Azure Cloud Service Project**.
 
-    > **Speaking Point:** And converting a website to be a cloud service is really easy. All I need to do is just right-click on the website and say add Windows Azure cloud service project. This is now going to add into my Visual Studio project a Windows Azure cloud service that kind of defines the overall shape and structure of my cloud service app.
+    > **Speaking Point:** And converting a website to be a cloud service is really easy. All I need to do is just right-click on the website and say add Microsoft Azure cloud service project. This is now going to add into my Visual Studio project a Microsoft Azure cloud service that kind of defines the overall shape and structure of my cloud service app.
 
-	![Add windows azure cloud service project](Images/add-windows-azure-cloud-service-project.png?raw=true)
+	![Add Microsoft Azure cloud service project](Images/add-windows-azure-cloud-service-project.png?raw=true)
 
-	_Add windows azure cloud service project_
+	_Add Microsoft Azure cloud service project_
 
 1. Expand the **BuildClips.Azure** cloud service project, right-click the **BuildClips** role and select **Properties**. In the **Endpoints** tab, change the value of the Public Port column to **81**.
 
@@ -35,7 +35,7 @@ In this segment, you will evolve the Video web project into an n-tier solution t
 
 1. Right click on the **BuildClips.Azure** cloud service project and select **New Worker Role Project** to create a worker role named **BackgroundService**.
 
-    > **Speaking Point:** We can also add additional tiers or roles to our cloud service. Let's add a Worker Role and name it BackgroundService. We will use this worker role to poll Windows Azure Media Services and check on the status of our encoding jobs.  
+    > **Speaking Point:** We can also add additional tiers or roles to our cloud service. Let's add a Worker Role and name it BackgroundService. We will use this worker role to poll Microsoft Azure Media Services and check on the status of our encoding jobs.  
 
 	![new worker role](Images/new-worker-role.png?raw=true)
 
@@ -57,7 +57,7 @@ In this segment, you will evolve the Video web project into an n-tier solution t
 
 	_Select BuildClips.Service project_
 
-1. Right-click the **BackgroundService** project, select **Manage NuGet Packages** and install the **Windows Azure Media Services .NET SDK** NuGet package.
+1. Right-click the **BackgroundService** project, select **Manage NuGet Packages** and install the **Microsoft Azure Media Services .NET SDK** NuGet package.
 
     > **Speaking Point:** And I'm also going to install the same Media Services library we added previously to our web site, but this time to our new worker role.
 
@@ -185,9 +185,9 @@ In this segment, you will evolve the Video web project into an n-tier solution t
 
 	> **Note:** Make sure that the script reference to **jquery.signalR-1.0.0-alpha2.min.js** in the code from above matches the script file located inside the **Scripts** folder. The name of this script may change when SignalR is released.
 
-1. Go to the **Windows Azure management portal**. Click **Service Bus** within the left pane. To create a service namespace, click **Create** on the bottom bar. 
+1. Go to the **Microsoft Azure management portal**. Click **Service Bus** within the left pane. To create a service namespace, click **Create** on the bottom bar. 
 
-	> **Speaking Point:** In order to deliver messages through SignalR at scale, we need to connect it to a backend messaging service.  Windows Azure Service Bus provides a secure and reliable messaging service that can power SignalR and these real-time experiences. Within the Windows Azure Management Portal, we can create a new Service Bus namespace.  
+	> **Speaking Point:** In order to deliver messages through SignalR at scale, we need to connect it to a backend messaging service.  Microsoft Azure Service Bus provides a secure and reliable messaging service that can power SignalR and these real-time experiences. Within the Microsoft Azure Management Portal, we can create a new Service Bus namespace.  
 
 	![Creating a new Service Namespace](Images/service-bus-add-namespace.png?raw=true)
 
@@ -203,7 +203,7 @@ In this segment, you will evolve the Video web project into an n-tier solution t
 
 1. Right-click the  **BuildClips** project and select **Manage NuGet Packages**. Install the **Microsoft.AspNet.SignalR.ServiceBus** NuGet package. Make sure you have selected the option **Include Prerelease**
 
-    > **Speaking Point:** We will be using the Windows Azure Service Bus to enable delivery of the messages at scale, so let's install the SignalR Windows Azure Service Bus NuGet. 
+    > **Speaking Point:** We will be using the Microsoft Azure Service Bus to enable delivery of the messages at scale, so let's install the SignalR Microsoft Azure Service Bus NuGet. 
 
 	![Install Service Bus NuGet UI](Images/install-servicebus-nuget.png?raw=true)
 
@@ -234,7 +234,7 @@ In this segment, you will evolve the Video web project into an n-tier solution t
 	````C#
     protected void Application_Start()
     {
-		// SignalR backplane using the Windows Azure Service Bus
+		// SignalR backplane using the Microsoft Azure Service Bus
 		GlobalHost.DependencyResolver.UseWindowsAzureServiceBus(
 				  ConfigurationManager.AppSettings["ServiceBusConnectionString"],
 				  topicCount: 5,
@@ -245,7 +245,7 @@ In this segment, you will evolve the Video web project into an n-tier solution t
 
 1. Press **F5** to start the Cloud Services solution in the compute emulator. 
 
-    > **Speaking Point:** Finally, I can simply press F5 and start running my entire cloud service locally.  This will start the Windows Azure Compute Emulator, which provides a local environment that simulates a multi-tier environment in the cloud.  This is great for debugging and building apps before you deploy them.  
+    > **Speaking Point:** Finally, I can simply press F5 and start running my entire cloud service locally.  This will start the Microsoft Azure Compute Emulator, which provides a local environment that simulates a multi-tier environment in the cloud.  This is great for debugging and building apps before you deploy them.  
 
 1. Right-click the emulator icon and select **Show Compute Emulator UI**. Show the tracing messages.
 
@@ -361,7 +361,7 @@ In this segment, you will evolve the Video web project into an n-tier solution t
 	_Uploading a Video_
 
 	> **Speaking Point:**
-	>  This is running on my dev machine so I don't have a camera. So I can select a video. Going to upload it now to my local emulated environment that's running, again, on my local development machine. It's then calling out to Windows Azure Media Services in the cloud, and so it's going to be, again, making another REST call out to Windows Azure Media Services, which is then going to store it, kick off the encoding tasks on it.
+	>  This is running on my dev machine so I don't have a camera. So I can select a video. Going to upload it now to my local emulated environment that's running, again, on my local development machine. It's then calling out to Microsoft Azure Media Services in the cloud, and so it's going to be, again, making another REST call out to Microsoft Azure Media Services, which is then going to store it, kick off the encoding tasks on it.
 
 1. Once upload is completed, **go back to the video list page** and after a few seconds you will see the "encoding progress bar" in the new video, and the _last updated_ label being refreshed periodically. 
 
@@ -373,11 +373,11 @@ In this segment, you will evolve the Video web project into an n-tier solution t
 
 1. Switch to the **Visual Studio** instance with the **BuildClips** Web application.
 
-	> **Note:** And the beauty about this architecture is it will work not just with one machine on my local desktop, but if I have thousands or hundreds of thousands of clients connected, they'll all get those real-time updates, and I can kind of provide a nice user experience for them to use. So we've built our app now. We can go ahead and deploy it into Windows Azure. 
+	> **Note:** And the beauty about this architecture is it will work not just with one machine on my local desktop, but if I have thousands or hundreds of thousands of clients connected, they'll all get those real-time updates, and I can kind of provide a nice user experience for them to use. So we've built our app now. We can go ahead and deploy it into Microsoft Azure. 
 
 1. Right-click the **BuildClips.Azure** cloud project and select **Publish**. Click **Import** and open the publish settings file located in **Downloads**.
 
-	> **Speaking Point:** Doing that is pretty easy. You saw how we could right-click and publish a website. I can now do the same thing using Windows Azure Cloud Services. I already imported the publish settings file.
+	> **Speaking Point:** Doing that is pretty easy. You saw how we could right-click and publish a website. I can now do the same thing using Microsoft Azure Cloud Services. I already imported the publish settings file.
 
 	![Publishing the Cloud Service](Images/cloud-service-publish-signin.png?raw=true "Publishing the Cloud Service")
 
@@ -393,11 +393,11 @@ In this segment, you will evolve the Video web project into an n-tier solution t
 
 1. Talk about the publishing workflow (do not click **Publish**).
 
-	> **Speaking Point:** When I go ahead and hit publish, Visual Studio packages that up into what's called a service package file. It's going to be like a zip file, and uploads it into Windows Azure. And then what Windows Azure's going to do is it's going to find appropriate servers to run within the datacenter, automatically select them for me, image them with whatever operating system or dependencies I need, and then install my application on them. And once that application is deployed on it, it will automatically wire up a network load balancer and start sending traffic to the application. And the beauty about cloud services is it's fully automated for me. I don't have to manually set up the machines. All that is handled for me by the core platform.
+	> **Speaking Point:** When I go ahead and hit publish, Visual Studio packages that up into what's called a service package file. It's going to be like a zip file, and uploads it into Microsoft Azure. And then what Microsoft Azure's going to do is it's going to find appropriate servers to run within the datacenter, automatically select them for me, image them with whatever operating system or dependencies I need, and then install my application on them. And once that application is deployed on it, it will automatically wire up a network load balancer and start sending traffic to the application. And the beauty about cloud services is it's fully automated for me. I don't have to manually set up the machines. All that is handled for me by the core platform.
 
 	![Visual Studio publish cloud service summary](Images/cloud-service-publish-summary.png?raw=true)
 
 	_Visual Studio publish cloud service summary_
 
-	> **Note:** In order to publish the service, you first need to change the database connection string to point to an Azure SQL Database (in both web.config and app.config files of the web and worker roles respectively) and also modify the _ApiBaseUrl_ in the app.config file to point to your Windows Azure Cloud Service address (_http://{your-cloud-service}.cloudapp.net_):
+	> **Note:** In order to publish the service, you first need to change the database connection string to point to an Azure SQL Database (in both web.config and app.config files of the web and worker roles respectively) and also modify the _ApiBaseUrl_ in the app.config file to point to your Microsoft Azure Cloud Service address (_http://{your-cloud-service}.cloudapp.net_):
 

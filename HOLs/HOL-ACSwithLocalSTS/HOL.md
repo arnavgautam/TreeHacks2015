@@ -8,17 +8,17 @@
 
 Connecting a cloud service to its users is one of the most basic requirements of any solution, whether deployed on-premises, in the cloud or on both.
 
-The emergence of standards is helping to break the silos which traditionally isolate accounts stored by different web sites and business entities, however offering cloud service access to users coming from multiple sources can still be a daunting task. As of today, if you want to open your cloud service to users coming from Facebook, Live ID, Google and business directories the brute-force approach demands you to lean and implement four different authentication protocols. Changes in today's world happen fast and often, forcing you to keep updating your protocol implementations to chase the latest evolutions of the authentication mechanisms of the user repositories. All this can require a disproportionate amount of energy, leaving you with fewer resources to focus on your business.
+The emergence of standards is helping to break the silos which traditionally isolate accounts stored by different Websites and business entities, however offering cloud service access to users coming from multiple sources can still be a daunting task. As of today, if you want to open your cloud service to users coming from Facebook, Live ID, Google and business directories the brute-force approach demands you to lean and implement four different authentication protocols. Changes in today's world happen fast and often, forcing you to keep updating your protocol implementations to chase the latest evolutions of the authentication mechanisms of the user repositories. All this can require a disproportionate amount of energy, leaving you with fewer resources to focus on your business.
 
  ![A functional view of the Access Control Service](./images/A-functional-view-of-the-Access-Control-Service.png?raw=true "A functional view of the Access Control Service")
 
 _A functional view of the Access Control Service_
 
-Enter the Windows Azure Access Control Service (ACS). ACS offers you a way to outsource authentication and decouple your cloud service from all the complexity of maintaining a direct relationship with all the identity providers you want to tap from. ACS takes care of engaging every identity provider with its own authentication protocol, normalizing the authentication results in a protocol supported by the .NET framework tooling (namely the Windows Identity Foundation technology, or WIF) regardless of from where the user is coming from. WIF allows you in just few clicks to elect the ACS as the authentication manager for your cloud service; from that moment on ACS takes care of everything, including providing a UI for the user to choose among all the recognized identity providers.
+Enter the Microsoft Azure Access Control Service (ACS). ACS offers you a way to outsource authentication and decouple your cloud service from all the complexity of maintaining a direct relationship with all the identity providers you want to tap from. ACS takes care of engaging every identity provider with its own authentication protocol, normalizing the authentication results in a protocol supported by the .NET framework tooling (namely the Windows Identity Foundation technology, or WIF) regardless of from where the user is coming from. WIF allows you in just few clicks to elect the ACS as the authentication manager for your cloud service; from that moment on ACS takes care of everything, including providing a UI for the user to choose among all the recognized identity providers.
 
 Furthermore, ACS offers you greater control over which user attributes should be assigned for every authentication event; again in synergy with WIF, those attributes (called claims) can be easily accessed for taking authorization decisions without forcing the developer do understand or even be aware of the lower level mechanisms that the authentication protocols entail.
 
-In this intermediate hands-on lab you will learn how to use the Access Control Service for managing trust relationships with multiple business identity providers. Users from two different organizations will be able to gain authenticated access to your cloud service; however you will not be required to write any special code for handling the differences between the two. You will learn how to use ACS for establishing relationships and normalizing attributes without having to touch your cloud service's source code. The lab will demonstrate how to configure ACS both via the Windows Azure Portal and the management API.
+In this intermediate hands-on lab you will learn how to use the Access Control Service for managing trust relationships with multiple business identity providers. Users from two different organizations will be able to gain authenticated access to your cloud service; however you will not be required to write any special code for handling the differences between the two. You will learn how to use ACS for establishing relationships and normalizing attributes without having to touch your cloud service's source code. The lab will demonstrate how to configure ACS both via the Microsoft Azure Portal and the management API.
 
 <a name="Objectives"></a>
 ### Objectives ###
@@ -47,7 +47,7 @@ The following is required to complete this hands-on lab:
 - [Microsoft Windows Identity Foundation Runtime][3]
 - [Microsoft Windows Identity Foundation SDK for .NET 4.0][4]
 - Microsoft Windows PowerShell
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 [1]:http://go.microsoft.com/fwlink/?linkid=186916
 [2]:http://msdn.microsoft.com/vstudio/products/
@@ -96,16 +96,16 @@ Estimated time to complete this lab: **30 minutes**
 <a name="GettingStarted"></a>
 ### Getting Started: Creating a Service Namespace ###
 
-To follow this lab and complete all the exercises you first need to create a Windows Azure Service Namespace. Once completed, it can be used for all of the Access Control labs and for your own projects as well.
+To follow this lab and complete all the exercises you first need to create a Microsoft Azure Service Namespace. Once completed, it can be used for all of the Access Control labs and for your own projects as well.
 
 <a name="GettingStartedTask1"></a>
 #### Task 1 - Creating your Service Namespace ####
 
 1. Navigate to [https://manage.windowsazure.com/](https://manage.windowsazure.com/). You will be prompted for your Microsoft account credentials if you are not already signed in. 
 
-	![Windows Azure Login Page](images/windows-azure-login-page.png?raw=true "Windows Azure Login Page")
+	![Microsoft Azure Login Page](images/windows-azure-login-page.png?raw=true "Microsoft Azure Login Page")
 
-	_Windows Azure Login Page_
+	_Microsoft Azure Login Page_
 
 1. To use Access Control, you need to access the previous management portal version. In order to do this, hover the mouse pointer over **Preview** in the main page header and click **Take me to the previous portal**.
 
@@ -142,7 +142,7 @@ In this exercise you are going to outsource to ACS the authentication part of a 
 
 In a real-life solution, the business identity providers would expose their authentication functions using Active Directory Federation Services 2 or similar packaged software offering an STS. In order to keep the system requirements simple for the lab, here you will be using a utility which runs on the local machine and simulates a proper identity provider. The steps you need to configure ACS are, however, absolutely the same as if you'd be using a real system.
 
-> **Note:** You require a Windows Azure Service Namespace to complete this exercise. If you have not already done so, complete the section Getting Started: Creating a Service Namespace.
+> **Note:** You require a Microsoft Azure Service Namespace to complete this exercise. If you have not already done so, complete the section Getting Started: Creating a Service Namespace.
 
 <a name="Ex1Task1"></a>
 #### Task 1 - Creating the Initial Solution ####
@@ -258,9 +258,9 @@ In a real-life solution, the business identity providers would expose their auth
 1. Close the browser.
 
 <a name="Ex1Task2"></a>
-#### Task 2 - Configure one entry for the cloud service in the Access Control Service with the Windows Azure Portal ####
+#### Task 2 - Configure one entry for the cloud service in the Access Control Service with the Microsoft Azure Portal ####
 
-Before being able to use ACS for offloading authentication, you need to let ACS know about your cloud service. You can easily do this by working on your Windows Azure namespace via management portal.
+Before being able to use ACS for offloading authentication, you need to let ACS know about your cloud service. You can easily do this by working on your Microsoft Azure namespace via management portal.
 
 1. Navigate to [https://manage.windowsazure.com/](https://manage.windowsazure.com/). You will be prompted for your Microsoft account credentials if you are not already signed in. 
 
@@ -336,7 +336,7 @@ Before being able to use ACS for offloading authentication, you need to let ACS 
 
 For a cloud service, outsourcing authentication ACS means forwarding every request from unauthenticated users to ACS. ACS will do something for making authentication happen (details below), and as we have seen above the result will be a security token. All those redirects are usually done according to specific protocols, which are platform and vendor-independent.
 
-ACS can emit different token types on various protocols. For Web sites, the default protocol is WS-Federation. There's no need to go in the fine details: suffice to say that WS-Federation is a protocol that is natively understood by Windows Identity Foundation (WIF), an extension to the .NET framework that allows you to easily outsource cloud service authentication to tokens sources such as the ACS itself. In particular, WIF extends Visual Studio with a wizard which can automatically configure your cloud service to outsource authentication without requiring you to write a single line of code. All it needs is the address of a machine-readable description of the token source to be used: in our case, that description is the WS-Federation Metadata address you saved at the end of Task 3. In identity parlance, a service which emits security token is called a Security Token Service (STS).
+ACS can emit different token types on various protocols. For Websites, the default protocol is WS-Federation. There's no need to go in the fine details: suffice to say that WS-Federation is a protocol that is natively understood by Windows Identity Foundation (WIF), an extension to the .NET framework that allows you to easily outsource cloud service authentication to tokens sources such as the ACS itself. In particular, WIF extends Visual Studio with a wizard which can automatically configure your cloud service to outsource authentication without requiring you to write a single line of code. All it needs is the address of a machine-readable description of the token source to be used: in our case, that description is the WS-Federation Metadata address you saved at the end of Task 3. In identity parlance, a service which emits security token is called a Security Token Service (STS).
 
 In this task you will use the WIF wizard to outsource authentication to ACS.
 
@@ -350,7 +350,7 @@ In this task you will use the WIF wizard to outsource authentication to ACS.
  
 		_Federation Utility Wizard_
 
-	1. On the **Security Token Service** page select **Use an existing STS**, and paste the endpoint taken from **Task 2 - Step 10** in the **Use an existing STS** field and click **Next**. That endpoint serves the document describing the WS-Federation STS that ACS exposes in your Windows Azure namespace.
+	1. On the **Security Token Service** page select **Use an existing STS**, and paste the endpoint taken from **Task 2 - Step 10** in the **Use an existing STS** field and click **Next**. That endpoint serves the document describing the WS-Federation STS that ACS exposes in your Microsoft Azure namespace.
 
 		![Use an Existing STS option](./images/Use-an-Existing-STS-option.png?raw=true "Use an Existing STS option")
  
@@ -518,7 +518,7 @@ In this task you will use the portal for configuring ACS to accept users from th
 
 1. You have completed the entire configuration for the SelfSTS1 first business IP in ACS and setup your web site to trust ACS. Now you will verify its behavior by running the SelfSTS1. It's time to verify that everything works as expected. To do this,  execute the SelfSTS.exe file located in **\Source\Assets\SelfSTS1**.
 
-	> **Note:**  In realistic settings, the business IP would expose its STS via ADFS2.0. However that would require quite a lot of infrastructure, including Active Directory and a Windows Server machine on which to turn on the necessary server role. However we want you to be able to experiment with this scenario even if all you have available is a standalone PC. To that purpose this hands-on lab uses SelfSTS, a simple utility which exposes a minimal WS-Federation STS endpoint. SelfSTS is just a Windows Forms application, which does not even require a setup and can run on any system where the WIF runtime is available. SelfSTS can be used as a test STS when developing web sites secured with Windows Identity Foundation. You can find more information in SelfSTS MSDN code page. 
+	> **Note:**  In realistic settings, the business IP would expose its STS via ADFS2.0. However that would require quite a lot of infrastructure, including Active Directory and a Windows Server machine on which to turn on the necessary server role. However we want you to be able to experiment with this scenario even if all you have available is a standalone PC. To that purpose this hands-on lab uses SelfSTS, a simple utility which exposes a minimal WS-Federation STS endpoint. SelfSTS is just a Windows Forms application, which does not even require a setup and can run on any system where the WIF runtime is available. SelfSTS can be used as a test STS when developing Websites secured with Windows Identity Foundation. You can find more information in SelfSTS MSDN code page. 
 
 	> All the tasks you are required to perform on ACS as application developer in order to configure a business IP are precisely the same you would do if instead of SelfSTS you would be using ADFS2.0.
 
@@ -546,7 +546,7 @@ In this task you will use the portal for configuring ACS to accept users from th
  
 	_Removing Windows Live ID Identity Provider_
 
-	> **Note:** Windows Live ID is the IP that ACS adds as the initial choice when you create a Relying Party. For development purposes it is a reasonable default, as it is the only IP for which it is certain that the developer has a relationship with (a Windows Live ID account is needed for signing up for ACS labs and creating a Windows Azure namespace). However in this scenario we are only interested in handling identities from two specific business IPs, hence we are deselecting it.
+	> **Note:** Windows Live ID is the IP that ACS adds as the initial choice when you create a Relying Party. For development purposes it is a reasonable default, as it is the only IP for which it is certain that the developer has a relationship with (a Windows Live ID account is needed for signing up for ACS labs and creating a Microsoft Azure namespace). However in this scenario we are only interested in handling identities from two specific business IPs, hence we are deselecting it.
 
 	> It is interested to notice that if we'd wish to address scenarios in which users can come both from web IPs (Windows Live ID, Facebook, Google, Yahoo) and business IPs ACS would easily handle that.
 
@@ -1033,6 +1033,6 @@ By completing this Hands-On Lab you have learned how to:
 
 - Use ACS to handle the home realm discovery problem
 
-The Windows Azure Access Control Service is a great service to outsource authentication to, as it can easily abstract away the complexity of dealing with multiple business identity providers such as directories enhanced by Active Directory Federation Services or equivalent and even web and social providers such as Windows Live Id, Facebook, Google and Yahoo. Furthermore, ACS offers powerful tools for manipulating the way in which the user's identity is processed before reaching your cloud service.
+The Microsoft Azure Access Control Service is a great service to outsource authentication to, as it can easily abstract away the complexity of dealing with multiple business identity providers such as directories enhanced by Active Directory Federation Services or equivalent and even web and social providers such as Windows Live Id, Facebook, Google and Yahoo. Furthermore, ACS offers powerful tools for manipulating the way in which the user's identity is processed before reaching your cloud service.
 
-This intermediate lab gave you a glimpse of the capabilities of ACS applied to classic business access problems such has onboarding new partners, handling authentication from multiple sources and protecting cloud services from changes and edge cases. Here we focused on Web sites, but ACS can handle just as well SOAP and REST Web services. We focused on business identity providers, but ACS offers comprehensive support for Web identities via easy to use features which perfectly fit with the agility of Web-based solutions. If you are interested in knowing more about those capabilities, please refer to the introductory hands-on lab. Finally, if you are interested in REST solutions, look out for upcoming new labs exploring the OAuth2 features in ACS.
+This intermediate lab gave you a glimpse of the capabilities of ACS applied to classic business access problems such has onboarding new partners, handling authentication from multiple sources and protecting cloud services from changes and edge cases. Here we focused on Websites, but ACS can handle just as well SOAP and REST Web services. We focused on business identity providers, but ACS offers comprehensive support for Web identities via easy to use features which perfectly fit with the agility of Web-based solutions. If you are interested in knowing more about those capabilities, please refer to the introductory hands-on lab. Finally, if you are interested in REST solutions, look out for upcoming new labs exploring the OAuth2 features in ACS.

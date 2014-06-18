@@ -1,12 +1,12 @@
-﻿<a name="title" />
-# Getting Started with Windows Azure Mobile Services for Windows Phone#
+<a name="title" />
+# Getting Started with Microsoft Azure Mobile Services for Windows Phone#
 
 ---
 <a name="Overview" />
 ## Overview ##
-This hands-on lab demonstrates how you can leverage Visual Studio 2012 and Windows Azure Mobile Services to add structured storage, push notifications, and integrated authentication to your Windows Phone application.
+This hands-on lab demonstrates how you can leverage Visual Studio 2012 and Microsoft Azure Mobile Services to add structured storage, push notifications, and integrated authentication to your Windows Phone application.
 
-Windows Azure Mobile Services is a Windows Azure service offering designed to make it easy to create highly-functional mobile apps using Windows Azure. Mobile Services brings together a set of Windows Azure services that enable backend capabilities for your apps. These capabilities includes simple provisioning and management of tables for storing app data, integration with notification services, integration with well-known identity providers for authentication, among others.
+Microsoft Azure Mobile Services is a Microsoft Azure service offering designed to make it easy to create highly-functional mobile apps using Microsoft Azure. Mobile Services brings together a set of Microsoft Azure services that enable backend capabilities for your apps. These capabilities includes simple provisioning and management of tables for storing app data, integration with notification services, integration with well-known identity providers for authentication, among others.
 
 <a name="objectives"></a>
 ### Objectives ###
@@ -24,9 +24,9 @@ The following is required to complete this hands-on lab:
 
 - [Microsoft Visual Studio 2012](http://msdn.microsoft.com/vstudio/products/)
 - [Microsoft Visual Studio 2012 Update 2][1] or higher.
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
-- Windows Azure Mobile Services Preview enabled on your subscription - For more information, see [here](http://www.windowsazure.com/en-us/develop/mobile/tutorials/create-a-windows-azure-account/#enable) 
-- [Windows Azure Mobile Services Client SDK] (http://www.windowsazure.com/en-us/downloads/)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- Microsoft Azure Mobile Services Preview enabled on your subscription - For more information, see [here](http://www.windowsazure.com/en-us/develop/mobile/tutorials/create-a-windows-azure-account/#enable) 
+- [Microsoft Azure Mobile Services Client SDK] (http://www.windowsazure.com/en-us/downloads/)
 - [Windows Phone 8 SDK](http://dev.windowsphone.com/en-us/downloadsdk)
 
 [1]: http://www.microsoft.com/en-us/download/details.aspx?id=38188
@@ -36,7 +36,7 @@ The following is required to complete this hands-on lab:
 
 If you are performing this hands-on lab using Windows, you can follow these steps to check for dependencies. Otherwise, check the **Prerequisites** list above.
 
-1. Open a Windows Explorer window and browse to the lab’s **Source** folder.
+1. Open a Windows Explorer window and browse to the lab�s **Source** folder.
 
 1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment.
 
@@ -56,12 +56,12 @@ This hands-on lab includes the following exercises:
 <a name="Exercise1" />
 ## Exercise 1: Creating your first Mobile Service ##
 
-The goal of this exercise is to use the quick start within the portal to quickly demonstrate the structured storage capability of Windows Azure Mobile services. The Push Notifications exercise will demonstrate how you can add code to both the server and client to demonstrate the APIs used by the quick start.
+The goal of this exercise is to use the quick start within the portal to quickly demonstrate the structured storage capability of Microsoft Azure Mobile services. The Push Notifications exercise will demonstrate how you can add code to both the server and client to demonstrate the APIs used by the quick start.
 
 <a name="create-a-new-mobile-service" />
 ### Task 1 - Creating a New Mobile Service ###
 
-1. Log into the [Windows Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services.
+1. Log into the [Microsoft Azure Management Portal](https://manage.windowsazure.com) and navigate to Mobile Services.
 
 1. At the bottom of the navigation pane, click **+NEW**.
 
@@ -145,7 +145,7 @@ The final stage of this exercise is to run and explore your new Windows Phone ap
 	
 	_Running the Windows Phone App_
 
-	> **Note:** Saving a TodoItem sends a POST request to the new mobile service hosted in Windows Azure. Data from the request is inserted into the TodoItem table. Items stored in the table are returned and are subsequently populated in the list within the application. Pressing referesh causes a query against the mobile service filtering back incomplete items. Checking the checkbox causes an update against the Mobile Service.
+	> **Note:** Saving a TodoItem sends a POST request to the new mobile service hosted in Microsoft Azure. Data from the request is inserted into the TodoItem table. Items stored in the table are returned and are subsequently populated in the list within the application. Pressing referesh causes a query against the mobile service filtering back incomplete items. Checking the checkbox causes an update against the Mobile Service.
 
 1. Back in the Management Portal, click the **Data** tab and then click the **TodoItems** table and observe that the data has been successfully stored.
 
@@ -159,13 +159,13 @@ The final stage of this exercise is to run and explore your new Windows Phone ap
 <a name="Explore-your-app-code" />
 ### Task 4 - Exploring Your App Code ###
 
-In this step we will explore _To do list_ application code and see how simple the Windows Azure Mobile Services Client SDK makes it to interact with Windows Azure Mobile Services.
+In this step we will explore _To do list_ application code and see how simple the Microsoft Azure Mobile Services Client SDK makes it to interact with Microsoft Azure Mobile Services.
 
 1. Return to the downloaded To do list application Visual Studio 2012.
 
-1. In solution explorer **expand the references folder** and see the Windows Azure Mobile Services Client SDK reference.
+1. In solution explorer **expand the references folder** and see the Microsoft Azure Mobile Services Client SDK reference.
 
-1. Open **App.xaml.cs** and show the **MobileServiceClient** class.  This is the key class provided by the client SDK that provides a way for your application to interact with Windows Azure Mobile Services. The first parameter in the constructor is the Mobile Service endpoint and the second parameter is the Application Key for your Mobile Service.
+1. Open **App.xaml.cs** and show the **MobileServiceClient** class.  This is the key class provided by the client SDK that provides a way for your application to interact with Microsoft Azure Mobile Services. The first parameter in the constructor is the Mobile Service endpoint and the second parameter is the Application Key for your Mobile Service.
 
 	````C#
 	public static MobileServiceClient MobileService 
@@ -177,7 +177,7 @@ In this step we will explore _To do list_ application code and see how simple th
 
 1. Open **MainPage.xaml.cs** to see how the mobile service client is then used for Inserts, Updates, and Reads.
 
-   - The TodoItem entity has the **JsonProperty** attribute that can be used to provide different names to be used within the mobile service and for persisting the data to the underlying Windows Azure SQL Database.  Note that you can also manipulate the Table that the entity is serialized to using **DataTable** attribute.  This is useful for some environments where the DBAs may require a specific table naming convention e.g tblTodoItem etc.
+   - The TodoItem entity has the **JsonProperty** attribute that can be used to provide different names to be used within the mobile service and for persisting the data to the underlying Microsoft Azure SQL Database.  Note that you can also manipulate the Table that the entity is serialized to using **DataTable** attribute.  This is useful for some environments where the DBAs may require a specific table naming convention e.g tblTodoItem etc.
 		
 		````C#
 		 public class TodoItem
@@ -399,7 +399,7 @@ In this exercise, you will add push notifications, using the Microsoft Push Noti
 
 In this section we add a Channel table and server side scripts to send push notifications everytime someone inserts into our TodoItem table.
 
-1. Log on to the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
+1. Log on to the [Microsoft Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
 
 1. Click the **Data** tab and then click the **TodoItem** table.
 
@@ -478,14 +478,14 @@ Tap and hold on the app icon, and then select **pin to start** from the context 
 <a name="Exercise4" />
 ## Exercise 4: Adding Auth to your Application and Services ##
 
-This exercise shows you how to authenticate users in Windows Azure Mobile Services from a Windows Phone 8 app. In this demo, you add authentication to the project using Twitter and lock down the service such that only authenticated clients can Insert/Update/Delete/Read from your TodoItem table. When successfully logged in using Twitter the authenticated users will be able to consume your Mobile Service.
+This exercise shows you how to authenticate users in Microsoft Azure Mobile Services from a Windows Phone 8 app. In this demo, you add authentication to the project using Twitter and lock down the service such that only authenticated clients can Insert/Update/Delete/Read from your TodoItem table. When successfully logged in using Twitter the authenticated users will be able to consume your Mobile Service.
 
 <a name="Register-your-app" />
 ### Task 1 - Register your app for authentication and configure Mobile Services ###
 
 To be able to authenticate users, you must register your app with an identity provider. You must then register the provider-generated client secret with Mobile Services.
 
-1. Log on to the [Windows Azure Management Portal] (https://manage.windowsazure.com/), click **Mobile Services**, and then click your mobile service.
+1. Log on to the [Microsoft Azure Management Portal] (https://manage.windowsazure.com/), click **Mobile Services**, and then click your mobile service.
  
 1. Click the **Dashboard** tab and make a note of the **Site URL** value.
 

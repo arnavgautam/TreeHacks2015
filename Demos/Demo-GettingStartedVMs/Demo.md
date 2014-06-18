@@ -1,11 +1,11 @@
-﻿<a name="title" />
-# Getting Started with Windows Azure Virtual Machines #
+<a name="title" />
+# Getting Started with Microsoft Azure Virtual Machines #
 
 ---
 
 <a name="Overview" />
 ## Overview ##
-This demonstration shows how to get started creating and configuring Windows Azure Virtual Machines.
+This demonstration shows how to get started creating and configuring Microsoft Azure Virtual Machines.
 
 > **Note:** In order to run through this complete demo, you must have network connectivity and a Microsoft account.
 
@@ -22,7 +22,7 @@ In this demo, you will see three things:
 
 This demo uses the following technologies:
 
-- [Windows Azure Management Portal] [1]
+- [Microsoft Azure Management Portal] [1]
 
 [1]: https://manage.windowsazure.com/
 
@@ -31,7 +31,7 @@ This demo uses the following technologies:
 
 The following is required to complete this hands-on lab:
 
-- A Windows Azure subscription [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 - Putty SSH Client for Windows [Putty home page](http://www.putty.org/)
 
 <a name="setup" />
@@ -57,15 +57,15 @@ This demo is composed of the following segments:
 <a name="segment1" />
 ### Virtual Machine Creation ###
 
-1.	Show how to create a new Windows Server 2012 Datacenter virtual machine in the Windows Azure Management portal using the gallery experience but actually do not create it (skip the last wizard step and use the Virtual Machine created in the setup section).
+1.	Show how to create a new Windows Server 2012 Datacenter virtual machine in the Microsoft Azure Management portal using the gallery experience but actually do not create it (skip the last wizard step and use the Virtual Machine created in the setup section).
 
 	![VM OS Selection](Images/vm-os-selection.png?raw=true "VM OS Selection")
 
 	_Virtual Machine Operating System Selection_
 
-	> **Speaking Point**: Note that Windows Azure supports creation from images or disks. Note that the images can be custom images created by the owner of the subscription or they can be platform images.
+	> **Speaking Point**: Note that Microsoft Azure supports creation from images or disks. Note that the images can be custom images created by the owner of the subscription or they can be platform images.
 
-	> Note that Windows Azure now supports various Linux distros.
+	> Note that Microsoft Azure now supports various Linux distros.
 
 
 <a name="segment2" />

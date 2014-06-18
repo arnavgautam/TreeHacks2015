@@ -1,5 +1,5 @@
-﻿<a name="Title" />
-#Introduction to Windows Azure HDInsight#
+<a name="Title" />
+#Introduction to Microsoft Azure HDInsight#
 
 ---
 <a name="Overview" />
@@ -9,9 +9,9 @@ This hands-on lab shows two ways to run MapReduce programs in a HDInsight on Azu
 
 The first way to run a MapReduce program is with a HDInsight jar file using the **Create Job** UI. The second way is with a query using the fluent API layered on Pig that is provided by the **Interactive Console**. The first approach uses a MapReduce program written in Java; the second uses a script written in JavaScript. This lab also shows how to upload files to the HDFS cluster that are needed as input for a MapReduce program and how to read the MapReduce output files from the HDFS cluster to examine the results of an analysis.
 
-The Windows Azure Marketplace collects data, imagery, and real-time web services from leading commercial data providers and authoritative public data sources. It simplifies the purchase and consumption of a wide variety of data including demographic, environment, financial, retail and sports. This lab shows how to upload this data into a HDInsight on Azure cluster and query it using Hive scripts.
+The Microsoft Azure Marketplace collects data, imagery, and real-time web services from leading commercial data providers and authoritative public data sources. It simplifies the purchase and consumption of a wide variety of data including demographic, environment, financial, retail and sports. This lab shows how to upload this data into a HDInsight on Azure cluster and query it using Hive scripts.
 
-A key feature of Microsoft’s Big Data Solution is the integration of HDInsight with Microsoft Business Intelligence (BI) components. A good example of this is the ability for Excel to connect to the Hive data warehouse framework in the HDInsight cluster. This lab shows how to use Excel via the Hive ODBC driver to access and view data in the cluster. 
+A key feature of Microsoft�s Big Data Solution is the integration of HDInsight with Microsoft Business Intelligence (BI) components. A good example of this is the ability for Excel to connect to the Hive data warehouse framework in the HDInsight cluster. This lab shows how to use Excel via the Hive ODBC driver to access and view data in the cluster. 
 
 <a name="Objectives" />
 ### Objectives ###
@@ -24,7 +24,7 @@ In this hands-on lab, you will learn how to:
 
 * Run a JavaScript MapReduce script with a query using the fluent API on Pig that is provided by the Interactive JavaScript Console
 
-* Import data from the Windows Azure Marketplace into a HDInsight on Azure cluster using the Interactive Hive Console
+* Import data from the Microsoft Azure Marketplace into a HDInsight on Azure cluster using the Interactive Hive Console
 
 * Use Excel to query data stored in a HDInsight on Azure cluster
 
@@ -42,22 +42,22 @@ This hands-on lab includes the following exercises:
 - [Getting Started: Requesting a new cluster](#GettingStarted)
 - [Executing a basic Java MapReduce program using a HDInsight jar file](#Exercise1)
 - [Executing a JavaScript MapReduce script using the Interactive Console](#Exercise2)
-- [Importing data from the Windows Azure Marketplace using the Hive Interactive Console](#Exercise3)
+- [Importing data from the Microsoft Azure Marketplace using the Hive Interactive Console](#Exercise3)
 - [Connecting to and querying Hive data in a cluster using Excel](#Exercise4)
 
 
 <a name="GettingStarted" />
 ### Getting Started: Requesting a new cluster ###
 
-In this exercise, you will request a new HDInsight cluster through the Windows Azure portal.
+In this exercise, you will request a new HDInsight cluster through the Microsoft Azure portal.
 
-1. In order to access HDInsight you must first enable it as a preview feature from the Windows Azure Account screen.  <https://account.windowsazure.com/PreviewFeatures/> **This might take a couple of days depending on approval quene length.** 
+1. In order to access HDInsight you must first enable it as a preview feature from the Microsoft Azure Account screen.  <https://account.windowsazure.com/PreviewFeatures/> **This might take a couple of days depending on approval quene length.** 
 
-	![preview features](images/preview features.png?raw=true "Enabling HDInsight as a preview feature in your Windows Azure account")
+	![preview features](images/preview features.png?raw=true "Enabling HDInsight as a preview feature in your Microsoft Azure account")
 
-1. Once the HDInsight feature has been enabled, go to the [Windows Azure](http://manage.windowsazure.com) portal, login using your credentials and select the **HDInsight** option on the left-hand menu.
+1. Once the HDInsight feature has been enabled, go to the [Microsoft Azure](http://manage.windowsazure.com) portal, login using your credentials and select the **HDInsight** option on the left-hand menu.
 
-	![hdinsight on windows azure portal](images/hdinsight on windows azure portal.png?raw=true "List of HDInsight clusters")
+	![hdinsight on Microsoft Azure portal](images/hdinsight on Microsoft Azure portal.png?raw=true "List of HDInsight clusters")
 	
 
 1. Before creating a new HDInsight cluster you must create a new Storage account in the 'East US' location for the cluster.
@@ -92,7 +92,7 @@ In this exercise, you will request a new HDInsight cluster through the Windows A
 
 1. You can now manage your cluster from the HDInsight portal account page.
 
-	![Windows Azure HDInsight portal](images/Windows Azure HDInsight portal.png?raw=true "HDInsight portal")
+	![Microsoft Azure HDInsight portal](images/Microsoft Azure HDInsight portal.png?raw=true "HDInsight portal")
 
 <a name="Exercise1" />
 ### Exercise 1: Executing a basic Java MapReduce program using a HDInsight jar file ###
@@ -102,7 +102,7 @@ In this exercise, you will learn how to execute a simple Java MapReduce program 
 <a name="Ex1Task1" />
 #### Task 1 - Deploying and Executing the Pi Estimator Sample  ####
 
-In this task, you will deploy and execute the Pi Estimator sample, available in the HDInsight on Windows Azure portal.
+In this task, you will deploy and execute the Pi Estimator sample, available in the HDInsight on Microsoft Azure portal.
 
 1. From your **Account** page, click on the **Create Job** icon in the **Your Tasks** section.
 
@@ -118,7 +118,7 @@ In this task, you will deploy and execute the Pi Estimator sample, available in 
 
 1. From your **Account** page, scroll down to the **Samples** icon in the **Manage your account** section and click on it.   
 
-	![Windows Azure HDInsight Account page](images/Windows Azure HDInsight Account page.png?raw=true "Selecting Samples")
+	![Microsoft Azure HDInsight Account page](images/Microsoft Azure HDInsight Account page.png?raw=true "Selecting Samples")
 
 	_Selecting Samples_
 
@@ -208,20 +208,20 @@ pig.from("/example/data/davinci.txt").mapReduce("WordCount.js", "word, count:lon
 ---
 
 <a name="Exercise3"/>
-### Exercise 3: Importing data from the Windows Azure Marketplace using the Hive Interactive Console ###
+### Exercise 3: Importing data from the Microsoft Azure Marketplace using the Hive Interactive Console ###
 
-In this exercise, you will learn how to subscribe and import data from the Windows Azure Marketplace.  You will also learn how to query data using the Hive Interactive Console.
+In this exercise, you will learn how to subscribe and import data from the Microsoft Azure Marketplace.  You will also learn how to query data using the Hive Interactive Console.
 
 <a name="Ex3Task1" />
 #### Task 1 -  Registering a new Account ####
 
-In this task, you will register a new account in the Windows Azure Marketplace.  You will then use this account to subscribe and import data.
+In this task, you will register a new account in the Microsoft Azure Marketplace.  You will then use this account to subscribe and import data.
 
-1. Open the [Windows Azure Marketplace](https://datamarket.azure.com/ "DataMarket") page in a browser and sign in with a valid Windows Live ID.
+1. Open the [Microsoft Azure Marketplace](https://datamarket.azure.com/ "DataMarket") page in a browser and sign in with a valid Windows Live ID.
 
-	![The Windows Azure Marketplace home page](images/the-windows-azure-marketplace-home-page.png?raw=true "The Windows Azure Marketplace home page")
+	![The Microsoft Azure Marketplace home page](images/the-windows-azure-marketplace-home-page.png?raw=true "The Microsoft Azure Marketplace home page")
 
-	_The Windows Azure Marketplace home page_
+	_The Microsoft Azure Marketplace home page_
 
 	Complete the Registration form to open a subscription account.
 
@@ -236,12 +236,12 @@ In this task, you will register a new account in the Windows Azure Marketplace. 
 
 	_Obtaining the account keys_
 
-	> **Note:** Account keys are used by applications to access your Windows Azure Marketplace dataset subscriptions.
+	> **Note:** Account keys are used by applications to access your Microsoft Azure Marketplace dataset subscriptions.
 
 <a name="Ex3Task2" />
 #### Task 2 -  Subscribing to Crime Data and Building a Query ####
 
-In this task, you will subscribe to crime data in the Windows Azure Marketplace, and you will build a query that will be used in the following tasks for importing data.
+In this task, you will subscribe to crime data in the Microsoft Azure Marketplace, and you will build a query that will be used in the following tasks for importing data.
 
 1. Click on the **Data** menu icon in the middle of the menu bar near the top of the page. Enter "crime" into the search the marketplace box on the upper right of the page and **Enter**.
 
@@ -280,7 +280,7 @@ In this task, you will subscribe to crime data in the Windows Azure Marketplace,
 
 
 <a name="Ex3Task3" />
-#### Task 3 - Importing Data from the Windows Azure Marketplace ####
+#### Task 3 - Importing Data from the Microsoft Azure Marketplace ####
 
 In this task, you will use the query you built in the previous task to import data to your cluster.
 
@@ -302,7 +302,7 @@ In this task, you will use the query you built in the previous task to import da
  
 	`curl "https://datamarket.azure.com/offer/download?endpoint=https%3A%2F%2Fapi.datamarket.azure.com%2Fdata.gov%2FCrimes%2Fv1%2F&query=CityCrime&accountKey=kYhmXxxmCej9%2B3wH5Mw23Q4cYbUB8JcTD1%2FoTAUG40o%3D&title=2006+-+2008+Crime+in+the+United+States+(Data.gov)&name=2006+-+2008+Crime+in+the+United+States+(Data.gov)-CityCrime" -u yourUsername@live.com:yourPasskey  --insecure > C:\hivedata\crimedata.csv`
 
-	Note that **yourUsername** and **yourPasskey** are obtained from your Windows Azure Data Market account. Your user name is the email used for you Live ID. The value for the passkey is the account key default value assigned to you when you opened your Marketplace account. It can also be found as the Primary Account Key value on you Marketplace Account Details page.  
+	Note that **yourUsername** and **yourPasskey** are obtained from your Microsoft Azure Data Market account. Your user name is the email used for you Live ID. The value for the passkey is the account key default value assigned to you when you opened your Marketplace account. It can also be found as the Primary Account Key value on you Marketplace Account Details page.  
 
 1. Now that the crime data is stored on the local filesystem of the head node, we must copy the file into **HDFS**.
 	1. Ensure that all of the quotes are removed from the crimedata.csv file. To do so open a powershell console on the remote desktop and type the following command.

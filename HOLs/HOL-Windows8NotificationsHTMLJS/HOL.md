@@ -1,14 +1,14 @@
-ï»¿<a name="HOLTop" />
-# Sending Windows 8 Push Notifications using Windows Azure and the Windows Push Notification Service (JS) #
+<a name="HOLTop" />
+# Sending Windows 8 Push Notifications using Microsoft Azure and the Windows Push Notification Service (JS) #
 ---
 
 <a name="Overview" />
 ## Overview ##
-In this hands-on lab, you will learn how to deploy a version of the [Windows Azure Toolkit for Windows 8](http://watwindows8.codeplex.com/) to Windows Azure and then use this deployment to send notifications to your client application via the [Windows Push Notification Service (WNS)] (http://msdn.microsoft.com/en-us/library/windows/apps/hh465460\(v=vs.85\).aspx). By the end of this lab you will have a fully functional portal capable of sending Toast, Tile and Badge notifications to your Windows 8 Style UI client application.
+In this hands-on lab, you will learn how to deploy a version of the [Microsoft Azure Toolkit for Windows 8](http://watwindows8.codeplex.com/) to Microsoft Azure and then use this deployment to send notifications to your client application via the [Windows Push Notification Service (WNS)] (http://msdn.microsoft.com/en-us/library/windows/apps/hh465460\(v=vs.85\).aspx). By the end of this lab you will have a fully functional portal capable of sending Toast, Tile and Badge notifications to your Windows 8 Style UI client application.
 
-![Windows Azure Toolkit for Windows 8 delivering a notification via WNS](./Images/windows-azure-toolkit-for-windows-8-deliverin.png?raw=true)
+![Microsoft Azure Toolkit for Windows 8 delivering a notification via WNS](./Images/windows-azure-toolkit-for-windows-8-deliverin.png?raw=true)
 
-_Windows Azure Toolkit for Windows 8 delivering a notification via WNS_
+_Microsoft Azure Toolkit for Windows 8 delivering a notification via WNS_
 
 If you would like to learn more about how this lab works please see [this video](http://channel9.msdn.com/Events/TechDays/TechDays-2012-Belgium/272).
 
@@ -17,11 +17,11 @@ If you would like to learn more about how this lab works please see [this video]
 
 In this hands-on lab, you will learn how to:
 
-- Use the Windows Azure Management Portal to create storage accounts and hosted service components.
+- Use the Microsoft Azure Management Portal to create storage accounts and hosted service components.
 - Use the Windows Push Notification and Live Connect Portal to request credentials for use with WNS.
 - Deploy web site using Web Deploy.
 - Configure a Windows 8 Style UI client to receive notifications.
-- Test sending notifications to your client app via WNS using the Windows Azure Toolkit for Windows 8 portal.
+- Test sending notifications to your client app via WNS using the Microsoft Azure Toolkit for Windows 8 portal.
 
 <a name="Prerequisites" />
 ### Prerequisites ###
@@ -30,7 +30,7 @@ You must have the following items to complete this lab:
 
 - [Visual Studio Express 2012 for Web][1] or greater.
 - [Visual Studio 2012 Express for Windows 8][2] or greater.
-- A Windows Azure subscription with the Web Sites Preview enabled - [sign up for a free trial][3]
+- A Microsoft Azure subscription with the Websites Preview enabled - [sign up for a free trial][3]
 
 [1]:http://www.microsoft.com/visualstudio/
 [2]:http://msdn.microsoft.com/en-us/windows/apps/hh852659
@@ -42,7 +42,7 @@ You must have the following items to complete this lab:
 ### Setup ###
 In order to execute the exercises in this hands-on lab you need to set up your environment.
 
-1. Open a Windows Explorer window and browse to the labâ€™s **source** folder.
+1. Open a Windows Explorer window and browse to the lab’s **source** folder.
 
 1. Execute the **Setup.cmd** file with Administrator privileges to launch the setup process that will configure your environment.
 
@@ -65,20 +65,20 @@ Estimated time to complete this lab: **45 minutes**.
 <a name="GettingStarted" />
 ### Getting Started: Deploying the Notification App Server Using Web Deploy###
 
-In this exercise, you deploy the notification app server to Windows Azure using Web Deploy. To do this, you provision the required service components at the management portal, request credentials from the WNS and Live Connect portal and deploy to Windows Azure using Web Deploy.   
+In this exercise, you deploy the notification app server to Microsoft Azure using Web Deploy. To do this, you provision the required service components at the management portal, request credentials from the WNS and Live Connect portal and deploy to Microsoft Azure using Web Deploy.   
 
 <a name="GSTask1" />
-#### Task 1 â€“ Creating a Storage Account and Web Site ####
+#### Task 1 – Creating a Storage Account and Web Site ####
 
 The application you deploy in this exercise requires a Web Site and a Storage Account. In this task, you create a new storage account to allow the application to persist its data. In addition, you define a Web Site to host the notification app server.
 
-1. Navigate to [<https://manage.windowsazure.com>](<https://manage.windowsazure.com>) using a Web browser and sign in using the Microsoft Account associated with your Windows Azure account.
+1. Navigate to [<https://manage.windowsazure.com>](<https://manage.windowsazure.com>) using a Web browser and sign in using the Microsoft Account associated with your Microsoft Azure account.
 
-	![Signing in to the Windows Azure platform Management portal](./Images/signing-in-to-the-windows-azure-platform-mana.png?raw=true)
+	![Signing in to the Microsoft Azure platform Management portal](./Images/signing-in-to-the-windows-azure-platform-mana.png?raw=true)
 
-	_Signing in to the Windows Azure platform Management portal_
+	_Signing in to the Microsoft Azure platform Management portal_
 
-1. First, you will create the **Storage Account** that the application will use to store its data. In the Windows Azure Management Portal, click **New** | **Data Services** | **Storage** | **Quick Create**.
+1. First, you will create the **Storage Account** that the application will use to store its data. In the Microsoft Azure Management Portal, click **New** | **Data Services** | **Storage** | **Quick Create**.
 
 1. Set a unique **URL**, for example _notificationapp_, and select **Create Storage Account**.
  
@@ -110,7 +110,7 @@ The application you deploy in this exercise requires a Web Site and a Storage Ac
 
 	>**Note:** The **Primary Access Key** and **Secondary Access Key** both provide a shared secret that you can use to access storage. The secondary key gives the same access as the primary key and is used for backup purposes. You can regenerate each key independently in case either one is compromised.
 
-1. Go back to the portal home page, and select **Web Sites**.
+1. Go back to the portal home page, and select **Websites**.
 
 1. Select **New**, then select **Compute** | **Web Site** from the list and then **Quick Create**.
 
@@ -121,7 +121,7 @@ The application you deploy in this exercise requires a Web Site and a Storage Ac
 	_Creating a new Web Site_
 
 <a name="GSTask2" />
-#### Task 2 â€“ Updating the application with your Storage Account Name and Key ####
+#### Task 2 – Updating the application with your Storage Account Name and Key ####
 In this task, you will update the Connection String values within the web configuration file using the Storage Account you created in the previous task.
 
 1. In a new instance of **Visual Studio 2012**, open **Services.sln** located in the **Source/Assets/Server/Notifications.Backend** folder.  This is the Notification App Server.
@@ -130,8 +130,8 @@ In this task, you will update the Connection String values within the web config
 
 	````XML
 	<!--
-		When deploying to Windows Azure, replace the DataConnectionString setting with the
-		connection string for your Windows Azure Storage account. For example:
+		When deploying to Microsoft Azure, replace the DataConnectionString setting with the
+		connection string for your Microsoft Azure Storage account. For example:
 		"DefaultEndpointsProtocol=https;AccountName={your storage account name};AccountKey={your storage account key}"
 	-->
 	<add key="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName={your storage account};AccountKey={your storage account key}"/>
@@ -140,7 +140,7 @@ In this task, you will update the Connection String values within the web config
 1. Press **CTRL+SHIFT+B** to build the solution.
 
 <a name="GSTask3" />
-#### Task 3 â€“ Requesting WNS Credentials and updating the Web.config ####
+#### Task 3 – Requesting WNS Credentials and updating the Web.config ####
 In this task, you will obtain the Windows Push Notification Services (WNS) credentials and use them to update the Web Configuration file.
 
 1.	In a new instance of **Visual Studio 2012**, open your existing HTML5/JS Windows 8 Style UI application or create a new application by clicking **File | New Project | Installed Templates | JavaScript | Windows Store | Blank App**. 
@@ -223,16 +223,16 @@ In this task, you will obtain the Windows Push Notification Services (WNS) crede
 
 	> **Note:** Ensure you have not copied a white space on the start or end of the values in the **Web.config** and that the **Package SID** and **Client Secret** were pasted into the correct fields.
 
-1.	Your Notification App Server is now ready to deploy to Windows Azure. Note if your account is limited to one core.
+1.	Your Notification App Server is now ready to deploy to Microsoft Azure. Note if your account is limited to one core.
 
 <a name="GSTask4" />
-#### Task 4 â€“ Deploy your Notification App Server to Windows Azure using Web Deploy####
+#### Task 4 – Deploy your Notification App Server to Microsoft Azure using Web Deploy####
 
-In this task, you will deploy the Notification App Server to Windows Azure using Web Deploy.
+In this task, you will deploy the Notification App Server to Microsoft Azure using Web Deploy.
 
-1. In the Windows Azure Portal, select **Web Sites**, and then select your Web Site to open the **Dashboard**.  In the **Dashboard** page, under the **quick glance** section, click the **Download publish profile** link and save the file to a known location. You will use theses settings later to publish the web site from Visual Studio.
+1. In the Microsoft Azure Portal, select **Websites**, and then select your Web Site to open the **Dashboard**.  In the **Dashboard** page, under the **quick glance** section, click the **Download publish profile** link and save the file to a known location. You will use theses settings later to publish the web site from Visual Studio.
 
-	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft Visual Studio** supports reading publish profiles to automate the publishing configuration for web applications to Windows Azure Web Sites.
+	> **Note:** The _publish profile_ contains all of the information required to publish a web application to a Microsoft Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft Visual Studio** supports reading publish profiles to automate the publishing configuration for web applications to Microsoft Azure Websites.
 
 	![Downloading the publish profile](./Images/download-publish-profile.png?raw=true "Downloading the publish profile")
 
@@ -270,17 +270,17 @@ In this task, you will deploy the Notification App Server to Windows Azure using
 
 1.	Navigate to your deployed web site to confirm that it is up and running.
 
-	![Notification App Server portal running in Windows Azure](./Images/notification-app-server-portal-running-in-win.png?raw=true)
+	![Notification App Server portal running in Microsoft Azure](./Images/notification-app-server-portal-running-in-win.png?raw=true)
 
-	_Notification App Server portal running in Windows Azure_
+	_Notification App Server portal running in Microsoft Azure_
 
 <a name="Exercise1" />
 ### Exercise 1: Configure a Windows 8 Style UI Client application for Notifications ###
 
-In this exercise, you will configure your client application to request a notification channel from the WNS and register this channel with your Notification App Server running in Windows Azure.
+In this exercise, you will configure your client application to request a notification channel from the WNS and register this channel with your Notification App Server running in Microsoft Azure.
 
 <a name="Ex1Task1" />
-#### Task 1 â€“ Configuring the package.appmanifest for Push Notifications ####
+#### Task 1 – Configuring the package.appmanifest for Push Notifications ####
 
 In this task, you will update the package.appmanifest to receive Wide Tile notifications using Visual Studio 2012.
 
@@ -339,7 +339,7 @@ In this task, you will update the package.appmanifest to receive Wide Tile notif
 1.	**Close** and **Save** changes to **package.appmanifest**.
 
 <a name="Ex1Task2" />
-#### Task 2 â€“ Updating the Client Codebase for Notifications ####
+#### Task 2 – Updating the Client Codebase for Notifications ####
 
 In this task, you will update your client application to be able to send push notifications using the Notification App Server.
 
@@ -351,7 +351,7 @@ In this task, you will update your client application to be able to send push no
 
 	_Add notifications.js to your client application_
 
-1. Open **notifications.js** file and update the url to point to the correct endpoint.  Update the **serverUrl** value _[YOUR_DNS_NAME]_ in http://_[YOUR_WEBSITE_DOMAIN]_/endpoints.  You obtain the **DNS** value from the web site you created in the **Windows Azure Management Portal** in the previous exercise.
+1. Open **notifications.js** file and update the url to point to the correct endpoint.  Update the **serverUrl** value _[YOUR_DNS_NAME]_ in http://_[YOUR_WEBSITE_DOMAIN]_/endpoints.  You obtain the **DNS** value from the web site you created in the **Microsoft Azure Management Portal** in the previous exercise.
 
 	`var serverUrl = "http://[YOUR_WEBSITE_DOMAIN]/endpoints";`
 
@@ -397,27 +397,27 @@ In this task, you will update your client application to be able to send push no
 <a name="Exercise2" />
 ### Exercise 2: Sending Push Notifications ###
 
-This section describes how to run your client application and send notifications to it through the notification app server deployed to Windows Azure in the previous exercises.  
+This section describes how to run your client application and send notifications to it through the notification app server deployed to Microsoft Azure in the previous exercises.  
 
 <a name="Ex2Task1" />
-#### Task 1 â€“ Running the Notification enabled Windows 8 Style UI App ####
+#### Task 1 – Running the Notification enabled Windows 8 Style UI App ####
 
 In this task, you will run the client application you created in the previous exercise to create a channel for the WNS and register it with the Notification App Server.
 
 1.	Open the **Notifications.Client.sln** Style UI App located under **Source/Ex2-SendingPushNotifications/Begin** folder. Alternatively, you may continue with the solution that you obtained after completing the previous exercise.
 
-	> **Note:** If you chose to open the solution in the Begin folder, you will have to open the **notifications.js** file and update the url to point to the correct endpoint.  Update the **serverUrl** value _[YOUR_DNS_NAME]_ in http://_[YOUR_WEBSITE_DOMAIN]_/endpoints. You obtain the **DNS** value from the web site you created in the **Windows Azure Management Portal**.
+	> **Note:** If you chose to open the solution in the Begin folder, you will have to open the **notifications.js** file and update the url to point to the correct endpoint.  Update the **serverUrl** value _[YOUR_DNS_NAME]_ in http://_[YOUR_WEBSITE_DOMAIN]_/endpoints. You obtain the **DNS** value from the web site you created in the **Microsoft Azure Management Portal**.
 
 	>	`var serverUrl = "http://[YOUR_WEBSITE_DOMAIN]/endpoints";`
 
-1.	Once the solution has opened press **F5**. Due the configuration you made previously when the application launches it will call **openNotificationsChannel()** method. This will request a channel from **WNS** and submit it to the **Notifications App Server** you deployed to Windows Azure.  In the **statusMessage** div, you will see that the **Channel URI** was sent successfully to your service.
+1.	Once the solution has opened press **F5**. Due the configuration you made previously when the application launches it will call **openNotificationsChannel()** method. This will request a channel from **WNS** and submit it to the **Notifications App Server** you deployed to Microsoft Azure.  In the **statusMessage** div, you will see that the **Channel URI** was sent successfully to your service.
 
 	![Client output after successful channel request from WNS and registering with notification app server](./Images/client-output-after-successful-channel-reques.png?raw=true)
 
 	_Client output after successful channel request from WNS and registering with notification app server_
 
 <a name="Ex2Task2" />
-#### Task 2 â€“ Sending Push Notifications using the ASP .NET MVC 4 Portal ####
+#### Task 2 – Sending Push Notifications using the ASP .NET MVC 4 Portal ####
 
 Now that a channel has been successfully requested from WNS and registered with your Notification App Server we can now start to send notifications through the portal.
 
@@ -488,7 +488,7 @@ Now that a channel has been successfully requested from WNS and registered with 
 
 	_Updated Tile notification with a Badge_
 
-	>**Note:** This concludes the overview of how to send Toast, Tile and Badge notifications using the Windows Azure Toolkit for Windows 8. As an exercise, itâ€™s recommended to spend some time both exploring the rich set of templates available to each of the different notification types and how you can use blob storage to store your image assets for notifications.
+	>**Note:** This concludes the overview of how to send Toast, Tile and Badge notifications using the Microsoft Azure Toolkit for Windows 8. As an exercise, it’s recommended to spend some time both exploring the rich set of templates available to each of the different notification types and how you can use blob storage to store your image assets for notifications.
 
 ---
 
@@ -496,12 +496,12 @@ Now that a channel has been successfully requested from WNS and registered with 
 ## Summary ##
 By completing this Hands-On Lab you have learned how to:
 
--	 Use the Windows Azure Management Portal to create storage accounts and web site components.
+-	 Use the Microsoft Azure Management Portal to create storage accounts and web site components.
 -	Use the WNS and Live Connect Portal to request credentials for use with WNS.
 -	Deploy a web site using Web Deploy.
 -	Configure a Windows 8 Style UI client to receive notifications.
--	Test sending notifications to your client app via WNS using the Windows Azure Toolkit for Windows 8 portal.
+-	Test sending notifications to your client app via WNS using the Microsoft Azure Toolkit for Windows 8 portal.
 
-If you would like the full codebase for the **Notification App Server** to update for your own applications please download the **Windows Azure Training Kit for Windows 8** (http://watwindows8.codeplex.com).
+If you would like the full codebase for the **Notification App Server** to update for your own applications please download the **Microsoft Azure Training Kit for Windows 8** (http://watwindows8.codeplex.com).
 
 ---

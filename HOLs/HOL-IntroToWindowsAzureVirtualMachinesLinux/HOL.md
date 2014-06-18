@@ -1,30 +1,30 @@
-ï»¿<a name="handsonlab" />
-# Introduction to Windows Azure Virtual Machines (Linux) #
+<a name="handsonlab" />
+# Introduction to Microsoft Azure Virtual Machines (Linux) #
 
 ---
 
 <a name="Overview" />
 ## Overview ##
 
-Using Windows Azure as your IaaS platform will enable you to create and manage your infrastructure quickly, provisioning and accessing any host ubiquitously. Grow your business through the cloud-based infrastructure, reducing the costs of licensing, provisioning and backup.
+Using Microsoft Azure as your IaaS platform will enable you to create and manage your infrastructure quickly, provisioning and accessing any host ubiquitously. Grow your business through the cloud-based infrastructure, reducing the costs of licensing, provisioning and backup.
 
-In this hands-on lab, you will learn how to use the Windows Azure IaaS platform to provision Linux based Virtual Machines in the cloud and manage it remotely. 
+In this hands-on lab, you will learn how to use the Microsoft Azure IaaS platform to provision Linux based Virtual Machines in the cloud and manage it remotely. 
 
 <a name="Objectives" />
 ### Objectives ###
 
 In this hands-on lab, you will learn how to: 
 
-- Create Linux virtual machines in Windows Azure
+- Create Linux virtual machines in Microsoft Azure
 - Install and configure an Apache web server with MySQL 
 - Install and configure Drupal CMS
 
 <a name="Prerequisites" />
 ### Prerequisites ###
 
-- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
-> **Note:** This lab was designed to use **openSUSE** Linux distribution when creating the new Virtual Machine in Windows Azure.
+> **Note:** This lab was designed to use **openSUSE** Linux distribution when creating the new Virtual Machine in Microsoft Azure.
 
 ---
  
@@ -33,7 +33,7 @@ In this hands-on lab, you will learn how to:
 
 This hands-on lab includes the following exercises:
 
-1. [Creating a Linux Virtual Machine in Windows Azure](#Exercise1)
+1. [Creating a Linux Virtual Machine in Microsoft Azure](#Exercise1)
 
 1. [Installing and Configuring the Virtual Machine](#Exercise2)
 
@@ -44,14 +44,14 @@ Estimated time to complete this lab: **45 minutes**.
 ---
 
 <a name="Exercise1" />
-### Exercise 1: Creating a Linux Virtual Machine in Windows Azure ###
+### Exercise 1: Creating a Linux Virtual Machine in Microsoft Azure ###
 
 In this exercise, you will learn how to provision a Linux Virtual Machine in the Azure portal.
 	
 <a name="Ex1Task1" />
 #### Task 1 - Creating a New Linux Virtual Machine ####
 
-1. Open Internet Explorer and browse [https://manage.windowsazure.com](https://manage.windowsazure.com) to enter the Windows Azure portal. Then, log in with your credentials.
+1. Open Internet Explorer and browse [https://manage.windowsazure.com](https://manage.windowsazure.com) to enter the Microsoft Azure portal. Then, log in with your credentials.
 1. In the menu located at the bottom, select **Compute** | **New Virtual Machine | From Gallery** to start creating a new virtual machine.
 	 
 	![Creating a new Virtual Machine](Images/creating-a-new-virtual-machine.png?raw=true)
@@ -70,7 +70,7 @@ In this exercise, you will learn how to provision a Linux Virtual Machine in the
 	 
 	_Creating a Virtual Machine - Configuration_
  
-	>**Note:** It is suggested to use secure passwords for admin users, as Windows Azure virtual machines could be accessible from the Internet knowing just their DNS.
+	>**Note:** It is suggested to use secure passwords for admin users, as Microsoft Azure virtual machines could be accessible from the Internet knowing just their DNS.
 
 	>You can also read this document on the Microsoft Security website that will help you select a secure password:  [http://www.microsoft.com/security/online-privacy/passwords-create.aspx](http://www.microsoft.com/security/online-privacy/passwords-create.aspx)
  
@@ -116,7 +116,7 @@ Now that you have provisioned and configured a Linux Virtual Machine, you will c
 >**Note:** You can download Putty, a free SSH client for Windows, here: [http://www.putty.org/](http://www.putty.org/)
 
 
-1.	In the Windows Azure Portal, select the Linux Virtual Machine from the list to enter the **Dashboard**. Take note of the **SSH Details** field at the "quick glance" section, which is the public address you will use to access and connect to the virtual machine using the SSH client.
+1.	In the Microsoft Azure Portal, select the Linux Virtual Machine from the list to enter the **Dashboard**. Take note of the **SSH Details** field at the "quick glance" section, which is the public address you will use to access and connect to the virtual machine using the SSH client.
 
     ![SSH Endpoint](Images/ssh-endpoint.png?raw=true "SSH Endpoint")
 
@@ -157,7 +157,7 @@ In this exercise, you will learn how to install and configure a Web Server in th
 
 >**Note:** If you have not run Exercise 1, make sure you have the following items ready before proceeding with Exercise 2:
   
-> - A Linux Virtual Machine created in Windows Azure Portal.
+> - A Linux Virtual Machine created in Microsoft Azure Portal.
 > - A TCP Endpoint enabled with private port 22.
 > - A TCP Endpoint enabled in port 80.
 
@@ -243,7 +243,7 @@ In this exercise, you will install and configure the Drupal CMS in the Linux vir
 <a name="Ex3Task1" />
 #### Task 1 - Installing and Configuring Drupal ####
 
-In this task, you will install and configure a Drupal portal on your Windows Azure Linux Virtual Machine. Additionally, you will create an empty database to be used by Drupal CMS.
+In this task, you will install and configure a Drupal portal on your Microsoft Azure Linux Virtual Machine. Additionally, you will create an empty database to be used by Drupal CMS.
 
 1. Open the root websites folder and create a folder named **Drupal** by executing the following.
 
@@ -308,7 +308,7 @@ In this task, you will install and configure a Drupal portal on your Windows Azu
 
 	>**Note:**  You can find more details about Drupal configuration in the official documentation ([http://drupal.org/documentation/install/run-script](http://drupal.org/documentation/install/run-script)).
 
-1. In the Set up Database page, enter the name of the database you have created in Task 1 (â€˜drupaldbâ€™), and the **username** and **password**. 
+1. In the Set up Database page, enter the name of the database you have created in Task 1 (‘drupaldb’), and the **username** and **password**. 
 	 
 	![Opening Drupal for the first time(2)](Images/opening-drupal-for-the-first-time2.png?raw=true)
 
@@ -331,4 +331,4 @@ In this task, you will install and configure a Drupal portal on your Windows Azu
 <a name='Summary' />
 ## Summary ##
 
-In this hands-on lab, you have learnt how to use the Windows Azure IaaS platform to provision Linux based Virtual Machines in the cloud and manage it remotely.
+In this hands-on lab, you have learnt how to use the Microsoft Azure IaaS platform to provision Linux based Virtual Machines in the cloud and manage it remotely.

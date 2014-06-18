@@ -1,22 +1,22 @@
-ï»¿<a name="Title"></a>
-# Publishing ASP.NET Applications with Windows Azure Web Sites and Team Foundation Service #
+<a name="Title"></a>
+# Publishing ASP.NET Applications with Microsoft Azure Websites and Team Foundation Service #
 
 ---
 <a name="Overview"></a>
 ## Overview ##
 
-In this hands-on lab you will learn how to link a Windows Azure Web Site to a Team Foundation Service (TFS) repository in order to check in your changes and automatically reflect those updates in your web site.
+In this hands-on lab you will learn how to link a Microsoft Azure Web Site to a Team Foundation Service (TFS) repository in order to check in your changes and automatically reflect those updates in your web site.
 
-Following the exercises, you will create a new **Web Site** from the **Windows Azure Management Portal** and enable TFS Publishing.
-Finally, you will create a simple MVC4 application in **Microsoft Visual Studio 2012** and perform a check in to your TFS server. You will notice how your changes are automatically reflected in your Windows Azure web site after updating the TFS repository.
+Following the exercises, you will create a new **Web Site** from the **Microsoft Azure Management Portal** and enable TFS Publishing.
+Finally, you will create a simple MVC4 application in **Microsoft Visual Studio 2012** and perform a check in to your TFS server. You will notice how your changes are automatically reflected in your Microsoft Azure web site after updating the TFS repository.
 
 <a name="Objectives"></a>
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-- Create a web site from the Windows Azure Management Portal
-- Link a Windows Azure Web Site to a new or existing TFS Repository
+- Create a web site from the Microsoft Azure Management Portal
+- Link a Microsoft Azure Web Site to a new or existing TFS Repository
 - Connect a Visual Studio web application to TFS
 - Perform a check in from Microsoft Visual Studio 2012 to TFS and reflect the changes in your web site.
 
@@ -25,7 +25,7 @@ In this hands-on lab, you will learn how to:
 
 - [Microsoft Visual Studio 2012 Express for Web][1] or greater
 
-- A Windows Azure subscription with the Web Sites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
+- A Microsoft Azure subscription with the Websites Preview enabled - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 [1]: http://www.microsoft.com/visualstudio/
 
@@ -36,7 +36,7 @@ In this hands-on lab, you will learn how to:
 
 In order to execute the exercises in this hands-on lab you need to set up your environment.
 
-1. Open a Windows Explorer window and browse to the labâ€™s **Source** folder.
+1. Open a Windows Explorer window and browse to the lab’s **Source** folder.
 
 1. Right click the **Setup.cmd** file and click **Run as administrator**. This will launch the setup process that will check the necessary dependencies.
 
@@ -48,23 +48,23 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 
 This Hands-on Lab includes the following exercises:
 
-1.	[Create a Windows Azure Web Site](#Exercise1)
-1.	[Connecting a Windows Azure Web Site to a TFS Project](#Exercise2)
+1.	[Create a Microsoft Azure Web Site](#Exercise1)
+1.	[Connecting a Microsoft Azure Web Site to a TFS Project](#Exercise2)
 1.	[Connecting Microsoft Visual Studio 2012 to a TFS Repository](#Exercise3)
 
 Estimated time to complete this lab: **30** minutes.
 
 <a name="Exercise1"></a>
-### Exercise 1: Create a Windows Azure Web Site ###
+### Exercise 1: Create a Microsoft Azure Web Site ###
 
-In this exercise, you will use the **Windows Azure Management Portal** to create a new Web Site. In the following exercises you will use this web site to publish an MVC4 application using TFS check-in operation.
+In this exercise, you will use the **Microsoft Azure Management Portal** to create a new Web Site. In the following exercises you will use this web site to publish an MVC4 application using TFS check-in operation.
 
 <a name="Ex1Task1"></a>
-#### Task 1 â€“ Creating a new Web Site ####
+#### Task 1 – Creating a new Web Site ####
 
-In this task, you will create a new Web Site from the Windows Azure Management Portal.
+In this task, you will create a new Web Site from the Microsoft Azure Management Portal.
 
-1. Open [Windows Azure Management Portal](https://manage.windowsazure.com) and log in with your Windows Azure Account's credentials.
+1. Open [Microsoft Azure Management Portal](https://manage.windowsazure.com) and log in with your Microsoft Azure Account's credentials.
 
 1. Click **New** | **Compute** | **Web Site** | **Quick Create**. Select a unique **URL** for your web site, for example _WebSitesAndTFS_.
 
@@ -72,11 +72,11 @@ In this task, you will create a new Web Site from the Windows Azure Management P
 
 	_Creating a new Web Site_
 
-1. In the **Windows Azure Management portal**, click **Web Sites** and then click the **name** of your web site to go to its **Dashboard**.
+1. In the **Microsoft Azure Management portal**, click **Websites** and then click the **name** of your web site to go to its **Dashboard**.
 
-	![Web Sites page](Images/web-sites-page.png?raw=true "Web Sites page")
+	![Websites page](Images/web-sites-page.png?raw=true "Websites page")
 
-	_Web Sites page_
+	_Websites page_
 
 1. This is your web site's **Dashboard** page, from where you will be able to manage your web site's settings and find all the information related to it. Do not close this window since you will use it in the next exercise.
 
@@ -85,16 +85,16 @@ In this task, you will create a new Web Site from the Windows Azure Management P
 	_Web Site's Dashboard_
 
 <a name="Exercise2"></a>
-### Exercise 2: Connecting a Windows Azure Web Site to a TFS Project ###
+### Exercise 2: Connecting a Microsoft Azure Web Site to a TFS Project ###
 
-In this exercise you will link your Windows Azure Web Site to a TFS Project. By doing this, you will be able to check in your changes and automatically update your Web Site.
+In this exercise you will link your Microsoft Azure Web Site to a TFS Project. By doing this, you will be able to check in your changes and automatically update your Web Site.
 
 <a name="Ex2Task1"></a>
-#### Task 1 â€“ Connecting a Windows Azure Web Site to a TFS Project ####
+#### Task 1 – Connecting a Microsoft Azure Web Site to a TFS Project ####
 
-In this task you will connect your Windows Azure Web Site to a TFS Project. You can both create a new account and project in TFS or use an existing one.
+In this task you will connect your Microsoft Azure Web Site to a TFS Project. You can both create a new account and project in TFS or use an existing one.
 
-1. If not already open, open the [Windows Azure Management Portal](https://manage.windowsazure.com) and go to your web site's **Dashboard**.
+1. If not already open, open the [Microsoft Azure Management Portal](https://manage.windowsazure.com) and go to your web site's **Dashboard**.
 
 1. Click **Set up TFS publishing** link at the bottom of the page.
 
@@ -175,7 +175,7 @@ In this task you will connect your Windows Azure Web Site to a TFS Project. You 
 In this exercise, you will create a simple MVC4 Application, connect it to the TFS Repository and check-in your files only using **Microsoft Visual Studio Express 2012 for Web**.
 
 <a name="Ex3Task1"></a>
-#### Task 1 â€“ Connecting Microsoft Visual Studio 2012 to a TFS Repository ####
+#### Task 1 – Connecting Microsoft Visual Studio 2012 to a TFS Repository ####
 
 In this task, you will create an MVC4 Application with Microsoft Visual Studio Express 2012 for Web, connect it with the TFS Repository and a check in your files into the TFS Repository.
 
@@ -240,7 +240,7 @@ In this task, you will create an MVC4 Application with Microsoft Visual Studio E
 	_Check In Complete_
 
 <a name="Ex3Task2"></a>
-#### Task 2 â€“ Checking in changes to TFS and updating the Web Site ####
+#### Task 2 – Checking in changes to TFS and updating the Web Site ####
 
 In this task, you will update your MVC 4 application and check in your changes to TFS. Additionally, you will create a new **Build Definition** in TFS to automatically build and update your Web Site.
 
@@ -278,9 +278,9 @@ In this task, you will update your MVC 4 application and check in your changes t
 
 	_Build Completed_
 
-	>**Note:** The TFS build will automatically compile and publish your changes to your web site, making it much more easier to update your Windows Azure Web Sites.
+	>**Note:** The TFS build will automatically compile and publish your changes to your web site, making it much more easier to update your Microsoft Azure Websites.
 
-1.	Go back to the **Windows Azure Management Portal**, and go to your site's **Dashboard** page. Click **Browse** at the bottom of the **Dashboard** page. 
+1.	Go back to the **Microsoft Azure Management Portal**, and go to your site's **Dashboard** page. Click **Browse** at the bottom of the **Dashboard** page. 
 
 	![Browse the Web Site](Images/browse-the-web-site.png?raw=true "Browse the Web Site")
 
@@ -298,4 +298,4 @@ In this task, you will update your MVC 4 application and check in your changes t
 ## Summary ##
 
 
-In this hands-on lab you learned how to link a Windows Azure Web Site to a Team Foundation Service (TFS) repository in order to check in your changes and automatically reflect those updates in your web site. You created a new web site from the Windows Azure Management Portal and enabled TFS Publishing to it. You created a simple MVC4 application in Visual Studio 2012, and then performed a check-in to your TFS server. You demonstrated how your changes are automatically reflected in your Windows Azure web site after updating the TFS repository.
+In this hands-on lab you learned how to link a Microsoft Azure Web Site to a Team Foundation Service (TFS) repository in order to check in your changes and automatically reflect those updates in your web site. You created a new web site from the Microsoft Azure Management Portal and enabled TFS Publishing to it. You created a simple MVC4 application in Visual Studio 2012, and then performed a check-in to your TFS server. You demonstrated how your changes are automatically reflected in your Microsoft Azure web site after updating the TFS repository.
