@@ -69,26 +69,34 @@ In this segment we will show how we could easily create Puppet masters from with
 1.  Go to **Virtual Machines**.
 
 1. In the bottom toolbar, click **New**, select **Compute | Virtual Machine** and then **From Gallery**.
+
 	![Create New Virtual Machine From Gallery](Images/create-new-virtual-machine-from-gallery.png?raw=true)
+	
 	_Create New Virtual Machine From Gallery_
 	
 1. Select **Puppet Labs** from the left panel and show the **Puppet Master** image.
+
 	![Puppet Labs VM image template](Images/puppet-labs-vm-image-template.png?raw=true)
+	
 	_Puppet Labs Image Template_
 
 	> **Speaking Point:** By clicking the Puppet Labs section we should be able to launch a Puppet Enterprise Puppet Master server right inside of Microsoft Azure.
 	We've also made it easy to create Puppet agents, machines running the Puppet Agent that connect to a Puppet Master. This is what we're going to do now. 
 
 1. Select **Windows Server** from the left panel and select the **Windows Server 2012 R2 Datacenter** image. Click the right arrow to continue.
+
 	![Windows Server VM Image Template](Images/windows-server-vm-image-template.png?raw=true)
 
 1. Enter a virtual machine name (e.g. puppet), set an administrator username and its password. Click the right arrow to continue.
+
 	![New Virtual Machine configuration](Images/new-virtual-machine-configuration.png?raw=true)
+	
 	_Virtual Machine Configuration, step 2_
 
 1. Leave the default values and click the right arrow to continue.
 
 	![Virtual Machine Configuration screen 3](Images/virtual-machine-configuration-screen-3.png?raw=true)
+	
 	_Virtual Machine Configuration, step 3_
 
 1. Check the **Puppet Enterprise Agent** option, and once the **Puppet Master Server** field appears type the address the of **Puppet Master** instance (e.g. puppetmaster.cloudapp.net).
