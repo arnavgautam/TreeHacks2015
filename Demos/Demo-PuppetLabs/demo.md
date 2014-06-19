@@ -69,26 +69,34 @@ In this segment we will show how we could easily create Puppet masters from with
 1.  Go to **Virtual Machines**.
 
 1. In the bottom toolbar, click **New**, select **Compute | Virtual Machine** and then **From Gallery**.
+
 	![Create New Virtual Machine From Gallery](Images/create-new-virtual-machine-from-gallery.png?raw=true)
+	
 	_Create New Virtual Machine From Gallery_
 	
 1. Select **Puppet Labs** from the left panel and show the **Puppet Master** image.
+
 	![Puppet Labs VM image template](Images/puppet-labs-vm-image-template.png?raw=true)
+	
 	_Puppet Labs Image Template_
 
 	> **Speaking Point:** By clicking the Puppet Labs section we should be able to launch a Puppet Enterprise Puppet Master server right inside of Microsoft Azure.
 	We've also made it easy to create Puppet agents, machines running the Puppet Agent that connect to a Puppet Master. This is what we're going to do now. 
 
 1. Select **Windows Server** from the left panel and select the **Windows Server 2012 R2 Datacenter** image. Click the right arrow to continue.
+
 	![Windows Server VM Image Template](Images/windows-server-vm-image-template.png?raw=true)
 
 1. Enter a virtual machine name (e.g. puppet), set an administrator username and its password. Click the right arrow to continue.
+
 	![New Virtual Machine configuration](Images/new-virtual-machine-configuration.png?raw=true)
+	
 	_Virtual Machine Configuration, step 2_
 
 1. Leave the default values and click the right arrow to continue.
 
 	![Virtual Machine Configuration screen 3](Images/virtual-machine-configuration-screen-3.png?raw=true)
+	
 	_Virtual Machine Configuration, step 3_
 
 1. Check the **Puppet Enterprise Agent** option, and once the **Puppet Master Server** field appears type the address the of **Puppet Master** instance (e.g. puppetmaster.cloudapp.net).
@@ -103,6 +111,7 @@ In this segment we will show how we could easily create Puppet masters from with
 
 <a name="segment2" />
 ### Using the Puppet Dashboard ###
+
 In this segment we're going to show how to deploy code into a virtual machine on Azure from a Puppet Master.
 
 1. Switch to **Puppet Dashboard** in the browser and explain the home page.
@@ -114,18 +123,22 @@ In this segment we're going to show how to deploy code into a virtual machine on
 	>In this case we're going to make changes to our Windows Servers.
 	
 1. Select **Windows Servers** group from the **Groups** panel on the left.
-
+	
 1. Switch to the Agent VM **Remote Desktop** connection and open the **Task Manager** by right-clicking the taskbar.
 
 1. Show that the VM is using the original **Task Manager**.
 
+	> **Speaking point:** we have an example virtual machine that is running the standard version of the Task Manager. We've heard there's a better version of the Task Manager out there, so we're going to see what it takes to update the machines to use the new Task Manager.
+	
 1. Switch back to **Puppet Dashboard** and click **Edit**.
 
 1. Type **microsoft-sysinternals** in the **Classes** textbox and select the option from the autocomplete dropdown.
 
+	> **Speaking point:** In Puppet, the class is esentially the way of referring to the code associated to the function I do. So by adding the microsoft-sysinternals module we associate the class with the work that needs to be done to all of the machines in the group. This will propagate out to your whole infrastracture, which may take around 30 minutes. If you have a hundred thousand machines under management you probably do not want all of them hitting your server at exactly the same time. In this case though, we have the system working on a relatively tighter timeline, so it is propagated faster.
+
 1. Click **Update** to save changes.
 
-1. Go back to the **Remote Desktop** and open a **Command Prompt**.
+1. Switch back to the Agent VM **Remote Desktop** and open a **Command Prompt**.
 
 1. Enter the following **puppet** command to trigger the updates.
 
@@ -142,4 +155,4 @@ In this segment we're going to show how to deploy code into a virtual machine on
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw how to 
+In this demo, you saw how to provision Puppet Resources using the Azure Management Portal and how to use the Puppet Dashboard to manage Puppet Agents.
