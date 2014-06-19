@@ -30,5 +30,4 @@ ssh $host 'bash -s' << EOF
 	sudo /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production nodegroup:delclass['Windows Servers','microsoft-sysinternals']	
 	echo "Done"
 EOF
-
 read -p 'Press [Enter] key to exit...'
