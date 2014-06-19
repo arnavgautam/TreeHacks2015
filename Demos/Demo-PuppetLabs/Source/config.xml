@@ -1,19 +1,19 @@
 <configuration>
 	<generalSettings>
-		<azureSubscriptionName>Azdem169F29744N</azureSubscriptionName>
-		<location>East US</location>
-		<adminUserName>adminuser</adminUserName>
-		<adminPassword>Passw0rd!</adminPassword>
-		<storageAccount>hmeydacstorage2</storageAccount>
+		<azureSubscriptionName>{subscription-name}</azureSubscriptionName>
+		<location>{location}</location>
+		<adminUserName>{admin-user}</adminUserName>
+		<adminPassword>{admin-password}</adminPassword>
+		<storageAccount>{storageAccount}</storageAccount>
 	</generalSettings>
 	<puppetMasterSettings>	
-		<cloudServiceName>marcosmaster9</cloudServiceName>
-		<vmName>marcosmaster9</vmName>
-		<consoleUsername>admin@contoso.com</consoleUsername>
-		<consolePassword>Passw0rd!</consolePassword>
+		<cloudServiceName>{master-cloudServiceName}</cloudServiceName>
+		<vmName>{master-vmName}</vmName>
+		<consoleUsername>{console-user}</consoleUsername>
+		<consolePassword>{console-password}</consolePassword>
 	</puppetMasterSettings>
 	<puppetAgentSettings>
-		<cloudServiceName>marcosagent9</cloudServiceName>
-		<vmName>marcosagent9</vmName>
+		<cloudServiceName>{agent-cloudServiceName}</cloudServiceName>
+		<vmName>{agent-vmName}</vmName>
 	</puppetAgentSettings>
 </configuration>
