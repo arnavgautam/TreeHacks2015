@@ -8,7 +8,7 @@ class microsoft-sysinternals {
     provider => powershell,
   }
   registry_key { taskmgr:
-    name    => $taskmgr,
+    name    => $taskmgr, 
     ensure  => present,
     require => Exec['download-sysinternals'],
   }

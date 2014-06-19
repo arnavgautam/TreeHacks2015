@@ -6,6 +6,7 @@ echo "Copying microsoft-sysinternals module to Puppet Master..."
 scp -r ./Assets/microsoft-sysinternals $host:/tmp
 echo "Done"
 ssh $host 'bash -s' << EOF
+	sudo -s
 	# Copy module to Puppet Modules
 	sudo cp /tmp/microsoft-sysinternals /etc/puppetlabs/puppet/modules --force -r
 

@@ -31,10 +31,11 @@ $session = New-PSSession -ComputerName "$agentCloudServiceName.cloudapp.net" -Po
 Invoke-Command -Session $session -ScriptBlock {
 	if (Test-Path -Path $args[0])
 	{
+		write-host $args[0]
 		Remove-Item -Path $args[0] -Recurse
 	}
 	
-	puppet agent --onetime --verbose
+	# puppet agent --onetime --verbose
 } -ArgumentList $path
 
 write-Host "Done"
