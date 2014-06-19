@@ -118,7 +118,7 @@ In this segment we're going to show how to deploy code into a virtual machine on
 
 
 
-	> **Speaking Point:** This is the normal interface for Puppet Enterprise. You can see under **Nodes** that we have a small number of machines under management. The **Daily run status** shows colored bars with the result achieved every time a puppet agent runs: green if the agent did not need to do any extra work to update its infrastructure; blue if it had to make an actual change to bring it into sync.
+	> **Speaking Point:** This is the normal interface for Puppet Enterprise. You can see under **Nodes** that we have a small number of machines under management, both Windows and Linux. The **Daily run status** shows colored bars with the result achieved every time a puppet agent runs: green if the agent did not need to do any extra work to update its infrastructure; blue if it had to make an actual change to bring it into sync.
 	
 	>In this case we're going to make changes to our Windows Servers.
 	
@@ -126,9 +126,10 @@ In this segment we're going to show how to deploy code into a virtual machine on
 	
 1. Switch to the Agent VM **Remote Desktop** connection and open the **Task Manager** by right-clicking the taskbar.
 
-1. Show that the VM is using the original **Task Manager**.
 
-	> **Speaking point:** we have an example virtual machine that is running the standard version of the Task Manager. We've heard there's a better version of the Task Manager out there, so we're going to see what it takes to update the machines to use the new Task Manager.
+1. Show that the VM is a regular Windows box that is using the original **Task Manager**.
+
+	> **Speaking point:** we have an example virtual machine that is running the standard version of the Task Manager. We've heard there's a better version of the Task Manager out there, that is part of the Microsoft Sysinternals toolset. So, we want to update all our Windows machines to have the Sysinternals tools installed, so we can use the Systinternal's Process Explorer instead of the default Task Manager. 
 	
 1. Switch back to **Puppet Dashboard** and click **Edit**.
 
