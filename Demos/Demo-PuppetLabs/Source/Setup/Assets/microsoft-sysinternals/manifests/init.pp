@@ -3,7 +3,7 @@ class microsoft-sysinternals {
   $procexp = 'c:\sysinternals\procexp.exe'
 
   exec { 'download-sysinternals':
-    command  => template('microsoft_sysinternals/downloadsysinternals.ps1'),
+    command  => template('microsoft-sysinternals/downloadsysinternals.ps1'),
     creates  => $procexp,
     provider => powershell,
   }
