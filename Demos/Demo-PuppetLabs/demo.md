@@ -116,7 +116,9 @@ In this segment we're going to show how to deploy code into a virtual machine on
 
 1. Switch to **Puppet Dashboard** in the browser and explain the home page.
 
-
+	![Puppet Dashboard home page](Images/puppet-dashboard-home-page.png?raw=true)
+	
+	_Puppet Dashboard Home Page_
 
 	> **Speaking Point:** This is the normal interface for Puppet Enterprise. You can see under **Nodes** that we have a small number of machines under management, both Windows and Linux. The **Daily run status** shows colored bars with the result achieved every time a puppet agent runs: green if the agent did not need to do any extra work to update its infrastructure; blue if it had to make an actual change to bring it into sync.
 	
@@ -124,32 +126,68 @@ In this segment we're going to show how to deploy code into a virtual machine on
 	
 1. Select **Windows Servers** group from the **Groups** panel on the left.
 	
+	![Puppet Dashboard Groups select win servers](Images/puppet-dashboard-groups-select-win-servers.png?raw=true)
+
+	_Select Windows Servers Group_
+	
 1. Switch to the Agent VM **Remote Desktop** connection and open the **Task Manager** by right-clicking the taskbar.
 
+	![Agent VM open Task Manager](Images/agent-vm-open-task-manager.png?raw=true)
+	
+	_Open Task Manager in Agent VM_
 
 1. Show that the VM is a regular Windows box that is using the original **Task Manager**.
+
+	![Agent VM Task Manager](Images/agent-vm-task-manager.png?raw=true)
 
 	> **Speaking point:** we have an example virtual machine that is running the standard version of the Task Manager. We've heard there's a better version of the Task Manager out there, that is part of the Microsoft Sysinternals toolset. So, we want to update all our Windows machines to have the Sysinternals tools installed, so we can use the Systinternal's Process Explorer instead of the default Task Manager. 
 	
 1. Switch back to **Puppet Dashboard** and click **Edit**.
 
+	![Edit Puppet Dashboard](Images/edit-puppet-dashboard.png?raw=true)
+	
+	_Edit Puppet Dashboard_
+
 1. Type **microsoft-sysinternals** in the **Classes** textbox and select the option from the autocomplete dropdown.
+
+	![Puppet Dashboard add class](Images/puppet-dashboard-add-class.png?raw=true)
 
 	> **Speaking point:** In Puppet, the class is esentially the way of referring to the code associated to the function I do. So by adding the microsoft-sysinternals module we associate the class with the work that needs to be done to all of the machines in the group. This will propagate out to your whole infrastracture, which may take around 30 minutes. If you have a hundred thousand machines under management you probably do not want all of them hitting your server at exactly the same time. In this case though, we have the system working on a relatively tighter timeline, so it is propagated faster.
 
 1. Click **Update** to save changes.
 
-1. Switch back to the Agent VM **Remote Desktop** and open a **Command Prompt**.
+	![Puppet Dashboard click update](Images/puppet-dashboard-click-update.png?raw=true)
+	
+	_Click Update_
+
+1. Switch back to the Agent VM **Remote Desktop** and open a **Command Prompt with Puppet**.
 
 1. Enter the following **puppet** command to trigger the updates.
 
-	````Command Prompt
+	````
 	puppet agent --onetime
 	````
 
 1. Wait until the command completes the update.
 
-1. Once completed, open the **Task Manager**. It will open the **Process Explorer** instead of the classic **Task Manager**.
+	![Agent VM Run puppet agent onetime](Images/agent-vm-run-puppet-agent-onetime.png?raw=true)
+	
+	_Execute puppet agent command_
+
+1. Once completed, open the **Task Manager**. 
+		![Agent VM open Task Manager](Images/agent-vm-open-task-manager.png?raw=true)
+	
+	_Open Task Manager in Agent VM_
+
+1. After clicking **Accept** in the **Process Explorer** license dialog, the **Process Explorer** will open (instead of the classic **Task Manager**).
+	
+	![Process Explorer License Dialog](Images/process-explorer-license-dialog.png?raw=true)
+	
+	_Accept Process Explorer License_
+	
+	![Agent VM Process Explorer](Images/agent-vm-process-explorer.png?raw=true)
+	
+	_Process Explorer opens instead of Task Manager_
 	
 ---
 
