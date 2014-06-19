@@ -7,13 +7,13 @@
 		<storageAccount>hmeydacstorage2</storageAccount>
 	</generalSettings>
 	<puppetMasterSettings>	
-		<cloudServiceName>marcosmaster6</cloudServiceName>
-		<vmName>marcosmaster6</vmName>
+		<cloudServiceName>marcosmaster9</cloudServiceName>
+		<vmName>marcosmaster9</vmName>
 		<consoleUsername>admin@contoso.com</consoleUsername>
 		<consolePassword>Passw0rd!</consolePassword>
 	</puppetMasterSettings>
 	<puppetAgentSettings>
-		<cloudServiceName>marcosagent6</cloudServiceName>
-		<vmName>marcosagent6</vmName>
+		<cloudServiceName>marcosagent9</cloudServiceName>
+		<vmName>marcosagent9</vmName>
 	</puppetAgentSettings>
 </configuration>

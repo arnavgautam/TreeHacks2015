@@ -33,9 +33,9 @@ Invoke-Command -Session $session -ScriptBlock {
 	{
 		write-host $args[0]
 		Remove-Item -Path $args[0] -Recurse
+	}else{
+		puppet agent --onetime --verbose
 	}
-	
-	# puppet agent --onetime --verbose
 } -ArgumentList $path
 
 write-Host "Done"
