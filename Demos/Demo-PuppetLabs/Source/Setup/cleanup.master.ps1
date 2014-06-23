@@ -22,13 +22,23 @@ pushd ".."
 [string] $agentCloudServiceName = $xmlAzureSettings.configuration.puppetAgentSettings.cloudServiceName
 [string] $agentVMName = $xmlAzureSettings.configuration.puppetAgentSettings.vmName
 
+$PublishSettingsFile = Join-Path $scriptDir ".\assets\publishSettings\azure.publishsettings"
+
 popd
 
 #Invoke Puppet VM Creation if they dont exists
 # Invoke-Expression ".\tasks\puppetVMsCreation.ps1 -azureSubscription `"$azureSubscription`" -dclocation `"$dclocation`" -storageAccountName `"$storageAccount`" -adminUserName `"$adminUserName`" -adminPassword `"$adminPassword`" -masterCloudServiceName `"$masterCloudServiceName`" -masterVMName `"$masterVMName`" -agentCloudServiceName `"$agentCloudServiceName`" -agentVMName `"$agentVMName`""
 
-Select-AzureSubscription $azureSubscription
+Get-AzureAccount | Remove-AzureAccount -Force
 
+write-host "Importing Publish Settings file"
+if ($publishSettingsFile) { 
+	Import-AzurePublishSettingsFile -PublishSettingsFile $publishSettingsFile 
+	azure account import $publishSettingsFile
+}
+
+Select-AzureSubscription -Default $azureSubscription
+azure account set $azureSubscription
 
 #Configuration Values Verification
 write-host "Verifying Services and VM names..."
