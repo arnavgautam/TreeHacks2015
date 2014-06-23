@@ -184,6 +184,14 @@ In this demo, you will see how to:
 
 	>**Note:** It may take some time for the Puppet Agent VM to appear in the list. Until it does, continue refreshing the page by pressing **Ctrl+F5**.
 
+1. Click the agent node corresponding to the Puppet Agent.
+
+1. In the Node page, click Edit.
+
+1. Add the node to the **Windows Servers** group.
+
+1. Click Save.
+
 ## Demo ##
 
 This demo is composed of the following segments: 
