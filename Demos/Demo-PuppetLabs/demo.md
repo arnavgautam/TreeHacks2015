@@ -3,8 +3,7 @@
 
 ## Overview ##
 
-In this demo...
-Integration with configuration management systems, in this case Puppet.
+In this demo we will show how **Microsoft Azure** integrates with configuration management systems, in this case Puppet.
 
 <a name="Goals" />
 ### Goals ###
@@ -27,6 +26,20 @@ In this demo, you will see how to:
 ### Setup and Configuration ###
 
 ##### Updating Configuration Variables #####
+1. Open **PowerShell** and execute the following command:
+
+	````PowerShell
+	Get-AzurePublishSettingsFile
+	````
+
+1. A browser will open. If prompted, enter your Azure credentials. Save the file to a known location and rename it **azure.publishsettings**.
+
+	![Save Azure Settings file](Images/save-azure-settings-file.png?raw=true)
+	
+	_Save Azure Settings File_
+	
+1. Copy the file and replace the one located in the **Source\Setup\assets\publishSettings** folder of this demo.
+
 1. Using a text editor, open the **config.xml** file located in the **Source** folder.
 
 1. Replace the placeholder values in the **generalSettings** node with the following:
@@ -36,21 +49,140 @@ In this demo, you will see how to:
 	- **adminPassword**: the password for the admin username.
 	- **storageAccount**: the name of the storage account required for this demo. The setup scripts will automatically create a new Storage Account in Azure using this value, if it dos not exist. The name you choose must be in lower case.
 1. Replace the placeholder values in the **puppetMasterSettings** node with the following:
-	- **cloudServiceName**:
-	- **vmName**:
-	- **consoleUserName**:
-	- **consolePassword**:
+	- **cloudServiceName**: name of the cloud service for the Master virtual machine.
+	- **vmName**: name of the Master virtual machine.
+	- **consoleUserName**: the user name for the master virtual machine. It will be in the form user@cloudServiceName.cloudapp.net.
+	- **consolePassword**: password for the consoleUserName.
 
 1. Replace the placeholder values in the **puppetAgentSettings** node with the following:
-	- **cloudServiceName**:
-	- **vmName**:
+	- **cloudServiceName**: name of the cloud service for the Agent virtual machine.
+	- **vmName**: name of the Agent virtual machine.
 	
 1. Save the file and close the editor.
 
-1. Run **Reset.cmd** using elevated permissions.
+##### Setup the Master Puppet VM #####
+1. Run **Source\1.Setup.Master.cmd** using elevated permissions. A new command window will launch and start executing commands. Wait until it finishes running and when prompted, press a key to dismiss it.
 
-	> **Note:** It might take a few minutes to provision all the resources in Azure.
+	![Setup Master script](Images/setup-master-script.png?raw=true)
+	
+	_Setup Master script_
+	
+1. In a browser, open the **Management Portal** by navigating to [https://manage.windowsazure.com](https://manage.windowsazure.com) and sign in using the Microsoft Account associated with your Windows Azure account. 
 
+1. Go to **Virtual Machines** and verify a virtual machine with the **vmName** name set in the **puppetMasterSettings** node of the configuration file has been created. 
+
+	![Virtual Machines Puppet Master vm created](Images/virtual-machines-puppet-master-vm-created.png?raw=true)
+
+1. In a new browser window, open the **Puppet Dashboard**. The Puppet Dashboard URL can be obtained by pre-pending "https://" to the DNS Name indicated for the master virtual machine (e.g. https://puppetmaster.cloudapp.net). Initially, the **Puppet Dashboard** page will not be displayed.
+	
+	![Setup Puppet Dashboard not displayed](Images/setup-puppet-dashboard-not-displayed.png?raw=true)
+	_Puppet Dashboard, initially not displayed_
+
+1. Refresh the browser periodically by pressing **Ctrl+F5** until a login window appears. This indicates the Puppet Master VM has finished setting up. Do not log in.
+
+	>**Note:** This step may take around 15-20 minutes to complete.
+
+	
+	_Puppet Dashboard displayed after Master VM has been set up_
+	
+	>Keep both browser windows open after setup, as you will need them for Segment 2.
+
+##### Setup the Puppet Agent VM #####
+1. Run **Source\2.Setup.Agent.cmd** using elevated permissions. A new command window will launch and execute commands. Wait until it finishes running and when prompted, press a key to dismiss it.
+
+	_Setup.Agent script execution_
+
+1. Switch to the browser with the Management Portal open.
+
+1. Refresh the **Virtual Machines** page, and verify a virtual machine with the **vmName** name set in the **puppetAgentSettings** node of the configuration file has been created. 
+
+	_Puppet Agent and Puppet Master Virtual Machines created_
+
+##### Reset the Puppet Agent VM #####
+1. Run **Source\3.Reset.Puppet.cmd** using elevated permissions. This will launch a command window.
+
+	_Reset.Puppet script execution_
+
+1. When prompted, log in with the adminUserName and adminPassword credentials provided in the **generalSettings** node of the configuration file.
+
+	![Reset Puppet login](Images/reset-puppet-login.png?raw=true)
+	
+	_Log in With Admin Credentials_
+
+1. A new command window will open and start running a script. You will be prompted for the **adminUserName** password twice. When the script finishes running, you will be asked to press the Enter key to exit. This will close the command window and focus will switch back to the command window that opened in step 1.
+
+	_Reset script_
+
+1. Press a key to dismiss it.
+
+1. Switch to the browser at the **Puppet Dashboard** page, displaying the login page. Log in with the **consoleUsername** and **consolePassword** credentials provided in the **puppetMasterSettings** node of the configuration file.
+
+	_Puppet Dashboard Home Page_
+
+1. The **Puppet Dashboard** home page should be displayed. Verify that the list in the "All" tab contains the Master Puppet VM.
+
+	_Master Puppet VM in Puppet Dashboard_
+
+1. Verify that in the Groups section on the left, a **Windows Servers** group is displayed.
+
+	_Windows Servers group in Puppet Dashboard_
+
+1. Click the **1 Node Request** link at the top of the **Puppet Dashboard** home page.
+
+	_Node Request_
+
+1. In the page, click **Accept** next to the Puppet Agent VM name.
+
+	_Accept Puppet Agent Node Request_
+
+##### Open a Remote Desktop to the Puppet Agent VM #####
+1. Switch to the browser instance at the **Management Portal** and go to **Virtual Machines**.
+
+1. Select the Puppet Agent VM and click **Connect** in the bottom bar.
+
+	![Connect to Agent VM](Images/connect-to-agent-vm.png?raw=true)
+	
+	_Connect to Puppet Agent VM_
+
+1. In the file download message, click **Open**.
+
+	_Open Remote Desktop_
+
+1. In the Remote Desktop Connection dialog that will open, click **Connect**.
+
+	_Connect to Puppet Agent VM_
+
+1. When prompted for credentials, enter the userName and password in the **generalSettings** node in the configuration file and click **Ok**.
+
+	_Enter credentials to Puppet Agent VM_
+
+1. In the **Remote Desktop Connection** dialog that indicates the identity of the remote computer cannot be verified, click **Yes** to connect.
+
+	_Accept Security_
+	
+1. The Remote Desktop window to the Puppet Agent VM will open. Open a **Command Prompt with Puppet**.
+
+	_Start Command Prompt with Puppet in Puppet Agent VM_
+
+1. Enter the following **puppet** command to trigger the updates.
+
+	````
+	puppet agent --onetime
+	````
+
+1. Wait until the command completes the update.
+
+	![Agent VM Run puppet agent onetime](Images/agent-vm-run-puppet-agent-onetime.png?raw=true)
+	
+	_Execute puppet agent command_
+
+	>**Note:** Keep this Remote Desktop Connection open, as you will use it in Segment 2.
+	
+1. Switch to the browser at the **Puppet Dashboard** page and refresh the page by pressing **Ctrl+F5**. The list in the "All" tab shall contain the Master Puppet VM and the Puppet Agent VM as well.
+
+	_Puppet Agent and Puppet Master displaying in Puppet Dashboard_
+
+	>**Note:** It may take some time for the Puppet Agent VM to appear in the list. Until it does, continue refreshing the page by pressing **Ctrl+F5**.
 
 ## Demo ##
 
@@ -64,9 +196,11 @@ This demo is composed of the following segments:
 ### Provisioning Puppet Resources ###
 In this segment we will show how we could easily create Puppet masters from within Microsoft Azure by adding a puppet master image to our platform image repository.
 
-1. Open the Management Portal by using a web browser to navigate to [https://manage.windowsazure.com](https://manage.windowsazure.com) and sign in using the Microsoft Account associated with your Windows Azure account.
+1. Switch to the browser at the **Management Portal** page.
 
 1.  Go to **Virtual Machines**.
+
+	_Virtual Machines_
 
 1. In the bottom toolbar, click **New**, select **Compute | Virtual Machine** and then **From Gallery**.
 
@@ -114,7 +248,7 @@ In this segment we will show how we could easily create Puppet masters from with
 
 In this segment we're going to show how to deploy code into a virtual machine on Azure from a Puppet Master.
 
-1. Switch to **Puppet Dashboard** in the browser and explain the home page.
+1. Switch to the browser displaying **Puppet Dashboard** in the browser and explain the home page.
 
 	![Puppet Dashboard home page](Images/puppet-dashboard-home-page.png?raw=true)
 	
@@ -175,7 +309,8 @@ In this segment we're going to show how to deploy code into a virtual machine on
 	_Execute puppet agent command_
 
 1. Once completed, open the **Task Manager**. 
-		![Agent VM open Task Manager](Images/agent-vm-open-task-manager.png?raw=true)
+
+	![Agent VM open Task Manager](Images/agent-vm-open-task-manager.png?raw=true)
 	
 	_Open Task Manager in Agent VM_
 
