@@ -34,11 +34,9 @@ Get-AzureAccount | Remove-AzureAccount -Force
 write-host "Importing Publish Settings file"
 if ($publishSettingsFile) { 
 	Import-AzurePublishSettingsFile -PublishSettingsFile $publishSettingsFile 
-	azure account import $publishSettingsFile
 }
 
 Select-AzureSubscription -Default $azureSubscription
-azure account set $azureSubscription
 
 #Configuration Values Verification
 write-host "Verifying Services and VM names..."
