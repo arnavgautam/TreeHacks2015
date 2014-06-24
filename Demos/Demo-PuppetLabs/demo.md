@@ -146,22 +146,31 @@ In this demo, you will see how to:
 
 1. In the file download message, click **Open**.
 
+	![Open Remote Desktop to Agent VM](Images/open-remote-desktop-to-agent-vm.png?raw=true)
+	
 	_Open Remote Desktop_
 
 1. In the Remote Desktop Connection dialog that will open, click **Connect**.
 
+	![Connect To Agent VM Dlg1](Images/connect-to-agent-vm-dlg1.png?raw=true)
+	
 	_Connect to Puppet Agent VM_
 
 1. When prompted for credentials, enter the userName and password in the **generalSettings** node in the configuration file and click **Ok**.
+
+	![Connect To Agent VM Credentials](Images/connect-to-agent-vm-credentials.png?raw=true)
 
 	_Enter credentials to Puppet Agent VM_
 
 1. In the **Remote Desktop Connection** dialog that indicates the identity of the remote computer cannot be verified, click **Yes** to connect.
 
+	![Connect to Agent VM accept no cert](Images/connect-to-agent-vm-accept-no-cert.png?raw=true)
+	
 	_Accept Security_
 	
 1. The Remote Desktop window to the Puppet Agent VM will open. Open a **Command Prompt with Puppet**.
 
+	![Remote Desktop to Agent VM](Images/remote-desktop-to-agent-vm.png?raw=true)
 	_Start Command Prompt with Puppet in Puppet Agent VM_
 
 1. Enter the following **puppet** command to trigger the updates.
