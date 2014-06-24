@@ -201,17 +201,32 @@ In this demo, you will see how to:
 	
 1. Switch to the browser at the **Puppet Dashboard** page and click the **Nodes** link. The list in the "All" tab shall contain the Master Puppet VM and the Puppet Agent VM as well.
 
+	![Puppet Agent and Master in Dashboard](Images/puppet-agent-and-master-in-dashboard.png?raw=true)
 	_Puppet Agent and Puppet Master displaying in Puppet Dashboard_
 
 	>**Note:** It may take some time for the Puppet Agent VM to appear in the list. Until it does, continue refreshing the page by pressing **Ctrl+F5**.
 
 1. Click the agent node corresponding to the Puppet Agent.
 
-1. In the Node page, click Edit.
+	![Click Puppet Node](Images/click-puppet-node.png?raw=true)
+	
+	_Click Puppet Node_
 
+1. In the Node page, click **Edit**.
+
+	![Edit Node for Puppet Agent](Images/edit-node-for-puppet-agent.png?raw=true)
+	
 1. Add the node to the **Windows Servers** group.
 
-1. Click Save.
+	![Add Windows Servers group](Images/add-windows-servers-group.png?raw=true)
+	
+	_Add Windows Servers group to Agent Node_
+
+1. Click **Update**.
+
+	![Update Agent Node](Images/update-agent-node.png?raw=true)
+	
+	_Update Agent Node_
 
 	> **Note:** You can execute **3. Reset.Puppet.cmd** any time you need to restart the demo.
 
