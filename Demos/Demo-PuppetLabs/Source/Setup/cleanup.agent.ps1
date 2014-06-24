@@ -50,3 +50,7 @@ $vmConfig = Set-AzureVMPuppetExtension -VM $vmConfig -PuppetMasterServer "$maste
 
 write-host "Provisioning Agent VM..."
 New-AzureVM -ServiceName $agentCloudServiceName -VMs $vmConfig -Location $dclocation
+
+write-host "Creating Remote Desktop file..."
+$desktopPath = [Environment]::GetFolderPath("Desktop")
+Get-AzureRemoteDesktopFile -ServiceName $agentCloudServiceName -Name $agentVMName -LocalPath "$desktopPath\PuppetAgentVM.rdp"
