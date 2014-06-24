@@ -83,7 +83,7 @@ In this demo, you will see how to:
 	>**Note:** This step may take around 15-20 minutes to complete.
 
 	
-	_Puppet Dashboard displayed after Master VM has been set up_
+	_Puppet Dashboard login page, displayed after Master VM has been set up_
 	
 	>Keep both browser windows open after setup, as you will need them for Segment 2.
 
