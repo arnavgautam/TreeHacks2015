@@ -3,7 +3,7 @@
 
 ## Overview ##
 
-In this demo we will show how **Microsoft Azure** integrates with configuration management systems, in this case Puppet.
+In this demo you will see how **Microsoft Azure** integrates with configuration management systems, in this case **Puppet Labs**. First, you will see how to to launch a Puppet Master server inside of Windows Azure and how to create Puppet agents, machines running the Puppet agent that connect to a Puppet Master. Then you will see how to use the Puppet Dashboard to configure the Puppet nodes.
 
 <a name="Goals" />
 ### Goals ###
@@ -192,6 +192,8 @@ In this demo, you will see how to:
 
 1. Click Save.
 
+	> **Note:** You can execute **3. Reset.Puppet.cmd** any time you need to restart the demo.
+
 ## Demo ##
 
 This demo is composed of the following segments: 
@@ -204,6 +206,8 @@ This demo is composed of the following segments:
 ### Provisioning Puppet Resources ###
 In this segment we will show how we could easily create Puppet masters from within Microsoft Azure by adding a puppet master image to our platform image repository.
 
+> **Speaking Point:** One of the great things about Puppet is that it works on physical machines, virtual machines, it works in the public cloud, it works on private cloud, and really any combination of that.
+
 1. Switch to the browser at the **Management Portal** page.
 
 1.  Go to **Virtual Machines**.
@@ -215,6 +219,8 @@ In this segment we will show how we could easily create Puppet masters from with
 	![Create New Virtual Machine From Gallery](Images/create-new-virtual-machine-from-gallery.png?raw=true)
 	
 	_Create New Virtual Machine From Gallery_
+
+	> **Speaking Point:** With the collaboration with Puppet Labs, we've made it very easy to go and create Puppet Masters from within Windows Azure by adding a Puppet Master image to our platform image repository.
 	
 1. Select **Puppet Labs** from the left panel and show the **Puppet Master** image.
 
@@ -337,4 +343,4 @@ In this segment we're going to show how to deploy code into a virtual machine on
 <a name="summary" />
 ## Summary ##
 
-In this demo, you saw how to provision Puppet Resources using the Azure Management Portal and how to use the Puppet Dashboard to manage Puppet Agents.
+In this demo, you saw how to provision Puppet Resources using the Azure Management Portal and how to use the Puppet Dashboard to manage Puppet agent nodes.
