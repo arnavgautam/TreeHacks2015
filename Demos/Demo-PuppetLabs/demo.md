@@ -78,10 +78,17 @@ In this demo, you will see how to:
 	![Setup Puppet Dashboard not displayed](Images/setup-puppet-dashboard-not-displayed.png?raw=true)
 	_Puppet Dashboard, initially not displayed_
 
-1. Refresh the browser periodically by pressing **Ctrl+F5** until a login window appears. This indicates the Puppet Master VM has finished setting up. Do not log in.
+1. Refresh the browser periodically by pressing **Ctrl+F5**. After some time, a security certificate warning will appear in your browser. This is an expected behavior. Click **Continue to this website (not recommended)**.
+
+	![Puppet Dashboard certificate warning](Images/puppet-dashboard-certificate-warning.png?raw=true)
+	
+	_Certificate warning_
 
 	>**Note:** This step may take around 15-20 minutes to complete.
 
+1. A login window appears. This indicates the Puppet Master VM has finished setting up. Do not log in.
+	
+	![Puppet Dashboard login](Images/puppet-dashboard-login.png?raw=true)
 	
 	_Puppet Dashboard login page, displayed after Master VM has been set up_
 	
@@ -90,16 +97,24 @@ In this demo, you will see how to:
 ##### Setup the Puppet Agent VM #####
 1. Run **Source\2.Setup.Agent.cmd** using elevated permissions. A new command window will launch and execute commands. Wait until it finishes running and when prompted, press a key to dismiss it.
 
+	![Setup.Agent script execution](Images/setupagent-script-execution.png?raw=true)
+	
 	_Setup.Agent script execution_
 
 1. Switch to the browser with the Management Portal open.
 
 1. Refresh the **Virtual Machines** page, and verify a virtual machine with the **vmName** name set in the **puppetAgentSettings** node of the configuration file has been created. 
 
+	![Puppet Agent VM created](Images/puppet-agent-vm-created.png?raw=true)
+	
 	_Puppet Agent and Puppet Master Virtual Machines created_
 
+1. A new Remote Desktop shortcut with name **PuppetAgent VM** shall have been created as well.
+	
 ##### Reset the Puppet Agent VM #####
 1. Run **Source\3.Reset.Puppet.cmd** using elevated permissions. This will launch a command window.
+
+	![Reset.Puppet script execution](Images/resetpuppet-script-execution.png?raw=true)
 
 	_Reset.Puppet script execution_
 
@@ -109,42 +124,39 @@ In this demo, you will see how to:
 	
 	_Log in With Admin Credentials_
 
-1. A new command window will open and start running a script. You will be prompted for the **adminUserName** password twice. When the script finishes running, you will be asked to press the Enter key to exit. This will close the command window and focus will switch back to the command window that opened in step 1.
+1. A new command window will open and start running a script. You will be prompted for your consent to continue connecting to the Puppet Master machine (answer **yes**), for the **adminUserName** password twice. When the script finishes running, you will be asked to press the **Enter** key to exit. This will close the command window and focus will switch back to the command window that opened in step 1. Press a key to dismiss it.
 
+	![Reset script](Images/reset-script.png?raw=true)
 	_Reset script_
 
-1. Press a key to dismiss it.
-
 1. Switch to the browser at the **Puppet Dashboard** page, displaying the login page. Log in with the **consoleUsername** and **consolePassword** credentials provided in the **puppetMasterSettings** node of the configuration file.
+
+	![Puppet Dashboard log in](Images/puppet-dashboard-log-in.png?raw=true)
 
 	_Puppet Dashboard Home Page_
 
 1. The **Puppet Dashboard** home page should be displayed. Verify that the list in the "All" tab contains the Master Puppet VM.
 
+	![Puppet Dashboard Setup Verification](Images/puppet-dashboard-setup-verification.png?raw=true)
+	
 	_Master Puppet VM in Puppet Dashboard_
 
 1. Verify that in the Groups section on the left, a **Windows Servers** group is displayed.
 
-	_Windows Servers group in Puppet Dashboard_
-
 1. Click the **1 Node Request** link at the top of the **Puppet Dashboard** home page.
 
+	![Node Request link](Images/node-request-link.png?raw=true)
 	_Node Request_
 
 1. In the page, click **Accept** next to the Puppet Agent VM name.
 
+	![Accept Node Request](Images/accept-node-request.png?raw=true)
+	
 	_Accept Puppet Agent Node Request_
 
 ##### Open a Remote Desktop to the Puppet Agent VM #####
-1. Switch to the browser instance at the **Management Portal** and go to **Virtual Machines**.
-
-1. Select the Puppet Agent VM and click **Connect** in the bottom bar.
-
-	![Connect to Agent VM](Images/connect-to-agent-vm.png?raw=true)
 	
-	_Connect to Puppet Agent VM_
-
-1. In the file download message, click **Open**.
+1. Go to your desktop folder and double-click the Remote Desktop shortcut named **PuppetAgent VM.rdp**. A dialog will open.
 
 	![Open Remote Desktop to Agent VM](Images/open-remote-desktop-to-agent-vm.png?raw=true)
 	
@@ -187,7 +199,7 @@ In this demo, you will see how to:
 
 	>**Note:** Keep this Remote Desktop Connection open, as you will use it in Segment 2.
 	
-1. Switch to the browser at the **Puppet Dashboard** page and refresh the page by pressing **Ctrl+F5**. The list in the "All" tab shall contain the Master Puppet VM and the Puppet Agent VM as well.
+1. Switch to the browser at the **Puppet Dashboard** page and click the **Nodes** link. The list in the "All" tab shall contain the Master Puppet VM and the Puppet Agent VM as well.
 
 	_Puppet Agent and Puppet Master displaying in Puppet Dashboard_
 
