@@ -3,7 +3,7 @@
 
 ## Overview ##
 
-In this demo you will see how **Microsoft Azure** integrates with configuration management systems, in this case **Puppet Labs**. First, you will see how to launch a Puppet Master server inside Windows Azure and how to create Puppet nodes, machines running the Puppet agent that connect to a Puppet Master. Then, you will see how to use the Puppet Enterprise Console to configure the Puppet nodes.
+In this demo you will see how **Microsoft Azure** integrates with configuration management systems, in this case **Puppet Labs**. First, you will see how to launch a Puppet Master server inside Azure and how to create Puppet nodes, machines running the Puppet agent that connect to a Puppet Master. Then, you will see how to use the Puppet Enterprise Console to configure the Puppet nodes.
 
 <a name="Goals" />
 ### Goals ###
@@ -67,7 +67,7 @@ In this demo, you will see how to:
 	
 	_Setup Master Script_
 	
-1. In a browser, open the **Management Portal** by navigating to [https://manage.windowsazure.com](https://manage.windowsazure.com) and sign in using the Microsoft Account associated with your Windows Azure account. 
+1. In a browser, open the **Management Portal** by navigating to [https://manage.windowsazure.com](https://manage.windowsazure.com) and sign in using the Microsoft Account associated with your Azure account. 
 
 1. Go to **Virtual Machines** and verify a virtual machine with the **vmName** name set in the **puppetMasterSettings** node of the configuration file that was created. 
 
@@ -267,7 +267,7 @@ In this segment we will show how we could easily create Puppet masters from with
 	
 	_Create New Virtual Machine from Gallery_
 
-	> **Speaking Point:** With the collaboration with Puppet Labs, we've made it very easy to go and create Puppet Masters from within Windows Azure by adding a Puppet Master image to our platform image repository.
+	> **Speaking Point:** With the collaboration with Puppet Labs, we've made it very easy to go and create Puppet Masters from within Azure by adding a Puppet Master image to our platform image repository.
 	
 1. Select **Puppet Labs** from the left panel and show the **Puppet Master** image.
 
