@@ -125,5 +125,6 @@ UpgradeLog*.XML
 # generated files
 bin/
 gen/
+Thumbs.db
 
 
