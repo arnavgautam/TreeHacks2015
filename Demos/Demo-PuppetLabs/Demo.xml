@@ -8,7 +8,7 @@
     <Name></Name>
   </Author>
   <Description>
-  In this demo...
+  	In this demo you will see how Microsoft Azure integrates with Puppet Labs. First, you will see how to launch a Puppet Master server inside Azure and how to create Puppet nodes, machines running the Puppet agent that connect to a Puppet Master. Then, you will see how to use the Puppet Enterprise Console to configure this nodes.
   </Description>
   <Document ConversionType="Html">Demo.md</Document>
   <Title>Puppet Labs</Title>
